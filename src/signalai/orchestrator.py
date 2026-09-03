@@ -23,6 +23,7 @@ from signalai.schemas import (
     CritiqueResult,
     DecisionProposal,
     Evidence,
+    EvidenceConfidence,
     HypothesisProposal,
     ProgramStatus,
     PublicSignalState,
@@ -93,7 +94,7 @@ class MilestoneOneOrchestrator:
                 input_text=_json(claims_result),
                 output_type=HypothesisProposal,
             )
-            self._validate_hypothesis(hypothesis_result, claims_result)
+            self._validate_hypothesis(hypothesis_result, claims_result, evidence)
             artifact_paths.append(
                 str(store.write_json("03-hypothesis.json", hypothesis_result))
             )
@@ -117,7 +118,12 @@ class MilestoneOneOrchestrator:
                 input_text=_json(synthesis_input),
                 output_type=DecisionProposal,
             )
-            self._validate_decision(decision_result, claims_result)
+            self._validate_decision(
+                decision_result,
+                claims_result,
+                critique_result,
+                evidence,
+            )
             artifact_paths.append(str(store.write_json("05-decision.json", decision_result)))
 
             now = _utc_now()
@@ -127,14 +133,35 @@ class MilestoneOneOrchestrator:
                 asset_name="SGL-001",
                 modality="extracellular-vesicle/exosome therapeutic",
                 route_of_administration="intranasal",
-                status=ProgramStatus.DISCOVERY,
+                indication=None,
+                development_focus="Neuroregeneration and cognitive function",
+                lead_indication="Not yet selected",
+                status=ProgramStatus.PRECLINICAL,
+                current_formulation_hypothesis=(
+                    "Intranasal mesenchymal-stromal-cell-derived small-EV preparation "
+                    "with defined identity, purity, dose, and a mechanism-relevant "
+                    "potency assay; therapeutic cargo remains to be selected."
+                ),
+                evidence_confidence=EvidenceConfidence.MODERATE,
+                largest_unresolved_risk=(
+                    "Intranasal CNS exposure observed in rodents may not translate to "
+                    "larger species or humans."
+                ),
+                next_proposed_action=(
+                    "Run a formulation-controlled biodistribution and pharmacology "
+                    "study with label controls, quantitative tissue exposure, and "
+                    "predefined acceptance criteria, then select a cognition/aging "
+                    "model aligned with the program intent."
+                ),
                 claim_ids=[claim.claim_id for claim in claims_result.claims],
                 hypothesis_ids=[hypothesis_result.hypothesis.hypothesis_id],
+                risk_ids=[risk.risk_id for risk in critique_result.risks],
                 decision_ids=[decision_result.decision.decision_id],
                 created_at=started_at,
                 updated_at=now,
             )
             state = SignalState(
+                schema_version="2.0",
                 run_id=active_run_id,
                 generated_at=now,
                 program=program,
@@ -142,6 +169,7 @@ class MilestoneOneOrchestrator:
                 claims=claims_result.claims,
                 hypothesis=hypothesis_result.hypothesis,
                 critique=critique_result.critique,
+                risks=critique_result.risks,
                 decision=decision_result.decision,
             )
             artifact_paths.append(str(store.write_json("06-signal-state.json", state)))
@@ -192,7 +220,11 @@ class MilestoneOneOrchestrator:
                 raise ValueError(f"claim cites unknown evidence IDs: {sorted(unknown)}")
 
     @staticmethod
-    def _validate_hypothesis(result: HypothesisProposal, claims: ClaimSet) -> None:
+    def _validate_hypothesis(
+        result: HypothesisProposal,
+        claims: ClaimSet,
+        evidence: list[Evidence],
+    ) -> None:
         hypothesis = result.hypothesis
         if hypothesis.program_id != "SGL-001":
             raise ValueError("hypothesis must belong to SGL-001")
@@ -200,6 +232,9 @@ class MilestoneOneOrchestrator:
         referenced = set(hypothesis.supporting_claim_ids + hypothesis.contradicting_claim_ids)
         if referenced - known_claims:
             raise ValueError("hypothesis references unknown claim IDs")
+        known_evidence = {item.evidence_id for item in evidence}
+        if set(hypothesis.evidence_ids) - known_evidence:
+            raise ValueError("hypothesis references unknown evidence IDs")
 
     @staticmethod
     def _validate_critique(
@@ -212,9 +247,23 @@ class MilestoneOneOrchestrator:
         known_evidence = {item.evidence_id for item in evidence}
         if set(result.critique.evidence_ids) - known_evidence:
             raise ValueError("critique references unknown evidence IDs")
+        risk_ids: set[str] = set()
+        for risk in result.risks:
+            if risk.program_id != "SGL-001":
+                raise ValueError("all risks must belong to SGL-001")
+            if risk.risk_id in risk_ids:
+                raise ValueError(f"duplicate risk_id: {risk.risk_id}")
+            risk_ids.add(risk.risk_id)
+            if set(risk.evidence_ids) - known_evidence:
+                raise ValueError("risk references unknown evidence IDs")
 
     @staticmethod
-    def _validate_decision(result: DecisionProposal, claims: ClaimSet) -> None:
+    def _validate_decision(
+        result: DecisionProposal,
+        claims: ClaimSet,
+        critique: CritiqueResult,
+        evidence: list[Evidence],
+    ) -> None:
         decision = result.decision
         if decision.program_id != "SGL-001":
             raise ValueError("decision must belong to SGL-001")
@@ -223,3 +272,9 @@ class MilestoneOneOrchestrator:
         known_claims = {claim.claim_id for claim in claims.claims}
         if set(decision.supporting_claim_ids) - known_claims:
             raise ValueError("decision references unknown claim IDs")
+        known_evidence = {item.evidence_id for item in evidence}
+        if set(decision.evidence_ids) - known_evidence:
+            raise ValueError("decision references unknown evidence IDs")
+        known_risks = {risk.risk_id for risk in critique.risks}
+        if set(decision.risk_ids) - known_risks:
+            raise ValueError("decision references unknown risk IDs")

@@ -68,6 +68,13 @@ class RiskStatus(StrEnum):
     CLOSED = "closed"
 
 
+class RiskLevel(StrEnum):
+    LOW = "low"
+    MODERATE = "moderate"
+    HIGH = "high"
+    CRITICAL = "critical"
+
+
 class ApprovalStatus(StrEnum):
     NOT_REQUIRED = "not_required"
     PENDING = "pending"
@@ -84,6 +91,13 @@ class RunStatus(StrEnum):
     CANCELLED = "cancelled"
 
 
+class EvidenceConfidence(StrEnum):
+    NOT_ASSESSED = "not_assessed"
+    LOW = "low"
+    MODERATE = "moderate"
+    HIGH = "high"
+
+
 class TherapeuticProgram(SignalModel):
     program_id: Identifier
     name: NonEmptyText
@@ -91,7 +105,13 @@ class TherapeuticProgram(SignalModel):
     modality: NonEmptyText
     route_of_administration: NonEmptyText
     indication: str | None = None
+    development_focus: str | None = None
+    lead_indication: str | None = None
     status: ProgramStatus = ProgramStatus.DISCOVERY
+    current_formulation_hypothesis: str | None = None
+    evidence_confidence: EvidenceConfidence = EvidenceConfidence.NOT_ASSESSED
+    largest_unresolved_risk: str | None = None
+    next_proposed_action: str | None = None
     claim_ids: list[Identifier] = Field(default_factory=list)
     hypothesis_ids: list[Identifier] = Field(default_factory=list)
     risk_ids: list[Identifier] = Field(default_factory=list)
@@ -153,6 +173,7 @@ class Hypothesis(SignalModel):
     status: HypothesisStatus = HypothesisStatus.PROPOSED
     supporting_claim_ids: list[Identifier] = Field(default_factory=list)
     contradicting_claim_ids: list[Identifier] = Field(default_factory=list)
+    evidence_ids: list[Identifier] = Field(default_factory=list)
     test_plan: str | None = None
     created_at: datetime = Field(default_factory=_utc_now)
 
@@ -167,8 +188,8 @@ class Risk(SignalModel):
     program_id: Identifier
     title: NonEmptyText
     description: NonEmptyText
-    probability: Annotated[float, Field(ge=0, le=1)]
-    impact: Annotated[int, Field(ge=1, le=5)]
+    likelihood: RiskLevel
+    severity: RiskLevel
     status: RiskStatus = RiskStatus.OPEN
     evidence_ids: list[Identifier] = Field(default_factory=list)
     mitigation: str | None = None
@@ -182,6 +203,7 @@ class Decision(SignalModel):
     outcome: str | None = None
     rationale: str | None = None
     supporting_claim_ids: list[Identifier] = Field(default_factory=list)
+    evidence_ids: list[Identifier] = Field(default_factory=list)
     risk_ids: list[Identifier] = Field(default_factory=list)
     requires_human_approval: bool = True
     approval_status: ApprovalStatus = ApprovalStatus.PENDING
@@ -271,6 +293,7 @@ class CritiqueResult(SignalModel):
     """Validated output of the critic stage."""
 
     critique: Critique
+    risks: Annotated[list[Risk], Field(min_length=2, max_length=3)]
 
 
 class DecisionProposal(SignalModel):
@@ -290,6 +313,7 @@ class SignalState(SignalModel):
     claims: Annotated[list[Claim], Field(min_length=1)]
     hypothesis: Hypothesis
     critique: Critique
+    risks: Annotated[list[Risk], Field(min_length=2, max_length=3)]
     decision: Decision
 
     @model_validator(mode="after")
@@ -323,8 +347,24 @@ class SignalState(SignalModel):
             raise ValueError("state critique references a different hypothesis")
         if set(self.critique.evidence_ids) - evidence_ids:
             raise ValueError("state critique references unknown evidence")
+        if set(self.hypothesis.evidence_ids) - evidence_ids:
+            raise ValueError("state hypothesis references unknown evidence")
+        risk_ids = {risk.risk_id for risk in self.risks}
+        if len(risk_ids) != len(self.risks):
+            raise ValueError("state contains duplicate risk IDs")
+        if set(self.program.risk_ids) != risk_ids:
+            raise ValueError("program risk IDs do not match state risks")
+        for risk in self.risks:
+            if risk.program_id != self.program.program_id:
+                raise ValueError("state risk belongs to a different program")
+            if set(risk.evidence_ids) - evidence_ids:
+                raise ValueError("state risk references unknown evidence")
         if self.decision.decision_id not in self.program.decision_ids:
             raise ValueError("program does not reference the state decision")
         if set(self.decision.supporting_claim_ids) - claim_ids:
             raise ValueError("state decision references unknown claims")
+        if set(self.decision.evidence_ids) - evidence_ids:
+            raise ValueError("state decision references unknown evidence")
+        if set(self.decision.risk_ids) - risk_ids:
+            raise ValueError("state decision references unknown risks")
         return self

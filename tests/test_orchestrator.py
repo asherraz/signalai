@@ -64,7 +64,20 @@ def test_milestone_one_run_persists_every_stage_and_public_state(tmp_path: Path)
     state = orchestrator.run(run_id="run-test-001")
 
     assert client.calls == [ClaimSet, HypothesisProposal, CritiqueResult, DecisionProposal]
+    assert len(state.claims) >= 3
+    assert all(claim.status.value == "supported" for claim in state.claims)
+    assert state.hypothesis.status.value == "active"
+    assert len(state.risks) == 3
     assert state.decision.approval_status is ApprovalStatus.PENDING
+    assert state.program.current_formulation_hypothesis
+    assert state.program.development_focus == "Neuroregeneration and cognitive function"
+    assert state.program.lead_indication == "Not yet selected"
+    assert state.program.indication is None
+    assert state.program.evidence_confidence.value == "moderate"
+    assert state.program.largest_unresolved_risk
+    assert state.program.next_proposed_action
+    assert all(risk.likelihood.value in {"low", "moderate", "high", "critical"} for risk in state.risks)
+    assert all(risk.severity.value in {"low", "moderate", "high", "critical"} for risk in state.risks)
     run_path = runs_root / "run-test-001"
     assert {path.name for path in run_path.iterdir()} == {
         "00-run-start.json",
@@ -93,7 +106,19 @@ def test_milestone_one_run_persists_every_stage_and_public_state(tmp_path: Path)
     public_state = PublicSignalState.model_validate(public_payload)
     assert public_state.loop.run_id == state.run_id
     assert public_state.hypotheses == [state.hypothesis]
-    assert public_state.risks == []
+    assert public_state.risks == state.risks
+    assert len(public_state.changes) == 1
+    assert public_state.program.claims == state.claims
+
+    evidence_ids = {item.evidence_id for item in state.evidence}
+    claim_ids = {item.claim_id for item in state.claims}
+    assert all(set(claim.evidence_ids) <= evidence_ids for claim in state.claims)
+    assert set(state.hypothesis.supporting_claim_ids) <= claim_ids
+    assert set(state.hypothesis.contradicting_claim_ids) <= claim_ids
+    assert set(state.hypothesis.evidence_ids) <= evidence_ids
+    assert all(set(risk.evidence_ids) <= evidence_ids for risk in state.risks)
+    assert set(state.decision.supporting_claim_ids) <= claim_ids
+    assert set(state.decision.evidence_ids) <= evidence_ids
 
 
 def test_invalid_model_reference_is_rejected_and_failure_is_persisted(

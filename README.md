@@ -9,11 +9,11 @@ and does not use Anthropic or Claude dependencies.
 
 ## Current scope
 
-Milestone 1 provides a minimal sequential therapeutic-development run over local
-fixture evidence. Four bounded roles extract claims, propose a hypothesis,
-critique it, and produce a decision proposal that remains pending human
-approval. It deliberately does **not** implement PubMed or web retrieval,
-scheduled workflows, or frontend code.
+The current milestone provides a minimal sequential therapeutic-development run
+over curated local evidence. Four bounded roles extract claims, propose a
+hypothesis, critique it and identify risks, and produce a decision proposal that
+remains pending human approval. It deliberately does **not** implement PubMed or
+web retrieval, scheduled workflows, or frontend code.
 
 ## Architecture
 
@@ -61,9 +61,10 @@ unique directory under `runs/`, persists each validated stage with create-only
 writes, and atomically updates `public/signal-state.json` after successful final
 validation.
 
-The records in `evidence/fixtures/sgl-001.json` are synthetic, testing-only
-examples. They are not scientific sources and must not be used to support real
-therapeutic-development decisions.
+The records in `evidence/fixtures/sgl-001.json` are curated, local summaries of
+traceable publications. They support planning and software validation, not
+clinical conclusions. The current evidence is preclinical or methodological and
+does not establish human efficacy for SGL-001.
 
 ## Data conventions
 

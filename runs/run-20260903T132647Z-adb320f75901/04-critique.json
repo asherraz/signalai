@@ -1,0 +1,65 @@
+{
+  "critique": {
+    "challenges": [
+      "Demonstrate that measured CNS signal represents intact candidate-associated EV exposure rather than free label, co-isolates, or secondary biological effects.",
+      "Define product identity, purity, dose units, stability, and a mechanism-relevant potency assay before interpreting efficacy reproducibility.",
+      "Use a staged translational plan because the macaque biodistribution result conflicts with assuming that rodent intranasal brain uptake will generalize to humans."
+    ],
+    "evidence_ids": [
+      "ev-zhuang-2011-intranasal-exosome",
+      "ev-misev2023-quality-framework",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "hypothesis_id": "hypothesis-sgl001-biodistribution-gate",
+    "summary": "The hypothesis is plausible enough to test but remains highly sensitive to EV source, preparation purity, label artifacts, disease-model permeability, nasal retention, dose normalization, and cross-species anatomy. Rodent efficacy cannot establish that SGL-001 reaches a clinically relevant human CNS compartment or will benefit patients."
+  },
+  "risks": [
+    {
+      "description": "Rodent CNS localization and efficacy may not translate to larger species or humans; nasal retention or anatomy may prevent adequate target-compartment exposure.",
+      "evidence_ids": [
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "impact": 5,
+      "mitigation": "Establish quantitative, label-controlled biodistribution and pharmacokinetics with prospectively defined exposure criteria before indication-specific efficacy expansion.",
+      "owner": "Translational pharmacology",
+      "probability": 0.8,
+      "program_id": "SGL-001",
+      "risk_id": "risk-cross-species-cns-delivery",
+      "status": "open",
+      "title": "Cross-species CNS delivery may fail"
+    },
+    {
+      "description": "EV heterogeneity, co-isolates, source-cell variability, and process changes may alter composition, dose, stability, or biological activity.",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi",
+        "ev-misev2023-quality-framework"
+      ],
+      "impact": 5,
+      "mitigation": "Define the source-cell strategy, scalable purification process, orthogonal identity and purity panel, stability-indicating assays, and a mechanism-linked potency assay.",
+      "owner": "CMC",
+      "probability": 0.7,
+      "program_id": "SGL-001",
+      "risk_id": "risk-cmc-identity-potency",
+      "status": "open",
+      "title": "Product identity and potency may not be reproducible"
+    },
+    {
+      "description": "Reported benefits span heterogeneous injury and inflammation models, EV sources, cargoes, schedules, and endpoints and therefore may not predict efficacy for a defined SGL-001 product or indication.",
+      "evidence_ids": [
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "impact": 4,
+      "mitigation": "Select one lead indication and mechanism, predefine pharmacodynamic and efficacy endpoints, and replicate with the final candidate-like formulation in an adequately controlled study.",
+      "owner": "Preclinical biology",
+      "probability": 0.65,
+      "program_id": "SGL-001",
+      "risk_id": "risk-model-efficacy-generalizability",
+      "status": "open",
+      "title": "Rodent efficacy may be model-specific"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ from typing import Annotated
 from pydantic import Field, model_validator
 
 from signalai.schemas.models import (
+    Claim,
     Decision,
     Evidence,
     Hypothesis,
@@ -40,6 +41,12 @@ class PublicLoop(SignalModel):
     )
 
 
+class PublicProgram(TherapeuticProgram):
+    """Program summary plus the validated claims omitted from the top-level contract."""
+
+    claims: list[Claim] = Field(default_factory=list)
+
+
 class PublicSignalState(SignalModel):
     """Frontend-facing projection with a stable, camel-cased top-level contract."""
 
@@ -49,7 +56,7 @@ class PublicSignalState(SignalModel):
     )
     version: str
     status: PublicStateStatus
-    program: TherapeuticProgram
+    program: PublicProgram
     changes: list[PublicChange] = Field(default_factory=list)
     loop: PublicLoop
     evidence: list[Evidence] = Field(default_factory=list)
@@ -72,8 +79,20 @@ class PublicSignalState(SignalModel):
             generatedAt=state.generated_at,
             version=state.schema_version,
             status=PublicStateStatus.AWAITING_HUMAN_REVIEW,
-            program=state.program,
-            changes=[],
+            program=PublicProgram(
+                **state.program.model_dump(mode="python"),
+                claims=state.claims,
+            ),
+            changes=[
+                PublicChange(
+                    changeId=f"{state.run_id}-state-populated",
+                    summary=(
+                        "Clarified SGL-001's neuroregeneration/cognitive-function "
+                        "development focus and replaced uncalibrated numeric risk "
+                        "estimates with ordinal assessments."
+                    ),
+                )
+            ],
             loop=PublicLoop(
                 runId=state.run_id,
                 status=RunStatus.SUCCEEDED,
@@ -81,6 +100,6 @@ class PublicSignalState(SignalModel):
             ),
             evidence=state.evidence,
             hypotheses=[state.hypothesis],
-            risks=[],
+            risks=state.risks,
             decisions=[state.decision],
         )

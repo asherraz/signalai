@@ -12,6 +12,7 @@ from signalai.schemas import (
     EvidenceKind,
     Hypothesis,
     Risk,
+    RiskLevel,
     RunStatus,
     TherapeuticProgram,
 )
@@ -68,15 +69,30 @@ def test_hypothesis_is_distinct_from_supported_claims() -> None:
     assert hypothesis.supporting_claim_ids == ["claim-1"]
 
 
-def test_risk_bounds_probability_and_impact() -> None:
+def test_risk_uses_ordinal_likelihood_and_severity() -> None:
+    risk = Risk(
+        risk_id="risk-1",
+        program_id="SGL-001",
+        title="Translation risk",
+        description="Delivery may not translate between species.",
+        likelihood=RiskLevel.HIGH,
+        severity=RiskLevel.CRITICAL,
+    )
+
+    assert risk.likelihood is RiskLevel.HIGH
+    assert risk.severity is RiskLevel.CRITICAL
+
+
+def test_risk_rejects_numeric_probability() -> None:
     with pytest.raises(ValidationError):
         Risk(
             risk_id="risk-1",
             program_id="SGL-001",
             title="Invalid risk",
-            description="Probability is outside its canonical range.",
+            description="Numeric probabilities are not calibrated.",
             probability=1.1,
-            impact=3,
+            likelihood="high",
+            severity="critical",
         )
 
 

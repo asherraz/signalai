@@ -28,10 +28,17 @@ def test_generated_public_payload_matches_frontend_contract() -> None:
     assert set(payload) == EXPECTED_TOP_LEVEL_FIELDS
     validated = PublicSignalState.model_validate(payload)
     assert validated.program.program_id == "SGL-001"
+    assert len(validated.program.claims) >= 3
+    assert validated.program.current_formulation_hypothesis
+    assert validated.program.development_focus == "Neuroregeneration and cognitive function"
+    assert validated.program.lead_indication == "Not yet selected"
+    assert validated.program.largest_unresolved_risk
+    assert validated.program.next_proposed_action
+    assert len(validated.changes) == 1
     assert isinstance(validated.changes, list)
     assert isinstance(validated.evidence, list)
     assert isinstance(validated.hypotheses, list)
-    assert isinstance(validated.risks, list)
+    assert 2 <= len(validated.risks) <= 3
     assert isinstance(validated.decisions, list)
 
 
