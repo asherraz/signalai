@@ -1,8 +1,9 @@
-"""Command-line entry point for the local Milestone 1 run."""
+"""Command-line entry points for SignalAI development runs."""
 
 from pathlib import Path
 
 from signalai.client import OpenAIResponsesClient
+from signalai.daily import DailyRunOrchestrator
 from signalai.orchestrator import MilestoneOneOrchestrator
 
 
@@ -15,6 +16,18 @@ def main() -> None:
         public_state_path=root / "public" / "signal-state.json",
     ).run()
     print(f"Completed {state.run_id}")
+
+
+def daily_main() -> None:
+    root = Path.cwd()
+    state, _ = DailyRunOrchestrator(
+        client=OpenAIResponsesClient.from_env(),
+        state_path=root / "state" / "signal-state.json",
+        agenda_path=root / "state" / "development-agenda.json",
+        runs_root=root / "runs",
+        public_state_path=root / "public" / "signal-state.json",
+    ).run()
+    print(f"Completed daily run {state.run_id}")
 
 
 if __name__ == "__main__":

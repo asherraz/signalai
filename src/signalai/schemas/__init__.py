@@ -1,5 +1,20 @@
 """Canonical SignalAI data contracts."""
 
+from signalai.schemas.agenda import (
+    AgendaItem,
+    AgendaItemType,
+    AgendaPriority,
+    AgendaStatus,
+    DevelopmentAgenda,
+)
+from signalai.schemas.daily import (
+    DailyAnalysis,
+    DailyCritique,
+    DailySynthesis,
+    SelectedTask,
+    WhatChanged,
+)
+
 from signalai.schemas.models import (
     AgentRun,
     ApprovalStatus,
@@ -33,6 +48,10 @@ from signalai.schemas.public import (
 )
 
 __all__ = [
+    "AgendaItem",
+    "AgendaItemType",
+    "AgendaPriority",
+    "AgendaStatus",
     "AgentRun",
     "ApprovalStatus",
     "Claim",
@@ -42,6 +61,10 @@ __all__ = [
     "CritiqueResult",
     "Decision",
     "DecisionProposal",
+    "DevelopmentAgenda",
+    "DailyAnalysis",
+    "DailyCritique",
+    "DailySynthesis",
     "Evidence",
     "EvidenceConfidence",
     "EvidenceKind",
@@ -59,5 +82,7 @@ __all__ = [
     "RiskStatus",
     "RunStatus",
     "SignalState",
+    "SelectedTask",
     "TherapeuticProgram",
+    "WhatChanged",
 ]

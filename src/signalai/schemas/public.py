@@ -74,7 +74,13 @@ class PublicSignalState(SignalModel):
         return self
 
     @classmethod
-    def from_internal(cls, state: SignalState) -> PublicSignalState:
+    def from_internal(
+        cls,
+        state: SignalState,
+        *,
+        changes: list[PublicChange] | None = None,
+        completed_stages: list[str] | None = None,
+    ) -> PublicSignalState:
         return cls(
             generatedAt=state.generated_at,
             version=state.schema_version,
@@ -83,7 +89,7 @@ class PublicSignalState(SignalModel):
                 **state.program.model_dump(mode="python"),
                 claims=state.claims,
             ),
-            changes=[
+            changes=changes or [
                 PublicChange(
                     changeId=f"{state.run_id}-state-populated",
                     summary=(
@@ -96,7 +102,8 @@ class PublicSignalState(SignalModel):
             loop=PublicLoop(
                 runId=state.run_id,
                 status=RunStatus.SUCCEEDED,
-                completedStages=["research", "hypothesis", "critic", "synthesis"],
+                completedStages=completed_stages
+                or ["research", "hypothesis", "critic", "synthesis"],
             ),
             evidence=state.evidence,
             hypotheses=[state.hypothesis],

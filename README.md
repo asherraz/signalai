@@ -61,6 +61,23 @@ unique directory under `runs/`, persists each validated stage with create-only
 writes, and atomically updates `public/signal-state.json` after successful final
 validation.
 
+## Daily autonomy
+
+`state/development-agenda.json` is the persistent, typed backlog of scientific
+questions, hypotheses, translational risks, formulation questions, experiment
+proposals, pending decisions, and evidence gaps. A daily run selects exactly one
+open item using therapeutic-development value rather than novelty:
+
+```bash
+signalai-daily-run
+```
+
+The daily cycle reads `state/signal-state.json` and the agenda, records task
+selection, analysis, critique, synthesis, updated state, updated agenda, and a
+concise change entry under a unique run directory, then publishes the validated
+public state. It may record `no material scientific change`; major decisions
+remain pending human approval. Scheduling is intentionally not included yet.
+
 The records in `evidence/fixtures/sgl-001.json` are curated, local summaries of
 traceable publications. They support planning and software validation, not
 clinical conclusions. The current evidence is preclinical or methodological and
