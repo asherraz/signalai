@@ -15,6 +15,7 @@ from signalai.agents.daily_prompts import (
     DAILY_SYNTHESIS_INSTRUCTIONS,
 )
 from signalai.client import ModelClient
+from signalai.public_export import build_public_latest_run
 from signalai.schemas import (
     AgentRun,
     AgendaItem,
@@ -147,27 +148,9 @@ class DailyRunOrchestrator:
                 summary=synthesis.what_changed,
                 created_at=now,
             )
-            public_state = PublicSignalState.from_internal(
-                updated_state,
-                changes=[
-                    PublicChange(
-                        changeId=f"{active_run_id}-daily-change",
-                        summary=synthesis.what_changed,
-                    )
-                ],
-                completed_stages=["selection", "analysis", "critique", "synthesis"],
-            )
-
             artifacts.append(str(store.write_json("07-updated-state.json", updated_state)))
             artifacts.append(str(store.write_json("08-updated-agenda.json", updated_agenda)))
             artifacts.append(str(store.write_json("09-what-changed.json", changed)))
-            artifacts.append(
-                str(store.write_json("10-public-signal-state.json", public_state))
-            )
-
-            publish_json(self.state_path, updated_state)
-            publish_json(self.agenda_path, updated_agenda)
-            publish_json(self.public_state_path, public_state)
 
             completed = AgentRun(
                 run_id=active_run_id,
@@ -179,8 +162,44 @@ class DailyRunOrchestrator:
                 input_artifact_paths=artifacts[1:3],
                 intermediate_artifact_paths=artifacts[3:7],
                 output_artifact_paths=artifacts[7:]
-                + [str(self.state_path), str(self.agenda_path), str(self.public_state_path)],
+                + [
+                    str(store.path / "10-public-signal-state.json"),
+                    str(self.state_path),
+                    str(self.agenda_path),
+                    str(self.public_state_path),
+                ],
             )
+            latest_run = build_public_latest_run(
+                started=start,
+                completed=completed,
+                selected=selected,
+                analysis=analysis,
+                critique=critique,
+                synthesis=synthesis,
+                input_state=current_state,
+                updated_state=updated_state,
+                changed=changed,
+            )
+            public_state = PublicSignalState.from_internal(
+                updated_state,
+                changes=[
+                    PublicChange(
+                        changeId=f"{active_run_id}-daily-change",
+                        summary=synthesis.what_changed,
+                    )
+                ],
+                completed_stages=["selection", "analysis", "critique", "synthesis"],
+                current_hypothesis=latest_run.stages.hypothesis,
+                latest_run=latest_run,
+            )
+            artifacts.append(
+                str(store.write_json("10-public-signal-state.json", public_state))
+            )
+
+            publish_json(self.state_path, updated_state)
+            publish_json(self.agenda_path, updated_agenda)
+            publish_json(self.public_state_path, public_state)
+
             store.write_json("99-run-complete.json", completed)
             return updated_state, updated_agenda
         except Exception as exc:

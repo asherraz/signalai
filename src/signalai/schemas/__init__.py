@@ -46,6 +46,18 @@ from signalai.schemas.public import (
     PublicSignalState,
     PublicStateStatus,
 )
+from signalai.schemas.public_artifacts import (
+    PublicClaimArtifact,
+    PublicCritiqueArtifact,
+    PublicDecisionArtifact,
+    PublicEvidenceArtifact,
+    PublicEvidencePosition,
+    PublicHypothesisArtifact,
+    PublicLatestRun,
+    PublicNextActionArtifact,
+    PublicRunStages,
+    PublicSelectedTask,
+)
 
 __all__ = [
     "AgendaItem",
@@ -73,8 +85,18 @@ __all__ = [
     "HypothesisStatus",
     "ProgramStatus",
     "PublicChange",
+    "PublicClaimArtifact",
+    "PublicCritiqueArtifact",
+    "PublicDecisionArtifact",
+    "PublicEvidenceArtifact",
+    "PublicEvidencePosition",
+    "PublicHypothesisArtifact",
+    "PublicLatestRun",
     "PublicLoop",
+    "PublicNextActionArtifact",
     "PublicProgram",
+    "PublicRunStages",
+    "PublicSelectedTask",
     "PublicSignalState",
     "PublicStateStatus",
     "Risk",

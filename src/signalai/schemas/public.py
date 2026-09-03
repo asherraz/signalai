@@ -20,6 +20,7 @@ from signalai.schemas.models import (
     TherapeuticProgram,
     _require_timezone,
 )
+from signalai.schemas.public_artifacts import PublicHypothesisArtifact, PublicLatestRun
 
 
 class PublicStateStatus(StrEnum):
@@ -63,6 +64,16 @@ class PublicSignalState(SignalModel):
     hypotheses: list[Hypothesis] = Field(default_factory=list)
     risks: list[Risk] = Field(default_factory=list)
     decisions: list[Decision] = Field(default_factory=list)
+    current_hypothesis: PublicHypothesisArtifact | None = Field(
+        default=None,
+        serialization_alias="currentHypothesis",
+        validation_alias="currentHypothesis",
+    )
+    latest_run: PublicLatestRun | None = Field(
+        default=None,
+        serialization_alias="latestRun",
+        validation_alias="latestRun",
+    )
 
     @model_validator(mode="after")
     def validate_public_state(self) -> PublicSignalState:
@@ -80,6 +91,8 @@ class PublicSignalState(SignalModel):
         *,
         changes: list[PublicChange] | None = None,
         completed_stages: list[str] | None = None,
+        current_hypothesis: PublicHypothesisArtifact | None = None,
+        latest_run: PublicLatestRun | None = None,
     ) -> PublicSignalState:
         return cls(
             generatedAt=state.generated_at,
@@ -109,4 +122,6 @@ class PublicSignalState(SignalModel):
             hypotheses=[state.hypothesis],
             risks=state.risks,
             decisions=[state.decision],
+            currentHypothesis=current_hypothesis,
+            latestRun=latest_run,
         )

@@ -18,6 +18,8 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "hypotheses",
     "risks",
     "decisions",
+    "currentHypothesis",
+    "latestRun",
 }
 
 
@@ -40,6 +42,16 @@ def test_generated_public_payload_matches_frontend_contract() -> None:
     assert isinstance(validated.hypotheses, list)
     assert 2 <= len(validated.risks) <= 3
     assert isinstance(validated.decisions, list)
+    assert validated.current_hypothesis is not None
+    assert validated.latest_run is not None
+    assert set(validated.latest_run.stages.model_dump(by_alias=True)) == {
+        "evidence",
+        "claims",
+        "hypothesis",
+        "critique",
+        "decision",
+        "nextAction",
+    }
 
 
 def test_public_payload_rejects_an_unexpected_top_level_field() -> None:

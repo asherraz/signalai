@@ -5,6 +5,7 @@ from typing import TypeVar, cast
 from pydantic import BaseModel
 
 from signalai.daily import DailyRunOrchestrator
+from signalai.public_export import export_completed_run
 from signalai.schemas import (
     AgendaStatus,
     DailyAnalysis,
@@ -13,6 +14,7 @@ from signalai.schemas import (
     DevelopmentAgenda,
     Risk,
     SignalState,
+    PublicEvidenceArtifact,
 )
 from signalai.selector import select_highest_value_task
 
@@ -119,6 +121,89 @@ def test_no_material_change_run_persists_all_stages(tmp_path: Path) -> None:
         "10-public-signal-state.json",
         "99-run-complete.json",
     }
+    public_payload = json.loads(
+        (tmp_path / "public" / "signal-state.json").read_text(encoding="utf-8")
+    )
+    latest = public_payload["latestRun"]
+    assert set(latest["stages"]) == {
+        "evidence",
+        "claims",
+        "hypothesis",
+        "critique",
+        "decision",
+        "nextAction",
+    }
+    assert latest["runId"] == state.run_id
+    assert public_payload["currentHypothesis"]["hypothesisId"] == state.hypothesis.hypothesis_id
+
+
+def test_public_artifacts_export_from_completed_run_and_match_canonical_ids(
+    tmp_path: Path,
+) -> None:
+    state_path, agenda_path = _prepare_current_files(tmp_path)
+    orchestrator = DailyRunOrchestrator(
+        client=DailyScriptedClient(_outputs()),
+        state_path=state_path,
+        agenda_path=agenda_path,
+        runs_root=tmp_path / "runs",
+        public_state_path=tmp_path / "public" / "signal-state.json",
+    )
+    state, _ = orchestrator.run(run_id="run-export-test")
+
+    exported = export_completed_run(tmp_path / "runs" / "run-export-test")
+
+    assert exported.run_id == state.run_id
+    assert {item.evidence_id for item in exported.stages.evidence} == {
+        item.evidence_id for item in state.evidence
+    }
+    assert {item.claim_id for item in exported.stages.claims} == {
+        item.claim_id for item in state.claims
+    }
+    assert exported.stages.hypothesis.hypothesis_id == state.hypothesis.hypothesis_id
+    assert exported.stages.decision.decision_id == state.decision.decision_id
+
+
+def test_public_artifacts_omit_sensitive_internal_fields_and_allow_optional_values(
+    tmp_path: Path,
+) -> None:
+    state_path, agenda_path = _prepare_current_files(tmp_path)
+    orchestrator = DailyRunOrchestrator(
+        client=DailyScriptedClient(_outputs()),
+        state_path=state_path,
+        agenda_path=agenda_path,
+        runs_root=tmp_path / "runs",
+        public_state_path=tmp_path / "public" / "signal-state.json",
+    )
+    orchestrator.run(run_id="run-sanitization-test")
+    payload = json.loads(
+        (tmp_path / "public" / "signal-state.json").read_text(encoding="utf-8")
+    )
+    serialized = json.dumps(payload).lower()
+
+    for forbidden in (
+        "rawprompt",
+        "raw_prompt",
+        "chain-of-thought",
+        "chain_of_thought",
+        "api_key",
+        "authorization",
+        "response_id",
+        "model_metadata",
+    ):
+        assert forbidden not in serialized
+    evidence = payload["latestRun"]["stages"]["evidence"]
+    assert any(item["modelOrIndication"] is None for item in evidence)
+    assert all("source_uri" not in item and "metadata" not in item for item in evidence)
+
+    minimal = {
+        "evidenceId": "evidence-minimal",
+        "evidenceType": "other",
+        "position": "neutral",
+    }
+    validated = PublicEvidenceArtifact.model_validate(minimal)
+    assert validated.title is None
+    assert validated.route is None
+    assert validated.model_or_indication is None
 
 
 def test_state_update_is_revalidated(tmp_path: Path) -> None:
