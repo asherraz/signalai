@@ -1,0 +1,156 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim-fixture-delivery",
+      "created_at": "2026-09-03T00:00:00Z",
+      "evidence_ids": [
+        "fixture-sgl001-ev-delivery"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "Directly stated in the testing-only fixture.",
+      "statement": "The fixture reports vesicle-associated signal in the target compartment after intranasal administration.",
+      "status": "supported"
+    },
+    {
+      "claim_id": "claim-fixture-limitations",
+      "created_at": "2026-09-03T00:00:00Z",
+      "evidence_ids": [
+        "fixture-sgl001-ev-limitations"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "Directly stated in the testing-only fixture.",
+      "statement": "The fixture does not establish biodistribution, durability, or therapeutic efficacy.",
+      "status": "supported"
+    }
+  ],
+  "critique": {
+    "challenges": [
+      "Use controls that distinguish intact vesicles from unbound label.",
+      "Measure multiple time points and relevant off-target compartments."
+    ],
+    "evidence_ids": [
+      "fixture-sgl001-ev-delivery",
+      "fixture-sgl001-ev-limitations"
+    ],
+    "hypothesis_id": "hypothesis-fixture-001",
+    "summary": "The observed signal alone cannot distinguish intact vesicle delivery from free label or establish durable exposure."
+  },
+  "decision": {
+    "approval_status": "pending",
+    "approved_at": null,
+    "approved_by": null,
+    "decision_id": "decision-fixture-001",
+    "outcome": "Propose a controlled biodistribution experiment before any efficacy-stage decision.",
+    "program_id": "SGL-001",
+    "question": "Should SGL-001 advance to a controlled biodistribution experiment?",
+    "rationale": "The fixture supports further measurement but explicitly does not establish biodistribution or efficacy.",
+    "requires_human_approval": true,
+    "risk_ids": [],
+    "supporting_claim_ids": [
+      "claim-fixture-delivery",
+      "claim-fixture-limitations"
+    ]
+  },
+  "evidence": [
+    {
+      "content_sha256": null,
+      "evidence_id": "fixture-sgl001-ev-delivery",
+      "excerpt": "In the fixture study, labeled vesicle-associated signal was detected in the target compartment after intranasal administration.",
+      "kind": "other",
+      "locator": "record 1",
+      "metadata": {
+        "fixture": true,
+        "scientific_use": "testing-only"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "fixture:sgl-001:delivery-observation",
+      "source_uri": null,
+      "title": "Illustrative fixture: intranasal delivery observation"
+    },
+    {
+      "content_sha256": null,
+      "evidence_id": "fixture-sgl001-ev-cargo",
+      "excerpt": "The fixture assay reported a concentration-dependent change in the predefined cellular readout after exposure to the candidate preparation.",
+      "kind": "other",
+      "locator": "record 2",
+      "metadata": {
+        "fixture": true,
+        "scientific_use": "testing-only"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "fixture:sgl-001:cargo-assay",
+      "source_uri": null,
+      "title": "Illustrative fixture: cargo activity assay"
+    },
+    {
+      "content_sha256": null,
+      "evidence_id": "fixture-sgl001-ev-tolerability",
+      "excerpt": "No predefined severe local tolerability event was observed during the fixture's short observation window.",
+      "kind": "other",
+      "locator": "record 3",
+      "metadata": {
+        "fixture": true,
+        "scientific_use": "testing-only"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "fixture:sgl-001:tolerability-observation",
+      "source_uri": null,
+      "title": "Illustrative fixture: short-term local tolerability"
+    },
+    {
+      "content_sha256": null,
+      "evidence_id": "fixture-sgl001-ev-limitations",
+      "excerpt": "The fixture observations used a small sample, a single short time window, and did not establish biodistribution, durability, or therapeutic efficacy.",
+      "kind": "other",
+      "locator": "record 4",
+      "metadata": {
+        "fixture": true,
+        "scientific_use": "testing-only"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "fixture:sgl-001:limitations",
+      "source_uri": null,
+      "title": "Illustrative fixture: study limitations"
+    }
+  ],
+  "generated_at": "2026-09-03T13:04:44.105737Z",
+  "hypothesis": {
+    "contradicting_claim_ids": [
+      "claim-fixture-limitations"
+    ],
+    "created_at": "2026-09-03T00:00:00Z",
+    "hypothesis_id": "hypothesis-fixture-001",
+    "program_id": "SGL-001",
+    "rationale": "The fixture delivery signal supports testing exposure, while its limitations preclude an efficacy conclusion.",
+    "statement": "A predefined intranasal formulation may produce measurable target-compartment exposure under a controlled biodistribution study.",
+    "status": "proposed",
+    "supporting_claim_ids": [
+      "claim-fixture-delivery"
+    ],
+    "test_plan": "Run a controlled, time-resolved biodistribution study with predefined acceptance criteria."
+  },
+  "program": {
+    "asset_name": "SGL-001",
+    "claim_ids": [
+      "claim-fixture-delivery",
+      "claim-fixture-limitations"
+    ],
+    "created_at": "2026-09-03T13:04:44.093810Z",
+    "decision_ids": [
+      "decision-fixture-001"
+    ],
+    "hypothesis_ids": [
+      "hypothesis-fixture-001"
+    ],
+    "indication": null,
+    "modality": "extracellular-vesicle/exosome therapeutic",
+    "name": "SGL-001 development program",
+    "program_id": "SGL-001",
+    "risk_ids": [],
+    "route_of_administration": "intranasal",
+    "status": "discovery",
+    "updated_at": "2026-09-03T13:04:44.105737Z"
+  },
+  "run_id": "run-20260903T130444Z-b8aee09b254d",
+  "schema_version": "1.0"
+}

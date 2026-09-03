@@ -1,0 +1,136 @@
+{
+  "generatedAt": "2026-09-03T13:04:44.105737Z",
+  "version": "1.0",
+  "status": "awaiting_human_review",
+  "program": {
+    "program_id": "SGL-001",
+    "name": "SGL-001 development program",
+    "asset_name": "SGL-001",
+    "modality": "extracellular-vesicle/exosome therapeutic",
+    "route_of_administration": "intranasal",
+    "indication": null,
+    "status": "discovery",
+    "claim_ids": [
+      "claim-fixture-delivery",
+      "claim-fixture-limitations"
+    ],
+    "hypothesis_ids": [
+      "hypothesis-fixture-001"
+    ],
+    "risk_ids": [],
+    "decision_ids": [
+      "decision-fixture-001"
+    ],
+    "created_at": "2026-09-03T13:04:44.093810Z",
+    "updated_at": "2026-09-03T13:04:44.105737Z"
+  },
+  "changes": [],
+  "loop": {
+    "runId": "run-20260903T130444Z-b8aee09b254d",
+    "status": "succeeded",
+    "completedStages": [
+      "research",
+      "hypothesis",
+      "critic",
+      "synthesis"
+    ]
+  },
+  "evidence": [
+    {
+      "evidence_id": "fixture-sgl001-ev-delivery",
+      "kind": "other",
+      "title": "Illustrative fixture: intranasal delivery observation",
+      "source_uri": null,
+      "source_identifier": "fixture:sgl-001:delivery-observation",
+      "locator": "record 1",
+      "excerpt": "In the fixture study, labeled vesicle-associated signal was detected in the target compartment after intranasal administration.",
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "content_sha256": null,
+      "metadata": {
+        "fixture": true,
+        "scientific_use": "testing-only"
+      }
+    },
+    {
+      "evidence_id": "fixture-sgl001-ev-cargo",
+      "kind": "other",
+      "title": "Illustrative fixture: cargo activity assay",
+      "source_uri": null,
+      "source_identifier": "fixture:sgl-001:cargo-assay",
+      "locator": "record 2",
+      "excerpt": "The fixture assay reported a concentration-dependent change in the predefined cellular readout after exposure to the candidate preparation.",
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "content_sha256": null,
+      "metadata": {
+        "fixture": true,
+        "scientific_use": "testing-only"
+      }
+    },
+    {
+      "evidence_id": "fixture-sgl001-ev-tolerability",
+      "kind": "other",
+      "title": "Illustrative fixture: short-term local tolerability",
+      "source_uri": null,
+      "source_identifier": "fixture:sgl-001:tolerability-observation",
+      "locator": "record 3",
+      "excerpt": "No predefined severe local tolerability event was observed during the fixture's short observation window.",
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "content_sha256": null,
+      "metadata": {
+        "fixture": true,
+        "scientific_use": "testing-only"
+      }
+    },
+    {
+      "evidence_id": "fixture-sgl001-ev-limitations",
+      "kind": "other",
+      "title": "Illustrative fixture: study limitations",
+      "source_uri": null,
+      "source_identifier": "fixture:sgl-001:limitations",
+      "locator": "record 4",
+      "excerpt": "The fixture observations used a small sample, a single short time window, and did not establish biodistribution, durability, or therapeutic efficacy.",
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "content_sha256": null,
+      "metadata": {
+        "fixture": true,
+        "scientific_use": "testing-only"
+      }
+    }
+  ],
+  "hypotheses": [
+    {
+      "hypothesis_id": "hypothesis-fixture-001",
+      "program_id": "SGL-001",
+      "statement": "A predefined intranasal formulation may produce measurable target-compartment exposure under a controlled biodistribution study.",
+      "rationale": "The fixture delivery signal supports testing exposure, while its limitations preclude an efficacy conclusion.",
+      "status": "proposed",
+      "supporting_claim_ids": [
+        "claim-fixture-delivery"
+      ],
+      "contradicting_claim_ids": [
+        "claim-fixture-limitations"
+      ],
+      "test_plan": "Run a controlled, time-resolved biodistribution study with predefined acceptance criteria.",
+      "created_at": "2026-09-03T00:00:00Z"
+    }
+  ],
+  "risks": [],
+  "decisions": [
+    {
+      "decision_id": "decision-fixture-001",
+      "program_id": "SGL-001",
+      "question": "Should SGL-001 advance to a controlled biodistribution experiment?",
+      "outcome": "Propose a controlled biodistribution experiment before any efficacy-stage decision.",
+      "rationale": "The fixture supports further measurement but explicitly does not establish biodistribution or efficacy.",
+      "supporting_claim_ids": [
+        "claim-fixture-delivery",
+        "claim-fixture-limitations"
+      ],
+      "risk_ids": [],
+      "requires_human_approval": true,
+      "approval_status": "pending",
+      "approved_by": null,
+      "approved_at": null
+    }
+  ]
+}

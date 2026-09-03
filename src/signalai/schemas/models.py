@@ -244,3 +244,87 @@ class AgentRun(SignalModel):
         if self.status != RunStatus.FAILED and self.error is not None:
             raise ValueError("error is only valid for failed runs")
         return self
+
+
+class ClaimSet(SignalModel):
+    """Validated output of the research stage."""
+
+    claims: Annotated[list[Claim], Field(min_length=1)]
+
+
+class HypothesisProposal(SignalModel):
+    """Validated output of the hypothesis stage."""
+
+    hypothesis: Hypothesis
+
+
+class Critique(SignalModel):
+    """A structured challenge to a proposed development hypothesis."""
+
+    hypothesis_id: Identifier
+    summary: NonEmptyText
+    challenges: Annotated[list[NonEmptyText], Field(min_length=1)]
+    evidence_ids: list[Identifier] = Field(default_factory=list)
+
+
+class CritiqueResult(SignalModel):
+    """Validated output of the critic stage."""
+
+    critique: Critique
+
+
+class DecisionProposal(SignalModel):
+    """Validated output of the synthesis stage."""
+
+    decision: Decision
+
+
+class SignalState(SignalModel):
+    """Complete validated internal or public state for one development run."""
+
+    schema_version: str = "1.0"
+    run_id: Identifier
+    generated_at: datetime
+    program: TherapeuticProgram
+    evidence: Annotated[list[Evidence], Field(min_length=1)]
+    claims: Annotated[list[Claim], Field(min_length=1)]
+    hypothesis: Hypothesis
+    critique: Critique
+    decision: Decision
+
+    @model_validator(mode="after")
+    def validate_generated_at(self) -> SignalState:
+        object.__setattr__(
+            self, "generated_at", _require_timezone(self.generated_at, "generated_at")
+        )
+        if self.program.program_id != "SGL-001":
+            raise ValueError("Milestone 1 state must describe SGL-001")
+        evidence_ids = {item.evidence_id for item in self.evidence}
+        claim_ids = {item.claim_id for item in self.claims}
+        if len(evidence_ids) != len(self.evidence):
+            raise ValueError("state contains duplicate evidence IDs")
+        if len(claim_ids) != len(self.claims):
+            raise ValueError("state contains duplicate claim IDs")
+        for claim in self.claims:
+            if claim.program_id != self.program.program_id:
+                raise ValueError("state claim belongs to a different program")
+            if set(claim.evidence_ids) - evidence_ids:
+                raise ValueError("state claim references unknown evidence")
+        if set(self.program.claim_ids) != claim_ids:
+            raise ValueError("program claim IDs do not match state claims")
+        if self.hypothesis.hypothesis_id not in self.program.hypothesis_ids:
+            raise ValueError("program does not reference the state hypothesis")
+        hypothesis_claim_ids = set(
+            self.hypothesis.supporting_claim_ids + self.hypothesis.contradicting_claim_ids
+        )
+        if hypothesis_claim_ids - claim_ids:
+            raise ValueError("state hypothesis references unknown claims")
+        if self.critique.hypothesis_id != self.hypothesis.hypothesis_id:
+            raise ValueError("state critique references a different hypothesis")
+        if set(self.critique.evidence_ids) - evidence_ids:
+            raise ValueError("state critique references unknown evidence")
+        if self.decision.decision_id not in self.program.decision_ids:
+            raise ValueError("program does not reference the state decision")
+        if set(self.decision.supporting_claim_ids) - claim_ids:
+            raise ValueError("state decision references unknown claims")
+        return self
