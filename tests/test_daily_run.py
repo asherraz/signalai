@@ -90,6 +90,7 @@ def test_no_material_change_run_persists_all_stages(tmp_path: Path) -> None:
         agenda_path=agenda_path,
         runs_root=tmp_path / "runs",
         public_state_path=tmp_path / "public" / "signal-state.json",
+        workspace_path=PROJECT_ROOT / "state" / "asset-development.json",
     )
 
     state, agenda = orchestrator.run(run_id="run-daily-test")
@@ -134,6 +135,9 @@ def test_no_material_change_run_persists_all_stages(tmp_path: Path) -> None:
         "nextAction",
     }
     assert latest["runId"] == state.run_id
+    assert public_payload["cargo"]["focusCandidates"] == ["cargo-native-msc-ev-secretome"]
+    assert public_payload["formulation"]["candidates"]
+    assert public_payload["jurisdictions"]["summaryCounts"]["restrictive"] == 1
     assert public_payload["currentHypothesis"]["hypothesisId"] == state.hypothesis.hypothesis_id
 
 

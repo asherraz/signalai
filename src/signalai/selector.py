@@ -17,11 +17,12 @@ from signalai.schemas import (
 _TYPE_ORDER = {
     AgendaItemType.OPEN_TRANSLATIONAL_RISK: 0,
     AgendaItemType.PENDING_DECISION: 1,
-    AgendaItemType.UNRESOLVED_SCIENTIFIC_QUESTION: 2,
-    AgendaItemType.FORMULATION_QUESTION: 3,
-    AgendaItemType.EXPERIMENT_PROPOSAL: 4,
-    AgendaItemType.EVIDENCE_GAP: 5,
-    AgendaItemType.ACTIVE_HYPOTHESIS: 6,
+    AgendaItemType.JURISDICTION_QUESTION: 2,
+    AgendaItemType.UNRESOLVED_SCIENTIFIC_QUESTION: 3,
+    AgendaItemType.FORMULATION_QUESTION: 4,
+    AgendaItemType.EXPERIMENT_PROPOSAL: 5,
+    AgendaItemType.EVIDENCE_GAP: 6,
+    AgendaItemType.ACTIVE_HYPOTHESIS: 7,
 }
 
 _PRIORITY_ORDER = {
@@ -57,7 +58,7 @@ def select_highest_value_task(agenda: DevelopmentAgenda) -> SelectedTask:
         selection_reason=(
             f"Selected {selected.type.value} at {selected.priority.value} priority. "
             "Ranking favors program-threatening translational risks, then blocking "
-            "decisions, evidence contradictions, formulation and delivery questions, "
+            "decisions, jurisdiction pathways, evidence contradictions, formulation and delivery questions, "
             "experiment design, evidence gaps, and lower-priority refinement."
         ),
     )

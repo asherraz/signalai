@@ -591,5 +591,417 @@
         "status": "proposed"
       }
     }
+  },
+  "cargo": {
+    "operatorFocusCandidateIds": [
+      "cargo-native-msc-ev-secretome"
+    ],
+    "rankingMethodology": "Operator focus records the chosen development direction separately from evidence rank. Evidence rank reflects relevance and directness within the current local evidence only; it is not a validated efficacy score and does not override operator choice.",
+    "candidates": [
+      {
+        "id": "cargo-native-msc-ev-secretome",
+        "name": "Native MSC-EV secretome cargo",
+        "cargoType": "native_secretome",
+        "source": "MSC-derived small extracellular vesicles; final source-cell strategy not selected",
+        "mechanism": "Multi-component paracrine signaling intended to support neuroregeneration-relevant and inflammation-modulating activity; active components remain undefined.",
+        "pathwayIds": [
+          "pathway-neuroinflammation",
+          "pathway-neural-plasticity"
+        ],
+        "relevantTissues": [
+          "CNS",
+          "hippocampus",
+          "nasal compartment"
+        ],
+        "evidenceIds": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-misev2023-quality-framework"
+        ],
+        "supportiveEvidenceIds": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": 2,
+        "rationale": "This is the operator-selected program focus because it preserves the multi-component EV thesis and has relevant rodent activity, while MISEV2023 highlights the characterization burden.",
+        "status": "focus",
+        "exclusionReason": null,
+        "uncertainty": "The active cargo components, potency mechanism, source-cell dependence, and relevance to cognition or aging are not established."
+      },
+      {
+        "id": "cargo-curcumin-loaded-ev-benchmark",
+        "name": "Curcumin-loaded EV benchmark",
+        "cargoType": "small_molecule",
+        "source": "Exogenous curcumin loaded into an exosome preparation",
+        "mechanism": "Delivery of an anti-inflammatory small-molecule payload using EVs as a carrier.",
+        "pathwayIds": [
+          "pathway-neuroinflammation"
+        ],
+        "relevantTissues": [
+          "CNS",
+          "microglia"
+        ],
+        "evidenceIds": [
+          "ev-zhuang-2011-intranasal-exosome"
+        ],
+        "supportiveEvidenceIds": [
+          "ev-zhuang-2011-intranasal-exosome"
+        ],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": 1,
+        "rationale": "The current evidence is more cargo-specific than for the native secretome, making this an informative benchmark rather than the selected product focus.",
+        "status": "benchmark",
+        "exclusionReason": null,
+        "uncertainty": "The cited mouse models and loaded payload do not establish relevance to an unengineered SGL-001 product or human cognitive benefit."
+      },
+      {
+        "id": "cargo-stat3-inhibitor-ev-benchmark",
+        "name": "STAT3-inhibitor-loaded EV benchmark",
+        "cargoType": "small_molecule",
+        "source": "Exogenous STAT3 inhibitor loaded into an exosome preparation",
+        "mechanism": "EV-mediated delivery of a pathway-directed inhibitor in a model-specific CNS context.",
+        "pathwayIds": [
+          "pathway-neuroinflammation"
+        ],
+        "relevantTissues": [
+          "CNS",
+          "microglia"
+        ],
+        "evidenceIds": [
+          "ev-zhuang-2011-intranasal-exosome"
+        ],
+        "supportiveEvidenceIds": [
+          "ev-zhuang-2011-intranasal-exosome"
+        ],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "low",
+        "evidenceRank": 3,
+        "rationale": "This is retained as a pathway-directed delivery benchmark, not as the current SGL-001 development focus.",
+        "status": "benchmark",
+        "exclusionReason": null,
+        "uncertainty": "Model-specific activity, payload safety, and relevance to cognition or aging remain unresolved."
+      }
+    ],
+    "pathways": [
+      {
+        "id": "pathway-neuroinflammation",
+        "name": "Neuroinflammation modulation",
+        "description": "Inflammation-modulating activity reported across local preclinical EV evidence; direction and causal cargo are product- and model-dependent.",
+        "candidateCount": 3,
+        "evidenceIds": [
+          "ev-zhuang-2011-intranasal-exosome",
+          "ev-kodali-2017-status-epilepticus"
+        ]
+      },
+      {
+        "id": "pathway-neural-plasticity",
+        "name": "Neurogenesis and neural plasticity",
+        "description": "Preservation or modulation of neurogenesis and functional outcomes observed in rodent injury models, not established in aging or humans.",
+        "candidateCount": 1,
+        "evidenceIds": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi"
+        ]
+      }
+    ],
+    "candidatePathwayLinks": [
+      {
+        "candidateId": "cargo-native-msc-ev-secretome",
+        "pathwayId": "pathway-neuroinflammation",
+        "evidenceIds": [
+          "ev-kodali-2017-status-epilepticus"
+        ]
+      },
+      {
+        "candidateId": "cargo-native-msc-ev-secretome",
+        "pathwayId": "pathway-neural-plasticity",
+        "evidenceIds": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi"
+        ]
+      },
+      {
+        "candidateId": "cargo-curcumin-loaded-ev-benchmark",
+        "pathwayId": "pathway-neuroinflammation",
+        "evidenceIds": [
+          "ev-zhuang-2011-intranasal-exosome"
+        ]
+      },
+      {
+        "candidateId": "cargo-stat3-inhibitor-ev-benchmark",
+        "pathwayId": "pathway-neuroinflammation",
+        "evidenceIds": [
+          "ev-zhuang-2011-intranasal-exosome"
+        ]
+      }
+    ],
+    "filters": {
+      "cargoTypes": [
+        "native_secretome",
+        "small_molecule"
+      ],
+      "statuses": [
+        "benchmark",
+        "focus"
+      ],
+      "tissues": [
+        "CNS",
+        "hippocampus",
+        "microglia",
+        "nasal compartment"
+      ]
+    },
+    "focusCandidates": [
+      "cargo-native-msc-ev-secretome"
+    ],
+    "benchmarks": [
+      "cargo-curcumin-loaded-ev-benchmark",
+      "cargo-stat3-inhibitor-ev-benchmark"
+    ],
+    "nextActions": [
+      {
+        "actionId": "action-cargo-characterization-plan",
+        "action": "Define the analytical comparison needed to distinguish native secretome activity from loaded-cargo benchmarks.",
+        "objective": "Make cargo strategy selection evidence-driven without displacing the operator-selected native EV focus.",
+        "uncertainty": "Whether native MSC-EV cargo provides reproducible neuroregeneration-relevant activity beyond cargo-loaded benchmarks.",
+        "successCriteria": [
+          "A human-approved comparison plan links cargo measurements to a mechanism-relevant potency readout."
+        ],
+        "status": "pending_approval",
+        "requiresHumanApproval": true
+      }
+    ]
+  },
+  "formulation": {
+    "scoringMethodology": "Each component is an uncalibrated ordinal assessment mapped as not_assessed=0, low=1, moderate=2, high=3. total_score is the inspectable component sum for directional comparison only; it is not a probability, validated product score, or approval criterion.",
+    "scoreDimensions": [
+      "mechanism",
+      "evidence",
+      "manufacturability",
+      "regulatoryDeployment"
+    ],
+    "candidates": [
+      {
+        "id": "formulation-native-msc-ev-nasal",
+        "name": "Characterized native MSC-EV intranasal candidate",
+        "modality": "MSC-derived small extracellular vesicles",
+        "activeCargoStrategy": "Native secretome cargo; source and potency mechanism to be selected",
+        "route": "intranasal",
+        "score": {
+          "mechanism": "moderate",
+          "evidence": "moderate",
+          "manufacturability": "low",
+          "regulatoryDeployment": "low",
+          "totalScore": 6,
+          "methodology": "Uncalibrated ordinal component sum; directional comparison only."
+        },
+        "status": "focus",
+        "rationale": "Matches the operator-selected program concept but remains insufficiently defined for manufacturing or clinical deployment.",
+        "tradeoffs": [
+          "Preserves multi-component biology",
+          "Creates identity and potency complexity",
+          "Cross-species nasal exposure remains uncertain"
+        ],
+        "evidenceIds": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "exclusionReason": null
+      },
+      {
+        "id": "formulation-loaded-ev-benchmark",
+        "name": "Loaded-EV intranasal benchmark",
+        "modality": "EV carrier with defined exogenous payload",
+        "activeCargoStrategy": "Defined small-molecule payload benchmark",
+        "route": "intranasal",
+        "score": {
+          "mechanism": "high",
+          "evidence": "moderate",
+          "manufacturability": "low",
+          "regulatoryDeployment": "low",
+          "totalScore": 7,
+          "methodology": "Uncalibrated ordinal component sum; directional comparison only."
+        },
+        "status": "benchmark",
+        "rationale": "A more mechanistically inspectable benchmark scores directionally above the native focus despite not being the chosen product thesis.",
+        "tradeoffs": [
+          "Defined payload improves mechanistic interpretability",
+          "Adds loading and release controls",
+          "Does not establish cognition or aging relevance"
+        ],
+        "evidenceIds": [
+          "ev-zhuang-2011-intranasal-exosome",
+          "ev-misev2023-quality-framework"
+        ],
+        "exclusionReason": null
+      },
+      {
+        "id": "formulation-uncharacterized-conditioned-medium",
+        "name": "Uncharacterized conditioned-medium nasal product",
+        "modality": "Crude conditioned medium",
+        "activeCargoStrategy": "Undefined soluble and vesicular secretome",
+        "route": "intranasal",
+        "score": {
+          "mechanism": "low",
+          "evidence": "low",
+          "manufacturability": "moderate",
+          "regulatoryDeployment": "low",
+          "totalScore": 5,
+          "methodology": "Uncalibrated ordinal component sum; directional comparison only."
+        },
+        "status": "excluded",
+        "rationale": "The broad secretome may be easier to produce but prevents clear attribution of identity, dose, and potency.",
+        "tradeoffs": [
+          "Broad biological composition",
+          "High attribution and consistency risk"
+        ],
+        "evidenceIds": [
+          "ev-misev2023-quality-framework"
+        ],
+        "exclusionReason": "Excluded from the current product definition because the local evidence does not support adequate identity, purity, or potency control."
+      }
+    ],
+    "excipients": [
+      {
+        "id": "excipient-isotonic-aqueous-vehicle",
+        "name": "Isotonic aqueous vehicle, composition TBD",
+        "functionalRole": "vehicle and tonicity",
+        "proposedConcentration": null,
+        "evCompatibility": "not_assessed",
+        "intranasalPrecedent": "not_assessed",
+        "humanPrecedent": "not_assessed",
+        "regulatoryPrecedent": "not_assessed",
+        "formulationValue": "not_assessed",
+        "risk": "Vehicle composition may alter EV integrity, nasal retention, tolerability, and measured biodistribution.",
+        "evidenceIds": [],
+        "status": "candidate"
+      },
+      {
+        "id": "excipient-stabilizer-tbd",
+        "name": "EV-compatible stabilizer, not yet selected",
+        "functionalRole": "stability",
+        "proposedConcentration": null,
+        "evCompatibility": "not_assessed",
+        "intranasalPrecedent": "not_assessed",
+        "humanPrecedent": "not_assessed",
+        "regulatoryPrecedent": "not_assessed",
+        "formulationValue": "not_assessed",
+        "risk": "No local evidence currently supports a specific stabilizer or concentration for intranasal SGL-001.",
+        "evidenceIds": [],
+        "status": "candidate"
+      }
+    ],
+    "functionalRoleFilters": [
+      "stability",
+      "vehicle and tonicity"
+    ],
+    "nextActions": [
+      {
+        "actionId": "action-formulation-candidate-definition",
+        "action": "Approve or reject a staged candidate-definition package before selecting excipients or manufacturing study material.",
+        "objective": "Define a testable intranasal EV product configuration without unsupported formulation specificity.",
+        "uncertainty": "Whether a reproducible candidate-like formulation can support interpretable biodistribution and pharmacology.",
+        "successCriteria": [
+          "Human approval records the candidate-definition gates and explicitly leaves unsupported numeric specifications open."
+        ],
+        "status": "pending_approval",
+        "requiresHumanApproval": true
+      }
+    ]
+  },
+  "jurisdictions": {
+    "disclaimer": "Planning state only, not legal advice. Verdicts distinguish legal pathway evidence from enforcement observations and require current regulator verification and qualified local counsel before action.",
+    "summaryCounts": {
+      "viable": 0,
+      "grey": 0,
+      "restrictive": 1,
+      "prohibited": 0,
+      "unresolved": 1
+    },
+    "jurisdictions": [
+      {
+        "id": "jurisdiction-us-federal",
+        "jurisdiction": "United States — federal",
+        "country": "United States",
+        "region": "North America",
+        "verdict": "restrictive",
+        "enforcementIntensity": "high",
+        "confidence": "high",
+        "priority": "moderate",
+        "productClassification": "FDA states that exosome products intended to treat disease are generally regulated as drugs and biological products and require premarket review and approval.",
+        "privateClinicPath": "No legitimate routine private-clinic deployment path is identified for an unapproved SGL-001 therapeutic. Human administration would require an applicable authorized clinical investigation or approved product pathway.",
+        "conciseRationale": "FDA sources support an investigational or approved-product pathway, not routine deployment of an unapproved therapeutic exosome product in private clinics.",
+        "sourceDocumentIds": [
+          "source-fda-exosome-consumer-alert-2020",
+          "source-fda-warning-supreme-rejuvenation-2025"
+        ],
+        "unresolvedQuestions": [
+          "Which IND pathway and FDA review center would apply to the final SGL-001 composition and claims?",
+          "What donor eligibility and CMC requirements follow from the selected source and manufacturing process?"
+        ],
+        "nextAction": {
+          "actionId": "action-us-regulatory-classification",
+          "action": "Obtain a written U.S. regulatory classification and pre-IND development assessment for the defined SGL-001 candidate.",
+          "objective": "Confirm the lawful investigational path before any U.S. human-use or clinic planning.",
+          "uncertainty": "Product-specific classification, review center, and required nonclinical and CMC package.",
+          "successCriteria": [
+            "Qualified counsel and regulatory experts document the applicable pathway and recommended FDA interaction."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        }
+      },
+      {
+        "id": "jurisdiction-japan-national",
+        "jurisdiction": "Japan — national",
+        "country": "Japan",
+        "region": "Asia",
+        "verdict": "unresolved",
+        "enforcementIntensity": "not_assessed",
+        "confidence": "moderate",
+        "priority": "high",
+        "productClassification": "PMDA treats therapeutic EV products as an active regulatory-science and clinical-development category, with published quality and safety considerations; the precise classification of the final SGL-001 product requires confirmation.",
+        "privateClinicPath": "No legitimate private-clinic path is established by the verified PMDA sources alone. Do not infer legality from observed clinic activity or an apparent regulatory gap.",
+        "conciseRationale": "Japan is strategically relevant, but the verified primary sources do not establish a lawful private-clinic path; classification and clinic-use rules require current local legal analysis.",
+        "sourceDocumentIds": [
+          "source-pmda-ev-subcommittee",
+          "source-pmda-ev-early-consideration-2026"
+        ],
+        "unresolvedQuestions": [
+          "How will the final SGL-001 product be classified under current Japanese product and medical-practice law?",
+          "Is any private-pay physician-use route legitimate before product approval, and under what oversight?",
+          "What import and domestic manufacturing licenses would apply?"
+        ],
+        "nextAction": {
+          "actionId": "action-japan-regulatory-memo",
+          "action": "Commission a current written Japan regulatory memo for the defined SGL-001 product, route, claims, source cells, manufacturing location, and proposed clinic model.",
+          "objective": "Determine whether any legitimate Japanese clinic-entry path exists and distinguish it from enforcement gaps.",
+          "uncertainty": "Product classification and the interaction between product approval, clinical research, physician practice, import, and advertising rules.",
+          "successCriteria": [
+            "Qualified Japanese counsel identifies the governing provisions, required authorizations, prohibited activities, and regulator confirmation questions."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        }
+      }
+    ],
+    "nextActions": [
+      {
+        "actionId": "action-jurisdiction-path-comparison",
+        "action": "Compare written U.S. and Japan regulatory assessments after the SGL-001 candidate definition is approved.",
+        "objective": "Select a legitimate first development jurisdiction based on authorization requirements rather than enforcement assumptions.",
+        "uncertainty": "Which jurisdiction offers the earliest lawful path compatible with SGL-001 product classification and evidence maturity.",
+        "successCriteria": [
+          "Comparable counsel-reviewed pathway memos identify required approvals, development steps, and disallowed clinic activities."
+        ],
+        "status": "proposed",
+        "requiresHumanApproval": true
+      }
+    ]
   }
 }

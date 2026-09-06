@@ -78,6 +78,26 @@ concise change entry under a unique run directory, then publishes the validated
 public state. It may record `no material scientific change`; major decisions
 remain pending human approval. Scheduling is intentionally not included yet.
 
+## Therapeutic asset workspace
+
+`state/asset-development.json` is the canonical biology-to-product-to-market
+workspace for SGL-001. It keeps three typed domains alongside, rather than
+inside, the scientific claim state:
+
+- Cargo maps operator-selected payload strategy, evidence-ranked benchmarks,
+  biological pathways, and candidate-to-pathway convergence.
+- Formulation compares product configurations with inspectable ordinal scores
+  and represents the excipient design space without inventing concentrations or
+  compatibility evidence.
+- Jurisdictions records regulator-sourced market-entry assessments, keeps legal
+  viability separate from enforcement intensity, and requires human-reviewed
+  next actions before clinic planning.
+
+Each domain links back to canonical hypotheses, risks, decisions, and agenda
+items. The public serializer publishes sanitized `cargo`, `formulation`, and
+`jurisdictions` projections for the separate frontend while detailed source and
+legal-framework records remain internal.
+
 The records in `evidence/fixtures/sgl-001.json` are curated, local summaries of
 traceable publications. They support planning and software validation, not
 clinical conclusions. The current evidence is preclinical or methodological and

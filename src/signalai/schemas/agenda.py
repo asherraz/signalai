@@ -18,6 +18,7 @@ class AgendaItemType(StrEnum):
     EXPERIMENT_PROPOSAL = "experiment_proposal"
     PENDING_DECISION = "pending_decision"
     EVIDENCE_GAP = "evidence_gap"
+    JURISDICTION_QUESTION = "jurisdiction_question"
 
 
 class AgendaPriority(StrEnum):

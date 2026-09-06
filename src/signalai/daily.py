@@ -16,6 +16,7 @@ from signalai.agents.daily_prompts import (
 )
 from signalai.client import ModelClient
 from signalai.public_export import build_public_latest_run
+from signalai.workspace_export import export_workspace, validate_workspace_references
 from signalai.schemas import (
     AgentRun,
     AgendaItem,
@@ -32,6 +33,7 @@ from signalai.schemas import (
     SelectedTask,
     SignalState,
     WhatChanged,
+    TherapeuticAssetWorkspace,
 )
 from signalai.selector import select_highest_value_task
 from signalai.storage import RunStore, new_run_id, publish_json
@@ -71,12 +73,14 @@ class DailyRunOrchestrator:
         agenda_path: Path,
         runs_root: Path,
         public_state_path: Path,
+        workspace_path: Path | None = None,
     ) -> None:
         self.client = client
         self.state_path = state_path
         self.agenda_path = agenda_path
         self.runs_root = runs_root
         self.public_state_path = public_state_path
+        self.workspace_path = workspace_path
 
     def run(self, *, run_id: str | None = None) -> tuple[SignalState, DevelopmentAgenda]:
         active_run_id = run_id or new_run_id()
@@ -97,6 +101,13 @@ class DailyRunOrchestrator:
             current_state = _load(self.state_path, SignalState)
             agenda = _load(self.agenda_path, DevelopmentAgenda)
             self._validate_agenda_references(agenda, current_state)
+            workspace = (
+                _load(self.workspace_path, TherapeuticAssetWorkspace)
+                if self.workspace_path is not None
+                else None
+            )
+            if workspace is not None:
+                validate_workspace_references(workspace, current_state, agenda)
             artifacts.append(str(store.write_json("01-current-state.json", current_state)))
             artifacts.append(str(store.write_json("02-current-agenda.json", agenda)))
 
@@ -180,6 +191,7 @@ class DailyRunOrchestrator:
                 updated_state=updated_state,
                 changed=changed,
             )
+            public_domains = export_workspace(workspace) if workspace is not None else (None, None, None)
             public_state = PublicSignalState.from_internal(
                 updated_state,
                 changes=[
@@ -191,6 +203,9 @@ class DailyRunOrchestrator:
                 completed_stages=["selection", "analysis", "critique", "synthesis"],
                 current_hypothesis=latest_run.stages.hypothesis,
                 latest_run=latest_run,
+                cargo=public_domains[0],
+                formulation=public_domains[1],
+                jurisdictions=public_domains[2],
             )
             artifacts.append(
                 str(store.write_json("10-public-signal-state.json", public_state))

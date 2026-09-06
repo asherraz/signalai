@@ -14,6 +14,7 @@ def main() -> None:
         evidence_path=root / "evidence" / "fixtures" / "sgl-001.json",
         runs_root=root / "runs",
         public_state_path=root / "public" / "signal-state.json",
+        workspace_path=root / "state" / "asset-development.json",
     ).run()
     print(f"Completed {state.run_id}")
 

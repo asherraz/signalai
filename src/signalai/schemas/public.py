@@ -21,6 +21,11 @@ from signalai.schemas.models import (
     _require_timezone,
 )
 from signalai.schemas.public_artifacts import PublicHypothesisArtifact, PublicLatestRun
+from signalai.schemas.public_workspace import (
+    PublicCargoState,
+    PublicFormulationState,
+    PublicJurisdictionState,
+)
 
 
 class PublicStateStatus(StrEnum):
@@ -74,6 +79,9 @@ class PublicSignalState(SignalModel):
         serialization_alias="latestRun",
         validation_alias="latestRun",
     )
+    cargo: PublicCargoState | None = None
+    formulation: PublicFormulationState | None = None
+    jurisdictions: PublicJurisdictionState | None = None
 
     @model_validator(mode="after")
     def validate_public_state(self) -> PublicSignalState:
@@ -93,6 +101,9 @@ class PublicSignalState(SignalModel):
         completed_stages: list[str] | None = None,
         current_hypothesis: PublicHypothesisArtifact | None = None,
         latest_run: PublicLatestRun | None = None,
+        cargo: PublicCargoState | None = None,
+        formulation: PublicFormulationState | None = None,
+        jurisdictions: PublicJurisdictionState | None = None,
     ) -> PublicSignalState:
         return cls(
             generatedAt=state.generated_at,
@@ -124,4 +135,7 @@ class PublicSignalState(SignalModel):
             decisions=[state.decision],
             currentHypothesis=current_hypothesis,
             latestRun=latest_run,
+            cargo=cargo,
+            formulation=formulation,
+            jurisdictions=jurisdictions,
         )
