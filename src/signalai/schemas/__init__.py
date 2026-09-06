@@ -39,6 +39,7 @@ from signalai.schemas.models import (
     SignalState,
     TherapeuticProgram,
 )
+from signalai.schemas.migration import LegacyMigrationReport, MigrationSourceSummary
 from signalai.schemas.public import (
     PublicChange,
     PublicLoop,
@@ -70,6 +71,7 @@ from signalai.schemas.public_workspace import (
     PublicJurisdictionCard,
     PublicJurisdictionState,
     PublicPathway,
+    PublicPresentationCandidate,
 )
 from signalai.schemas.workspace import (
     ActionStatus,
@@ -83,6 +85,7 @@ from signalai.schemas.workspace import (
     DevelopmentDisposition,
     DomainLinks,
     EnforcementIntensity,
+    EnforcementAction,
     EvidenceLevel,
     EvidenceRelationship,
     ExcipientCandidate,
@@ -91,12 +94,15 @@ from signalai.schemas.workspace import (
     FormulationScore,
     FormulationState,
     Jurisdiction,
+    JurisdictionLegalBasis,
     JurisdictionSourceDocument,
     JurisdictionState,
     JurisdictionVerdict,
+    JurisdictionVerificationStatus,
     PriorityLevel,
     SCORE_POINTS,
     ScoreLevel,
+    PresentationCandidate,
     TherapeuticAssetWorkspace,
 )
 
@@ -134,6 +140,7 @@ __all__ = [
     "EvidenceLevel",
     "EvidenceRelationship",
     "EnforcementIntensity",
+    "EnforcementAction",
     "ExcipientCandidate",
     "FormulationAttribute",
     "FormulationCandidate",
@@ -143,9 +150,13 @@ __all__ = [
     "HypothesisProposal",
     "HypothesisStatus",
     "Jurisdiction",
+    "JurisdictionLegalBasis",
     "JurisdictionSourceDocument",
     "JurisdictionState",
     "JurisdictionVerdict",
+    "JurisdictionVerificationStatus",
+    "LegacyMigrationReport",
+    "MigrationSourceSummary",
     "PriorityLevel",
     "ProgramStatus",
     "PublicChange",
@@ -172,6 +183,7 @@ __all__ = [
     "PublicRunStages",
     "PublicSelectedTask",
     "PublicPathway",
+    "PublicPresentationCandidate",
     "PublicSignalState",
     "PublicStateStatus",
     "Risk",
@@ -180,6 +192,7 @@ __all__ = [
     "RunStatus",
     "SCORE_POINTS",
     "ScoreLevel",
+    "PresentationCandidate",
     "SignalState",
     "SelectedTask",
     "TherapeuticProgram",

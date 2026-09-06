@@ -98,6 +98,17 @@ items. The public serializer publishes sanitized `cargo`, `formulation`, and
 `jurisdictions` projections for the separate frontend while detailed source and
 legal-framework records remain internal.
 
+Legacy JSON can be migrated through an explicit read-only adapter:
+
+```bash
+SIGNALAI_LEGACY_ROOT=/Users/raziel/Desktop/signalAgent signalai-migrate-legacy
+```
+
+The importer validates all output, retains source paths and SHA-256 hashes,
+preserves original formulation scores alongside uncalibrated ordinal mappings,
+marks legacy jurisdiction conclusions as unverified, writes
+`reports/legacy-import-report.json`, and regenerates the public workspace.
+
 The records in `evidence/fixtures/sgl-001.json` are curated, local summaries of
 traceable publications. They support planning and software validation, not
 clinical conclusions. The current evidence is preclinical or methodological and

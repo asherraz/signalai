@@ -90,6 +90,11 @@ class CargoCandidate(SignalModel):
     evidence_rank: int | None = Field(default=None, ge=1)
     exclusion_reason: str | None = None
     uncertainty: NonEmptyText
+    biological_targets: list[NonEmptyText] = Field(default_factory=list)
+    evidence_annotation: str | None = None
+    source_citation: str | None = None
+    context_dependent: bool = False
+    legacy_source_file: str | None = None
 
     @model_validator(mode="after")
     def validate_disposition(self) -> CargoCandidate:
@@ -204,6 +209,8 @@ class FormulationCandidate(SignalModel):
     tradeoffs: list[NonEmptyText] = Field(default_factory=list)
     evidence_ids: list[Identifier] = Field(default_factory=list)
     exclusion_reason: str | None = None
+    legacy_scores: dict[str, int] = Field(default_factory=dict)
+    legacy_source_file: str | None = None
 
     @model_validator(mode="after")
     def validate_exclusion(self) -> FormulationCandidate:
@@ -228,6 +235,11 @@ class ExcipientCandidate(SignalModel):
     evidence_ids: list[Identifier] = Field(default_factory=list)
     inclusion_status: DevelopmentDisposition
     exclusion_reason: str | None = None
+    precedent_summary: str | None = None
+    tradeoff: str | None = None
+    legacy_precedent_strength: int | None = Field(default=None, ge=0)
+    legacy_ev_stability: int | None = Field(default=None, ge=0)
+    legacy_source_file: str | None = None
 
     @model_validator(mode="after")
     def validate_exclusion(self) -> ExcipientCandidate:
@@ -245,11 +257,23 @@ class FormulationAttribute(SignalModel):
     evidence_ids: list[Identifier] = Field(default_factory=list)
 
 
+class PresentationCandidate(SignalModel):
+    presentation_id: Identifier
+    format: NonEmptyText
+    shelf_life: NonEmptyText
+    cold_chain: NonEmptyText
+    user_steps: NonEmptyText
+    verdict: NonEmptyText
+    status: DevelopmentDisposition
+    legacy_source_file: str | None = None
+
+
 class FormulationState(SignalModel):
     scoring_methodology: NonEmptyText
     candidates: list[FormulationCandidate] = Field(default_factory=list)
     excipients: list[ExcipientCandidate] = Field(default_factory=list)
     attributes: list[FormulationAttribute] = Field(default_factory=list)
+    presentations: list[PresentationCandidate] = Field(default_factory=list)
     links: DomainLinks
 
 
@@ -269,6 +293,7 @@ class EnforcementIntensity(StrEnum):
 
 
 class PriorityLevel(StrEnum):
+    NOT_ASSESSED = "not_assessed"
     LOW = "low"
     MODERATE = "moderate"
     HIGH = "high"
@@ -279,17 +304,42 @@ class JurisdictionSourceDocument(SignalModel):
     source_document_id: Identifier
     title: NonEmptyText
     issuer: NonEmptyText
-    source_uri: HttpUrl
+    source_uri: HttpUrl | None = None
     published_at: date | None = None
     accessed_at: datetime
     locator: str | None = None
+    citation: str | None = None
+    legacy_source_file: str | None = None
 
     @model_validator(mode="after")
     def validate_accessed_at(self) -> JurisdictionSourceDocument:
         object.__setattr__(
             self, "accessed_at", _require_timezone(self.accessed_at, "accessed_at")
         )
+        if self.source_uri is None and not self.citation and not self.legacy_source_file:
+            raise ValueError(
+                "jurisdiction sources require source_uri, citation, or legacy source file"
+            )
         return self
+
+
+class JurisdictionVerificationStatus(StrEnum):
+    VERIFIED_PRIMARY = "verified_primary"
+    LEGACY_IMPORT_UNVERIFIED = "legacy_import_unverified"
+
+
+class JurisdictionLegalBasis(SignalModel):
+    instrument: NonEmptyText
+    citation: str | None = None
+    date: str | None = None
+    summary: NonEmptyText
+
+
+class EnforcementAction(SignalModel):
+    date: NonEmptyText
+    body: NonEmptyText
+    target: NonEmptyText
+    note: NonEmptyText
 
 
 class Jurisdiction(SignalModel):
@@ -313,6 +363,24 @@ class Jurisdiction(SignalModel):
     unresolved_questions: list[NonEmptyText] = Field(default_factory=list)
     next_action: DevelopmentAction
     concise_rationale: NonEmptyText
+    verification_status: JurisdictionVerificationStatus = (
+        JurisdictionVerificationStatus.LEGACY_IMPORT_UNVERIFIED
+    )
+    clinical_status: str | None = None
+    cosmetic_status: str | None = None
+    permitted_activities: list[str] = Field(default_factory=list)
+    grey_areas: list[str] = Field(default_factory=list)
+    prohibited_activities: list[str] = Field(default_factory=list)
+    cell_source_rules: dict[str, str] = Field(default_factory=dict)
+    enforcement_actions: list[EnforcementAction] = Field(default_factory=list)
+    legacy_priority_rank: int | None = Field(default=None, ge=1)
+    frontier: bool = False
+    headline: str | None = None
+    momentum: str | None = None
+    tension: str | None = None
+    through_line: str | None = None
+    legacy_source_file: str | None = None
+    legal_basis: list[JurisdictionLegalBasis] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def validate_last_verified(self) -> Jurisdiction:

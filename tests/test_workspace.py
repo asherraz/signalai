@@ -55,8 +55,14 @@ def test_unknown_scientific_reference_is_rejected() -> None:
 
 
 def test_formulation_total_is_inspectable_ordinal_sum() -> None:
-    score = _workspace().formulation.candidates[0].score
-    assert score.total_score == 6
+    candidate = next(
+        item
+        for item in _workspace().formulation.candidates
+        if item.name == "Intranasal insulin"
+    )
+    score = candidate.score
+    assert score.total_score == 12
+    assert candidate.legacy_scores["mechanism_score"] == 5
     payload = score.model_dump(mode="python")
     payload["total_score"] = 9
 
@@ -68,7 +74,9 @@ def test_cargo_pathway_counts_are_derived_from_links() -> None:
     cargo, _, _ = export_workspace(_workspace())
     counts = {pathway.id: pathway.candidate_count for pathway in cargo.pathways}
 
-    assert counts == {"pathway-neuroinflammation": 3, "pathway-neural-plasticity": 1}
+    assert counts["pathway-neuroinflammation"] == 3
+    assert counts["pathway-neural-plasticity"] == 1
+    assert counts["pathway-legacy-pten-pi3k-akt"] == 7
     assert cargo.focus_candidates == ["cargo-native-msc-ev-secretome"]
     assert len(cargo.benchmarks) == 2
 
@@ -98,8 +106,13 @@ def test_public_workspace_serialization_and_missing_optional_data() -> None:
     assert PublicCargoState.model_validate(cargo_payload) == cargo
     assert "operatorFocusCandidateIds" in cargo_payload
     assert formulation_payload["excipients"][0]["proposedConcentration"] is None
-    assert jurisdiction_payload["summaryCounts"]["restrictive"] == 1
-    assert jurisdiction_payload["summaryCounts"]["unresolved"] == 1
+    assert jurisdiction_payload["summaryCounts"] == {
+        "viable": 1,
+        "grey": 7,
+        "restrictive": 3,
+        "prohibited": 1,
+        "unresolved": 0,
+    }
 
     minimal_excipient = {
         "id": "excipient-minimal",

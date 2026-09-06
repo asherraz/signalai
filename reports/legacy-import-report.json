@@ -1,0 +1,118 @@
+{
+  "migration_id": "legacy-import-20260906T115141Z",
+  "generated_at": "2026-09-06T11:51:41.919030Z",
+  "sources": [
+    {
+      "source_file": "/Users/raziel/Desktop/signalAgent/artifacts/data/mirna-cargo.json",
+      "source_sha256": "86afa7a0242bad4cd2b25e03e36d9f4e611e6c9a34ecbae336a694aed64f64c5",
+      "source_record_counts": {
+        "cargo_candidates": 24
+      },
+      "imported_record_counts": {
+        "cargo_candidates": 24,
+        "pathways": 13,
+        "pathway_links": 24
+      },
+      "mapped_fields": [
+        "caveat",
+        "contextDependent",
+        "effect",
+        "evidence",
+        "id",
+        "keyCitation",
+        "pathway",
+        "sources",
+        "targets",
+        "tier",
+        "tissues"
+      ],
+      "unmapped_fields": [],
+      "mapping_notes": [
+        "Unverified keyCitation text is retained as source_citation and is not promoted into canonical Evidence.",
+        "Legacy cargo records lacked development status; imported records are candidates while existing operator focus and benchmarks are preserved."
+      ]
+    },
+    {
+      "source_file": "/Users/raziel/Desktop/signalAgent/artifacts/data/formulation.json",
+      "source_sha256": "243b71d5eea9c07618a094cff654d431053471b66971d3c25fa565cf36fb338e",
+      "source_record_counts": {
+        "actives": 6,
+        "excipients": 15,
+        "presentation": 3
+      },
+      "imported_record_counts": {
+        "formulation_candidates": 6,
+        "excipients": 15,
+        "presentations": 3
+      },
+      "mapped_fields": [
+        "class",
+        "cold_chain",
+        "ev_stability",
+        "evidence_score",
+        "format",
+        "function",
+        "manufacturability_score",
+        "mechanism_score",
+        "name",
+        "note",
+        "precedent",
+        "precedent_strength",
+        "regulatory_score",
+        "shelf_life",
+        "status",
+        "tradeoff",
+        "user_steps",
+        "verdict"
+      ],
+      "unmapped_fields": [],
+      "mapping_notes": [
+        "Original 0–5 scores are retained exactly; normalized ordinal bands are explicitly uncalibrated.",
+        "Concentrations are extracted only when present parenthetically in the legacy name."
+      ]
+    },
+    {
+      "source_file": "/Users/raziel/Desktop/signalAgent/state/jurisdictions.json",
+      "source_sha256": "2bfef6e46d85739250ed4b8d78429db8026027e0b16e34c6571d2ced86fd3713",
+      "source_record_counts": {
+        "jurisdictions": 12,
+        "legal_basis": 39,
+        "linked_sources": 2
+      },
+      "imported_record_counts": {
+        "jurisdictions": 12,
+        "source_documents": 41
+      },
+      "mapped_fields": [
+        "cell_sources",
+        "classification",
+        "confidence",
+        "enforcement",
+        "frontier",
+        "grey",
+        "headline",
+        "id",
+        "last_verified",
+        "legal_basis",
+        "momentum",
+        "name",
+        "open_questions",
+        "permitted",
+        "priority",
+        "prohibited",
+        "region",
+        "route_in",
+        "sources",
+        "tension",
+        "through_line",
+        "verdict"
+      ],
+      "unmapped_fields": [],
+      "mapping_notes": [
+        "Legacy legal/illegal verdicts map to viable/prohibited; numeric priority is retained and also mapped into ordinal bands.",
+        "All imported verdicts are marked legacy_import_unverified regardless of legacy confidence.",
+        "Legal-basis citations without URLs remain traceable citation records but require primary-source verification."
+      ]
+    }
+  ]
+}

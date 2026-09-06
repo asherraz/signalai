@@ -43,6 +43,10 @@ class PublicCargoCandidate(SignalModel):
     status: DevelopmentDisposition
     exclusion_reason: str | None = Field(default=None, alias="exclusionReason")
     uncertainty: str
+    biological_targets: list[str] = Field(default_factory=list, alias="biologicalTargets")
+    evidence_annotation: str | None = Field(default=None, alias="evidenceAnnotation")
+    source_citation: str | None = Field(default=None, alias="sourceCitation")
+    context_dependent: bool = Field(default=False, alias="contextDependent")
 
 
 class PublicPathway(SignalModel):
@@ -92,6 +96,7 @@ class PublicFormulationCandidate(SignalModel):
     tradeoffs: list[str]
     evidence_ids: list[Identifier] = Field(alias="evidenceIds")
     exclusion_reason: str | None = Field(default=None, alias="exclusionReason")
+    legacy_scores: dict[str, int] = Field(default_factory=dict, alias="legacyScores")
 
 
 class PublicExcipientCandidate(SignalModel):
@@ -107,6 +112,20 @@ class PublicExcipientCandidate(SignalModel):
     risk: str
     evidence_ids: list[Identifier] = Field(alias="evidenceIds")
     status: DevelopmentDisposition
+    precedent_summary: str | None = Field(default=None, alias="precedentSummary")
+    tradeoff: str | None = None
+    legacy_precedent_strength: int | None = Field(default=None, alias="legacyPrecedentStrength")
+    legacy_ev_stability: int | None = Field(default=None, alias="legacyEvStability")
+
+
+class PublicPresentationCandidate(SignalModel):
+    id: Identifier
+    format: str
+    shelf_life: str = Field(alias="shelfLife")
+    cold_chain: str = Field(alias="coldChain")
+    user_steps: str = Field(alias="userSteps")
+    verdict: str
+    status: DevelopmentDisposition
 
 
 class PublicFormulationState(SignalModel):
@@ -114,6 +133,7 @@ class PublicFormulationState(SignalModel):
     score_dimensions: list[str] = Field(alias="scoreDimensions")
     candidates: list[PublicFormulationCandidate]
     excipients: list[PublicExcipientCandidate]
+    presentations: list[PublicPresentationCandidate] = Field(default_factory=list)
     functional_role_filters: list[str] = Field(alias="functionalRoleFilters")
     next_actions: list[PublicDomainAction] = Field(alias="nextActions")
 
@@ -133,6 +153,13 @@ class PublicJurisdictionCard(SignalModel):
     source_document_ids: list[Identifier] = Field(alias="sourceDocumentIds")
     unresolved_questions: list[str] = Field(alias="unresolvedQuestions")
     next_action: PublicDomainAction = Field(alias="nextAction")
+    verification_status: str = Field(
+        default="legacy_import_unverified", alias="verificationStatus"
+    )
+    legacy_priority_rank: int | None = Field(default=None, alias="legacyPriorityRank")
+    permitted_activities: list[str] = Field(default_factory=list, alias="permittedActivities")
+    grey_areas: list[str] = Field(default_factory=list, alias="greyAreas")
+    prohibited_activities: list[str] = Field(default_factory=list, alias="prohibitedActivities")
 
 
 class PublicJurisdictionState(SignalModel):

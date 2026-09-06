@@ -628,7 +628,11 @@
         "rationale": "This is the operator-selected program focus because it preserves the multi-component EV thesis and has relevant rodent activity, while MISEV2023 highlights the characterization burden.",
         "status": "focus",
         "exclusionReason": null,
-        "uncertainty": "The active cargo components, potency mechanism, source-cell dependence, and relevance to cognition or aging are not established."
+        "uncertainty": "The active cargo components, potency mechanism, source-cell dependence, and relevance to cognition or aging are not established.",
+        "biologicalTargets": [],
+        "evidenceAnnotation": null,
+        "sourceCitation": null,
+        "contextDependent": false
       },
       {
         "id": "cargo-curcumin-loaded-ev-benchmark",
@@ -655,7 +659,11 @@
         "rationale": "The current evidence is more cargo-specific than for the native secretome, making this an informative benchmark rather than the selected product focus.",
         "status": "benchmark",
         "exclusionReason": null,
-        "uncertainty": "The cited mouse models and loaded payload do not establish relevance to an unengineered SGL-001 product or human cognitive benefit."
+        "uncertainty": "The cited mouse models and loaded payload do not establish relevance to an unengineered SGL-001 product or human cognitive benefit.",
+        "biologicalTargets": [],
+        "evidenceAnnotation": null,
+        "sourceCitation": null,
+        "contextDependent": false
       },
       {
         "id": "cargo-stat3-inhibitor-ev-benchmark",
@@ -682,7 +690,728 @@
         "rationale": "This is retained as a pathway-directed delivery benchmark, not as the current SGL-001 development focus.",
         "status": "benchmark",
         "exclusionReason": null,
-        "uncertainty": "Model-specific activity, payload safety, and relevance to cognition or aging remain unresolved."
+        "uncertainty": "Model-specific activity, payload safety, and relevance to cognition or aging remain unresolved.",
+        "biologicalTargets": [],
+        "evidenceAnnotation": null,
+        "sourceCitation": null,
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-21",
+        "name": "miR-21",
+        "cargoType": "mirna",
+        "source": "BM-MSC, AD-MSC, UC-MSC",
+        "mechanism": "Anti-apoptotic, pro-angiogenic, pro-survival — the single most consistently reported MSC-EV miRNA across regenerative contexts.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt"
+        ],
+        "relevantTissues": [
+          "cardiac",
+          "skin/wound",
+          "kidney"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Among the most abundant miRNAs in MSC-EV cargo generally, not a marker specific to regenerative signaling — an 'enrichment' claim needs a naive-EV or non-MSC-EV control to mean anything.",
+        "biologicalTargets": [
+          "PTEN",
+          "PDCD4",
+          "SPRY2"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Zhu et al., 2017, J Cell Mol Med (MSC-EV miR-21, PTEN/PI3K-Akt cardioprotection)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-126",
+        "name": "miR-126",
+        "cargoType": "mirna",
+        "source": "BM-MSC, endothelial progenitor cells, AD-MSC",
+        "mechanism": "Pro-angiogenic, supports endothelial barrier integrity.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt"
+        ],
+        "relevantTissues": [
+          "cardiac",
+          "limb ischemia",
+          "skin/wound"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Foundational mechanistic work (Fish et al.) is endothelial-cell biology, not MSC-EV-specific — the MSC-EV cargo literature builds on it rather than originating it.",
+        "biologicalTargets": [
+          "SPRED1",
+          "PIK3R2",
+          "VCAM1"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Fish et al., 2008, Dev Cell (foundational, non-MSC); Tao et al., 2017, Theranostics (BMSC-exosome miR-126-3p, diabetic wound)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-132",
+        "name": "miR-132",
+        "cargoType": "mirna",
+        "source": "BM-MSC, cardiac progenitor cells",
+        "mechanism": "Pro-angiogenic; also reported for neurite outgrowth in CNS contexts.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt"
+        ],
+        "relevantTissues": [
+          "cardiac",
+          "CNS/neurite"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "RASA1 is a RasGAP acting on Ras/MAPK signaling, not strictly the PI3K-Akt axis — grouped here with the closest recurring node, not a clean fit.",
+        "biologicalTargets": [
+          "RASA1"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Katare et al., 2014, Circ Res (stem-cell-derived exosomal miR-132, cardiac angiogenesis)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-146a",
+        "name": "miR-146a",
+        "cargoType": "mirna",
+        "source": "BM-MSC, AD-MSC, dental pulp MSC",
+        "mechanism": "Canonically anti-inflammatory via NF-κB dampening, but direction of net effect on inflammation and downstream tissue outcome varies by model and dose.",
+        "pathwayIds": [
+          "pathway-legacy-nf-b"
+        ],
+        "relevantTissues": [
+          "immune/macrophage",
+          "joint/cartilage",
+          "CNS/neuroinflammation"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Reversal is dose- and context-dependent — the same miR-146a delivery has been reported anti-inflammatory in some macrophage/inflammation models and associated with different, sometimes opposing, downstream effects in others. Do not treat 'anti-inflammatory' as a fixed label for this miRNA without checking the specific model.",
+        "biologicalTargets": [
+          "IRAK1",
+          "TRAF6"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Multiple independent reports of direction-of-effect divergence; representative primary sources need direct verification before citing a specific reversal claim externally.",
+        "contextDependent": true
+      },
+      {
+        "id": "cargo-mirna-mir-125b",
+        "name": "miR-125b",
+        "cargoType": "mirna",
+        "source": "BM-MSC, UC-MSC",
+        "mechanism": "Regulates apoptosis and proliferation via p53 pathway components; reported both pro-survival (protective, anti-apoptotic) and growth-suppressive depending on target-cell context.",
+        "pathwayIds": [
+          "pathway-legacy-cell-cycle-senescence"
+        ],
+        "relevantTissues": [
+          "bone",
+          "cardiac"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "One of the clearer documented direction-of-effect reversals in this cargo set — p53-axis regulation by miR-125b is well known in the oncology literature to flip between tumor-suppressive and oncogenic roles depending on cell type, and MSC-EV regenerative contexts inherit that same ambiguity rather than resolving it.",
+        "biologicalTargets": [
+          "p53",
+          "BAK1"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "p53/BAK1 targeting is well established generally; the specific MSC-EV regenerative-context reversal citations need direct verification before external use.",
+        "contextDependent": true
+      },
+      {
+        "id": "cargo-mirna-mir-29",
+        "name": "miR-29",
+        "cargoType": "mirna",
+        "source": "BM-MSC, cardiac-fibroblast-adjacent MSC studies",
+        "mechanism": "Anti-fibrotic — suppresses collagen deposition and extracellular-matrix accumulation; the clearest TGF-β/SMAD-axis counterweight in this cargo set.",
+        "pathwayIds": [
+          "pathway-legacy-tgf-smad"
+        ],
+        "relevantTissues": [
+          "cardiac fibrosis",
+          "kidney fibrosis",
+          "bone"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Foundational target validation (van Rooij et al.) is direct cardiac-tissue miRNA biology, not MSC-EV cargo transfer specifically — treat as the mechanistic basis the MSC-EV literature draws on.",
+        "biologicalTargets": [
+          "COL1A1",
+          "COL3A1",
+          "DNMT3A",
+          "DNMT3B"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "van Rooij et al., 2008, PNAS (miR-29 and cardiac fibrosis via collagen targeting — foundational, non-MSC)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-let-7",
+        "name": "let-7",
+        "cargoType": "mirna",
+        "source": "BM-MSC, UC-MSC, ESC",
+        "mechanism": "Differentiation-promoting, anti-proliferative tumor-suppressor family; regulates the stemness-to-senescence transition broadly across tissues.",
+        "pathwayIds": [
+          "pathway-legacy-cell-cycle-senescence"
+        ],
+        "relevantTissues": [
+          "multi-tissue",
+          "aging/senescence models"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Family-level entry covering multiple mature let-7 isoforms with overlapping but not identical targets. The documented direction-of-effect reversal is specific to the let-7b isoform (pro- vs. anti-angiogenic reported in different studies) — do not assume it generalizes to the whole family.",
+        "biologicalTargets": [
+          "RAS",
+          "HMGA2",
+          "LIN28"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Roush & Slack, 2008, Trends Cell Biol (let-7 family review, foundational, non-MSC); let-7b-specific reversal citations need direct verification.",
+        "contextDependent": true
+      },
+      {
+        "id": "cargo-mirna-mir-210",
+        "name": "miR-210",
+        "cargoType": "mirna",
+        "source": "BM-MSC (hypoxia-preconditioned), AD-MSC",
+        "mechanism": "The archetypal 'hypoxamir' — induced under hypoxic preconditioning, pro-angiogenic and pro-survival under ischemic conditions.",
+        "pathwayIds": [
+          "pathway-legacy-hypoxia-hif-axis"
+        ],
+        "relevantTissues": [
+          "cardiac",
+          "limb ischemia",
+          "kidney"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Effect and abundance are strongly dependent on whether the parental MSCs were hypoxia-preconditioned before EV harvest — normoxic-culture MSC-EVs carry substantially less miR-210, and results don't transfer across culture conditions.",
+        "biologicalTargets": [
+          "ISCU",
+          "EFNA3"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Chan & Loscalzo, 2010, Cell Cycle (miR-210 as 'hypoxamir', foundational review, non-MSC-specific)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-221-222",
+        "name": "miR-221/222",
+        "cargoType": "mirna",
+        "source": "BM-MSC, AD-MSC",
+        "mechanism": "Promotes proliferation and reduces apoptosis via p27/p57 suppression; also reported to modulate angiogenesis.",
+        "pathwayIds": [
+          "pathway-legacy-cell-cycle-senescence"
+        ],
+        "relevantTissues": [
+          "cardiac",
+          "vascular"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Foundational target-validation work is oncology-derived (proliferation control), not MSC-EV-specific — the regenerative-context application is a later extension.",
+        "biologicalTargets": [
+          "CDKN1B (p27Kip1)",
+          "CDKN1C (p57)"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "le Sage et al., 2007, EMBO J (miR-221/222 regulation of p27Kip1 — foundational, non-MSC)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-133b",
+        "name": "miR-133b",
+        "cargoType": "mirna",
+        "source": "BM-MSC, UC-MSC",
+        "mechanism": "Promotes neurite outgrowth and neural plasticity; anti-fibrotic via CTGF suppression.",
+        "pathwayIds": [
+          "pathway-legacy-tgf-smad-via-ctgf"
+        ],
+        "relevantTissues": [
+          "CNS/stroke recovery",
+          "cardiac"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "The strongest single MSC-EV in-vivo functional-transfer demonstration in this cargo set (rat stroke model, direct EV-mediated transfer shown), which is why it's a common reference point in the stoichiometry debate about whether EV miRNA cargo can be functionally meaningful at reported copy numbers.",
+        "biologicalTargets": [
+          "RhoA",
+          "CTGF"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Xin et al., 2013, Stem Cells (MSC-exosome miR-133b transfer, neural plasticity and functional recovery after stroke in rats)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-17-92",
+        "name": "miR-17-92",
+        "cargoType": "mirna",
+        "source": "BM-MSC",
+        "mechanism": "Cluster-level pro-angiogenic and pro-neurogenic effect via suppression of anti-angiogenic targets (CTGF, TSP1) alongside direct PTEN suppression.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt"
+        ],
+        "relevantTissues": [
+          "CNS/stroke",
+          "cardiac"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Cluster of six co-transcribed miRNAs (17, 18a, 19a, 19b, 20a, 92a) reported as a unit in most MSC-EV work — individual-member contributions are not always separated. The documented direction-of-effect reversal in this cargo set is specific to the miR-92a member, not the cluster as a whole.",
+        "biologicalTargets": [
+          "PTEN",
+          "CTGF",
+          "TSP1 (THBS1)"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Xin et al., 2017, Stem Cells (MSC-exosome miR-17-92 cluster enrichment, neuroplasticity and functional recovery after stroke in rats)",
+        "contextDependent": true
+      },
+      {
+        "id": "cargo-mirna-mir-486-5p",
+        "name": "miR-486-5p",
+        "cargoType": "mirna",
+        "source": "BM-MSC, AD-MSC",
+        "mechanism": "Muscle-enriched miRNA; promotes myoblast survival/regeneration and is separately reported cardioprotective via the same PTEN axis.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt"
+        ],
+        "relevantTissues": [
+          "skeletal muscle",
+          "cardiac"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Foundational work establishes this as a muscle-tissue-intrinsic miRNA (myomiR), not an MSC-EV discovery — MSC-EV cargo studies build on that baseline biology.",
+        "biologicalTargets": [
+          "PTEN"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Small et al., 2010, PNAS (miR-486 regulation of PI3K/Akt signaling via PTEN, muscle-enriched — foundational, non-MSC)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-22-3p",
+        "name": "miR-22-3p",
+        "cargoType": "mirna",
+        "source": "BM-MSC",
+        "mechanism": "Anti-apoptotic and anti-fibrotic in cardiac contexts, reported to act partly through HMGB1-mediated inflammatory signaling suppression.",
+        "pathwayIds": [
+          "pathway-legacy-nf-b-via-hmgb1"
+        ],
+        "relevantTissues": [
+          "cardiac"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Lower citation confidence than most entries in this file — the foundational cardiac-hypertrophy role of miR-22 is well established, but the specific MSC-EV cargo delivery mechanism is a thinner literature and needs direct verification before use.",
+        "biologicalTargets": [
+          "HMGB1"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Huang et al., 2013, Circ Res (miR-22 and cardiac hypertrophy — foundational, non-MSC-EV-specific; MSC-EV-specific citation not confidently recalled)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-100-5p",
+        "name": "miR-100-5p",
+        "cargoType": "mirna",
+        "source": "BM-MSC, UC-MSC",
+        "mechanism": "Induces autophagy via mTOR suppression; reported neuroprotective and (separately, in tumor angiogenesis literature) anti-angiogenic depending on context.",
+        "pathwayIds": [
+          "pathway-legacy-cell-cycle-senescence-mtor-linked"
+        ],
+        "relevantTissues": [
+          "CNS",
+          "kidney"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "The anti-angiogenic mTOR-suppression literature for this miRNA is largely tumor-biology work, not regenerative-medicine work — the neuroprotective/autophagy framing used here is the regenerative-context reading, and the two literatures shouldn't be conflated.",
+        "biologicalTargets": [
+          "mTOR"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Grundmann et al., 2011, Circulation (miR-100 regulation of neovascularization via mTOR suppression — foundational, non-MSC-EV-specific)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-181",
+        "name": "miR-181",
+        "cargoType": "mirna",
+        "source": "BM-MSC, AD-MSC",
+        "mechanism": "Family-level entry (181a/b/c/d) — reported roles in myogenesis, immune modulation, and (miR-181c specifically) mitochondrial gene regulation.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt-family-variable"
+        ],
+        "relevantTissues": [
+          "skeletal muscle",
+          "cardiac/mitochondrial",
+          "immune"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Family members have distinct, sometimes non-overlapping target sets — treating 'miR-181' as one biological entity for scoring purposes understates real isoform-level heterogeneity. Isoform should be specified before any claim is used downstream of this record.",
+        "biologicalTargets": [
+          "Bcl-2",
+          "mitochondrial-encoded transcripts (isoform-dependent)"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Indrieri et al., 2020, EMBO Mol Med (miR-181a/b and mitochondrial disease models — moderate citation confidence, verify directly)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-24",
+        "name": "miR-24",
+        "cargoType": "mirna",
+        "source": "BM-MSC (GATA-4-modified, engineered)",
+        "mechanism": "Anti-apoptotic cardioprotection via Bim suppression.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt"
+        ],
+        "relevantTissues": [
+          "cardiac"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Engineered/loaded cargo — enriched via parental-cell genetic modification (GATA-4 overexpression), not representative of naive MSC-EV content. Per the literature agent's standing rule, findings here do not transfer to an unloaded/naive product without separate confirmation.",
+        "biologicalTargets": [
+          "BCL2L11 (Bim)"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Yu et al., 2015, Int J Cardiol (GATA-4-overexpressing MSC exosomes as a reservoir of anti-apoptotic miRNAs, cardioprotection)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-19a",
+        "name": "miR-19a",
+        "cargoType": "mirna",
+        "source": "BM-MSC (GATA-4-overexpressing, engineered)",
+        "mechanism": "Anti-apoptotic and anti-inflammatory (macrophage polarization) cardioprotection; co-reported alongside miR-24 in the same engineered-cargo model.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt"
+        ],
+        "relevantTissues": [
+          "cardiac"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Engineered/loaded cargo — same GATA-4-overexpression construct as miR-24 above. Also a native member of the miR-17-92 cluster (see that entry) — the engineered version here is deliberately enriched beyond native cluster levels, so this is not simply 'more of the same cargo.'",
+        "biologicalTargets": [
+          "PTEN",
+          "SOCS1"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Yu et al., 2015, Int J Cardiol (GATA-4-overexpressing MSC exosomes, miR-19a, PTEN/SOCS1, cardioprotection)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-410",
+        "name": "miR-410",
+        "cargoType": "mirna",
+        "source": "BM-MSC / synovial MSC (engineered/loaded)",
+        "mechanism": "Chondroprotective, anti-catabolic in osteoarthritis models — reported to suppress Wnt-pathway-driven cartilage degradation.",
+        "pathwayIds": [
+          "pathway-legacy-wnt-catenin"
+        ],
+        "relevantTissues": [
+          "cartilage/joint (osteoarthritis models)"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Engineered/loaded cargo, and this is the lowest-confidence citation in the file — the target/pathway assignment is directionally consistent with the broader engineered-MSC-EV cartilage literature but the specific primary paper was not confidently recalled. Verify before relying on this entry for anything beyond a placeholder.",
+        "biologicalTargets": [
+          "Wnt9a (reported)"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Not confidently recalled — requires a direct literature search before citing; tentatively associated with engineered MSC-EV osteoarthritis chondroprotection studies.",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-214-3p",
+        "name": "miR-214-3p",
+        "cargoType": "mirna",
+        "source": "BM-MSC (engineered, anti-miR/antagomiR construct)",
+        "mechanism": "Native miR-214-3p (notably from osteoclast-derived EVs) suppresses osteoblastic bone formation via ATF4; the engineered regenerative application uses an anti-miR-214-3p construct loaded into MSC-EVs to counteract that suppression and promote osteogenesis.",
+        "pathwayIds": [
+          "pathway-legacy-wnt-catenin-osteogenic-axis"
+        ],
+        "relevantTissues": [
+          "bone",
+          "osteoporosis models"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'msc'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Direction of effect depends entirely on whether the cargo is native miR-214-3p (bone-formation-suppressive, originally characterized in osteoclast-derived EVs, not MSC-EVs) or an engineered anti-miR-214-3p construct (bone-formation-promoting). These are opposite interventions sharing one entry — do not read 'effect' without checking which construct a given source used.",
+        "biologicalTargets": [
+          "ATF4"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Sun et al., 2016, J Extracell Vesicles / Bone Research (osteoclast-derived exosomal miR-214-3p inhibits osteoblastic bone formation via ATF4 — the suppressive/native finding this engineered application is designed to counteract)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-302",
+        "name": "miR-302",
+        "cargoType": "mirna",
+        "source": "hESC, iPSC",
+        "mechanism": "Maintains pluripotency and promotes reprogramming efficiency by driving a rapid G1/S cell-cycle transition characteristic of pluripotent cells.",
+        "pathwayIds": [
+          "pathway-legacy-cell-cycle-senescence"
+        ],
+        "relevantTissues": [
+          "reprogramming/iPSC generation",
+          "cardiac regeneration (ESC-EV context)"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "low",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'pluripotent'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "The foundational literature is about the miRNA itself (transfection/expression), not EV-mediated transfer — whether ESC/iPSC-EVs carry functionally sufficient miR-302 cargo to reproduce these effects is a separate, less-established question from the direct-expression literature this citation reflects.",
+        "biologicalTargets": [
+          "CDK2",
+          "CCND1 (cyclin D1)",
+          "NR2F2"
+        ],
+        "evidenceAnnotation": "invitro",
+        "sourceCitation": "Judson et al., 2009, Nat Biotechnol (embryonic-stem-cell-specific microRNAs, including the miR-302 cluster, promote induced pluripotency)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-371-373",
+        "name": "miR-371-373",
+        "cargoType": "mirna",
+        "source": "hESC",
+        "mechanism": "Human-ESC-specific cluster supporting proliferation and pluripotency maintenance via p21 and Hippo-pathway (LATS2) suppression.",
+        "pathwayIds": [
+          "pathway-legacy-cell-cycle-senescence"
+        ],
+        "relevantTissues": [
+          "ESC/reprogramming context"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "low",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'pluripotent'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "This cluster's largest, best-established literature is oncology (germ-cell-tumor biomarker), not regenerative medicine — the regenerative framing here is a minority use case within the broader miR-371-373 literature and should not be assumed to carry the same weight of evidence.",
+        "biologicalTargets": [
+          "CDKN1A (p21)",
+          "LATS2"
+        ],
+        "evidenceAnnotation": "invitro",
+        "sourceCitation": "Voorhoeve et al., 2006, Cell (miR-372/373 as oncogenes in testicular germ-cell tumors — the field's dominant citation for this cluster, not a regenerative-medicine paper)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-290-295",
+        "name": "miR-290-295",
+        "cargoType": "mirna",
+        "source": "mouse ESC",
+        "mechanism": "Drives G1/S transition and self-renewal in mouse ESCs; regulates de novo DNA methylation indirectly via RBL2 suppression of DNMT3A/B.",
+        "pathwayIds": [
+          "pathway-legacy-cell-cycle-senescence"
+        ],
+        "relevantTissues": [
+          "mouse ESC self-renewal"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'pluripotent'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Mouse-specific cluster with no direct human ortholog — miR-371-373 is the human-ESC functional analogue, not the same sequence. Do not treat findings here as transferable to human cells without that substitution already made in the source study.",
+        "biologicalTargets": [
+          "RBL2"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Sinkkonen et al., 2008, Nat Struct Mol Biol (miR-290 cluster controls de novo DNA methylation via Rbl2/Dnmt3 in mouse ESCs)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-9-5p",
+        "name": "miR-9-5p",
+        "cargoType": "mirna",
+        "source": "neural stem cells, iPSC-derived NSC",
+        "mechanism": "Dual/opposing roles reported in neural stem cell fate: represses TLX to promote differentiation while other reported activity supports proliferation — a feedback loop rather than a one-directional effect.",
+        "pathwayIds": [
+          "pathway-legacy-cell-cycle-senescence-neural-stemness-axis"
+        ],
+        "relevantTissues": [
+          "CNS/neural stem cell"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'pluripotent'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Not included in this file's explicit context-dependent flag list, but the underlying biology (a feedback loop with opposing arms) is functionally similar to the flagged entries — worth treating with the same caution even though it isn't formally tagged that way here.",
+        "biologicalTargets": [
+          "TLX (NR2E1)",
+          "FOXG1"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Zhao, Sun, Li & Shi, 2009, Nat Struct Mol Biol (miR-9/TLX feedback loop in neural stem cell fate determination)",
+        "contextDependent": false
+      },
+      {
+        "id": "cargo-mirna-mir-296-5p",
+        "name": "miR-296-5p",
+        "cargoType": "mirna",
+        "source": "endothelial progenitor cells, tumor endothelium (adjacent literature)",
+        "mechanism": "Pro-angiogenic — suppresses HGS-mediated degradation of growth factor receptors (VEGFR2, PDGFRβ), increasing their surface availability.",
+        "pathwayIds": [
+          "pathway-legacy-pten-pi3k-akt-growth-factor-receptor-recycling"
+        ],
+        "relevantTissues": [
+          "vascular/endothelial progenitor",
+          "tumor angiogenesis (adjacent, non-regenerative)"
+        ],
+        "evidenceIds": [],
+        "supportiveEvidenceIds": [],
+        "contradictoryEvidenceIds": [],
+        "evidenceLevel": "moderate",
+        "evidenceRank": null,
+        "rationale": "Imported biological-design candidate from legacy tier 'pluripotent'.",
+        "status": "candidate",
+        "exclusionReason": null,
+        "uncertainty": "Most of the primary literature for this miRNA is tumor-angiogenesis research, not regenerative medicine — included here because the mechanism (angiogenic receptor recycling) is directly relevant to regenerative vascularization, but the source literature's intent was oncology, and that context should travel with any citation of it.",
+        "biologicalTargets": [
+          "HGS (HRS)"
+        ],
+        "evidenceAnnotation": "animal+invitro",
+        "sourceCitation": "Würdinger et al., 2008, Cancer Cell (miR-296 regulates growth-factor-receptor overexpression in angiogenic endothelial cells)",
+        "contextDependent": false
       }
     ],
     "pathways": [
@@ -705,6 +1434,97 @@
           "ev-kodali-2017-status-epilepticus",
           "ev-hermann-2023-neonatal-hi"
         ]
+      },
+      {
+        "id": "pathway-legacy-pten-pi3k-akt",
+        "name": "PTEN/PI3K-Akt",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 7,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-nf-b",
+        "name": "NF-κB",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-cell-cycle-senescence",
+        "name": "cell-cycle/senescence",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 6,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-tgf-smad",
+        "name": "TGF-β/SMAD",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-hypoxia-hif-axis",
+        "name": "hypoxia/HIF axis",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-tgf-smad-via-ctgf",
+        "name": "TGF-β/SMAD (via CTGF)",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-nf-b-via-hmgb1",
+        "name": "NF-κB (via HMGB1)",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-cell-cycle-senescence-mtor-linked",
+        "name": "cell-cycle/senescence (mTOR-linked)",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-pten-pi3k-akt-family-variable",
+        "name": "PTEN/PI3K-Akt (family-variable)",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-wnt-catenin",
+        "name": "Wnt/β-catenin",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-wnt-catenin-osteogenic-axis",
+        "name": "Wnt/β-catenin (osteogenic axis)",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-cell-cycle-senescence-neural-stemness-axis",
+        "name": "cell-cycle/senescence (neural stemness axis)",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
+      },
+      {
+        "id": "pathway-legacy-pten-pi3k-akt-growth-factor-receptor-recycling",
+        "name": "PTEN/PI3K-Akt (growth-factor-receptor recycling)",
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "candidateCount": 1,
+        "evidenceIds": []
       }
     ],
     "candidatePathwayLinks": [
@@ -736,22 +1556,172 @@
         "evidenceIds": [
           "ev-zhuang-2011-intranasal-exosome"
         ]
+      },
+      {
+        "candidateId": "cargo-mirna-mir-21",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-126",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-132",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-146a",
+        "pathwayId": "pathway-legacy-nf-b",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-125b",
+        "pathwayId": "pathway-legacy-cell-cycle-senescence",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-29",
+        "pathwayId": "pathway-legacy-tgf-smad",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-let-7",
+        "pathwayId": "pathway-legacy-cell-cycle-senescence",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-210",
+        "pathwayId": "pathway-legacy-hypoxia-hif-axis",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-221-222",
+        "pathwayId": "pathway-legacy-cell-cycle-senescence",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-133b",
+        "pathwayId": "pathway-legacy-tgf-smad-via-ctgf",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-17-92",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-486-5p",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-22-3p",
+        "pathwayId": "pathway-legacy-nf-b-via-hmgb1",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-100-5p",
+        "pathwayId": "pathway-legacy-cell-cycle-senescence-mtor-linked",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-181",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt-family-variable",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-24",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-19a",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-410",
+        "pathwayId": "pathway-legacy-wnt-catenin",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-214-3p",
+        "pathwayId": "pathway-legacy-wnt-catenin-osteogenic-axis",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-302",
+        "pathwayId": "pathway-legacy-cell-cycle-senescence",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-371-373",
+        "pathwayId": "pathway-legacy-cell-cycle-senescence",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-290-295",
+        "pathwayId": "pathway-legacy-cell-cycle-senescence",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-9-5p",
+        "pathwayId": "pathway-legacy-cell-cycle-senescence-neural-stemness-axis",
+        "evidenceIds": []
+      },
+      {
+        "candidateId": "cargo-mirna-mir-296-5p",
+        "pathwayId": "pathway-legacy-pten-pi3k-akt-growth-factor-receptor-recycling",
+        "evidenceIds": []
       }
     ],
     "filters": {
       "cargoTypes": [
+        "mirna",
         "native_secretome",
         "small_molecule"
       ],
       "statuses": [
         "benchmark",
+        "candidate",
         "focus"
       ],
       "tissues": [
         "CNS",
+        "CNS/neural stem cell",
+        "CNS/neurite",
+        "CNS/neuroinflammation",
+        "CNS/stroke",
+        "CNS/stroke recovery",
+        "ESC/reprogramming context",
+        "aging/senescence models",
+        "bone",
+        "cardiac",
+        "cardiac fibrosis",
+        "cardiac regeneration (ESC-EV context)",
+        "cardiac/mitochondrial",
+        "cartilage/joint (osteoarthritis models)",
         "hippocampus",
+        "immune",
+        "immune/macrophage",
+        "joint/cartilage",
+        "kidney",
+        "kidney fibrosis",
+        "limb ischemia",
         "microglia",
-        "nasal compartment"
+        "mouse ESC self-renewal",
+        "multi-tissue",
+        "nasal compartment",
+        "osteoporosis models",
+        "reprogramming/iPSC generation",
+        "skeletal muscle",
+        "skin/wound",
+        "tumor angiogenesis (adjacent, non-regenerative)",
+        "vascular",
+        "vascular/endothelial progenitor"
       ]
     },
     "focusCandidates": [
@@ -776,7 +1746,7 @@
     ]
   },
   "formulation": {
-    "scoringMethodology": "Each component is an uncalibrated ordinal assessment mapped as not_assessed=0, low=1, moderate=2, high=3. total_score is the inspectable component sum for directional comparison only; it is not a probability, validated product score, or approval criterion.",
+    "scoringMethodology": "Legacy 0–5 component scores are preserved exactly in legacy_scores and normalized into uncalibrated SignalAI ordinal bands for comparison; totals are not probabilities or validated product scores.",
     "scoreDimensions": [
       "mechanism",
       "evidence",
@@ -785,120 +1755,482 @@
     ],
     "candidates": [
       {
-        "id": "formulation-native-msc-ev-nasal",
-        "name": "Characterized native MSC-EV intranasal candidate",
-        "modality": "MSC-derived small extracellular vesicles",
-        "activeCargoStrategy": "Native secretome cargo; source and potency mechanism to be selected",
-        "route": "intranasal",
-        "score": {
-          "mechanism": "moderate",
-          "evidence": "moderate",
-          "manufacturability": "low",
-          "regulatoryDeployment": "low",
-          "totalScore": 6,
-          "methodology": "Uncalibrated ordinal component sum; directional comparison only."
-        },
-        "status": "focus",
-        "rationale": "Matches the operator-selected program concept but remains insufficiently defined for manufacturing or clinical deployment.",
-        "tradeoffs": [
-          "Preserves multi-component biology",
-          "Creates identity and potency complexity",
-          "Cross-species nasal exposure remains uncertain"
-        ],
-        "evidenceIds": [
-          "ev-kodali-2017-status-epilepticus",
-          "ev-hermann-2023-neonatal-hi",
-          "ev-misev2023-quality-framework",
-          "ev-driedonks-2022-macaque-biodistribution"
-        ],
-        "exclusionReason": null
-      },
-      {
-        "id": "formulation-loaded-ev-benchmark",
-        "name": "Loaded-EV intranasal benchmark",
-        "modality": "EV carrier with defined exogenous payload",
-        "activeCargoStrategy": "Defined small-molecule payload benchmark",
-        "route": "intranasal",
-        "score": {
-          "mechanism": "high",
-          "evidence": "moderate",
-          "manufacturability": "low",
-          "regulatoryDeployment": "low",
-          "totalScore": 7,
-          "methodology": "Uncalibrated ordinal component sum; directional comparison only."
-        },
-        "status": "benchmark",
-        "rationale": "A more mechanistically inspectable benchmark scores directionally above the native focus despite not being the chosen product thesis.",
-        "tradeoffs": [
-          "Defined payload improves mechanistic interpretability",
-          "Adds loading and release controls",
-          "Does not establish cognition or aging relevance"
-        ],
-        "evidenceIds": [
-          "ev-zhuang-2011-intranasal-exosome",
-          "ev-misev2023-quality-framework"
-        ],
-        "exclusionReason": null
-      },
-      {
-        "id": "formulation-uncharacterized-conditioned-medium",
-        "name": "Uncharacterized conditioned-medium nasal product",
-        "modality": "Crude conditioned medium",
-        "activeCargoStrategy": "Undefined soluble and vesicular secretome",
+        "id": "formulation-legacy-naive-unmodified-msc-or-adipose-derived-exosomes-evs",
+        "name": "Naive/unmodified MSC- or adipose-derived exosomes (EVs)",
+        "modality": "exosome",
+        "activeCargoStrategy": "Naive/unmodified MSC- or adipose-derived exosomes (EVs)",
         "route": "intranasal",
         "score": {
           "mechanism": "low",
           "evidence": "low",
-          "manufacturability": "moderate",
+          "manufacturability": "low",
           "regulatoryDeployment": "low",
-          "totalScore": 5,
-          "methodology": "Uncalibrated ordinal component sum; directional comparison only."
+          "totalScore": 4,
+          "methodology": "Legacy 0–5 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores."
         },
         "status": "excluded",
-        "rationale": "The broad secretome may be easier to produce but prevents clear attribution of identity, dose, and potency.",
+        "rationale": "A purified/isolated exosome preparation is mechanistically the cleanest option but cost-prohibitive to purify at nasal-spray scale. The secretome retains this fraction without the purification cost.",
         "tradeoffs": [
-          "Broad biological composition",
-          "High attribution and consistency risk"
+          "A purified/isolated exosome preparation is mechanistically the cleanest option but cost-prohibitive to purify at nasal-spray scale. The secretome retains this fraction without the purification cost."
         ],
-        "evidenceIds": [
-          "ev-misev2023-quality-framework"
+        "evidenceIds": [],
+        "exclusionReason": "A purified/isolated exosome preparation is mechanistically the cleanest option but cost-prohibitive to purify at nasal-spray scale. The secretome retains this fraction without the purification cost.",
+        "legacyScores": {
+          "mechanism_score": 1,
+          "evidence_score": 2,
+          "manufacturability_score": 2,
+          "regulatory_score": 2
+        }
+      },
+      {
+        "id": "formulation-legacy-engineered-or-cargo-loaded-evs-e-g-mirna-bdnf-or-drug-loaded-exosomes",
+        "name": "Engineered or cargo-loaded EVs (e.g. miRNA-, BDNF-, or drug-loaded exosomes)",
+        "modality": "exosome",
+        "activeCargoStrategy": "Engineered or cargo-loaded EVs (e.g. miRNA-, BDNF-, or drug-loaded exosomes)",
+        "route": "intranasal",
+        "score": {
+          "mechanism": "low",
+          "evidence": "not_assessed",
+          "manufacturability": "low",
+          "regulatoryDeployment": "low",
+          "totalScore": 3,
+          "methodology": "Legacy 0–5 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores."
+        },
+        "status": "excluded",
+        "rationale": "Excluded for now — zero human intranasal precedent, rodent/in vitro models only. Inherits naive EVs' undefined delivery mechanism plus an unvalidated loading step, with no regulatory precedent for the combination-product question.",
+        "tradeoffs": [
+          "Excluded for now — zero human intranasal precedent, rodent/in vitro models only. Inherits naive EVs' undefined delivery mechanism plus an unvalidated loading step, with no regulatory precedent for the combination-product question."
         ],
-        "exclusionReason": "Excluded from the current product definition because the local evidence does not support adequate identity, purity, or potency control."
+        "evidenceIds": [],
+        "exclusionReason": "Excluded for now — zero human intranasal precedent, rodent/in vitro models only. Inherits naive EVs' undefined delivery mechanism plus an unvalidated loading step, with no regulatory precedent for the combination-product question.",
+        "legacyScores": {
+          "mechanism_score": 2,
+          "evidence_score": 0,
+          "manufacturability_score": 1,
+          "regulatory_score": 1
+        }
+      },
+      {
+        "id": "formulation-legacy-msc-secretome-conditioned-medium-cell-free",
+        "name": "MSC secretome / conditioned medium (cell-free)",
+        "modality": "secretome",
+        "activeCargoStrategy": "MSC secretome / conditioned medium (cell-free)",
+        "route": "intranasal",
+        "score": {
+          "mechanism": "low",
+          "evidence": "low",
+          "manufacturability": "low",
+          "regulatoryDeployment": "low",
+          "totalScore": 4,
+          "methodology": "Legacy 0–5 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores."
+        },
+        "status": "focus",
+        "rationale": "Intended active is the exosome fraction of the secretome. Full exosome purification is cost-prohibitive at consumer nasal-spray scale, so the product is unpurified MSC secretome that retains the exosome fraction rather than a purified isolate. Remaining secretome components (soluble growth factors and cytokines) may contribute additively; this is not established and is not relied on for the core mechanism.",
+        "tradeoffs": [
+          "Intended active is the exosome fraction of the secretome. Full exosome purification is cost-prohibitive at consumer nasal-spray scale, so the product is unpurified MSC secretome that retains the exosome fraction rather than a purified isolate. Remaining secretome components (soluble growth factors and cytokines) may contribute additively; this is not established and is not relied on for the core mechanism."
+        ],
+        "evidenceIds": [],
+        "exclusionReason": null,
+        "legacyScores": {
+          "mechanism_score": 2,
+          "evidence_score": 2,
+          "manufacturability_score": 2,
+          "regulatory_score": 2
+        }
+      },
+      {
+        "id": "formulation-legacy-intranasal-insulin",
+        "name": "Intranasal insulin",
+        "modality": "peptide",
+        "activeCargoStrategy": "Intranasal insulin",
+        "route": "intranasal",
+        "score": {
+          "mechanism": "high",
+          "evidence": "high",
+          "manufacturability": "high",
+          "regulatoryDeployment": "high",
+          "totalScore": 12,
+          "methodology": "Legacy 0–5 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores."
+        },
+        "status": "benchmark",
+        "rationale": "Highest four-axis score of any candidate compared — tracked as a benchmark, not adopted. Not a regenerative/tissue-repair active; would not support the focus candidate's mechanistic framing. SNIFF (NCT01767909), n≈240, RCT, 12 months, in the target population (MCI/Alzheimer's).",
+        "tradeoffs": [
+          "Highest four-axis score of any candidate compared — tracked as a benchmark, not adopted. Not a regenerative/tissue-repair active; would not support the focus candidate's mechanistic framing. SNIFF (NCT01767909), n≈240, RCT, 12 months, in the target population (MCI/Alzheimer's)."
+        ],
+        "evidenceIds": [],
+        "exclusionReason": null,
+        "legacyScores": {
+          "mechanism_score": 5,
+          "evidence_score": 5,
+          "manufacturability_score": 5,
+          "regulatory_score": 5
+        }
+      },
+      {
+        "id": "formulation-legacy-intranasal-oxytocin",
+        "name": "Intranasal oxytocin",
+        "modality": "peptide",
+        "activeCargoStrategy": "Intranasal oxytocin",
+        "route": "intranasal",
+        "score": {
+          "mechanism": "high",
+          "evidence": "moderate",
+          "manufacturability": "high",
+          "regulatoryDeployment": "moderate",
+          "totalScore": 10,
+          "methodology": "Legacy 0–5 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores."
+        },
+        "status": "benchmark",
+        "rationale": "Exceeds the focus candidate on mechanism, manufacturability, and regulatory tractability — tracked as a benchmark, not adopted. Evidence is the most genuinely mixed in the comparison: a well-run RCT (NEJM 2021) found no significant cognitive/social effect.",
+        "tradeoffs": [
+          "Exceeds the focus candidate on mechanism, manufacturability, and regulatory tractability — tracked as a benchmark, not adopted. Evidence is the most genuinely mixed in the comparison: a well-run RCT (NEJM 2021) found no significant cognitive/social effect."
+        ],
+        "evidenceIds": [],
+        "exclusionReason": null,
+        "legacyScores": {
+          "mechanism_score": 5,
+          "evidence_score": 3,
+          "manufacturability_score": 5,
+          "regulatory_score": 4
+        }
+      },
+      {
+        "id": "formulation-legacy-nad-precursors-nmn-nicotinamide-riboside",
+        "name": "NAD⁺ precursors (NMN, nicotinamide riboside)",
+        "modality": "small-molecule",
+        "activeCargoStrategy": "NAD⁺ precursors (NMN, nicotinamide riboside)",
+        "route": "intranasal",
+        "score": {
+          "mechanism": "moderate",
+          "evidence": "low",
+          "manufacturability": "high",
+          "regulatoryDeployment": "low",
+          "totalScore": 7,
+          "methodology": "Legacy 0–5 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores."
+        },
+        "status": "excluded",
+        "rationale": "Excluded — its one strong axis (manufacturability, as an unregulated supplement) evaporates once a cognitive-function disease claim forces reclassification as a drug. No intranasal human trial of any kind was found; oral cognitive evidence is itself weak or null.",
+        "tradeoffs": [
+          "Excluded — its one strong axis (manufacturability, as an unregulated supplement) evaporates once a cognitive-function disease claim forces reclassification as a drug. No intranasal human trial of any kind was found; oral cognitive evidence is itself weak or null."
+        ],
+        "evidenceIds": [],
+        "exclusionReason": "Excluded — its one strong axis (manufacturability, as an unregulated supplement) evaporates once a cognitive-function disease claim forces reclassification as a drug. No intranasal human trial of any kind was found; oral cognitive evidence is itself weak or null.",
+        "legacyScores": {
+          "mechanism_score": 3,
+          "evidence_score": 2,
+          "manufacturability_score": 5,
+          "regulatory_score": 2
+        }
       }
     ],
     "excipients": [
       {
-        "id": "excipient-isotonic-aqueous-vehicle",
-        "name": "Isotonic aqueous vehicle, composition TBD",
-        "functionalRole": "vehicle and tonicity",
+        "id": "excipient-legacy-monobasic-potassium-phosphate-dibasic-sodium-phosphate",
+        "name": "Monobasic potassium phosphate / dibasic sodium phosphate",
+        "functionalRole": "buffer",
         "proposedConcentration": null,
-        "evCompatibility": "not_assessed",
-        "intranasalPrecedent": "not_assessed",
-        "humanPrecedent": "not_assessed",
-        "regulatoryPrecedent": "not_assessed",
+        "evCompatibility": "moderate",
+        "intranasalPrecedent": "high",
+        "humanPrecedent": "high",
+        "regulatoryPrecedent": "high",
         "formulationValue": "not_assessed",
-        "risk": "Vehicle composition may alter EV integrity, nasal retention, tolerability, and measured biodistribution.",
+        "risk": "10 mM stays well below the ~0.13 M threshold where a buffer starts overriding nasal pH (Washington et al. 2000), but the molarity itself is transferred from a lyophilisate study, not derived for this product.",
         "evidenceIds": [],
+        "status": "focus",
+        "precedentSummary": "IID nasal MONOBASIC POTASSIUM PHOSPHATE; TOSYMRA (NDA 210884); SPRIX (NDA 022382)",
+        "tradeoff": "10 mM stays well below the ~0.13 M threshold where a buffer starts overriding nasal pH (Washington et al. 2000), but the molarity itself is transferred from a lyophilisate study, not derived for this product.",
+        "legacyPrecedentStrength": 3,
+        "legacyEvStability": 2
+      },
+      {
+        "id": "excipient-legacy-sodium-chloride",
+        "name": "Sodium chloride",
+        "functionalRole": "tonicity",
+        "proposedConcentration": null,
+        "evCompatibility": "low",
+        "intranasalPrecedent": "high",
+        "humanPrecedent": "high",
+        "regulatoryPrecedent": "high",
+        "formulationValue": "not_assessed",
+        "risk": "Level is open pending the stabilizer decision, since the stabilizer itself contributes osmolality; counter-ion identity (Na⁺ vs K⁺) may matter more to vesicle stability than a tonicity calculation captures.",
+        "evidenceIds": [],
+        "status": "focus",
+        "precedentSummary": "IID nasal SOLUTION 330 mg / LIQUID 7.4 mg/mL; TOSYMRA; calcitonin-salmon nasal spray",
+        "tradeoff": "Level is open pending the stabilizer decision, since the stabilizer itself contributes osmolality; counter-ion identity (Na⁺ vs K⁺) may matter more to vesicle stability than a tonicity calculation captures.",
+        "legacyPrecedentStrength": 3,
+        "legacyEvStability": 1
+      },
+      {
+        "id": "excipient-legacy-trehalose-25-mm",
+        "name": "Trehalose (25 mM)",
+        "functionalRole": "stabilizer",
+        "proposedConcentration": "25 mM",
+        "evCompatibility": "high",
+        "intranasalPrecedent": "low",
+        "humanPrecedent": "low",
+        "regulatoryPrecedent": "low",
+        "formulationValue": "not_assessed",
+        "risk": "Deepest EV-specific stabilization evidence of any excipient considered (Bosch 2016, Görgens 2022, Charoenviriyakul 2018), but would need a nasal-route safety qualification package.",
+        "evidenceIds": [],
+        "status": "candidate",
+        "precedentSummary": "no precedent — regulatory risk (IID: intradermal, subcutaneous only; no nasal-route entry)",
+        "tradeoff": "Deepest EV-specific stabilization evidence of any excipient considered (Bosch 2016, Görgens 2022, Charoenviriyakul 2018), but would need a nasal-route safety qualification package.",
+        "legacyPrecedentStrength": 0,
+        "legacyEvStability": 3
+      },
+      {
+        "id": "excipient-legacy-mannitol",
+        "name": "Mannitol",
+        "functionalRole": "stabilizer",
+        "proposedConcentration": null,
+        "evCompatibility": "low",
+        "intranasalPrecedent": "moderate",
+        "humanPrecedent": "moderate",
+        "regulatoryPrecedent": "moderate",
+        "formulationValue": "not_assessed",
+        "risk": "Only sugar/polyol with nasal precedent and a stated max potency, but a crystallizing bulking agent — a weaker lyoprotectant for a membrane particle than an amorphous disaccharide; no EV-specific data found.",
+        "evidenceIds": [],
+        "status": "candidate",
+        "precedentSummary": "IID nasal SPRAY, 41.5 mg",
+        "tradeoff": "Only sugar/polyol with nasal precedent and a stated max potency, but a crystallizing bulking agent — a weaker lyoprotectant for a membrane particle than an amorphous disaccharide; no EV-specific data found.",
+        "legacyPrecedentStrength": 2,
+        "legacyEvStability": 1
+      },
+      {
+        "id": "excipient-legacy-human-serum-albumin-0-2",
+        "name": "Human serum albumin (0.2%)",
+        "functionalRole": "stabilizer",
+        "proposedConcentration": "0.2%",
+        "evCompatibility": "moderate",
+        "intranasalPrecedent": "low",
+        "humanPrecedent": "low",
+        "regulatoryPrecedent": "low",
+        "formulationValue": "not_assessed",
+        "risk": "Suppresses the plastic-surface EV adsorption loss Görgens (2022) measured within minutes, but carries no nasal-route precedent at all.",
+        "evidenceIds": [],
+        "status": "candidate",
+        "precedentSummary": "no precedent — regulatory risk (IID: intravenous, oral only; no nasal-route entry)",
+        "tradeoff": "Suppresses the plastic-surface EV adsorption loss Görgens (2022) measured within minutes, but carries no nasal-route precedent at all.",
+        "legacyPrecedentStrength": 0,
+        "legacyEvStability": 2
+      },
+      {
+        "id": "excipient-legacy-hepes-25-mm",
+        "name": "HEPES (25 mM)",
+        "functionalRole": "buffer",
+        "proposedConcentration": "25 mM",
+        "evCompatibility": "moderate",
+        "intranasalPrecedent": "low",
+        "humanPrecedent": "low",
+        "regulatoryPrecedent": "low",
+        "formulationValue": "not_assessed",
+        "risk": "Buffer base of PBS-HAT, the lead published EV-stabilization buffer (Görgens 2022), but has no US excipient precedent whatsoever.",
+        "evidenceIds": [],
+        "status": "candidate",
+        "precedentSummary": "no precedent — regulatory risk (absent from the IID entirely, by any route)",
+        "tradeoff": "Buffer base of PBS-HAT, the lead published EV-stabilization buffer (Görgens 2022), but has no US excipient precedent whatsoever.",
+        "legacyPrecedentStrength": 0,
+        "legacyEvStability": 2
+      },
+      {
+        "id": "excipient-legacy-sucrose-5",
+        "name": "Sucrose (5%)",
+        "functionalRole": "stabilizer",
+        "proposedConcentration": "5%",
+        "evCompatibility": "high",
+        "intranasalPrecedent": "low",
+        "humanPrecedent": "low",
+        "regulatoryPrecedent": "low",
+        "formulationValue": "not_assessed",
+        "risk": "Improves EV colloidal stability on freeze-thaw and supports a lyophilisate stable 6 months at 40°C (Trenkenschuh 2022), but zero nasal-route precedent.",
+        "evidenceIds": [],
+        "status": "candidate",
+        "precedentSummary": "no precedent — regulatory risk (IID: 10 other routes incl. IV, ophthalmic, oral; no nasal-route entry)",
+        "tradeoff": "Improves EV colloidal stability on freeze-thaw and supports a lyophilisate stable 6 months at 40°C (Trenkenschuh 2022), but zero nasal-route precedent.",
+        "legacyPrecedentStrength": 0,
+        "legacyEvStability": 3
+      },
+      {
+        "id": "excipient-legacy-poloxamer-188-0-02",
+        "name": "Poloxamer 188 (0.02%)",
+        "functionalRole": "stabilizer",
+        "proposedConcentration": "0.02%",
+        "evCompatibility": "high",
+        "intranasalPrecedent": "low",
+        "humanPrecedent": "low",
+        "regulatoryPrecedent": "low",
+        "formulationValue": "not_assessed",
+        "risk": "The single most effective published EV colloidal-stability agent (Trenkenschuh 2022), but zero nasal-route precedent.",
+        "evidenceIds": [],
+        "status": "candidate",
+        "precedentSummary": "no precedent — regulatory risk (IID: 7 other routes incl. IV, ophthalmic, intratympanic; no nasal-route entry)",
+        "tradeoff": "The single most effective published EV colloidal-stability agent (Trenkenschuh 2022), but zero nasal-route precedent.",
+        "legacyPrecedentStrength": 0,
+        "legacyEvStability": 3
+      },
+      {
+        "id": "excipient-legacy-polysorbate-80-0-01-w-v",
+        "name": "Polysorbate 80 (0.01% w/v)",
+        "functionalRole": "stabilizer",
+        "proposedConcentration": "0.01% w/v",
+        "evCompatibility": "low",
+        "intranasalPrecedent": "moderate",
+        "humanPrecedent": "moderate",
+        "regulatoryPrecedent": "moderate",
+        "formulationValue": "not_assessed",
+        "risk": "The nasal-precedented stand-in for poloxamer 188, but its CMC is in the low micromolar range — even 0.01% sits above it, the same surfactant-above-CMC property that disqualified DDM, unmeasured against these vesicles.",
+        "evidenceIds": [],
+        "status": "candidate",
+        "precedentSummary": "IID nasal SPRAY, METERED, 0.1 mg/1 mL",
+        "tradeoff": "The nasal-precedented stand-in for poloxamer 188, but its CMC is in the low micromolar range — even 0.01% sits above it, the same surfactant-above-CMC property that disqualified DDM, unmeasured against these vesicles.",
+        "legacyPrecedentStrength": 2,
+        "legacyEvStability": 1
+      },
+      {
+        "id": "excipient-legacy-hypromellose-2910-5-mpa-s",
+        "name": "Hypromellose 2910 (5 mPa·s)",
+        "functionalRole": "mucoadhesive",
+        "proposedConcentration": "5 mPa·s",
+        "evCompatibility": "low",
+        "intranasalPrecedent": "high",
+        "humanPrecedent": "high",
+        "regulatoryPrecedent": "high",
+        "formulationValue": "not_assessed",
+        "risk": "Deliberately deferred, not chosen: added viscosity coarsens the plume and risks the <4.6% olfactory deposition fraction the product depends on; cellulose-polymer/EV adsorption compatibility is untested.",
+        "evidenceIds": [],
+        "status": "candidate",
+        "precedentSummary": "IID nasal SPRAY/SPRAY METERED, 1 mg/1 mL; seen in azelastine ANDAs",
+        "tradeoff": "Deliberately deferred, not chosen: added viscosity coarsens the plume and risks the <4.6% olfactory deposition fraction the product depends on; cellulose-polymer/EV adsorption compatibility is untested.",
+        "legacyPrecedentStrength": 3,
+        "legacyEvStability": 1
+      },
+      {
+        "id": "excipient-legacy-n-dodecyl-d-maltoside-ddm-intravail",
+        "name": "n-Dodecyl β-D-maltoside (DDM / Intravail)",
+        "functionalRole": "permeation",
+        "proposedConcentration": "DDM / Intravail",
+        "evCompatibility": "low",
+        "intranasalPrecedent": "high",
+        "humanPrecedent": "high",
+        "regulatoryPrecedent": "high",
+        "formulationValue": "not_assessed",
+        "risk": "~23× its own CMC and roughly 500 mol detergent per mol lipid at this product's target particle concentration — would be expected to dissolve the vesicle active.",
+        "evidenceIds": [],
+        "status": "excluded",
+        "precedentSummary": "IID nasal SPRAY; TOSYMRA (NDA 210884) at 0.2% w/v",
+        "tradeoff": "~23× its own CMC and roughly 500 mol detergent per mol lipid at this product's target particle concentration — would be expected to dissolve the vesicle active.",
+        "legacyPrecedentStrength": 3,
+        "legacyEvStability": 0
+      },
+      {
+        "id": "excipient-legacy-chitosan",
+        "name": "Chitosan",
+        "functionalRole": "permeation",
+        "proposedConcentration": null,
+        "evCompatibility": "low",
+        "intranasalPrecedent": "low",
+        "humanPrecedent": "low",
+        "regulatoryPrecedent": "low",
+        "formulationValue": "not_assessed",
+        "risk": "Frequently proposed in the delivery literature as a nasal permeation enhancer, but its cationic, membrane-interacting mode of action raises the same vesicle-disruption question as every other enhancer here.",
+        "evidenceIds": [],
+        "status": "excluded",
+        "precedentSummary": "no precedent — regulatory risk (absent from the nasal IID and from all 694 nasal labels)",
+        "tradeoff": "Frequently proposed in the delivery literature as a nasal permeation enhancer, but its cationic, membrane-interacting mode of action raises the same vesicle-disruption question as every other enhancer here.",
+        "legacyPrecedentStrength": 0,
+        "legacyEvStability": 1
+      },
+      {
+        "id": "excipient-legacy-benzalkonium-chloride-bac",
+        "name": "Benzalkonium chloride (BAC)",
+        "functionalRole": "preservative",
+        "proposedConcentration": "BAC",
+        "evCompatibility": "low",
+        "intranasalPrecedent": "high",
+        "humanPrecedent": "high",
+        "regulatoryPrecedent": "high",
+        "formulationValue": "not_assessed",
+        "risk": "Ciliotoxic at nasal use concentrations (Riechelmann et al. 2004, p<0.0001); a cationic surfactant in continuous contact with a vesicle active for the whole in-use life of the bottle.",
+        "evidenceIds": [],
+        "status": "excluded",
+        "precedentSummary": "the dominant nasal preservative, 535 of 694 nasal labels",
+        "tradeoff": "Ciliotoxic at nasal use concentrations (Riechelmann et al. 2004, p<0.0001); a cationic surfactant in continuous contact with a vesicle active for the whole in-use life of the bottle.",
+        "legacyPrecedentStrength": 3,
+        "legacyEvStability": 0
+      },
+      {
+        "id": "excipient-legacy-plain-pbs-as-vehicle",
+        "name": "Plain PBS (as vehicle)",
+        "functionalRole": "buffer",
+        "proposedConcentration": "as vehicle",
+        "evCompatibility": "low",
+        "intranasalPrecedent": "moderate",
+        "humanPrecedent": "moderate",
+        "regulatoryPrecedent": "moderate",
+        "formulationValue": "not_assessed",
+        "risk": "Severe EV recovery loss within days on storage and within minutes on dilution (Görgens et al. 2022); ranked below potassium phosphate for EV stability (Trenkenschuh et al. 2022).",
+        "evidenceIds": [],
+        "status": "excluded",
+        "precedentSummary": "sodium chloride and sodium phosphate both have nasal precedent",
+        "tradeoff": "Severe EV recovery loss within days on storage and within minutes on dilution (Görgens et al. 2022); ranked below potassium phosphate for EV stability (Trenkenschuh et al. 2022).",
+        "legacyPrecedentStrength": 2,
+        "legacyEvStability": 0
+      },
+      {
+        "id": "excipient-legacy-citrate-buffer",
+        "name": "Citrate buffer",
+        "functionalRole": "buffer",
+        "proposedConcentration": null,
+        "evCompatibility": "low",
+        "intranasalPrecedent": "high",
+        "humanPrecedent": "high",
+        "regulatoryPrecedent": "high",
+        "formulationValue": "not_assessed",
+        "risk": "Good nasal precedent, but buffers to pH 5–6 — the acidic region associated with EV aggregation and vesicle fusion (Trenkenschuh et al. 2022). Precedent for the wrong pH.",
+        "evidenceIds": [],
+        "status": "excluded",
+        "precedentSummary": "IID nasal citrate entries; TOSYMRA uses citric acid monohydrate",
+        "tradeoff": "Good nasal precedent, but buffers to pH 5–6 — the acidic region associated with EV aggregation and vesicle fusion (Trenkenschuh et al. 2022). Precedent for the wrong pH.",
+        "legacyPrecedentStrength": 3,
+        "legacyEvStability": 0
+      }
+    ],
+    "presentations": [
+      {
+        "id": "presentation-legacy-liquid",
+        "format": "liquid",
+        "shelfLife": "unpublished by Signal; site meta description claims \"shelf-stable\" but no storage temperature or duration appears anywhere on the page (fetched 2026-09-03)",
+        "coldChain": "none specified as currently marketed",
+        "userSteps": "single actuation from a 10 mL multi-dose metered spray, no reconstitution",
+        "verdict": "unsupported as currently specified — EVs in aqueous buffer without a nasal-precedented stabilizer lose recoverable particles within minutes to days (Görgens et al. 2022); the \"shelf-stable\" claim has no formulation or storage-condition evidence behind it.",
         "status": "candidate"
       },
       {
-        "id": "excipient-stabilizer-tbd",
-        "name": "EV-compatible stabilizer, not yet selected",
-        "functionalRole": "stability",
-        "proposedConcentration": null,
-        "evCompatibility": "not_assessed",
-        "intranasalPrecedent": "not_assessed",
-        "humanPrecedent": "not_assessed",
-        "regulatoryPrecedent": "not_assessed",
-        "formulationValue": "not_assessed",
-        "risk": "No local evidence currently supports a specific stabilizer or concentration for intranasal SGL-001.",
-        "evidenceIds": [],
+        "id": "presentation-legacy-lyophilized",
+        "format": "lyophilized",
+        "shelfLife": "6 months at 40°C for particle size and concentration (Trenkenschuh et al. 2022) — the only published route to anything resembling \"shelf-stable\" for this active; not tested for this specific formulation",
+        "coldChain": "not required for storage per the cited lyophilisate data; unconfirmed for this product",
+        "userSteps": "reconstitute the lyophilized cake with diluent before use, then spray — an added step versus the currently marketed single-actuation format",
+        "verdict": "best-evidenced route to a genuine stability claim, but presentation-and-device.md (device, fill, reconstitution spec) does not exist yet, and it changes the stabilizer decision from a cryoprotectant-in-solution to a lyophilisate cake.",
         "status": "candidate"
+      },
+      {
+        "id": "presentation-legacy-frozen",
+        "format": "frozen",
+        "shelfLife": "consensus long-term storage condition for EV preparations at −80°C (Ahmadian et al. 2024, cited via sgl-001-spec.md); one freeze-thaw cycle costs 23–36% of particles",
+        "coldChain": "required — an unbroken −80°C freezer chain from manufacture through point of use",
+        "userSteps": "thaw before each use; repeated freeze-thaw is destructive, so single-use aliquots would be needed rather than a multi-dose bottle",
+        "verdict": "ruled out for a consumer multi-dose product — the cold-chain requirement and per-cycle particle loss are incompatible with a bottle used over multiple days and with the site's own \"shelf-stable\" framing.",
+        "status": "excluded"
       }
     ],
     "functionalRoleFilters": [
-      "stability",
-      "vehicle and tonicity"
+      "buffer",
+      "mucoadhesive",
+      "permeation",
+      "preservative",
+      "stabilizer",
+      "tonicity"
     ],
     "nextActions": [
       {
@@ -915,79 +2247,614 @@
     ]
   },
   "jurisdictions": {
-    "disclaimer": "Planning state only, not legal advice. Verdicts distinguish legal pathway evidence from enforcement observations and require current regulator verification and qualified local counsel before action.",
+    "disclaimer": "Imported legacy planning data, not legal advice. Reported verdicts and confidence are preserved for traceability but marked legacy_import_unverified; verify current primary law and obtain qualified local advice before action.",
     "summaryCounts": {
-      "viable": 0,
-      "grey": 0,
-      "restrictive": 1,
-      "prohibited": 0,
-      "unresolved": 1
+      "viable": 1,
+      "grey": 7,
+      "restrictive": 3,
+      "prohibited": 1,
+      "unresolved": 0
     },
     "jurisdictions": [
       {
-        "id": "jurisdiction-us-federal",
-        "jurisdiction": "United States — federal",
-        "country": "United States",
-        "region": "North America",
+        "id": "jurisdiction-legacy-jp",
+        "jurisdiction": "Japan",
+        "country": "Japan",
+        "region": "Asia",
+        "verdict": "grey",
+        "enforcementIntensity": "low",
+        "confidence": "high",
+        "priority": "critical",
+        "productClassification": "Not cells, so outside the Act on the Safety of Regenerative Medicine. Sold with therapeutic claims it becomes a regenerative medicine product or drug under the PMD Act.",
+        "privateClinicPath": "Administered as free private medical practice at physician discretion. No committee review, no provision plan, no mandatory adverse-event reporting. Route note: Fast: supply physicians in the private market, accepting the position rests on a regulatory gap. Durable: an ASRM provision plan or a PMD Act filing with conditional approval.",
+        "conciseRationale": "Fast: supply physicians in the private market, accepting the position rests on a regulatory gap. Durable: an ASRM provision plan or a PMD Act filing with conditional approval.",
+        "sourceDocumentIds": [
+          "source-legacy-jp-legal-1",
+          "source-legacy-jp-legal-2",
+          "source-legacy-jp-legal-3"
+        ],
+        "unresolvedQuestions": [
+          "Whether the next amendment cycle brings EVs into scope",
+          "Whether personal import at inventory scale draws enforcement"
+        ],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-jp",
+          "action": "Verify the legacy Japan market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 2,
+        "permittedActivities": [
+          "Administering exosomes as free private medical practice",
+          "Culture supernatant as a cosmetic raw material",
+          "Cell therapies under a Class I-III provision plan",
+          "Conditional and time-limited approval or Sakigake designation"
+        ],
+        "greyAreas": [
+          "The entire private exosome clinic sector, lawful because nothing addresses it",
+          "Physician personal import used to stock clinic inventory",
+          "Marketing an unapproved imported product to clinics",
+          "'Exosome therapy' used interchangeably with unfractionated supernatant"
+        ],
+        "prohibitedActivities": [
+          "Human placenta extract as a biological raw material",
+          "Disease-treatment claims on an unapproved product",
+          "Advertising an unapproved therapy as established"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-kr",
+        "jurisdiction": "South Korea",
+        "country": "South Korea",
+        "region": "Asia",
+        "verdict": "grey",
+        "enforcementIntensity": "moderate",
+        "confidence": "high",
+        "priority": "high",
+        "productClassification": "Permitted as a cosmetic ingredient with safety standards. No injectable approval exists.",
+        "privateClinicPath": "Cell therapies permitted via designated institutions under the 2025 ARBA treatment category. Injecting a cosmetic-grade vial is off-label use of a non-injectable. Route note: A supply market before a sales market. The realistic play is sourcing or co-manufacturing, not selling into it.",
+        "conciseRationale": "A supply market before a sales market. The realistic play is sourcing or co-manufacturing, not selling into it.",
+        "sourceDocumentIds": [
+          "source-legacy-kr-legal-1",
+          "source-legacy-kr-legal-2",
+          "source-legacy-kr-legal-3"
+        ],
+        "unresolvedQuestions": [
+          "Whether acellular EVs fall within ARBA scope. Genuinely unresolved."
+        ],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-kr",
+          "action": "Verify the legacy South Korea market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 4,
+        "permittedActivities": [
+          "Manufacturing exosome cosmetics to MFDS standards",
+          "Export of cosmetic-grade product",
+          "Cell therapy under the ARBA treatment category",
+          "Clinical trials under MFDS"
+        ],
+        "greyAreas": [
+          "Cosmetic-grade vials used intradermally after laser or microneedling",
+          "Whether ARBA reaches acellular EVs at all",
+          "Products exported as cosmetics and injected in the destination market"
+        ],
+        "prohibitedActivities": [
+          "The word 'exosome' in consumer cosmetic advertising for human-derived product",
+          "Medical or drug-like claims on a cosmetic",
+          "Intravenous administration of a cosmetic product"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-cn",
+        "jurisdiction": "China",
+        "country": "China",
+        "region": "Asia",
         "verdict": "restrictive",
         "enforcementIntensity": "high",
         "confidence": "high",
-        "priority": "moderate",
-        "productClassification": "FDA states that exosome products intended to treat disease are generally regulated as drugs and biological products and require premarket review and approval.",
-        "privateClinicPath": "No legitimate routine private-clinic deployment path is identified for an unapproved SGL-001 therapeutic. Human administration would require an applicable authorized clinical investigation or approved product pathway.",
-        "conciseRationale": "FDA sources support an investigational or approved-product pathway, not routine deployment of an unapproved therapeutic exosome product in private clinics.",
+        "priority": "low",
+        "productClassification": "Inside the ATMP framework since June 2025. Exosome-membrane dressings are Class III device combination products since December 2025.",
+        "privateClinicPath": "Only within an approved trial or a filed hospital clinical-research study, which cannot charge patients. Route note: No shortcut. A registered NMPA pathway with a local partner, or stay out. A five-year market, not an entry market.",
+        "conciseRationale": "No shortcut. A registered NMPA pathway with a local partner, or stay out. A five-year market, not an entry market.",
         "sourceDocumentIds": [
-          "source-fda-exosome-consumer-alert-2020",
-          "source-fda-warning-supreme-rejuvenation-2025"
+          "source-legacy-cn-legal-1",
+          "source-legacy-cn-legal-2",
+          "source-legacy-cn-legal-3",
+          "source-legacy-cn-legal-4"
         ],
-        "unresolvedQuestions": [
-          "Which IND pathway and FDA review center would apply to the final SGL-001 composition and claims?",
-          "What donor eligibility and CMC requirements follow from the selected source and manufacturing process?"
-        ],
+        "unresolvedQuestions": [],
         "nextAction": {
-          "actionId": "action-us-regulatory-classification",
-          "action": "Obtain a written U.S. regulatory classification and pre-IND development assessment for the defined SGL-001 candidate.",
-          "objective": "Confirm the lawful investigational path before any U.S. human-use or clinic planning.",
-          "uncertainty": "Product-specific classification, review center, and required nonclinical and CMC package.",
+          "actionId": "action-verify-jurisdiction-cn",
+          "action": "Verify the legacy China market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
           "successCriteria": [
-            "Qualified counsel and regulatory experts document the applicable pathway and recommended FDA interaction."
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
           ],
           "status": "proposed",
           "requiresHumanApproval": true
-        }
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 11,
+        "permittedActivities": [
+          "Registered clinical trials under NMPA/CDE",
+          "Filed hospital clinical research without charging patients",
+          "The Class III device route for qualifying dressings",
+          "Manufacturing for export"
+        ],
+        "greyAreas": [
+          "Plant-derived and conditioned-medium cosmetics avoiding the human-derived ban",
+          "Medical-beauty clinics running topical exosome protocols",
+          "Human genetic resources rules on cross-border collaboration"
+        ],
+        "prohibitedActivities": [
+          "Any exosome claim or the term on a cosmetic",
+          "Injectable human exosomes via medical-beauty and daigou channels",
+          "Unregistered cross-border import for clinical use"
+        ]
       },
       {
-        "id": "jurisdiction-japan-national",
-        "jurisdiction": "Japan — national",
-        "country": "Japan",
+        "id": "jurisdiction-legacy-th",
+        "jurisdiction": "Thailand",
+        "country": "Thailand",
         "region": "Asia",
-        "verdict": "unresolved",
-        "enforcementIntensity": "not_assessed",
+        "verdict": "grey",
+        "enforcementIntensity": "moderate",
         "confidence": "moderate",
         "priority": "high",
-        "productClassification": "PMDA treats therapeutic EV products as an active regulatory-science and clinical-development category, with published quality and safety considerations; the precise classification of the final SGL-001 product requires confirmation.",
-        "privateClinicPath": "No legitimate private-clinic path is established by the verified PMDA sources alone. Do not infer legality from observed clinic activity or an apparent regulatory gap.",
-        "conciseRationale": "Japan is strategically relevant, but the verified primary sources do not establish a lawful private-clinic path; classification and clinic-use rules require current local legal analysis.",
+        "productClassification": "A medicinal product under Thai FDA; an ATMP under the 2026 royal decree. No registration in practice for aesthetic vials.",
+        "privateClinicPath": "Only under a registered ATMP or authorised research protocol. Everything else runs on enforcement discretion. Route note: The sandbox is the most interesting door in the region. One of few structured routes to a legitimate first commercial footing for an unapproved EV product.",
+        "conciseRationale": "The sandbox is the most interesting door in the region. One of few structured routes to a legitimate first commercial footing for an unapproved EV product.",
         "sourceDocumentIds": [
-          "source-pmda-ev-subcommittee",
-          "source-pmda-ev-early-consideration-2026"
+          "source-legacy-th-legal-1",
+          "source-legacy-th-legal-2",
+          "source-legacy-th-legal-3",
+          "source-legacy-th-legal-4"
         ],
         "unresolvedQuestions": [
-          "How will the final SGL-001 product be classified under current Japanese product and medical-practice law?",
-          "Is any private-pay physician-use route legitimate before product approval, and under what oversight?",
-          "What import and domestic manufacturing licenses would apply?"
+          "Sandbox application criteria and whether a foreign sponsor can apply directly",
+          "Whether acellular EVs are in scope of the ATMP decree"
         ],
         "nextAction": {
-          "actionId": "action-japan-regulatory-memo",
-          "action": "Commission a current written Japan regulatory memo for the defined SGL-001 product, route, claims, source cells, manufacturing location, and proposed clinic model.",
-          "objective": "Determine whether any legitimate Japanese clinic-entry path exists and distinguish it from enforcement gaps.",
-          "uncertainty": "Product classification and the interaction between product approval, clinical research, physician practice, import, and advertising rules.",
+          "actionId": "action-verify-jurisdiction-th",
+          "action": "Verify the legacy Thailand market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
           "successCriteria": [
-            "Qualified Japanese counsel identifies the governing provisions, required authorizations, prohibited activities, and regulator confirmation questions."
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
           ],
           "status": "proposed",
           "requiresHumanApproval": true
-        }
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 5,
+        "permittedActivities": [
+          "A registered ATMP under the new decree",
+          "Treatment inside an authorised research protocol with ethics approval",
+          "The regulatory sandbox",
+          "Licensed facilities operating within scope"
+        ],
+        "greyAreas": [
+          "Exosomes as an aesthetic and wellness add-on with no product registration",
+          "Clinics with facility and physician licences but no product authorisation",
+          "'GMP laboratory' claims with no third-party verification"
+        ],
+        "prohibitedActivities": [
+          "Presenting an investigational treatment as proven",
+          "Exaggerated claims, over 400 cases prosecuted annually",
+          "Selling unregistered cell products as routine care"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-ae",
+        "jurisdiction": "United Arab Emirates",
+        "country": "United Arab Emirates",
+        "region": "Middle East",
+        "verdict": "grey",
+        "enforcementIntensity": "low",
+        "confidence": "moderate",
+        "priority": "moderate",
+        "productClassification": "No emirate-level exosome standard. Abu Dhabi requires approval from an internationally recognised regulator, which no exosome product holds anywhere.",
+        "privateClinicPath": "Clinics are licensed and openly market it. The product has no clean registration route. Route note: Fastest legitimate footing of any market here: a DoH or DHA-licensed clinic partner, a written protocol, full provenance documentation, honest consent.",
+        "conciseRationale": "Fastest legitimate footing of any market here: a DoH or DHA-licensed clinic partner, a written protocol, full provenance documentation, honest consent.",
+        "sourceDocumentIds": [
+          "source-legacy-ae-legal-1",
+          "source-legacy-ae-legal-2",
+          "source-legacy-ae-legal-3"
+        ],
+        "unresolvedQuestions": [
+          "Whether exosomes fall under semi-controlled medical materials decrees",
+          "Whether DHCC free zone rules differ from mainland Dubai"
+        ],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-ae",
+          "action": "Verify the legacy United Arab Emirates market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 8,
+        "permittedActivities": [
+          "Operating a licensed clinic with licensed physicians",
+          "Autologous adipose SVF and PRP under the DHA standards",
+          "Importing a product holding approval from a recognised foreign regulator"
+        ],
+        "greyAreas": [
+          "Exosome IV drips advertised at 100-200 billion particles",
+          "'DHA and MOH approved' language referring to a facility licence, not product approval",
+          "Import under a cosmetic, supplement or device classification then clinical administration"
+        ],
+        "prohibitedActivities": [
+          "Marketing a product as approved when only the facility is licensed",
+          "Administering an unregistered biologic where recognised foreign approval is required",
+          "Disease-treatment claims on a wellness product"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-de",
+        "jurisdiction": "Germany (EU baseline)",
+        "country": "Germany",
+        "region": "Europe",
+        "verdict": "restrictive",
+        "enforcementIntensity": "moderate",
+        "confidence": "high",
+        "priority": "moderate",
+        "productClassification": "Unmodified EVs are not ATMPs per the 2025 EMA/CAT guideline. Handled as biological medicinal products case by case. Engineered EVs carrying functional transgenic mRNA are gene therapy products.",
+        "privateClinicPath": "Only with a marketing authorisation or inside an approved trial. The ATMP hospital exemption does not cover naive exosomes. Route note: A CAT classification request first. Inexpensive, and it tells you whether you are running a biologics filing or a gene-therapy filing before spending anything.",
+        "conciseRationale": "A CAT classification request first. Inexpensive, and it tells you whether you are running a biologics filing or a gene-therapy filing before spending anything.",
+        "sourceDocumentIds": [
+          "source-legacy-de-legal-1",
+          "source-legacy-de-legal-2",
+          "source-legacy-de-legal-3"
+        ],
+        "unresolvedQuestions": [
+          "Which national competent authority route is fastest for a non-ATMP biological EV product"
+        ],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-de",
+          "action": "Verify the legacy Germany (EU baseline) market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 7,
+        "permittedActivities": [
+          "Clinical trials under the EU Clinical Trials Regulation via a single CTA",
+          "A CAT classification request, free, and the correct first step",
+          "Plant-derived exosome cosmetics",
+          "Marketing authorisation for a non-ATMP biological"
+        ],
+        "greyAreas": [
+          "Individueller Heilversuch framing used to justify repeat commercial use",
+          "Physician-prepared preparations under narrow §21(2) exemptions",
+          "Whether a given engineered product is ATMP or biological"
+        ],
+        "prohibitedActivities": [
+          "Human-derived exosomes in cosmetic products",
+          "Importing Korean cosmetic-grade vials for injection",
+          "Invoking the ATMP hospital exemption for an unmodified exosome product",
+          "Placing an unauthorised medicinal product on the market"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-ch",
+        "jurisdiction": "Switzerland",
+        "country": "Switzerland",
+        "region": "Europe",
+        "verdict": "restrictive",
+        "enforcementIntensity": "moderate",
+        "confidence": "high",
+        "priority": "high",
+        "productClassification": "Transplant product or medicinal product. Culture expansion is substantial manipulation by definition, so any cultured-cell-derived product is caught.",
+        "privateClinicPath": "Not permitted. Cultured-cell products for wellness or aesthetics outside a trial breach Swissmedic rules. Route note: Use Switzerland for credibility, manufacturing partners and capital, not for delivering therapy. There is no permissive Swiss lane.",
+        "conciseRationale": "Use Switzerland for credibility, manufacturing partners and capital, not for delivering therapy. There is no permissive Swiss lane.",
+        "sourceDocumentIds": [
+          "source-legacy-ch-legal-1",
+          "source-legacy-ch-legal-2",
+          "source-legacy-ch-legal-3"
+        ],
+        "unresolvedQuestions": [],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-ch",
+          "action": "Verify the legacy Switzerland market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 6,
+        "permittedActivities": [
+          "Minimally manipulated autologous material for homologous use in a single procedure",
+          "Authorised clinical trials",
+          "Products holding a Swissmedic marketing authorisation"
+        ],
+        "greyAreas": [
+          "Where SVF and same-day preparations sit, assessed case by case and sometimes cantonally",
+          "Consultation and diagnostics in Switzerland with treatment delivered abroad"
+        ],
+        "prohibitedActivities": [
+          "Expanded or cultured-cell-derived products sold for wellness or aesthetics outside a trial",
+          "Importing cosmetic-grade exosome vials for injection",
+          "Marketing 'Swiss' regenerative therapy that is neither authorised nor trial-based",
+          "Storing UC-MSCs without a Swissmedic licence"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-us",
+        "jurisdiction": "United States (federal)",
+        "country": "United States",
+        "region": "North America",
+        "verdict": "prohibited",
+        "enforcementIntensity": "high",
+        "confidence": "high",
+        "priority": "not_assessed",
+        "productClassification": "Unapproved new drug and unlicensed biological product. Never eligible for the 361 HCT/P exemption. No approval exists for any indication.",
+        "privateClinicPath": "Only under an active IND. Nothing else is lawful for a therapeutic purpose. Route note: Cosmetic lane or IND. There is no third option, and offshore delivery does not insulate US-facing marketing from FTC or DOJ.",
+        "conciseRationale": "Cosmetic lane or IND. There is no third option, and offshore delivery does not insulate US-facing marketing from FTC or DOJ.",
+        "sourceDocumentIds": [
+          "source-legacy-us-legal-1",
+          "source-legacy-us-legal-2",
+          "source-legacy-us-legal-3",
+          "source-legacy-us-legal-4",
+          "source-legacy-us-legal-5"
+        ],
+        "unresolvedQuestions": [],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-us",
+          "action": "Verify the legacy United States (federal) market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": null,
+        "permittedActivities": [
+          "Topical cosmetics with no structure/function claims",
+          "An active IND with a registered clinical trial",
+          "Contract manufacturing for a sponsor holding the regulatory file"
+        ],
+        "greyAreas": [
+          "Where a cosmetic claim ends and a drug claim begins",
+          "Post-procedure topical application in aesthetic practice"
+        ],
+        "prohibitedActivities": [
+          "Intravenous infusions, joint injections, scalp injections for hair loss",
+          "'Research use only' vials sold to clinics and administered to patients",
+          "Any therapeutic claim without an IND"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-us-fl",
+        "jurisdiction": "Florida",
+        "country": "United States",
+        "region": "North America",
+        "verdict": "grey",
+        "enforcementIntensity": "high",
+        "confidence": "moderate",
+        "priority": "critical",
+        "productClassification": "SB 1768's HCT/P definition excludes secreted and extracted human products and cell factors, and requires viable live cells on post-thaw analysis (Fla. Stat. §458.3245(2)(a)3., §458.3245(3)(b)3.). Federally, FDA treats unapproved exosome products as outside HCT/P status and unlawful when marketed with therapeutic claims — the state pathway does not reach this product, and a state law cannot authorise what federal law prohibits.",
+        "privateClinicPath": "FL-licensed MD/DO physicians may perform non-FDA-approved stem cell therapy, but only for orthopedics, wound care, and pain management, with informed consent and an advertising notice (Fla. Stat. §458.3245, effective 2025-07-01). Route note: Not a route for exosomes. Watch whether Georgia HB 1275 and Tennessee HB 2246, both signed May 2026, use definitions including cell-derived products.",
+        "conciseRationale": "This is the shape the category's near future may take elsewhere: a state creates a real, permissive pathway for a cellular therapy, a commercial market reads it as covering more than it does, and federal enforcement escalates against that gap. Florida is where that pattern is furthest along and most visible right now.",
+        "sourceDocumentIds": [
+          "source-legacy-us-fl-legal-1",
+          "source-legacy-us-fl-legal-2",
+          "source-legacy-us-fl-legal-3",
+          "source-legacy-us-fl-legal-4",
+          "source-legacy-us-fl-url-1",
+          "source-legacy-us-fl-url-2"
+        ],
+        "unresolvedQuestions": [
+          "Whether Florida DOH rules address acellular products",
+          "How Georgia and Tennessee 2026 statutes define the category"
+        ],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-us-fl",
+          "action": "Verify the legacy Florida market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 1,
+        "permittedActivities": [
+          "Stem cell therapy for orthopedics, wound care and pain management meeting all statutory conditions",
+          "Topical cosmetics with no structure/function claims",
+          "An active IND"
+        ],
+        "greyAreas": [
+          "Whether the legislature intended to exclude secreted products or inherited the federal exclusion list. No Board rule under §(10) and no case testing scope",
+          "A product containing viable cells alongside vesicles, which may qualify where a pure EV vial cannot",
+          "Suppliers marketing exosome products as usable 'in accordance with SB 1768'",
+          "The SB 1768 carve-out is limited to those three indications and to physician-administered stem cell therapy — it does not clearly cover exosome/secretome products or cognitive indications, so a cognitive secretome sits outside it."
+        ],
+        "prohibitedActivities": [
+          "Relying on SB 1768 as a safe harbour for an acellular exosome product",
+          "Any therapeutic exosome claim without an IND",
+          "Indications outside orthopedics, wound care and pain management"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-pa",
+        "jurisdiction": "Panama",
+        "country": "Panama",
+        "region": "Latin America",
+        "verdict": "viable",
+        "enforcementIntensity": "low",
+        "confidence": "moderate",
+        "priority": "low",
+        "productClassification": "No product registration category in practical use. Lawfulness sits in the protocol, the facility licence and the consent, not the vial.",
+        "privateClinicPath": "Permitted under a MINSA-licensed facility with National Bioethics Committee approval and documented consent. Route note: Partnership with an existing MINSA-licensed institution that already holds bioethics approval. Building from zero is slow; buying in is not.",
+        "conciseRationale": "Partnership with an existing MINSA-licensed institution that already holds bioethics approval. Building from zero is slow; buying in is not.",
+        "sourceDocumentIds": [
+          "source-legacy-pa-legal-1",
+          "source-legacy-pa-legal-2"
+        ],
+        "unresolvedQuestions": [
+          "Whether MINSA requires product-level registration for imported biologics used in approved protocols"
+        ],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-pa",
+          "action": "Verify the legacy Panama market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 10,
+        "permittedActivities": [
+          "MINSA-licensed facility with bioethics-approved protocol and documented consent",
+          "In-house manufacture under the treating institution's laboratory",
+          "Charging patients within an approved protocol"
+        ],
+        "greyAreas": [
+          "Protocols framed as research but operated as a commercial business at scale",
+          "No independent product registration or lot release oversight",
+          "Marketing to US patients, which brings FTC and DOJ exposure home"
+        ],
+        "prohibitedActivities": [
+          "Cure claims and guaranteed outcomes",
+          "Administering unregistered imported vials outside an approved protocol"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-co",
+        "jurisdiction": "Colombia",
+        "country": "Colombia",
+        "region": "Latin America",
+        "verdict": "grey",
+        "enforcementIntensity": "low",
+        "confidence": "moderate",
+        "priority": "moderate",
+        "productClassification": "Decree 2493/2004 governs tissue and cell handling. INVIMA licenses banks and supervises trials. No registration category in practical use for exosomes.",
+        "privateClinicPath": "Formally only in INVIMA-supervised research. In practice sold commercially to medical tourists. Route note: Viable for volume, poor for asset-building. Nothing done here generates evidence or standing that travels to a stricter market.",
+        "conciseRationale": "Viable for volume, poor for asset-building. Nothing done here generates evidence or standing that travels to a stricter market.",
+        "sourceDocumentIds": [
+          "source-legacy-co-legal-1",
+          "source-legacy-co-legal-2"
+        ],
+        "unresolvedQuestions": [
+          "Whether INVIMA has issued any exosome-specific position"
+        ],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-co",
+          "action": "Verify the legacy Colombia market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 9,
+        "permittedActivities": [
+          "Haematopoietic transplants at authorised institutions",
+          "Same-day autologous minimally manipulated procedures",
+          "INVIMA-supervised clinical trials"
+        ],
+        "greyAreas": [
+          "Expanded MSC and exosome infusions sold commercially outside a trial",
+          "'GMP-certified' and 'ISO' laboratory claims with no verification",
+          "Bundled longevity packages"
+        ],
+        "prohibitedActivities": [
+          "Advertising unproven uses",
+          "Advertising stem cells and delivering exosomes",
+          "Routine commercial use of expanded MSC products"
+        ]
+      },
+      {
+        "id": "jurisdiction-legacy-mx",
+        "jurisdiction": "Mexico",
+        "country": "Mexico",
+        "region": "Latin America",
+        "verdict": "grey",
+        "enforcementIntensity": "low",
+        "confidence": "moderate",
+        "priority": "critical",
+        "productClassification": "No product-specific classification for exosomes or secretome exists. A cell-free biologic would most plausibly need COFEPRIS sanitary registration as a 'medicamento biotecnológico' (Art. 222 Bis, Ley General de Salud), but Mexico's dedicated regenerative-medicine framework (Art. 315 licensing; the January 2026 LGS reform's definitions, consent, and anti-commerce rules) is built entirely around 'células troncales' (living stem cells) — exosomes, extracellular vesicles, and secretome are not mentioned anywhere in that reform's text, fetched and searched in full this run.",
+        "privateClinicPath": "COFEPRIS-authorized regenerative-medicine establishments and stem cell banks/collection centers may administer stem cell therapy under Art. 315 licensing and the 2026 reform's committee and consent requirements. Whether an acellular exosome/secretome product is administered under that same authorization in practice, or falls outside it, is unresolved — clinic-marketing sources describe exosome therapy being offered under the same facility authorization as stem cell therapy, with no regulatory differentiation found. Route note: Mexico already has an active, internationally-marketed private clinic sector for stem cell and exosome therapy, operating on facility-level COFEPRIS authorization (Aviso de Funcionamiento, Aviso de Publicidad) rather than product-level drug registration, per clinic-operator sources. The fast route mirrors that practice; the durable route is COFEPRIS product registration as a medicamento biotecnológico (Art. 222 Bis) — or asking COFEPRIS directly whether the 2026 stem-cell-establishment framework reaches an acellular product.",
+        "conciseRationale": "Mexico already has an active, internationally-marketed private clinic sector for stem cell and exosome therapy, operating on facility-level COFEPRIS authorization (Aviso de Funcionamiento, Aviso de Publicidad) rather than product-level drug registration, per clinic-operator sources. The fast route mirrors that practice; the durable route is COFEPRIS product registration as a medicamento biotecnológico (Art. 222 Bis) — or asking COFEPRIS directly whether the 2026 stem-cell-establishment framework reaches an acellular product.",
+        "sourceDocumentIds": [
+          "source-legacy-mx-legal-1",
+          "source-legacy-mx-legal-2",
+          "source-legacy-mx-legal-3"
+        ],
+        "unresolvedQuestions": [
+          "Whether COFEPRIS or a court has ever addressed whether the 2026 stem-cell reform's definitions extend to an acellular exosome/secretome product — no primary source found either way",
+          "Whether Mexican private clinics selling exosome/secretome therapy in practice hold a registro sanitario under Art. 222 Bis, or operate solely under facility/advertising notices — described one way by clinic-operator sources, not independently confirmed against a COFEPRIS registry",
+          "Whether the widely-repeated media claim that the 2026 reform specifically names adipose tissue, placental tissue, dental pulp, and umbilical cord as 'mesenchymal progenitor cell' sources is accurate — the full decree text (fetched and searched in full this run) does not contain the word 'mesenquimal' anywhere, only the generic term 'células troncales'; this discrepancy between secondary reporting and the primary text is unresolved",
+          "No specific COFEPRIS enforcement action against an exosome or regenerative-medicine clinic was found this run — a negative search result, not evidence of absence"
+        ],
+        "nextAction": {
+          "actionId": "action-verify-jurisdiction-mx",
+          "action": "Verify the legacy Mexico market-entry assessment against current primary sources and qualified local counsel.",
+          "objective": "Determine whether a legitimate SGL-001 product-development and clinic pathway exists.",
+          "uncertainty": "Current product classification, human-use authorization, manufacturing/import, sourcing, and advertising requirements.",
+          "successCriteria": [
+            "A dated, source-linked assessment distinguishes legal authorization from enforcement intensity."
+          ],
+          "status": "proposed",
+          "requiresHumanApproval": true
+        },
+        "verificationStatus": "legacy_import_unverified",
+        "legacyPriorityRank": 3,
+        "permittedActivities": [
+          "COFEPRIS-authorized stem cell banks, collection centers, and regenerative-medicine establishments handling células troncales, per Art. 315 licensing and the 2026 reform's definitions",
+          "A COFEPRIS-registered biotechnological medicine (registro sanitario under Art. 222 Bis) — the formal drug pathway for a cell-free biologic, though not the one clinic-marketing sources describe clinics actually using",
+          "Minimally-regulated cosmetic products under the general cosmetics rules (Art. 271 Bis), to the extent a topical product avoids therapeutic claims"
+        ],
+        "greyAreas": [
+          "Whether 'establecimiento de medicina regenerativa' and the stem-cell-specific rules (banks, consent, anti-commerce) reach an acellular exosome/secretome product at all — the entire 2026 reform is built around 'células troncales'; exosomes, extracellular vesicles, and secretome are not mentioned anywhere in the decree text",
+          "Whether private clinics selling exosome/secretome therapy hold a product-level registro sanitario (Art. 222 Bis) or only the facility-level Aviso de Funcionamiento and Aviso de Publicidad — clinic-operator sources describe only the latter, not independently confirmed against a COFEPRIS registry this run",
+          "Scale and destination of the medical-tourism market (clinics in Cancún and elsewhere marketing to US/Canadian patients) — described by clinic-operator sources, not independently verified against COFEPRIS's own establishment registry"
+        ],
+        "prohibitedActivities": [
+          "Commerce (sale for profit) in stem cells or donated tissue — donation must be altruistic and free of charge, subject to a narrow statutory exception (Art. 327)",
+          "Operating a regenerative-medicine establishment, stem cell bank, or collection center without the required COFEPRIS authorization",
+          "Advertising a therapy without the required Aviso de Publicidad, or making claims the authorized advertisement doesn't cover"
+        ]
       }
     ],
     "nextActions": [

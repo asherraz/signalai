@@ -16,6 +16,7 @@ from signalai.schemas.public_workspace import (
     PublicJurisdictionCard,
     PublicJurisdictionState,
     PublicPathway,
+    PublicPresentationCandidate,
 )
 from signalai.schemas.workspace import DevelopmentAction, TherapeuticAssetWorkspace
 
@@ -116,6 +117,10 @@ def export_workspace(workspace: TherapeuticAssetWorkspace):
                 status=item.development_status,
                 exclusionReason=item.exclusion_reason,
                 uncertainty=item.uncertainty,
+                biologicalTargets=item.biological_targets,
+                evidenceAnnotation=item.evidence_annotation,
+                sourceCitation=item.source_citation,
+                contextDependent=item.context_dependent,
             )
             for item in workspace.cargo.candidates
         ],
@@ -176,6 +181,7 @@ def export_workspace(workspace: TherapeuticAssetWorkspace):
                 tradeoffs=item.tradeoffs,
                 evidenceIds=item.evidence_ids,
                 exclusionReason=item.exclusion_reason,
+                legacyScores=item.legacy_scores,
             )
             for item in workspace.formulation.candidates
         ],
@@ -193,8 +199,24 @@ def export_workspace(workspace: TherapeuticAssetWorkspace):
                 risk=item.risk,
                 evidenceIds=item.evidence_ids,
                 status=item.inclusion_status,
+                precedentSummary=item.precedent_summary,
+                tradeoff=item.tradeoff,
+                legacyPrecedentStrength=item.legacy_precedent_strength,
+                legacyEvStability=item.legacy_ev_stability,
             )
             for item in workspace.formulation.excipients
+        ],
+        presentations=[
+            PublicPresentationCandidate(
+                id=item.presentation_id,
+                format=item.format,
+                shelfLife=item.shelf_life,
+                coldChain=item.cold_chain,
+                userSteps=item.user_steps,
+                verdict=item.verdict,
+                status=item.status,
+            )
+            for item in workspace.formulation.presentations
         ],
         functionalRoleFilters=sorted(
             {item.functional_role for item in workspace.formulation.excipients}
@@ -224,6 +246,11 @@ def export_workspace(workspace: TherapeuticAssetWorkspace):
                 sourceDocumentIds=item.source_document_ids,
                 unresolvedQuestions=item.unresolved_questions,
                 nextAction=_action(item.next_action),
+                verificationStatus=item.verification_status.value,
+                legacyPriorityRank=item.legacy_priority_rank,
+                permittedActivities=item.permitted_activities,
+                greyAreas=item.grey_areas,
+                prohibitedActivities=item.prohibited_activities,
             )
             for item in workspace.jurisdictions.jurisdictions
         ],

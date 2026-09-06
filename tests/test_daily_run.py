@@ -137,7 +137,7 @@ def test_no_material_change_run_persists_all_stages(tmp_path: Path) -> None:
     assert latest["runId"] == state.run_id
     assert public_payload["cargo"]["focusCandidates"] == ["cargo-native-msc-ev-secretome"]
     assert public_payload["formulation"]["candidates"]
-    assert public_payload["jurisdictions"]["summaryCounts"]["restrictive"] == 1
+    assert public_payload["jurisdictions"]["summaryCounts"]["restrictive"] == 3
     assert public_payload["currentHypothesis"]["hypothesisId"] == state.hypothesis.hypothesis_id
 
 
