@@ -15,6 +15,7 @@ from signalai.agents.daily_prompts import (
     DAILY_SYNTHESIS_INSTRUCTIONS,
 )
 from signalai.client import ModelClient
+from signalai.clinical_network_export import export_clinical_network
 from signalai.public_export import build_public_latest_run
 from signalai.workspace_export import export_workspace, validate_workspace_references
 from signalai.schemas import (
@@ -34,6 +35,7 @@ from signalai.schemas import (
     SignalState,
     WhatChanged,
     TherapeuticAssetWorkspace,
+    ClinicalNetworkState,
 )
 from signalai.selector import select_highest_value_task
 from signalai.storage import RunStore, new_run_id, publish_json
@@ -74,6 +76,7 @@ class DailyRunOrchestrator:
         runs_root: Path,
         public_state_path: Path,
         workspace_path: Path | None = None,
+        clinical_network_path: Path | None = None,
     ) -> None:
         self.client = client
         self.state_path = state_path
@@ -81,6 +84,7 @@ class DailyRunOrchestrator:
         self.runs_root = runs_root
         self.public_state_path = public_state_path
         self.workspace_path = workspace_path
+        self.clinical_network_path = clinical_network_path
 
     def run(self, *, run_id: str | None = None) -> tuple[SignalState, DevelopmentAgenda]:
         active_run_id = run_id or new_run_id()
@@ -108,6 +112,11 @@ class DailyRunOrchestrator:
             )
             if workspace is not None:
                 validate_workspace_references(workspace, current_state, agenda)
+            clinical_network = (
+                _load(self.clinical_network_path, ClinicalNetworkState)
+                if self.clinical_network_path is not None
+                else None
+            )
             artifacts.append(str(store.write_json("01-current-state.json", current_state)))
             artifacts.append(str(store.write_json("02-current-agenda.json", agenda)))
 
@@ -192,6 +201,16 @@ class DailyRunOrchestrator:
                 changed=changed,
             )
             public_domains = export_workspace(workspace) if workspace is not None else (None, None, None)
+            public_clinical_network = (
+                export_clinical_network(
+                    clinical_network,
+                    updated_state,
+                    workspace,
+                    what_changed_recently=synthesis.what_changed,
+                )
+                if clinical_network is not None and workspace is not None
+                else None
+            )
             public_state = PublicSignalState.from_internal(
                 updated_state,
                 changes=[
@@ -206,6 +225,7 @@ class DailyRunOrchestrator:
                 cargo=public_domains[0],
                 formulation=public_domains[1],
                 jurisdictions=public_domains[2],
+                clinical_network=public_clinical_network,
             )
             artifacts.append(
                 str(store.write_json("10-public-signal-state.json", public_state))

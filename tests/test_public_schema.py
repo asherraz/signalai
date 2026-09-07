@@ -23,6 +23,7 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "cargo",
     "formulation",
     "jurisdictions",
+    "clinicalNetwork",
 }
 
 
@@ -50,6 +51,7 @@ def test_generated_public_payload_matches_frontend_contract() -> None:
     assert validated.cargo is not None
     assert validated.formulation is not None
     assert validated.jurisdictions is not None
+    assert validated.clinical_network is not None
     assert set(validated.latest_run.stages.model_dump(by_alias=True)) == {
         "evidence",
         "claims",

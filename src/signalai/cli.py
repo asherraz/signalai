@@ -37,6 +37,8 @@ def daily_main() -> None:
         agenda_path=root / "state" / "development-agenda.json",
         runs_root=root / "runs",
         public_state_path=root / "public" / "signal-state.json",
+        workspace_path=root / "state" / "asset-development.json",
+        clinical_network_path=root / "state" / "clinical-network.json",
     ).run()
     print(f"Completed daily run {state.run_id}")
 

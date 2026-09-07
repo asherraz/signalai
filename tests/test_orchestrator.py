@@ -107,6 +107,7 @@ def test_milestone_one_run_persists_every_stage_and_public_state(tmp_path: Path)
         "cargo",
         "formulation",
         "jurisdictions",
+        "clinicalNetwork",
     }
     public_state = PublicSignalState.model_validate(public_payload)
     assert public_state.loop.run_id == state.run_id
