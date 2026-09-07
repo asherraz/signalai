@@ -17,6 +17,7 @@ from signalai.agents.daily_prompts import (
 from signalai.client import ModelClient
 from signalai.clinical_network_export import export_clinical_network
 from signalai.public_export import build_public_latest_run
+from signalai.product_export import export_product_layer
 from signalai.workspace_export import export_workspace, validate_workspace_references
 from signalai.schemas import (
     AgentRun,
@@ -211,14 +212,29 @@ class DailyRunOrchestrator:
                 if clinical_network is not None and workspace is not None
                 else None
             )
+            public_changes = [
+                PublicChange(
+                    changeId=f"{active_run_id}-daily-change",
+                    summary=synthesis.what_changed,
+                )
+            ]
+            product, intelligence_feed = (
+                export_product_layer(
+                    updated_state,
+                    workspace,
+                    clinical_network,
+                    public_clinical_network,
+                    changes=public_changes,
+                    latest_run=latest_run,
+                )
+                if clinical_network is not None
+                and workspace is not None
+                and public_clinical_network is not None
+                else (None, [])
+            )
             public_state = PublicSignalState.from_internal(
                 updated_state,
-                changes=[
-                    PublicChange(
-                        changeId=f"{active_run_id}-daily-change",
-                        summary=synthesis.what_changed,
-                    )
-                ],
+                changes=public_changes,
                 completed_stages=["selection", "analysis", "critique", "synthesis"],
                 current_hypothesis=latest_run.stages.hypothesis,
                 latest_run=latest_run,
@@ -226,6 +242,8 @@ class DailyRunOrchestrator:
                 formulation=public_domains[1],
                 jurisdictions=public_domains[2],
                 clinical_network=public_clinical_network,
+                product=product,
+                intelligence_feed=intelligence_feed,
             )
             artifacts.append(
                 str(store.write_json("10-public-signal-state.json", public_state))

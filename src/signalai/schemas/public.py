@@ -22,6 +22,7 @@ from signalai.schemas.models import (
 )
 from signalai.schemas.public_artifacts import PublicHypothesisArtifact, PublicLatestRun
 from signalai.schemas.public_clinical_network import PublicClinicalNetwork
+from signalai.schemas.public_product import PublicIntelligenceFeedItem, PublicProduct
 from signalai.schemas.public_workspace import (
     PublicCargoState,
     PublicFormulationState,
@@ -87,6 +88,11 @@ class PublicSignalState(SignalModel):
         default=None,
         alias="clinicalNetwork",
     )
+    product: PublicProduct | None = None
+    intelligence_feed: list[PublicIntelligenceFeedItem] = Field(
+        default_factory=list,
+        alias="intelligenceFeed",
+    )
 
     @model_validator(mode="after")
     def validate_public_state(self) -> PublicSignalState:
@@ -110,6 +116,8 @@ class PublicSignalState(SignalModel):
         formulation: PublicFormulationState | None = None,
         jurisdictions: PublicJurisdictionState | None = None,
         clinical_network: PublicClinicalNetwork | None = None,
+        product: PublicProduct | None = None,
+        intelligence_feed: list[PublicIntelligenceFeedItem] | None = None,
     ) -> PublicSignalState:
         return cls(
             generatedAt=state.generated_at,
@@ -145,4 +153,6 @@ class PublicSignalState(SignalModel):
             formulation=formulation,
             jurisdictions=jurisdictions,
             clinicalNetwork=clinical_network,
+            product=product,
+            intelligenceFeed=intelligence_feed or [],
         )

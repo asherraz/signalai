@@ -16,6 +16,8 @@ from signalai.agents.prompts import (
     SYNTHESIS_INSTRUCTIONS,
 )
 from signalai.client import ModelClient
+from signalai.clinical_network_export import export_clinical_network
+from signalai.product_export import export_product_layer
 from signalai.schemas import (
     AgentRun,
     ApprovalStatus,
@@ -30,8 +32,11 @@ from signalai.schemas import (
     RunStatus,
     SignalState,
     TherapeuticProgram,
+    TherapeuticAssetWorkspace,
+    ClinicalNetworkState,
 )
 from signalai.storage import RunStore, new_run_id, publish_json
+from signalai.workspace_export import export_workspace
 
 
 def _utc_now() -> datetime:
@@ -56,11 +61,15 @@ class MilestoneOneOrchestrator:
         evidence_path: Path,
         runs_root: Path,
         public_state_path: Path,
+        workspace_path: Path | None = None,
+        clinical_network_path: Path | None = None,
     ) -> None:
         self.client = client
         self.evidence_path = evidence_path
         self.runs_root = runs_root
         self.public_state_path = public_state_path
+        self.workspace_path = workspace_path
+        self.clinical_network_path = clinical_network_path
 
     def run(self, *, run_id: str | None = None) -> SignalState:
         active_run_id = run_id or new_run_id()
@@ -173,7 +182,47 @@ class MilestoneOneOrchestrator:
                 decision=decision_result.decision,
             )
             artifact_paths.append(str(store.write_json("06-signal-state.json", state)))
-            public_state = PublicSignalState.from_internal(state)
+            workspace = (
+                TherapeuticAssetWorkspace.model_validate_json(
+                    self.workspace_path.read_text(encoding="utf-8")
+                )
+                if self.workspace_path is not None
+                else None
+            )
+            clinical_state = (
+                ClinicalNetworkState.model_validate_json(
+                    self.clinical_network_path.read_text(encoding="utf-8")
+                )
+                if self.clinical_network_path is not None
+                else None
+            )
+            public_domains = (
+                export_workspace(workspace) if workspace is not None else (None, None, None)
+            )
+            public_network = (
+                export_clinical_network(clinical_state, state, workspace)
+                if clinical_state is not None and workspace is not None
+                else None
+            )
+            public_state = PublicSignalState.from_internal(
+                state,
+                cargo=public_domains[0],
+                formulation=public_domains[1],
+                jurisdictions=public_domains[2],
+                clinical_network=public_network,
+            )
+            if clinical_state is not None and workspace is not None and public_network is not None:
+                product, feed = export_product_layer(
+                    state,
+                    workspace,
+                    clinical_state,
+                    public_network,
+                    changes=public_state.changes,
+                    latest_run=None,
+                )
+                public_state = public_state.model_copy(
+                    update={"product": product, "intelligence_feed": feed}
+                )
             artifact_paths.append(
                 str(store.write_json("07-public-signal-state.json", public_state))
             )

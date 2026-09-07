@@ -91,6 +91,7 @@ def test_no_material_change_run_persists_all_stages(tmp_path: Path) -> None:
         runs_root=tmp_path / "runs",
         public_state_path=tmp_path / "public" / "signal-state.json",
         workspace_path=PROJECT_ROOT / "state" / "asset-development.json",
+        clinical_network_path=PROJECT_ROOT / "state" / "clinical-network.json",
     )
 
     state, agenda = orchestrator.run(run_id="run-daily-test")
@@ -139,6 +140,16 @@ def test_no_material_change_run_persists_all_stages(tmp_path: Path) -> None:
     assert public_payload["formulation"]["candidates"]
     assert public_payload["jurisdictions"]["summaryCounts"]["restrictive"] == 3
     assert public_payload["currentHypothesis"]["hypothesisId"] == state.hypothesis.hypothesis_id
+    assert public_payload["product"]["programs"]["programs"][0]["programId"] == "SGL-001"
+    assert {item["moduleId"] for item in public_payload["product"]["intelligence"]["modules"]} == {
+        "therapeutic-programs",
+        "cargo",
+        "formulation",
+        "jurisdictions",
+        "evidence",
+        "airb",
+    }
+    assert public_payload["intelligenceFeed"]
 
 
 def test_public_artifacts_export_from_completed_run_and_match_canonical_ids(
