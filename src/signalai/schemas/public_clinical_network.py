@@ -5,12 +5,17 @@ from __future__ import annotations
 from pydantic import Field, HttpUrl
 
 from signalai.schemas.clinical_network import (
+    BiologicalRelationship,
     CapabilityLevel,
+    ClinicOpportunityPriority,
     ClinicVerificationStatus,
+    DocumentationStatus,
     JurisdictionFit,
+    ManipulationLevel,
     MatchStatus,
     PartnerRole,
     PartnerStatus,
+    RegenerativeClinicArchetype,
 )
 from signalai.schemas.models import EvidenceConfidence, Identifier, NonEmptyText, ProgramStatus, SignalModel
 
@@ -23,6 +28,39 @@ class PublicPhysician(SignalModel):
     credentials: list[str] = Field(default_factory=list)
     profile_summary: str | None = Field(default=None, alias="profileSummary")
     profile_url: HttpUrl | None = Field(default=None, alias="profileUrl")
+
+
+class PublicProductDocumentation(SignalModel):
+    product_name: NonEmptyText = Field(alias="productName")
+    identity_characterization: DocumentationStatus = Field(alias="identityCharacterization")
+    sterility_safety_documentation: DocumentationStatus = Field(
+        alias="sterilitySafetyDocumentation"
+    )
+    manufacturing_documentation: DocumentationStatus = Field(alias="manufacturingDocumentation")
+    evidence_documentation: DocumentationStatus = Field(alias="evidenceDocumentation")
+
+
+class PublicRegenerativeClinicPriority(SignalModel):
+    rank: int = Field(ge=1, le=3)
+    archetype: RegenerativeClinicArchetype
+    description: NonEmptyText
+
+
+class PublicRegenerativeClinicThesis(SignalModel):
+    thesis_id: Identifier = Field(alias="thesisId")
+    niche: NonEmptyText
+    exosome_subdomain_role: NonEmptyText = Field(alias="exosomeSubdomainRole")
+    target_priorities: list[PublicRegenerativeClinicPriority] = Field(alias="targetPriorities")
+
+
+class PublicClinicOpportunitySummary(SignalModel):
+    assessment_id: Identifier = Field(alias="assessmentId")
+    clinic_id: Identifier = Field(alias="clinicId")
+    archetype: RegenerativeClinicArchetype
+    priority: ClinicOpportunityPriority
+    sgl001_fit: CapabilityLevel = Field(alias="sgl001Fit")
+    recommended_first_value_offer: NonEmptyText = Field(alias="recommendedFirstValueOffer")
+    recommended_relationship_path: NonEmptyText = Field(alias="recommendedRelationshipPath")
 
 
 class PublicClinicProfile(SignalModel):
@@ -45,6 +83,37 @@ class PublicClinicProfile(SignalModel):
     verification_status: ClinicVerificationStatus = Field(alias="verificationStatus")
     partner_status: PartnerStatus = Field(alias="partnerStatus")
     partner_roles: list[PartnerRole] = Field(default_factory=list, alias="partnerRoles")
+    regenerative_archetype: RegenerativeClinicArchetype | None = Field(
+        default=None, alias="regenerativeArchetype"
+    )
+    stem_cell_therapies_offered: list[str] = Field(
+        default_factory=list, alias="stemCellTherapiesOffered"
+    )
+    exosome_ev_therapies_offered: list[str] = Field(
+        default_factory=list, alias="exosomeEvTherapiesOffered"
+    )
+    secretome_cell_derived_products: list[str] = Field(
+        default_factory=list, alias="secretomeCellDerivedProducts"
+    )
+    cell_sources: list[str] = Field(default_factory=list, alias="cellSources")
+    tissue_sources: list[str] = Field(default_factory=list, alias="tissueSources")
+    biological_relationships: list[BiologicalRelationship] = Field(
+        default_factory=list, alias="biologicalRelationships"
+    )
+    manipulation_levels: list[ManipulationLevel] = Field(
+        default_factory=list, alias="manipulationLevels"
+    )
+    routes_of_administration: list[str] = Field(
+        default_factory=list, alias="routesOfAdministration"
+    )
+    marketed_indications: list[str] = Field(default_factory=list, alias="marketedIndications")
+    suppliers_manufacturers: list[str] = Field(
+        default_factory=list, alias="suppliersManufacturers"
+    )
+    product_documentation: list[PublicProductDocumentation] = Field(
+        default_factory=list, alias="productDocumentation"
+    )
+    treatment_volume_summary: str | None = Field(default=None, alias="treatmentVolumeSummary")
 
 
 class PublicClinicProgramMatch(SignalModel):
@@ -88,3 +157,9 @@ class PublicClinicalNetwork(SignalModel):
     program_matches: list[PublicClinicProgramMatch] = Field(default_factory=list, alias="programMatches")
     partner_status_counts: dict[str, int] = Field(default_factory=dict, alias="partnerStatusCounts")
     intelligence: list[PublicClinicalIntelligence] = Field(default_factory=list)
+    network_thesis: PublicRegenerativeClinicThesis | None = Field(
+        default=None, alias="networkThesis"
+    )
+    opportunity_summaries: list[PublicClinicOpportunitySummary] = Field(
+        default_factory=list, alias="opportunitySummaries"
+    )

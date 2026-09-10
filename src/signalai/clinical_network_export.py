@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections import Counter
 
+from signalai.clinic_opportunity import classify_regenerative_clinic
 from signalai.clinical_network import validate_clinical_network_references
 from signalai.schemas.clinical_network import ClinicalNetworkState, PartnerStatus, ReviewStatus
 from signalai.schemas.models import SignalState
@@ -11,9 +12,13 @@ from signalai.schemas.public_clinical_network import (
     PublicClinicalIntelligence,
     PublicClinicalNetwork,
     PublicClinicalNetworkSummary,
+    PublicClinicOpportunitySummary,
     PublicClinicProfile,
     PublicClinicProgramMatch,
     PublicPhysician,
+    PublicProductDocumentation,
+    PublicRegenerativeClinicPriority,
+    PublicRegenerativeClinicThesis,
 )
 from signalai.schemas.workspace import JurisdictionVerificationStatus, TherapeuticAssetWorkspace
 
@@ -47,6 +52,11 @@ def export_clinical_network(
         for interest in network.partnership_interests
     )
     status_counts = Counter(clinic.partner_status.value for clinic in public_clinics)
+    public_assessments = [
+        item
+        for item in network.opportunity_assessments
+        if item.clinic_id in public_ids and item.public_summary_enabled
+    ]
 
     verified_jurisdictions = sum(
         item.verification_status is JurisdictionVerificationStatus.VERIFIED_PRIMARY
@@ -106,6 +116,57 @@ def export_clinical_network(
                 verificationStatus=clinic.verification_status,
                 partnerStatus=clinic.partner_status,
                 partnerRoles=clinic.partner_roles,
+                regenerativeArchetype=(
+                    classify_regenerative_clinic(clinic)[0]
+                    if clinic.portfolio_public
+                    else None
+                ),
+                stemCellTherapiesOffered=(
+                    clinic.stem_cell_therapies_offered if clinic.portfolio_public else []
+                ),
+                exosomeEvTherapiesOffered=(
+                    clinic.exosome_ev_therapies_offered if clinic.portfolio_public else []
+                ),
+                secretomeCellDerivedProducts=(
+                    clinic.secretome_cell_derived_products if clinic.portfolio_public else []
+                ),
+                cellSources=clinic.cell_sources if clinic.portfolio_public else [],
+                tissueSources=clinic.tissue_sources if clinic.portfolio_public else [],
+                biologicalRelationships=(
+                    clinic.biological_relationships if clinic.portfolio_public else []
+                ),
+                manipulationLevels=(
+                    clinic.manipulation_levels if clinic.portfolio_public else []
+                ),
+                routesOfAdministration=(
+                    clinic.routes_of_administration if clinic.portfolio_public else []
+                ),
+                marketedIndications=(
+                    clinic.marketed_indications if clinic.portfolio_public else []
+                ),
+                suppliersManufacturers=(
+                    clinic.suppliers_manufacturers if clinic.portfolio_public else []
+                ),
+                productDocumentation=(
+                    [
+                        PublicProductDocumentation(
+                            productName=document.product_name,
+                            identityCharacterization=document.identity_characterization,
+                            sterilitySafetyDocumentation=document.sterility_safety_documentation,
+                            manufacturingDocumentation=document.manufacturing_documentation,
+                            evidenceDocumentation=document.evidence_documentation,
+                        )
+                        for document in clinic.product_documentation
+                    ]
+                    if clinic.portfolio_public
+                    else []
+                ),
+                treatmentVolumeSummary=(
+                    f"{clinic.treatment_volume.treatment_count} treatments per "
+                    f"{clinic.treatment_volume.period}"
+                    if clinic.portfolio_public and clinic.treatment_volume is not None
+                    else None
+                ),
             )
             for clinic in public_clinics
         ],
@@ -141,5 +202,34 @@ def export_clinical_network(
                 jurisdictionRelevance=jurisdiction_relevance,
                 whatChangedRecently=what_changed_recently,
             )
+        ],
+        networkThesis=(
+            PublicRegenerativeClinicThesis(
+                thesisId=network.network_thesis.thesis_id,
+                niche=network.network_thesis.niche,
+                exosomeSubdomainRole=network.network_thesis.exosome_subdomain_role,
+                targetPriorities=[
+                    PublicRegenerativeClinicPriority(
+                        rank=item.rank,
+                        archetype=item.archetype,
+                        description=item.description,
+                    )
+                    for item in network.network_thesis.target_priorities
+                ],
+            )
+            if network.network_thesis is not None
+            else None
+        ),
+        opportunitySummaries=[
+            PublicClinicOpportunitySummary(
+                assessmentId=item.assessment_id,
+                clinicId=item.clinic_id,
+                archetype=item.archetype,
+                priority=item.priority,
+                sgl001Fit=item.sgl001_fit,
+                recommendedFirstValueOffer=item.recommended_first_value_offer,
+                recommendedRelationshipPath=item.recommended_relationship_path,
+            )
+            for item in public_assessments
         ],
     )

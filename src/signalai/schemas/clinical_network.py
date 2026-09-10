@@ -77,6 +77,129 @@ class JurisdictionFit(StrEnum):
     FAVORABLE = "favorable"
 
 
+class RegenerativeClinicArchetype(StrEnum):
+    STEM_CELL_AND_EXOSOME = "stem_cell_and_exosome"
+    STEM_CELL_EVALUATING_CELL_DERIVED = "stem_cell_evaluating_cell_derived"
+    EXOSOME_FOCUSED = "exosome_focused"
+    OTHER_REGENERATIVE = "other_regenerative"
+    NOT_ASSESSED = "not_assessed"
+
+
+class ClinicOpportunityPriority(StrEnum):
+    TIER_1 = "tier_1"
+    TIER_2 = "tier_2"
+    TIER_3 = "tier_3"
+    NOT_PRIORITIZED = "not_prioritized"
+
+
+class BiologicalRelationship(StrEnum):
+    AUTOLOGOUS = "autologous"
+    ALLOGENEIC = "allogeneic"
+    BOTH = "both"
+    UNKNOWN = "unknown"
+
+
+class ManipulationLevel(StrEnum):
+    MINIMALLY_MANIPULATED = "minimally_manipulated"
+    EXPANDED = "expanded"
+    BOTH = "both"
+    UNKNOWN = "unknown"
+
+
+class DocumentationStatus(StrEnum):
+    NOT_ASSESSED = "not_assessed"
+    NOT_AVAILABLE = "not_available"
+    PARTIAL = "partial"
+    AVAILABLE = "available"
+
+
+class ProductDocumentation(SignalModel):
+    product_name: NonEmptyText
+    identity_characterization: DocumentationStatus = DocumentationStatus.NOT_ASSESSED
+    sterility_safety_documentation: DocumentationStatus = DocumentationStatus.NOT_ASSESSED
+    manufacturing_documentation: DocumentationStatus = DocumentationStatus.NOT_ASSESSED
+    evidence_documentation: DocumentationStatus = DocumentationStatus.NOT_ASSESSED
+    notes: str | None = None
+
+
+class TreatmentVolume(SignalModel):
+    treatment_count: int = Field(ge=0)
+    period: NonEmptyText
+    as_of: datetime
+    source: NonEmptyText
+    estimated: bool = False
+
+    @model_validator(mode="after")
+    def validate_as_of(self) -> TreatmentVolume:
+        object.__setattr__(self, "as_of", _require_timezone(self.as_of, "as_of"))
+        return self
+
+
+class RegenerativeClinicTargetPriority(SignalModel):
+    rank: int = Field(ge=1, le=3)
+    archetype: RegenerativeClinicArchetype
+    description: NonEmptyText
+
+
+class RegenerativeClinicThesis(SignalModel):
+    thesis_id: Identifier = "regenerative-clinic-network-thesis"
+    niche: NonEmptyText
+    exosome_subdomain_role: NonEmptyText
+    target_priorities: list[RegenerativeClinicTargetPriority] = Field(min_length=3)
+    updated_at: datetime
+
+    @model_validator(mode="after")
+    def validate_thesis(self) -> RegenerativeClinicThesis:
+        object.__setattr__(self, "updated_at", _require_timezone(self.updated_at, "updated_at"))
+        ranks = [item.rank for item in self.target_priorities]
+        if ranks != [1, 2, 3]:
+            raise ValueError("regenerative clinic target priorities must be ordered 1, 2, 3")
+        return self
+
+
+class ExosomeProductReview(SignalModel):
+    review_id: Identifier
+    clinic_id: Identifier
+    product_name: NonEmptyText
+    characterization_status: DocumentationStatus
+    product_diligence_gaps: list[NonEmptyText] = Field(default_factory=list)
+    evidence_diligence_gaps: list[NonEmptyText] = Field(default_factory=list)
+    evidence_ids: list[Identifier] = Field(default_factory=list)
+    jurisdiction_ids: list[Identifier] = Field(default_factory=list)
+    reviewed_at: datetime
+
+    @model_validator(mode="after")
+    def validate_reviewed_at(self) -> ExosomeProductReview:
+        object.__setattr__(
+            self, "reviewed_at", _require_timezone(self.reviewed_at, "reviewed_at")
+        )
+        return self
+
+
+class ClinicOpportunityAssessment(SignalModel):
+    assessment_id: Identifier
+    clinic_id: Identifier
+    archetype: RegenerativeClinicArchetype
+    priority: ClinicOpportunityPriority
+    current_therapeutic_portfolio: list[NonEmptyText] = Field(default_factory=list)
+    product_evidence_diligence_gaps: list[NonEmptyText] = Field(default_factory=list)
+    relevant_jurisdiction_ids: list[Identifier] = Field(default_factory=list)
+    relevant_intelligence_module_ids: list[Identifier] = Field(default_factory=list)
+    sgl001_fit: CapabilityLevel = CapabilityLevel.NOT_ASSESSED
+    recommended_first_value_offer: NonEmptyText
+    recommended_relationship_path: NonEmptyText
+    exosome_product_reviews: list[ExosomeProductReview] = Field(default_factory=list)
+    public_summary_enabled: bool = False
+    created_at: datetime
+
+    @model_validator(mode="after")
+    def validate_created_at(self) -> ClinicOpportunityAssessment:
+        object.__setattr__(self, "created_at", _require_timezone(self.created_at, "created_at"))
+        if any(review.clinic_id != self.clinic_id for review in self.exosome_product_reviews):
+            raise ValueError("exosome product reviews must belong to the assessed clinic")
+        return self
+
+
 class Physician(SignalModel):
     physician_id: Identifier
     name: NonEmptyText
@@ -102,6 +225,21 @@ class Clinic(SignalModel):
     specialties: list[NonEmptyText] = Field(default_factory=list)
     languages: list[NonEmptyText] = Field(default_factory=list)
     modalities_offered: list[NonEmptyText] = Field(default_factory=list)
+    stem_cell_therapies_offered: list[NonEmptyText] = Field(default_factory=list)
+    exosome_ev_therapies_offered: list[NonEmptyText] = Field(default_factory=list)
+    secretome_cell_derived_products: list[NonEmptyText] = Field(default_factory=list)
+    cell_sources: list[NonEmptyText] = Field(default_factory=list)
+    tissue_sources: list[NonEmptyText] = Field(default_factory=list)
+    biological_relationships: list[BiologicalRelationship] = Field(default_factory=list)
+    manipulation_levels: list[ManipulationLevel] = Field(default_factory=list)
+    routes_of_administration: list[NonEmptyText] = Field(default_factory=list)
+    marketed_indications: list[NonEmptyText] = Field(default_factory=list)
+    suppliers_manufacturers: list[NonEmptyText] = Field(default_factory=list)
+    product_documentation: list[ProductDocumentation] = Field(default_factory=list)
+    treatment_volume: TreatmentVolume | None = None
+    evaluating_exosome_secretome: bool = False
+    signal_program_interest_ids: list[Identifier] = Field(default_factory=list)
+    portfolio_public: bool = False
     regenerative_experience: CapabilityLevel = CapabilityLevel.NOT_ASSESSED
     intranasal_experience: CapabilityLevel = CapabilityLevel.NOT_ASSESSED
     research_experience: CapabilityLevel = CapabilityLevel.NOT_ASSESSED
@@ -146,6 +284,8 @@ class Clinic(SignalModel):
             raise ValueError("public clinic profiles require at least one approved partner role")
         if self.contact_email_public and (not self.public_profile_enabled or not self.contact_email):
             raise ValueError("public contact email requires an approved public profile and email")
+        if self.portfolio_public and not self.public_profile_enabled:
+            raise ValueError("public regenerative portfolio requires an approved public profile")
         return self
 
 
@@ -256,11 +396,13 @@ class ClinicIntakeReview(SignalModel):
 
 
 class ClinicalNetworkState(SignalModel):
-    schema_version: str = "1.0"
+    schema_version: str = "1.1"
     generated_at: datetime
     clinics: list[Clinic] = Field(default_factory=list)
     partnership_interests: list[PartnershipInterest] = Field(default_factory=list)
     program_matches: list[ClinicProgramMatch] = Field(default_factory=list)
+    network_thesis: RegenerativeClinicThesis | None = None
+    opportunity_assessments: list[ClinicOpportunityAssessment] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def validate_state(self) -> ClinicalNetworkState:
@@ -272,14 +414,20 @@ class ClinicalNetworkState(SignalModel):
             raise ValueError("clinic IDs must be unique")
         interest_ids = {item.interest_id for item in self.partnership_interests}
         match_ids = {item.match_id for item in self.program_matches}
+        assessment_ids = {item.assessment_id for item in self.opportunity_assessments}
         if len(interest_ids) != len(self.partnership_interests):
             raise ValueError("partnership interest IDs must be unique")
         if len(match_ids) != len(self.program_matches):
             raise ValueError("clinic/program match IDs must be unique")
+        if len(assessment_ids) != len(self.opportunity_assessments):
+            raise ValueError("clinic opportunity assessment IDs must be unique")
         for interest in self.partnership_interests:
             if interest.clinic_id not in clinic_ids:
                 raise ValueError("partnership interest references an unknown clinic")
         for match in self.program_matches:
             if match.clinic_id not in clinic_ids:
                 raise ValueError("clinic/program match references an unknown clinic")
+        for assessment in self.opportunity_assessments:
+            if assessment.clinic_id not in clinic_ids:
+                raise ValueError("clinic opportunity assessment references an unknown clinic")
         return self

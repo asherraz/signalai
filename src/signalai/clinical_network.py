@@ -100,6 +100,15 @@ def validate_clinical_network_references(
     for match in network.program_matches:
         if match.program_id not in program_ids:
             raise ValueError("clinic/program match references an unknown program")
+    evidence_ids = {item.evidence_id for item in scientific_state.evidence}
+    for assessment in network.opportunity_assessments:
+        if set(assessment.relevant_jurisdiction_ids) - jurisdiction_ids:
+            raise ValueError("clinic opportunity references an unknown jurisdiction")
+        for review in assessment.exosome_product_reviews:
+            if set(review.jurisdiction_ids) - jurisdiction_ids:
+                raise ValueError("exosome product review references an unknown jurisdiction")
+            if set(review.evidence_ids) - evidence_ids:
+                raise ValueError("exosome product review references unknown evidence")
 
 
 def match_clinic_to_program(match: ClinicProgramMatch) -> ClinicProgramMatch:

@@ -71,6 +71,7 @@ def test_intelligence_modules_derive_from_real_state() -> None:
         "jurisdictions",
         "evidence",
         "airb",
+        "exosome-product-review",
     }
     assert modules["cargo"].key_metrics["candidates"] == len(workspace.cargo.candidates)
     assert modules["formulation"].key_metrics["excipients"] == len(

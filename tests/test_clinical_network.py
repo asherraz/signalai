@@ -12,17 +12,25 @@ from signalai.clinical_network import (
     validate_clinical_network_references,
 )
 from signalai.clinical_network_export import export_clinical_network
+from signalai.clinic_opportunity import (
+    assess_clinic_opportunity,
+    classify_regenerative_clinic,
+)
 from signalai.schemas import (
     CapabilityLevel,
     Clinic,
     ClinicalNetworkState,
     ClinicProgramMatch,
+    ClinicOpportunityPriority,
+    DocumentationStatus,
+    ExosomeProductReview,
     JurisdictionFit,
     MatchStatus,
     PartnerRole,
     PartnerStatus,
     Physician,
     PublicClinicalNetwork,
+    RegenerativeClinicArchetype,
     ReviewStatus,
     SignalState,
     TherapeuticAssetWorkspace,
@@ -255,3 +263,103 @@ def test_network_cross_references_and_empty_serialization() -> None:
     assert payload["jurisdictionsRepresented"] == []
     assert payload["programMatches"] == []
     assert len(payload["intelligence"]) == 1
+    assert payload["networkThesis"]["niche"] == (
+        "Regenerative medicine clinics working with stem cells, exosomes and "
+        "cell-derived therapies."
+    )
+    assert payload["opportunitySummaries"] == []
+
+
+def test_regenerative_clinic_priority_logic_and_opportunity_output() -> None:
+    combined = _clinic(
+        stem_cell_therapies_offered=["Stem-cell therapy"],
+        exosome_ev_therapies_offered=["EV therapy"],
+        secretome_cell_derived_products=["Secretome product"],
+        cell_sources=["Donor cells"],
+        tissue_sources=["Recorded tissue source"],
+        routes_of_administration=["Intravenous"],
+        suppliers_manufacturers=["Recorded supplier"],
+    )
+    archetype, priority = classify_regenerative_clinic(combined)
+    assert archetype is RegenerativeClinicArchetype.STEM_CELL_AND_EXOSOME
+    assert priority is ClinicOpportunityPriority.TIER_1
+
+    stem_evaluating = _clinic(
+        stem_cell_therapies_offered=["Stem-cell therapy"],
+        evaluating_exosome_secretome=True,
+    )
+    assert classify_regenerative_clinic(stem_evaluating) == (
+        RegenerativeClinicArchetype.STEM_CELL_EVALUATING_CELL_DERIVED,
+        ClinicOpportunityPriority.TIER_2,
+    )
+
+    exosome_focused = _clinic(
+        exosome_ev_therapies_offered=["EV therapy"],
+        research_experience=CapabilityLevel.STRONG,
+    )
+    assert classify_regenerative_clinic(exosome_focused) == (
+        RegenerativeClinicArchetype.EXOSOME_FOCUSED,
+        ClinicOpportunityPriority.TIER_3,
+    )
+
+    review = ExosomeProductReview(
+        review_id="review-exosome-test",
+        clinic_id=combined.clinic_id,
+        product_name="Declared EV product",
+        characterization_status=DocumentationStatus.PARTIAL,
+        product_diligence_gaps=["Identity documentation requires review."],
+        reviewed_at=NOW,
+    )
+    assessment = assess_clinic_opportunity(
+        combined,
+        assessment_id="assessment-test",
+        relevant_jurisdiction_ids=[],
+        exosome_product_reviews=[review],
+        created_at=NOW,
+    )
+    assert assessment.archetype is RegenerativeClinicArchetype.STEM_CELL_AND_EXOSOME
+    assert assessment.priority is ClinicOpportunityPriority.TIER_1
+    assert assessment.current_therapeutic_portfolio == [
+        "Stem-cell therapy",
+        "EV therapy",
+        "Secretome product",
+        "Supportive care",
+    ]
+    assert "exosome-product-review" in assessment.relevant_intelligence_module_ids
+    assert assessment.exosome_product_reviews == [review]
+    assert assessment.recommended_first_value_offer
+    assert assessment.recommended_relationship_path
+
+
+def test_regenerative_portfolio_requires_separate_public_opt_in() -> None:
+    scientific, workspace = _states()
+    approved = approve_public_listing(
+        _clinic(
+            stem_cell_therapies_offered=["Private stem-cell offering"],
+            exosome_ev_therapies_offered=["Private EV offering"],
+            suppliers_manufacturers=["Private supplier"],
+        ),
+        approved_by="reviewer-1",
+        roles=[PartnerRole.LISTED_PARTNER],
+        approved_at=NOW,
+    )
+    hidden = export_clinical_network(
+        ClinicalNetworkState(generated_at=NOW, clinics=[approved]),
+        scientific,
+        workspace,
+    ).clinic_profiles[0]
+    assert hidden.stem_cell_therapies_offered == []
+    assert hidden.exosome_ev_therapies_offered == []
+    assert hidden.suppliers_manufacturers == []
+
+    public_portfolio = Clinic.model_validate(
+        {**approved.model_dump(mode="python"), "portfolio_public": True}
+    )
+    visible = export_clinical_network(
+        ClinicalNetworkState(generated_at=NOW, clinics=[public_portfolio]),
+        scientific,
+        workspace,
+    ).clinic_profiles[0]
+    assert visible.stem_cell_therapies_offered == ["Private stem-cell offering"]
+    assert visible.exosome_ev_therapies_offered == ["Private EV offering"]
+    assert visible.suppliers_manufacturers == ["Private supplier"]

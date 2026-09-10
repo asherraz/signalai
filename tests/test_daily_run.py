@@ -148,6 +148,7 @@ def test_no_material_change_run_persists_all_stages(tmp_path: Path) -> None:
         "jurisdictions",
         "evidence",
         "airb",
+        "exosome-product-review",
     }
     assert public_payload["intelligenceFeed"]
 

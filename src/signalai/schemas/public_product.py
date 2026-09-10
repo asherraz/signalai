@@ -15,7 +15,11 @@ from signalai.schemas.models import (
     SignalModel,
     _require_timezone,
 )
-from signalai.schemas.public_clinical_network import PublicClinicProfile
+from signalai.schemas.public_clinical_network import (
+    PublicClinicOpportunitySummary,
+    PublicClinicProfile,
+    PublicRegenerativeClinicThesis,
+)
 
 
 class AccessTier(StrEnum):
@@ -80,6 +84,13 @@ class PublicIntelligenceModule(SignalModel):
 
 
 class PublicProductNetwork(SignalModel):
+    niche_description: NonEmptyText = Field(
+        default=(
+            "Regenerative medicine clinics working with stem cells, exosomes and "
+            "cell-derived therapies."
+        ),
+        alias="nicheDescription",
+    )
     approved_public_clinic_count: int = Field(ge=0, alias="approvedPublicClinicCount")
     countries_represented: list[str] = Field(default_factory=list, alias="countriesRepresented")
     jurisdictions_represented: list[Identifier] = Field(
@@ -97,6 +108,15 @@ class PublicProductNetwork(SignalModel):
     )
     recent_network_addition_ids: list[Identifier] = Field(
         default_factory=list, alias="recentNetworkAdditionIds"
+    )
+    network_thesis: PublicRegenerativeClinicThesis | None = Field(
+        default=None, alias="networkThesis"
+    )
+    clinic_archetype_counts: dict[str, int] = Field(
+        default_factory=dict, alias="clinicArchetypeCounts"
+    )
+    opportunity_summaries: list[PublicClinicOpportunitySummary] = Field(
+        default_factory=list, alias="opportunitySummaries"
     )
 
 

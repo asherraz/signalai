@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from collections import Counter
+
 from signalai.schemas.clinical_network import (
     ClinicalNetworkState,
     ReviewStatus,
@@ -99,6 +101,10 @@ def export_product_layer(
         )[:5]
     ]
     network = PublicProductNetwork(
+        nicheDescription=(
+            "Regenerative medicine clinics working with stem cells, exosomes and "
+            "cell-derived therapies."
+        ),
         approvedPublicClinicCount=public_network.summary.public_clinics,
         countriesRepresented=public_network.countries_represented,
         jurisdictionsRepresented=public_network.jurisdictions_represented,
@@ -111,6 +117,17 @@ def export_product_layer(
         publicClinicCards=public_network.clinic_profiles,
         sgl001InterestedClinicIds=interested_ids,
         recentNetworkAdditionIds=recent_network_ids,
+        networkThesis=public_network.network_thesis,
+        clinicArchetypeCounts=dict(
+            sorted(
+                Counter(
+                    clinic.regenerative_archetype.value
+                    for clinic in public_network.clinic_profiles
+                    if clinic.regenerative_archetype is not None
+                ).items()
+            )
+        ),
+        opportunitySummaries=public_network.opportunity_summaries,
     )
 
     recent_scientific_changes = [item.summary for item in changes]
@@ -225,6 +242,39 @@ def export_product_layer(
             reference_ids=[scientific_state.decision.decision_id],
             available_fields=["critique", "determination", "rationale", "approvalStatus"],
         ),
+        _module(
+            module_id="exosome-product-review",
+            title="Exosome Product Review",
+            summary=(
+                "Reusable product-diligence submodule for exosome and EV offerings "
+                "inside the broader regenerative-clinic model."
+            ),
+            last_updated=clinical_state.generated_at,
+            status=IntelligenceModuleStatus.DEVELOPING,
+            preview="Exosome-specific diligence remains available as a focused submodule.",
+            metrics={
+                "productReviews": sum(
+                    len(item.exosome_product_reviews)
+                    for item in clinical_state.opportunity_assessments
+                )
+            },
+            changes=[],
+            partner_summary=(
+                "Review product characterization, supplier provenance, supporting "
+                "evidence, and jurisdiction-specific gaps."
+            ),
+            reference_ids=[
+                review.review_id
+                for item in clinical_state.opportunity_assessments
+                for review in item.exosome_product_reviews
+            ],
+            available_fields=[
+                "productCharacterization",
+                "supplierProvenance",
+                "evidenceGaps",
+                "jurisdictionQuestions",
+            ],
+        ),
     ]
 
     approved_program_matches = [
@@ -285,7 +335,11 @@ def export_product_layer(
                 PublicAccessDefinition(
                     tier=AccessTier.PARTNER,
                     title="Partner",
-                    description="Deeper scientific, product, jurisdiction, and aiRB intelligence intended for partners.",
+                    description=(
+                        "Deeper scientific, product, jurisdiction, and aiRB intelligence "
+                        "for regenerative medicine clinics working with stem cells, "
+                        "exosomes and cell-derived therapies."
+                    ),
                     currentlyEnforcedServerSide=False,
                 ),
                 PublicAccessDefinition(
