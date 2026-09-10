@@ -182,6 +182,54 @@ def test_programs_index_and_clinic_view_are_consistent() -> None:
     assert set(product.intelligence.clinic_view.relevant_jurisdiction_ids) == {
         item.jurisdiction_id for item in workspace.jurisdictions.jurisdictions
     }
+    assert program.program_number == "001"
+    assert "first therapeutic program" in program.role_in_signal
+    assert product.programs.supports_future_programs is True
+
+
+def test_company_thesis_ecosystem_and_intelligence_layers_are_explicit() -> None:
+    product, _ = _export()
+    scientific, workspace, _, _, _ = _inputs()
+
+    assert product.thesis is not None
+    assert product.thesis.company_thesis == (
+        "Signal is the intelligence layer for regenerative medicine."
+    )
+    assert product.ecosystem is not None
+    assert product.ecosystem.clinics.entity_count == 0
+    assert product.ecosystem.therapies.entity_count == 0
+    assert product.ecosystem.products.entity_count == len(workspace.formulation.candidates)
+    assert product.ecosystem.jurisdictions.entity_count == len(
+        workspace.jurisdictions.jurisdictions
+    )
+    assert product.ecosystem.evidence_sources.entity_count == (
+        len(scientific.evidence) + len(workspace.jurisdictions.sources)
+    )
+    assert set(item.category_id for item in product.intelligence.categories) == {
+        "structured-evidence",
+        "product-intelligence",
+        "jurisdiction-intelligence",
+        "clinic-intelligence",
+        "airb-determinations",
+    }
+
+
+def test_learning_loop_marks_partner_data_opt_in_and_outcomes_as_future() -> None:
+    product, _ = _export()
+    assert product.learning_loop is not None
+    stages = {item.stage_id: item for item in product.learning_loop.stages}
+
+    assert [item.sequence for item in product.learning_loop.stages] == list(range(1, 8))
+    assert stages["clinic-protocols"].opt_in_required is True
+    assert stages["clinic-protocols"].current_record_count == 0
+    assert stages["deidentified-outcomes"].status.value == "future"
+    assert stages["deidentified-outcomes"].current_record_count == 0
+    assert stages["deidentified-outcomes"].opt_in_required is True
+    assert product.contribution_policy is not None
+    assert product.contribution_policy.partner_contribution_opt_in_required is True
+    assert product.contribution_policy.default_partner_data_visibility == (
+        "private_until_explicitly_approved_for_publication"
+    )
 
 
 def test_generated_payload_remains_backward_compatible_and_private_safe() -> None:
@@ -209,3 +257,8 @@ def test_generated_payload_remains_backward_compatible_and_private_safe() -> Non
     serialized = json.dumps({"product": payload["product"], "feed": payload["intelligenceFeed"]})
     assert "contact_email" not in serialized
     assert "contactEmail" not in serialized
+    assert payload["product"]["thesis"]["companyThesis"] == (
+        "Signal is the intelligence layer for regenerative medicine."
+    )
+    assert payload["product"]["programs"]["programs"][0]["programNumber"] == "001"
+    assert payload["product"]["learningLoop"]["stages"][3]["currentRecordCount"] == 0

@@ -14,6 +14,7 @@ from signalai.schemas.public_artifacts import PublicLatestRun
 from signalai.schemas.public_clinical_network import PublicClinicalNetwork
 from signalai.schemas.public_product import (
     AccessTier,
+    DataOrigin,
     FoundingNetworkStatus,
     IntelligenceFeedType,
     IntelligenceImportance,
@@ -22,6 +23,10 @@ from signalai.schemas.public_product import (
     PublicAccessModel,
     PublicAirbDetermination,
     PublicClinicIntelligenceView,
+    PublicContributionPolicy,
+    PublicEcosystem,
+    PublicEcosystemDomain,
+    PublicIntelligenceCategory,
     PublicIntelligenceFeedItem,
     PublicIntelligenceIndex,
     PublicIntelligenceModule,
@@ -30,6 +35,10 @@ from signalai.schemas.public_product import (
     PublicProductNetwork,
     PublicProductProgram,
     PublicProgramsIndex,
+    PublicLearningLoop,
+    PublicLearningLoopStage,
+    PublicSignalNarrative,
+    ProductLayerStatus,
 )
 from signalai.schemas.workspace import TherapeuticAssetWorkspace
 
@@ -299,6 +308,10 @@ def export_product_layer(
         ),
         interestedClinicCount=len(interested_ids),
         approvedClinicPartnerCount=len(approved_program_matches),
+        programNumber="001",
+        roleInSignal=(
+            "The first therapeutic program developed through the Signal intelligence layer."
+        ),
     )
     clinic_view = PublicClinicIntelligenceView(
         personalizationStatus="not_personalized",
@@ -320,10 +333,219 @@ def export_product_layer(
             if value
         ],
     )
+    intelligence_categories = [
+        PublicIntelligenceCategory(
+            categoryId="structured-evidence",
+            title="Structured Evidence",
+            summary="Evidence and claims linked through traceable provenance.",
+            moduleIds=["evidence"],
+            inputOrigins=[DataOrigin.PUBLIC_SOURCE, DataOrigin.OPERATOR_CURATED],
+            status=ProductLayerStatus.ACTIVE,
+        ),
+
+        PublicIntelligenceCategory(
+            categoryId="product-intelligence",
+            title="Product Intelligence",
+            summary="Cargo, formulation, product-specification, and focused EV diligence.",
+            moduleIds=["cargo", "formulation", "exosome-product-review"],
+            inputOrigins=[DataOrigin.OPERATOR_CURATED, DataOrigin.FUTURE_OPT_IN],
+            status=ProductLayerStatus.ACTIVE,
+        ),
+        PublicIntelligenceCategory(
+            categoryId="jurisdiction-intelligence",
+            title="Jurisdiction Intelligence",
+            summary="Source-linked regulatory and deployment context without equating enforcement with legality.",
+            moduleIds=["jurisdictions"],
+            inputOrigins=[DataOrigin.PUBLIC_SOURCE, DataOrigin.OPERATOR_CURATED],
+            status=ProductLayerStatus.ACTIVE,
+        ),
+        PublicIntelligenceCategory(
+            categoryId="clinic-intelligence",
+            title="Clinic Intelligence",
+            summary="Opt-in clinic portfolio, diligence, capability, and program-fit intelligence.",
+            moduleIds=["therapeutic-programs", "exosome-product-review"],
+            inputOrigins=[DataOrigin.PARTNER_CONTRIBUTED, DataOrigin.FUTURE_OPT_IN],
+            status=(
+                ProductLayerStatus.ACTIVE
+                if public_network.summary.public_clinics
+                else ProductLayerStatus.EMPTY
+            ),
+        ),
+        PublicIntelligenceCategory(
+            categoryId="airb-determinations",
+            title="aiRB Determinations",
+            summary="Critique and human-gated development determinations linked to evidence and risks.",
+            moduleIds=["airb"],
+            inputOrigins=[DataOrigin.PUBLIC_SOURCE, DataOrigin.OPERATOR_CURATED],
+            status=ProductLayerStatus.ACTIVE,
+        ),
+    ]
+    public_therapy_names = {
+        therapy
+        for clinic in public_network.clinic_profiles
+        for therapy in (
+            clinic.stem_cell_therapies_offered
+            + clinic.exosome_ev_therapies_offered
+            + clinic.secretome_cell_derived_products
+        )
+    }
+    public_evidence_source_count = len(scientific_state.evidence)
+    jurisdiction_source_count = len(workspace.jurisdictions.sources)
+    ecosystem = PublicEcosystem(
+        clinics=PublicEcosystemDomain(
+            domainId="clinics",
+            title="Clinics",
+            summary="Approved regenerative-medicine clinics participating in the public network.",
+            entityCount=public_network.summary.public_clinics,
+            status=(
+                ProductLayerStatus.ACTIVE
+                if public_network.summary.public_clinics
+                else ProductLayerStatus.EMPTY
+            ),
+            recordCountsByOrigin={
+                DataOrigin.PARTNER_CONTRIBUTED: public_network.summary.public_clinics
+            },
+            partnerContributionOptInRequired=True,
+        ),
+        therapies=PublicEcosystemDomain(
+            domainId="therapies",
+            title="Therapies",
+            summary="Opt-in clinic portfolios spanning stem cells, EVs, secretome, and cell-derived therapies.",
+            entityCount=len(public_therapy_names),
+            status=ProductLayerStatus.ACTIVE if public_therapy_names else ProductLayerStatus.EMPTY,
+            recordCountsByOrigin={DataOrigin.PARTNER_CONTRIBUTED: len(public_therapy_names)},
+            partnerContributionOptInRequired=True,
+        ),
+        products=PublicEcosystemDomain(
+            domainId="products",
+            title="Products and Specifications",
+            summary="Structured formulation candidates and future opt-in partner product specifications.",
+            entityCount=len(workspace.formulation.candidates),
+            status=ProductLayerStatus.ACTIVE,
+            recordCountsByOrigin={
+                DataOrigin.OPERATOR_CURATED: len(workspace.formulation.candidates),
+                DataOrigin.PARTNER_CONTRIBUTED: 0,
+            },
+            partnerContributionOptInRequired=True,
+        ),
+        jurisdictions=PublicEcosystemDomain(
+            domainId="jurisdictions",
+            title="Jurisdictions",
+            summary="Structured jurisdiction assessments supported by retained source documents.",
+            entityCount=len(workspace.jurisdictions.jurisdictions),
+            status=ProductLayerStatus.ACTIVE,
+            recordCountsByOrigin={
+                DataOrigin.PUBLIC_SOURCE: jurisdiction_source_count,
+                DataOrigin.OPERATOR_CURATED: len(workspace.jurisdictions.jurisdictions),
+            },
+            partnerContributionOptInRequired=True,
+        ),
+        evidenceSources=PublicEcosystemDomain(
+            domainId="evidence-sources",
+            title="Evidence Sources",
+            summary="Scientific and jurisdiction sources retained with provenance.",
+            entityCount=public_evidence_source_count + jurisdiction_source_count,
+            status=ProductLayerStatus.ACTIVE,
+            recordCountsByOrigin={
+                DataOrigin.PUBLIC_SOURCE: public_evidence_source_count
+                + jurisdiction_source_count
+            },
+            partnerContributionOptInRequired=True,
+        ),
+    )
+    learning_loop = PublicLearningLoop(
+        summary=(
+            "Signal structures evidence, product, clinic, and jurisdiction inputs into "
+            "analysis that advances programs and returns useful intelligence to the network."
+        ),
+        stages=[
+            PublicLearningLoopStage(
+                sequence=1,
+                stageId="public-evidence",
+                title="Public Evidence",
+                summary="Curated scientific and regulatory sources enter with provenance.",
+                status=ProductLayerStatus.ACTIVE,
+                dataOrigins=[DataOrigin.PUBLIC_SOURCE],
+                currentRecordCount=public_evidence_source_count + jurisdiction_source_count,
+                optInRequired=False,
+            ),
+            PublicLearningLoopStage(
+                sequence=2,
+                stageId="clinic-protocols",
+                title="Clinic Protocols",
+                summary="Future partner-contributed protocols require explicit clinic opt-in.",
+                status=ProductLayerStatus.FUTURE,
+                dataOrigins=[DataOrigin.FUTURE_OPT_IN, DataOrigin.PARTNER_CONTRIBUTED],
+                currentRecordCount=0,
+                optInRequired=True,
+            ),
+            PublicLearningLoopStage(
+                sequence=3,
+                stageId="product-specifications",
+                title="Product Specifications",
+                summary="Structured formulation state can be joined with future opt-in partner specifications.",
+                status=ProductLayerStatus.ACTIVE,
+                dataOrigins=[DataOrigin.OPERATOR_CURATED, DataOrigin.FUTURE_OPT_IN],
+                currentRecordCount=len(workspace.formulation.candidates),
+                optInRequired=True,
+            ),
+            PublicLearningLoopStage(
+                sequence=4,
+                stageId="deidentified-outcomes",
+                title="Future De-identified Outcomes",
+                summary="No outcomes are collected; any future contribution must be opt-in and de-identified.",
+                status=ProductLayerStatus.FUTURE,
+                dataOrigins=[DataOrigin.FUTURE_OPT_IN],
+                currentRecordCount=0,
+                optInRequired=True,
+            ),
+            PublicLearningLoopStage(
+                sequence=5,
+                stageId="structured-analysis",
+                title="Structured Analysis",
+                summary="SignalAI links evidence, hypotheses, critique, risks, and decisions.",
+                status=ProductLayerStatus.ACTIVE,
+                dataOrigins=[DataOrigin.PUBLIC_SOURCE, DataOrigin.OPERATOR_CURATED],
+                currentRecordCount=len(scientific_state.claims),
+                optInRequired=False,
+            ),
+            PublicLearningLoopStage(
+                sequence=6,
+                stageId="program-development",
+                title="Program Development",
+                summary="Structured intelligence guides human-gated therapeutic development programs.",
+                status=ProductLayerStatus.ACTIVE,
+                dataOrigins=[DataOrigin.OPERATOR_CURATED],
+                currentRecordCount=1,
+                optInRequired=False,
+            ),
+            PublicLearningLoopStage(
+                sequence=7,
+                stageId="network-intelligence-return",
+                title="Return Intelligence to the Network",
+                summary="Public previews and partner intelligence return structured learning to participants.",
+                status=ProductLayerStatus.READY,
+                dataOrigins=[DataOrigin.OPERATOR_CURATED],
+                currentRecordCount=len(changes) + (1 if latest_run is not None else 0),
+                optInRequired=False,
+            ),
+        ],
+    )
     product = PublicProduct(
         network=network,
-        intelligence=PublicIntelligenceIndex(modules=modules, clinicView=clinic_view),
-        programs=PublicProgramsIndex(programs=[program]),
+        intelligence=PublicIntelligenceIndex(
+            modules=modules,
+            clinicView=clinic_view,
+            categories=intelligence_categories,
+        ),
+        programs=PublicProgramsIndex(
+            programs=[program],
+            summary=(
+                "SGL-001 is Program 001 and the first therapeutic program developed "
+                "through the Signal intelligence layer; the index supports future programs."
+            ),
+            supportsFuturePrograms=True,
+        ),
         access=PublicAccessModel(
             tiers=[
                 PublicAccessDefinition(
@@ -351,6 +573,51 @@ def export_product_layer(
             ],
             billingEnabled=False,
             authenticationEnabled=False,
+        ),
+        thesis=PublicSignalNarrative(
+            companyThesis="Signal is the intelligence layer for regenerative medicine.",
+            whatSignalIs=(
+                "Signal connects and structures the global regenerative-medicine "
+                "ecosystem across clinics, therapies, products, evidence, and jurisdictions."
+            ),
+            fragmentedProblem=(
+                "Regenerative-medicine evidence, product specifications, clinic protocols, "
+                "jurisdiction context, and outcomes are fragmented and difficult to compare."
+            ),
+            howAiCreatesValue=(
+                "SignalAI converts traceable inputs into structured claims, product and "
+                "jurisdiction intelligence, critiques, risks, and human-gated decisions."
+            ),
+            networkContribution=(
+                "Clinics may opt in to contribute portfolio, protocol, product, and future "
+                "de-identified outcomes data while retaining explicit provenance and controls."
+            ),
+            programEmergence=(
+                "Cross-ecosystem intelligence reveals evidence gaps and development "
+                "opportunities from which new human-approved therapeutic programs can emerge."
+            ),
+            sgl001ProofPoint=(
+                "SGL-001 is Program 001: the first therapeutic program developed through "
+                "the Signal intelligence layer, not the full scope of the company."
+            ),
+        ),
+        ecosystem=ecosystem,
+        learningLoop=learning_loop,
+        contributionPolicy=PublicContributionPolicy(
+            partnerContributionOptInRequired=True,
+            defaultPartnerDataVisibility="private_until_explicitly_approved_for_publication",
+            publicSourceProvenanceRequired=True,
+            partnerProvenanceRequired=True,
+            outcomeDataStatus=ProductLayerStatus.FUTURE,
+            outcomePrivacyStandard=(
+                "Future outcomes must be de-identified and governed before collection or use."
+            ),
+            contributionTypes=[
+                "clinic_protocols",
+                "product_specifications",
+                "portfolio_information",
+                "future_deidentified_outcomes",
+            ],
         ),
     )
 

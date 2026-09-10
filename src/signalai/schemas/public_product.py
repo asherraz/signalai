@@ -56,6 +56,96 @@ class IntelligenceImportance(StrEnum):
     CRITICAL = "critical"
 
 
+class DataOrigin(StrEnum):
+    PUBLIC_SOURCE = "public_source"
+    OPERATOR_CURATED = "operator_curated"
+    PARTNER_CONTRIBUTED = "partner_contributed"
+    FUTURE_OPT_IN = "future_opt_in"
+
+
+class ProductLayerStatus(StrEnum):
+    AVAILABLE = "available"
+    ACTIVE = "active"
+    READY = "ready"
+    EMPTY = "empty"
+    FUTURE = "future"
+
+
+class PublicSignalNarrative(SignalModel):
+    company_thesis: NonEmptyText = Field(alias="companyThesis")
+    what_signal_is: NonEmptyText = Field(alias="whatSignalIs")
+    fragmented_problem: NonEmptyText = Field(alias="fragmentedProblem")
+    how_ai_creates_value: NonEmptyText = Field(alias="howAiCreatesValue")
+    network_contribution: NonEmptyText = Field(alias="networkContribution")
+    program_emergence: NonEmptyText = Field(alias="programEmergence")
+    sgl001_proof_point: NonEmptyText = Field(alias="sgl001ProofPoint")
+
+
+class PublicEcosystemDomain(SignalModel):
+    domain_id: Identifier = Field(alias="domainId")
+    title: NonEmptyText
+    summary: NonEmptyText
+    entity_count: int = Field(ge=0, alias="entityCount")
+    status: ProductLayerStatus
+    record_counts_by_origin: dict[DataOrigin, int] = Field(
+        default_factory=dict, alias="recordCountsByOrigin"
+    )
+    partner_contribution_opt_in_required: bool = Field(
+        default=True, alias="partnerContributionOptInRequired"
+    )
+
+
+class PublicEcosystem(SignalModel):
+    clinics: PublicEcosystemDomain
+    therapies: PublicEcosystemDomain
+    products: PublicEcosystemDomain
+    jurisdictions: PublicEcosystemDomain
+    evidence_sources: PublicEcosystemDomain = Field(alias="evidenceSources")
+
+
+class PublicIntelligenceCategory(SignalModel):
+    category_id: Identifier = Field(alias="categoryId")
+    title: NonEmptyText
+    summary: NonEmptyText
+    module_ids: list[Identifier] = Field(default_factory=list, alias="moduleIds")
+    input_origins: list[DataOrigin] = Field(default_factory=list, alias="inputOrigins")
+    status: ProductLayerStatus
+
+
+class PublicLearningLoopStage(SignalModel):
+    sequence: int = Field(ge=1, le=7)
+    stage_id: Identifier = Field(alias="stageId")
+    title: NonEmptyText
+    summary: NonEmptyText
+    status: ProductLayerStatus
+    data_origins: list[DataOrigin] = Field(default_factory=list, alias="dataOrigins")
+    current_record_count: int = Field(ge=0, alias="currentRecordCount")
+    opt_in_required: bool = Field(default=False, alias="optInRequired")
+
+
+class PublicLearningLoop(SignalModel):
+    summary: NonEmptyText
+    stages: list[PublicLearningLoopStage] = Field(min_length=7, max_length=7)
+
+    @model_validator(mode="after")
+    def validate_sequence(self) -> PublicLearningLoop:
+        if [item.sequence for item in self.stages] != list(range(1, 8)):
+            raise ValueError("learning-loop stages must be ordered from 1 through 7")
+        return self
+
+
+class PublicContributionPolicy(SignalModel):
+    partner_contribution_opt_in_required: bool = Field(
+        alias="partnerContributionOptInRequired"
+    )
+    default_partner_data_visibility: NonEmptyText = Field(alias="defaultPartnerDataVisibility")
+    public_source_provenance_required: bool = Field(alias="publicSourceProvenanceRequired")
+    partner_provenance_required: bool = Field(alias="partnerProvenanceRequired")
+    outcome_data_status: ProductLayerStatus = Field(alias="outcomeDataStatus")
+    outcome_privacy_standard: NonEmptyText = Field(alias="outcomePrivacyStandard")
+    contribution_types: list[NonEmptyText] = Field(alias="contributionTypes")
+
+
 class PublicPartnerIntelligence(SignalModel):
     summary: NonEmptyText
     reference_ids: list[Identifier] = Field(default_factory=list, alias="referenceIds")
@@ -123,6 +213,7 @@ class PublicProductNetwork(SignalModel):
 class PublicIntelligenceIndex(SignalModel):
     modules: list[PublicIntelligenceModule]
     clinic_view: PublicClinicIntelligenceView = Field(alias="clinicView")
+    categories: list[PublicIntelligenceCategory] = Field(default_factory=list)
 
 
 class PublicAirbDetermination(SignalModel):
@@ -146,10 +237,14 @@ class PublicProductProgram(SignalModel):
     )
     interested_clinic_count: int = Field(ge=0, alias="interestedClinicCount")
     approved_clinic_partner_count: int = Field(ge=0, alias="approvedClinicPartnerCount")
+    program_number: str | None = Field(default=None, alias="programNumber")
+    role_in_signal: str | None = Field(default=None, alias="roleInSignal")
 
 
 class PublicProgramsIndex(SignalModel):
     programs: list[PublicProductProgram]
+    summary: str | None = None
+    supports_future_programs: bool = Field(default=True, alias="supportsFuturePrograms")
 
 
 class PublicAccessDefinition(SignalModel):
@@ -184,6 +279,12 @@ class PublicProduct(SignalModel):
     intelligence: PublicIntelligenceIndex
     programs: PublicProgramsIndex
     access: PublicAccessModel
+    thesis: PublicSignalNarrative | None = None
+    ecosystem: PublicEcosystem | None = None
+    learning_loop: PublicLearningLoop | None = Field(default=None, alias="learningLoop")
+    contribution_policy: PublicContributionPolicy | None = Field(
+        default=None, alias="contributionPolicy"
+    )
 
 
 class PublicIntelligenceFeedItem(SignalModel):

@@ -3207,7 +3207,77 @@
           "Run a formulation-controlled biodistribution and pharmacology study with label controls, quantitative tissue exposure, and predefined acceptance criteria, then select a cognition/aging model aligned with the program intent.",
           "Express interest in evaluating a future SignalAI program."
         ]
-      }
+      },
+      "categories": [
+        {
+          "categoryId": "structured-evidence",
+          "title": "Structured Evidence",
+          "summary": "Evidence and claims linked through traceable provenance.",
+          "moduleIds": [
+            "evidence"
+          ],
+          "inputOrigins": [
+            "public_source",
+            "operator_curated"
+          ],
+          "status": "active"
+        },
+        {
+          "categoryId": "product-intelligence",
+          "title": "Product Intelligence",
+          "summary": "Cargo, formulation, product-specification, and focused EV diligence.",
+          "moduleIds": [
+            "cargo",
+            "formulation",
+            "exosome-product-review"
+          ],
+          "inputOrigins": [
+            "operator_curated",
+            "future_opt_in"
+          ],
+          "status": "active"
+        },
+        {
+          "categoryId": "jurisdiction-intelligence",
+          "title": "Jurisdiction Intelligence",
+          "summary": "Source-linked regulatory and deployment context without equating enforcement with legality.",
+          "moduleIds": [
+            "jurisdictions"
+          ],
+          "inputOrigins": [
+            "public_source",
+            "operator_curated"
+          ],
+          "status": "active"
+        },
+        {
+          "categoryId": "clinic-intelligence",
+          "title": "Clinic Intelligence",
+          "summary": "Opt-in clinic portfolio, diligence, capability, and program-fit intelligence.",
+          "moduleIds": [
+            "therapeutic-programs",
+            "exosome-product-review"
+          ],
+          "inputOrigins": [
+            "partner_contributed",
+            "future_opt_in"
+          ],
+          "status": "empty"
+        },
+        {
+          "categoryId": "airb-determinations",
+          "title": "aiRB Determinations",
+          "summary": "Critique and human-gated development determinations linked to evidence and risks.",
+          "moduleIds": [
+            "airb"
+          ],
+          "inputOrigins": [
+            "public_source",
+            "operator_curated"
+          ],
+          "status": "active"
+        }
+      ]
     },
     "programs": {
       "programs": [
@@ -3227,9 +3297,13 @@
             "humanApprovalRequired": true
           },
           "interestedClinicCount": 0,
-          "approvedClinicPartnerCount": 0
+          "approvedClinicPartnerCount": 0,
+          "programNumber": "001",
+          "roleInSignal": "The first therapeutic program developed through the Signal intelligence layer."
         }
-      ]
+      ],
+      "summary": "SGL-001 is Program 001 and the first therapeutic program developed through the Signal intelligence layer; the index supports future programs.",
+      "supportsFuturePrograms": true
     },
     "access": {
       "tiers": [
@@ -3254,6 +3328,180 @@
       ],
       "billingEnabled": false,
       "authenticationEnabled": false
+    },
+    "thesis": {
+      "companyThesis": "Signal is the intelligence layer for regenerative medicine.",
+      "whatSignalIs": "Signal connects and structures the global regenerative-medicine ecosystem across clinics, therapies, products, evidence, and jurisdictions.",
+      "fragmentedProblem": "Regenerative-medicine evidence, product specifications, clinic protocols, jurisdiction context, and outcomes are fragmented and difficult to compare.",
+      "howAiCreatesValue": "SignalAI converts traceable inputs into structured claims, product and jurisdiction intelligence, critiques, risks, and human-gated decisions.",
+      "networkContribution": "Clinics may opt in to contribute portfolio, protocol, product, and future de-identified outcomes data while retaining explicit provenance and controls.",
+      "programEmergence": "Cross-ecosystem intelligence reveals evidence gaps and development opportunities from which new human-approved therapeutic programs can emerge.",
+      "sgl001ProofPoint": "SGL-001 is Program 001: the first therapeutic program developed through the Signal intelligence layer, not the full scope of the company."
+    },
+    "ecosystem": {
+      "clinics": {
+        "domainId": "clinics",
+        "title": "Clinics",
+        "summary": "Approved regenerative-medicine clinics participating in the public network.",
+        "entityCount": 0,
+        "status": "empty",
+        "recordCountsByOrigin": {
+          "partner_contributed": 0
+        },
+        "partnerContributionOptInRequired": true
+      },
+      "therapies": {
+        "domainId": "therapies",
+        "title": "Therapies",
+        "summary": "Opt-in clinic portfolios spanning stem cells, EVs, secretome, and cell-derived therapies.",
+        "entityCount": 0,
+        "status": "empty",
+        "recordCountsByOrigin": {
+          "partner_contributed": 0
+        },
+        "partnerContributionOptInRequired": true
+      },
+      "products": {
+        "domainId": "products",
+        "title": "Products and Specifications",
+        "summary": "Structured formulation candidates and future opt-in partner product specifications.",
+        "entityCount": 6,
+        "status": "active",
+        "recordCountsByOrigin": {
+          "operator_curated": 6,
+          "partner_contributed": 0
+        },
+        "partnerContributionOptInRequired": true
+      },
+      "jurisdictions": {
+        "domainId": "jurisdictions",
+        "title": "Jurisdictions",
+        "summary": "Structured jurisdiction assessments supported by retained source documents.",
+        "entityCount": 12,
+        "status": "active",
+        "recordCountsByOrigin": {
+          "public_source": 41,
+          "operator_curated": 12
+        },
+        "partnerContributionOptInRequired": true
+      },
+      "evidenceSources": {
+        "domainId": "evidence-sources",
+        "title": "Evidence Sources",
+        "summary": "Scientific and jurisdiction sources retained with provenance.",
+        "entityCount": 46,
+        "status": "active",
+        "recordCountsByOrigin": {
+          "public_source": 46
+        },
+        "partnerContributionOptInRequired": true
+      }
+    },
+    "learningLoop": {
+      "summary": "Signal structures evidence, product, clinic, and jurisdiction inputs into analysis that advances programs and returns useful intelligence to the network.",
+      "stages": [
+        {
+          "sequence": 1,
+          "stageId": "public-evidence",
+          "title": "Public Evidence",
+          "summary": "Curated scientific and regulatory sources enter with provenance.",
+          "status": "active",
+          "dataOrigins": [
+            "public_source"
+          ],
+          "currentRecordCount": 46,
+          "optInRequired": false
+        },
+        {
+          "sequence": 2,
+          "stageId": "clinic-protocols",
+          "title": "Clinic Protocols",
+          "summary": "Future partner-contributed protocols require explicit clinic opt-in.",
+          "status": "future",
+          "dataOrigins": [
+            "future_opt_in",
+            "partner_contributed"
+          ],
+          "currentRecordCount": 0,
+          "optInRequired": true
+        },
+        {
+          "sequence": 3,
+          "stageId": "product-specifications",
+          "title": "Product Specifications",
+          "summary": "Structured formulation state can be joined with future opt-in partner specifications.",
+          "status": "active",
+          "dataOrigins": [
+            "operator_curated",
+            "future_opt_in"
+          ],
+          "currentRecordCount": 6,
+          "optInRequired": true
+        },
+        {
+          "sequence": 4,
+          "stageId": "deidentified-outcomes",
+          "title": "Future De-identified Outcomes",
+          "summary": "No outcomes are collected; any future contribution must be opt-in and de-identified.",
+          "status": "future",
+          "dataOrigins": [
+            "future_opt_in"
+          ],
+          "currentRecordCount": 0,
+          "optInRequired": true
+        },
+        {
+          "sequence": 5,
+          "stageId": "structured-analysis",
+          "title": "Structured Analysis",
+          "summary": "SignalAI links evidence, hypotheses, critique, risks, and decisions.",
+          "status": "active",
+          "dataOrigins": [
+            "public_source",
+            "operator_curated"
+          ],
+          "currentRecordCount": 5,
+          "optInRequired": false
+        },
+        {
+          "sequence": 6,
+          "stageId": "program-development",
+          "title": "Program Development",
+          "summary": "Structured intelligence guides human-gated therapeutic development programs.",
+          "status": "active",
+          "dataOrigins": [
+            "operator_curated"
+          ],
+          "currentRecordCount": 1,
+          "optInRequired": false
+        },
+        {
+          "sequence": 7,
+          "stageId": "network-intelligence-return",
+          "title": "Return Intelligence to the Network",
+          "summary": "Public previews and partner intelligence return structured learning to participants.",
+          "status": "ready",
+          "dataOrigins": [
+            "operator_curated"
+          ],
+          "currentRecordCount": 2,
+          "optInRequired": false
+        }
+      ]
+    },
+    "contributionPolicy": {
+      "partnerContributionOptInRequired": true,
+      "defaultPartnerDataVisibility": "private_until_explicitly_approved_for_publication",
+      "publicSourceProvenanceRequired": true,
+      "partnerProvenanceRequired": true,
+      "outcomeDataStatus": "future",
+      "outcomePrivacyStandard": "Future outcomes must be de-identified and governed before collection or use.",
+      "contributionTypes": [
+        "clinic_protocols",
+        "product_specifications",
+        "portfolio_information",
+        "future_deidentified_outcomes"
+      ]
     }
   },
   "intelligenceFeed": [
