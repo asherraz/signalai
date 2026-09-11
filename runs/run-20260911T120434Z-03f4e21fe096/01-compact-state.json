@@ -1,0 +1,192 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim-rodent-preclinical-efficacy",
+      "created_at": "2026-09-03T00:00:00Z",
+      "evidence_ids": [
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "This is convergent preclinical evidence across distinct rodent models, not evidence of established human efficacy or of efficacy for an as-yet-undefined SGL-001 product.",
+      "statement": "Intranasal EV treatment was associated with improved inflammatory, histologic, or functional outcomes in several rodent CNS injury or disease models.",
+      "status": "supported"
+    },
+    {
+      "claim_id": "claim-source-cell-scalability",
+      "created_at": "2026-09-03T00:00:00Z",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "The result supports investigation of a consistent source-cell strategy but does not establish a clinically acceptable manufacturing process.",
+      "statement": "A clonal immortalized MSC source produced EVs with activity comparable to primary MSC-EVs in one neonatal mouse hypoxic-ischemic injury study, suggesting a testable route to reduce source heterogeneity during scale-up.",
+      "status": "supported"
+    },
+    {
+      "claim_id": "claim-ev-cmc-requirements",
+      "created_at": "2026-09-03T00:00:00Z",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "MISEV2023 provides an expert-consensus framework for rigorous EV characterization and functional studies; it is not a product-specific regulatory approval standard.",
+      "statement": "EV development requires controlled production, separation, identity and purity characterization, functional testing, and transparent reporting because EV preparations are heterogeneous and may contain non-vesicular co-isolates.",
+      "status": "supported"
+    }
+  ],
+  "evidence": [
+    {
+      "content_sha256": null,
+      "evidence_id": "ev-hermann-2023-neonatal-hi",
+      "excerpt": "Curated summary: repeated intranasal EV administration after hypoxic-ischemic injury reduced brain tissue atrophy in neonatal mice; EVs from a clonal immortalized MSC line and primary MSCs showed comparable effects. The study frames source-cell consistency and scale as translational considerations.",
+      "kind": "publication",
+      "locator": "Abstract",
+      "metadata": {
+        "curated": true,
+        "evidence_role": [
+          "preclinical efficacy",
+          "source-cell scalability"
+        ],
+        "human_efficacy": false,
+        "model_or_indication": "neonatal mouse hypoxic-ischemic brain injury",
+        "route": "intranasal",
+        "species": "mouse"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "PMID:37069694",
+      "source_uri": "https://pubmed.ncbi.nlm.nih.gov/37069694/",
+      "title": "Extracellular vesicles from immortalized mesenchymal stromal cells protect against neonatal hypoxic-ischemic brain injury"
+    },
+    {
+      "content_sha256": null,
+      "evidence_id": "ev-misev2023-quality-framework",
+      "excerpt": "Curated summary: the ISEV consensus identifies continuing challenges in EV nomenclature, separation from non-vesicular particles, characterization, functional studies, production reporting, and in-vivo evaluation; it recommends transparent, orthogonal characterization and appropriate controls.",
+      "kind": "publication",
+      "locator": "Sections 3\u20139",
+      "metadata": {
+        "curated": true,
+        "document_type": "expert consensus guideline",
+        "evidence_role": [
+          "manufacturing",
+          "quality control",
+          "translational rigor"
+        ],
+        "model_or_indication": "EV characterization and quality framework"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "PMID:38326288; DOI:10.1002/jev2.12404",
+      "source_uri": "https://pubmed.ncbi.nlm.nih.gov/38326288/",
+      "title": "Minimal information for studies of extracellular vesicles (MISEV2023): From basic to advanced approaches"
+    }
+  ],
+  "hypothesis": {
+    "contradicting_claim_ids": [
+      "claim-large-animal-delivery-uncertain"
+    ],
+    "created_at": "2026-09-03T00:00:00Z",
+    "evidence_ids": [
+      "ev-zhuang-2011-intranasal-exosome",
+      "ev-kodali-2017-status-epilepticus",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-misev2023-quality-framework",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "hypothesis_id": "hypothesis-sgl001-biodistribution-gate",
+    "program_id": "SGL-001",
+    "rationale": "Rodent CNS-injury studies support testing intranasal delivery and biological activity as enabling evidence rather than defining the intended indication; non-human-primate evidence makes delivery translation the principal uncertainty, and MISEV2023 supports tighter product characterization.",
+    "statement": "An intranasal MSC-derived small-EV formulation with controlled identity, purity, dose, and potency attributes can achieve reproducible CNS exposure and a neuroregeneration-relevant pharmacodynamic signal in a cognition or aging model, but advancement should be gated on quantitative biodistribution and translation-oriented acceptance criteria.",
+    "status": "active",
+    "supporting_claim_ids": [
+      "claim-rodent-cns-delivery",
+      "claim-rodent-preclinical-efficacy",
+      "claim-source-cell-scalability",
+      "claim-ev-cmc-requirements"
+    ],
+    "test_plan": "Compare a characterized candidate formulation with vehicle, free-label, and disrupted-EV controls; quantify intact-EV-associated exposure across CNS, nasal, pulmonary, and systemic compartments over time; pair exposure with a predefined neuroregeneration-relevant pharmacodynamic assay, then evaluate cognitive function in an aging-relevant model only if prospectively defined exposure, reproducibility, and safety criteria are met."
+  },
+  "matter": {
+    "advancement_value": "critical",
+    "blocking_stage": "candidate definition",
+    "completed_at": null,
+    "determination": null,
+    "domain": "formulation",
+    "linked_evidence_ids": [
+      "ev-hermann-2023-neonatal-hi",
+      "ev-misev2023-quality-framework"
+    ],
+    "linked_hypothesis_ids": [
+      "hypothesis-sgl001-biodistribution-gate"
+    ],
+    "linked_risk_ids": [
+      "risk-cmc-identity-potency"
+    ],
+    "matter_id": "matter-candidate-product-definition",
+    "next_action": null,
+    "priority": "stage_blocking",
+    "program_id": "SGL-001",
+    "question": "What minimum source-cell, EV identity, cargo, and release definition is required before SGL-001 can be treated as a candidate-like product?",
+    "required_reviewer_roles": [
+      "formulation",
+      "cmc",
+      "manufacturing"
+    ],
+    "selected_at": null,
+    "status": "open",
+    "title": "Candidate and product definition",
+    "why_it_matters": "An undefined candidate prevents interpretable formulation, biodistribution, manufacturing, and translational work."
+  },
+  "program": {
+    "asset_name": "SGL-001",
+    "claim_ids": [
+      "claim-rodent-cns-delivery",
+      "claim-rodent-preclinical-efficacy",
+      "claim-source-cell-scalability",
+      "claim-ev-cmc-requirements",
+      "claim-large-animal-delivery-uncertain"
+    ],
+    "created_at": "2026-09-03T14:39:24.417641Z",
+    "current_formulation_hypothesis": "Intranasal mesenchymal-stromal-cell-derived small-EV preparation with defined identity, purity, dose, and a mechanism-relevant potency assay; therapeutic cargo remains to be selected.",
+    "decision_ids": [
+      "decision-sgl001-run-biodistribution-package"
+    ],
+    "development_focus": "Neuroregeneration and cognitive function",
+    "evidence_confidence": "moderate",
+    "hypothesis_ids": [
+      "hypothesis-sgl001-biodistribution-gate"
+    ],
+    "indication": null,
+    "largest_unresolved_risk": "Intranasal CNS exposure observed in rodents may not translate to larger species or humans.",
+    "lead_indication": "Not yet selected",
+    "modality": "extracellular-vesicle/exosome therapeutic",
+    "name": "SGL-001 development program",
+    "next_proposed_action": "Run a formulation-controlled biodistribution and pharmacology study with label controls, quantitative tissue exposure, and predefined acceptance criteria, then select a cognition/aging model aligned with the program intent.",
+    "program_id": "SGL-001",
+    "risk_ids": [
+      "risk-cross-species-cns-delivery",
+      "risk-cmc-identity-potency",
+      "risk-model-efficacy-generalizability"
+    ],
+    "route_of_administration": "intranasal",
+    "status": "preclinical",
+    "updated_at": "2026-09-03T15:40:23.074961Z"
+  },
+  "risks": [
+    {
+      "description": "EV heterogeneity, co-isolates, source-cell variability, and process changes may alter composition, dose, stability, or biological activity.",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi",
+        "ev-misev2023-quality-framework"
+      ],
+      "likelihood": "high",
+      "mitigation": "Define the source-cell strategy, scalable purification process, orthogonal identity and purity panel, stability-indicating assays, and a mechanism-linked potency assay.",
+      "owner": "CMC",
+      "program_id": "SGL-001",
+      "risk_id": "risk-cmc-identity-potency",
+      "severity": "critical",
+      "status": "open",
+      "title": "Product identity and potency may not be reproducible"
+    }
+  ]
+}

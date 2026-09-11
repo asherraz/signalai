@@ -1,0 +1,72 @@
+{
+  "matter_id": "matter-candidate-product-definition",
+  "objective": "Define the minimum source-cell, EV identity, cargo, and release specifications required to treat SGL-001 as a candidate-like product enabling biodistribution and pharmacology gating studies.",
+  "proposed_next_action": "Execute a two-stage gate study before candidate advancement: (1) finalize source-cell choice and set up MCB/WCB; define orthogonal identity/purity panel and a draft release specification and potency assay (in parallel small-scale process development); (2) run a controlled biodistribution package comparing the candidate formulation, vehicle, free-label control, and disrupted-EV control with quantitative intact-EV tissue exposure (nasal, olfactory bulb, multiple brain regions, lung, blood) over time in rodents and a bridging larger species (preferably NHP or another large mammal used in the cited biodistribution work). Predefine acceptance criteria for reproducible CNS exposure, PK variability, and absence of dominant non-vesicular label signal; advance to cognition/aging models only if these criteria and basic safety readouts are met.",
+  "reviewer_conclusions": [
+    {
+      "claim_ids": [
+        "claim-rodent-preclinical-efficacy",
+        "claim-source-cell-scalability",
+        "claim-ev-cmc-requirements"
+      ],
+      "conclusion": "Before treating SGL-001 as a candidate-like formulation we need (1) a defined source-cell strategy (selected cell line with characterization and MCB/working bank plan), (2) a documented EV identity/purity panel (orthogonal measures for particle, protein markers, and non-vesicular co-isolate assessment), (3) a prospective potency assay tied to a plausible mechanism-relevant PD endpoint, (4) target dose and dosing regimen for intranasal delivery, and (5) stability and acceptability criteria for the finished formulation. Current rodent intranasal efficacy supports testing but does not substitute for these candidate-defining elements.",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi",
+        "ev-misev2023-quality-framework",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "limitations": [
+        "Rodent intranasal exposure and efficacy do not demonstrate intact-EV CNS exposure or quantitative PK in larger species.",
+        "Therapeutic cargo remains unspecified; potency assay cannot be fully defined until cargo/mechanism are selected.",
+        "Available efficacy evidence is from injury models; applicability to cognition/aging endpoints is untested."
+      ],
+      "reviewer_role": "formulation"
+    },
+    {
+      "claim_ids": [
+        "claim-ev-cmc-requirements",
+        "claim-source-cell-scalability"
+      ],
+      "conclusion": "Minimum CMC definition must include: (a) a chosen source-cell with documentation of clonality/immortalization status and plan for MCB/WCB, (b) validated, scalable EV separation and impurity clearance with orthogonal characterization per MISEV2023, (c) release specifications for particle/protein ratios, key EV markers and host-cell impurities, (d) a stability-indicating assay and shelf-life justification, and (e) a quantitative, mechanism-linked potency assay to control biological activity across batches. The Hermann study suggests an immortalized MSC line can recapitulate primary MSC activity but is insufficient to assume manufacturability or regulatory acceptability without process validation and impurity control.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "limitations": [
+        "MISEV2023 is a consensus framework, not a regulatory standard\u2014specific release limits and assays must be defined and justified for the product.",
+        "Single-study demonstration of comparable activity (Hermann) does not establish robustness across producers, passages, or scale-up runs.",
+        "No data yet on lot-to-lot variability, process-related impurities, or stability under intended storage/transport conditions."
+      ],
+      "reviewer_role": "cmc"
+    },
+    {
+      "claim_ids": [
+        "claim-source-cell-scalability",
+        "claim-ev-cmc-requirements"
+      ],
+      "conclusion": "A practical manufacturing route is plausible (use of a clonal immortalized MSC reduces source heterogeneity), but critical upstream and downstream process development remain: scalable culture system for the chosen cell line, robust EV separation that removes non-vesicular co-isolates, process controls for yield and potency, and GMP translation (MCB, QC assays, process validation). Current evidence supports feasibility but not an established, reproducible manufacturing process suitable for regulatory submission.",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi",
+        "ev-misev2023-quality-framework"
+      ],
+      "limitations": [
+        "Hermann demonstrates preclinical activity from an immortalized line but provides no process-scale manufacturing data (yields, impurity profiles, stability, or GMP bridging).",
+        "Downstream purification methods and their scalability/practicability are not defined in the cited evidence.",
+        "No GMP comparability or process validation data are available."
+      ],
+      "reviewer_role": "manufacturing"
+    }
+  ],
+  "strongest_contradiction_summary": "Non-rodent biodistribution evidence in larger species (non-human primate) indicates intranasal delivery findings in rodents may not translate \u2014 quantitative CNS exposure after intranasal dosing can be substantially lower or more variable in larger species, creating the primary translational uncertainty for an intranasal EV product.",
+  "strongest_contradictory_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "strongest_support_summary": "Preclinical rodent studies show repeated intranasal MSC-derived EV dosing can reduce injury-associated pathology and functional deficits (Hermann neonatal HI plus earlier intranasal EV studies), and the ISEV/MISEV2023 consensus provides a clear set of requirements for orthogonal EV characterization, functional controls, and reporting that define what candidate-level CMC and quality work should cover.",
+  "strongest_supporting_evidence_ids": [
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-misev2023-quality-framework"
+  ]
+}
