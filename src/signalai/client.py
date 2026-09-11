@@ -17,6 +17,10 @@ OutputT = TypeVar("OutputT", bound=BaseModel)
 class StructuredOutputError(RuntimeError):
     """Safe base error for an unusable typed model response."""
 
+    def __init__(self, message: str, *, conflicts: list[str] | None = None) -> None:
+        super().__init__(message)
+        self.conflicts = conflicts or []
+
 
 class IncompleteResponseError(StructuredOutputError):
     """The Responses API explicitly reported incomplete generation."""
@@ -42,6 +46,14 @@ def _nested_int(value: Any, *path: str) -> int:
         if value is None:
             return 0
     return int(value)
+
+
+def _validation_conflicts(error: ValidationError) -> list[str]:
+    conflicts = []
+    for item in error.errors(include_input=False, include_url=False):
+        location = ".".join(str(part) for part in item.get("loc", ())) or "output"
+        conflicts.append(f"{location}: {item.get('msg', 'invalid value')}")
+    return conflicts
 
 
 class OpenAIResponsesClient:
@@ -111,7 +123,7 @@ class OpenAIResponsesClient:
         input_text: str,
         output_type: type[OutputT],
     ) -> OutputT:
-        is_chair = output_type.__name__ == "LiveChairDetermination"
+        is_chair = output_type.__name__.startswith("LiveChair")
         return self._generate(
             instructions=instructions,
             input_text=input_text,
@@ -156,14 +168,20 @@ class OpenAIResponsesClient:
         }
         effort = (
             self._chair_reasoning_effort
-            if output_type.__name__ == "LiveChairDetermination" and self._chair_reasoning_effort
+            if output_type.__name__.startswith("LiveChair") and self._chair_reasoning_effort
             else self._reasoning_effort
         )
         if effort:
             request["reasoning"] = {"effort": effort}
         try:
             response = self._client.responses.parse(**request)
-        except (ValidationError, json.JSONDecodeError, openai.APIResponseValidationError) as exc:
+        except ValidationError as exc:
+            self._record_failed_attempt(output_type, attempt, max_output_tokens, "malformed")
+            raise MalformedStructuredOutputError(
+                f"{output_type.__name__} returned malformed structured output",
+                conflicts=_validation_conflicts(exc),
+            ) from exc
+        except (json.JSONDecodeError, openai.APIResponseValidationError) as exc:
             self._record_failed_attempt(output_type, attempt, max_output_tokens, "malformed")
             raise MalformedStructuredOutputError(
                 f"{output_type.__name__} returned malformed structured output"
@@ -199,7 +217,8 @@ class OpenAIResponsesClient:
             return cast(OutputT, output_type.model_validate(parsed))
         except ValidationError as exc:
             raise MalformedStructuredOutputError(
-                f"{output_type.__name__} failed schema validation"
+                f"{output_type.__name__} failed schema validation",
+                conflicts=_validation_conflicts(exc),
             ) from exc
 
     def _record_failed_attempt(

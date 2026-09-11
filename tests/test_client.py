@@ -7,7 +7,7 @@ from signalai.client import (
     MalformedStructuredOutputError,
     OpenAIResponsesClient,
 )
-from signalai.schemas import ClaimSet, LiveChairDetermination
+from signalai.schemas import ClaimSet, LiveChairRecommendation
 
 
 class FakeResponses:
@@ -114,19 +114,17 @@ def test_client_detects_incomplete_response_and_accounts_for_usage() -> None:
 
 def test_client_wraps_truncated_json_and_uses_chair_retry_budget() -> None:
     with pytest.raises(Exception) as captured:
-        LiveChairDetermination.model_validate_json('{"matter_id":"matter-1","risk_ids":[')
+        LiveChairRecommendation.model_validate_json('{"matter_id":"matter-1","risk_ids":[')
     truncated = captured.value
     parsed = SimpleNamespace(
         output_parsed={
             "matter_id": "matter-1",
-            "determination": "no_material_change",
-            "synthesis": {
-                "agenda_item_id": "matter-1",
-                "material_change": False,
-                "rationale": "No supported change.",
-                "agenda_status": "deferred",
-                "what_changed": "No material change.",
-            },
+            "findings": ["No supported change."],
+            "evidence_assessment": "Evidence is unchanged.",
+            "supporting_evidence_ids": [],
+            "objections": ["Evidence remains limited."],
+            "recommendation": "Retain the current position.",
+            "proposed_changes": {},
         },
         status="completed",
         incomplete_details=None,
@@ -140,12 +138,12 @@ def test_client_wraps_truncated_json_and_uses_chair_retry_budget() -> None:
 
     with pytest.raises(MalformedStructuredOutputError):
         client.generate(
-            instructions="chair", input_text="bounded", output_type=LiveChairDetermination
+            instructions="chair", input_text="bounded", output_type=LiveChairRecommendation
         )
     result = client.repair(
-        instructions="repair", input_text="bounded", output_type=LiveChairDetermination
+        instructions="repair", input_text="bounded", output_type=LiveChairRecommendation
     )
 
-    assert result.determination == "no_material_change"
+    assert result.recommendation == "Retain the current position."
     assert responses.calls[0]["max_output_tokens"] == 6000
     assert responses.calls[1]["max_output_tokens"] == 8000

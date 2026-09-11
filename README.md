@@ -92,6 +92,10 @@ python -m signalai daily
 Chair serialization uses a separate bounded allowance and one repair attempt,
 configured by `OPENAI_CHAIR_MAX_OUTPUT_TOKENS` and
 `OPENAI_CHAIR_RETRY_MAX_OUTPUT_TOKENS`; earlier reviewers are not repeated.
+The Chair returns findings and proposed changes but does not classify its own
+lifecycle result. Deterministic code normalizes no-ops and separates editorial,
+operational, scientific-state, decision, and human-approval outcomes using a
+discriminated determination contract.
 Returned token totals and estimated cost are retained only in private run artifacts. The daily
 GitHub workflow supports manual dispatch, commits only successful runs, and
 suppresses timestamp-only commits.

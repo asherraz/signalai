@@ -31,12 +31,13 @@ def export_live_intelligence(
 
 
 def live_run_feed_item(run: LiveRun) -> PublicIntelligenceFeedItem:
+    scientific_or_decision_change = run.chair_determination != "no_material_change"
     kind = IntelligenceFeedType.NO_MATERIAL_CHANGE
-    if run.state_changed:
+    if scientific_or_decision_change:
         kind = IntelligenceFeedType.PROGRAM_STATE_CHANGE
     headline = (
         f"{run.selected_matter.title}: state updated"
-        if run.state_changed
+        if scientific_or_decision_change
         else f"{run.selected_matter.title}: no material change"
     )
     return PublicIntelligenceFeedItem(

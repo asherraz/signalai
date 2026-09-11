@@ -14,6 +14,8 @@ from signalai.schemas.models import (
     Identifier,
     NonEmptyText,
     Risk,
+    EvidenceConfidence,
+    ProgramStatus,
     SignalModel,
     _require_timezone,
 )
@@ -49,6 +51,8 @@ class DailySynthesis(SignalModel):
     hypothesis_update: Hypothesis | None = None
     risk_updates: list[Risk] = Field(default_factory=list)
     decision_proposal: Decision | None = None
+    evidence_confidence_update: EvidenceConfidence | None = None
+    program_status_update: ProgramStatus | None = None
     next_action: str | None = None
     agenda_status: AgendaStatus
     agenda_resolution: str | None = None
@@ -61,7 +65,8 @@ class DailySynthesis(SignalModel):
             or self.hypothesis_update
             or self.risk_updates
             or self.decision_proposal
-            or self.next_action
+            or self.evidence_confidence_update
+            or self.program_status_update
         )
         if not self.material_change and scientific_updates:
             raise ValueError("no-material-change synthesis cannot contain scientific updates")
@@ -71,8 +76,8 @@ class DailySynthesis(SignalModel):
             raise ValueError("agenda_resolution is only valid when resolving an item")
         if self.decision_proposal is not None:
             decision = self.decision_proposal
-            if not decision.requires_human_approval or decision.approval_status.value != "pending":
-                raise ValueError("daily decision proposals must remain pending human approval")
+            if decision.requires_human_approval and decision.approval_status.value != "pending":
+                raise ValueError("human-gated daily decisions must remain pending approval")
         return self
 
 

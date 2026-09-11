@@ -9,6 +9,7 @@ from pydantic import Field, model_validator
 
 from signalai.schemas.live import (
     AdvancementValue,
+    ChangeScope,
     DevelopmentMatter,
     LiveRun,
     MatterDomain,
@@ -90,6 +91,9 @@ class PublicLiveRun(SignalModel):
     adversary_objection: NonEmptyText = Field(alias="adversaryObjection")
     chair_determination: NonEmptyText = Field(alias="chairDetermination")
     state_changed: bool = Field(alias="stateChanged")
+    change_scope: ChangeScope = Field(default=ChangeScope.NONE, alias="changeScope")
+    scientific_state_changed: bool = Field(default=False, alias="scientificStateChanged")
+    operational_state_changed: bool = Field(default=False, alias="operationalStateChanged")
     what_changed: NonEmptyText = Field(alias="whatChanged")
     next_action: NonEmptyText = Field(alias="nextAction")
     linked_artifact_ids: list[Identifier] = Field(default_factory=list, alias="linkedArtifactIds")
@@ -125,6 +129,9 @@ class PublicLiveRun(SignalModel):
             adversaryObjection=run.adversary_objection,
             chairDetermination=run.chair_determination,
             stateChanged=run.state_changed,
+            changeScope=run.change_scope,
+            scientificStateChanged=run.scientific_state_changed,
+            operationalStateChanged=run.operational_state_changed,
             whatChanged=run.what_changed,
             nextAction=run.next_action,
             linkedArtifactIds=run.artifact_ids,

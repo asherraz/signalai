@@ -19,6 +19,7 @@ from signalai.agents.live_prompts import (
 )
 from signalai.client import ModelClient, StructuredOutputError
 from signalai.daily import DailyRunOrchestrator
+from signalai.determination import derive_chair_determination
 from signalai.live_selector import select_current_matter, select_reviewers
 from signalai.publisher import build_current_public_state
 from signalai.schemas import AgentRun, RunStatus, SignalState
@@ -28,6 +29,7 @@ from signalai.schemas.live import (
     LiveAdversaryReview,
     LiveAnalysis,
     LiveChairDetermination,
+    LiveChairRecommendation,
     LiveRun,
     LiveRunHistory,
     LiveVerification,
@@ -75,6 +77,18 @@ def _usage_payload(run_id: str, records: list[dict[str, Any]]) -> dict[str, Any]
         "attempts": records,
         "totals": totals,
     }
+
+
+def _semantic_conflicts(error: Exception) -> list[str]:
+    if isinstance(error, StructuredOutputError) and error.conflicts:
+        return error.conflicts
+    if isinstance(error, ValidationError):
+        return [
+            f"{'.'.join(str(part) for part in item.get('loc', ())) or 'output'}: "
+            f"{item.get('msg', 'invalid value')}"
+            for item in error.errors(include_input=False, include_url=False)
+        ]
+    return [str(error)]
 
 
 def _compact_context(state: SignalState, matter: DevelopmentMatter) -> dict[str, Any]:
@@ -181,8 +195,10 @@ class LiveRunOrchestrator:
                 }
             )
             try:
-                chair, chair_retried = self._generate_chair(chair_input)
-            except StructuredOutputError:
+                recommendation, chair_retried, repair_conflicts = self._generate_chair(
+                    chair_input
+                )
+            except StructuredOutputError as exc:
                 artifacts.append(
                     str(
                         store.write_json(
@@ -192,29 +208,40 @@ class LiveRunOrchestrator:
                                 "attempts": 2,
                                 "status": "failed",
                                 "reason": "incomplete_or_malformed_structured_output",
+                                "validation_conflicts": exc.conflicts,
                             },
                         )
                     )
                 )
                 raise
-            if chair.matter_id != selected.matter_id:
+            if recommendation.matter_id != selected.matter_id:
                 raise ValueError("chair references a different matter")
-            DailyRunOrchestrator._validate_synthesis(chair.synthesis, _matter_as_selected(selected), state)
+            self._validate_evidence_refs(recommendation.supporting_evidence_ids, state)
+            chair = derive_chair_determination(recommendation, state)
+            synthesis = chair.result.synthesis
+            DailyRunOrchestrator._validate_synthesis(
+                synthesis, _matter_as_selected(selected), state
+            )
             artifacts.append(str(store.write_json("08-chair-determination.json", chair)))
             if chair_retried:
                 artifacts.append(
                     str(
                         store.write_json(
                             "08-chair-repair.json",
-                            {"attempts": 2, "result": "validated", "schema": "LiveChairDetermination"},
+                            {
+                                "attempts": 2,
+                                "result": "validated",
+                                "schema": "LiveChairRecommendation",
+                                "validation_conflicts": repair_conflicts,
+                            },
                         )
                     )
                 )
 
             completed_at = self.now_factory()
             updated_state = (
-                DailyRunOrchestrator._apply_synthesis(state, chair.synthesis, active_id, completed_at)
-                if chair.synthesis.material_change
+                DailyRunOrchestrator._apply_synthesis(state, synthesis, active_id, completed_at)
+                if synthesis.material_change or chair.result.operational_state_changed
                 else state
             )
             completed_matter = DevelopmentMatter.model_validate(
@@ -223,8 +250,8 @@ class LiveRunOrchestrator:
                     "status": MatterStatus.COMPLETED,
                     "selected_at": started_at,
                     "completed_at": completed_at,
-                    "determination": chair.determination,
-                    "next_action": chair.synthesis.next_action or analysis.proposed_next_action,
+                    "determination": chair.result.determination,
+                    "next_action": synthesis.next_action or analysis.proposed_next_action,
                 }
             )
             updated_docket = DevelopmentDocket(
@@ -245,10 +272,13 @@ class LiveRunOrchestrator:
                 strongest_supporting_evidence_ids=analysis.strongest_supporting_evidence_ids,
                 strongest_contradictory_evidence_ids=analysis.strongest_contradictory_evidence_ids,
                 adversary_objection=adversary.strongest_objection,
-                chair_determination=chair.determination,
-                state_changed=chair.synthesis.material_change,
-                what_changed=chair.synthesis.what_changed,
-                next_action=chair.synthesis.next_action or analysis.proposed_next_action,
+                chair_determination=chair.result.determination,
+                state_changed=synthesis.material_change or chair.result.operational_state_changed,
+                change_scope=chair.result.change_scope,
+                scientific_state_changed=chair.result.scientific_state_changed,
+                operational_state_changed=chair.result.operational_state_changed,
+                what_changed=synthesis.what_changed,
+                next_action=synthesis.next_action or analysis.proposed_next_action,
                 artifact_ids=[f"{active_id}:{Path(item).name}" for item in artifacts[1:]],
             )
             updated_history = LiveRunHistory(
@@ -314,32 +344,42 @@ class LiveRunOrchestrator:
             )
             raise
 
-    def _generate_chair(self, chair_input: str) -> tuple[LiveChairDetermination, bool]:
+    def _generate_chair(
+        self, chair_input: str
+    ) -> tuple[LiveChairRecommendation, bool, list[str]]:
         try:
             return (
                 self.client.generate(
                     instructions=LIVE_CHAIR_INSTRUCTIONS,
                     input_text=chair_input,
-                    output_type=LiveChairDetermination,
+                    output_type=LiveChairRecommendation,
                 ),
                 False,
+                [],
             )
-        except (StructuredOutputError, ValidationError):
+        except (StructuredOutputError, ValidationError) as first_error:
+            conflicts = _semantic_conflicts(first_error)
             repair = getattr(self.client, "repair", None)
             try:
                 if repair is None:
                     raise StructuredOutputError("model client does not support structured repair")
                 return (
                     repair(
-                        instructions=LIVE_CHAIR_REPAIR_INSTRUCTIONS,
+                        instructions=(
+                            LIVE_CHAIR_REPAIR_INSTRUCTIONS
+                            + "\nValidation conflicts:\n- "
+                            + "\n- ".join(conflicts)
+                        ),
                         input_text=chair_input,
-                        output_type=LiveChairDetermination,
+                        output_type=LiveChairRecommendation,
                     ),
                     True,
+                    conflicts,
                 )
             except (StructuredOutputError, ValidationError) as retry_error:
                 raise StructuredOutputError(
-                    "Chair structured output failed after one repair attempt"
+                    "Chair structured output failed after one repair attempt",
+                    conflicts=[*conflicts, *_semantic_conflicts(retry_error)],
                 ) from retry_error
 
     def _build_staged_public(self, state, docket, history):

@@ -365,6 +365,10 @@ class DailyRunOrchestrator:
         )
         if synthesis.next_action is not None:
             program_data["next_proposed_action"] = synthesis.next_action
+        if synthesis.evidence_confidence_update is not None:
+            program_data["evidence_confidence"] = synthesis.evidence_confidence_update
+        if synthesis.program_status_update is not None:
+            program_data["status"] = synthesis.program_status_update
 
         return SignalState.model_validate(
             {

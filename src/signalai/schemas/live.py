@@ -4,11 +4,23 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import StrEnum
+from typing import Annotated, Literal
 
 from pydantic import Field, model_validator
 
 from signalai.schemas.daily import DailySynthesis
-from signalai.schemas.models import Identifier, NonEmptyText, SignalModel, _require_timezone
+from signalai.schemas.models import (
+    Claim,
+    Decision,
+    EvidenceConfidence,
+    Hypothesis,
+    Identifier,
+    NonEmptyText,
+    ProgramStatus,
+    Risk,
+    SignalModel,
+    _require_timezone,
+)
 
 
 class MatterDomain(StrEnum):
@@ -161,15 +173,132 @@ class LiveAdversaryReview(SignalModel):
     supports_state_change: bool
 
 
-class LiveChairDetermination(SignalModel):
+class ChairProposedChanges(SignalModel):
+    """Model proposals split into editorial, operational, scientific, and decision scopes."""
+
+    editorial_clarification: str | None = None
+    next_action: str | None = None
+    claim_updates: list[Claim] = Field(default_factory=list)
+    hypothesis_update: Hypothesis | None = None
+    risk_updates: list[Risk] = Field(default_factory=list)
+    evidence_confidence_update: EvidenceConfidence | None = None
+    program_status_update: ProgramStatus | None = None
+    decision_update: Decision | None = None
+
+    @property
+    def has_scientific_change(self) -> bool:
+        return bool(
+            self.claim_updates
+            or self.hypothesis_update
+            or self.risk_updates
+            or self.evidence_confidence_update
+            or self.program_status_update
+        )
+
+
+class LiveChairRecommendation(SignalModel):
+    """Typed model output containing science, not lifecycle self-classification."""
+
     matter_id: Identifier
-    determination: NonEmptyText
+    findings: list[NonEmptyText] = Field(min_length=1, max_length=5)
+    evidence_assessment: NonEmptyText
+    supporting_evidence_ids: list[Identifier] = Field(default_factory=list)
+    objections: list[NonEmptyText] = Field(min_length=1, max_length=5)
+    recommendation: NonEmptyText
+    proposed_changes: ChairProposedChanges = Field(default_factory=ChairProposedChanges)
+
+    @model_validator(mode="after")
+    def require_provenance_for_scientific_change(self) -> LiveChairRecommendation:
+        if self.proposed_changes.has_scientific_change and not self.supporting_evidence_ids:
+            raise ValueError("scientific proposed changes require supporting_evidence_ids")
+        return self
+
+
+class DeterminationKind(StrEnum):
+    NO_MATERIAL_CHANGE = "no_material_change"
+    STATE_UPDATE = "state_update"
+    DECISION_UPDATE = "decision_update"
+    HUMAN_DECISION_REQUIRED = "human_decision_required"
+
+
+class ChangeScope(StrEnum):
+    NONE = "none"
+    EDITORIAL = "editorial_clarification"
+    OPERATIONAL = "operational_next_action"
+    SCIENTIFIC = "scientific_state"
+    DECISION = "decision"
+
+
+class NoMaterialChangeDetermination(SignalModel):
+    determination: Literal[DeterminationKind.NO_MATERIAL_CHANGE]
+    change_scope: Literal[ChangeScope.NONE, ChangeScope.EDITORIAL, ChangeScope.OPERATIONAL]
+    scientific_state_changed: Literal[False] = False
+    operational_state_changed: bool = False
     synthesis: DailySynthesis
 
     @model_validator(mode="after")
+    def reject_mutations(self) -> NoMaterialChangeDetermination:
+        if self.synthesis.material_change:
+            raise ValueError("no_material_change cannot contain scientific mutations")
+        if (
+            self.synthesis.claim_updates
+            or self.synthesis.hypothesis_update
+            or self.synthesis.risk_updates
+            or self.synthesis.evidence_confidence_update
+            or self.synthesis.program_status_update
+        ):
+            raise ValueError("no_material_change scientific update fields must be empty")
+        if self.synthesis.decision_proposal is not None:
+            raise ValueError("no_material_change cannot contain a decision update")
+        if self.change_scope is ChangeScope.OPERATIONAL and not self.synthesis.next_action:
+            raise ValueError("operational change requires next_action")
+        return self
+
+
+class MaterialChangeDetermination(SignalModel):
+    determination: Literal[
+        DeterminationKind.STATE_UPDATE,
+        DeterminationKind.DECISION_UPDATE,
+        DeterminationKind.HUMAN_DECISION_REQUIRED,
+    ]
+    change_scope: Literal[ChangeScope.SCIENTIFIC, ChangeScope.DECISION]
+    scientific_state_changed: bool
+    operational_state_changed: bool = False
+    synthesis: DailySynthesis
+
+    @model_validator(mode="after")
+    def require_mutation(self) -> MaterialChangeDetermination:
+        if not self.synthesis.material_change:
+            raise ValueError("material determination requires a material synthesis")
+        if self.determination is DeterminationKind.STATE_UPDATE and not self.scientific_state_changed:
+            raise ValueError("state_update requires a scientific state mutation")
+        if self.determination in {
+            DeterminationKind.DECISION_UPDATE,
+            DeterminationKind.HUMAN_DECISION_REQUIRED,
+        } and self.synthesis.decision_proposal is None:
+            raise ValueError("decision determination requires a decision update")
+        return self
+
+
+DeterminationResult = Annotated[
+    NoMaterialChangeDetermination | MaterialChangeDetermination,
+    Field(discriminator="determination"),
+]
+
+
+class LiveChairDetermination(SignalModel):
+    """Application-derived, structurally consistent Chair lifecycle result."""
+
+    matter_id: Identifier
+    recommendation: LiveChairRecommendation
+    result: DeterminationResult
+
+    @model_validator(mode="after")
     def validate_alignment(self) -> LiveChairDetermination:
-        if self.synthesis.agenda_item_id != self.matter_id:
-            raise ValueError("chair synthesis must reference the selected matter")
+        if self.recommendation.matter_id != self.matter_id:
+            raise ValueError("chair recommendation references a different matter")
+        if self.result.synthesis.agenda_item_id != self.matter_id:
+            raise ValueError("chair synthesis references a different matter")
         return self
 
 
@@ -187,6 +316,9 @@ class LiveRun(SignalModel):
     adversary_objection: NonEmptyText
     chair_determination: NonEmptyText
     state_changed: bool
+    change_scope: ChangeScope = ChangeScope.NONE
+    scientific_state_changed: bool = False
+    operational_state_changed: bool = False
     what_changed: NonEmptyText
     next_action: NonEmptyText
     artifact_ids: list[Identifier] = Field(default_factory=list)

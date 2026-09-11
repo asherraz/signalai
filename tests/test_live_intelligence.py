@@ -9,7 +9,6 @@ from pydantic import BaseModel
 
 from signalai.live import LiveRunOrchestrator
 from signalai.client import (
-    IncompleteResponseError,
     MalformedStructuredOutputError,
     StructuredOutputError,
 )
@@ -20,7 +19,7 @@ from signalai.schemas.live import (
     DevelopmentDocket,
     LiveAdversaryReview,
     LiveAnalysis,
-    LiveChairDetermination,
+    LiveChairRecommendation,
     LiveRunHistory,
     LiveVerification,
     MatterStatus,
@@ -84,31 +83,23 @@ def _outputs(*, material_change: bool = False) -> dict[type[BaseModel], BaseMode
         falsification_conditions=["A controlled larger-species study fails predefined CNS exposure criteria."],
         supports_state_change=False,
     )
-    synthesis = {
-        "agenda_item_id": matter_id,
-        "material_change": material_change,
-        "rationale": "Current evidence does not resolve the cross-species delivery gate.",
-        "claim_updates": [],
-        "risk_updates": [],
-        "agenda_status": "deferred",
-        "what_changed": (
-            "Confirmed the cross-species delivery risk and specified the next controlled test; no scientific position changed."
-            if not material_change
-            else "Updated the next program action to address the unresolved cross-species delivery gate."
-        ),
-    }
+    proposed_changes = {}
     if material_change:
-        synthesis["next_action"] = analysis.proposed_next_action
-    chair = LiveChairDetermination(
+        proposed_changes["next_action"] = analysis.proposed_next_action
+    chair = LiveChairRecommendation(
         matter_id=matter_id,
-        determination="no_material_change" if not material_change else "next_action_updated",
-        synthesis=synthesis,
+        findings=["Current evidence does not resolve cross-species delivery."],
+        evidence_assessment="Rodent feasibility is offset by unresolved larger-species exposure.",
+        supporting_evidence_ids=evidence,
+        objections=["Human CNS exposure is not established."],
+        recommendation="Retain the delivery gate and define the controlled next study.",
+        proposed_changes=proposed_changes,
     )
     return {
         LiveAnalysis: analysis,
         LiveVerification: verification,
         LiveAdversaryReview: adversary,
-        LiveChairDetermination: chair,
+        LiveChairRecommendation: chair,
     }
 
 
@@ -133,6 +124,7 @@ class ChairRetryClient(ScriptedClient):
         super().__init__(outputs)
         self.retry_succeeds = retry_succeeds
         self.chair_attempts = 0
+        self.repair_instructions = ""
         self.usage_records = [
             {
                 "stage": "LiveAnalysis",
@@ -150,11 +142,14 @@ class ChairRetryClient(ScriptedClient):
         ]
 
     def generate(self, *, instructions: str, input_text: str, output_type: type[OutputT]) -> OutputT:
-        if output_type is LiveChairDetermination:
+        if output_type is LiveChairRecommendation:
             self.calls.append(output_type)
             self.chair_attempts += 1
-            raise IncompleteResponseError(
-                "LiveChairDetermination was incomplete: max_output_tokens"
+            raise MalformedStructuredOutputError(
+                "LiveChairRecommendation failed semantic validation",
+                conflicts=[
+                    "proposed_changes: no_material_change conflicts with scientific updates"
+                ],
             )
         return super().generate(
             instructions=instructions, input_text=input_text, output_type=output_type
@@ -162,11 +157,15 @@ class ChairRetryClient(ScriptedClient):
 
     def repair(self, *, instructions: str, input_text: str, output_type: type[OutputT]) -> OutputT:
         assert "Repair" in instructions
+        self.repair_instructions = instructions
         self.calls.append(output_type)
         self.chair_attempts += 1
         if not self.retry_succeeds:
             raise MalformedStructuredOutputError(
-                "LiveChairDetermination returned malformed structured output"
+                "LiveChairRecommendation returned malformed structured output",
+                conflicts=[
+                    "proposed_changes: no_material_change conflicts with scientific updates"
+                ],
             )
         return cast(OutputT, self.outputs[output_type])
 
@@ -268,6 +267,10 @@ def test_state_change_is_validated_and_human_approval_is_preserved(tmp_path: Pat
     ).run(run_id="run-live-state-change")
     state = SignalState.model_validate_json((root / "state" / "signal-state.json").read_text())
     assert run.state_changed
+    assert run.chair_determination == "no_material_change"
+    assert run.change_scope.value == "operational_next_action"
+    assert not run.scientific_state_changed
+    assert run.operational_state_changed
     assert state.run_id == run.run_id
     assert state.program.next_proposed_action == run.next_action
     assert state.decision.requires_human_approval
@@ -287,7 +290,7 @@ def test_failed_run_does_not_overwrite_valid_state_or_public_payload(tmp_path: P
     assert (root / "runs" / "run-live-failed" / "99-run-failed.json").exists()
 
 
-def test_truncated_chair_retries_once_without_rerunning_reviewers(tmp_path: Path) -> None:
+def test_semantic_chair_failure_retries_once_without_rerunning_reviewers(tmp_path: Path) -> None:
     root = _prepare_root(tmp_path)
     client = ChairRetryClient(_outputs(), retry_succeeds=True)
 
@@ -300,10 +303,11 @@ def test_truncated_chair_retries_once_without_rerunning_reviewers(tmp_path: Path
         LiveAnalysis,
         LiveVerification,
         LiveAdversaryReview,
-        LiveChairDetermination,
-        LiveChairDetermination,
+        LiveChairRecommendation,
+        LiveChairRecommendation,
     ]
     assert client.chair_attempts == 2
+    assert "no_material_change conflicts with scientific updates" in client.repair_instructions
     assert (root / "runs" / run.run_id / "08-chair-repair.json").exists()
     usage = json.loads((root / "runs" / run.run_id / "98-private-usage.json").read_text())
     assert usage["totals"]["cached_input_tokens"] == 20
@@ -335,6 +339,10 @@ def test_failed_chair_retry_preserves_public_state_and_writes_private_failure(
         "reason": "incomplete_or_malformed_structured_output",
         "stage": "LiveChairDetermination",
         "status": "failed",
+        "validation_conflicts": [
+            "proposed_changes: no_material_change conflicts with scientific updates",
+            "proposed_changes: no_material_change conflicts with scientific updates",
+        ],
     }
     assert (run_dir / "99-run-failed.json").exists()
     assert (run_dir / "98-private-usage.json").exists()
