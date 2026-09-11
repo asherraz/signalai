@@ -20,12 +20,14 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "decisions",
     "currentHypothesis",
     "latestRun",
+    "aiRB",
     "cargo",
     "formulation",
     "jurisdictions",
     "clinicalNetwork",
     "product",
     "intelligenceFeed",
+    "liveIntelligence",
 }
 
 
@@ -50,12 +52,16 @@ def test_generated_public_payload_matches_frontend_contract() -> None:
     assert isinstance(validated.decisions, list)
     assert validated.current_hypothesis is not None
     assert validated.latest_run is not None
+    assert validated.airb is not None
+    assert validated.airb.run_id == validated.latest_run.run_id
     assert validated.cargo is not None
     assert validated.formulation is not None
     assert validated.jurisdictions is not None
     assert validated.clinical_network is not None
     assert validated.product is not None
     assert isinstance(validated.intelligence_feed, list)
+    assert validated.live_intelligence is not None
+    assert validated.live_intelligence.latest_run is not None
     assert set(validated.latest_run.stages.model_dump(by_alias=True)) == {
         "evidence",
         "claims",

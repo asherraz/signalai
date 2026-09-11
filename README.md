@@ -76,7 +76,22 @@ The daily cycle reads `state/signal-state.json` and the agenda, records task
 selection, analysis, critique, synthesis, updated state, updated agenda, and a
 concise change entry under a unique run directory, then publishes the validated
 public state. It may record `no material scientific change`; major decisions
-remain pending human approval. Scheduling is intentionally not included yet.
+remain pending human approval.
+
+The live intelligence path adds a typed docket at
+`state/development-docket.json`. It deterministically chooses one highest-value
+matter, convenes relevant domain reviewers plus independent Verifier, Adversary,
+and Chair roles, and publishes only after the entire bounded run validates:
+
+```bash
+python -m signalai daily
+```
+
+`OPENAI_REASONING_EFFORT` controls the economical default and
+`OPENAI_CHAIR_REASONING_EFFORT` can reserve stronger reasoning for the chair.
+Returned token totals are retained only in private run artifacts. The daily
+GitHub workflow supports manual dispatch, commits only successful runs, and
+suppresses timestamp-only commits.
 
 ## Therapeutic asset workspace
 

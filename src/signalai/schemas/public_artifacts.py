@@ -153,3 +153,22 @@ class PublicLatestRun(SignalModel):
         if self.completed_at < self.started_at:
             raise ValueError("completed_at cannot precede started_at")
         return self
+
+
+class PublicAiRBState(SignalModel):
+    """Concise top-level convenience projection of the latest AI review board output."""
+
+    review_id: Identifier = Field(alias="reviewId")
+    run_id: Identifier = Field(alias="runId")
+    program_id: Identifier = Field(alias="programId")
+    status: ApprovalStatus
+    critique: PublicCritiqueArtifact
+    determination: PublicDecisionArtifact
+    last_updated: datetime = Field(alias="lastUpdated")
+
+    @model_validator(mode="after")
+    def validate_last_updated(self) -> PublicAiRBState:
+        object.__setattr__(
+            self, "last_updated", _require_timezone(self.last_updated, "last_updated")
+        )
+        return self

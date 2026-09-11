@@ -1,0 +1,115 @@
+{
+  "program_id": "SGL-001",
+  "updated_at": "2026-09-11T10:18:54.400148Z",
+  "runs": [
+    {
+      "run_id": "run-20260911T101854Z-e4dd7c990790",
+      "program_id": "SGL-001",
+      "started_at": "2026-09-11T10:18:54.394979Z",
+      "completed_at": "2026-09-11T10:18:54.400148Z",
+      "selected_matter": {
+        "matter_id": "matter-cross-species-cns-delivery",
+        "program_id": "SGL-001",
+        "title": "Cross-species intranasal CNS delivery gate",
+        "question": "Does the current evidence justify advancing intranasal SGL-001 delivery beyond a controlled cross-species biodistribution gate?",
+        "domain": "delivery",
+        "why_it_matters": "Failure to achieve reproducible CNS exposure beyond rodents could invalidate the intended route and program concept.",
+        "priority": "program_invalidating",
+        "advancement_value": "critical",
+        "blocking_stage": "candidate advancement",
+        "linked_hypothesis_ids": [
+          "hypothesis-sgl001-biodistribution-gate"
+        ],
+        "linked_risk_ids": [
+          "risk-cross-species-cns-delivery"
+        ],
+        "linked_evidence_ids": [
+          "ev-zhuang-2011-intranasal-exosome",
+          "ev-kodali-2017-status-epilepticus",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "required_reviewer_roles": [
+          "delivery",
+          "translational",
+          "preclinical"
+        ],
+        "status": "completed",
+        "selected_at": "2026-09-11T10:18:54.394979Z",
+        "completed_at": "2026-09-11T10:18:54.400148Z",
+        "determination": "no_material_change",
+        "next_action": "Define a formulation-controlled cross-species biodistribution protocol with label controls and predeclared acceptance criteria."
+      },
+      "why_selected": "Selected program_invalidating matter with critical advancement value. Deterministic ranking favors program-invalidating issues, then real-world stage blockers, product definition, deployment, quality, contradictions, experiment design, and refinement.",
+      "reviewers_convened": [
+        "delivery",
+        "translational",
+        "preclinical",
+        "verifier",
+        "adversary",
+        "chair"
+      ],
+      "reviewer_conclusions": [
+        {
+          "reviewer_role": "delivery",
+          "conclusion": "Rodent findings support feasibility, but the macaque record does not establish reproducible brain exposure.",
+          "evidence_ids": [
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "claim_ids": [
+            "claim-rodent-cns-delivery",
+            "claim-large-animal-delivery-uncertain"
+          ],
+          "limitations": [
+            "The records do not establish human exposure."
+          ]
+        },
+        {
+          "reviewer_role": "translational",
+          "conclusion": "The route remains a translational gate rather than a validated product attribute.",
+          "evidence_ids": [
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "claim_ids": [],
+          "limitations": [
+            "Cross-species comparability is unresolved."
+          ]
+        },
+        {
+          "reviewer_role": "preclinical",
+          "conclusion": "A formulation-controlled biodistribution study is required before efficacy-model escalation.",
+          "evidence_ids": [
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "claim_ids": [],
+          "limitations": [
+            "Existing models and formulations are heterogeneous."
+          ]
+        }
+      ],
+      "strongest_supporting_evidence_ids": [
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "strongest_contradictory_evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "adversary_objection": "Observed signal could reflect label behavior, nasal retention, or formulation-specific effects rather than intact EV brain delivery.",
+      "chair_determination": "no_material_change",
+      "state_changed": false,
+      "what_changed": "Confirmed the cross-species delivery risk and specified the next controlled test; no scientific position changed.",
+      "next_action": "Define a formulation-controlled cross-species biodistribution protocol with label controls and predeclared acceptance criteria.",
+      "artifact_ids": [
+        "run-20260911T101854Z-e4dd7c990790:01-compact-state.json",
+        "run-20260911T101854Z-e4dd7c990790:02-development-docket.json",
+        "run-20260911T101854Z-e4dd7c990790:03-selected-matter.json",
+        "run-20260911T101854Z-e4dd7c990790:04-reviewer-panel.json",
+        "run-20260911T101854Z-e4dd7c990790:05-analysis.json",
+        "run-20260911T101854Z-e4dd7c990790:06-verification.json",
+        "run-20260911T101854Z-e4dd7c990790:07-adversary.json",
+        "run-20260911T101854Z-e4dd7c990790:08-chair-determination.json"
+      ]
+    }
+  ]
+}

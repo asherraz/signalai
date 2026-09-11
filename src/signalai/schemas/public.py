@@ -20,8 +20,13 @@ from signalai.schemas.models import (
     TherapeuticProgram,
     _require_timezone,
 )
-from signalai.schemas.public_artifacts import PublicHypothesisArtifact, PublicLatestRun
+from signalai.schemas.public_artifacts import (
+    PublicAiRBState,
+    PublicHypothesisArtifact,
+    PublicLatestRun,
+)
 from signalai.schemas.public_clinical_network import PublicClinicalNetwork
+from signalai.schemas.public_live import PublicLiveIntelligence
 from signalai.schemas.public_product import PublicIntelligenceFeedItem, PublicProduct
 from signalai.schemas.public_workspace import (
     PublicCargoState,
@@ -81,6 +86,7 @@ class PublicSignalState(SignalModel):
         serialization_alias="latestRun",
         validation_alias="latestRun",
     )
+    airb: PublicAiRBState | None = Field(default=None, alias="aiRB")
     cargo: PublicCargoState | None = None
     formulation: PublicFormulationState | None = None
     jurisdictions: PublicJurisdictionState | None = None
@@ -92,6 +98,9 @@ class PublicSignalState(SignalModel):
     intelligence_feed: list[PublicIntelligenceFeedItem] = Field(
         default_factory=list,
         alias="intelligenceFeed",
+    )
+    live_intelligence: PublicLiveIntelligence | None = Field(
+        default=None, alias="liveIntelligence"
     )
 
     @model_validator(mode="after")
@@ -112,15 +121,18 @@ class PublicSignalState(SignalModel):
         completed_stages: list[str] | None = None,
         current_hypothesis: PublicHypothesisArtifact | None = None,
         latest_run: PublicLatestRun | None = None,
+        airb: PublicAiRBState | None = None,
         cargo: PublicCargoState | None = None,
         formulation: PublicFormulationState | None = None,
         jurisdictions: PublicJurisdictionState | None = None,
         clinical_network: PublicClinicalNetwork | None = None,
         product: PublicProduct | None = None,
         intelligence_feed: list[PublicIntelligenceFeedItem] | None = None,
+        live_intelligence: PublicLiveIntelligence | None = None,
+        generated_at: datetime | None = None,
     ) -> PublicSignalState:
         return cls(
-            generatedAt=state.generated_at,
+            generatedAt=generated_at or state.generated_at,
             version=state.schema_version,
             status=PublicStateStatus.AWAITING_HUMAN_REVIEW,
             program=PublicProgram(
@@ -149,10 +161,12 @@ class PublicSignalState(SignalModel):
             decisions=[state.decision],
             currentHypothesis=current_hypothesis,
             latestRun=latest_run,
+            aiRB=airb,
             cargo=cargo,
             formulation=formulation,
             jurisdictions=jurisdictions,
             clinicalNetwork=clinical_network,
             product=product,
             intelligenceFeed=intelligence_feed or [],
+            liveIntelligence=live_intelligence,
         )

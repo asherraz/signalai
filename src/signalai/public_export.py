@@ -10,6 +10,7 @@ from signalai.schemas import (
     DailyCritique,
     DailySynthesis,
     PublicClaimArtifact,
+    PublicAiRBState,
     PublicCritiqueArtifact,
     PublicDecisionArtifact,
     PublicEvidenceArtifact,
@@ -200,4 +201,19 @@ def export_completed_run(run_dir: Path) -> PublicLatestRun:
         input_state=_read(run_dir, "01-current-state.json", SignalState),
         updated_state=_read(run_dir, "07-updated-state.json", SignalState),
         changed=_read(run_dir, "09-what-changed.json", WhatChanged),
+    )
+
+
+def build_public_airb(latest_run: PublicLatestRun, program_id: str) -> PublicAiRBState:
+    """Expose the latest sanitized critique and determination as a convenience section."""
+
+    decision = latest_run.stages.decision
+    return PublicAiRBState(
+        reviewId=f"airb-{latest_run.run_id}",
+        runId=latest_run.run_id,
+        programId=program_id,
+        status=decision.approval_status,
+        critique=latest_run.stages.critique,
+        determination=decision,
+        lastUpdated=latest_run.completed_at,
     )

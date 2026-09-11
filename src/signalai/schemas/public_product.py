@@ -40,6 +40,7 @@ class FoundingNetworkStatus(StrEnum):
 
 
 class IntelligenceFeedType(StrEnum):
+    HYPOTHESIS_UPDATE = "hypothesis_update"
     EVIDENCE_UPDATE = "evidence_update"
     FORMULATION_UPDATE = "formulation_update"
     CARGO_UPDATE = "cargo_update"
@@ -47,6 +48,8 @@ class IntelligenceFeedType(StrEnum):
     AIRB_DETERMINATION = "airb_determination"
     PROGRAM_STATE_CHANGE = "program_state_change"
     NETWORK_UPDATE = "network_update"
+    RISK_UPDATE = "risk_update"
+    NO_MATERIAL_CHANGE = "no_material_change"
 
 
 class IntelligenceImportance(StrEnum):
@@ -301,6 +304,15 @@ class PublicIntelligenceFeedItem(SignalModel):
     linked_artifact_ids: list[Identifier] = Field(default_factory=list, alias="linkedArtifactIds")
     linked_review_ids: list[Identifier] = Field(default_factory=list, alias="linkedReviewIds")
     linked_decision_ids: list[Identifier] = Field(default_factory=list, alias="linkedDecisionIds")
+    prior_position: str | None = Field(default=None, alias="priorPosition")
+    new_position: str | None = Field(default=None, alias="newPosition")
+    reason_evidence: list[NonEmptyText] = Field(default_factory=list, alias="reasonEvidence")
+    effect_on_evidence_confidence: str | None = Field(
+        default=None, alias="effectOnEvidenceConfidence"
+    )
+    determination: str | None = None
+    next_action: str | None = Field(default=None, alias="nextAction")
+    run_id: Identifier | None = Field(default=None, alias="runId")
 
     @model_validator(mode="after")
     def validate_created_at(self) -> PublicIntelligenceFeedItem:

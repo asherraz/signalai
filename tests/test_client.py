@@ -45,8 +45,9 @@ def test_responses_client_uses_typed_parse_without_server_storage() -> None:
         "instructions": "research",
         "input": "fixture evidence",
         "text_format": ClaimSet,
-        "store": False,
-    }
+            "store": False,
+            "max_output_tokens": 2500,
+        }
 
 
 def test_responses_client_rejects_missing_parsed_output() -> None:

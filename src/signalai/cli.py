@@ -4,20 +4,17 @@ from os import environ
 from pathlib import Path
 
 from signalai.client import OpenAIResponsesClient
-from signalai.clinical_network_export import export_clinical_network
 from signalai.daily import DailyRunOrchestrator
+from signalai.live import LiveRunOrchestrator
+from signalai.material_change import repository_has_material_change
 from signalai.legacy_migration import migrate_legacy_workspace, write_migration_outputs
 from signalai.orchestrator import MilestoneOneOrchestrator
-from signalai.product_export import export_product_layer
+from signalai.publisher import publish_current_public_state
 from signalai.schemas import (
-    ClinicalNetworkState,
     DevelopmentAgenda,
-    PublicSignalState,
     SignalState,
     TherapeuticAssetWorkspace,
 )
-from signalai.storage import publish_json
-from signalai.workspace_export import export_workspace
 
 
 def main() -> None:
@@ -33,7 +30,7 @@ def main() -> None:
     print(f"Completed {state.run_id}")
 
 
-def daily_main() -> None:
+def agenda_daily_main() -> None:
     root = Path.cwd()
     state, _ = DailyRunOrchestrator(
         client=OpenAIResponsesClient.from_env(),
@@ -45,6 +42,16 @@ def daily_main() -> None:
         clinical_network_path=root / "state" / "clinical-network.json",
     ).run()
     print(f"Completed daily run {state.run_id}")
+
+
+def daily_main() -> None:
+    root = Path.cwd()
+    run = LiveRunOrchestrator(client=OpenAIResponsesClient.from_env(), root=root).run()
+    print(f"Completed live run {run.run_id}")
+
+
+def should_commit_main() -> None:
+    raise SystemExit(0 if repository_has_material_change(Path.cwd()) else 1)
 
 
 def migrate_legacy_main() -> None:
@@ -74,43 +81,14 @@ def migrate_legacy_main() -> None:
         workspace_path=workspace_path,
         report_path=report_path,
     )
-    public_path = root / "public" / "signal-state.json"
-    public = PublicSignalState.model_validate_json(public_path.read_text(encoding="utf-8"))
-    cargo, formulation, jurisdictions = export_workspace(workspace)
-    scientific_state = SignalState.model_validate_json(
-        (root / "state" / "signal-state.json").read_text(encoding="utf-8")
-    )
-    clinical_state = ClinicalNetworkState.model_validate_json(
-        (root / "state" / "clinical-network.json").read_text(encoding="utf-8")
-    )
-    public_network = export_clinical_network(
-        clinical_state,
-        scientific_state,
-        workspace,
-        what_changed_recently=public.changes[0].summary if public.changes else None,
-    )
-    product, feed = export_product_layer(
-        scientific_state,
-        workspace,
-        clinical_state,
-        public_network,
-        changes=public.changes,
-        latest_run=public.latest_run,
-    )
-    publish_json(
-        public_path,
-        public.model_copy(
-            update={
-                "cargo": cargo,
-                "formulation": formulation,
-                "jurisdictions": jurisdictions,
-                "clinical_network": public_network,
-                "product": product,
-                "intelligence_feed": feed,
-            }
-        ),
-    )
+    publish_current_public_state(root)
     print(f"Imported legacy data; report: {report_path}")
+
+
+def publish_state_main() -> None:
+    root = Path.cwd()
+    state = publish_current_public_state(root)
+    print(f"Published complete public state at {state.generated_at.isoformat()}")
 
 
 if __name__ == "__main__":
