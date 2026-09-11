@@ -8,15 +8,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, TypeVar
 
-from pydantic import BaseModel, TypeAdapter
+from pydantic import BaseModel, TypeAdapter, ValidationError
 
 from signalai.agents.live_prompts import (
     LIVE_ADVERSARY_INSTRUCTIONS,
     LIVE_ANALYSIS_INSTRUCTIONS,
     LIVE_CHAIR_INSTRUCTIONS,
+    LIVE_CHAIR_REPAIR_INSTRUCTIONS,
     LIVE_VERIFIER_INSTRUCTIONS,
 )
-from signalai.client import ModelClient
+from signalai.client import ModelClient, StructuredOutputError
 from signalai.daily import DailyRunOrchestrator
 from signalai.live_selector import select_current_matter, select_reviewers
 from signalai.publisher import build_current_public_state
@@ -49,6 +50,31 @@ def _load(path: Path, model: type[T]) -> T:
 
 def _json(value: Any) -> str:
     return json.dumps(TypeAdapter(Any).dump_python(value, mode="json"), sort_keys=True)
+
+
+def _usage_payload(run_id: str, records: list[dict[str, Any]]) -> dict[str, Any]:
+    numeric_fields = (
+        "input_tokens",
+        "cached_input_tokens",
+        "output_tokens",
+        "reasoning_tokens",
+    )
+    totals = {
+        field: sum(int(item.get(field) or 0) for item in records) for field in numeric_fields
+    }
+    costs = [item.get("estimated_api_cost_usd") for item in records]
+    totals["estimated_api_cost_usd"] = (
+        round(sum(float(value) for value in costs if value is not None), 8)
+        if any(value is not None for value in costs)
+        else None
+    )
+    return {
+        "run_id": run_id,
+        "currency": "USD",
+        "estimate_only": True,
+        "attempts": records,
+        "totals": totals,
+    }
 
 
 def _compact_context(state: SignalState, matter: DevelopmentMatter) -> dict[str, Any]:
@@ -140,22 +166,50 @@ class LiveRunOrchestrator:
             if adversary.matter_id != selected.matter_id:
                 raise ValueError("adversary references a different matter")
             artifacts.append(str(store.write_json("07-adversary.json", adversary)))
-            chair = self.client.generate(
-                instructions=LIVE_CHAIR_INSTRUCTIONS,
-                input_text=_json(
-                    {
-                        "context": context,
-                        "analysis": analysis,
-                        "verification": verification,
-                        "adversary": adversary,
-                    }
-                ),
-                output_type=LiveChairDetermination,
+            chair_input = _json(
+                {
+                    "matter": selected,
+                    "current_ids": {
+                        "hypothesis": state.hypothesis.hypothesis_id,
+                        "risks": [item.risk_id for item in state.risks],
+                        "decision": state.decision.decision_id,
+                        "evidence": selected.linked_evidence_ids,
+                    },
+                    "analysis": analysis,
+                    "verification": verification,
+                    "adversary": adversary,
+                }
             )
+            try:
+                chair, chair_retried = self._generate_chair(chair_input)
+            except StructuredOutputError:
+                artifacts.append(
+                    str(
+                        store.write_json(
+                            "08-private-chair-failure.json",
+                            {
+                                "stage": "LiveChairDetermination",
+                                "attempts": 2,
+                                "status": "failed",
+                                "reason": "incomplete_or_malformed_structured_output",
+                            },
+                        )
+                    )
+                )
+                raise
             if chair.matter_id != selected.matter_id:
                 raise ValueError("chair references a different matter")
             DailyRunOrchestrator._validate_synthesis(chair.synthesis, _matter_as_selected(selected), state)
             artifacts.append(str(store.write_json("08-chair-determination.json", chair)))
+            if chair_retried:
+                artifacts.append(
+                    str(
+                        store.write_json(
+                            "08-chair-repair.json",
+                            {"attempts": 2, "result": "validated", "schema": "LiveChairDetermination"},
+                        )
+                    )
+                )
 
             completed_at = self.now_factory()
             updated_state = (
@@ -211,7 +265,13 @@ class LiveRunOrchestrator:
             )
             usage = getattr(self.client, "usage_records", None)
             if usage:
-                artifacts.append(str(store.write_json("98-private-usage.json", usage)))
+                artifacts.append(
+                    str(
+                        store.write_json(
+                            "98-private-usage.json", _usage_payload(active_id, usage)
+                        )
+                    )
+                )
 
             public = self._build_staged_public(updated_state, updated_docket, updated_history)
             artifacts.append(str(store.write_json("12-public-signal-state.json", public)))
@@ -233,6 +293,12 @@ class LiveRunOrchestrator:
             publish_json(self.root / "public" / "signal-state.json", public)
             return run
         except Exception as exc:
+            usage = getattr(self.client, "usage_records", None)
+            usage_path = store.path / "98-private-usage.json"
+            if usage and not usage_path.exists():
+                store.write_json(
+                    "98-private-usage.json", _usage_payload(active_id, usage)
+                )
             store.write_json(
                 "99-run-failed.json",
                 AgentRun(
@@ -247,6 +313,34 @@ class LiveRunOrchestrator:
                 ),
             )
             raise
+
+    def _generate_chair(self, chair_input: str) -> tuple[LiveChairDetermination, bool]:
+        try:
+            return (
+                self.client.generate(
+                    instructions=LIVE_CHAIR_INSTRUCTIONS,
+                    input_text=chair_input,
+                    output_type=LiveChairDetermination,
+                ),
+                False,
+            )
+        except (StructuredOutputError, ValidationError):
+            repair = getattr(self.client, "repair", None)
+            try:
+                if repair is None:
+                    raise StructuredOutputError("model client does not support structured repair")
+                return (
+                    repair(
+                        instructions=LIVE_CHAIR_REPAIR_INSTRUCTIONS,
+                        input_text=chair_input,
+                        output_type=LiveChairDetermination,
+                    ),
+                    True,
+                )
+            except (StructuredOutputError, ValidationError) as retry_error:
+                raise StructuredOutputError(
+                    "Chair structured output failed after one repair attempt"
+                ) from retry_error
 
     def _build_staged_public(self, state, docket, history):
         with tempfile.TemporaryDirectory(dir=self.root) as raw:

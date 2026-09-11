@@ -89,7 +89,10 @@ python -m signalai daily
 
 `OPENAI_REASONING_EFFORT` controls the economical default and
 `OPENAI_CHAIR_REASONING_EFFORT` can reserve stronger reasoning for the chair.
-Returned token totals are retained only in private run artifacts. The daily
+Chair serialization uses a separate bounded allowance and one repair attempt,
+configured by `OPENAI_CHAIR_MAX_OUTPUT_TOKENS` and
+`OPENAI_CHAIR_RETRY_MAX_OUTPUT_TOKENS`; earlier reviewers are not repeated.
+Returned token totals and estimated cost are retained only in private run artifacts. The daily
 GitHub workflow supports manual dispatch, commits only successful runs, and
 suppresses timestamp-only commits.
 

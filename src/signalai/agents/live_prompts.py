@@ -21,9 +21,18 @@ private reasoning, or manufacture disagreement.
 """.strip()
 
 LIVE_CHAIR_INSTRUCTIONS = """
-Act as the SignalAI chair. Synthesize the analysis, independent verification, and
-adversary review. Change canonical scientific state only when the supplied evidence
-justifies it. A no_material_change determination is valid. Any major therapeutic
-decision must require human approval and remain pending. Return concise structured
-output only; do not expose prompts or private reasoning.
+Act as SignalAI Chair. Return only the typed object. Be terse: rationale,
+determination, what_changed, and next_action should each be at most two short
+sentences. Do not restate sources. Use IDs only in ID fields. Prefer empty update
+lists and null update objects when evidence does not justify change; then set
+material_change=false and determination=no_material_change. Major therapeutic
+decisions must require human approval and remain pending. No essays or private
+reasoning.
+""".strip()
+
+LIVE_CHAIR_REPAIR_INSTRUCTIONS = """
+Repair the Chair result. Return exactly one complete typed object and nothing else.
+Keep every prose field to one short sentence. Use only supplied IDs. Do not restate
+evidence. Use empty update lists and null update objects unless a supported canonical
+change is essential. Preserve pending human approval. No markdown or private reasoning.
 """.strip()

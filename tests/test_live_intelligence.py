@@ -8,6 +8,11 @@ import pytest
 from pydantic import BaseModel
 
 from signalai.live import LiveRunOrchestrator
+from signalai.client import (
+    IncompleteResponseError,
+    MalformedStructuredOutputError,
+    StructuredOutputError,
+)
 from signalai.live_selector import select_current_matter, select_reviewers
 from signalai.material_change import public_payload_has_material_change
 from signalai.schemas import ApprovalStatus, SignalState
@@ -121,6 +126,49 @@ class ScriptedClient:
 class FailingClient:
     def generate(self, **kwargs):
         raise RuntimeError("model unavailable")
+
+
+class ChairRetryClient(ScriptedClient):
+    def __init__(self, outputs, *, retry_succeeds: bool) -> None:
+        super().__init__(outputs)
+        self.retry_succeeds = retry_succeeds
+        self.chair_attempts = 0
+        self.usage_records = [
+            {
+                "stage": "LiveAnalysis",
+                "attempt": "initial",
+                "model": "test-model",
+                "status": "completed",
+                "incomplete_reason": None,
+                "max_output_tokens": 2500,
+                "input_tokens": 100,
+                "cached_input_tokens": 20,
+                "output_tokens": 40,
+                "reasoning_tokens": 10,
+                "estimated_api_cost_usd": 0.0001,
+            }
+        ]
+
+    def generate(self, *, instructions: str, input_text: str, output_type: type[OutputT]) -> OutputT:
+        if output_type is LiveChairDetermination:
+            self.calls.append(output_type)
+            self.chair_attempts += 1
+            raise IncompleteResponseError(
+                "LiveChairDetermination was incomplete: max_output_tokens"
+            )
+        return super().generate(
+            instructions=instructions, input_text=input_text, output_type=output_type
+        )
+
+    def repair(self, *, instructions: str, input_text: str, output_type: type[OutputT]) -> OutputT:
+        assert "Repair" in instructions
+        self.calls.append(output_type)
+        self.chair_attempts += 1
+        if not self.retry_succeeds:
+            raise MalformedStructuredOutputError(
+                "LiveChairDetermination returned malformed structured output"
+            )
+        return cast(OutputT, self.outputs[output_type])
 
 
 def _prepare_root(tmp_path: Path) -> Path:
@@ -237,6 +285,59 @@ def test_failed_run_does_not_overwrite_valid_state_or_public_payload(tmp_path: P
     assert (root / "state" / "signal-state.json").read_bytes() == state_before
     assert (root / "public" / "signal-state.json").read_bytes() == public_before
     assert (root / "runs" / "run-live-failed" / "99-run-failed.json").exists()
+
+
+def test_truncated_chair_retries_once_without_rerunning_reviewers(tmp_path: Path) -> None:
+    root = _prepare_root(tmp_path)
+    client = ChairRetryClient(_outputs(), retry_succeeds=True)
+
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(
+        run_id="run-live-chair-repaired"
+    )
+
+    assert run.chair_determination == "no_material_change"
+    assert client.calls == [
+        LiveAnalysis,
+        LiveVerification,
+        LiveAdversaryReview,
+        LiveChairDetermination,
+        LiveChairDetermination,
+    ]
+    assert client.chair_attempts == 2
+    assert (root / "runs" / run.run_id / "08-chair-repair.json").exists()
+    usage = json.loads((root / "runs" / run.run_id / "98-private-usage.json").read_text())
+    assert usage["totals"]["cached_input_tokens"] == 20
+    assert usage["totals"]["reasoning_tokens"] == 10
+    assert usage["totals"]["estimated_api_cost_usd"] == 0.0001
+    assert "estimated_api_cost_usd" not in (root / "public" / "signal-state.json").read_text()
+
+
+def test_failed_chair_retry_preserves_public_state_and_writes_private_failure(
+    tmp_path: Path,
+) -> None:
+    root = _prepare_root(tmp_path)
+    client = ChairRetryClient(_outputs(), retry_succeeds=False)
+    public_before = (root / "public" / "signal-state.json").read_bytes()
+    state_before = (root / "state" / "signal-state.json").read_bytes()
+
+    with pytest.raises(StructuredOutputError, match="failed after one repair attempt"):
+        LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(
+            run_id="run-live-chair-retry-failed"
+        )
+
+    assert client.chair_attempts == 2
+    assert (root / "public" / "signal-state.json").read_bytes() == public_before
+    assert (root / "state" / "signal-state.json").read_bytes() == state_before
+    run_dir = root / "runs" / "run-live-chair-retry-failed"
+    private_failure = json.loads((run_dir / "08-private-chair-failure.json").read_text())
+    assert private_failure == {
+        "attempts": 2,
+        "reason": "incomplete_or_malformed_structured_output",
+        "stage": "LiveChairDetermination",
+        "status": "failed",
+    }
+    assert (run_dir / "99-run-failed.json").exists()
+    assert (run_dir / "98-private-usage.json").exists()
 
 
 def test_timestamp_only_public_change_is_not_material() -> None:

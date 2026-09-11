@@ -22,6 +22,8 @@ jobs:
       OPENAI_REASONING_EFFORT: ${{ vars.OPENAI_REASONING_EFFORT || 'low' }}
       OPENAI_CHAIR_REASONING_EFFORT: ${{ vars.OPENAI_CHAIR_REASONING_EFFORT || 'medium' }}
       OPENAI_MAX_OUTPUT_TOKENS: "2500"
+      OPENAI_CHAIR_MAX_OUTPUT_TOKENS: "6000"
+      OPENAI_CHAIR_RETRY_MAX_OUTPUT_TOKENS: "8000"
     steps:
       - uses: actions/checkout@v4
         with:
