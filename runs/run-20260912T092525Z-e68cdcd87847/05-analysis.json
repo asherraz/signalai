@@ -1,0 +1,66 @@
+{
+  "matter_id": "matter-intranasal-formulation",
+  "objective": "Provide domain-specific, actionable conclusions to decide which intranasal formulation strategy to advance into controlled compatibility and delivery testing for SGL-001.",
+  "proposed_next_action": "Execute Stage 1 of the two-stage gate with the following prioritized, timebound actions: (1) finalize source-cell and create MCB/WCB; (2) define an orthogonal QC panel per MISEV and draft release specifications; (3) develop and qualify stability-indicating and mechanism-linked potency assays (analytical validation to at least fit-for-purpose); (4) run three representative scale-up batches under GMP-like conditions to generate lot-to-lot data and accelerated/real-time stability; (5) perform formulation compatibility testing (buffers/excipients/device) measuring intact-EV recovery and identity. Only upon meeting prespecified analytical acceptance criteria (assay LLOQs, specificity, and reproducible release/stability/potency across batches) proceed to Stage 2 biodistribution/PK/PD bridging in rodent + large species with intact-EV, disrupted-EV, and free-label controls.",
+  "reviewer_conclusions": [
+    {
+      "claim_ids": [
+        "claim-source-cell-scalability",
+        "claim-ev-cmc-requirements"
+      ],
+      "conclusion": "Current materials support feasibility of an intranasal small-EV preparation but do not demonstrate that any specific formulation preserves EV identity during handling and nasal delivery. Before advancing a formulation, run controlled compatibility testing (vehicle buffers, excipients, osmolarity, pH, viscosity) with representative EV batches and analytical readouts that detect intact EV vs non-vesicular artefacts (orthogonal particle, protein, lipid markers per MISEV). Demonstrate short-term handling stability and recovery from nasal delivery device prototypes.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "limitations": [
+        "No formulation-specific experimental data provided in the state.",
+        "MISEV gives characterization guidance but not validated compatibility criteria for intranasal excipients or devices."
+      ],
+      "reviewer_role": "formulation"
+    },
+    {
+      "claim_ids": [
+        "claim-rodent-cns-delivery",
+        "claim-source-cell-scalability",
+        "claim-ev-cmc-requirements"
+      ],
+      "conclusion": "Rodent intranasal CNS exposure data are insufficient to assume reproducible intact-EV CNS exposure in larger species. A delivery-focused test package must include: quantified intact-EV recovery after device administration in an ex vivo nasal model and in vivo rodent PK with intact-EV-specific assays, then a bridging large-animal (preferably NHP) study with the same formulation and prespecified acceptance criteria for intact-EV CNS exposure and PK variability. Include disrupted-EV and free-label controls to deconvolute signal sources.",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi",
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "limitations": [
+        "Cross-species biodistribution evidence is limited and may not generalize to chosen formulation or device.",
+        "No intact-EV-specific in vivo assays or LLOQs are provided in the current package."
+      ],
+      "reviewer_role": "delivery"
+    },
+    {
+      "claim_ids": [
+        "claim-ev-cmc-requirements",
+        "claim-source-cell-scalability"
+      ],
+      "conclusion": "MISEV2023 provides the minimal orthogonal characterization expectations that should be translated into the program's CMC strategy: select a source cell and document an MCB/WCB plan; define an orthogonal identity/purity panel, draft release specifications, stability-indicating assays, and a mechanism-linked potency assay. These elements must be progressed to validated assays and demonstrated across multiple scaled runs (process validation) to de-risk lot-to-lot variability prior to entering dosing studies.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "limitations": [
+        "MISEV is a consensus guidance and does not substitute for product-specific validated assays or regulatory requirements.",
+        "No MCB/WCB, validated potency assay, stability data, or scaled-run reproducibility data are yet provided."
+      ],
+      "reviewer_role": "cmc"
+    }
+  ],
+  "strongest_contradiction_summary": "Available program-level data include small-scale/immortalized-cell evidence and rodent observations but lack bridging analytics, validated assays, MCB/WCB, stability/scale-up data, and large-animal biodistribution demonstrating reproducible intact-EV CNS exposure \u2014 thereby contradicting any decision to advance a formulation into higher\u2011confidence delivery testing without a CMC/de-risk package.",
+  "strongest_contradictory_evidence_ids": [
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "strongest_support_summary": "ISEV/MISEV2023 consensus explicitly recommends transparent, orthogonal characterization and appropriate controls for EV identity, purity, functional readouts, and production reporting; this directly supports the need for MCB/WCB, orthogonal QC panels, draft release specs, stability-indicating assays, and mechanism-linked potency assays before scale-up and bridging studies.",
+  "strongest_supporting_evidence_ids": [
+    "ev-misev2023-quality-framework"
+  ]
+}

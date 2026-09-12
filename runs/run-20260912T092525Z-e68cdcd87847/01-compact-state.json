@@ -1,0 +1,152 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim-source-cell-scalability",
+      "created_at": "2026-09-11T00:00:00Z",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi",
+        "ev-misev2023-quality-framework"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "Single-study activity from an immortalized line supports feasibility but lacks scale-up and GMP bridging data.",
+      "statement": "An immortalized/clonal MSC source can reduce heterogeneity and is a plausible manufacturing route but is not sufficient without MCB/WCB, process validation, and lot-to-lot potency/stability data.",
+      "status": "proposed"
+    },
+    {
+      "claim_id": "claim-ev-cmc-requirements",
+      "created_at": "2026-09-11T00:00:00Z",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "MISEV2023 defines orthogonal characterization and reporting expectations that translate into minimum CMC elements, but product-specific limits and validated assays remain to be generated.",
+      "statement": "Minimum CMC must include a chosen source-cell with MCB/WCB plan, orthogonal EV identity/purity panel per MISEV, draft release specifications, stability-indicating assays, and a mechanism-linked potency assay to control biological activity across batches.",
+      "status": "proposed"
+    }
+  ],
+  "evidence": [
+    {
+      "content_sha256": null,
+      "evidence_id": "ev-misev2023-quality-framework",
+      "excerpt": "Curated summary: the ISEV consensus identifies continuing challenges in EV nomenclature, separation from non-vesicular particles, characterization, functional studies, production reporting, and in-vivo evaluation; it recommends transparent, orthogonal characterization and appropriate controls.",
+      "kind": "publication",
+      "locator": "Sections 3\u20139",
+      "metadata": {
+        "curated": true,
+        "document_type": "expert consensus guideline",
+        "evidence_role": [
+          "manufacturing",
+          "quality control",
+          "translational rigor"
+        ],
+        "model_or_indication": "EV characterization and quality framework"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "PMID:38326288; DOI:10.1002/jev2.12404",
+      "source_uri": "https://pubmed.ncbi.nlm.nih.gov/38326288/",
+      "title": "Minimal information for studies of extracellular vesicles (MISEV2023): From basic to advanced approaches"
+    }
+  ],
+  "hypothesis": {
+    "contradicting_claim_ids": [],
+    "created_at": "2026-09-11T00:00:00Z",
+    "evidence_ids": [
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution",
+      "ev-misev2023-quality-framework"
+    ],
+    "hypothesis_id": "hypothesis-sgl001-biodistribution-gate",
+    "program_id": "SGL-001",
+    "rationale": "Bridging biodistribution and validated analytics are required to test cross-species translation and to tie in vitro potency concepts to in vivo PD.",
+    "statement": "A two-stage gate (source-cell/CMC definition then rodent+large-animal biodistribution/PK/PD) will determine whether intranasal SGL-001 achieves reproducible intact\u2011EV CNS exposure and mechanism-relevant PD in a large species.",
+    "status": "active",
+    "supporting_claim_ids": [
+      "claim-rodent-preclinical-efficacy",
+      "claim-source-cell-scalability",
+      "claim-ev-cmc-requirements"
+    ],
+    "test_plan": "Stage 1: finalize source-cell, create MCB/WCB, define orthogonal QC panel and draft release specs, run small-scale process dev and stability assays. Stage 2: biodistribution/PK/PD in rodents and a bridging large species (preferably NHP) with vehicle, free-label, and disrupted-EV controls; prespecified quantitative acceptance criteria for intact-EV CNS exposure, assay LLOQs/specificity, PK variability thresholds, and demonstration of mechanism-linked PD."
+  },
+  "matter": {
+    "advancement_value": "high",
+    "blocking_stage": "formulation selection",
+    "completed_at": null,
+    "determination": null,
+    "domain": "formulation",
+    "linked_evidence_ids": [
+      "ev-misev2023-quality-framework"
+    ],
+    "linked_hypothesis_ids": [
+      "hypothesis-sgl001-biodistribution-gate"
+    ],
+    "linked_risk_ids": [
+      "risk-cmc-identity-potency"
+    ],
+    "matter_id": "matter-intranasal-formulation",
+    "next_action": null,
+    "priority": "product_definition",
+    "program_id": "SGL-001",
+    "question": "Which currently defined formulation strategy should be advanced into controlled compatibility and delivery testing?",
+    "required_reviewer_roles": [
+      "formulation",
+      "delivery",
+      "cmc"
+    ],
+    "selected_at": null,
+    "status": "open",
+    "title": "Intranasal formulation configuration",
+    "why_it_matters": "The formulation must preserve EV identity while enabling reproducible intranasal administration."
+  },
+  "program": {
+    "asset_name": "SGL-001",
+    "claim_ids": [
+      "claim-rodent-cns-delivery",
+      "claim-rodent-preclinical-efficacy",
+      "claim-source-cell-scalability",
+      "claim-ev-cmc-requirements",
+      "claim-large-animal-delivery-uncertain"
+    ],
+    "created_at": "2026-09-03T14:39:24.417641Z",
+    "current_formulation_hypothesis": "Intranasal mesenchymal-stromal-cell-derived small-EV preparation with defined identity, purity, dose, and a mechanism-relevant potency assay; therapeutic cargo remains to be selected.",
+    "decision_ids": [
+      "decision-sgl001-run-biodistribution-package"
+    ],
+    "development_focus": "Neuroregeneration and cognitive function",
+    "evidence_confidence": "moderate",
+    "hypothesis_ids": [
+      "hypothesis-sgl001-biodistribution-gate"
+    ],
+    "indication": null,
+    "largest_unresolved_risk": "Intranasal CNS exposure observed in rodents may not translate to larger species or humans.",
+    "lead_indication": "Not yet selected",
+    "modality": "extracellular-vesicle/exosome therapeutic",
+    "name": "SGL-001 development program",
+    "next_proposed_action": "Initiate the two-stage gate: (A) finalize source-cell, create MCB/WCB, define orthogonal QC panel and draft release specs, perform small-scale process dev; (B) run biodistribution/PK/PD bridging study in rodents and a large species (preferably NHP) with vehicle, free-label, and disrupted-EV controls and prespecified acceptance criteria.",
+    "program_id": "SGL-001",
+    "risk_ids": [
+      "risk-cross-species-cns-delivery",
+      "risk-cmc-identity-potency",
+      "risk-model-efficacy-generalizability"
+    ],
+    "route_of_administration": "intranasal",
+    "status": "preclinical",
+    "updated_at": "2026-09-11T12:06:53.664672Z"
+  },
+  "risks": [
+    {
+      "description": "Draft release specifications and potency concepts exist but lack validation, stability data, and lot-to-lot consistency across scaled runs.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "likelihood": "moderate",
+      "mitigation": "Establish MCB/WCB, orthogonal QC per MISEV, develop and validate potency assay linked to in vivo PD, and run multiple scale-up batches to demonstrate reproducibility.",
+      "owner": null,
+      "program_id": "SGL-001",
+      "risk_id": "risk-cmc-identity-potency",
+      "severity": "high",
+      "status": "mitigating",
+      "title": "CMC: identity, impurity control, and potency assay readiness"
+    }
+  ]
+}
