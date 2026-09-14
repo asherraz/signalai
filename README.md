@@ -100,6 +100,32 @@ Returned token totals and estimated cost are retained only in private run artifa
 GitHub workflow supports manual dispatch, commits only successful runs, and
 suppresses timestamp-only commits.
 
+## Clinic intelligence
+
+Public-source clinic profiles are separate from the human-approved Clinical
+Network partner records. `data/clinics/clinics.json` holds typed, field-sourced
+profiles and ordinal SGL-001 fit assessments. An indexed clinic is **not** an
+approved partner, and fit does not establish legal eligibility or clinical
+readiness. `public/signal-state.json` exposes a sanitized `clinicIntelligence`
+summary; private outreach, page caches, and API usage are excluded.
+
+```bash
+python -m signalai clinic-ingest https://clinic.example/
+python -m signalai clinic-batch path/to/clinic-urls.txt
+python -m signalai clinic-scheduled
+```
+
+The scheduled mode is an opt-in command, not part of the SGL-001 daily workflow.
+It processes a small manually supplied `data/clinics/queue.txt` and stale
+profiles, up to six clinics and five same-site pages each by default. It does
+not discover sites broadly or send outreach. Cached pages skip unchanged model
+calls; immutable profile snapshots preserve history. The extraction call uses
+`OPENAI_CLINIC_MODEL` (default `gpt-5-mini`) and low reasoning. Every accepted
+field must cite a fetched URL and matching excerpt; unsupported values remain
+unknown. When no local `OPENAI_API_KEY` is available, the command uses a
+conservative deterministic extractor with lower recall and zero API cost.
+Outreach candidates require human approval before any action.
+
 ## Therapeutic asset workspace
 
 `state/asset-development.json` is the canonical biology-to-product-to-market

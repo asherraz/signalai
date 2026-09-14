@@ -26,6 +26,7 @@ from signalai.schemas.public_artifacts import (
     PublicLatestRun,
 )
 from signalai.schemas.public_clinical_network import PublicClinicalNetwork
+from signalai.schemas.public_clinic_intelligence import PublicClinicIntelligence
 from signalai.schemas.public_live import PublicLiveIntelligence
 from signalai.schemas.public_product import PublicIntelligenceFeedItem, PublicProduct
 from signalai.schemas.public_workspace import (
@@ -94,6 +95,7 @@ class PublicSignalState(SignalModel):
         default=None,
         alias="clinicalNetwork",
     )
+    clinic_intelligence: PublicClinicIntelligence | None = Field(default=None, alias="clinicIntelligence")
     product: PublicProduct | None = None
     intelligence_feed: list[PublicIntelligenceFeedItem] = Field(
         default_factory=list,
@@ -126,6 +128,7 @@ class PublicSignalState(SignalModel):
         formulation: PublicFormulationState | None = None,
         jurisdictions: PublicJurisdictionState | None = None,
         clinical_network: PublicClinicalNetwork | None = None,
+        clinic_intelligence: PublicClinicIntelligence | None = None,
         product: PublicProduct | None = None,
         intelligence_feed: list[PublicIntelligenceFeedItem] | None = None,
         live_intelligence: PublicLiveIntelligence | None = None,
@@ -166,6 +169,7 @@ class PublicSignalState(SignalModel):
             formulation=formulation,
             jurisdictions=jurisdictions,
             clinicalNetwork=clinical_network,
+            clinicIntelligence=clinic_intelligence,
             product=product,
             intelligenceFeed=intelligence_feed or [],
             liveIntelligence=live_intelligence,

@@ -1,9 +1,13 @@
 """Command-line entry points for SignalAI development runs and migrations."""
 
+import json
 from os import environ
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from signalai.client import OpenAIResponsesClient
+from signalai.clinic_intelligence import ClinicIngestor, DeterministicClinicExtractionClient
+from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.daily import DailyRunOrchestrator
 from signalai.live import LiveRunOrchestrator
 from signalai.material_change import repository_has_material_change
@@ -89,6 +93,65 @@ def publish_state_main() -> None:
     root = Path.cwd()
     state = publish_current_public_state(root)
     print(f"Published complete public state at {state.generated_at.isoformat()}")
+
+
+def _clinic_ingestor() -> ClinicIngestor:
+    client = (
+        OpenAIResponsesClient(
+            model=environ.get("OPENAI_CLINIC_MODEL", "gpt-5-mini"),
+            reasoning_effort=environ.get("OPENAI_CLINIC_REASONING_EFFORT", "low"),
+            max_output_tokens=int(environ.get("OPENAI_CLINIC_MAX_OUTPUT_TOKENS", "2500")),
+        )
+        if environ.get("OPENAI_API_KEY") else DeterministicClinicExtractionClient()
+    )
+    return ClinicIngestor(
+        root=Path.cwd(),
+        client=client,
+        max_pages=int(environ.get("SIGNALAI_CLINIC_MAX_PAGES", "5")),
+        max_clinics=int(environ.get("SIGNALAI_CLINIC_MAX_BATCH", "6")),
+    )
+
+
+def clinic_ingest_main(url: str, *, refresh: bool = False) -> None:
+    profile, _, changed = _clinic_ingestor().ingest(url, refresh=refresh)
+    if changed:
+        publish_current_public_state(Path.cwd())
+    print(f"Clinic {profile.clinic_id}: {'indexed' if changed else 'unchanged'}")
+
+
+def clinic_batch_main(path: str | None, *, scheduled: bool = False, refresh: bool = False) -> None:
+    root = Path.cwd()
+    if scheduled and path is None:
+        path = str(root / "data" / "clinics" / "queue.txt")
+    if not path:
+        raise ValueError("clinic-batch requires a path to a URL list")
+    source = Path(path)
+    if not source.exists() and not scheduled:
+        raise FileNotFoundError(source)
+    if source.exists() and source.suffix == ".json":
+        urls = json.loads(source.read_text(encoding="utf-8"))
+        if not isinstance(urls, list) or not all(isinstance(url, str) for url in urls):
+            raise ValueError("clinic seed JSON must be a list of URLs")
+    else:
+        urls = [line.strip() for line in source.read_text().splitlines() if line.strip() and not line.startswith("#")] if source.exists() else []
+    limit = int(environ.get("SIGNALAI_CLINIC_MAX_BATCH", "6"))
+    if scheduled:
+        dataset_path = root / "data" / "clinics" / "clinics.json"
+        dataset = ClinicIntelligenceDataset.model_validate_json(dataset_path.read_text()) if dataset_path.exists() else ClinicIntelligenceDataset()
+        stale_before = datetime.now(timezone.utc) - timedelta(days=int(environ.get("SIGNALAI_CLINIC_STALE_DAYS", "30")))
+        stale = sorted((item for item in dataset.profiles if item.last_checked_at < stale_before), key=lambda item: item.last_checked_at)
+        urls = list(dict.fromkeys([*urls[:limit], *(str(item.website) for item in stale)]))[:limit]
+        refresh = True
+    if not urls:
+        print("No clinic URLs scheduled; nothing to ingest")
+        return
+    ingestor = _clinic_ingestor()
+    results = ingestor.batch(urls, refresh=refresh)
+    for item in ingestor.batch_report:
+        print(json.dumps(item, sort_keys=True))
+    if any(changed for _, _, changed in results):
+        publish_current_public_state(root)
+    print(f"Clinic batch: {len(results)} processed, {sum(changed for _, _, changed in results)} changed")
 
 
 if __name__ == "__main__":

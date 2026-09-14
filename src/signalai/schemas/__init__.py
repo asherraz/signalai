@@ -42,6 +42,20 @@ from signalai.schemas.clinical_network import (
     ReviewStatus,
     TreatmentVolume,
 )
+from signalai.schemas.clinic_intelligence import (
+    ClinicConfidence,
+    ClinicExtraction,
+    ClinicFitAssessment,
+    ClinicFitLevel,
+    ClinicIntelligenceDataset,
+    ClinicOutreachCandidate,
+    ClinicProfile,
+    ClinicReviewStatus,
+    ClinicRoute,
+    ClinicTherapy,
+    OutreachRelationship,
+    SourceField,
+)
 
 from signalai.schemas.models import (
     AgentRun,

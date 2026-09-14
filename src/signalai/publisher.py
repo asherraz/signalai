@@ -6,6 +6,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from signalai.clinical_network_export import export_clinical_network
+from signalai.clinic_intelligence_export import export_clinic_intelligence
+from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.product_export import export_product_layer
 from signalai.live_export import export_live_intelligence, merge_live_feed
 from signalai.public_export import build_public_airb, export_completed_run
@@ -68,6 +70,12 @@ def build_current_public_state(
         workspace,
         what_changed_recently=changed.summary,
     )
+    clinic_data_path = root / "data" / "clinics" / "clinics.json"
+    clinic_dataset = (
+        ClinicIntelligenceDataset.model_validate_json(clinic_data_path.read_text(encoding="utf-8"))
+        if clinic_data_path.exists() else ClinicIntelligenceDataset()
+    )
+    clinic_intelligence = export_clinic_intelligence(clinic_dataset)
     airb = build_public_airb(latest_run, scientific.program.program_id)
     product, feed = export_product_layer(
         scientific,
@@ -97,6 +105,7 @@ def build_current_public_state(
         formulation=formulation,
         jurisdictions=jurisdictions,
         clinical_network=clinical_network,
+        clinic_intelligence=clinic_intelligence,
         product=product,
         intelligence_feed=feed,
         live_intelligence=live_intelligence,
