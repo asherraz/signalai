@@ -1,6 +1,6 @@
 {
   "program_id": "SGL-001",
-  "updated_at": "2026-09-12T09:27:00.974227Z",
+  "updated_at": "2026-09-14T10:06:18.261879Z",
   "runs": [
     {
       "run_id": "run-20260911T101854Z-e4dd7c990790",
@@ -62,7 +62,11 @@
           ],
           "limitations": [
             "The records do not establish human exposure."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         },
         {
           "reviewer_role": "translational",
@@ -74,7 +78,11 @@
           "claim_ids": [],
           "limitations": [
             "Cross-species comparability is unresolved."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         },
         {
           "reviewer_role": "preclinical",
@@ -86,7 +94,11 @@
           "claim_ids": [],
           "limitations": [
             "Existing models and formulations are heterogeneous."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         }
       ],
       "strongest_supporting_evidence_ids": [
@@ -178,7 +190,11 @@
             "Rodent intranasal exposure and efficacy do not demonstrate intact-EV CNS exposure or quantitative PK in larger species.",
             "Therapeutic cargo remains unspecified; potency assay cannot be fully defined until cargo/mechanism are selected.",
             "Available efficacy evidence is from injury models; applicability to cognition/aging endpoints is untested."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         },
         {
           "reviewer_role": "cmc",
@@ -195,7 +211,11 @@
             "MISEV2023 is a consensus framework, not a regulatory standard—specific release limits and assays must be defined and justified for the product.",
             "Single-study demonstration of comparable activity (Hermann) does not establish robustness across producers, passages, or scale-up runs.",
             "No data yet on lot-to-lot variability, process-related impurities, or stability under intended storage/transport conditions."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         },
         {
           "reviewer_role": "manufacturing",
@@ -212,7 +232,11 @@
             "Hermann demonstrates preclinical activity from an immortalized line but provides no process-scale manufacturing data (yields, impurity profiles, stability, or GMP bridging).",
             "Downstream purification methods and their scalability/practicability are not defined in the cited evidence.",
             "No GMP comparability or process validation data are available."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         }
       ],
       "strongest_supporting_evidence_ids": [
@@ -302,7 +326,11 @@
           "limitations": [
             "No formulation-specific experimental data provided in the state.",
             "MISEV gives characterization guidance but not validated compatibility criteria for intranasal excipients or devices."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         },
         {
           "reviewer_role": "delivery",
@@ -320,7 +348,11 @@
           "limitations": [
             "Cross-species biodistribution evidence is limited and may not generalize to chosen formulation or device.",
             "No intact-EV-specific in vivo assays or LLOQs are provided in the current package."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         },
         {
           "reviewer_role": "cmc",
@@ -336,7 +368,11 @@
           "limitations": [
             "MISEV is a consensus guidance and does not substitute for product-specific validated assays or regulatory requirements.",
             "No MCB/WCB, validated potency assay, stability data, or scaled-run reproducibility data are yet provided."
-          ]
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
         }
       ],
       "strongest_supporting_evidence_ids": [
@@ -363,6 +399,137 @@
         "run-20260912T092525Z-e68cdcd87847:06-verification.json",
         "run-20260912T092525Z-e68cdcd87847:07-adversary.json",
         "run-20260912T092525Z-e68cdcd87847:08-chair-determination.json"
+      ]
+    },
+    {
+      "run_id": "run-20260914T100415Z-bacfd56d290d",
+      "program_id": "SGL-001",
+      "started_at": "2026-09-14T10:04:15.274386Z",
+      "completed_at": "2026-09-14T10:06:18.261879Z",
+      "selected_matter": {
+        "matter_id": "matter-first-clinic-jurisdiction",
+        "program_id": "SGL-001",
+        "title": "Legitimate first clinic pathway",
+        "question": "Which source-supported jurisdiction pathway could legitimately support a first future SGL-001 clinic-development relationship?",
+        "domain": "clinical_deployment",
+        "why_it_matters": "A future clinic pathway must be lawful and evidence-supported; low enforcement cannot substitute for legality.",
+        "priority": "deployment_blocking",
+        "advancement_value": "high",
+        "blocking_stage": "clinical deployment planning",
+        "linked_hypothesis_ids": [],
+        "linked_risk_ids": [],
+        "linked_evidence_ids": [],
+        "required_reviewer_roles": [
+          "clinical",
+          "jurisdiction",
+          "commercial"
+        ],
+        "status": "completed",
+        "selected_at": "2026-09-14T10:04:15.274386Z",
+        "completed_at": "2026-09-14T10:06:18.261879Z",
+        "determination": "human_decision_required",
+        "next_action": "Program lead to assemble Stage-1 package (GLP large-animal intranasal biodistribution/tox, three GMP-like scale-up runs with draft specs and stability, validated potency/orthogonal QC plan, and regulator briefing) and request pre-IND/Scientific Advice in two jurisdictions; 3-month timeline."
+      },
+      "why_selected": "Selected deployment_blocking matter with high advancement value. Deterministic ranking favors program-invalidating issues, then real-world stage blockers, product definition, deployment, quality, contradictions, experiment design, and refinement.",
+      "reviewers_convened": [
+        "clinical",
+        "jurisdiction",
+        "commercial",
+        "verifier",
+        "adversary",
+        "chair"
+      ],
+      "reviewer_conclusions": [
+        {
+          "reviewer_role": "clinical",
+          "conclusion": "Insufficient source-supported clinical evidence exists in the supplied state to endorse any particular jurisdiction as an appropriate first clinical development partner for SGL-001. Key translational gaps (uncertain large-animal/ human CNS exposure after intranasal delivery; undefined clinical indication; unfinished potency and release assays; incomplete GMP-scale demonstration) prevent a defensible clinical pathway recommendation at this time.",
+          "evidence_ids": [],
+          "claim_ids": [
+            "claim-large-animal-delivery-uncertain",
+            "claim-rodent-cns-delivery",
+            "claim-rodent-preclinical-efficacy"
+          ],
+          "limitations": [
+            "No supplied clinical-translation or human-safety data.",
+            "No defined lead indication or target population to align regulatory/ethical pathways.",
+            "No GMP/CMC completion or validated potency assay to support investigational clinical manufacturing."
+          ],
+          "evidence_gap": "Clinical-translatable biodistribution and safety data (large-animal intranasal CNS exposure; GLP toxicology), defined indication and target-population, and validated potency and release assays are missing.",
+          "search_needed": true,
+          "requested_evidence": [
+            "GLP-compliant large-animal biodistribution and toxicology reports for intranasal administration of the candidate EV preparation or close surrogate",
+            "Any existing human or compassionate-use intranasal MSC-EV/EV-like product safety reports",
+            "Validated potency assay and draft release specification documents",
+            "GMP batch records or scale-up run reports (three representative runs) and stability data",
+            "Pre-IND or regulator engagement minutes (if any) relevant to intranasal EVs"
+          ],
+          "unsupported": true
+        },
+        {
+          "reviewer_role": "jurisdiction",
+          "conclusion": "There is no jurisdiction-specific regulatory pathway supported by the supplied materials that can currently be stated as legitimately enabling a first clinic relationship. Jurisdiction choice depends on: presence of a well-defined clinical indication and target population, maturity of CMC and nonclinical GLP packages, and whether the product will be treated as a biologic, advanced-therapy medicinal product (ATMP), or experimental biologic in the target jurisdiction. These prerequisites are not satisfied in the supplied state.",
+          "evidence_ids": [],
+          "claim_ids": [
+            "claim-ev-cmc-requirements",
+            "claim-source-cell-scalability"
+          ],
+          "limitations": [
+            "No regulator engagement records supplied to indicate which national pathway has accepted similar intranasal EV strategies.",
+            "No CMC dossier or nonclinical GLP toxicology package to map to specific jurisdictional requirements (e.g., EMA ATMP, FDA IND, PMDA, MHRA)."
+          ],
+          "evidence_gap": "Regulatory precedent, pre-IND/Scientific Advice records, and CMC/nonclinical package details required to evaluate jurisdiction fit are missing.",
+          "search_needed": true,
+          "requested_evidence": [
+            "Records of prior regulator interactions (pre-IND / Scientific Advice / ATMP classification requests) for this program or exact modality",
+            "Country-specific guidance or precedent documents showing acceptance of intranasal EV or MSC-derived EV early-stage clinical entry",
+            "Proposed clinical indication and target-patient population to map to jurisdictional pathways",
+            "Draft CMC/CMC-enabling documents to match jurisdictional dossier expectations"
+          ],
+          "unsupported": true
+        },
+        {
+          "reviewer_role": "commercial",
+          "conclusion": "From a commercial-partnership perspective, no single jurisdiction can be recommended now as the legitimate first-clinic partner because critical de-risking (indication choice, translational safety, scalable GMP supply, and regulatory alignment) remains incomplete. Commercial attractiveness will hinge on predictable regulatory route, payer/reimbursement environment for the indication, and an acceptable timeline to first-in-human data—none of which are demonstrated in the supplied materials.",
+          "evidence_ids": [],
+          "claim_ids": [
+            "claim-source-cell-scalability",
+            "claim-ev-cmc-requirements"
+          ],
+          "limitations": [
+            "No market or indication selection data to prioritize jurisdictions by patient population or reimbursement pathway.",
+            "No manufacturing scale-up evidence or cost model to support a clinic partnership discussion."
+          ],
+          "evidence_gap": "Market analysis for candidate indications, manufacturing cost/scale evidence, and regulator-aligned development timelines are absent.",
+          "search_needed": true,
+          "requested_evidence": [
+            "Market and reimbursement analyses for plausible CNS/neuroregenerative indications",
+            "Cost and timeline estimates for GMP manufacture at clinical scale (three representative runs and their outcomes)",
+            "Any partner/due-diligence materials or MOUs with potential clinic or CRO partners",
+            "Regulatory engagement records that would inform commercial timelines by jurisdiction"
+          ],
+          "unsupported": true
+        }
+      ],
+      "strongest_supporting_evidence_ids": [],
+      "strongest_contradictory_evidence_ids": [],
+      "adversary_objection": "The reviewers’ conclusion that no jurisdiction can currently be endorsed rests on unreferenced negative claims; because no supporting or disconfirming evidence identifiers were supplied, the conclusion is unverified and may be unjustified. The record lacks any cited regulator interactions, GLP large-animal data, GMP-run documentation, validated potency/release assays, or market/regulatory precedent—so the negative determination is an evidence-free assertion rather than a substantiated finding.",
+      "chair_determination": "human_decision_required",
+      "state_changed": true,
+      "change_scope": "decision",
+      "scientific_state_changed": false,
+      "operational_state_changed": true,
+      "what_changed": "A validated development decision update was proposed.",
+      "next_action": "Program lead to assemble Stage-1 package (GLP large-animal intranasal biodistribution/tox, three GMP-like scale-up runs with draft specs and stability, validated potency/orthogonal QC plan, and regulator briefing) and request pre-IND/Scientific Advice in two jurisdictions; 3-month timeline.",
+      "artifact_ids": [
+        "run-20260914T100415Z-bacfd56d290d:01-compact-state.json",
+        "run-20260914T100415Z-bacfd56d290d:02-development-docket.json",
+        "run-20260914T100415Z-bacfd56d290d:03-selected-matter.json",
+        "run-20260914T100415Z-bacfd56d290d:04-reviewer-panel.json",
+        "run-20260914T100415Z-bacfd56d290d:05-analysis.json",
+        "run-20260914T100415Z-bacfd56d290d:06-verification.json",
+        "run-20260914T100415Z-bacfd56d290d:07-adversary.json",
+        "run-20260914T100415Z-bacfd56d290d:08-chair-determination.json",
+        "run-20260914T100415Z-bacfd56d290d:08-chair-repair.json"
       ]
     }
   ]
