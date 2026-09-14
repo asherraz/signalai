@@ -170,6 +170,31 @@ class ChairRetryClient(ScriptedClient):
         return cast(OutputT, self.outputs[output_type])
 
 
+class AnalysisRetryClient(ScriptedClient):
+    def __init__(self, initial: LiveAnalysis, repaired: LiveAnalysis, outputs, *, fail=False):
+        super().__init__(outputs)
+        self.initial = initial
+        self.repaired = repaired
+        self.fail = fail
+        self.repair_instructions = ""
+        self.inputs = []
+
+    def generate(self, *, instructions, input_text, output_type):
+        self.inputs.append(json.loads(input_text))
+        if output_type is LiveAnalysis:
+            self.calls.append(output_type)
+            return self.initial
+        return super().generate(instructions=instructions, input_text=input_text, output_type=output_type)
+
+    def repair(self, *, instructions, input_text, output_type):
+        assert output_type is LiveAnalysis
+        self.repair_instructions = instructions
+        self.calls.append(output_type)
+        if self.fail:
+            raise RuntimeError("analysis repair failed")
+        return self.repaired
+
+
 def _prepare_root(tmp_path: Path) -> Path:
     for directory in ("state", "runs", "public"):
         (tmp_path / directory).mkdir()
@@ -207,6 +232,9 @@ def _prepare_root(tmp_path: Path) -> Path:
     )
     state = SignalState.model_validate_json((tmp_path / "state" / "signal-state.json").read_text())
     shutil.copytree(ROOT / "runs" / state.run_id, tmp_path / "runs" / state.run_id)
+    for source in (ROOT / "runs").iterdir():
+        if source.is_dir() and (source / "09-what-changed.json").exists():
+            shutil.copytree(source, tmp_path / "runs" / source.name)
     shutil.copy2(ROOT / "public" / "signal-state.json", tmp_path / "public" / "signal-state.json")
     return tmp_path
 
@@ -362,3 +390,123 @@ def test_live_history_requires_independent_review_roles() -> None:
         assert {ReviewerRole.VERIFIER, ReviewerRole.ADVERSARY, ReviewerRole.CHAIR}.issubset(
             run.reviewers_convened
         )
+
+
+@pytest.mark.parametrize("invalid_ids", [["invented-one"], ["invented-one", "invented-two"]])
+def test_unknown_evidence_ids_trigger_analysis_only_repair(tmp_path: Path, invalid_ids):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    initial = outputs[LiveAnalysis].model_copy(deep=True)
+    initial.reviewer_conclusions[0].evidence_ids.extend(invalid_ids)
+    client = AnalysisRetryClient(initial, outputs[LiveAnalysis], outputs)
+
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(
+        run_id="run-analysis-repaired"
+    )
+
+    assert client.calls == [LiveAnalysis, LiveAnalysis, LiveVerification, LiveAdversaryReview, LiveChairRecommendation]
+    for invalid_id in invalid_ids:
+        assert invalid_id in client.repair_instructions
+    assert "Use only these allowed IDs:" in client.repair_instructions
+    assert "allowed_evidence_ids" in client.inputs[0]
+    assert all(item in client.inputs[0]["allowed_evidence_ids"] for item in outputs[LiveAnalysis].reviewer_conclusions[0].evidence_ids)
+    assert (root / "runs" / run.run_id / "05-private-invalid-analysis.json").exists()
+    public = json.loads((root / "public" / "signal-state.json").read_text())
+    assert all("private-" not in item for item in public["liveIntelligence"]["latestRun"]["linkedArtifactIds"])
+    assert all("private-" not in item for item in public["intelligenceFeed"][0]["linkedArtifactIds"])
+    accepted = LiveAnalysis.model_validate_json((root / "runs" / run.run_id / "05-analysis.json").read_text())
+    assert not set(invalid_ids).intersection(accepted.reviewer_conclusions[0].evidence_ids)
+
+
+def test_evidence_gap_is_accepted_without_invented_reference(tmp_path: Path):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    gap = outputs[LiveAnalysis].model_copy(deep=True)
+    gap.reviewer_conclusions[0].evidence_ids = []
+    gap.reviewer_conclusions[0].unsupported = True
+    gap.reviewer_conclusions[0].evidence_gap = "Human CNS exposure is not established."
+    gap.reviewer_conclusions[0].search_needed = True
+    gap.reviewer_conclusions[0].requested_evidence = ["Controlled human biodistribution evidence"]
+    outputs[LiveAnalysis] = gap
+    run = LiveRunOrchestrator(client=ScriptedClient(outputs), root=root, now_factory=lambda: NOW).run(run_id="run-gap")
+    assert not run.state_changed
+    assert run.chair_determination == "no_material_change"
+
+
+def test_repair_must_mark_conclusion_unsupported_if_only_citation_was_invalid(tmp_path: Path):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    initial = outputs[LiveAnalysis].model_copy(deep=True)
+    initial.reviewer_conclusions[0].evidence_ids = ["invented-one"]
+    repaired = outputs[LiveAnalysis].model_copy(deep=True)
+    repaired.reviewer_conclusions[0].evidence_ids = []
+    client = AnalysisRetryClient(initial, repaired, outputs)
+    with pytest.raises(ValueError, match="removed a citation without marking an evidence gap"):
+        LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-repair-unsupported")
+    assert (root / "runs" / "run-repair-unsupported" / "99-run-failed.json").exists()
+
+
+def test_repair_can_report_evidence_gap_instead_of_inventing_citation(tmp_path: Path):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    initial = outputs[LiveAnalysis].model_copy(deep=True)
+    initial.reviewer_conclusions[0].evidence_ids = ["invented-one"]
+    repaired = outputs[LiveAnalysis].model_copy(deep=True)
+    repaired.reviewer_conclusions[0].evidence_ids = []
+    repaired.reviewer_conclusions[0].unsupported = True
+    repaired.reviewer_conclusions[0].evidence_gap = "No canonical human exposure study is available."
+    repaired.reviewer_conclusions[0].search_needed = True
+    repaired.reviewer_conclusions[0].requested_evidence = ["Human exposure study"]
+    client = AnalysisRetryClient(initial, repaired, outputs)
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-repair-gap")
+    accepted = LiveAnalysis.model_validate_json((root / "runs" / run.run_id / "05-analysis.json").read_text())
+    assert accepted.reviewer_conclusions[0].unsupported
+    assert accepted.reviewer_conclusions[0].search_needed
+    assert "invented-one" not in (root / "runs" / run.run_id / "05-analysis.json").read_text()
+
+
+def test_analysis_validation_reports_invalid_ids_across_fields(tmp_path: Path):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    initial = outputs[LiveAnalysis].model_copy(deep=True)
+    initial.reviewer_conclusions[0].evidence_ids.append("invented-one")
+    initial.strongest_contradictory_evidence_ids.append("invented-two")
+    client = AnalysisRetryClient(initial, outputs[LiveAnalysis], outputs)
+    LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-multi-field")
+    assert "['invented-one', 'invented-two']" in client.repair_instructions
+
+
+def test_failed_analysis_repair_preserves_scientific_and_public_state(tmp_path: Path):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    initial = outputs[LiveAnalysis].model_copy(deep=True)
+    initial.strongest_supporting_evidence_ids = ["invented-one"]
+    client = AnalysisRetryClient(initial, outputs[LiveAnalysis], outputs, fail=True)
+    state_before = (root / "state" / "signal-state.json").read_bytes()
+    public_before = (root / "public" / "signal-state.json").read_bytes()
+    with pytest.raises(RuntimeError, match="analysis repair failed"):
+        LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-analysis-failed")
+    assert client.calls == [LiveAnalysis, LiveAnalysis]
+    assert (root / "state" / "signal-state.json").read_bytes() == state_before
+    assert (root / "public" / "signal-state.json").read_bytes() == public_before
+    failure = json.loads((root / "runs" / "run-analysis-failed" / "05-private-analysis-failure.json").read_text())
+    assert failure["invalid_evidence_ids"] == ["invented-one"]
+    assert (root / "runs" / "run-analysis-failed" / "99-run-failed.json").exists()
+
+
+def test_unsupported_analysis_cannot_drive_scientific_mutation(tmp_path: Path):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    analysis = outputs[LiveAnalysis].model_copy(deep=True)
+    analysis.reviewer_conclusions[0].unsupported = True
+    analysis.reviewer_conclusions[0].evidence_gap = "Necessary supporting record is absent."
+    outputs[LiveAnalysis] = analysis
+    chair = outputs[LiveChairRecommendation].model_copy(deep=True)
+    chair.proposed_changes.evidence_confidence_update = "high"
+    outputs[LiveChairRecommendation] = chair
+    state_before = (root / "state" / "signal-state.json").read_bytes()
+    public_before = (root / "public" / "signal-state.json").read_bytes()
+    with pytest.raises(ValueError, match="unsupported analysis conclusions cannot drive scientific state mutation"):
+        LiveRunOrchestrator(client=ScriptedClient(outputs), root=root, now_factory=lambda: NOW).run(run_id="run-unsupported")
+    assert (root / "state" / "signal-state.json").read_bytes() == state_before
+    assert (root / "public" / "signal-state.json").read_bytes() == public_before

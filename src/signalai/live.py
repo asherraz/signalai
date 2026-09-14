@@ -13,6 +13,7 @@ from pydantic import BaseModel, TypeAdapter, ValidationError
 from signalai.agents.live_prompts import (
     LIVE_ADVERSARY_INSTRUCTIONS,
     LIVE_ANALYSIS_INSTRUCTIONS,
+    LIVE_ANALYSIS_REPAIR_INSTRUCTIONS,
     LIVE_CHAIR_INSTRUCTIONS,
     LIVE_CHAIR_REPAIR_INSTRUCTIONS,
     LIVE_VERIFIER_INSTRUCTIONS,
@@ -107,6 +108,14 @@ def _compact_context(state: SignalState, matter: DevelopmentMatter) -> dict[str,
     }
 
 
+class UnknownEvidenceReferences(ValueError):
+    """A typed output cited IDs outside the supplied canonical evidence set."""
+
+    def __init__(self, invalid_ids: list[str]) -> None:
+        self.invalid_ids = sorted(set(invalid_ids))
+        super().__init__(f"live output references unknown evidence: {self.invalid_ids}")
+
+
 class LiveRunOrchestrator:
     """Run a bounded panel and publish only after every artifact validates."""
 
@@ -147,6 +156,7 @@ class LiveRunOrchestrator:
             selected, why = select_current_matter(docket)
             reviewers = select_reviewers(selected)
             context = _compact_context(state, selected)
+            allowed_evidence_ids = sorted(item.evidence_id for item in context["evidence"])
             artifacts.extend(
                 [
                     str(store.write_json("01-compact-state.json", context)),
@@ -155,28 +165,74 @@ class LiveRunOrchestrator:
                     str(store.write_json("04-reviewer-panel.json", {"reviewers": reviewers, "why_selected": why})),
                 ]
             )
+            analysis_input = _json({
+                "context": context,
+                "reviewers": reviewers[:-3],
+                "allowed_evidence_ids": allowed_evidence_ids,
+            })
             analysis = self.client.generate(
                 instructions=LIVE_ANALYSIS_INSTRUCTIONS,
-                input_text=_json({"context": context, "reviewers": reviewers[:-3]}),
+                input_text=analysis_input,
                 output_type=LiveAnalysis,
             )
-            self._validate_analysis(analysis, selected, reviewers, state)
+            try:
+                self._validate_analysis(analysis, selected, reviewers, allowed_evidence_ids)
+            except UnknownEvidenceReferences as first_error:
+                initial_analysis = analysis
+                artifacts.append(str(store.write_json("05-private-invalid-analysis.json", analysis)))
+                repair = getattr(self.client, "repair", None)
+                repair_instruction = (
+                    LIVE_ANALYSIS_REPAIR_INSTRUCTIONS
+                    + f"\nThese evidence IDs are invalid: {first_error.invalid_ids}. "
+                    + f"Use only these allowed IDs: {allowed_evidence_ids} "
+                    + "or explicitly state that evidence is insufficient."
+                )
+                try:
+                    if repair is None:
+                        raise UnknownEvidenceReferences(first_error.invalid_ids)
+                    analysis = repair(
+                        instructions=repair_instruction,
+                        input_text=analysis_input,
+                        output_type=LiveAnalysis,
+                    )
+                    self._validate_analysis(analysis, selected, reviewers, allowed_evidence_ids)
+                    revised_by_role = {item.reviewer_role: item for item in analysis.reviewer_conclusions}
+                    for original in initial_analysis.reviewer_conclusions:
+                        revised = revised_by_role.get(original.reviewer_role)
+                        if set(original.evidence_ids).intersection(first_error.invalid_ids) and revised is not None and not revised.evidence_ids:
+                            if not revised.unsupported or not revised.evidence_gap:
+                                raise ValueError("analysis repair removed a citation without marking an evidence gap")
+                except Exception as retry_error:
+                    artifacts.append(str(store.write_json("05-private-analysis-failure.json", {
+                        "stage": "LiveAnalysis",
+                        "status": "failed",
+                        "attempts": 2 if repair is not None else 1,
+                        "invalid_evidence_ids": first_error.invalid_ids,
+                        "repair_error": f"{type(retry_error).__name__}: {retry_error}",
+                    })))
+                    raise
+                artifacts.append(str(store.write_json("05-private-analysis-repair.json", {
+                    "stage": "LiveAnalysis",
+                    "status": "repaired",
+                    "invalid_evidence_ids": first_error.invalid_ids,
+                    "allowed_evidence_ids": allowed_evidence_ids,
+                })))
             artifacts.append(str(store.write_json("05-analysis.json", analysis)))
             verification = self.client.generate(
                 instructions=LIVE_VERIFIER_INSTRUCTIONS,
-                input_text=_json({"context": context, "analysis": analysis}),
+                input_text=_json({"context": context, "analysis": analysis, "allowed_evidence_ids": allowed_evidence_ids}),
                 output_type=LiveVerification,
             )
-            self._validate_evidence_refs(verification.verified_evidence_ids, state)
+            self._validate_evidence_refs(verification.verified_evidence_ids, allowed_evidence_ids)
             if verification.matter_id != selected.matter_id:
                 raise ValueError("verification references a different matter")
             artifacts.append(str(store.write_json("06-verification.json", verification)))
             adversary = self.client.generate(
                 instructions=LIVE_ADVERSARY_INSTRUCTIONS,
-                input_text=_json({"context": context, "analysis": analysis, "verification": verification}),
+                input_text=_json({"context": context, "analysis": analysis, "verification": verification, "allowed_evidence_ids": allowed_evidence_ids}),
                 output_type=LiveAdversaryReview,
             )
-            self._validate_evidence_refs(adversary.disconfirming_evidence_ids, state)
+            self._validate_evidence_refs(adversary.disconfirming_evidence_ids, allowed_evidence_ids)
             if adversary.matter_id != selected.matter_id:
                 raise ValueError("adversary references a different matter")
             artifacts.append(str(store.write_json("07-adversary.json", adversary)))
@@ -187,8 +243,9 @@ class LiveRunOrchestrator:
                         "hypothesis": state.hypothesis.hypothesis_id,
                         "risks": [item.risk_id for item in state.risks],
                         "decision": state.decision.decision_id,
-                        "evidence": selected.linked_evidence_ids,
+                        "evidence": allowed_evidence_ids,
                     },
+                    "allowed_evidence_ids": allowed_evidence_ids,
                     "analysis": analysis,
                     "verification": verification,
                     "adversary": adversary,
@@ -216,9 +273,15 @@ class LiveRunOrchestrator:
                 raise
             if recommendation.matter_id != selected.matter_id:
                 raise ValueError("chair references a different matter")
-            self._validate_evidence_refs(recommendation.supporting_evidence_ids, state)
+            self._validate_evidence_refs(recommendation.supporting_evidence_ids, allowed_evidence_ids)
             chair = derive_chair_determination(recommendation, state)
             synthesis = chair.result.synthesis
+            if chair.result.scientific_state_changed and any(
+                item.unsupported or item.evidence_gap for item in analysis.reviewer_conclusions
+            ):
+                raise ValueError("unsupported analysis conclusions cannot drive scientific state mutation")
+            if chair.result.scientific_state_changed and not verification.supports_state_change:
+                raise ValueError("unverified analysis cannot drive scientific state mutation")
             DailyRunOrchestrator._validate_synthesis(
                 synthesis, _matter_as_selected(selected), state
             )
@@ -279,7 +342,11 @@ class LiveRunOrchestrator:
                 operational_state_changed=chair.result.operational_state_changed,
                 what_changed=synthesis.what_changed,
                 next_action=synthesis.next_action or analysis.proposed_next_action,
-                artifact_ids=[f"{active_id}:{Path(item).name}" for item in artifacts[1:]],
+                artifact_ids=[
+                    f"{active_id}:{Path(item).name}"
+                    for item in artifacts[1:]
+                    if "private-" not in Path(item).name
+                ],
             )
             updated_history = LiveRunHistory(
                 program_id=history.program_id,
@@ -413,21 +480,25 @@ class LiveRunOrchestrator:
                 raise ValueError(f"matter {matter.matter_id} references unknown hypotheses")
 
     @staticmethod
-    def _validate_evidence_refs(ids: list[str], state: SignalState) -> None:
-        if set(ids) - {item.evidence_id for item in state.evidence}:
-            raise ValueError("live output references unknown evidence")
+    def _validate_evidence_refs(ids: list[str], allowed_evidence_ids: list[str]) -> None:
+        invalid = sorted(set(ids) - set(allowed_evidence_ids))
+        if invalid:
+            raise UnknownEvidenceReferences(invalid)
 
     @classmethod
-    def _validate_analysis(cls, analysis, matter, reviewers, state) -> None:
+    def _validate_analysis(cls, analysis, matter, reviewers, allowed_evidence_ids) -> None:
         if analysis.matter_id != matter.matter_id:
             raise ValueError("analysis references a different matter")
         allowed = set(reviewers) - {ReviewerRole.VERIFIER, ReviewerRole.ADVERSARY, ReviewerRole.CHAIR}
-        if {item.reviewer_role for item in analysis.reviewer_conclusions} - allowed:
-            raise ValueError("analysis contains a conclusion from an unconvened reviewer")
-        for item in analysis.reviewer_conclusions:
-            cls._validate_evidence_refs(item.evidence_ids, state)
-        cls._validate_evidence_refs(analysis.strongest_supporting_evidence_ids, state)
-        cls._validate_evidence_refs(analysis.strongest_contradictory_evidence_ids, state)
+        actual = [item.reviewer_role for item in analysis.reviewer_conclusions]
+        if set(actual) != allowed or len(actual) != len(allowed):
+            raise ValueError("analysis must contain one conclusion per convened domain reviewer")
+        all_ids = [
+            *analysis.strongest_supporting_evidence_ids,
+            *analysis.strongest_contradictory_evidence_ids,
+            *(evidence_id for item in analysis.reviewer_conclusions for evidence_id in item.evidence_ids),
+        ]
+        cls._validate_evidence_refs(all_ids, allowed_evidence_ids)
 
 
 def _matter_as_selected(matter: DevelopmentMatter):

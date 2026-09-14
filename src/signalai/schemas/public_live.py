@@ -134,7 +134,7 @@ class PublicLiveRun(SignalModel):
             operationalStateChanged=run.operational_state_changed,
             whatChanged=run.what_changed,
             nextAction=run.next_action,
-            linkedArtifactIds=run.artifact_ids,
+            linkedArtifactIds=[item for item in run.artifact_ids if "private-" not in item],
         )
 
 

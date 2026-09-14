@@ -143,6 +143,16 @@ class ReviewerConclusion(SignalModel):
     evidence_ids: list[Identifier] = Field(default_factory=list)
     claim_ids: list[Identifier] = Field(default_factory=list)
     limitations: list[NonEmptyText] = Field(default_factory=list)
+    evidence_gap: str | None = None
+    search_needed: bool = False
+    requested_evidence: list[NonEmptyText] = Field(default_factory=list)
+    unsupported: bool = False
+
+    @model_validator(mode="after")
+    def validate_evidence_gap(self) -> ReviewerConclusion:
+        if (self.search_needed or self.requested_evidence) and not self.evidence_gap:
+            raise ValueError("requested evidence requires an explicit evidence_gap")
+        return self
 
 
 class LiveAnalysis(SignalModel):

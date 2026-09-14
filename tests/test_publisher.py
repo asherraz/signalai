@@ -15,9 +15,11 @@ def test_complete_public_state_is_rebuilt_without_using_public_json() -> None:
 
     assert state.generated_at == FIXED_EXPORT_TIME
     assert state.latest_run is not None
-    assert state.latest_run.run_id == state.loop.run_id
     assert state.airb is not None
-    assert state.airb.run_id == state.loop.run_id
+    assert state.airb.run_id == state.latest_run.run_id
+    assert state.live_intelligence is not None
+    assert state.live_intelligence.latest_run is not None
+    assert state.live_intelligence.latest_run.run_id == state.loop.run_id
     assert state.cargo is not None
     assert state.formulation is not None
     assert state.jurisdictions is not None

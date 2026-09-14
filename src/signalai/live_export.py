@@ -54,7 +54,7 @@ def live_run_feed_item(run: LiveRun) -> PublicIntelligenceFeedItem:
         ),
         accessTier=AccessTier.PUBLIC,
         createdAt=run.completed_at,
-        linkedArtifactIds=run.artifact_ids,
+        linkedArtifactIds=[item for item in run.artifact_ids if "private-" not in item],
         linkedReviewIds=[run.run_id],
         reasonEvidence=list(
             dict.fromkeys(
