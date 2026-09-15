@@ -102,6 +102,19 @@ suppresses timestamp-only commits.
 
 ## SignalRB — Signal Review Board
 
+`flagshipProgram` is a deterministic, typed public view of SGL-001 as the
+flagship program of Signal Intelligence. It derives its thesis, blockers, six
+development gates, linked determination, and chronological history from canonical
+program state and SignalRB. Gate categories use inspectable keyword mapping in
+`flagship_export.py`; a recorded product hypothesis is only `partially_defined`,
+an open high/critical risk is `blocked`, and the latest relevant operator gate is
+`human_decision`. Literature support never implies asset-gate completion.
+Unassessed gates remain `unresolved`; absent next actions are JSON null.
+Pivot criteria retain only recorded failure/weakening conditions, with review
+and evidence references. No synthetic-chassis or cargo pivot threshold is added
+without a source record. Summaries use sourced sentences and preserve qualifiers;
+`updatedAt` is a source timestamp, not a publication timestamp.
+
 `signalRB` is the canonical public review/determination layer. Its typed
 `SignalReviewBoardDetermination` objects derive from completed live runs and
 validated analysis, independent verification, and adversary artifacts. Supporting

@@ -58,6 +58,7 @@ from signalai.schemas.clinic_intelligence import (
 )
 
 from signalai.schemas.signalrb import SignalReviewBoardDetermination, PublicSignalRB
+from signalai.schemas.public_flagship import PublicFlagshipProgram, PublicDevelopmentGate, PublicPivotCriterion
 
 from signalai.schemas.models import (
     AgentRun,
@@ -376,4 +377,7 @@ __all__ = [
     "RegenerativeClinicTargetPriority",
     "RegenerativeClinicThesis",
     "TreatmentVolume",
+    "PublicFlagshipProgram",
+    "PublicDevelopmentGate",
+    "PublicPivotCriterion",
 ]

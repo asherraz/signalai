@@ -8,6 +8,7 @@ from pathlib import Path
 from signalai.clinical_network_export import export_clinical_network
 from signalai.clinic_intelligence_export import export_clinic_intelligence
 from signalai.signalrb import export_signalrb
+from signalai.flagship_export import export_flagship_program
 from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.product_export import export_product_layer
 from signalai.live_export import export_live_intelligence, merge_live_feed
@@ -114,6 +115,7 @@ def build_current_public_state(
     )
     if history and history.runs:
         public = public.model_copy(update={"signal_rb": export_signalrb(root, scientific, history)})
+    public = public.model_copy(update={"flagship_program": export_flagship_program(scientific, public.signal_rb)})
     return public
 
 

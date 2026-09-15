@@ -22,6 +22,7 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "latestRun",
     "aiRB",
     "signalRB",
+    "flagshipProgram",
     "cargo",
     "formulation",
     "jurisdictions",

@@ -8,6 +8,7 @@ from typing import Annotated
 
 from pydantic import AliasChoices, Field, model_validator
 from signalai.schemas.signalrb import PublicSignalRB, SignalReviewBoardDetermination
+from signalai.schemas.public_flagship import PublicFlagshipProgram
 
 from signalai.schemas.models import (
     Claim,
@@ -90,6 +91,7 @@ class PublicSignalState(SignalModel):
     )
     airb: PublicAiRBState | None = Field(default=None, alias="aiRB", validation_alias=AliasChoices("aiRB", "airb", "aiRB determination"))
     signal_rb: PublicSignalRB | None = Field(default=None, alias="signalRB")
+    flagship_program: PublicFlagshipProgram | None = Field(default=None, alias="flagshipProgram")
     cargo: PublicCargoState | None = None
     formulation: PublicFormulationState | None = None
     jurisdictions: PublicJurisdictionState | None = None
@@ -143,6 +145,34 @@ class PublicSignalState(SignalModel):
             reviews = self.signal_rb.recent_reviews + ([self.signal_rb.latest_review] if self.signal_rb.latest_review else [])
             if any(set(r.evidence_ids) - allowed for r in reviews) or any(set(d.evidence_ids) - allowed for d in self.signal_rb.pending_human_decisions):
                 raise ValueError("SignalRB references unknown canonical evidence")
+        if self.flagship_program:
+            flagship = self.flagship_program
+            if flagship.program_id != self.program.program_id:
+                raise ValueError("flagship program must match canonical program")
+            allowed = {
+                "claim_ids": {c.claim_id for c in self.program.claims},
+                "evidence_ids": {e.evidence_id for e in self.evidence},
+                "risk_ids": {r.risk_id for r in self.risks},
+                "hypothesis_ids": {h.hypothesis_id for h in self.hypotheses},
+                "review_ids": {r.review_id for r in self.signal_rb.recent_reviews} if self.signal_rb else set(),
+                "program_fields": set(TherapeuticProgram.model_fields),
+            }
+            if self.signal_rb and self.signal_rb.latest_review:
+                allowed["review_ids"].add(self.signal_rb.latest_review.review_id)
+            refs = [flagship.sources, flagship.thesis.sources] + [g.sources for g in flagship.development_gates]
+            if any(set(getattr(ref, field)) - ids for ref in refs for field, ids in allowed.items()):
+                raise ValueError("flagship sources must reference canonical state")
+            reviews = {r.review_id: r for r in self.signal_rb.recent_reviews} if self.signal_rb else {}
+            if self.signal_rb and self.signal_rb.latest_review:
+                reviews[self.signal_rb.latest_review.review_id] = self.signal_rb.latest_review
+            if flagship.signal_rb_review_id and flagship.signal_rb_review_id not in reviews:
+                raise ValueError("flagship links an unknown SignalRB review")
+            for pivot in flagship.pivot_criteria:
+                review = reviews.get(pivot.review_id)
+                if not review or pivot.condition not in review.conditions or set(pivot.evidence_ids) - set(review.evidence_ids):
+                    raise ValueError("pivot criterion must come from a recorded SignalRB condition")
+            if any(h.review_id not in reviews or h.run_id != reviews[h.review_id].run_id for h in flagship.program_history):
+                raise ValueError("flagship history must link canonical reviews and runs")
         return self
 
     @classmethod
@@ -165,7 +195,7 @@ class PublicSignalState(SignalModel):
         live_intelligence: PublicLiveIntelligence | None = None,
         generated_at: datetime | None = None,
     ) -> PublicSignalState:
-        return cls(
+        public = cls(
             generatedAt=generated_at or state.generated_at,
             version=state.schema_version,
             status=PublicStateStatus.AWAITING_HUMAN_REVIEW,
@@ -205,3 +235,6 @@ class PublicSignalState(SignalModel):
             intelligenceFeed=intelligence_feed or [],
             liveIntelligence=live_intelligence,
         )
+        from signalai.flagship_export import export_flagship_program
+
+        return public.model_copy(update={"flagship_program": export_flagship_program(state, public.signal_rb)})

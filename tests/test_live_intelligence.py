@@ -282,6 +282,7 @@ def test_no_material_change_run_persists_and_exports_live_intelligence(tmp_path:
     payload = json.loads((root / "public" / "signal-state.json").read_text())
     assert payload["liveIntelligence"]["latestRun"]["runId"] == run.run_id
     assert payload["signalRB"]["latestReview"]["run_id"] == run.run_id
+    assert payload["flagshipProgram"]["signalRBReviewId"] == payload["signalRB"]["latestReview"]["review_id"]
     assert payload["signalRB"]["latestReview"]["determination_type"] == "no_material_change"
     assert payload["signalRB"]["recentReviews"][0] == payload["signalRB"]["latestReview"]
     assert payload["liveIntelligence"]["recentRuns"][0]["stateChanged"] is False

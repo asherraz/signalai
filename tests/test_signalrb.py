@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_legacy_board_aliases_load(alias):
     payload = json.loads((ROOT / "public/signal-state.json").read_text())
     payload.pop("signalRB", None)
+    payload.pop("flagshipProgram", None)
     payload[alias] = payload.pop("aiRB")
     state = PublicSignalState.model_validate(payload)
     assert state.signal_rb.latest_review.run_id == state.airb.run_id

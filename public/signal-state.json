@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T11:48:46.909634Z",
+  "generatedAt": "2026-09-15T12:37:37.725590Z",
   "version": "2.0",
   "status": "awaiting_human_review",
   "program": {
@@ -821,6 +821,329 @@
     "summary": {
       "reviews": 4,
       "pendingHumanDecisions": 1
+    }
+  },
+  "flagshipProgram": {
+    "programId": "SGL-001",
+    "name": "SGL-001",
+    "displayName": "SGL-001",
+    "subtitle": "Flagship therapeutic program of Signal Intelligence · Neuroregeneration and cognitive function",
+    "oneLineThesis": "Product hypothesis: Intranasal mesenchymal-stromal-cell-derived small-EV preparation with defined identity, purity, dose, and a mechanism-relevant potency assay; therapeutic cargo remains to be selected.",
+    "thesis": {
+      "biology": "Rodent intranasal MSC-derived EVs show reproducible benefit in injury models and justify further candidate-defining and translational studies but do not by themselves demonstrate intact-EV CNS exposure in larger species.",
+      "product_hypothesis": "Intranasal mesenchymal-stromal-cell-derived small-EV preparation with defined identity, purity, dose, and a mechanism-relevant potency assay; therapeutic cargo remains to be selected.",
+      "route": "intranasal",
+      "development_hypothesis": "Advancing an intranasal formulation into high-confidence delivery and cross-species PK/PD testing requires completion of a defined CMC/analytics/formulation compatibility gating package.",
+      "development_question": "What minimum source-cell, EV identity, cargo, and release definition is required before SGL-001 can be treated as a candidate-like product?",
+      "sources": {
+        "claim_ids": [
+          "claim-rodent-preclinical-efficacy"
+        ],
+        "evidence_ids": [
+          "ev-hermann-2023-neonatal-hi",
+          "ev-zhuang-2011-intranasal-exosome",
+          "ev-kodali-2017-status-epilepticus"
+        ],
+        "risk_ids": [],
+        "hypothesis_ids": [
+          "hypothesis-sgl001-biodistribution-gate"
+        ],
+        "review_ids": [
+          "signalrb-run-20260911T120434Z-03f4e21fe096"
+        ],
+        "program_fields": [
+          "current_formulation_hypothesis",
+          "route_of_administration",
+          "development_focus"
+        ]
+      }
+    },
+    "status": "preclinical",
+    "currentDetermination": "Approve a timebound Stage-1 data-and-engagement package (nonclinical, CMC, analytical, regulatory/commercial) prior to selecting a jurisdiction.",
+    "strongestCaseFor": "The program state indicates intranasal CNS exposure in rodents with preclinical efficacy signals and a defined nonfinal formulation hypothesis; these elements suggest potential for clinical translation if key preclinical and CMC gaps are closed. However, no jurisdictional endorsement can be made from supplied materials.",
+    "strongestCaseAgainst": "The reviewers’ conclusion that no jurisdiction can currently be endorsed rests on unreferenced negative claims; because no supporting or disconfirming evidence identifiers were supplied, the conclusion is unverified and may be unjustified. The record lacks any cited regulator interactions, GLP large-animal data, GMP-run documentation, validated potency/release assays, or market/regulatory precedent—so the negative determination is an evidence-free assertion rather than a substantiated finding.",
+    "humanDecisionRequired": true,
+    "verificationStatus": "unsupported_assertions",
+    "currentBlockers": [
+      "Cross-species translation uncertainty for intranasal intact-EV CNS exposure",
+      "Insufficient CMC/analytics to establish intact-EV identity, potency, and lot-to-lot reproducibility",
+      "Model generalizability from injury models to cognition/aging endpoints"
+    ],
+    "developmentGates": [
+      {
+        "gate_id": "sgl-001-product-definition",
+        "name": "Product Definition",
+        "status": "partially_defined",
+        "why_it_matters": "What minimum source-cell, EV identity, cargo, and release definition is required before SGL-001 can be treated as a candidate-like product?",
+        "what_is_known": [
+          "Intranasal mesenchymal-stromal-cell-derived small-EV preparation with defined identity, purity, dose, and a mechanism-relevant potency assay; therapeutic cargo remains to be selected.",
+          "Rodent intranasal MSC-derived EVs show reproducible benefit in injury models and justify further candidate-defining and translational studies but do not by themselves demonstrate intact-EV CNS exposure in larger species."
+        ],
+        "what_is_missing": [
+          "Current materials do not demonstrate characterized source-cell MCB/WCB or scalable, reproducible production sufficient to support advancing a specific intranasal formulation."
+        ],
+        "next_action": "Initiate the two-stage gate: (A) finalize source-cell, create MCB/WCB, define orthogonal QC panel and draft release specs, perform small-scale process dev; (B) run biodistribution/PK/PD bridging study in rodents and a large species (preferably NHP) with vehicle, free-label, and disrupted-EV controls and prespecified acceptance criteria.",
+        "sources": {
+          "claim_ids": [
+            "claim-rodent-preclinical-efficacy",
+            "claim-source-cell-scalability"
+          ],
+          "evidence_ids": [
+            "ev-hermann-2023-neonatal-hi",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "risk_ids": [],
+          "hypothesis_ids": [],
+          "review_ids": [
+            "signalrb-run-20260911T120434Z-03f4e21fe096"
+          ],
+          "program_fields": [
+            "current_formulation_hypothesis"
+          ]
+        }
+      },
+      {
+        "gate_id": "sgl-001-potency-identity",
+        "name": "Potency / Identity",
+        "status": "blocked",
+        "why_it_matters": "Lack of MCB/WCB, orthogonal QC, validated potency/stability assays, and scale-up reproducibility may produce misleading in vitro and in vivo results and block regulatory acceptance.",
+        "what_is_known": [
+          "An orthogonal QC panel (particles, protein, lipid markers per MISEV), validated intact-EV assays (LLOQ, specificity, precision), and stability-indicating, mechanism-linked potency assays are required before formulation advancement."
+        ],
+        "what_is_missing": [
+          "Lack of MCB/WCB, orthogonal QC, validated potency/stability assays, and scale-up reproducibility may produce misleading in vitro and in vivo results and block regulatory acceptance."
+        ],
+        "next_action": "Execute Stage 1 actions: generate MCB/WCB, define/validate orthogonal assays, produce representative GMP-like batches, and document stability/potency reproducibility.",
+        "sources": {
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "hypothesis_ids": [],
+          "review_ids": [
+            "signalrb-run-20260911T120434Z-03f4e21fe096"
+          ],
+          "program_fields": []
+        }
+      },
+      {
+        "gate_id": "sgl-001-intranasal-delivery",
+        "name": "Intranasal Delivery",
+        "status": "blocked",
+        "why_it_matters": "Rodent intranasal biodistribution may not predict large-species/NHP CNS exposure for intact EV; device and formulation interactions may differ by species.",
+        "what_is_known": [
+          "Rodent intranasal biodistribution data alone are insufficient to predict reproducible intact-EV CNS exposure in larger species without matching intact-EV assays and bridging controls."
+        ],
+        "what_is_missing": [
+          "Rodent intranasal biodistribution may not predict large-species/NHP CNS exposure for intact EV; device and formulation interactions may differ by species.",
+          "Current materials do not demonstrate characterized source-cell MCB/WCB or scalable, reproducible production sufficient to support advancing a specific intranasal formulation."
+        ],
+        "next_action": "Require ex vivo nasal recovery and rodent intact-EV-specific PK with controls prior to any large-species study; predefine bridging acceptance criteria and include disrupted-EV and free-label controls in all in vivo studies.",
+        "sources": {
+          "claim_ids": [
+            "claim-rodent-cns-delivery",
+            "claim-rodent-preclinical-efficacy",
+            "claim-source-cell-scalability",
+            "claim-large-animal-delivery-uncertain"
+          ],
+          "evidence_ids": [
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-misev2023-quality-framework",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus"
+          ],
+          "risk_ids": [
+            "risk-cross-species-cns-delivery"
+          ],
+          "hypothesis_ids": [],
+          "review_ids": [
+            "signalrb-run-20260911T101854Z-e4dd7c990790",
+            "signalrb-run-20260912T092525Z-e68cdcd87847"
+          ],
+          "program_fields": []
+        }
+      },
+      {
+        "gate_id": "sgl-001-mechanism-biology",
+        "name": "Mechanism / Active Biology",
+        "status": "unresolved",
+        "why_it_matters": "What minimum source-cell, EV identity, cargo, and release definition is required before SGL-001 can be treated as a candidate-like product?",
+        "what_is_known": [
+          "An orthogonal QC panel (particles, protein, lipid markers per MISEV), validated intact-EV assays (LLOQ, specificity, precision), and stability-indicating, mechanism-linked potency assays are required before formulation advancement."
+        ],
+        "what_is_missing": [
+          "Intranasal mesenchymal-stromal-cell-derived small-EV preparation with defined identity, purity, dose, and a mechanism-relevant potency assay; therapeutic cargo remains to be selected."
+        ],
+        "next_action": "Initiate the two-stage gate: (A) finalize source-cell, create MCB/WCB, define orthogonal QC panel and draft release specs, perform small-scale process dev; (B) run biodistribution/PK/PD bridging study in rodents and a large species (preferably NHP) with vehicle, free-label, and disrupted-EV controls and prespecified acceptance criteria.",
+        "sources": {
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "risk_ids": [],
+          "hypothesis_ids": [],
+          "review_ids": [
+            "signalrb-run-20260911T120434Z-03f4e21fe096"
+          ],
+          "program_fields": [
+            "current_formulation_hypothesis"
+          ]
+        }
+      },
+      {
+        "gate_id": "sgl-001-chassis-decision",
+        "name": "Chassis Decision",
+        "status": "unresolved",
+        "why_it_matters": "No canonical assessment recorded for this gate.",
+        "what_is_known": [],
+        "what_is_missing": [
+          "Gate completion is not recorded in the supplied canonical program state or SignalRB reviews."
+        ],
+        "next_action": null,
+        "sources": {
+          "claim_ids": [],
+          "evidence_ids": [],
+          "risk_ids": [],
+          "hypothesis_ids": [],
+          "review_ids": [],
+          "program_fields": []
+        }
+      },
+      {
+        "gate_id": "sgl-001-translational-readiness",
+        "name": "Translational Readiness",
+        "status": "human_decision",
+        "why_it_matters": "Efficacy evidence is from acute/injury rodent models; relevance to cognition/aging indications is unproven.",
+        "what_is_known": [
+          "Rodent intranasal MSC-derived EVs show reproducible benefit in injury models and justify further candidate-defining and translational studies but do not by themselves demonstrate intact-EV CNS exposure in larger species."
+        ],
+        "what_is_missing": [
+          "Efficacy evidence is from acute/injury rodent models; relevance to cognition/aging indications is unproven."
+        ],
+        "next_action": "Program lead to assemble Stage-1 package (GLP large-animal intranasal biodistribution/tox, three GMP-like scale-up runs with draft specs and stability, validated potency/orthogonal QC plan, and regulator briefing) and request pre-IND/Scientific Advice in two jurisdictions; 3-month timeline.",
+        "sources": {
+          "claim_ids": [
+            "claim-rodent-preclinical-efficacy"
+          ],
+          "evidence_ids": [
+            "ev-hermann-2023-neonatal-hi",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus"
+          ],
+          "risk_ids": [
+            "risk-model-efficacy-generalizability"
+          ],
+          "hypothesis_ids": [],
+          "review_ids": [
+            "signalrb-run-20260914T100415Z-bacfd56d290d"
+          ],
+          "program_fields": []
+        }
+      }
+    ],
+    "currentNextAction": "Program lead to assemble Stage-1 package (GLP large-animal intranasal biodistribution/tox, three GMP-like scale-up runs with draft specs and stability, validated potency/orthogonal QC plan, and regulator briefing) and request pre-IND/Scientific Advice in two jurisdictions; 3-month timeline.",
+    "pivotQuestion": "What would make Signal change its mind?",
+    "pivotCriteria": [
+      {
+        "criterion_id": "signalrb-run-20260911T101854Z-e4dd7c990790-condition-0",
+        "condition": "A controlled larger-species study fails predefined CNS exposure criteria.",
+        "review_id": "signalrb-run-20260911T101854Z-e4dd7c990790",
+        "evidence_ids": [
+          "ev-zhuang-2011-intranasal-exosome",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ]
+      }
+    ],
+    "signalRBReviewId": "signalrb-run-20260914T100415Z-bacfd56d290d",
+    "evidenceConfidence": "moderate",
+    "updatedAt": "2026-09-14T10:06:18.261879Z",
+    "programHistory": [
+      {
+        "date": "2026-09-11T10:18:54.400148Z",
+        "matter_title": "Cross-species intranasal CNS delivery gate",
+        "determination_type": "no_material_change",
+        "state_change": "No scientific state change. Recorded determination: Confirmed the cross-species delivery risk and specified the next controlled test; no scientific position changed.",
+        "review_id": "signalrb-run-20260911T101854Z-e4dd7c990790",
+        "run_id": "run-20260911T101854Z-e4dd7c990790"
+      },
+      {
+        "date": "2026-09-11T12:06:53.664672Z",
+        "matter_title": "Candidate and product definition",
+        "determination_type": "human_decision_required",
+        "state_change": "Scientific state changed. Pending recommendation: Approve a mandatory two-stage candidate-definition and biodistribution gate before treating SGL-001 as a candidate-like product",
+        "review_id": "signalrb-run-20260911T120434Z-03f4e21fe096",
+        "run_id": "run-20260911T120434Z-03f4e21fe096"
+      },
+      {
+        "date": "2026-09-12T09:27:00.974227Z",
+        "matter_title": "Intranasal formulation configuration",
+        "determination_type": "human_decision_required",
+        "state_change": "Scientific state changed. Pending recommendation: Execute a timebound Stage 1 gate (CMC + analytics + formulation compatibility) prior to advancing any intranasal formulation into controlled delivery or cross-species biodistribution testing. Stage 1 priorities",
+        "review_id": "signalrb-run-20260912T092525Z-e68cdcd87847",
+        "run_id": "run-20260912T092525Z-e68cdcd87847"
+      },
+      {
+        "date": "2026-09-14T10:06:18.261879Z",
+        "matter_title": "Legitimate first clinic pathway",
+        "determination_type": "human_decision_required",
+        "state_change": "No scientific state change. Pending recommendation: Approve a timebound Stage-1 data-and-engagement package (nonclinical, CMC, analytical, regulatory/commercial) prior to selecting a jurisdiction.",
+        "review_id": "signalrb-run-20260914T100415Z-bacfd56d290d",
+        "run_id": "run-20260914T100415Z-bacfd56d290d"
+      }
+    ],
+    "sources": {
+      "claim_ids": [
+        "claim-rodent-cns-delivery",
+        "claim-rodent-preclinical-efficacy",
+        "claim-source-cell-scalability",
+        "claim-ev-cmc-requirements",
+        "claim-large-animal-delivery-uncertain"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "risk_ids": [
+        "risk-cross-species-cns-delivery",
+        "risk-cmc-identity-potency",
+        "risk-model-efficacy-generalizability"
+      ],
+      "hypothesis_ids": [
+        "hypothesis-sgl001-biodistribution-gate"
+      ],
+      "review_ids": [
+        "signalrb-run-20260911T101854Z-e4dd7c990790",
+        "signalrb-run-20260911T120434Z-03f4e21fe096",
+        "signalrb-run-20260912T092525Z-e68cdcd87847",
+        "signalrb-run-20260914T100415Z-bacfd56d290d"
+      ],
+      "program_fields": [
+        "status",
+        "evidence_confidence",
+        "next_proposed_action"
+      ]
     }
   },
   "cargo": {
