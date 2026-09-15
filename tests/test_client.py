@@ -1,4 +1,6 @@
 from types import SimpleNamespace
+import json
+from pathlib import Path
 
 import pytest
 
@@ -8,6 +10,18 @@ from signalai.client import (
     OpenAIResponsesClient,
 )
 from signalai.schemas import ClaimSet, LiveChairRecommendation
+from signalai.schemas.live import LiveAnalysis
+
+
+def test_malformed_analysis_snapshot_contains_only_schema_fields():
+    payload = json.loads((Path(__file__).parent / "fixtures/live-analysis-missing-evidence-gap.json").read_text())
+    payload["api_metadata"] = {"secret": "PRIVATE_API_METADATA"}
+    client = OpenAIResponsesClient(model="test", client=SimpleNamespace(responses=FakeResponses(payload)))
+    with pytest.raises(MalformedStructuredOutputError) as caught:
+        client.generate(instructions="analysis", input_text="context", output_type=LiveAnalysis)
+    assert caught.value.invalid_output["reviewer_conclusions"] == payload["reviewer_conclusions"]
+    assert "api_metadata" not in caught.value.invalid_output
+    assert any("requested evidence requires an explicit evidence_gap" in conflict for conflict in caught.value.conflicts)
 
 
 class FakeResponses:

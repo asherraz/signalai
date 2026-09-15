@@ -7,12 +7,13 @@ from pathlib import Path
 from typing import TypeVar, cast
 
 import pytest
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 from signalai.live import LiveRunOrchestrator
 from signalai.client import (
     MalformedStructuredOutputError,
     StructuredOutputError,
+    OpenAIResponsesClient,
 )
 from signalai.live_selector import select_current_matter, select_reviewers
 from signalai.material_change import public_payload_has_material_change
@@ -32,6 +33,92 @@ from signalai.schemas.live import (
 ROOT = Path(__file__).resolve().parents[1]
 OutputT = TypeVar("OutputT", bound=BaseModel)
 NOW = datetime(2026, 9, 11, 8, 0, tzinfo=timezone.utc)
+
+
+def _missing_gap_error():
+    payload = (ROOT / "tests/fixtures/live-analysis-missing-evidence-gap.json").read_text()
+    with pytest.raises(ValidationError) as caught:
+        LiveAnalysis.model_validate_json(payload)
+    assert caught.value.errors()[0]["loc"] == ("reviewer_conclusions", 0)
+    assert "requested evidence requires an explicit evidence_gap" in str(caught.value)
+    return caught.value
+
+
+@pytest.mark.parametrize("unsupported", [True, False])
+def test_sdk_analysis_semantic_repair_continues_as_evidence_gap(tmp_path, unsupported):
+    from types import SimpleNamespace
+
+    root = _prepare_root(tmp_path)
+    before = (root / "state/signal-state.json").read_bytes()
+    outputs = _outputs()
+    outputs[LiveChairRecommendation].proposed_changes.evidence_confidence_update = "high"
+    repaired = outputs[LiveAnalysis].model_copy(deep=True)
+    reviewer = repaired.reviewer_conclusions[0]
+    reviewer.evidence_ids = []
+    reviewer.evidence_gap = "Canonical state lacks controlled human CNS exposure evidence."
+    reviewer.search_needed = True
+    reviewer.requested_evidence = ["Controlled human CNS exposure evidence"]
+    reviewer.unsupported = unsupported
+    repaired = LiveAnalysis.model_validate_json(repaired.model_dump_json())
+
+    class Responses:
+        calls = []
+
+        def parse(self, **kwargs):
+            self.calls.append(kwargs)
+            if len(self.calls) == 1:
+                raise _missing_gap_error()
+            return SimpleNamespace(output_parsed=repaired if kwargs["text_format"] is LiveAnalysis else outputs[kwargs["text_format"]])
+
+    responses = Responses()
+    client = OpenAIResponsesClient(model="test", client=SimpleNamespace(responses=responses))
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-semantic-gap")
+    assert [call["text_format"] for call in responses.calls] == [LiveAnalysis, LiveAnalysis, LiveVerification, LiveAdversaryReview, LiveChairRecommendation]
+    repair = responses.calls[1]
+    assert "reviewer_conclusions.0: Value error, requested evidence requires an explicit evidence_gap" in repair["instructions"]
+    context = json.loads(repair["input"])
+    assert context["allowed_evidence_ids"]
+    assert "Do not invent citations" in repair["instructions"]
+    assert not run.state_changed
+    assert run.chair_determination == "evidence_gap"
+    assert (root / "state/signal-state.json").read_bytes() == before
+    accepted = LiveAnalysis.model_validate_json((root / "runs/run-semantic-gap/05-analysis.json").read_text())
+    assert accepted.reviewer_conclusions[0].evidence_gap
+    assert all(set(item.evidence_ids).issubset(context["allowed_evidence_ids"]) for item in accepted.reviewer_conclusions)
+    public = (root / "public/signal-state.json").read_text()
+    assert "validation_errors" not in public
+    assert "malformed_analysis" not in public
+
+
+@pytest.mark.parametrize("failure", ["semantic", "network", "unknown_evidence"])
+def test_failed_initial_analysis_parse_repair_is_bounded_and_safe(tmp_path, failure):
+    root = _prepare_root(tmp_path)
+    paths = [root / "state/signal-state.json", root / "public/signal-state.json"]
+    before = [path.read_bytes() for path in paths]
+
+    class Broken(AnalysisRetryClient):
+        def generate(self, *, instructions, input_text, output_type):
+            self.calls.append(output_type)
+            raise _missing_gap_error()
+
+        def repair(self, *, instructions, input_text, output_type):
+            self.calls.append(output_type)
+            if failure == "semantic":
+                raise _missing_gap_error()
+            if failure == "network":
+                raise RuntimeError("API unavailable")
+            result = self.repaired.model_copy(deep=True)
+            result.reviewer_conclusions[0].evidence_ids = ["invented-evidence"]
+            return result
+
+    outputs = _outputs()
+    client = Broken(outputs[LiveAnalysis], outputs[LiveAnalysis], outputs)
+    with pytest.raises((ValidationError, RuntimeError, ValueError)):
+        LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-broken-semantic")
+    assert client.calls == [LiveAnalysis, LiveAnalysis]
+    assert [path.read_bytes() for path in paths] == before
+    assert (root / "runs/run-broken-semantic/99-run-failed.json").exists()
+    assert not (root / "runs/run-broken-semantic/05-analysis.json").exists()
 
 
 def _outputs(*, material_change: bool = False) -> dict[type[BaseModel], BaseModel]:

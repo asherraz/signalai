@@ -19,7 +19,7 @@ from signalai.agents.live_prompts import (
     LIVE_VERIFIER_INSTRUCTIONS,
     LIVE_UNSUPPORTED_ANALYSIS_REPAIR_INSTRUCTIONS,
 )
-from signalai.client import ModelClient, StructuredOutputError
+from signalai.client import MalformedStructuredOutputError, ModelClient, StructuredOutputError
 from signalai.daily import DailyRunOrchestrator
 from signalai.determination import derive_chair_determination, evidence_gap_determination
 from signalai.live_selector import select_current_matter, select_reviewers
@@ -171,15 +171,50 @@ class LiveRunOrchestrator:
                 "reviewers": reviewers[:-3],
                 "allowed_evidence_ids": allowed_evidence_ids,
             })
-            analysis = self.client.generate(
-                instructions=LIVE_ANALYSIS_INSTRUCTIONS,
-                input_text=analysis_input,
-                output_type=LiveAnalysis,
-            )
             analysis_repair_attempted = False
+            try:
+                analysis = self.client.generate(
+                    instructions=LIVE_ANALYSIS_INSTRUCTIONS,
+                    input_text=analysis_input,
+                    output_type=LiveAnalysis,
+                )
+            except (MalformedStructuredOutputError, ValidationError) as parse_error:
+                analysis_repair_attempted = True
+                conflicts = _semantic_conflicts(parse_error)
+                malformed_output = getattr(parse_error, "invalid_output", None)
+                # SDK parsing can fail before a complete object is available. Do not
+                # reconstruct it from exception inputs or copy raw API responses.
+                artifacts.append(str(store.write_json("05-private-analysis-parse-error.json", {
+                    "stage": "LiveAnalysis", "validation_errors": conflicts,
+                    "malformed_output_available": malformed_output is not None,
+                })))
+                repair = getattr(self.client, "repair", self.client.generate)
+                analysis = repair(
+                    instructions=(
+                        "Your previous LiveAnalysis failed validation. Correct only the validation "
+                        "inconsistency, not the scientific matter. A reviewer requesting evidence "
+                        "absent from canonical state must explicitly identify an evidence_gap. "
+                        "Missing evidence is not supported evidence; unsupported=false cannot bypass "
+                        "a gap. Do not invent citations, change the matter, or strengthen conclusions. "
+                        "Use only the allowed evidence IDs. Return a complete valid LiveAnalysis object. "
+                        + "Exact validation errors: " + _json(conflicts)
+                    ),
+                    input_text=_json({
+                        "original_context": json.loads(analysis_input),
+                        "validation_errors": conflicts,
+                        "malformed_analysis": malformed_output,
+                        "allowed_evidence_ids": allowed_evidence_ids,
+                    }),
+                    output_type=LiveAnalysis,
+                )
+                artifacts.append(str(store.write_json("05-private-analysis-parse-repair.json", {
+                    "stage": "LiveAnalysis", "status": "parsed", "repair_attempts": 1,
+                })))
             try:
                 self._validate_analysis(analysis, selected, reviewers, allowed_evidence_ids)
             except UnknownEvidenceReferences as first_error:
+                if analysis_repair_attempted:
+                    raise
                 analysis_repair_attempted = True
                 initial_analysis = analysis
                 artifacts.append(str(store.write_json("05-private-invalid-analysis.json", analysis)))

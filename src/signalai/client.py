@@ -17,9 +17,10 @@ OutputT = TypeVar("OutputT", bound=BaseModel)
 class StructuredOutputError(RuntimeError):
     """Safe base error for an unusable typed model response."""
 
-    def __init__(self, message: str, *, conflicts: list[str] | None = None) -> None:
+    def __init__(self, message: str, *, conflicts: list[str] | None = None, invalid_output: dict[str, Any] | None = None) -> None:
         super().__init__(message)
         self.conflicts = conflicts or []
+        self.invalid_output = invalid_output
 
 
 class IncompleteResponseError(StructuredOutputError):
@@ -216,9 +217,17 @@ class OpenAIResponsesClient:
         try:
             return cast(OutputT, output_type.model_validate(parsed))
         except ValidationError as exc:
+            # Capture only bounded schema fields, never the surrounding API response.
+            snapshot = (
+                {key: value for key, value in parsed.items() if key in output_type.model_fields}
+                if isinstance(parsed, dict) else None
+            )
+            if snapshot is not None and len(json.dumps(snapshot, default=str)) > 16000:
+                snapshot = None
             raise MalformedStructuredOutputError(
                 f"{output_type.__name__} failed schema validation",
                 conflicts=_validation_conflicts(exc),
+                invalid_output=snapshot,
             ) from exc
 
     def _record_failed_attempt(
