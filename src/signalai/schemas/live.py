@@ -226,6 +226,7 @@ class LiveChairRecommendation(SignalModel):
 
 class DeterminationKind(StrEnum):
     NO_MATERIAL_CHANGE = "no_material_change"
+    EVIDENCE_GAP = "evidence_gap"
     STATE_UPDATE = "state_update"
     DECISION_UPDATE = "decision_update"
     HUMAN_DECISION_REQUIRED = "human_decision_required"
@@ -290,8 +291,28 @@ class MaterialChangeDetermination(SignalModel):
         return self
 
 
+class EvidenceGapDetermination(SignalModel):
+    """Expected review outcome: no scientific, decision, or operational mutation."""
+
+    determination: Literal[DeterminationKind.EVIDENCE_GAP] = DeterminationKind.EVIDENCE_GAP
+    change_scope: Literal[ChangeScope.NONE] = ChangeScope.NONE
+    scientific_state_changed: Literal[False] = False
+    operational_state_changed: Literal[False] = False
+    synthesis: DailySynthesis
+
+    @model_validator(mode="after")
+    def reject_mutations(self):
+        if self.synthesis.material_change or (
+            self.synthesis.claim_updates or self.synthesis.hypothesis_update
+            or self.synthesis.risk_updates or self.synthesis.evidence_confidence_update
+            or self.synthesis.program_status_update or self.synthesis.decision_proposal
+        ):
+            raise ValueError("evidence_gap cannot contain state mutations")
+        return self
+
+
 DeterminationResult = Annotated[
-    NoMaterialChangeDetermination | MaterialChangeDetermination,
+    NoMaterialChangeDetermination | MaterialChangeDetermination | EvidenceGapDetermination,
     Field(discriminator="determination"),
 ]
 
@@ -329,6 +350,7 @@ class LiveRun(SignalModel):
     change_scope: ChangeScope = ChangeScope.NONE
     scientific_state_changed: bool = False
     operational_state_changed: bool = False
+    previous_state_preserved: bool | Literal["not_recorded"] = "not_recorded"
     what_changed: NonEmptyText
     next_action: NonEmptyText
     artifact_ids: list[Identifier] = Field(default_factory=list)
@@ -346,6 +368,11 @@ class LiveRun(SignalModel):
             raise ValueError("live runs require independent verifier, adversary, and chair roles")
         if len(self.reviewers_convened) != len(set(self.reviewers_convened)):
             raise ValueError("reviewers convened must be unique")
+        if self.chair_determination == "evidence_gap" and (
+            self.state_changed or self.scientific_state_changed or self.operational_state_changed
+            or self.change_scope is not ChangeScope.NONE or self.previous_state_preserved is not True
+        ):
+            raise ValueError("evidence_gap run must preserve all prior state")
         return self
 
 

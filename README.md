@@ -102,6 +102,19 @@ suppresses timestamp-only commits.
 
 ## SignalRB — Signal Review Board
 
+Unsupported analysis is an expected review outcome, not an infrastructure error.
+The live runner allows at most one shared analysis-only repair (including citation
+repair), before independent verification. Valid but still insufficient evidence
+produces a typed `evidence_gap` determination: all proposed scientific, decision,
+and operational changes are rejected, prior program JSON is preserved byte-for-byte,
+and the unresolved matter stays open. The completed run publishes a concise gap
+explanation and evidence/citation next action. Exact unsupported conclusions and
+rejected proposals are retained only in private run artifacts. Public reviewer
+entries are explicitly marked unsupported rather than presented as accepted facts.
+SignalRB records `previous_state_preserved: true` for this outcome. API/network
+errors, malformed structured output after repair, invalid references, and corrupted
+canonical state still abort without publication and cause a non-zero daily exit.
+
 `flagshipProgram` is a deterministic, typed public view of SGL-001 as the
 flagship program of Signal Intelligence. It derives its thesis, blockers, six
 development gates, linked determination, and chronological history from canonical

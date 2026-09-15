@@ -30,6 +30,7 @@ class SignalReviewBoardDetermination(SignalModel):
     conditions: list[NonEmptyText] = Field(default_factory=list)
     evidence_ids: list[Identifier] = Field(default_factory=list)
     state_change: bool | Literal["not_recorded"]
+    previous_state_preserved: bool | Literal["not_recorded"] = "not_recorded"
     human_decision_required: bool
     next_action: NonEmptyText
     created_at: datetime
@@ -37,8 +38,12 @@ class SignalReviewBoardDetermination(SignalModel):
     @model_validator(mode="after")
     def validate_review(self):
         object.__setattr__(self, "created_at", _require_timezone(self.created_at, "created_at"))
-        if self.determination_type == "no_material_change" and self.state_change is True:
+        if self.determination_type in {"no_material_change", "evidence_gap"} and self.state_change is True:
             raise ValueError("no_material_change cannot contain a scientific state change")
+        if self.determination_type == "evidence_gap" and (
+            self.previous_state_preserved is not True or self.verification_status != "unsupported_assertions"
+        ):
+            raise ValueError("evidence_gap review must record unsupported assertions and preserved state")
         if self.determination_type == "human_decision_required" and not self.human_decision_required:
             raise ValueError("human determination must preserve the approval gate")
         if self.state_change is True and not self.evidence_ids:

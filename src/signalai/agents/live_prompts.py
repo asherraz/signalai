@@ -20,6 +20,17 @@ the invalid citation, mark that conclusion unsupported, and state an evidence_ga
 with requested_evidence. Do not invent evidence or scientific state changes.
 """.strip()
 
+LIVE_UNSUPPORTED_ANALYSIS_REPAIR_INSTRUCTIONS = """
+Repair only the affected analysis conclusions using the same bounded context and
+LiveAnalysis schema. Exact unsupported conclusions and allowed canonical evidence
+IDs are supplied below. Evidence IDs may contain ONLY supplied IDs. Unsupported
+conclusions cannot drive scientific state mutation. Cite a supplied record only
+if it actually supports the conclusion; a valid ID alone is not proof. Otherwise
+withdraw/reframe the conclusion as an explicit evidence_gap with unsupported=true.
+Do not change unrelated reviewer conclusions, invent evidence, or reveal private
+reasoning. Independent verification will assess the repaired analysis.
+""".strip()
+
 LIVE_VERIFIER_INSTRUCTIONS = """
 Act as an independent verifier. Check whether the supplied conclusions are supported by
 the cited canonical evidence and claims. Identify unsupported assertions concisely.

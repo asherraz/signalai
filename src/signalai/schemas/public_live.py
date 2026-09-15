@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import StrEnum
+from typing import Literal
 
 from pydantic import Field, model_validator
 
@@ -75,6 +76,8 @@ class PublicReviewerConclusion(SignalModel):
     evidence_ids: list[Identifier] = Field(default_factory=list, alias="evidenceIds")
     claim_ids: list[Identifier] = Field(default_factory=list, alias="claimIds")
     limitations: list[NonEmptyText] = Field(default_factory=list)
+    unsupported: bool = False
+    evidence_gap: str | None = Field(default=None, alias="evidenceGap")
 
 
 class PublicLiveRun(SignalModel):
@@ -94,6 +97,7 @@ class PublicLiveRun(SignalModel):
     change_scope: ChangeScope = Field(default=ChangeScope.NONE, alias="changeScope")
     scientific_state_changed: bool = Field(default=False, alias="scientificStateChanged")
     operational_state_changed: bool = Field(default=False, alias="operationalStateChanged")
+    previous_state_preserved: bool | Literal["not_recorded"] = Field(default="not_recorded", alias="previousStatePreserved")
     what_changed: NonEmptyText = Field(alias="whatChanged")
     next_action: NonEmptyText = Field(alias="nextAction")
     linked_artifact_ids: list[Identifier] = Field(default_factory=list, alias="linkedArtifactIds")
@@ -117,10 +121,13 @@ class PublicLiveRun(SignalModel):
             reviewerConclusions=[
                 PublicReviewerConclusion(
                     reviewerRole=item.reviewer_role,
-                    conclusion=item.conclusion,
+                    conclusion=("This conclusion was not accepted as sufficiently evidence-supported."
+                                if item.unsupported or item.evidence_gap else item.conclusion),
                     evidenceIds=item.evidence_ids,
                     claimIds=item.claim_ids,
-                    limitations=item.limitations,
+                    limitations=["Supporting canonical evidence is insufficient."] if item.unsupported or item.evidence_gap else item.limitations,
+                    unsupported=item.unsupported or bool(item.evidence_gap),
+                    evidenceGap="Supporting canonical evidence is insufficient." if item.unsupported or item.evidence_gap else None,
                 )
                 for item in run.reviewer_conclusions
             ],
@@ -132,6 +139,7 @@ class PublicLiveRun(SignalModel):
             changeScope=run.change_scope,
             scientificStateChanged=run.scientific_state_changed,
             operationalStateChanged=run.operational_state_changed,
+            previousStatePreserved=run.previous_state_preserved,
             whatChanged=run.what_changed,
             nextAction=run.next_action,
             linkedArtifactIds=[item for item in run.artifact_ids if "private-" not in item],

@@ -50,6 +50,7 @@ class IntelligenceFeedType(StrEnum):
     NETWORK_UPDATE = "network_update"
     RISK_UPDATE = "risk_update"
     NO_MATERIAL_CHANGE = "no_material_change"
+    EVIDENCE_GAP = "evidence_gap"
 
 
 class IntelligenceImportance(StrEnum):

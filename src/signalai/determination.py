@@ -11,8 +11,33 @@ from signalai.schemas.live import (
     LiveChairRecommendation,
     MaterialChangeDetermination,
     NoMaterialChangeDetermination,
+    EvidenceGapDetermination,
 )
 from signalai.schemas.models import SignalState
+
+
+def evidence_gap_determination(matter_id: str) -> LiveChairDetermination:
+    """Reject proposals without altering the prior scientific or operational state."""
+    explanation = (
+        "The proposed state change was not sufficiently evidence-supported. "
+        "No scientific, program, or decision state was changed."
+    )
+    next_action = (
+        "Identify and cite supporting canonical evidence, or request evidence acquisition; "
+        "withdraw unsupported conclusions and revisit this matter before proposing a state change."
+    )
+    recommendation = LiveChairRecommendation(
+        matter_id=matter_id, findings=[explanation], evidence_assessment=explanation,
+        objections=["Unsupported or unverified conclusions cannot justify state mutation."],
+        recommendation=explanation,
+    )
+    return LiveChairDetermination(
+        matter_id=matter_id, recommendation=recommendation,
+        result=EvidenceGapDetermination(synthesis=DailySynthesis(
+            agenda_item_id=matter_id, material_change=False, rationale=explanation,
+            next_action=next_action, agenda_status=AgendaStatus.DEFERRED, what_changed=explanation,
+        )),
+    )
 
 
 def derive_chair_determination(

@@ -30,7 +30,9 @@ def export_signalrb(root: Path, state: SignalState, history: LiveRunHistory | No
         if set(evidence) - allowed:
             raise ValueError("SignalRB references unknown canonical evidence")
         kind = "no_material_change"
-        if run.chair_determination == "human_decision_required":
+        if run.chair_determination == "evidence_gap":
+            kind = "evidence_gap"
+        elif run.chair_determination == "human_decision_required":
             kind = "human_decision_required"
         elif run.chair_determination in {"state_update", "decision_update"}:
             kind = "state_updated"
@@ -39,12 +41,14 @@ def export_signalrb(root: Path, state: SignalState, history: LiveRunHistory | No
             matter_id=run.selected_matter.matter_id, matter_title=run.selected_matter.title,
             matter_question=run.selected_matter.question, domain=run.selected_matter.domain.value,
             reviewers=[r.value for r in run.reviewers_convened],
-            strongest_case_for=analysis.strongest_support_summary,
+            strongest_case_for=("No proposed scientific-state update was accepted as sufficiently evidence-supported."
+                                if kind == "evidence_gap" else analysis.strongest_support_summary),
             strongest_case_against=adversary.strongest_objection,
-            verification_status="unsupported_assertions" if verifier.unsupported_assertions else "verified",
+            verification_status="unsupported_assertions" if kind == "evidence_gap" or verifier.unsupported_assertions or any(c.unsupported or c.evidence_gap for c in analysis.reviewer_conclusions) else "verified",
             determination=chair.recommendation if chair else run.what_changed, determination_type=kind,
             conditions=adversary.falsification_conditions, evidence_ids=evidence,
             state_change=run.scientific_state_changed,
+            previous_state_preserved=run.previous_state_preserved,
             human_decision_required=kind == "human_decision_required", next_action=run.next_action,
             created_at=run.completed_at,
         )

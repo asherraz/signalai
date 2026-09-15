@@ -1,5 +1,7 @@
 import json
 import shutil
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import TypeVar, cast
@@ -177,6 +179,7 @@ class AnalysisRetryClient(ScriptedClient):
         self.repaired = repaired
         self.fail = fail
         self.repair_instructions = ""
+        self.repair_input = None
         self.inputs = []
 
     def generate(self, *, instructions, input_text, output_type):
@@ -189,6 +192,7 @@ class AnalysisRetryClient(ScriptedClient):
     def repair(self, *, instructions, input_text, output_type):
         assert output_type is LiveAnalysis
         self.repair_instructions = instructions
+        self.repair_input = json.loads(input_text)
         self.calls.append(output_type)
         if self.fail:
             raise RuntimeError("analysis repair failed")
@@ -434,7 +438,7 @@ def test_evidence_gap_is_accepted_without_invented_reference(tmp_path: Path):
     outputs[LiveAnalysis] = gap
     run = LiveRunOrchestrator(client=ScriptedClient(outputs), root=root, now_factory=lambda: NOW).run(run_id="run-gap")
     assert not run.state_changed
-    assert run.chair_determination == "no_material_change"
+    assert run.chair_determination == "evidence_gap"
 
 
 def test_repair_must_mark_conclusion_unsupported_if_only_citation_was_invalid(tmp_path: Path):
@@ -509,8 +513,201 @@ def test_unsupported_analysis_cannot_drive_scientific_mutation(tmp_path: Path):
     chair.proposed_changes.evidence_confidence_update = "high"
     outputs[LiveChairRecommendation] = chair
     state_before = (root / "state" / "signal-state.json").read_bytes()
-    public_before = (root / "public" / "signal-state.json").read_bytes()
-    with pytest.raises(ValueError, match="unsupported analysis conclusions cannot drive scientific state mutation"):
-        LiveRunOrchestrator(client=ScriptedClient(outputs), root=root, now_factory=lambda: NOW).run(run_id="run-unsupported")
+    run = LiveRunOrchestrator(client=ScriptedClient(outputs), root=root, now_factory=lambda: NOW).run(run_id="run-unsupported")
     assert (root / "state" / "signal-state.json").read_bytes() == state_before
-    assert (root / "public" / "signal-state.json").read_bytes() == public_before
+    assert run.chair_determination == "evidence_gap"
+    assert not run.state_changed and run.previous_state_preserved
+    public = json.loads((root / "public" / "signal-state.json").read_text())
+    review = public["signalRB"]["latestReview"]
+    assert review["determination_type"] == "evidence_gap"
+    assert review["state_change"] is False
+    assert review["previous_state_preserved"] is True
+    assert review["verification_status"] == "unsupported_assertions"
+    assert "not sufficiently evidence-supported" in review["determination"]
+    assert (root / "runs" / run.run_id / "99-run-complete.json").exists()
+    assert not (root / "runs" / run.run_id / "99-run-failed.json").exists()
+
+
+def _unsupported_outputs():
+    outputs = _outputs()
+    analysis = outputs[LiveAnalysis].model_copy(deep=True)
+    analysis.reviewer_conclusions[0].unsupported = True
+    analysis.reviewer_conclusions[0].evidence_gap = "Required supporting record is absent."
+    analysis.reviewer_conclusions[0].conclusion = "PRIVATE_UNSUPPORTED_DIAGNOSTIC: unsupported scientific proposal."
+    outputs[LiveAnalysis] = analysis
+    outputs[LiveChairRecommendation].proposed_changes.evidence_confidence_update = "high"
+    return outputs
+
+
+def test_one_analysis_repair_receives_exact_conclusions_and_degrades_safely(tmp_path):
+    root = _prepare_root(tmp_path)
+    outputs = _unsupported_outputs()
+    initial = outputs[LiveAnalysis]
+    client = AnalysisRetryClient(initial, initial, outputs)
+    before = (root / "state/signal-state.json").read_bytes()
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-gap-repair")
+    assert client.calls == [LiveAnalysis, LiveAnalysis, LiveVerification, LiveAdversaryReview, LiveChairRecommendation]
+    assert "Unsupported".lower() in client.repair_instructions.lower()
+    assert client.repair_input["unsupported_conclusions"][0]["conclusion"] == initial.reviewer_conclusions[0].conclusion
+    assert client.repair_input["allowed_evidence_ids"] == client.inputs[0]["allowed_evidence_ids"]
+    # Capture the repair payload as well as its constraints.
+    private = json.loads((root / "runs" / run.run_id / "05-private-unsupported-analysis.json").read_text())
+    assert private["unsupported_conclusions"][0]["conclusion"] == initial.reviewer_conclusions[0].conclusion
+    assert (root / "state/signal-state.json").read_bytes() == before
+    assert run.chair_determination == "evidence_gap"
+    rejected = json.loads((root / "runs" / run.run_id / "08-private-rejected-proposal.json").read_text())
+    assert rejected["rejected_recommendation"]["proposed_changes"]["evidence_confidence_update"] == "high"
+    public_text = (root / "public/signal-state.json").read_text()
+    assert "PRIVATE_UNSUPPORTED_DIAGNOSTIC" not in public_text
+    assert "private-unsupported" not in public_text and "private-rejected" not in public_text
+    public = json.loads(public_text)
+    assert public["intelligenceFeed"][0]["type"] == "evidence_gap"
+    assert "state updated" not in public["intelligenceFeed"][0]["title"]
+    assert public["liveIntelligence"]["latestRun"]["reviewerConclusions"][0]["unsupported"] is True
+    docket = DevelopmentDocket.model_validate_json((root / "state/development-docket.json").read_text())
+    assert next(m for m in docket.matters if m.matter_id == run.selected_matter.matter_id).status is MatterStatus.OPEN
+
+
+def test_supported_repair_is_independently_verified_before_mutation(tmp_path):
+    root = _prepare_root(tmp_path)
+    outputs = _unsupported_outputs()
+    repaired = _outputs()[LiveAnalysis]
+    outputs[LiveVerification].supports_state_change = True
+    client = AnalysisRetryClient(outputs[LiveAnalysis], repaired, outputs)
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-supported-repair")
+    assert run.scientific_state_changed
+    assert client.inputs[1]["analysis"] == repaired.model_dump(mode="json")
+    assert client.calls.count(LiveVerification) == client.calls.count(LiveAdversaryReview) == 1
+    assert not run.previous_state_preserved
+
+
+def test_repair_without_support_cannot_clear_unsupported_status(tmp_path):
+    root = _prepare_root(tmp_path)
+    outputs = _unsupported_outputs()
+    repaired = _outputs()[LiveAnalysis]
+    repaired.reviewer_conclusions[0].evidence_ids = []
+    outputs[LiveVerification].supports_state_change = True
+    client = AnalysisRetryClient(outputs[LiveAnalysis], repaired, outputs)
+    before = (root / "state/signal-state.json").read_bytes()
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-unsupported-label-cleared")
+    assert run.chair_determination == "evidence_gap"
+    assert run.reviewer_conclusions[0].unsupported
+    assert (root / "state/signal-state.json").read_bytes() == before
+
+
+def test_analysis_repair_reuses_unaffected_conclusions(tmp_path):
+    root = _prepare_root(tmp_path)
+    outputs = _unsupported_outputs()
+    repaired = outputs[LiveAnalysis].model_copy(deep=True)
+    repaired.reviewer_conclusions[1].conclusion = "This out-of-scope revision must not be accepted."
+    client = AnalysisRetryClient(outputs[LiveAnalysis], repaired, outputs)
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-bounded-reviewers")
+    assert run.reviewer_conclusions[1] == outputs[LiveAnalysis].reviewer_conclusions[1]
+    assert run.chair_determination == "evidence_gap"
+
+
+def test_unknown_reference_repair_shares_the_single_analysis_budget(tmp_path):
+    root = _prepare_root(tmp_path)
+    outputs = _unsupported_outputs()
+    initial = outputs[LiveAnalysis].model_copy(deep=True)
+    initial.reviewer_conclusions[0].evidence_ids.append("invented-id")
+    client = AnalysisRetryClient(initial, outputs[LiveAnalysis], outputs)
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-shared-repair")
+    assert client.calls.count(LiveAnalysis) == 2
+    assert run.chair_determination == "evidence_gap"
+    assert "invented-id" not in (root / "public/signal-state.json").read_text()
+
+
+def test_unverified_scientific_update_is_an_expected_evidence_gap(tmp_path):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    outputs[LiveChairRecommendation].proposed_changes.evidence_confidence_update = "high"
+    client = ScriptedClient(outputs)
+    before = (root / "state/signal-state.json").read_bytes()
+    run = LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-unverified-gap")
+    assert run.chair_determination == "evidence_gap"
+    assert client.calls.count(LiveAnalysis) == 1
+    assert (root / "state/signal-state.json").read_bytes() == before
+
+
+def test_verifier_objection_cannot_be_overridden_by_boolean_support(tmp_path):
+    root = _prepare_root(tmp_path)
+    outputs = _outputs()
+    outputs[LiveVerification].supports_state_change = True
+    outputs[LiveVerification].unsupported_assertions = ["The proposed confidence increase is not supported."]
+    outputs[LiveChairRecommendation].proposed_changes.evidence_confidence_update = "high"
+    before = (root / "state/signal-state.json").read_bytes()
+    run = LiveRunOrchestrator(client=ScriptedClient(outputs), root=root, now_factory=lambda: NOW).run(run_id="run-conflicting-verifier")
+    assert run.chair_determination == "evidence_gap"
+    assert (root / "state/signal-state.json").read_bytes() == before
+
+
+def test_evidence_gap_rejects_decision_and_operational_changes_too(tmp_path):
+    root = _prepare_root(tmp_path)
+    state = SignalState.model_validate_json((root / "state/signal-state.json").read_text())
+    outputs = _unsupported_outputs()
+    outputs[LiveChairRecommendation].proposed_changes.next_action = "A proposed different operational next step."
+    outputs[LiveChairRecommendation].proposed_changes.decision_update = state.decision.model_copy(update={"question": "Proposed revision to the pending decision"})
+    before = (root / "state/signal-state.json").read_bytes()
+    run = LiveRunOrchestrator(client=ScriptedClient(outputs), root=root, now_factory=lambda: NOW).run(run_id="run-all-mutations-rejected")
+    assert run.chair_determination == "evidence_gap"
+    assert (root / "state/signal-state.json").read_bytes() == before
+    public = json.loads((root / "public/signal-state.json").read_text())
+    assert public["signalRB"]["pendingHumanDecisions"][0]["question"] == state.decision.question
+
+
+@pytest.mark.parametrize("failure", [RuntimeError("network unavailable"), MalformedStructuredOutputError("invalid structured analysis")])
+def test_infrastructure_or_schema_error_during_repair_still_aborts(tmp_path, failure):
+    root = _prepare_root(tmp_path)
+    outputs = _unsupported_outputs()
+    class BrokenRepair(AnalysisRetryClient):
+        def repair(self, **kwargs):
+            raise failure
+    client = BrokenRepair(outputs[LiveAnalysis], outputs[LiveAnalysis], outputs)
+    state_before = (root / "state/signal-state.json").read_bytes()
+    public_before = (root / "public/signal-state.json").read_bytes()
+    with pytest.raises(type(failure)):
+        LiveRunOrchestrator(client=client, root=root, now_factory=lambda: NOW).run(run_id="run-actual-failure")
+    assert (root / "state/signal-state.json").read_bytes() == state_before
+    assert (root / "public/signal-state.json").read_bytes() == public_before
+    assert (root / "runs/run-actual-failure/99-run-failed.json").exists()
+
+
+def test_gap_publication_preserves_clinic_intelligence(tmp_path):
+    root = _prepare_root(tmp_path)
+    (root / "data/clinics").mkdir(parents=True)
+    shutil.copy2(ROOT / "data/clinics/clinics.json", root / "data/clinics/clinics.json")
+    before = json.loads((root / "public/signal-state.json").read_text())["clinicIntelligence"]
+    run = LiveRunOrchestrator(client=ScriptedClient(_unsupported_outputs()), root=root, now_factory=lambda: NOW).run(run_id="run-gap-clinics")
+    after = json.loads((root / "public/signal-state.json").read_text())["clinicIntelligence"]
+    assert run.chair_determination == "evidence_gap"
+    assert before == after
+
+
+@pytest.mark.parametrize("mode,expected_code", [("unsupported", 0), ("network", 1), ("schema", 1), ("corrupt_state", 1)])
+def test_daily_cli_exit_classification(tmp_path, mode, expected_code):
+    root = _prepare_root(tmp_path)
+    if mode == "corrupt_state":
+        (root / "state/signal-state.json").write_text("{not-valid-json")
+    script = f"""
+import runpy, sys
+from unittest.mock import patch
+sys.path.insert(0, {str(ROOT / 'tests')!r})
+import test_live_intelligence as t
+mode = {mode!r}
+class InvalidSchema:
+    def generate(self, **kwargs):
+        raise t.MalformedStructuredOutputError('invalid schema after repair')
+client = t.FailingClient() if mode == 'network' else InvalidSchema() if mode == 'schema' else t.ScriptedClient(t._unsupported_outputs())
+sys.argv = ['signalai', 'daily']
+with patch('signalai.cli.OpenAIResponsesClient.from_env', return_value=client):
+    runpy.run_module('signalai', run_name='__main__')
+"""
+    result = subprocess.run([sys.executable, "-c", script], cwd=root, capture_output=True, text=True)
+    assert result.returncode == expected_code, result.stderr
+    if expected_code == 0:
+        assert "Completed live run" in result.stdout
+        public = json.loads((root / "public/signal-state.json").read_text())
+        assert public["signalRB"]["latestReview"]["determination_type"] == "evidence_gap"
+    else:
+        assert "Traceback" in result.stderr

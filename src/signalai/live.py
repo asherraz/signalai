@@ -17,10 +17,11 @@ from signalai.agents.live_prompts import (
     LIVE_CHAIR_INSTRUCTIONS,
     LIVE_CHAIR_REPAIR_INSTRUCTIONS,
     LIVE_VERIFIER_INSTRUCTIONS,
+    LIVE_UNSUPPORTED_ANALYSIS_REPAIR_INSTRUCTIONS,
 )
 from signalai.client import ModelClient, StructuredOutputError
 from signalai.daily import DailyRunOrchestrator
-from signalai.determination import derive_chair_determination
+from signalai.determination import derive_chair_determination, evidence_gap_determination
 from signalai.live_selector import select_current_matter, select_reviewers
 from signalai.publisher import build_current_public_state
 from signalai.schemas import AgentRun, RunStatus, SignalState
@@ -175,9 +176,11 @@ class LiveRunOrchestrator:
                 input_text=analysis_input,
                 output_type=LiveAnalysis,
             )
+            analysis_repair_attempted = False
             try:
                 self._validate_analysis(analysis, selected, reviewers, allowed_evidence_ids)
             except UnknownEvidenceReferences as first_error:
+                analysis_repair_attempted = True
                 initial_analysis = analysis
                 artifacts.append(str(store.write_json("05-private-invalid-analysis.json", analysis)))
                 repair = getattr(self.client, "repair", None)
@@ -217,6 +220,49 @@ class LiveRunOrchestrator:
                     "invalid_evidence_ids": first_error.invalid_ids,
                     "allowed_evidence_ids": allowed_evidence_ids,
                 })))
+            unsupported = self._unsupported_conclusions(analysis)
+            if unsupported:
+                artifacts.append(str(store.write_json("05-private-unsupported-analysis.json", {
+                    "unsupported_conclusions": unsupported,
+                    "analysis": analysis,
+                })))
+                if not analysis_repair_attempted:
+                    analysis_repair_attempted = True
+                    original_analysis = analysis
+                    repair = getattr(self.client, "repair", self.client.generate)
+                    analysis = repair(
+                        instructions=LIVE_UNSUPPORTED_ANALYSIS_REPAIR_INSTRUCTIONS,
+                        input_text=_json({
+                            "original_context": json.loads(analysis_input),
+                            "analysis": original_analysis,
+                            "unsupported_conclusions": unsupported,
+                            "allowed_evidence_ids": allowed_evidence_ids,
+                        }),
+                        output_type=LiveAnalysis,
+                    )
+                    self._validate_analysis(analysis, selected, reviewers, allowed_evidence_ids)
+                    affected = {item.reviewer_role for item in original_analysis.reviewer_conclusions if item.unsupported or item.evidence_gap}
+                    original_by_role = {item.reviewer_role: item for item in original_analysis.reviewer_conclusions}
+                    repair_output = analysis
+                    ignored_roles = [item.reviewer_role for item in analysis.reviewer_conclusions if item.reviewer_role not in affected and item != original_by_role[item.reviewer_role]]
+                    bounded_conclusions = []
+                    for item in analysis.reviewer_conclusions:
+                        if item.reviewer_role not in affected:
+                            item = original_by_role[item.reviewer_role]
+                        elif not item.evidence_ids and not (item.unsupported or item.evidence_gap):
+                            # Removing a gap label is not proof: retain explicit unsupported status.
+                            item = item.model_copy(update={
+                                "unsupported": True,
+                                "evidence_gap": "The repaired conclusion has no supporting canonical evidence citation.",
+                            })
+                        bounded_conclusions.append(item)
+                    analysis = analysis.model_copy(update={"reviewer_conclusions": bounded_conclusions})
+                    artifacts.append(str(store.write_json("05-private-unsupported-repair.json", {
+                        "attempts": 1,
+                        "status": "evidence_gap" if self._unsupported_conclusions(analysis) else "pending_independent_verification",
+                        "ignored_unaffected_reviewer_revisions": ignored_roles,
+                        "repair_output": repair_output,
+                    })))
             artifacts.append(str(store.write_json("05-analysis.json", analysis)))
             verification = self.client.generate(
                 instructions=LIVE_VERIFIER_INSTRUCTIONS,
@@ -276,15 +322,22 @@ class LiveRunOrchestrator:
             self._validate_evidence_refs(recommendation.supporting_evidence_ids, allowed_evidence_ids)
             chair = derive_chair_determination(recommendation, state)
             synthesis = chair.result.synthesis
-            if chair.result.scientific_state_changed and any(
-                item.unsupported or item.evidence_gap for item in analysis.reviewer_conclusions
-            ):
-                raise ValueError("unsupported analysis conclusions cannot drive scientific state mutation")
-            if chair.result.scientific_state_changed and not verification.supports_state_change:
-                raise ValueError("unverified analysis cannot drive scientific state mutation")
             DailyRunOrchestrator._validate_synthesis(
                 synthesis, _matter_as_selected(selected), state
             )
+            unsupported = self._unsupported_conclusions(analysis)
+            if unsupported or verification.unsupported_assertions or (
+                chair.result.scientific_state_changed and not verification.supports_state_change
+            ):
+                artifacts.append(str(store.write_json("08-private-rejected-proposal.json", {
+                    "unsupported_conclusions": unsupported,
+                    "verification_objections": verification.unsupported_assertions,
+                    "verification_supports_state_change": verification.supports_state_change,
+                    "rejected_recommendation": recommendation,
+                    "outcome": "evidence_gap",
+                })))
+                chair = evidence_gap_determination(selected.matter_id)
+                synthesis = chair.result.synthesis
             artifacts.append(str(store.write_json("08-chair-determination.json", chair)))
             if chair_retried:
                 artifacts.append(
@@ -321,7 +374,11 @@ class LiveRunOrchestrator:
                 program_id=docket.program_id,
                 version=docket.version,
                 updated_at=completed_at,
-                matters=[completed_matter if item.matter_id == selected.matter_id else item for item in docket.matters],
+                matters=[
+                    item if chair.result.determination == "evidence_gap"
+                    else completed_matter if item.matter_id == selected.matter_id else item
+                    for item in docket.matters
+                ],
             )
             run = LiveRun(
                 run_id=active_id,
@@ -340,6 +397,7 @@ class LiveRunOrchestrator:
                 change_scope=chair.result.change_scope,
                 scientific_state_changed=chair.result.scientific_state_changed,
                 operational_state_changed=chair.result.operational_state_changed,
+                previous_state_preserved=updated_state == state,
                 what_changed=synthesis.what_changed,
                 next_action=synthesis.next_action or analysis.proposed_next_action,
                 artifact_ids=[
@@ -384,7 +442,8 @@ class LiveRunOrchestrator:
                 output_artifact_paths=artifacts[8:],
             )
             store.write_json("99-run-complete.json", completed)
-            publish_json(self.root / "state" / "signal-state.json", updated_state)
+            if updated_state != state:
+                publish_json(self.root / "state" / "signal-state.json", updated_state)
             publish_json(self.root / "state" / "development-docket.json", updated_docket)
             publish_json(history_path, updated_history)
             publish_json(self.root / "public" / "signal-state.json", public)
@@ -462,7 +521,17 @@ class LiveRunOrchestrator:
             for name in ("asset-development.json", "clinical-network.json"):
                 (staged / "state" / name).symlink_to(self.root / "state" / name)
             (staged / "runs").symlink_to(self.root / "runs")
+            if (self.root / "data").exists():
+                (staged / "data").symlink_to(self.root / "data")
             return build_current_public_state(staged, generated_at=self.now_factory())
+
+    @staticmethod
+    def _unsupported_conclusions(analysis: LiveAnalysis) -> list[dict[str, str]]:
+        return [
+            {"reviewer_role": item.reviewer_role.value, "conclusion": item.conclusion,
+             "evidence_gap": item.evidence_gap or "Supporting evidence is insufficient."}
+            for item in analysis.reviewer_conclusions if item.unsupported or item.evidence_gap
+        ]
 
     @staticmethod
     def _validate_docket(docket: DevelopmentDocket, state: SignalState) -> None:

@@ -31,15 +31,19 @@ def export_live_intelligence(
 
 
 def live_run_feed_item(run: LiveRun) -> PublicIntelligenceFeedItem:
-    scientific_or_decision_change = run.chair_determination != "no_material_change"
+    scientific_or_decision_change = run.chair_determination not in {"no_material_change", "evidence_gap"}
     kind = IntelligenceFeedType.NO_MATERIAL_CHANGE
     if scientific_or_decision_change:
         kind = IntelligenceFeedType.PROGRAM_STATE_CHANGE
+    if run.chair_determination == "evidence_gap":
+        kind = IntelligenceFeedType.EVIDENCE_GAP
     headline = (
         f"{run.selected_matter.title}: state updated"
         if scientific_or_decision_change
         else f"{run.selected_matter.title}: no material change"
     )
+    if run.chair_determination == "evidence_gap":
+        headline = f"{run.selected_matter.title}: evidence gap; prior state preserved"
     return PublicIntelligenceFeedItem(
         itemId=f"feed-live-{run.run_id}",
         type=kind,
