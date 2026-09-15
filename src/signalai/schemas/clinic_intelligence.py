@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import date, datetime
 from enum import StrEnum
 from typing import Literal
 
-from pydantic import Field, HttpUrl, model_validator
+from pydantic import AliasChoices, Field, HttpUrl, model_validator
 
 from signalai.schemas.models import Identifier, NonEmptyText, SignalModel, _require_timezone
 
@@ -23,6 +23,26 @@ class ClinicReviewStatus(StrEnum):
     UNDER_REVIEW = "under_review"
     REVIEWED = "reviewed"
     REJECTED = "rejected"
+
+
+class ClinicProfileState(StrEnum):
+    INDEXED = "indexed"
+    ENRICHED = "enriched"
+
+
+class ClinicSeed(SignalModel):
+    name_hint: str | None = None
+    url: HttpUrl = Field(validation_alias=AliasChoices("url", "website"))
+    city_hint: str | None = None
+    country_hint: str | None = None
+    discovery_source: NonEmptyText
+    enabled: bool = True
+    priority: int = Field(default=3, ge=1, le=5)
+    region: str | None = None
+    category_hint: str | None = None
+    source_url: HttpUrl | None = None
+    discovered_at: date | None = None
+    verification_status: str | None = None
 
 
 class ClinicTherapy(StrEnum):
@@ -60,10 +80,14 @@ class SourceField(SignalModel):
 
 class ClinicProfile(SignalModel):
     clinic_id: Identifier
+    profile_state: ClinicProfileState = ClinicProfileState.ENRICHED
+    discovery_sources: list[str] = Field(default_factory=list)
+    discovery_records: list[ClinicSeed] = Field(default_factory=list)
     name: str | None = None
     website: HttpUrl
     country: str | None = None
     city: str | None = None
+    region: str | None = None
     address: str | None = None
     physicians: list[str] = Field(default_factory=list)
     specialties: list[str] = Field(default_factory=list)
@@ -90,16 +114,23 @@ class ClinicProfile(SignalModel):
     def validate_provenance(self) -> ClinicProfile:
         object.__setattr__(self, "last_checked_at", _require_timezone(self.last_checked_at, "last_checked_at"))
         sourced = {(item.field, str(item.value)) for item in self.provenance}
-        exempt = {"clinic_id", "website", "source_urls", "provenance", "last_checked_at", "confidence", "review_status"}
+        exempt = {"clinic_id", "profile_state", "discovery_sources", "discovery_records", "website", "source_urls", "provenance", "last_checked_at", "confidence", "review_status"}
+        discovery_fields = {"name": "name_hint", "city": "city_hint", "country": "country_hint", "region": "region"}
         for field, value in self.model_dump(mode="python").items():
             if field in exempt or value is None or value == []:
                 continue
             values = value if isinstance(value, list) else [value]
             for element in values:
+                if field in discovery_fields and any(getattr(seed, discovery_fields[field]) == element for seed in self.discovery_records):
+                    continue  # Discovery metadata is not a verified treatment claim.
                 if (field, str(element)) not in sourced:
                     raise ValueError(f"{field} value lacks field-level public provenance")
         if any(str(item.source_url) not in {str(url) for url in self.source_urls} for item in self.provenance):
             raise ValueError("field provenance source must be in source_urls")
+        if self.profile_state is ClinicProfileState.INDEXED:
+            cell_therapies = set(ClinicTherapy) - {ClinicTherapy.PRP, ClinicTherapy.PEPTIDES, ClinicTherapy.OTHER_REGENERATIVE}
+            if not self.name or not (self.discovery_records or set(self.therapies_offered).intersection(cell_therapies)):
+                raise ValueError("indexed clinic requires a sourced canonical name and cell-therapy offering")
         return self
 
 

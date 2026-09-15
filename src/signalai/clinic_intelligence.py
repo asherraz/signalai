@@ -188,6 +188,11 @@ def clinic_id_for(url: str) -> str:
     return "clinic-web-" + hashlib.sha256(host.encode()).hexdigest()[:16]
 
 
+def clinic_domain(url: str) -> str:
+    host = urlparse(normalize_url(url)).hostname or ""
+    return host.removeprefix("www.").encode("idna").decode("ascii")
+
+
 def _level(points: int) -> ClinicFitLevel:
     if points >= 5:
         return ClinicFitLevel.HIGH
@@ -383,7 +388,9 @@ class ClinicIngestor:
         home = normalize_url(url)
         clinic_id = clinic_id_for(home)
         dataset = self._dataset()
-        existing = next((item for item in dataset.profiles if item.clinic_id == clinic_id), None)
+        existing = next((item for item in dataset.profiles if clinic_domain(str(item.website)) == clinic_domain(home)), None)
+        if existing:
+            clinic_id = existing.clinic_id
         cache_path = self.root / "data/clinics/cache" / f"{clinic_id}.json"
         cache = json.loads(cache_path.read_text()) if cache_path.exists() else None
         if existing and cache and not refresh and cache.get("extraction_version") == EXTRACTION_VERSION:
@@ -415,6 +422,16 @@ class ClinicIngestor:
         )
         now = self.now_factory()
         profile = _profile_from_extraction(clinic_id, home, pages, extraction, now)
+        if existing:
+            values = profile.model_dump()
+            values["discovery_sources"] = existing.discovery_sources
+            values["discovery_records"] = existing.discovery_records
+            for field in ("name", "city", "country", "region"):
+                if not values[field] and getattr(existing, field):
+                    values[field] = getattr(existing, field)
+                    values["provenance"].extend(item.model_dump() for item in existing.provenance if item.field == field)
+            values["source_urls"] = list(dict.fromkeys([*profile.source_urls, *existing.source_urls]))
+            profile = ClinicProfile.model_validate(values)
         fit = assess_clinic_fit(profile, now=now)
         updated = ClinicIntelligenceDataset(
             profiles=[item for item in dataset.profiles if item.clinic_id != clinic_id] + [profile],
@@ -445,7 +462,7 @@ class ClinicIngestor:
                 profile, fit, changed = self.ingest(url, refresh=refresh)
                 results.append((profile, fit, changed))
                 usage = getattr(self.client, "usage_records", [])[usage_start:]
-                self.batch_report.append({"url": url, "status": "indexed" if changed else "unchanged", "clinic_id": profile.clinic_id, "pages_skipped": self.last_skipped_pages, "estimated_api_cost_usd": sum(item.get("estimated_api_cost_usd") or 0 for item in usage) if usage else None})
+                self.batch_report.append({"url": url, "status": profile.profile_state.value if changed else "unchanged", "clinic_id": profile.clinic_id, "pages_skipped": self.last_skipped_pages, "estimated_api_cost_usd": sum(item.get("estimated_api_cost_usd") or 0 for item in usage) if usage else None})
             except Exception as exc:
                 usage = getattr(self.client, "usage_records", [])[usage_start:]
                 self.batch_report.append({"url": url, "status": "failed", "error": f"{type(exc).__name__}: {exc}", "pages_skipped": self.last_skipped_pages, "estimated_api_cost_usd": sum(item.get("estimated_api_cost_usd") or 0 for item in usage) if usage else None})

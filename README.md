@@ -203,6 +203,60 @@ traceable publications. They support planning and software validation, not
 clinical conclusions. The current evidence is preclinical or methodological and
 does not establish human efficacy for SGL-001.
 
+## Global clinic index
+
+Indexed clinics, reviewed clinics, and approved Signal partners are distinct.
+`profile_state` is `indexed` for a sourced basic record or `enriched` after the
+detailed extractor runs. Neither state changes review or partnership approval.
+Historical detailed records default to `enriched` when loaded.
+
+`data/clinic-seeds.json` is the canonical 100-clinic discovery dataset. `website`
+loads through the existing `url` alias. Seed records retain name/location hints,
+region, source URL, discovery date, category hint and untrusted discovery-status
+annotations. The CSV is a backup only; the summary validates exactly 100 rows
+with 50 Asia / 25 United States / 25 Rest of World before bulk import.
+Discovery identity/location metadata is distinct from verified page claims.
+Existing URL-only JSON/text lists remain supported for discovery tools.
+
+```bash
+python -m signalai clinic-discover directory-export.json --limit 1000
+python -m signalai clinic-import data/clinic-seeds.json
+python -m signalai clinic-index --limit 25 --only-new
+python -m signalai clinic-index --country Japan --priority 2 --limit 10
+python -m signalai clinic-enrich --limit 10 --region Asia --only-new
+```
+
+Discovery imports supplied directory exports in the seed schema or manual URL
+lists; it does not recursively crawl directories or search for arbitrary sites.
+Bulk import uses zero fetches and zero model calls, preserving each seed as
+discovery provenance. It merges matching domains or exact name/location pairs,
+fills only missing identity/location metadata, and never replaces richer facts.
+Existing clinics outside the 100-seed set remain in the index. Re-import is
+idempotent. The separate website-checking index path uses one bounded HTML fetch
+per selected domain and zero model calls.
+It requires a sourced name and explicit stem-cell/cell-derived therapy offering;
+insufficient pages are skipped rather than converted into fabricated profiles.
+HTTP/HTTPS and `www` aliases deduplicate by domain. Exact names deduplicate only
+when both city and country agree; ambiguous same-name clinics remain separate.
+Enrichment targets existing indexed records (or refreshes detailed records when
+`--only-new` is absent), preserving IDs and immutable profile snapshots. It uses
+the existing conservative page/model budgets. No outreach or legality inference
+is performed.
+
+Discovery, website indexing and enrichment support `--limit`, `--country`,
+`--region`, and `--priority`. Bulk import always validates/imports the full
+canonical dataset. Enrichment defaults to at most 10 clinics and 5 same-site
+pages, with unchanged cached text skipping model extraction.
+`--only-new` skips existing domains during indexing and enriched profiles during
+enrichment. Discovery is inherently additive and never replaces existing seeds.
+Country filters use supplied country hints for discovery/index selection and
+profile discovery/sourced identity for enrichment; unknown countries do not
+match. Indexed public cards expose only identity, location, and profile status
+(plus stable IDs). Detailed fields and fit signals are exposed only for enriched
+cards. Therapy counts use enriched records, not seed categories. Region/country
+counts include explicitly labeled discovery locations. Private diagnostics,
+costs, outreach notes and discovery verification annotations are not exported.
+
 ## Data conventions
 
 - Canonical machine state is JSON validated by Pydantic.

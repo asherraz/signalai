@@ -172,15 +172,11 @@ def test_deterministic_fallback_emits_only_literal_page_claims(tmp_path):
 
 def test_first_validation_seeds_and_canonical_urls_are_exact():
     root = Path(__file__).resolve().parents[1]
-    seeds = json.loads((root / "data/clinic-seeds.json").read_text())
-    assert seeds == [
-        "https://floridaregenerative.com/",
-        "https://www.revivflorida.com/",
-        "https://stemcellxo.com/",
-        "https://www.orlandostemcellcenter.com/",
-        "https://exos.miami/",
-        "https://www.thehundred.jp/en/clinic/",
-    ]
+    from signalai.clinic_index import load_seeds
+    seeds = [str(seed.url) for seed in load_seeds(root / "data/clinic-seeds.json")]
+    assert len(seeds) == 100
     dataset = ClinicIntelligenceDataset.model_validate_json((root / "data/clinics/clinics.json").read_text())
-    assert {str(item.website) for item in dataset.profiles} == set(seeds)
+    from signalai.clinic_intelligence import clinic_domain
+    legacy = {"floridaregenerative.com", "revivflorida.com", "stemcellxo.com", "orlandostemcellcenter.com", "exos.miami", "thehundred.jp"}
+    assert {clinic_domain(str(item.website)) for item in dataset.profiles}.issubset({clinic_domain(url) for url in seeds} | legacy)
     assert dataset.outreach_queue == []

@@ -3,7 +3,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from signalai.publisher import build_current_public_state, publish_current_public_state
-from signalai.schemas import PublicSignalState
+from signalai.schemas import PublicSignalState, SignalState
+from signalai.schemas.live import LiveRunHistory
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +20,10 @@ def test_complete_public_state_is_rebuilt_without_using_public_json() -> None:
     assert state.airb.run_id == state.latest_run.run_id
     assert state.live_intelligence is not None
     assert state.live_intelligence.latest_run is not None
-    assert state.live_intelligence.latest_run.run_id == state.loop.run_id
+    history = LiveRunHistory.model_validate_json((ROOT / "state/live-runs.json").read_text())
+    scientific = SignalState.model_validate_json((ROOT / "state/signal-state.json").read_text())
+    assert state.live_intelligence.latest_run.run_id == max(history.runs, key=lambda run: run.started_at).run_id
+    assert state.loop.run_id == scientific.run_id
     assert state.cargo is not None
     assert state.formulation is not None
     assert state.jurisdictions is not None

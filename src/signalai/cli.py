@@ -7,6 +7,7 @@ from pathlib import Path
 
 from signalai.client import OpenAIResponsesClient
 from signalai.clinic_intelligence import ClinicIngestor, DeterministicClinicExtractionClient
+from signalai.clinic_index import ClinicIndexer, enrich_selected, import_clinic_profiles, import_seeds, load_seeds
 from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.daily import DailyRunOrchestrator
 from signalai.live import LiveRunOrchestrator
@@ -108,7 +109,7 @@ def _clinic_ingestor() -> ClinicIngestor:
         root=Path.cwd(),
         client=client,
         max_pages=int(environ.get("SIGNALAI_CLINIC_MAX_PAGES", "5")),
-        max_clinics=int(environ.get("SIGNALAI_CLINIC_MAX_BATCH", "6")),
+        max_clinics=int(environ.get("SIGNALAI_CLINIC_MAX_BATCH", "10")),
     )
 
 
@@ -116,7 +117,7 @@ def clinic_ingest_main(url: str, *, refresh: bool = False) -> None:
     profile, _, changed = _clinic_ingestor().ingest(url, refresh=refresh)
     if changed:
         publish_current_public_state(Path.cwd())
-    print(f"Clinic {profile.clinic_id}: {'indexed' if changed else 'unchanged'}")
+    print(f"Clinic {profile.clinic_id}: {profile.profile_state.value if changed else 'unchanged'}")
 
 
 def clinic_batch_main(path: str | None, *, scheduled: bool = False, refresh: bool = False) -> None:
@@ -129,9 +130,7 @@ def clinic_batch_main(path: str | None, *, scheduled: bool = False, refresh: boo
     if not source.exists() and not scheduled:
         raise FileNotFoundError(source)
     if source.exists() and source.suffix == ".json":
-        urls = json.loads(source.read_text(encoding="utf-8"))
-        if not isinstance(urls, list) or not all(isinstance(url, str) for url in urls):
-            raise ValueError("clinic seed JSON must be a list of URLs")
+        urls = [str(seed.url) for seed in load_seeds(source) if seed.enabled]
     else:
         urls = [line.strip() for line in source.read_text().splitlines() if line.strip() and not line.startswith("#")] if source.exists() else []
     limit = int(environ.get("SIGNALAI_CLINIC_MAX_BATCH", "6"))
@@ -152,6 +151,39 @@ def clinic_batch_main(path: str | None, *, scheduled: bool = False, refresh: boo
     if any(changed for _, _, changed in results):
         publish_current_public_state(root)
     print(f"Clinic batch: {len(results)} processed, {sum(changed for _, _, changed in results)} changed")
+
+
+def clinic_index_main(command, target=None, *, limit=None, country=None, region=None, priority=None, only_new=False):
+    root = Path.cwd()
+    path = Path(target) if target else root / "data/clinic-seeds.json"
+    if command in {"clinic-import", "clinic-enrich"} and path.resolve() != (root / "data/clinic-seeds.json").resolve():
+        raise ValueError(f"{command} uses only the canonical data/clinic-seeds.json")
+    if command == "clinic-import":
+        counts = import_clinic_profiles(root, path)
+        print(json.dumps(counts, sort_keys=True))
+        if counts["imported"] or counts["merged"]:
+            publish_current_public_state(root)
+        return
+    if command == "clinic-discover":
+        if not target:
+            raise ValueError("clinic-discover requires a supplied directory JSON or URL-list file")
+        print(f"Imported {import_seeds(root, path, limit=1000 if limit is None else limit, country=country, region=region, priority=priority)} new seeds")
+        return
+    seeds = load_seeds(path)
+    if command == "clinic-index":
+        report = ClinicIndexer(root=root).index(seeds, limit=25 if limit is None else limit, country=country, region=region, priority=priority, only_new=only_new)
+        for item in report:
+            print(json.dumps(item, sort_keys=True))
+        changed = any(item["status"] == "indexed" for item in report)
+    else:
+        ingestor = _clinic_ingestor()
+        results = enrich_selected(ingestor, seeds, limit=10 if limit is None else limit, country=country, region=region, priority=priority, only_new=only_new)
+        for record in ingestor.batch_report:
+            print(json.dumps(record, sort_keys=True))
+        changed = any(item[2] for item in results)
+        print(f"Enriched {sum(item[2] for item in results)} clinics")
+    if changed:
+        publish_current_public_state(root)
 
 
 if __name__ == "__main__":

@@ -50,6 +50,8 @@ from signalai.schemas.clinic_intelligence import (
     ClinicIntelligenceDataset,
     ClinicOutreachCandidate,
     ClinicProfile,
+    ClinicProfileState,
+    ClinicSeed,
     ClinicReviewStatus,
     ClinicRoute,
     ClinicTherapy,
