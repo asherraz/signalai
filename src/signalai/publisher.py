@@ -7,6 +7,7 @@ from pathlib import Path
 
 from signalai.clinical_network_export import export_clinical_network
 from signalai.clinic_intelligence_export import export_clinic_intelligence
+from signalai.signalrb import export_signalrb
 from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.product_export import export_product_layer
 from signalai.live_export import export_live_intelligence, merge_live_feed
@@ -88,12 +89,13 @@ def build_current_public_state(
     docket_path = root / "state" / "development-docket.json"
     history_path = root / "state" / "live-runs.json"
     live_intelligence = None
+    history = None
     if docket_path.exists() and history_path.exists():
         docket = DevelopmentDocket.model_validate_json(docket_path.read_text(encoding="utf-8"))
         history = LiveRunHistory.model_validate_json(history_path.read_text(encoding="utf-8"))
         live_intelligence = export_live_intelligence(docket, history)
         feed = merge_live_feed(feed, history)
-    return PublicSignalState.from_internal(
+    public = PublicSignalState.from_internal(
         scientific,
         generated_at=generated_at or datetime.now(timezone.utc),
         changes=changes,
@@ -110,6 +112,9 @@ def build_current_public_state(
         intelligence_feed=feed,
         live_intelligence=live_intelligence,
     )
+    if history and history.runs:
+        public = public.model_copy(update={"signal_rb": export_signalrb(root, scientific, history)})
+    return public
 
 
 def publish_current_public_state(

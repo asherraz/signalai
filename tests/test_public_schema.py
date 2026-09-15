@@ -21,6 +21,7 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "currentHypothesis",
     "latestRun",
     "aiRB",
+    "signalRB",
     "cargo",
     "formulation",
     "jurisdictions",

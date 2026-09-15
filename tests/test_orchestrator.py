@@ -105,6 +105,7 @@ def test_milestone_one_run_persists_every_stage_and_public_state(tmp_path: Path)
         "currentHypothesis",
         "latestRun",
         "aiRB",
+        "signalRB",
         "cargo",
         "formulation",
         "jurisdictions",

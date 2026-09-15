@@ -235,8 +235,8 @@ def export_product_layer(
         ),
         _module(
             module_id="airb",
-            title="aiRB",
-            summary="AI review-board critique and human-gated development determinations.",
+            title="SignalRB",
+            summary="Signal Review Board critique and human-gated development determinations.",
             last_updated=latest_update,
             status=IntelligenceModuleStatus.AWAITING_HUMAN_REVIEW,
             preview=(
@@ -373,7 +373,7 @@ def export_product_layer(
         ),
         PublicIntelligenceCategory(
             categoryId="airb-determinations",
-            title="aiRB Determinations",
+            title="SignalRB Determinations",
             summary="Critique and human-gated development determinations linked to evidence and risks.",
             moduleIds=["airb"],
             inputOrigins=[DataOrigin.PUBLIC_SOURCE, DataOrigin.OPERATOR_CURATED],
@@ -558,7 +558,7 @@ def export_product_layer(
                     tier=AccessTier.PARTNER,
                     title="Partner",
                     description=(
-                        "Deeper scientific, product, jurisdiction, and aiRB intelligence "
+                        "Deeper scientific, product, jurisdiction, and SignalRB intelligence "
                         "for regenerative medicine clinics working with stem cells, "
                         "exosomes and cell-derived therapies."
                     ),
@@ -641,10 +641,10 @@ def export_product_layer(
             PublicIntelligenceFeedItem(
                 itemId=f"feed-airb-{latest_run.run_id}",
                 type=IntelligenceFeedType.AIRB_DETERMINATION,
-                title="aiRB determination available",
+                title="SignalRB determination",
                 summary=(
                     latest_run.stages.decision.rationale
-                    or "The latest human-gated aiRB determination is available for review."
+                    or "The latest human-gated SignalRB determination is available for review."
                 ),
                 domain="airb",
                 programId=scientific_state.program.program_id,

@@ -100,6 +100,21 @@ Returned token totals and estimated cost are retained only in private run artifa
 GitHub workflow supports manual dispatch, commits only successful runs, and
 suppresses timestamp-only commits.
 
+## SignalRB — Signal Review Board
+
+`signalRB` is the canonical public review/determination layer. Its typed
+`SignalReviewBoardDetermination` objects derive from completed live runs and
+validated analysis, independent verification, and adversary artifacts. Supporting
+domains remain separate; reviews reference canonical evidence IDs rather than
+copying datasets. Review history is newest-first and deduplicated by run ID.
+Pending decisions omit private approver/contact metadata. This export does not
+alter scientific state or approval gates.
+
+The deprecated `aiRB` projection and stable `airb` module/feed identifiers remain
+for existing consumers. Historical `aiRB`, `airb`, and `aiRB determination` payload
+keys load through an adapter when `signalRB` is absent. Missing historical detail
+is explicitly `not_recorded`; immutable run artifacts are never rewritten.
+
 ## Clinic intelligence
 
 Public-source clinic profiles are separate from the human-approved Clinical

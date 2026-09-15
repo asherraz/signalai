@@ -57,6 +57,8 @@ from signalai.schemas.clinic_intelligence import (
     SourceField,
 )
 
+from signalai.schemas.signalrb import SignalReviewBoardDetermination, PublicSignalRB
+
 from signalai.schemas.models import (
     AgentRun,
     ApprovalStatus,

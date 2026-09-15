@@ -6,7 +6,8 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Annotated
 
-from pydantic import Field, model_validator
+from pydantic import AliasChoices, Field, model_validator
+from signalai.schemas.signalrb import PublicSignalRB, SignalReviewBoardDetermination
 
 from signalai.schemas.models import (
     Claim,
@@ -87,7 +88,8 @@ class PublicSignalState(SignalModel):
         serialization_alias="latestRun",
         validation_alias="latestRun",
     )
-    airb: PublicAiRBState | None = Field(default=None, alias="aiRB")
+    airb: PublicAiRBState | None = Field(default=None, alias="aiRB", validation_alias=AliasChoices("aiRB", "airb", "aiRB determination"))
+    signal_rb: PublicSignalRB | None = Field(default=None, alias="signalRB")
     cargo: PublicCargoState | None = None
     formulation: PublicFormulationState | None = None
     jurisdictions: PublicJurisdictionState | None = None
@@ -106,12 +108,41 @@ class PublicSignalState(SignalModel):
     )
 
     @model_validator(mode="after")
+    def migrate_legacy_board(self):
+        if self.signal_rb is None and self.airb is not None:
+            old = self.airb
+            decision = old.determination
+            pending = decision.human_approval_required and decision.approval_status.value == "pending"
+            review = SignalReviewBoardDetermination(
+                review_id=old.review_id, run_id=old.run_id, program_id=old.program_id,
+                matter_id=self.latest_run.selected_task.agenda_item_id if self.latest_run and self.latest_run.run_id == old.run_id else "not_recorded",
+                matter_title=decision.question, matter_question=decision.question,
+                domain="not_recorded", reviewers=["not_recorded"],
+                strongest_case_for=decision.rationale or "not_recorded",
+                strongest_case_against=old.critique.strongest_objection,
+                verification_status="not_recorded", determination=decision.recommendation or "not_recorded",
+                determination_type="human_decision_required" if pending else "not_recorded",
+                conditions=old.critique.falsification_conditions,
+                evidence_ids=list(dict.fromkeys(decision.linked_evidence_ids + old.critique.disconfirming_evidence_ids)),
+                state_change="not_recorded", human_decision_required=pending,
+                next_action=self.latest_run.stages.next_action.action if self.latest_run and self.latest_run.run_id == old.run_id else "not_recorded",
+                created_at=old.last_updated,
+            )
+            object.__setattr__(self, "signal_rb", PublicSignalRB(latestReview=review, recentReviews=[review], summary={"reviews": 1}))
+        return self
+
+    @model_validator(mode="after")
     def validate_public_state(self) -> PublicSignalState:
         object.__setattr__(
             self, "generated_at", _require_timezone(self.generated_at, "generated_at")
         )
         if self.program.program_id != "SGL-001":
             raise ValueError("Milestone 1 public state must describe SGL-001")
+        if self.signal_rb:
+            allowed = {e.evidence_id for e in self.evidence}
+            reviews = self.signal_rb.recent_reviews + ([self.signal_rb.latest_review] if self.signal_rb.latest_review else [])
+            if any(set(r.evidence_ids) - allowed for r in reviews) or any(set(d.evidence_ids) - allowed for d in self.signal_rb.pending_human_decisions):
+                raise ValueError("SignalRB references unknown canonical evidence")
         return self
 
     @classmethod
