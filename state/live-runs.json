@@ -1,6 +1,6 @@
 {
   "program_id": "SGL-001",
-  "updated_at": "2026-09-14T10:06:18.261879Z",
+  "updated_at": "2026-09-15T18:23:22.166639Z",
   "runs": [
     {
       "run_id": "run-20260911T101854Z-e4dd7c990790",
@@ -113,6 +113,7 @@
       "change_scope": "none",
       "scientific_state_changed": false,
       "operational_state_changed": false,
+      "previous_state_preserved": "not_recorded",
       "what_changed": "Confirmed the cross-species delivery risk and specified the next controlled test; no scientific position changed.",
       "next_action": "Define a formulation-controlled cross-species biodistribution protocol with label controls and predeclared acceptance criteria.",
       "artifact_ids": [
@@ -254,6 +255,7 @@
       "change_scope": "decision",
       "scientific_state_changed": true,
       "operational_state_changed": true,
+      "previous_state_preserved": "not_recorded",
       "what_changed": "Validated scientific state updates were proposed with linked evidence.",
       "next_action": "Initiate the two-stage gate: (A) finalize source-cell, create MCB/WCB, define orthogonal QC panel and draft release specs, perform small-scale process dev; (B) run biodistribution/PK/PD bridging study in rodents and a large species (preferably NHP) with vehicle, free-label, and disrupted-EV controls and prespecified acceptance criteria.",
       "artifact_ids": [
@@ -388,6 +390,7 @@
       "change_scope": "decision",
       "scientific_state_changed": true,
       "operational_state_changed": true,
+      "previous_state_preserved": "not_recorded",
       "what_changed": "Validated scientific state updates were proposed with linked evidence.",
       "next_action": "Implement Stage 1 with timebound subprojects: source-cell/MCB-WCB (timeline + owner), orthogonal QC panel + draft release specs, fit-for-purpose validation of potency/stability assays, three representative GMP-like scale-up runs with release/stability assessment, and formulation/device compatibility testing with ex vivo nasal model and in vivo rodent tests including disrupted-EV and free-label controls.",
       "artifact_ids": [
@@ -518,6 +521,7 @@
       "change_scope": "decision",
       "scientific_state_changed": false,
       "operational_state_changed": true,
+      "previous_state_preserved": "not_recorded",
       "what_changed": "A validated development decision update was proposed.",
       "next_action": "Program lead to assemble Stage-1 package (GLP large-animal intranasal biodistribution/tox, three GMP-like scale-up runs with draft specs and stability, validated potency/orthogonal QC plan, and regulator briefing) and request pre-IND/Scientific Advice in two jurisdictions; 3-month timeline.",
       "artifact_ids": [
@@ -530,6 +534,128 @@
         "run-20260914T100415Z-bacfd56d290d:07-adversary.json",
         "run-20260914T100415Z-bacfd56d290d:08-chair-determination.json",
         "run-20260914T100415Z-bacfd56d290d:08-chair-repair.json"
+      ]
+    },
+    {
+      "run_id": "run-20260915T182041Z-37610c33c578",
+      "program_id": "SGL-001",
+      "started_at": "2026-09-15T18:20:41.963928Z",
+      "completed_at": "2026-09-15T18:23:22.166639Z",
+      "selected_matter": {
+        "matter_id": "matter-potency-identity-characterization",
+        "program_id": "SGL-001",
+        "title": "Potency and identity characterization",
+        "question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
+        "domain": "cmc_manufacturing",
+        "why_it_matters": "Without reproducible identity and potency measures, observed biological differences may reflect uncontrolled product variability.",
+        "priority": "quality_blocking",
+        "advancement_value": "high",
+        "blocking_stage": "manufacturing comparability",
+        "linked_hypothesis_ids": [
+          "hypothesis-sgl001-biodistribution-gate"
+        ],
+        "linked_risk_ids": [
+          "risk-cmc-identity-potency"
+        ],
+        "linked_evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "required_reviewer_roles": [
+          "cmc",
+          "manufacturing",
+          "evidence"
+        ],
+        "status": "completed",
+        "selected_at": "2026-09-15T18:20:41.963928Z",
+        "completed_at": "2026-09-15T18:23:22.166639Z",
+        "determination": "evidence_gap",
+        "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change."
+      },
+      "why_selected": "Selected quality_blocking matter with high advancement value. Deterministic ranking favors program-invalidating issues, then real-world stage blockers, product definition, deployment, quality, contradictions, experiment design, and refinement.",
+      "reviewers_convened": [
+        "cmc",
+        "manufacturing",
+        "evidence",
+        "verifier",
+        "adversary",
+        "chair"
+      ],
+      "reviewer_conclusions": [
+        {
+          "reviewer_role": "cmc",
+          "conclusion": "Supported: MISEV2023 explicitly recommends transparent, orthogonal characterization and appropriate controls to de-risk identity and functional claims for EV preparations. Therefore an orthogonal QC panel, validated intact‑EV assays (fit-for-purpose: LLOQ, specificity, precision), and stability‑indicating, mechanism‑linked potency assays are necessary prior to formulation advancement.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "limitations": [
+            "MISEV2023 is a consensus guidance document; it does not specify exact analytical methods, numeric acceptance criteria, or validation protocols tailored to SGL-001."
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
+        },
+        {
+          "reviewer_role": "manufacturing",
+          "conclusion": "Unsupported: The MISEV guidance supports the requirement for documented, reproducible production (MCB/WCB, batch comparability) and transparent reporting, but the supplied evidence does not include any program-specific manufacturing records. Consequently, the assertion that current program materials do not demonstrate characterized source-cell MCB/WCB or scalable, reproducible production cannot be confirmed from the available evidence.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-source-cell-scalability"
+          ],
+          "limitations": [
+            "No program manufacturing records, batch records, or scale-up reports were provided for review."
+          ],
+          "evidence_gap": "Missing program-specific CMC/manufacturing records (MCB/WCB documentation, GMP-like run reports for ≥3 batches, draft release specifications, and stability data) to confirm or refute production reproducibility and scalability.",
+          "search_needed": true,
+          "requested_evidence": [],
+          "unsupported": true
+        },
+        {
+          "reviewer_role": "evidence",
+          "conclusion": "Unsupported / Conditional: MISEV2023 supports the general principle that orthogonal analytics and transparent production reporting are required to make credible intact-EV identity and potency claims and to interpret biodistribution data. However, the specific program claim that rodent intranasal biodistribution findings will not translate to larger species (or that lot-to-lot reproducibility across species is lacking) cannot be evaluated from the supplied materials because no program or literature-level cross-species intranasal biodistribution studies or orthogonal intact-EV recovery/identity assay data were provided.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-rodent-cns-delivery"
+          ],
+          "limitations": [
+            "MISEV2023 is guidance on best practices and does not contain primary cross-species biodistribution data for SGL-001.",
+            "No program-provided cross-species biodistribution studies or orthogonal intact-EV analytics were available for review."
+          ],
+          "evidence_gap": "No program- or literature-supplied cross-species intranasal biodistribution data or intact-EV orthogonal analytics were provided to assess translatability or lot-to-lot reproducibility across species.",
+          "search_needed": true,
+          "requested_evidence": [],
+          "unsupported": true
+        }
+      ],
+      "strongest_supporting_evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "strongest_contradictory_evidence_ids": [],
+      "adversary_objection": "The available evidence is limited to consensus guidance (MISEV2023) and does not provide any program-specific CMC, analytics, or cross‑species biodistribution data; therefore the core program assertions about lacking MCB/WCB, lot-to‑lot reproducibility, and non‑translatability cannot be confirmed or contradicted — they remain unproven. Conclusions that these program deficiencies exist rest on absent data rather than disconfirming evidence.",
+      "chair_determination": "evidence_gap",
+      "state_changed": false,
+      "change_scope": "none",
+      "scientific_state_changed": false,
+      "operational_state_changed": false,
+      "previous_state_preserved": true,
+      "what_changed": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
+      "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+      "artifact_ids": [
+        "run-20260915T182041Z-37610c33c578:01-compact-state.json",
+        "run-20260915T182041Z-37610c33c578:02-development-docket.json",
+        "run-20260915T182041Z-37610c33c578:03-selected-matter.json",
+        "run-20260915T182041Z-37610c33c578:04-reviewer-panel.json",
+        "run-20260915T182041Z-37610c33c578:05-analysis.json",
+        "run-20260915T182041Z-37610c33c578:06-verification.json",
+        "run-20260915T182041Z-37610c33c578:07-adversary.json",
+        "run-20260915T182041Z-37610c33c578:08-chair-determination.json"
       ]
     }
   ]
