@@ -8,6 +8,7 @@ from enum import StrEnum
 from pydantic import Field, HttpUrl, model_validator
 
 from signalai.schemas.models import Identifier, NonEmptyText, SignalModel, _require_timezone
+from signalai.schemas.manufacturing import ManufacturingState
 
 
 class EvidenceLevel(StrEnum):
@@ -410,12 +411,13 @@ class JurisdictionState(SignalModel):
 
 
 class TherapeuticAssetWorkspace(SignalModel):
-    schema_version: str = "1.0"
+    schema_version: str = "1.1"
     program_id: Identifier
     generated_at: datetime
     cargo: CargoState
     formulation: FormulationState
     jurisdictions: JurisdictionState
+    manufacturing: ManufacturingState | None = None
 
     @model_validator(mode="after")
     def validate_generated_at(self) -> TherapeuticAssetWorkspace:

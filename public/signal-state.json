@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T10:02:13.423910Z",
+  "generatedAt": "2026-09-16T11:55:48.759511Z",
   "version": "2.0",
   "status": "awaiting_human_review",
   "program": {
@@ -1247,6 +1247,15 @@
         "evidence_confidence",
         "next_proposed_action"
       ]
+    },
+    "manufacturing": {
+      "productDefinitionState": "proposed",
+      "potencyState": "evidence_gap",
+      "reproducibilityState": "evidence_gap",
+      "stabilityState": "evidence_gap",
+      "primaryCmcBlocker": "Insufficient CMC/analytics to establish intact-EV identity, potency, and lot-to-lot reproducibility",
+      "nextManufacturingAction": "Define source-cell qualification and MCB/WCB strategy.",
+      "latestRelevantDeterminationId": "signalrb-run-20260915T182041Z-37610c33c578"
     }
   },
   "cargo": {
@@ -2902,6 +2911,975 @@
         "requiresHumanApproval": true
       }
     ]
+  },
+  "manufacturing": {
+    "programId": "SGL-001",
+    "productDefinition": {
+      "id": "product-definition-sgl001",
+      "route": "intranasal",
+      "biologicalConcept": "MSC-derived secretome/EV concept for an intranasal cell-free regenerative product.",
+      "evFractionRole": "The EV/exosome fraction is intended to contribute biological signal, but its exact role and active contribution are unresolved.",
+      "drugSubstanceIdentity": null,
+      "purificationFractionationState": null,
+      "doseDefinition": null,
+      "vehicleStabilizer": null,
+      "state": "proposed",
+      "unresolvedDecisions": [
+        "Secretome retaining EVs versus a small-EV preparation.",
+        "Exact drug-substance identity and purification/fractionation state.",
+        "Dose definition.",
+        "Vehicle and stabilizer selection."
+      ],
+      "refs": {
+        "evidenceIds": [
+          "ev-misev2023-quality-framework"
+        ],
+        "claimIds": [
+          "claim-ev-cmc-requirements"
+        ],
+        "riskIds": [
+          "risk-cmc-identity-potency"
+        ],
+        "decisionIds": [],
+        "agendaItemIds": [
+          "agenda-formulation-source-cell"
+        ],
+        "matterIds": [
+          "matter-candidate-product-definition"
+        ],
+        "runIds": [
+          "run-20260911T120434Z-03f4e21fe096"
+        ]
+      }
+    },
+    "processStages": [
+      {
+        "id": "process-source-qualification",
+        "name": "Source qualification",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "Source-cell qualification criteria and records are not defined."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-cell-bank-strategy",
+        "name": "Cell-bank strategy",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "MCB/WCB strategy and records are not defined."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-msc-expansion",
+        "name": "MSC expansion",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "Expansion platform and controls are not defined."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-conditioning",
+        "name": "Conditioning",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "Conditioning inputs and controls are not defined."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-harvest",
+        "name": "Harvest",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "Harvest timing and controls are not defined."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-clarification",
+        "name": "Clarification",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "Clarification approach and controls are not defined."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-concentration-fraction-handling",
+        "name": "Concentration and fraction handling",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "Purification and fraction-handling strategy is unresolved."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-formulation",
+        "name": "Formulation",
+        "state": "proposed",
+        "summary": "Intranasal route is the current program route; product configuration remains proposed.",
+        "missingInformation": [
+          "Intranasal formulation is proposed; vehicle and stabilizer are unresolved."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-fill-finish",
+        "name": "Fill/finish",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "Fill/finish presentation and controls are not defined."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "process-storage",
+        "name": "Storage",
+        "state": "not_defined",
+        "summary": null,
+        "missingInformation": [
+          "Storage conditions and shelf life are not established."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      }
+    ],
+    "qualityAttributes": [
+      {
+        "id": "attribute-ev-identity-purity",
+        "name": "EV identity and purity",
+        "state": "proposed",
+        "summary": "Orthogonal identity and purity panel; numeric acceptance limits not yet defined",
+        "missingInformation": [
+          "Numeric acceptance limits are not defined."
+        ],
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [],
+          "runIds": []
+        }
+      }
+    ],
+    "potency": {
+      "state": "evidence_gap",
+      "strategy": "Develop a stability-indicating, mechanism-linked potency assay within an orthogonal QC framework.",
+      "particleCountIsEstablishedPotency": false,
+      "validatedAcceptanceCriteria": false,
+      "gaps": [
+        "Potency framework is not established.",
+        "No validated acceptance criteria are recorded.",
+        "No program-specific potency result is recorded."
+      ],
+      "latestDeterminationRunId": "run-20260915T182041Z-37610c33c578",
+      "latestDeterminationId": "signalrb-run-20260915T182041Z-37610c33c578",
+      "priorStatePreserved": true,
+      "refs": {
+        "evidenceIds": [
+          "ev-misev2023-quality-framework"
+        ],
+        "claimIds": [
+          "claim-ev-cmc-requirements"
+        ],
+        "riskIds": [
+          "risk-cmc-identity-potency"
+        ],
+        "decisionIds": [],
+        "agendaItemIds": [
+          "agenda-formulation-source-cell"
+        ],
+        "matterIds": [
+          "matter-potency-identity-characterization"
+        ],
+        "runIds": [
+          "run-20260915T182041Z-37610c33c578"
+        ]
+      }
+    },
+    "readiness": [
+      {
+        "id": "readiness-product-definition",
+        "dimension": "Product Definition",
+        "state": "proposed",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-source-material-control",
+        "dimension": "Source Material Control",
+        "state": "evidence_gap",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-cell-bank-strategy",
+        "dimension": "Cell Bank Strategy",
+        "state": "evidence_gap",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-process-definition",
+        "dimension": "Process Definition",
+        "state": "not_defined",
+        "rationale": "No canonical assessment or definition is recorded.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-analytical-characterization",
+        "dimension": "Analytical Characterization",
+        "state": "proposed",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-potency-assay",
+        "dimension": "Potency Assay",
+        "state": "evidence_gap",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-release-specifications",
+        "dimension": "Release Specifications",
+        "state": "proposed",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-sterility-assurance",
+        "dimension": "Sterility Assurance",
+        "state": "not_assessed",
+        "rationale": "No canonical assessment or definition is recorded.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-stability-program",
+        "dimension": "Stability Program",
+        "state": "evidence_gap",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-lot-reproducibility",
+        "dimension": "Lot Reproducibility",
+        "state": "evidence_gap",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-scale-up",
+        "dimension": "Scale Up",
+        "state": "evidence_gap",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "readiness-fill-finish",
+        "dimension": "Fill Finish",
+        "state": "not_defined",
+        "rationale": "No canonical assessment or definition is recorded.",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      }
+    ],
+    "risks": [
+      {
+        "id": "risk-cmc-identity-potency",
+        "title": "Insufficient CMC/analytics to establish intact-EV identity, potency, and lot-to-lot reproducibility",
+        "description": "Lack of MCB/WCB, orthogonal QC, validated potency/stability assays, and scale-up reproducibility may produce misleading in vitro and in vivo results and block regulatory acceptance.",
+        "mitigation": "Execute Stage 1 actions: generate MCB/WCB, define/validate orthogonal assays, produce representative GMP-like batches, and document stability/potency reproducibility. Escalate assay development resourcing if timelines slip.",
+        "owner": "CMC lead",
+        "state": "evidence_gap",
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      }
+    ],
+    "nextActions": [
+      {
+        "id": "manufacturing-action-source-cell-bank",
+        "action": "Define source-cell qualification and MCB/WCB strategy.",
+        "status": "proposed",
+        "requiresHumanApproval": true,
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "manufacturing-action-orthogonal-qc",
+        "action": "Establish an orthogonal QC panel.",
+        "status": "proposed",
+        "requiresHumanApproval": true,
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "manufacturing-action-draft-release-specifications",
+        "action": "Draft release specifications without asserting acceptance limits.",
+        "status": "proposed",
+        "requiresHumanApproval": true,
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "manufacturing-action-potency-stability-assays",
+        "action": "Develop fit-for-purpose potency and stability-indicating assays.",
+        "status": "proposed",
+        "requiresHumanApproval": true,
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "manufacturing-action-representative-scale-up",
+        "action": "Produce representative GMP-like scale-up batches; none are recorded yet.",
+        "status": "proposed",
+        "requiresHumanApproval": true,
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "manufacturing-action-release-stability-comparability",
+        "action": "Assess release, stability, and comparability after real batches exist.",
+        "status": "proposed",
+        "requiresHumanApproval": true,
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      },
+      {
+        "id": "manufacturing-action-formulation-device-compatibility",
+        "action": "Test formulation and device compatibility with intact-EV recovery controls.",
+        "status": "proposed",
+        "requiresHumanApproval": true,
+        "refs": {
+          "evidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claimIds": [
+            "claim-ev-cmc-requirements"
+          ],
+          "riskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "decisionIds": [],
+          "agendaItemIds": [
+            "agenda-formulation-source-cell"
+          ],
+          "matterIds": [
+            "matter-potency-identity-characterization"
+          ],
+          "runIds": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        }
+      }
+    ],
+    "latestRelevantDeterminationId": "signalrb-run-20260915T182041Z-37610c33c578",
+    "verifiedPublicLots": [],
+    "verifiedPublicCoas": [],
+    "stabilityStatus": "evidence_gap",
+    "counts": {
+      "realLots": 0,
+      "testResults": 0,
+      "proposedSpecifications": 1,
+      "approvedReleaseSpecifications": 0,
+      "validatedPotencyAssays": 0,
+      "stabilityPrograms": 0,
+      "verifiedShelfLifeRecords": 0,
+      "coaRecords": 0
+    },
+    "lastMeaningfulUpdate": "2026-09-15T18:23:22.166639Z"
   },
   "jurisdictions": {
     "disclaimer": "Imported legacy planning data, not legal advice. Reported verdicts and confidence are preserved for traceability but marked legacy_import_unverified; verify current primary law and obtain qualified local advice before action.",
@@ -5067,6 +6045,36 @@
               "candidates",
               "excipients",
               "presentations",
+              "nextActions"
+            ],
+            "accessTier": "partner"
+          }
+        },
+        {
+          "moduleId": "manufacturing",
+          "title": "Manufacturing / CMC",
+          "summary": "Product definition, analytical strategy, readiness, and manufacturing evidence gaps.",
+          "lastUpdated": "2026-09-15T18:23:22.166639Z",
+          "status": "developing",
+          "publicPreview": "Product definition is proposed; potency is evidence_gap.",
+          "accessTier": "partner",
+          "keyMetrics": {
+            "realLots": 0,
+            "approvedSpecifications": 0,
+            "coaRecords": 0
+          },
+          "recentChanges": [],
+          "partnerIntelligence": {
+            "summary": "Inspect product-definition gaps, readiness, proposed analytical methods, risks, and human-gated next actions.",
+            "referenceIds": [
+              "product-definition-sgl001"
+            ],
+            "availableFields": [
+              "productDefinition",
+              "processStages",
+              "potency",
+              "readiness",
+              "risks",
               "nextActions"
             ],
             "accessTier": "partner"

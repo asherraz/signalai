@@ -170,7 +170,7 @@ Outreach candidates require human approval before any action.
 ## Therapeutic asset workspace
 
 `state/asset-development.json` is the canonical biology-to-product-to-market
-workspace for SGL-001. It keeps three typed domains alongside, rather than
+workspace for SGL-001. It keeps four typed domains alongside, rather than
 inside, the scientific claim state:
 
 - Cargo maps operator-selected payload strategy, evidence-ranked benchmarks,
@@ -181,11 +181,21 @@ inside, the scientific claim state:
 - Jurisdictions records regulator-sourced market-entry assessments, keeps legal
   viability separate from enforcement intensity, and requires human-reviewed
   next actions before clinic planning.
+- Manufacturing / CMC records the proposed product definition, process map,
+  quality attributes, assay and specification state, lot/test/stability/COA
+  records, readiness, risks, and gated next actions. The initial SGL-001 state
+  is deliberately gap-aware: product identity remains unresolved, particle
+  count is not treated as potency, and no lot, test result, approved release
+  specification, verified shelf life, or COA exists without traceable source
+  records and validation.
 
 Each domain links back to canonical hypotheses, risks, decisions, and agenda
-items. The public serializer publishes sanitized `cargo`, `formulation`, and
-`jurisdictions` projections for the separate frontend while detailed source and
-legal-framework records remain internal.
+items. Older workspace JSON remains readable; Manufacturing / CMC is populated
+deterministically and idempotently from accepted canonical records when absent.
+Unsupported or unapproved manufacturing proposals preserve the prior workspace
+unchanged. The public serializer publishes sanitized `cargo`, `formulation`,
+`manufacturing`, and `jurisdictions` projections for the separate frontend while
+detailed source, process, and legal-framework records remain internal.
 
 Legacy JSON can be migrated through an explicit read-only adapter:
 

@@ -9,6 +9,7 @@ from typing import Annotated
 from pydantic import AliasChoices, Field, model_validator
 from signalai.schemas.signalrb import PublicSignalRB, SignalReviewBoardDetermination
 from signalai.schemas.public_flagship import PublicFlagshipProgram
+from signalai.schemas.public_manufacturing import PublicManufacturingState
 
 from signalai.schemas.models import (
     Claim,
@@ -94,6 +95,7 @@ class PublicSignalState(SignalModel):
     flagship_program: PublicFlagshipProgram | None = Field(default=None, alias="flagshipProgram")
     cargo: PublicCargoState | None = None
     formulation: PublicFormulationState | None = None
+    manufacturing: PublicManufacturingState | None = None
     jurisdictions: PublicJurisdictionState | None = None
     clinical_network: PublicClinicalNetwork | None = Field(
         default=None,
@@ -173,6 +175,30 @@ class PublicSignalState(SignalModel):
                     raise ValueError("pivot criterion must come from a recorded SignalRB condition")
             if any(h.review_id not in reviews or h.run_id != reviews[h.review_id].run_id for h in flagship.program_history):
                 raise ValueError("flagship history must link canonical reviews and runs")
+            if flagship.manufacturing and self.manufacturing:
+                if flagship.manufacturing.latest_relevant_determination_id != self.manufacturing.latest_relevant_determination_id:
+                    raise ValueError("flagship manufacturing must reference the canonical manufacturing determination")
+        if self.manufacturing:
+            if self.manufacturing.program_id != self.program.program_id:
+                raise ValueError("public manufacturing must match the canonical program")
+            refs = [self.manufacturing.product_definition.refs, self.manufacturing.potency.refs]
+            refs.extend(item.refs for group in (
+                self.manufacturing.process_stages, self.manufacturing.quality_attributes,
+                self.manufacturing.readiness, self.manufacturing.risks,
+                self.manufacturing.next_actions,
+            ) for item in group)
+            allowed_evidence = {item.evidence_id for item in self.evidence}
+            allowed_claims = {item.claim_id for item in self.program.claims}
+            allowed_risks = {item.risk_id for item in self.risks}
+            allowed_decisions = {item.decision_id for item in self.decisions}
+            if any(set(ref.evidence_ids) - allowed_evidence for ref in refs):
+                raise ValueError("public manufacturing references unknown evidence")
+            if any(set(ref.claim_ids) - allowed_claims for ref in refs):
+                raise ValueError("public manufacturing references unknown claims")
+            if any(set(ref.risk_ids) - allowed_risks for ref in refs):
+                raise ValueError("public manufacturing references unknown risks")
+            if any(set(ref.decision_ids) - allowed_decisions for ref in refs):
+                raise ValueError("public manufacturing references unknown decisions")
         return self
 
     @classmethod
@@ -187,6 +213,7 @@ class PublicSignalState(SignalModel):
         airb: PublicAiRBState | None = None,
         cargo: PublicCargoState | None = None,
         formulation: PublicFormulationState | None = None,
+        manufacturing: PublicManufacturingState | None = None,
         jurisdictions: PublicJurisdictionState | None = None,
         clinical_network: PublicClinicalNetwork | None = None,
         clinic_intelligence: PublicClinicIntelligence | None = None,
@@ -228,6 +255,7 @@ class PublicSignalState(SignalModel):
             aiRB=airb,
             cargo=cargo,
             formulation=formulation,
+            manufacturing=manufacturing,
             jurisdictions=jurisdictions,
             clinicalNetwork=clinical_network,
             clinicIntelligence=clinic_intelligence,

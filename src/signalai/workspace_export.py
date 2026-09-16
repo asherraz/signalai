@@ -71,6 +71,29 @@ def validate_workspace_references(
     }
     if (cargo_evidence | formulation_evidence) - evidence_ids:
         raise ValueError("workspace references unknown scientific evidence")
+    if workspace.manufacturing:
+        if workspace.manufacturing.program_id != workspace.program_id:
+            raise ValueError("manufacturing belongs to another program")
+        refs = []
+        manufacturing = workspace.manufacturing
+        refs.extend([manufacturing.product_definition.refs, manufacturing.potency_strategy.refs])
+        refs.extend(item.refs for group in (
+            manufacturing.process_stages, manufacturing.quality_attributes,
+            manufacturing.test_methods, manufacturing.specifications,
+            manufacturing.test_results, manufacturing.lots,
+            manufacturing.stability_programs, manufacturing.readiness,
+            manufacturing.risks, manufacturing.next_actions,
+        ) for item in group)
+        if any(set(ref.evidence_ids) - evidence_ids for ref in refs):
+            raise ValueError("manufacturing references unknown scientific evidence")
+        if any(set(ref.claim_ids) - {item.claim_id for item in state.claims} for ref in refs):
+            raise ValueError("manufacturing references unknown scientific claims")
+        if any(set(ref.risk_ids) - risk_ids for ref in refs):
+            raise ValueError("manufacturing references unknown risks")
+        if any(set(ref.decision_ids) - decision_ids for ref in refs):
+            raise ValueError("manufacturing references unknown decisions")
+        if any(set(ref.agenda_item_ids) - agenda_ids for ref in refs):
+            raise ValueError("manufacturing references unknown agenda items")
 
 
 def _action(value: DevelopmentAction) -> PublicDomainAction:

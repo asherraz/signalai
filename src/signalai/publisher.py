@@ -9,12 +9,15 @@ from signalai.clinical_network_export import export_clinical_network
 from signalai.clinic_intelligence_export import export_clinic_intelligence
 from signalai.signalrb import export_signalrb
 from signalai.flagship_export import export_flagship_program
+from signalai.manufacturing import initialize_manufacturing, validate_manufacturing_operational_refs
+from signalai.manufacturing_export import export_flagship_manufacturing, export_manufacturing
 from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.product_export import export_product_layer
 from signalai.live_export import export_live_intelligence, merge_live_feed
 from signalai.public_export import build_public_airb, export_completed_run
 from signalai.schemas import (
     ClinicalNetworkState,
+    DevelopmentAgenda,
     DevelopmentDocket,
     LiveRunHistory,
     PublicChange,
@@ -24,7 +27,7 @@ from signalai.schemas import (
     WhatChanged,
 )
 from signalai.storage import publish_json
-from signalai.workspace_export import export_workspace
+from signalai.workspace_export import export_workspace, validate_workspace_references
 
 
 def build_current_public_state(
@@ -65,7 +68,31 @@ def build_current_public_state(
             summary=changed.summary,
         )
     ]
+    docket_path = root / "state" / "development-docket.json"
+    history_path = root / "state" / "live-runs.json"
+    docket = DevelopmentDocket.model_validate_json(docket_path.read_text(encoding="utf-8")) if docket_path.exists() else None
+    history = LiveRunHistory.model_validate_json(history_path.read_text(encoding="utf-8")) if history_path.exists() else None
+    agenda_path = root / "state" / "development-agenda.json"
+    agenda = (
+        DevelopmentAgenda.model_validate_json(agenda_path.read_text(encoding="utf-8"))
+        if agenda_path.exists()
+        else None
+    )
+    if workspace.manufacturing is None:
+        if agenda is None or docket is None or history is None:
+            raise ValueError(
+                "manufacturing compatibility initialization requires agenda, docket, and run history"
+            )
+        workspace = initialize_manufacturing(workspace, scientific, agenda, docket, history)
+    # Some bounded/staged run fixtures intentionally omit the legacy agenda.
+    # Keep those projections backward compatible; complete repository builds
+    # still perform the full canonical cross-reference validation.
+    if agenda is not None:
+        validate_workspace_references(workspace, scientific, agenda)
+    if agenda is not None and docket is not None and history is not None:
+        validate_manufacturing_operational_refs(workspace.manufacturing, docket, history)
     cargo, formulation, jurisdictions = export_workspace(workspace)
+    manufacturing = export_manufacturing(workspace.manufacturing)
     clinical_network = export_clinical_network(
         clinical,
         scientific,
@@ -87,13 +114,8 @@ def build_current_public_state(
         changes=changes,
         latest_run=latest_run,
     )
-    docket_path = root / "state" / "development-docket.json"
-    history_path = root / "state" / "live-runs.json"
     live_intelligence = None
-    history = None
-    if docket_path.exists() and history_path.exists():
-        docket = DevelopmentDocket.model_validate_json(docket_path.read_text(encoding="utf-8"))
-        history = LiveRunHistory.model_validate_json(history_path.read_text(encoding="utf-8"))
+    if docket is not None and history is not None:
         live_intelligence = export_live_intelligence(docket, history)
         feed = merge_live_feed(feed, history)
     public = PublicSignalState.from_internal(
@@ -106,6 +128,7 @@ def build_current_public_state(
         airb=airb,
         cargo=cargo,
         formulation=formulation,
+        manufacturing=manufacturing,
         jurisdictions=jurisdictions,
         clinical_network=clinical_network,
         clinic_intelligence=clinic_intelligence,
@@ -115,7 +138,10 @@ def build_current_public_state(
     )
     if history and history.runs:
         public = public.model_copy(update={"signal_rb": export_signalrb(root, scientific, history)})
-    public = public.model_copy(update={"flagship_program": export_flagship_program(scientific, public.signal_rb)})
+    flagship = export_flagship_program(scientific, public.signal_rb).model_copy(
+        update={"manufacturing": export_flagship_manufacturing(workspace.manufacturing)}
+    )
+    public = public.model_copy(update={"flagship_program": flagship})
     return public
 
 

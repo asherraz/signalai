@@ -60,6 +60,16 @@ from signalai.schemas.clinic_intelligence import (
 )
 
 from signalai.schemas.signalrb import SignalReviewBoardDetermination, PublicSignalRB
+from signalai.schemas.manufacturing import (
+    CoaRecord, ManufacturingApprovalState, ManufacturingLot,
+    ManufacturingNextAction, ManufacturingRefs, ManufacturingRisk,
+    ManufacturingState, ManufacturingStateLevel, PotencyStrategy, ProcessStage,
+    ProductDefinition, QualityAttribute, ReadinessItem, Specification,
+    StabilityProgram, StabilityTimepoint, TestMethod, TestResult,
+)
+from signalai.schemas.public_manufacturing import (
+    PublicFlagshipManufacturingSummary, PublicManufacturingState,
+)
 from signalai.schemas.public_flagship import PublicFlagshipProgram, PublicDevelopmentGate, PublicPivotCriterion
 
 from signalai.schemas.models import (
@@ -382,4 +392,24 @@ __all__ = [
     "PublicFlagshipProgram",
     "PublicDevelopmentGate",
     "PublicPivotCriterion",
+    "ManufacturingState",
+    "ManufacturingStateLevel",
+    "ManufacturingApprovalState",
+    "ManufacturingRefs",
+    "ProductDefinition",
+    "ProcessStage",
+    "QualityAttribute",
+    "PotencyStrategy",
+    "TestMethod",
+    "Specification",
+    "TestResult",
+    "ManufacturingLot",
+    "StabilityProgram",
+    "StabilityTimepoint",
+    "CoaRecord",
+    "ReadinessItem",
+    "ManufacturingRisk",
+    "ManufacturingNextAction",
+    "PublicManufacturingState",
+    "PublicFlagshipManufacturingSummary",
 ]

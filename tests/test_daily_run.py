@@ -144,7 +144,8 @@ def test_no_material_change_run_persists_all_stages(tmp_path: Path) -> None:
     assert {item["moduleId"] for item in public_payload["product"]["intelligence"]["modules"]} == {
         "therapeutic-programs",
         "cargo",
-        "formulation",
+            "formulation",
+            "manufacturing",
         "jurisdictions",
         "evidence",
         "airb",

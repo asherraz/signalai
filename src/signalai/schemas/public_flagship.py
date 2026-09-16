@@ -6,6 +6,7 @@ from typing import Literal
 from pydantic import Field, model_validator
 
 from signalai.schemas.models import Identifier, NonEmptyText, SignalModel, _require_timezone
+from signalai.schemas.public_manufacturing import PublicFlagshipManufacturingSummary
 
 
 class FlagshipSourceRefs(SignalModel):
@@ -81,6 +82,7 @@ class PublicFlagshipProgram(SignalModel):
     updated_at: datetime = Field(alias="updatedAt")
     program_history: list[PublicProgramHistoryEntry] = Field(default_factory=list, alias="programHistory")
     sources: FlagshipSourceRefs
+    manufacturing: PublicFlagshipManufacturingSummary | None = None
 
     @model_validator(mode="after")
     def validate_projection(self):

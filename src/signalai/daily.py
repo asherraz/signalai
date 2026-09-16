@@ -18,6 +18,7 @@ from signalai.client import ModelClient
 from signalai.clinical_network_export import export_clinical_network
 from signalai.public_export import build_public_airb, build_public_latest_run
 from signalai.product_export import export_product_layer
+from signalai.manufacturing_export import export_manufacturing
 from signalai.workspace_export import export_workspace, validate_workspace_references
 from signalai.schemas import (
     AgentRun,
@@ -241,6 +242,7 @@ class DailyRunOrchestrator:
                 airb=build_public_airb(latest_run, updated_state.program.program_id),
                 cargo=public_domains[0],
                 formulation=public_domains[1],
+                manufacturing=export_manufacturing(workspace.manufacturing) if workspace and workspace.manufacturing else None,
                 jurisdictions=public_domains[2],
                 clinical_network=public_clinical_network,
                 product=product,

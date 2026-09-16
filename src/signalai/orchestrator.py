@@ -18,6 +18,7 @@ from signalai.agents.prompts import (
 from signalai.client import ModelClient
 from signalai.clinical_network_export import export_clinical_network
 from signalai.product_export import export_product_layer
+from signalai.manufacturing_export import export_manufacturing
 from signalai.schemas import (
     AgentRun,
     ApprovalStatus,
@@ -208,6 +209,7 @@ class MilestoneOneOrchestrator:
                 state,
                 cargo=public_domains[0],
                 formulation=public_domains[1],
+                manufacturing=export_manufacturing(workspace.manufacturing) if workspace and workspace.manufacturing else None,
                 jurisdictions=public_domains[2],
                 clinical_network=public_network,
             )

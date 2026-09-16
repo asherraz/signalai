@@ -199,6 +199,24 @@ def export_product_layer(
             reference_ids=[item.formulation_candidate_id for item in workspace.formulation.candidates],
             available_fields=["candidates", "excipients", "presentations", "nextActions"],
         ),
+        *([_module(
+            module_id="manufacturing",
+            title="Manufacturing / CMC",
+            summary="Product definition, analytical strategy, readiness, and manufacturing evidence gaps.",
+            last_updated=workspace.manufacturing.updated_at,
+            status=IntelligenceModuleStatus.DEVELOPING,
+            preview=(f"Product definition is {workspace.manufacturing.product_definition.state.value}; "
+                     f"potency is {workspace.manufacturing.potency_strategy.state.value}."),
+            metrics={
+                "realLots": len(workspace.manufacturing.lots),
+                "approvedSpecifications": sum(x.approval_state.value == "approved" for x in workspace.manufacturing.specifications),
+                "coaRecords": len(workspace.manufacturing.coa_records),
+            },
+            changes=[],
+            partner_summary="Inspect product-definition gaps, readiness, proposed analytical methods, risks, and human-gated next actions.",
+            reference_ids=[workspace.manufacturing.product_definition.product_definition_id],
+            available_fields=["productDefinition", "processStages", "potency", "readiness", "risks", "nextActions"],
+        )] if workspace.manufacturing else []),
         _module(
             module_id="jurisdictions",
             title="Jurisdictions",

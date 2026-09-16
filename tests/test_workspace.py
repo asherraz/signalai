@@ -132,4 +132,4 @@ def test_public_workspace_serialization_and_missing_optional_data() -> None:
 
 def test_canonical_workspace_is_valid_json() -> None:
     payload = json.loads((ROOT / "state" / "asset-development.json").read_text())
-    assert set(payload) == {"schema_version", "program_id", "generated_at", "cargo", "formulation", "jurisdictions"}
+    assert set(payload) == {"schema_version", "program_id", "generated_at", "cargo", "formulation", "manufacturing", "jurisdictions"}

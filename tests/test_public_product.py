@@ -67,7 +67,8 @@ def test_intelligence_modules_derive_from_real_state() -> None:
     assert set(modules) == {
         "therapeutic-programs",
         "cargo",
-        "formulation",
+            "formulation",
+            "manufacturing",
         "jurisdictions",
         "evidence",
         "airb",

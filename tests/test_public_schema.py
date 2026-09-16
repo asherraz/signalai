@@ -25,6 +25,7 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "flagshipProgram",
     "cargo",
     "formulation",
+    "manufacturing",
     "jurisdictions",
     "clinicalNetwork",
     "clinicIntelligence",
