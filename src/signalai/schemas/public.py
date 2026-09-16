@@ -10,6 +10,7 @@ from pydantic import AliasChoices, Field, model_validator
 from signalai.schemas.signalrb import PublicSignalRB, SignalReviewBoardDetermination
 from signalai.schemas.public_flagship import PublicFlagshipProgram
 from signalai.schemas.public_manufacturing import PublicManufacturingState
+from signalai.schemas.clinic_simulation import PublicClinicSimulation
 
 from signalai.schemas.models import (
     Claim,
@@ -109,6 +110,9 @@ class PublicSignalState(SignalModel):
     )
     live_intelligence: PublicLiveIntelligence | None = Field(
         default=None, alias="liveIntelligence"
+    )
+    clinic_simulation: PublicClinicSimulation | None = Field(
+        default=None, alias="clinicSimulation"
     )
 
     @model_validator(mode="after")
@@ -220,6 +224,7 @@ class PublicSignalState(SignalModel):
         product: PublicProduct | None = None,
         intelligence_feed: list[PublicIntelligenceFeedItem] | None = None,
         live_intelligence: PublicLiveIntelligence | None = None,
+        clinic_simulation: PublicClinicSimulation | None = None,
         generated_at: datetime | None = None,
     ) -> PublicSignalState:
         public = cls(
@@ -262,6 +267,7 @@ class PublicSignalState(SignalModel):
             product=product,
             intelligenceFeed=intelligence_feed or [],
             liveIntelligence=live_intelligence,
+            clinicSimulation=clinic_simulation,
         )
         from signalai.flagship_export import export_flagship_program
 

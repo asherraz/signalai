@@ -267,6 +267,24 @@ cards. Therapy counts use enriched records, not seed categories. Region/country
 counts include explicitly labeled discovery locations. Private diagnostics,
 costs, outreach notes and discovery verification annotations are not exported.
 
+## Fictional clinic demonstration
+
+The clinic simulator advances a clearly labeled, fictional SGL-001 intranasal
+secretome protocol by one synthetic day. It creates six synthetic participant
+records, performs bounded operations, data-quality, safety, adversarial and chair
+review, persists immutable artifacts under `simulation-runs/`, and publishes a
+sanitized `clinicSimulation` feed:
+
+```bash
+python -m signalai clinic-simulate
+python -m signalai clinic-simulate 2026-09-17
+```
+
+The simulation is deterministic, uses no patient data, specifies no clinical dose,
+and never updates canonical evidence or SGL-001 therapeutic state. Generated values
+cannot establish safety, efficacy, exposure, potency or clinical feasibility. The
+daily workflow advances it only after the bounded intelligence cycle succeeds.
+
 ## Data conventions
 
 - Canonical machine state is JSON validated by Pydantic.

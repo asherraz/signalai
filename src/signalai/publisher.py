@@ -7,6 +7,8 @@ from pathlib import Path
 
 from signalai.clinical_network_export import export_clinical_network
 from signalai.clinic_intelligence_export import export_clinic_intelligence
+from signalai.clinic_simulation import export_clinic_simulation
+from signalai.schemas.clinic_simulation import ClinicSimulationState
 from signalai.signalrb import export_signalrb
 from signalai.flagship_export import export_flagship_program
 from signalai.manufacturing import initialize_manufacturing, validate_manufacturing_operational_refs
@@ -105,6 +107,16 @@ def build_current_public_state(
         if clinic_data_path.exists() else ClinicIntelligenceDataset()
     )
     clinic_intelligence = export_clinic_intelligence(clinic_dataset)
+    simulation_path = root / "state" / "clinic-simulation.json"
+    clinic_simulation = (
+        export_clinic_simulation(
+            ClinicSimulationState.model_validate_json(
+                simulation_path.read_text(encoding="utf-8")
+            )
+        )
+        if simulation_path.exists()
+        else None
+    )
     airb = build_public_airb(latest_run, scientific.program.program_id)
     product, feed = export_product_layer(
         scientific,
@@ -135,6 +147,7 @@ def build_current_public_state(
         product=product,
         intelligence_feed=feed,
         live_intelligence=live_intelligence,
+        clinic_simulation=clinic_simulation,
     )
     if history and history.runs:
         public = public.model_copy(update={"signal_rb": export_signalrb(root, scientific, history)})

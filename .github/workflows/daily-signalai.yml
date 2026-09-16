@@ -43,6 +43,9 @@ jobs:
           output="$(python -m signalai daily)"
           echo "$output"
           echo "run_id=${output##* }" >> "$GITHUB_OUTPUT"
+      - name: Advance the fictional clinic demonstration
+        shell: bash
+        run: python -m signalai clinic-simulate
       - name: Commit validated generated state
         if: success()
         shell: bash
@@ -51,7 +54,7 @@ jobs:
           if python -m signalai should-commit; then
             git config user.name "signalai-bot"
             git config user.email "signalai-bot@users.noreply.github.com"
-            git add public state runs
+            git add public state runs simulation-runs
             git commit -m "chore: autonomous SignalAI run ${{ steps.run.outputs.run_id }}"
             git push origin HEAD:main
           else

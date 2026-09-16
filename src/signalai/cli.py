@@ -15,6 +15,7 @@ from signalai.material_change import repository_has_material_change
 from signalai.legacy_migration import migrate_legacy_workspace, write_migration_outputs
 from signalai.orchestrator import MilestoneOneOrchestrator
 from signalai.publisher import publish_current_public_state
+from signalai.clinic_simulation import advance_simulation
 from signalai.schemas import (
     DevelopmentAgenda,
     SignalState,
@@ -94,6 +95,18 @@ def publish_state_main() -> None:
     root = Path.cwd()
     state = publish_current_public_state(root)
     print(f"Published complete public state at {state.generated_at.isoformat()}")
+
+
+def clinic_simulation_main(target: str | None = None) -> None:
+    root = Path.cwd()
+    simulated_date = datetime.fromisoformat(target).date() if target else None
+    state = advance_simulation(root, simulated_date=simulated_date)
+    publish_current_public_state(root)
+    latest = state.days[-1]
+    print(
+        f"Completed synthetic clinic day {latest.protocol_day}: "
+        f"{latest.determination.determination_type.value}"
+    )
 
 
 def _clinic_ingestor() -> ClinicIngestor:

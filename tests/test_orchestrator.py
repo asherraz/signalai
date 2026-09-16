@@ -115,8 +115,9 @@ def test_milestone_one_run_persists_every_stage_and_public_state(tmp_path: Path)
         "clinicIntelligence",
         "product",
         "intelligenceFeed",
-        "liveIntelligence",
-    }
+            "liveIntelligence",
+            "clinicSimulation",
+        }
     public_state = PublicSignalState.model_validate(public_payload)
     assert public_state.loop.run_id == state.run_id
     assert public_state.hypotheses == [state.hypothesis]
