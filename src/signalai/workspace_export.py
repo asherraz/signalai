@@ -15,8 +15,10 @@ from signalai.schemas.public_workspace import (
     PublicFormulationState,
     PublicJurisdictionCard,
     PublicJurisdictionState,
+    PublicMoaStep,
     PublicPathway,
     PublicPresentationCandidate,
+    PublicTheoreticalMoa,
 )
 from signalai.schemas.workspace import DevelopmentAction, TherapeuticAssetWorkspace
 
@@ -179,6 +181,79 @@ def export_workspace(workspace: TherapeuticAssetWorkspace):
             if item.development_status.value == "benchmark"
         ],
         nextActions=[_action(item) for item in workspace.cargo.links.next_actions],
+        theoreticalMoa=PublicTheoreticalMoa(
+            title="Theoretical SGL-001 mechanism of action",
+            subtitle="From manufactured cargo to a proposed regenerative tissue response",
+            disclaimer=(
+                "This is a testable mechanism hypothesis, not an established SGL-001 mechanism. "
+                "Each transition must be demonstrated experimentally for the final product."
+            ),
+            steps=[
+                PublicMoaStep(
+                    step=1, phase="Product identity", title="Reproducible miRNA cargo",
+                    description="A manufactured SGL-001 lot contains a defined and reproducible miRNA signature.",
+                    evidenceStatus="Unconfirmed for SGL-001",
+                    validationGate="Quantify absolute miRNA copies across multiple released lots.",
+                ),
+                PublicMoaStep(
+                    step=2, phase="Product identity", title="Functional EV association",
+                    description="Candidate miRNA is protected within functional EVs rather than free, degraded, or co-isolated material.",
+                    evidenceStatus="Unconfirmed for SGL-001",
+                    validationGate="Demonstrate vesicular localization with orthogonal separation and protection assays.",
+                ),
+                PublicMoaStep(
+                    step=3, phase="Delivery", title="Intranasal exposure",
+                    description="The formulation remains stable after dosing and reaches a biologically relevant nasal or CNS target compartment.",
+                    evidenceStatus="Translational gap",
+                    validationGate="Measure biodistribution and exposure in a relevant large-animal model.",
+                ),
+                PublicMoaStep(
+                    step=4, phase="Delivery", title="Target-cell uptake",
+                    description="Relevant recipient cells internalize SGL-001 EVs or their active cargo.",
+                    evidenceStatus="Plausible; product-specific evidence absent",
+                    validationGate="Show cell-specific uptake using traceable, artifact-controlled methods.",
+                ),
+                PublicMoaStep(
+                    step=5, phase="Intracellular action", title="Endosomal escape",
+                    description="Internalized miRNA reaches the cytoplasm instead of remaining trapped or being degraded.",
+                    evidenceStatus="Critical untested assumption",
+                    validationGate="Demonstrate cytosolic delivery and functional accessibility.",
+                ),
+                PublicMoaStep(
+                    step=6, phase="Intracellular action", title="RISC engagement at sufficient dose",
+                    description="Delivered miRNA loads into Argonaute/RISC at a concentration capable of regulating gene expression.",
+                    evidenceStatus="Established general biology; unconfirmed for SGL-001",
+                    validationGate="Measure Ago loading, intracellular copy number, and dose-response.",
+                ),
+                PublicMoaStep(
+                    step=7, phase="Molecular effect", title="Direct target repression",
+                    description="The engaged miRNA reduces a defined target mRNA or protein, such as a pathway inhibitor.",
+                    evidenceStatus="Candidate-dependent",
+                    validationGate="Confirm direct target engagement and rescue the effect by blocking the miRNA.",
+                ),
+                PublicMoaStep(
+                    step=8, phase="Molecular effect", title="Pathway modulation",
+                    description="Target repression changes a relevant signaling system such as PTEN/PI3K-AKT, NF-kB, or TGF-beta/SMAD.",
+                    evidenceStatus="Hypothesis assembled from analog evidence",
+                    validationGate="Measure pathway direction, magnitude, timing, and cell specificity.",
+                ),
+                PublicMoaStep(
+                    step=9, phase="Biological outcome", title="Regenerative tissue response",
+                    description="Pathway changes produce a reproducible phenotype such as neural plasticity, inflammatory resolution, or tissue repair.",
+                    evidenceStatus="Not demonstrated for SGL-001",
+                    validationGate="Link the phenotype causally to cargo, target, and pathway using loss-of-function controls.",
+                ),
+            ],
+            exampleRoute=[
+                "miR-133b cargo", "recipient-cell delivery", "RISC engagement",
+                "RhoA / CTGF repression", "growth-inhibitory signaling reduced",
+                "proposed neurite remodeling",
+            ],
+            conclusion=(
+                "SGL-001 currently has a proposed multi-component paracrine mechanism. No specific miRNA, "
+                "target, pathway, or clinical effect has yet been established as its mechanism of action."
+            ),
+        ),
     )
 
     formulation = PublicFormulationState(

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from pydantic import Field
+from pydantic import Field, model_validator
 
-from signalai.schemas.models import Identifier, SignalModel
+from signalai.schemas.models import Identifier, NonEmptyText, SignalModel
 from signalai.schemas.workspace import (
     ActionStatus,
     DevelopmentDisposition,
@@ -63,6 +63,45 @@ class PublicCargoPathwayLink(SignalModel):
     evidence_ids: list[Identifier] = Field(alias="evidenceIds")
 
 
+class PublicMoaStep(SignalModel):
+    step: int = Field(ge=1, le=9)
+    phase: NonEmptyText
+    title: NonEmptyText
+    description: NonEmptyText
+    evidence_status: NonEmptyText = Field(alias="evidenceStatus")
+    validation_gate: NonEmptyText = Field(alias="validationGate")
+
+
+class PublicTheoreticalMoa(SignalModel):
+    title: NonEmptyText
+    subtitle: NonEmptyText
+    disclaimer: NonEmptyText
+    steps: list[PublicMoaStep] = Field(min_length=9, max_length=9)
+    example_route: list[NonEmptyText] = Field(alias="exampleRoute")
+    conclusion: NonEmptyText
+
+    @model_validator(mode="after")
+    def validate_required_chain(self):
+        expected = [
+            "Reproducible miRNA cargo",
+            "Functional EV association",
+            "Intranasal exposure",
+            "Target-cell uptake",
+            "Endosomal escape",
+            "RISC engagement at sufficient dose",
+            "Direct target repression",
+            "Pathway modulation",
+            "Regenerative tissue response",
+        ]
+        if [item.step for item in self.steps] != list(range(1, 10)):
+            raise ValueError("theoretical MOA steps must be ordered 1 through 9")
+        if [item.title for item in self.steps] != expected:
+            raise ValueError("theoretical MOA must preserve the required nine-step chain")
+        if "not an established SGL-001 mechanism" not in self.disclaimer:
+            raise ValueError("theoretical MOA disclaimer must state that the mechanism is not established")
+        return self
+
+
 class PublicCargoState(SignalModel):
     operator_focus_candidate_ids: list[Identifier] = Field(alias="operatorFocusCandidateIds")
     ranking_methodology: str = Field(alias="rankingMethodology")
@@ -73,6 +112,7 @@ class PublicCargoState(SignalModel):
     focus_candidates: list[Identifier] = Field(alias="focusCandidates")
     benchmarks: list[Identifier]
     next_actions: list[PublicDomainAction] = Field(alias="nextActions")
+    theoretical_moa: PublicTheoreticalMoa = Field(alias="theoreticalMoa")
 
 
 class PublicFormulationScore(SignalModel):

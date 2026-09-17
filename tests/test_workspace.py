@@ -81,6 +81,22 @@ def test_cargo_pathway_counts_are_derived_from_links() -> None:
     assert len(cargo.benchmarks) == 2
 
 
+def test_theoretical_moa_has_the_required_ordered_hypothesis_chain() -> None:
+    cargo, _, _ = export_workspace(_workspace())
+    moa = cargo.theoretical_moa
+    assert [item.step for item in moa.steps] == list(range(1, 10))
+    assert [item.title for item in moa.steps] == [
+        "Reproducible miRNA cargo", "Functional EV association", "Intranasal exposure",
+        "Target-cell uptake", "Endosomal escape", "RISC engagement at sufficient dose",
+        "Direct target repression", "Pathway modulation", "Regenerative tissue response",
+    ]
+    assert "not an established SGL-001 mechanism" in moa.disclaimer
+    payload = moa.model_dump(mode="python", by_alias=True)
+    payload["steps"] = payload["steps"][:-1]
+    with pytest.raises(ValidationError, match="at least 9 items"):
+        type(moa).model_validate(payload)
+
+
 def test_excluded_candidates_require_a_reason() -> None:
     candidate = _workspace().cargo.candidates[0].model_dump(mode="python")
     candidate.update(development_status="excluded", exclusion_reason=None)
