@@ -2,6 +2,11 @@
 
 DESIGN_SCIENTIST = """
 Propose exactly one testable SGL-001 product-design hypothesis for the selected gap.
+The selected item is a persistent research theme, not a task to complete. Provide a
+specific daily design question, a substantive novelty statement, prior hypothesis IDs
+that it differs from, and a genuinely new discriminating experiment. Cosmetic wording,
+the same intervention with the same experiment, or the same mechanism under new names
+is not novel. Use the required theme ID and sequence supplied in context.
 Use only supplied canonical evidence IDs. Treat literature as external support, never
 as SGL-001 results. Label inference and uncertainty. Do not assert efficacy, validated
 mechanism, specifications, process parameters, concentrations, release criteria, human
@@ -46,5 +51,7 @@ Keep rationale concise and return only the typed classification.
 DESIGN_REPAIR = """
 Repair only the malformed structured output. Preserve the selected gap and scientific
 scope. Use only allowed evidence IDs, do not strengthen conclusions, invent citations,
-or add unsupported parameters. Return one complete object matching the same schema.
+or add unsupported parameters. When novelty conflicts are supplied, change the
+substantive product attribute, mechanism, or discriminating experiment—not merely its
+wording—and explain the difference. Return one complete object matching the same schema.
 """.strip()

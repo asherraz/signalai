@@ -88,6 +88,24 @@ class DesignGap(SignalModel):
     rationale: NonEmptyText
     evidence_ids: list[Identifier] = Field(default_factory=list)
     status: str = Field(default="open", pattern="^(open|selected|reviewed|parked)$")
+    times_explored: int = Field(default=0, ge=0)
+    last_explored_at: datetime | None = None
+    latest_hypothesis_id: Identifier | None = None
+    hypothesis_ids: list[Identifier] = Field(default_factory=list)
+    open_questions: list[NonEmptyText] = Field(default_factory=list)
+    priority: int = Field(default=3, ge=1, le=5)
+    human_priority_override: int | None = Field(default=None, ge=1, le=5)
+    mechanistic_relevance: int = Field(default=3, ge=1, le=5)
+
+    @model_validator(mode="after")
+    def validate_exploration(self):
+        if self.last_explored_at is not None:
+            object.__setattr__(self, "last_explored_at", _require_timezone(self.last_explored_at, "last_explored_at"))
+        if self.times_explored != len(self.hypothesis_ids):
+            raise ValueError("times_explored must match hypothesis history")
+        if self.latest_hypothesis_id != (self.hypothesis_ids[-1] if self.hypothesis_ids else None):
+            raise ValueError("latest_hypothesis_id must match hypothesis history")
+        return self
 
 
 class CausalNode(SignalModel):
@@ -133,6 +151,8 @@ class ProductSignatureCandidate(SignalModel):
     evidence_ids: list[Identifier] = Field(default_factory=list)
     uncertainty: NonEmptyText
     source_hypothesis_id: Identifier
+    source_hypothesis_ids: list[Identifier] = Field(default_factory=list)
+    measurement_concept: str | None = None
     human_approved: bool = False
 
     @model_validator(mode="after")
@@ -159,7 +179,10 @@ class ExperimentProposal(SignalModel):
     evidence_ids: list[Identifier] = Field(default_factory=list)
     complexity: str = Field(pattern="^(low|moderate|high|not_assessed)$")
     human_approval_state: str = Field(pattern="^(pending|approved|rejected)$")
-    execution_status: str = Field(default="proposed", pattern="^proposed$")
+    execution_status: str = Field(
+        default="proposed",
+        pattern="^(proposed|human_review_required|promoted|performed|rejected|superseded)$",
+    )
 
 
 class ReviewerFinding(SignalModel):
@@ -206,6 +229,10 @@ class DesignHypothesis(SignalModel):
     determination: DesignDetermination
     status: str = Field(pattern="^(reviewed|parked|rejected)$")
     promotion_human_approved: bool = False
+    novelty_statement: str = "First recorded hypothesis for this persistent research theme."
+    distinguished_from_hypothesis_ids: list[Identifier] = Field(default_factory=list)
+    theme_id: Identifier | None = None
+    sequence_within_theme: int = Field(default=1, ge=1)
 
     @model_validator(mode="after")
     def validate_record(self):
@@ -286,6 +313,10 @@ class DesignProposal(SignalModel):
     experiment: ExperimentProposal
     dependencies: list[NonEmptyText] = Field(default_factory=list)
     human_decisions_required: list[NonEmptyText] = Field(default_factory=list)
+    novelty_statement: NonEmptyText
+    distinguished_from_hypothesis_ids: list[Identifier] = Field(default_factory=list)
+    theme_id: Identifier
+    sequence_within_theme: int = Field(ge=1)
 
 
 class DesignReview(SignalModel):

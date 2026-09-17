@@ -115,6 +115,8 @@ def build_current_public_state(
         if design_path.exists() else None
     )
     if design_workspace:
+        from signalai.design_lab import migrate_design_lab
+        design_workspace = migrate_design_lab(design_workspace)
         validate_design_lab_evidence(design_workspace, {item.evidence_id for item in scientific.evidence})
     design_lab = export_design_lab(design_workspace) if design_workspace else None
     simulation_path = root / "state" / "clinic-simulation.json"

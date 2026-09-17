@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "program_id": "SGL-001",
   "current_design_question": "Which measurable composition distinction can discriminate a secretome-retaining-EV product from a small-EV preparation?",
   "reviewed_hypotheses": [
@@ -238,7 +238,11 @@
       "chair_rationale": "Plausible and MISEV-aligned exploratory identity attribute with manufacturable analytics, supported by canonical guidance but lacking program-specific validation. Key risks (false positives from co-isolates, marker variability, assay artifacts, and translational uncertainty) and explicit evidence gaps (marker presence on MSC EVs, assay specificity/LOD vs lipoproteins/aggregates, stability through manufacturing/scale-up, and large-animal/clinical-matrix performance) justify proceeding to the targeted experiments and qualification described (orthogonal capture + particle correlation + protection + density controls). Ensure inclusion of rigorous negative controls, marker verification, assay LOD/specificity studies, and follow-up potency/biodistribution linkage; final acceptance criteria and marker selection remain human decisions.",
       "determination": "proposed_for_testing",
       "status": "reviewed",
-      "promotion_human_approved": false
+      "promotion_human_approved": false,
+      "novelty_statement": "First recorded hypothesis for this persistent research theme.",
+      "distinguished_from_hypothesis_ids": [],
+      "theme_id": "design-gap-product-identity",
+      "sequence_within_theme": 1
     }
   ],
   "proposed_experiments": [
@@ -300,14 +304,18 @@
       ],
       "uncertainty": "Moderate: marker choice and assay sensitivity may vary by source cell and isolation method; this attribute is exploratory until validated with program-specific materials.",
       "source_hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7"
+      ],
+      "measurement_concept": "EV identity and purity (intact-EV signature)",
       "human_approved": false
     }
   ],
   "design_gaps": [
     {
       "gap_id": "design-gap-product-identity",
-      "title": "EV versus non-EV product identity",
-      "question": "Which measurable composition distinction can discriminate a secretome-retaining-EV product from a small-EV preparation?",
+      "title": "Product identity",
+      "question": "Which orthogonal measurable attributes could define SGL-001 product identity without implying potency or efficacy?",
       "domain": "product_identity",
       "blocking_value": 5,
       "testability": 4,
@@ -317,7 +325,19 @@
       "discriminating_value": 5,
       "rationale": "Canonical Manufacturing records exact drug-substance identity and fractionation as unresolved.",
       "evidence_ids": [],
-      "status": "reviewed"
+      "status": "open",
+      "times_explored": 1,
+      "last_explored_at": "2026-09-17T10:05:10.479507Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+      "hypothesis_ids": [
+        "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7"
+      ],
+      "open_questions": [
+        "What defines the product independently of an efficacy claim?"
+      ],
+      "priority": 5,
+      "human_priority_override": null,
+      "mechanistic_relevance": 4
     },
     {
       "gap_id": "design-gap-source-cell",
@@ -332,7 +352,117 @@
       "discriminating_value": 5,
       "rationale": "Canonical Manufacturing records source qualification and cell-bank strategy as evidence gaps.",
       "evidence_ids": [],
-      "status": "open"
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which source attributes merit comparative characterization?"
+      ],
+      "priority": 5,
+      "human_priority_override": null,
+      "mechanistic_relevance": 4
+    },
+    {
+      "gap_id": "design-gap-surface-phenotype",
+      "title": "Surface-marker phenotype",
+      "question": "Which evidence-linked surface-phenotype measurements could help characterize product identity without implying potency?",
+      "domain": "product_identity",
+      "blocking_value": 4,
+      "testability": 4,
+      "product_definition_relevance": 5,
+      "manufacturing_relevance": 5,
+      "evidence_availability": 2,
+      "discriminating_value": 5,
+      "rationale": "Surface phenotype is a possible characterization domain, not an established SGL-001 potency marker.",
+      "evidence_ids": [],
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which measurements are source- and process-sensitive?"
+      ],
+      "priority": 4,
+      "human_priority_override": null,
+      "mechanistic_relevance": 4
+    },
+    {
+      "gap_id": "design-gap-cargo-composition",
+      "title": "Cargo composition",
+      "question": "Which evidence-linked cargo-profile comparison could test consistency without presuming an active molecule?",
+      "domain": "cargo",
+      "blocking_value": 4,
+      "testability": 4,
+      "product_definition_relevance": 5,
+      "manufacturing_relevance": 5,
+      "evidence_availability": 2,
+      "discriminating_value": 5,
+      "rationale": "Cargo strategy and active biological contributors remain unresolved.",
+      "evidence_ids": [],
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Does any cargo profile track a functional readout across future preparations?"
+      ],
+      "priority": 4,
+      "human_priority_override": null,
+      "mechanistic_relevance": 5
+    },
+    {
+      "gap_id": "design-gap-ev-non-ev-composition",
+      "title": "EV versus non-EV composition",
+      "question": "Which fraction comparison could distinguish EV-associated from non-EV biological contributions?",
+      "domain": "fractionation",
+      "blocking_value": 5,
+      "testability": 4,
+      "product_definition_relevance": 5,
+      "manufacturing_relevance": 5,
+      "evidence_availability": 2,
+      "discriminating_value": 5,
+      "rationale": "The relative contribution of EV and non-EV secretome components remains unresolved.",
+      "evidence_ids": [],
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which matched fractions preserve or lose a candidate functional signal?"
+      ],
+      "priority": 5,
+      "human_priority_override": null,
+      "mechanistic_relevance": 5
+    },
+    {
+      "gap_id": "design-gap-isolation-fractionation",
+      "title": "Isolation and fractionation",
+      "question": "Which bounded isolation or fractionation comparison could clarify product identity and recovery tradeoffs?",
+      "domain": "fractionation",
+      "blocking_value": 5,
+      "testability": 4,
+      "product_definition_relevance": 5,
+      "manufacturing_relevance": 5,
+      "evidence_availability": 2,
+      "discriminating_value": 5,
+      "rationale": "Canonical product purification and fractionation state is unresolved.",
+      "evidence_ids": [],
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which process comparison is analytically discriminating and manufacturable?"
+      ],
+      "priority": 5,
+      "human_priority_override": null,
+      "mechanistic_relevance": 4
     },
     {
       "gap_id": "design-gap-mechanism-potency",
@@ -347,7 +477,42 @@
       "discriminating_value": 5,
       "rationale": "Canonical Manufacturing records potency as an evidence gap and prohibits particle count as established potency.",
       "evidence_ids": [],
-      "status": "open"
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which functional readout can be linked to a product attribute?"
+      ],
+      "priority": 5,
+      "human_priority_override": null,
+      "mechanistic_relevance": 5
+    },
+    {
+      "gap_id": "design-gap-mechanism",
+      "title": "Mechanism of action",
+      "question": "Which causal link can be tested without claiming an established SGL-001 mechanism?",
+      "domain": "mechanism",
+      "blocking_value": 4,
+      "testability": 4,
+      "product_definition_relevance": 5,
+      "manufacturing_relevance": 5,
+      "evidence_availability": 2,
+      "discriminating_value": 5,
+      "rationale": "The active biology and causal mechanism remain hypotheses.",
+      "evidence_ids": [],
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which competing explanation can one experiment distinguish?"
+      ],
+      "priority": 4,
+      "human_priority_override": null,
+      "mechanistic_relevance": 5
     },
     {
       "gap_id": "design-gap-stability",
@@ -362,7 +527,17 @@
       "discriminating_value": 5,
       "rationale": "No canonical SGL-001 stability program or verified shelf life exists.",
       "evidence_ids": [],
-      "status": "open"
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which attributes are stability-indicating?"
+      ],
+      "priority": 4,
+      "human_priority_override": null,
+      "mechanistic_relevance": 3
     },
     {
       "gap_id": "design-gap-intranasal-compatibility",
@@ -377,7 +552,42 @@
       "discriminating_value": 5,
       "rationale": "Vehicle, stabilizer, and device compatibility remain unresolved canonical actions.",
       "evidence_ids": [],
-      "status": "open"
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which compatibility test best protects interpretability?"
+      ],
+      "priority": 4,
+      "human_priority_override": null,
+      "mechanistic_relevance": 4
+    },
+    {
+      "gap_id": "design-gap-manufacturing-process",
+      "title": "Manufacturing process",
+      "question": "Which process-stage comparison could reveal sensitivity of an exploratory product signature?",
+      "domain": "process",
+      "blocking_value": 5,
+      "testability": 4,
+      "product_definition_relevance": 5,
+      "manufacturing_relevance": 5,
+      "evidence_availability": 2,
+      "discriminating_value": 5,
+      "rationale": "Most canonical process stages remain not defined or proposal-only.",
+      "evidence_ids": [],
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which stage is most likely to alter identity or functional signal?"
+      ],
+      "priority": 5,
+      "human_priority_override": null,
+      "mechanistic_relevance": 4
     },
     {
       "gap_id": "design-gap-lot-comparability",
@@ -392,7 +602,42 @@
       "discriminating_value": 5,
       "rationale": "Canonical Manufacturing records no lots and lot reproducibility as an evidence gap.",
       "evidence_ids": [],
-      "status": "open"
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which future fingerprint supports comparability without becoming a premature specification?"
+      ],
+      "priority": 4,
+      "human_priority_override": null,
+      "mechanistic_relevance": 3
+    },
+    {
+      "gap_id": "design-gap-scale-control",
+      "title": "Scale-up and control strategy",
+      "question": "Which scale-sensitive attribute and proposed control should be evaluated before representative production studies?",
+      "domain": "manufacturing",
+      "blocking_value": 5,
+      "testability": 4,
+      "product_definition_relevance": 5,
+      "manufacturing_relevance": 5,
+      "evidence_availability": 2,
+      "discriminating_value": 5,
+      "rationale": "Scale-up, source control, and process control remain canonical evidence gaps.",
+      "evidence_ids": [],
+      "status": "open",
+      "times_explored": 0,
+      "last_explored_at": null,
+      "latest_hypothesis_id": null,
+      "hypothesis_ids": [],
+      "open_questions": [
+        "Which control can distinguish scale effect from analytical noise?"
+      ],
+      "priority": 5,
+      "human_priority_override": null,
+      "mechanistic_relevance": 3
     }
   ],
   "recent_runs": [
