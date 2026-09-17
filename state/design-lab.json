@@ -1,12 +1,308 @@
 {
   "schema_version": "1.0",
   "program_id": "SGL-001",
-  "current_design_question": null,
-  "reviewed_hypotheses": [],
-  "proposed_experiments": [],
+  "current_design_question": "Which measurable composition distinction can discriminate a secretome-retaining-EV product from a small-EV preparation?",
+  "reviewed_hypotheses": [
+    {
+      "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+      "program_id": "SGL-001",
+      "run_id": "run-20260917T100510Z-4fa4f7f74ec7",
+      "created_at": "2026-09-17T10:05:10.479507Z",
+      "title": "Hypothesis: A membrane-protected, particle-associated analytical signature will discriminate an EV-enriched small‑EV preparation from an unpurified MSC secretome that retains non‑vesicular co‑isolates",
+      "design_question": "Which measurable composition distinction can discriminate a secretome-retaining-EV product from a small-EV preparation?",
+      "primary_domain": "product_identity",
+      "secondary_domains": [
+        "manufacturing",
+        "fractionation",
+        "potency"
+      ],
+      "selected_gap_id": "design-gap-product-identity",
+      "proposed_product_change_or_attribute": "Define an orthogonal intact-EV-associated signature (immuno-capture of canonical EV surface markers + particle enumeration + detergent/protease protection and density-fraction correlation) as a discriminating product-identity attribute between a small-EV preparation and an unpurified secretome.",
+      "biological_rationale": "EVs are membranous particles that protect surface and luminal components from external protease/RNase unless membrane integrity is disrupted; correlating particle counts with membrane-protected marker signal distinguishes particle-associated material from freely soluble non-vesicular cargo. (Inference: uses canonical EV biology; supported by MISEV2023 recommendation for orthogonal characterization.)",
+      "manufacturing_rationale": "An analytically discriminating identity attribute is required to define drug-substance fractionation state (secretome retaining EVs vs enriched small-EV isolate) and to enable downstream release, comparability, and potency linkage activities as recommended by consensus guidance.",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "The product is currently defined as 'secretome retaining EVs' versus a purified small‑EV drug substance; this distinction is unresolved and blocks product definition and CMC decisions."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If a membrane-protected, particle-associated analytical signature (intact-EV capture, particle counts, detergent/protease sensitivity, density correlation) is observed, then the preparation can be classified as an EV-enriched small‑EV preparation rather than mainly non‑vesicular secretome."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If no membrane-protected, particle-associated signature is observed and marker signal tracks with bulk soluble protein and is insensitive to membrane disruption, then the preparation is indistinguishable from an unpurified secretome with co-isolated non‑vesicular components."
+          },
+          {
+            "node_id": "n4",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "Classifying the drug‑substance fractionation state enables targeted CMC actions: orthogonal QC panel, potency assay development, and relevant scale-up comparability testing (MISEV2023 guidance)."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate: MISEV recommends orthogonal approaches but does not define a single discriminating panel for all source-cell types.",
+            "competing_explanation": "Marker enrichment could reflect co‑isolation of protein aggregates or lipoproteins that co-sediment with particles.",
+            "missing_experiment": "Program-specific intact-EV capture and protection studies with matched purified and unpurified preparations."
+          },
+          {
+            "edge_id": "e2",
+            "source_node_id": "n1",
+            "target_node_id": "n3",
+            "evidence_state": "direct_observation",
+            "evidence_ids": [
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "relation_type": "inference",
+            "model_or_species": "non-human primate (macaque) context",
+            "uncertainty": "Moderate: lack of CNS detection after intranasal dosing may arise from formulation, administration, or labeling choices rather than absence of intact EVs.",
+            "competing_explanation": "A true EV-enriched preparation might still fail in biodistribution if dosing or route-specific barriers exist.",
+            "missing_experiment": "Matched intact-EV analytics in large-animal dosing studies."
+          },
+          {
+            "edge_id": "e3",
+            "source_node_id": "n2",
+            "target_node_id": "n4",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-hermann-2023-neonatal-hi"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Inference: Translational and manufacturing recommendations follow from knowing fractionation state; uncertainty remains about how identity maps to potency in this program.",
+            "competing_explanation": "Even with a defined identity attribute, potency linkage may remain unresolved if active cargo is not EV-associated.",
+            "missing_experiment": "Potency assays specifically linked to the intact-EV-associated signature."
+          }
+        ]
+      },
+      "expected_measurable_effect": "Enrichment of membrane-protected EV surface markers (e.g., CD63/CD9/CD81 or phosphatidylserine capture) that co-localize with particle-count peaks and density fractions consistent with small EVs, with signal loss after detergent (Triton X-100) and protection from external protease/RNase unless membrane-disrupted.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "contradicting_evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "explicit_inferences": [
+        "Inference: Membrane protection assays (protease/RNase sensitivity with and without detergent) combined with immuno-capture and particle enumeration provide a testable, orthogonal signature that discriminates particle-associated EV signal from soluble non-vesicular components (based on MISEV2023 principles)."
+      ],
+      "assumptions": [
+        "Assumption: Canonical EV surface markers (or phosphatidylserine capture ligands) are present and detectable on MSC-derived small EVs from the chosen source cells.",
+        "Assumption: Particle enumeration methods (NTA, TRPS, or similar) correlate sufficiently with EV-associated marker signal to allow discrimination.",
+        "Assumption: Detergent and protease/RNase treatments reliably differentiate membrane-protected from soluble signals under the assay conditions."
+      ],
+      "competing_explanations": [
+        "Co‑isolated non-vesicular particles (protein aggregates, lipoproteins) could give particle counts and marker-like signals, generating false classification.",
+        "Source-cell, isolation method, or formulation components may mask or strip markers, reducing sensitivity of the intact-EV signature."
+      ],
+      "manufacturability_assessment": "Establishing this attribute is manufacturable at analytical scale (requires capture reagents, validated particle counters, density fractionation capability) and would inform selection of a drug-substance fractionation process; however, implementation requires development resources and assay validation.",
+      "measurement_strategy": "Orthogonal panel: (1) particle enumeration by NTA/TRPS of input and density fractions; (2) immuno-capture ELISA (capture for CD63/CD9/CD81 or TIM4/AnxA5 phosphatidylserine capture) for surface markers on intact material; (3) protease and RNase protection assays +/- detergent to assess membrane protection of captured signal; (4) density-gradient correlation (fractionation) to align marker and particle peaks; (5) total protein and protein:particle ratio assessment to detect non‑vesicular protein load. Include matched controls: purified small-EV isolate (positive control), concentrated conditioned medium without EV enrichment (negative control), and detergent-disrupted samples.",
+      "candidate_quality_attributes_affected": [
+        "attribute-ev-identity-purity"
+      ],
+      "proposed_potency_relationship": "If biological activity in downstream potency assays co-varies with the intact-EV-associated signature across preparations and fractionation states, this supports a potency relationship to EV-associated cargo; otherwise, activity may be driven by soluble, non‑vesicular components.",
+      "principal_risks": [
+        "False-positive classification due to co-isolated non-vesicular particles that mimic particle-associated signatures.",
+        "Insufficient sensitivity of capture reagents or particle counting to detect relevant EV populations from the chosen source-cell/process.",
+        "Resource and timeline impact from assay development and validation requirements."
+      ],
+      "falsification_criteria": [
+        "Falsified if preparations that meet the intact-EV signature (capture-positive, particle-correlated, detergent/protease-sensitive) consistently fail to show enrichment of particle-associated markers versus concentrated conditioned medium, i.e., no measurable discrimination.",
+        "Falsified if detergent and protease/RNase treatments do not differentially affect captured signal between purified small-EV preparations and unpurified secretome controls (no membrane-protection observed)."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20260917T100510Z-4fa4f7f74ec7",
+        "question": "Can an orthogonal intact-EV analytical signature discriminate an EV-enriched small-EV preparation from an unpurified MSC secretome?",
+        "hypothesis_tested": "A membrane-protected, particle-associated analytical signature (immuno-capture of EV surface markers + particle enumeration + detergent/protease protection + density fractionation) will be observed in a purified small-EV preparation but not in an unpurified concentrated secretome.",
+        "required_material": [
+          "MSC-conditioned medium (same source-cell lot) processed as: (A) small-EV enrichment (e.g., ultracentrifugation/SEC) and (B) concentrated conditioned medium without EV enrichment",
+          "Purified small-EV positive control from orthogonal source (if available)",
+          "Immuno-capture reagents (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5 capture reagents)",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Protease (e.g., proteinase K) and RNase reagents",
+          "Detergent (e.g., Triton X-100) for membrane disruption",
+          "Density-gradient materials (iodixanol for gradient fractionation)",
+          "Total protein assay reagents",
+          "Appropriate buffers and blocking reagents"
+        ],
+        "comparator": "Matched preparations: (A) enriched small-EV preparation vs (B) concentrated conditioned medium (secretome-retaining EVs) from the same source-cell lot.",
+        "control": "Negative control: buffer-only and detergent-disrupted samples; Positive control: commercially available characterized small EVs if available.",
+        "assay": "Orthogonal workflow combining: (1) density-gradient fractionation followed by particle counting per fraction; (2) immuno-capture ELISA or bead-capture + detection of EV surface markers on intact material per fraction; (3) protease and RNase protection assays on captured material with and without detergent; (4) total protein and protein:particle ratio per fraction.",
+        "primary_readout": "Co-localization of particle-count peaks with capture-positive fractions and loss of captured signal after detergent + protease/RNase treatment (indicating membrane protection).",
+        "secondary_readouts": [
+          "Protein:particle ratio differences between preparations",
+          "Presence/absence of marker signal in secretome control fractions",
+          "Reproducibility across biological replicates (n ≥ 3 independent conditioned medium preps)"
+        ],
+        "success_criterion": "Observed enrichment of capture-positive signal that co-localizes with particle-count peaks in density fractions for the small-EV enriched preparation, and a significant reduction (> qualitative loss) of captured signal after detergent + protease/RNase, while the unpurified secretome shows marker signal that does not co-localize with particle peaks and is largely insensitive to membrane-disrupting treatments (qualitative comparison).",
+        "failure_criterion": "No qualitative difference between enriched small-EV preparation and secretome control in co-localization of capture signal with particle peaks, or lack of membrane-protection behavior (i.e., captured signal unaffected by detergent/protease/RNase) indicating inability to discriminate fractionation state.",
+        "falsification_outcome": "If the criteria for success are not met across independent replicates, the hypothesis is falsified and the program must treat the material as indistinguishable from secretome with respect to intact-EV identity and re-evaluate fractionation strategy.",
+        "dependencies": [
+          "Availability of consistent source-cell conditioned medium lots (same passage/bank)",
+          "Access to validated capture reagents and particle counting instrumentation",
+          "Laboratory capability for density fractionation"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "complexity": "moderate",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "Define source-cell lot and processing SOPs for matched conditioned medium preparations (links to manufacturing actions: source-cell bank and representative scale-up).",
+        "Access to orthogonal characterization resources and capture reagents."
+      ],
+      "human_decisions_required": [
+        "Select canonical EV surface markers or capture strategy appropriate for MSC-derived EVs (CD63/CD9/CD81 vs TIM4/AnxA5).",
+        "Approve experimental resources and accept qualitative success/failure criteria for this stage.",
+        "Decide on follow-up potency linkage experiments if discrimination is successful."
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "Partially supported: the proposal's central claim—that an orthogonal intact-EV (membrane-protected, particle-associated) analytical signature can discriminate an EV-enriched small-EV preparation from an unpurified secretome—is consistent with expert guidance (MISEV2023) and with preclinical demonstrations that intranasally delivered EV-containing preparations can show biological effects in mice. However, there is no direct canonical evidence here showing that the specific analytic panel (immuno-capture + particle enumeration + detergent/protease/RNase protection + density correlation) reliably discriminates MSC-derived small-EV isolates from concentrated secretome across production methods or species; program-specific experimental support is missing. Additionally, ev-driedonks-2022 (macaque biodistribution) is used both as supporting limiting evidence and as contradicting evidence for translational biodistribution, which is an inconsistent attribution that should be clarified.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "No direct canonical evidence demonstrates that the proposed intact-EV analytical signature (immuno-capture of canonical EV markers or phosphatidylserine capture + particle-count correlation + detergent/protease/RNase protection + density alignment) reliably discriminates MSC-derived small-EV isolates from concentrated conditioned medium / secretome for this program. Specifically missing: program-specific intact-EV capture and protection studies comparing matched enriched small-EV preparations and unpurified secretome from the chosen MSC source; validation that chosen capture markers are present/detectable on these MSC EVs; and demonstration that the protection assays differentially affect captured signal in these materials.",
+          "concerns": [
+            "Inconsistent use of ev-driedonks-2022-macaque-biodistribution: it is correctly cited as limiting/contradicting translational biodistribution, but the proposal lists it both as supporting and contradicting evidence—this should be reconciled and attribution clarified.",
+            "Key assumptions lack direct canonical support: presence and detectability of canonical EV surface markers on MSC-derived small EVs (assumption 1) and reliable discrimination by detergent/protease/RNase protection under assay conditions (assumption 3) are not directly evidenced in the supplied canonical set.",
+            "Risk of false-positive classification from co-isolated non-vesicular particles (lipoproteins, protein aggregates) that can co-sediment and carry or present marker-like signals—MISEV2023 warns of such confounders and recommends orthogonal controls, but does not validate a single discriminatory panel applicable to all source cells.",
+            "Translational relevance is uncertain: preclinical efficacy in mouse models (ev-hermann-2023-neonatal-hi and other mouse publications in the canonical set) does not demonstrate that analytic discrimination will predict potency or biodistribution in larger animals or humans; ev-driedonks-2022 suggests limited intranasal CNS delivery in macaques under their conditions.",
+            "Proposal labels some inferences as 'direct_observation' (e.g., edge e2) when the cited work (ev-driedonks-2022) demonstrates a context-specific negative biodistribution result; care is needed to keep that inference qualified (the evidence is direct for that study but not generalizable)."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "Supported with important caveats. The proposed intact-EV, membrane-protection + particle-correlation analytical signature is a manufacturable and conceptually appropriate exploratory identity attribute that aligns with MISEV2023 guidance and program translational concerns about source-cell consistency. However, practical risks include assay false-positives from co-isolates, limited sensitivity for relevant EV subpopulations, stability and process-sensitivity of the marker signal, and comparability/scale-up challenges that will require targeted experiments and qualification before use for release or potency linkage.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "No program-specific data demonstrating (a) that selected capture markers are robustly present on the MSC-derived small-EV population from the intended source/process, (b) assay limits of detection and specificity versus common non-vesicular co‑isolates (lipoproteins, protein aggregates), (c) stability of the intact-EV signature through manufacturing, storage, and scale-up, and (d) performance of the workflow in large-animal or clinically representative matrices.",
+          "concerns": [
+            "False-positive classification risk: co-isolated non-vesicular particles (lipoproteins, aggregates) can produce particle counts and marker-like signal that mimic an intact-EV signature; orthogonal controls and reagents are needed to mitigate this (ev-misev2023-quality-framework).",
+            "Assay sensitivity and reagent dependence: canonical surface markers or phosphatidylserine capture may be variably expressed or masked by source-cell, isolation, or formulation choices, reducing discriminatory power (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi supports source consistency as a mitigator).",
+            "Process sensitivity and stability: detergent/protease protection assays and particle counts may be altered by upstream processing, storage, or formulation excipients, complicating comparability across lots and scales (inference from MISEV2023 guidance).",
+            "Lot-to-lot comparability risk: without defined acceptance criteria and quantitative assay qualification, observed inter-batch differences may reflect assay variability rather than true product changes; establishing robust controls and orthogonal readouts is required (ev-misev2023-quality-framework).",
+            "Scale-up risk: fractionation/enrichment methods that produce a discriminating signature at bench scale may not translate to manufacturing scale (yield, shear, density profile changes), threatening transferability of the attribute for release or potency linkage (ev-hermann-2023-neonatal-hi highlights consideration of source-cell and scale).",
+            "Measurement feasibility in relevant matrices: biodistribution and translational relevance are uncertain—non-human-primate data show low nasal-to-brain detection after intranasal dosing, indicating that analytically observed intact-EV signatures in product do not guarantee in vivo behavior and that large-animal analytics may be required to support claims (ev-driedonks-2022-macaque-biodistribution).",
+            "Resource/timeline: development and validation of the orthogonal workflow (capture reagents, particle counters, density fractionation, protection assays) require non-trivial resources and may delay CMC milestones (ev-misev2023-quality-framework)."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "Overall, the proposed intact-EV–associated analytical signature (immuno-capture of surface markers + particle enumeration + detergent/protease protection + density-fraction correlation) is a plausible, MISEV-aligned approach to discriminate an EV-enriched small-EV preparation from an unpurified secretome. The design correctly targets the expected biophysical property (membrane protection) that distinguishes vesicular from soluble material and uses orthogonal readouts to reduce single-method misclassification. However, several important uncertainties remain: canonical marker presence and assay sensitivity with the chosen MSC source and isolation method; risk of false-positive classification from non-vesicular co-isolates that co-sediment or bind capture reagents; and the fact that in vivo biodistribution and potency linkage are not established by these identity assays. The experiment as proposed should discriminate the two preparation types at the analytical level if performed with the recommended controls and orthogonal metrics, but additional program-specific controls and follow-up potency linkage studies will be required to map identity to function and to address translational uncertainties (e.g., large-animal biodistribution).",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "Program-specific gaps: (1) direct data showing canonical MSC-EV surface markers are present and detectable on the chosen source-cell small-EV material using the planned capture reagents; (2) orthogonal negative controls demonstrating that protein aggregates, lipoproteins, or other non-vesicular particles do not generate the same capture+particle signature under the assay conditions; (3) demonstration that detergent/protease/RNase conditions used reliably distinguish membrane-protected cargo without producing artifactual loss of signal; (4) evidence linking the intact-EV signature to biological potency in downstream assays and to in vivo biodistribution in relevant species (large-animal where needed).",
+          "concerns": [
+            "Marker selection and variability: canonical tetraspanins (CD63/CD9/CD81) or PS-capture (TIM4/AnxA5) may be absent, low-abundance, or masked on MSC-derived small EVs from the chosen process, reducing assay sensitivity and yielding false negatives (MISEV2023 supports careful marker choice and reporting).",
+            "False positives from co-isolates: protein aggregates, lipoproteins, or membrane fragments can co-sediment or bind capture reagents and generate particle counts and marker-like signals; density overlaps between these particles and small EVs can confound fraction correlation unless adequately controlled (requires orthogonal negative controls and proteomic/lipoprotein assays).",
+            "Detergent/protease assay artifacts: harsh detergent or protease conditions can disrupt non-vesicular complexes or degrade epitopes non-specifically; suboptimal conditions could either over-call membrane protection or fail to reveal it—assay optimization and controls are critical (MISEV2023 recommends orthogonal characterization).",
+            "Particle count correlation limitations: NTA/TRPS enumerate light-scattering or resistive events that include non-vesicular particles and can misestimate particle:protein ratios; relying on particle counts without orthogonal particle identity methods risks misclassification.",
+            "Translation to potency and in vivo behavior: even a robust intact-EV signature does not prove that active therapeutic cargo is EV-associated or that an EV-enriched product will perform better in vivo; Driedonks et al. show that intranasal dosing of reporter-labeled EVs in macaques gave negligible brain uptake, highlighting species/formulation/route uncertainties for downstream relevance.",
+            "Resource and validation burden: establishing and validating capture reagents, particle counters, density-fractionation workflows, and protection assays will require significant analytical development and could affect timelines for CMC and comparability activities."
+          ]
+        }
+      ],
+      "adversary_objection": "The proposed intact-EV signature can be confounded by co-isolated, non-vesicular particulate material (protein aggregates, lipoproteins, or formulation-derived micelles) that (a) co-fractionates with particles, (b) binds canonical ‘‘EV’’ capture reagents or phospholipid-binding reagents, and (c) displays apparent detergent/protease/RNase sensitivity or particle-associated signal changes—producing a false-positive classification of an EV-enriched preparation. This failure is bounded and plausible given MISEV2023 warnings about non-vesicular contaminants and is directly supported by large-animal biodistribution results showing strong nasal retention and low detectable intact EV signal after intranasal dosing (ev-driedonks-2022-macaque-biodistribution), implying that source, formulation, label, or isolation artifacts can dominate readouts and mislead interpretation.",
+      "chair_rationale": "Plausible and MISEV-aligned exploratory identity attribute with manufacturable analytics, supported by canonical guidance but lacking program-specific validation. Key risks (false positives from co-isolates, marker variability, assay artifacts, and translational uncertainty) and explicit evidence gaps (marker presence on MSC EVs, assay specificity/LOD vs lipoproteins/aggregates, stability through manufacturing/scale-up, and large-animal/clinical-matrix performance) justify proceeding to the targeted experiments and qualification described (orthogonal capture + particle correlation + protection + density controls). Ensure inclusion of rigorous negative controls, marker verification, assay LOD/specificity studies, and follow-up potency/biodistribution linkage; final acceptance criteria and marker selection remain human decisions.",
+      "determination": "proposed_for_testing",
+      "status": "reviewed",
+      "promotion_human_approved": false
+    }
+  ],
+  "proposed_experiments": [
+    {
+      "experiment_id": "design-experiment-run-20260917T100510Z-4fa4f7f74ec7",
+      "question": "Can an orthogonal intact-EV analytical signature discriminate an EV-enriched small-EV preparation from an unpurified MSC secretome?",
+      "hypothesis_tested": "A membrane-protected, particle-associated analytical signature (immuno-capture of EV surface markers + particle enumeration + detergent/protease protection + density fractionation) will be observed in a purified small-EV preparation but not in an unpurified concentrated secretome.",
+      "required_material": [
+        "MSC-conditioned medium (same source-cell lot) processed as: (A) small-EV enrichment (e.g., ultracentrifugation/SEC) and (B) concentrated conditioned medium without EV enrichment",
+        "Purified small-EV positive control from orthogonal source (if available)",
+        "Immuno-capture reagents (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5 capture reagents)",
+        "Particle counter (NTA or TRPS) and reagents",
+        "Protease (e.g., proteinase K) and RNase reagents",
+        "Detergent (e.g., Triton X-100) for membrane disruption",
+        "Density-gradient materials (iodixanol for gradient fractionation)",
+        "Total protein assay reagents",
+        "Appropriate buffers and blocking reagents"
+      ],
+      "comparator": "Matched preparations: (A) enriched small-EV preparation vs (B) concentrated conditioned medium (secretome-retaining EVs) from the same source-cell lot.",
+      "control": "Negative control: buffer-only and detergent-disrupted samples; Positive control: commercially available characterized small EVs if available.",
+      "assay": "Orthogonal workflow combining: (1) density-gradient fractionation followed by particle counting per fraction; (2) immuno-capture ELISA or bead-capture + detection of EV surface markers on intact material per fraction; (3) protease and RNase protection assays on captured material with and without detergent; (4) total protein and protein:particle ratio per fraction.",
+      "primary_readout": "Co-localization of particle-count peaks with capture-positive fractions and loss of captured signal after detergent + protease/RNase treatment (indicating membrane protection).",
+      "secondary_readouts": [
+        "Protein:particle ratio differences between preparations",
+        "Presence/absence of marker signal in secretome control fractions",
+        "Reproducibility across biological replicates (n ≥ 3 independent conditioned medium preps)"
+      ],
+      "success_criterion": "Observed enrichment of capture-positive signal that co-localizes with particle-count peaks in density fractions for the small-EV enriched preparation, and a significant reduction (> qualitative loss) of captured signal after detergent + protease/RNase, while the unpurified secretome shows marker signal that does not co-localize with particle peaks and is largely insensitive to membrane-disrupting treatments (qualitative comparison).",
+      "failure_criterion": "No qualitative difference between enriched small-EV preparation and secretome control in co-localization of capture signal with particle peaks, or lack of membrane-protection behavior (i.e., captured signal unaffected by detergent/protease/RNase) indicating inability to discriminate fractionation state.",
+      "falsification_outcome": "If the criteria for success are not met across independent replicates, the hypothesis is falsified and the program must treat the material as indistinguishable from secretome with respect to intact-EV identity and re-evaluate fractionation strategy.",
+      "dependencies": [
+        "Availability of consistent source-cell conditioned medium lots (same passage/bank)",
+        "Access to validated capture reagents and particle counting instrumentation",
+        "Laboratory capability for density fractionation"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "complexity": "moderate",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
+    }
+  ],
   "parked_hypothesis_ids": [],
   "rejected_hypothesis_ids": [],
-  "product_signature_candidates": [],
+  "product_signature_candidates": [
+    {
+      "attribute_id": "attribute-ev-identity-purity",
+      "name": "EV identity and purity (intact-EV signature)",
+      "group": "identity_markers",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "An intact-EV-associated signature (capture of surface markers that is particle-correlated and detergent/protease-sensitive) is needed to discriminate an EV-enriched drug substance from a secretome that contains non‑vesicular co-isolates; aligns with MISEV2023 recommendations.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "uncertainty": "Moderate: marker choice and assay sensitivity may vary by source cell and isolation method; this attribute is exploratory until validated with program-specific materials.",
+      "source_hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+      "human_approved": false
+    }
+  ],
   "design_gaps": [
     {
       "gap_id": "design-gap-product-identity",
@@ -21,7 +317,7 @@
       "discriminating_value": 5,
       "rationale": "Canonical Manufacturing records exact drug-substance identity and fractionation as unresolved.",
       "evidence_ids": [],
-      "status": "open"
+      "status": "reviewed"
     },
     {
       "gap_id": "design-gap-source-cell",
@@ -99,6 +395,14 @@
       "status": "open"
     }
   ],
-  "recent_runs": [],
-  "updated_at": "2026-09-17T00:00:00Z"
+  "recent_runs": [
+    {
+      "run_id": "run-20260917T100510Z-4fa4f7f74ec7",
+      "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+      "gap_id": "design-gap-product-identity",
+      "determination": "proposed_for_testing",
+      "created_at": "2026-09-17T10:05:10.479507Z"
+    }
+  ],
+  "updated_at": "2026-09-17T10:05:10.479507Z"
 }
