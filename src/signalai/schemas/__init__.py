@@ -70,6 +70,14 @@ from signalai.schemas.manufacturing import (
 from signalai.schemas.public_manufacturing import (
     PublicFlagshipManufacturingSummary, PublicManufacturingState,
 )
+from signalai.schemas.design_lab import (
+    AttributeGroup, AttributeRole, CausalChain, CausalEdge, CausalNode,
+    DesignAdversaryReview, DesignChairClassification, DesignDetermination,
+    DesignDomain, DesignGap, DesignHypothesis, DesignLabWorkspace, DesignProposal,
+    DesignReview, DesignRunSummary, EvidenceState, ExperimentProposal,
+    ProductSignatureCandidate, ReviewerFinding,
+)
+from signalai.schemas.public_design_lab import PublicDesignLab, PublicDesignHypothesis
 from signalai.schemas.public_flagship import PublicFlagshipProgram, PublicDevelopmentGate, PublicPivotCriterion
 
 from signalai.schemas.models import (
@@ -412,4 +420,25 @@ __all__ = [
     "ManufacturingNextAction",
     "PublicManufacturingState",
     "PublicFlagshipManufacturingSummary",
+    "AttributeGroup",
+    "AttributeRole",
+    "CausalChain",
+    "CausalEdge",
+    "CausalNode",
+    "DesignAdversaryReview",
+    "DesignChairClassification",
+    "DesignDetermination",
+    "DesignDomain",
+    "DesignGap",
+    "DesignHypothesis",
+    "DesignLabWorkspace",
+    "DesignProposal",
+    "DesignReview",
+    "DesignRunSummary",
+    "EvidenceState",
+    "ExperimentProposal",
+    "ProductSignatureCandidate",
+    "ReviewerFinding",
+    "PublicDesignLab",
+    "PublicDesignHypothesis",
 ]

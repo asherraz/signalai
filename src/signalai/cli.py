@@ -16,6 +16,7 @@ from signalai.legacy_migration import migrate_legacy_workspace, write_migration_
 from signalai.orchestrator import MilestoneOneOrchestrator
 from signalai.publisher import publish_current_public_state
 from signalai.clinic_simulation import advance_simulation
+from signalai.design_lab import DesignLabOrchestrator
 from signalai.schemas import (
     DevelopmentAgenda,
     SignalState,
@@ -54,6 +55,22 @@ def daily_main() -> None:
     root = Path.cwd()
     run = LiveRunOrchestrator(client=OpenAIResponsesClient.from_env(), root=root).run()
     print(f"Completed live run {run.run_id}")
+
+
+def design_lab_main() -> None:
+    root = Path.cwd()
+    if not environ.get("OPENAI_API_KEY"):
+        raise RuntimeError("OPENAI_API_KEY must be set for a Design Lab run")
+    client = OpenAIResponsesClient(
+        model=environ.get("OPENAI_DESIGN_MODEL") or environ.get("OPENAI_MODEL", ""),
+        reasoning_effort=environ.get("OPENAI_DESIGN_REASONING_EFFORT", "low"),
+        chair_reasoning_effort=environ.get("OPENAI_DESIGN_CHAIR_REASONING_EFFORT", "medium"),
+        max_output_tokens=int(environ.get("OPENAI_DESIGN_MAX_OUTPUT_TOKENS", "5000")),
+        chair_max_output_tokens=int(environ.get("OPENAI_DESIGN_CHAIR_MAX_OUTPUT_TOKENS", "2500")),
+        chair_retry_max_output_tokens=int(environ.get("OPENAI_DESIGN_RETRY_MAX_OUTPUT_TOKENS", "6000")),
+    )
+    hypothesis = DesignLabOrchestrator(client=client, root=root).run()
+    print(f"Completed design run {hypothesis.run_id}")
 
 
 def should_commit_main() -> None:

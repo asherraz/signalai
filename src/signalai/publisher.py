@@ -13,6 +13,8 @@ from signalai.signalrb import export_signalrb
 from signalai.flagship_export import export_flagship_program
 from signalai.manufacturing import initialize_manufacturing, validate_manufacturing_operational_refs
 from signalai.manufacturing_export import export_flagship_manufacturing, export_manufacturing
+from signalai.design_lab_export import export_design_lab, validate_design_lab_evidence
+from signalai.schemas.design_lab import DesignLabWorkspace
 from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.product_export import export_product_layer
 from signalai.live_export import export_live_intelligence, merge_live_feed
@@ -107,6 +109,14 @@ def build_current_public_state(
         if clinic_data_path.exists() else ClinicIntelligenceDataset()
     )
     clinic_intelligence = export_clinic_intelligence(clinic_dataset)
+    design_path = root / "state" / "design-lab.json"
+    design_workspace = (
+        DesignLabWorkspace.model_validate_json(design_path.read_text(encoding="utf-8"))
+        if design_path.exists() else None
+    )
+    if design_workspace:
+        validate_design_lab_evidence(design_workspace, {item.evidence_id for item in scientific.evidence})
+    design_lab = export_design_lab(design_workspace) if design_workspace else None
     simulation_path = root / "state" / "clinic-simulation.json"
     clinic_simulation = (
         export_clinic_simulation(
@@ -144,6 +154,7 @@ def build_current_public_state(
         jurisdictions=jurisdictions,
         clinical_network=clinical_network,
         clinic_intelligence=clinic_intelligence,
+        design_lab=design_lab,
         product=product,
         intelligence_feed=feed,
         live_intelligence=live_intelligence,

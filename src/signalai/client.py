@@ -124,7 +124,7 @@ class OpenAIResponsesClient:
         input_text: str,
         output_type: type[OutputT],
     ) -> OutputT:
-        is_chair = output_type.__name__.startswith("LiveChair")
+        is_chair = output_type.__name__.startswith(("LiveChair", "DesignChair"))
         return self._generate(
             instructions=instructions,
             input_text=input_text,
@@ -169,7 +169,7 @@ class OpenAIResponsesClient:
         }
         effort = (
             self._chair_reasoning_effort
-            if output_type.__name__.startswith("LiveChair") and self._chair_reasoning_effort
+            if output_type.__name__.startswith(("LiveChair", "DesignChair")) and self._chair_reasoning_effort
             else self._reasoning_effort
         )
         if effort:

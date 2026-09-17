@@ -167,6 +167,26 @@ unknown. When no local `OPENAI_API_KEY` is available, the command uses a
 conservative deterministic extractor with lower recall and zero API cost.
 Outreach candidates require human approval before any action.
 
+## SGL-001 Product Design Lab
+
+The Product Design Lab is a separate, append-only research-hypothesis workspace
+at `state/design-lab.json`. One bounded run selects a development-blocking gap,
+generates one evidence-linked and falsifiable product-design proposal, and sends
+it through independent Evidence, CMC/Manufacturing, Mechanism, Adversary, and
+Chair reviews:
+
+```bash
+python -m signalai design-lab
+```
+
+Immutable stage artifacts are written under `design-runs/<run-id>/`. A completed
+run publishes a sanitized `designLab` projection; before the first completed run
+that field is JSON null. Design hypotheses and experiments are proposals, not
+SGL-001 results, specifications, validated mechanisms, or evidence of efficacy.
+The Design Lab cannot mutate scientific state, Cargo, Formulation, Manufacturing,
+Evidence, Decisions, or development gates. Promotion and validated release-test
+status require a separate explicit human-approved action.
+
 ## Therapeutic asset workspace
 
 `state/asset-development.json` is the canonical biology-to-product-to-market

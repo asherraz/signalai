@@ -10,6 +10,7 @@ from pydantic import AliasChoices, Field, model_validator
 from signalai.schemas.signalrb import PublicSignalRB, SignalReviewBoardDetermination
 from signalai.schemas.public_flagship import PublicFlagshipProgram
 from signalai.schemas.public_manufacturing import PublicManufacturingState
+from signalai.schemas.public_design_lab import PublicDesignLab
 from signalai.schemas.clinic_simulation import PublicClinicSimulation
 
 from signalai.schemas.models import (
@@ -114,6 +115,7 @@ class PublicSignalState(SignalModel):
     clinic_simulation: PublicClinicSimulation | None = Field(
         default=None, alias="clinicSimulation"
     )
+    design_lab: PublicDesignLab | None = Field(default=None, alias="designLab")
 
     @model_validator(mode="after")
     def migrate_legacy_board(self):
@@ -203,6 +205,17 @@ class PublicSignalState(SignalModel):
                 raise ValueError("public manufacturing references unknown risks")
             if any(set(ref.decision_ids) - allowed_decisions for ref in refs):
                 raise ValueError("public manufacturing references unknown decisions")
+        if self.design_lab:
+            allowed_evidence = {item.evidence_id for item in self.evidence}
+            hypotheses = self.design_lab.recent_hypotheses
+            if self.design_lab.latest_reviewed_hypothesis:
+                hypotheses = [*hypotheses, self.design_lab.latest_reviewed_hypothesis]
+            for hypothesis in hypotheses:
+                refs = set(hypothesis.supporting_evidence_ids + hypothesis.contradicting_evidence_ids)
+                refs.update(eid for edge in hypothesis.causal_chain.edges for eid in edge.evidence_ids)
+                refs.update(eid for finding in hypothesis.reviewer_findings for eid in finding.evidence_ids)
+                if refs - allowed_evidence:
+                    raise ValueError("public Design Lab references unknown canonical evidence")
         return self
 
     @classmethod
@@ -225,6 +238,7 @@ class PublicSignalState(SignalModel):
         intelligence_feed: list[PublicIntelligenceFeedItem] | None = None,
         live_intelligence: PublicLiveIntelligence | None = None,
         clinic_simulation: PublicClinicSimulation | None = None,
+        design_lab: PublicDesignLab | None = None,
         generated_at: datetime | None = None,
     ) -> PublicSignalState:
         public = cls(
@@ -268,6 +282,7 @@ class PublicSignalState(SignalModel):
             intelligenceFeed=intelligence_feed or [],
             liveIntelligence=live_intelligence,
             clinicSimulation=clinic_simulation,
+            designLab=design_lab,
         )
         from signalai.flagship_export import export_flagship_program
 

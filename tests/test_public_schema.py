@@ -33,6 +33,7 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "intelligenceFeed",
     "liveIntelligence",
     "clinicSimulation",
+    "designLab",
 }
 
 
