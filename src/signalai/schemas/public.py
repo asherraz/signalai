@@ -11,6 +11,7 @@ from signalai.schemas.signalrb import PublicSignalRB, SignalReviewBoardDetermina
 from signalai.schemas.public_flagship import PublicFlagshipProgram
 from signalai.schemas.public_manufacturing import PublicManufacturingState
 from signalai.schemas.public_design_lab import PublicDesignLab
+from signalai.schemas.public_strategy import PublicProductStrategy
 from signalai.schemas.clinic_simulation import PublicClinicSimulation
 
 from signalai.schemas.models import (
@@ -116,6 +117,7 @@ class PublicSignalState(SignalModel):
         default=None, alias="clinicSimulation"
     )
     design_lab: PublicDesignLab | None = Field(default=None, alias="designLab")
+    product_strategy: PublicProductStrategy | None = Field(default=None, alias="productStrategy")
 
     @model_validator(mode="after")
     def migrate_legacy_board(self):
@@ -216,6 +218,22 @@ class PublicSignalState(SignalModel):
                 refs.update(eid for finding in hypothesis.reviewer_findings for eid in finding.evidence_ids)
                 if refs - allowed_evidence:
                     raise ValueError("public Design Lab references unknown canonical evidence")
+        if self.product_strategy:
+            strategy = self.product_strategy
+            if strategy.program_id != self.program.program_id:
+                raise ValueError("public product strategy must match the canonical program")
+            candidate_ids = {item.candidate_id for item in strategy.candidates}
+            if set(strategy.candidate_leaderboard) != candidate_ids:
+                raise ValueError("product strategy leaderboard must reference all candidates")
+            allowed_evidence = {item.evidence_id for item in self.evidence}
+            refs = set(strategy.therapeutic_objective.evidence_ids)
+            for candidate in strategy.candidates:
+                refs.update(candidate.evidence_ids)
+                refs.update(eid for item in candidate.dimension_assessments for eid in item.evidence_ids)
+                refs.update(eid for gate in candidate.hard_gates for eid in gate.evidence_ids)
+            refs.update(eid for item in strategy.score_change_history for eid in item.evidence_ids)
+            if refs - allowed_evidence:
+                raise ValueError("public product strategy references unknown canonical evidence")
         return self
 
     @classmethod
@@ -239,6 +257,7 @@ class PublicSignalState(SignalModel):
         live_intelligence: PublicLiveIntelligence | None = None,
         clinic_simulation: PublicClinicSimulation | None = None,
         design_lab: PublicDesignLab | None = None,
+        product_strategy: PublicProductStrategy | None = None,
         generated_at: datetime | None = None,
     ) -> PublicSignalState:
         public = cls(
@@ -283,6 +302,7 @@ class PublicSignalState(SignalModel):
             liveIntelligence=live_intelligence,
             clinicSimulation=clinic_simulation,
             designLab=design_lab,
+            productStrategy=product_strategy,
         )
         from signalai.flagship_export import export_flagship_program
 

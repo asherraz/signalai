@@ -78,6 +78,15 @@ from signalai.schemas.design_lab import (
     ProductSignatureCandidate, ReviewerFinding,
 )
 from signalai.schemas.public_design_lab import PublicDesignLab, PublicDesignHypothesis
+from signalai.schemas.public_strategy import PublicProductStrategy, PublicStrategyDimension
+from signalai.schemas.product_strategy import (
+    ArchitectureAssessment, ArchitectureDimension, ArchitectureDimensionAssessment,
+    ArchitectureDisposition, ArchitectureHardGate, AssessmentSourceType,
+    ProductArchitectureCandidate, ProductStrategyWorkspace, StrategyAdversaryReview,
+    StrategyAssessmentHistoryEntry, StrategyCandidateInput, StrategyChairRecommendation,
+    StrategyConfidence, StrategyDetermination, StrategyDeterminationType,
+    StrategySpecialistAssessment, TherapeuticObjective,
+)
 from signalai.schemas.public_flagship import PublicFlagshipProgram, PublicDevelopmentGate, PublicPivotCriterion
 
 from signalai.schemas.models import (
@@ -441,4 +450,23 @@ __all__ = [
     "ReviewerFinding",
     "PublicDesignLab",
     "PublicDesignHypothesis",
+    "TherapeuticObjective",
+    "ProductArchitectureCandidate",
+    "ArchitectureDimensionAssessment",
+    "ArchitectureAssessment",
+    "ArchitectureDimension",
+    "ArchitectureDisposition",
+    "ArchitectureHardGate",
+    "AssessmentSourceType",
+    "StrategyConfidence",
+    "StrategyDetermination",
+    "StrategyDeterminationType",
+    "StrategyAssessmentHistoryEntry",
+    "ProductStrategyWorkspace",
+    "StrategyCandidateInput",
+    "StrategySpecialistAssessment",
+    "StrategyAdversaryReview",
+    "StrategyChairRecommendation",
+    "PublicProductStrategy",
+    "PublicStrategyDimension",
 ]

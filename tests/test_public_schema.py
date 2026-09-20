@@ -34,6 +34,7 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "liveIntelligence",
     "clinicSimulation",
     "designLab",
+    "productStrategy",
 }
 
 
@@ -61,6 +62,8 @@ def test_generated_public_payload_matches_frontend_contract() -> None:
     assert validated.airb is not None
     assert validated.airb.run_id == validated.latest_run.run_id
     assert validated.cargo is not None
+    assert validated.product_strategy is not None
+    assert len(validated.product_strategy.candidates) == 5
     assert len(validated.cargo.theoretical_moa.steps) == 9
     assert [step.step for step in validated.cargo.theoretical_moa.steps] == list(range(1, 10))
     assert "not an established" in validated.cargo.theoretical_moa.disclaimer

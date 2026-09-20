@@ -3,12 +3,12 @@
 import argparse
 
 from signalai.cli import daily_main, design_lab_main, publish_state_main, should_commit_main, clinic_ingest_main, clinic_batch_main
-from signalai.cli import clinic_index_main, clinic_simulation_main
+from signalai.cli import clinic_index_main, clinic_simulation_main, strategy_main
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(prog="python -m signalai")
-    parser.add_argument("command", choices=["daily", "design-lab", "publish", "should-commit", "clinic-ingest", "clinic-batch", "clinic-scheduled", "clinic-discover", "clinic-index", "clinic-enrich", "clinic-import", "clinic-simulate"])
+    parser.add_argument("command", choices=["daily", "design-lab", "strategy", "publish", "should-commit", "clinic-ingest", "clinic-batch", "clinic-scheduled", "clinic-discover", "clinic-index", "clinic-enrich", "clinic-import", "clinic-simulate"])
     parser.add_argument("target", nargs="?")
     parser.add_argument("--refresh", action="store_true")
     parser.add_argument("--limit", type=int)
@@ -26,7 +26,7 @@ def main() -> None:
     elif args.command in {"clinic-batch", "clinic-scheduled"}:
         clinic_batch_main(args.target, scheduled=args.command == "clinic-scheduled", refresh=args.refresh)
     else:
-        {"daily": daily_main, "design-lab": design_lab_main, "publish": publish_state_main, "should-commit": should_commit_main}[args.command]()
+        {"daily": daily_main, "design-lab": design_lab_main, "strategy": strategy_main, "publish": publish_state_main, "should-commit": should_commit_main}[args.command]()
 
 
 if __name__ == "__main__":

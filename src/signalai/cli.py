@@ -17,6 +17,7 @@ from signalai.orchestrator import MilestoneOneOrchestrator
 from signalai.publisher import publish_current_public_state
 from signalai.clinic_simulation import advance_simulation
 from signalai.design_lab import DesignLabOrchestrator
+from signalai.product_strategy import ProductStrategyOrchestrator
 from signalai.schemas import (
     DevelopmentAgenda,
     SignalState,
@@ -71,6 +72,20 @@ def design_lab_main() -> None:
     )
     hypothesis = DesignLabOrchestrator(client=client, root=root).run()
     print(f"Completed design run {hypothesis.run_id}")
+
+
+def strategy_main() -> None:
+    root = Path.cwd()
+    client = OpenAIResponsesClient(
+        model=environ.get("OPENAI_STRATEGY_MODEL") or environ.get("OPENAI_MODEL", ""),
+        reasoning_effort=environ.get("OPENAI_STRATEGY_REASONING_EFFORT", "low"),
+        max_output_tokens=int(environ.get("OPENAI_STRATEGY_MAX_OUTPUT_TOKENS", "3000")),
+        chair_max_output_tokens=int(environ.get("OPENAI_STRATEGY_CHAIR_MAX_OUTPUT_TOKENS", "2500")),
+        chair_retry_max_output_tokens=int(environ.get("OPENAI_STRATEGY_RETRY_MAX_OUTPUT_TOKENS", "4000")),
+    ) if environ.get("OPENAI_API_KEY") else None
+    orchestrator = ProductStrategyOrchestrator(client=client, root=root)
+    orchestrator.run()
+    print(f"Completed strategy assessment {orchestrator.last_run_id}")
 
 
 def should_commit_main() -> None:

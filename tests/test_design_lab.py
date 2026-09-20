@@ -269,7 +269,9 @@ def test_mocked_workflow_continues_to_simulation_publication_and_commit_decision
         client=WrongMetadataClient(run_id=second_run_id), root=tmp_path,
         now_factory=lambda: when + timedelta(days=1),
     ).run(run_id=second_run_id)
-    simulation = advance_simulation(tmp_path, simulated_date=date(2026, 9, 20))
+    existing_simulation = json.loads((tmp_path / "state/clinic-simulation.json").read_text())
+    latest_simulated = max(date.fromisoformat(item["simulated_date"]) for item in existing_simulation["days"])
+    simulation = advance_simulation(tmp_path, simulated_date=latest_simulated + timedelta(days=1))
     public = publish_current_public_state(tmp_path, generated_at=when)
 
     after_workspace = DesignLabWorkspace.model_validate_json(

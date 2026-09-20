@@ -14,6 +14,9 @@ from signalai.flagship_export import export_flagship_program
 from signalai.manufacturing import initialize_manufacturing, validate_manufacturing_operational_refs
 from signalai.manufacturing_export import export_flagship_manufacturing, export_manufacturing
 from signalai.design_lab_export import export_design_lab, validate_design_lab_evidence
+from signalai.product_strategy_export import export_product_strategy
+from signalai.product_strategy import initial_product_strategy, validate_strategy_evidence
+from signalai.schemas.product_strategy import ProductStrategyWorkspace
 from signalai.schemas.design_lab import DesignLabWorkspace
 from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.product_export import export_product_layer
@@ -38,6 +41,7 @@ def build_current_public_state(
     root: Path,
     *,
     generated_at: datetime | None = None,
+    strategy_workspace: ProductStrategyWorkspace | None = None,
 ) -> PublicSignalState:
     """Build a full projection without consulting an older public artifact."""
 
@@ -119,6 +123,13 @@ def build_current_public_state(
         design_workspace = migrate_design_lab(design_workspace)
         validate_design_lab_evidence(design_workspace, {item.evidence_id for item in scientific.evidence})
     design_lab = export_design_lab(design_workspace) if design_workspace else None
+    strategy_path = root / "state" / "product-strategy.json"
+    strategy_workspace = strategy_workspace or (
+        ProductStrategyWorkspace.model_validate_json(strategy_path.read_text(encoding="utf-8"))
+        if strategy_path.exists() else initial_product_strategy(root, now=generated_at)
+    )
+    validate_strategy_evidence(strategy_workspace, {item.evidence_id for item in scientific.evidence})
+    product_strategy = export_product_strategy(strategy_workspace)
     simulation_path = root / "state" / "clinic-simulation.json"
     clinic_simulation = (
         export_clinic_simulation(
@@ -157,6 +168,7 @@ def build_current_public_state(
         clinical_network=clinical_network,
         clinic_intelligence=clinic_intelligence,
         design_lab=design_lab,
+        product_strategy=product_strategy,
         product=product,
         intelligence_feed=feed,
         live_intelligence=live_intelligence,

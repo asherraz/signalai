@@ -187,6 +187,25 @@ The Design Lab cannot mutate scientific state, Cargo, Formulation, Manufacturing
 Evidence, Decisions, or development gates. Promotion and validated release-test
 status require a separate explicit human-approved action.
 
+## SGL-001 Product Architecture Strategy
+
+`state/product-strategy.json` compares five candidate SGL-001 architectures
+against one therapeutic objective. Fixed weights and ordinal 0–5 ratings produce
+deterministic potential and confidence-adjusted decision scores; these scores are
+not probabilities of efficacy, safety, approval, or clinical benefit. Hard gates
+remain separate, and any proposed lead change requires human approval.
+
+Run an explicit bounded assessment with:
+
+```bash
+python -m signalai strategy
+```
+
+If canonical inputs are unchanged, the command records `no_material_change`
+without calling a model or appending assessment history. Material changes convene
+the bounded specialist council, adversary, and chair. The current daily workflow
+does not invoke strategy automatically.
+
 ## Therapeutic asset workspace
 
 `state/asset-development.json` is the canonical biology-to-product-to-market
