@@ -1,18 +1,20 @@
 import json
 import shutil
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
 
 from signalai.client import MalformedStructuredOutputError
+from signalai.clinic_simulation import advance_simulation
 from signalai.design_lab import (
-    DesignLabOrchestrator, initial_design_lab, merge_signature_candidates,
+    DesignLabOrchestrator, bind_proposal_metadata, initial_design_lab, merge_signature_candidates,
     migrate_design_lab, novelty_conflicts, select_design_gap, validate_evidence_ids,
 )
 from signalai.design_lab_export import export_design_lab
-from signalai.publisher import build_current_public_state
+from signalai.material_change import public_payload_has_material_change
+from signalai.publisher import build_current_public_state, publish_current_public_state
 from signalai.schemas.design_lab import (
     CausalChain, CausalEdge, CausalNode, DesignAdversaryReview,
     DesignChairClassification, DesignHypothesis, DesignLabWorkspace,
@@ -137,6 +139,20 @@ class ScriptedClient:
             prior_ids=prior, angle=f"orthogonal perturbation response sequence {sequence}")
 
 
+class WrongMetadataClient(ScriptedClient):
+    def generate(self, *, instructions, input_text, output_type):
+        result = super().generate(
+            instructions=instructions, input_text=input_text, output_type=output_type
+        )
+        if output_type is DesignProposal:
+            result.experiment.experiment_id = "wrong-experiment"
+            result.candidate_quality_attributes[0].source_hypothesis_id = "wrong-hypothesis"
+            result.theme_id = "wrong-theme"
+            result.sequence_within_theme = 99
+            result.primary_domain = "cargo"
+        return result
+
+
 def prepare(tmp_path):
     for name in ("state", "runs", "public", "data"):
         source = ROOT / name
@@ -153,6 +169,89 @@ def test_initial_workspace_and_empty_public_projection_are_valid():
     assert len(workspace.design_gaps) == 13
     assert workspace.reviewed_hypotheses == []
     assert export_design_lab(workspace) is None
+
+
+def test_system_metadata_is_bound_without_changing_scientific_content():
+    original = proposal().model_copy(deep=True)
+    original.experiment.experiment_id = "model-invented-experiment"
+    original.candidate_quality_attributes[0].source_hypothesis_id = "model-invented-hypothesis"
+    original.theme_id = "model-invented-theme"
+    original.sequence_within_theme = 99
+    original.primary_domain = "cargo"
+    theme = initial_design_lab(NOW).design_gaps[0]
+
+    bound = bind_proposal_metadata(
+        original, run_id="immutable-run", selected_theme=theme, sequence_within_theme=3
+    )
+
+    assert bound.experiment.experiment_id == "design-experiment-immutable-run"
+    assert bound.candidate_quality_attributes[0].source_hypothesis_id == "design-hypothesis-immutable-run"
+    assert bound.theme_id == theme.gap_id
+    assert bound.sequence_within_theme == 3
+    assert bound.primary_domain == theme.domain
+    original_data = original.model_dump(mode="python")
+    bound_data = bound.model_dump(mode="python")
+    for data in (original_data, bound_data):
+        data.pop("theme_id")
+        data.pop("sequence_within_theme")
+        data.pop("primary_domain")
+        data["experiment"].pop("experiment_id")
+        for candidate in data["candidate_quality_attributes"]:
+            candidate.pop("source_hypothesis_id")
+    assert bound_data == original_data
+
+
+def test_complete_cycle_normalizes_otherwise_valid_model_ids(tmp_path):
+    root = prepare(tmp_path)
+    protected = {
+        name: (root / "state" / name).read_bytes()
+        for name in ("signal-state.json", "asset-development.json")
+    }
+    result = DesignLabOrchestrator(
+        client=WrongMetadataClient(), root=root, now_factory=lambda: NOW
+    ).run(run_id=RUN_ID)
+    assert result.hypothesis_id == f"design-hypothesis-{RUN_ID}"
+    assert result.minimum_discriminating_experiment.experiment_id == f"design-experiment-{RUN_ID}"
+    assert result.candidate_quality_attributes_affected
+    persisted = DesignLabWorkspace.model_validate_json(
+        (root / "state/design-lab.json").read_text()
+    )
+    assert persisted.reviewed_hypotheses[-1].hypothesis_id == result.hypothesis_id
+    assert protected == {
+        name: (root / "state" / name).read_bytes() for name in protected
+    }
+
+
+def test_mocked_workflow_continues_to_simulation_publication_and_commit_decision(tmp_path):
+    for name in ("state", "runs", "public", "data", "design-runs", "simulation-runs"):
+        source = ROOT / name
+        if source.exists():
+            shutil.copytree(source, tmp_path / name)
+    before_public = (tmp_path / "public/signal-state.json").read_text()
+    before_workspace = DesignLabWorkspace.model_validate_json(
+        (tmp_path / "state/design-lab.json").read_text()
+    )
+    run_id = "run-mocked-daily-design"
+    when = datetime(2026, 9, 20, 8, 0, tzinfo=timezone.utc)
+
+    hypothesis = DesignLabOrchestrator(
+        client=WrongMetadataClient(run_id=run_id), root=tmp_path,
+        now_factory=lambda: when,
+    ).run(run_id=run_id)
+    simulation = advance_simulation(tmp_path, simulated_date=date(2026, 9, 20))
+    public = publish_current_public_state(tmp_path, generated_at=when)
+
+    after_workspace = DesignLabWorkspace.model_validate_json(
+        (tmp_path / "state/design-lab.json").read_text()
+    )
+    assert after_workspace.reviewed_hypotheses[:-1] == before_workspace.reviewed_hypotheses
+    assert after_workspace.reviewed_hypotheses[-1].hypothesis_id == hypothesis.hypothesis_id
+    assert public.design_lab.latest_reviewed_hypothesis.hypothesis_id == hypothesis.hypothesis_id
+    assert public.clinic_simulation.total_simulated_days == len(simulation.days)
+    assert public.clinic_simulation.latest_day.protocol_day == simulation.days[-1].protocol_day
+    assert public_payload_has_material_change(
+        before_public, (tmp_path / "public/signal-state.json").read_text()
+    )
 
 
 def test_design_cycle_is_reviewed_append_only_and_does_not_mutate_canonical_domains(tmp_path):
@@ -181,6 +280,29 @@ def test_unknown_evidence_is_rejected_and_prior_state_is_preserved(tmp_path):
     with pytest.raises(ValueError, match="unknown canonical evidence"):
         validate_evidence_ids(bad, {EVIDENCE_ID})
     assert before == [(root / path).read_bytes() for path in ("state/design-lab.json", "public/signal-state.json")]
+
+
+@pytest.mark.parametrize("invalid_kind", ["evidence", "prior_hypothesis"])
+def test_metadata_binding_does_not_weaken_scientific_reference_validation(tmp_path, invalid_kind):
+    root = prepare(tmp_path)
+
+    class InvalidReferenceClient(ScriptedClient):
+        def generate(self, *, instructions, input_text, output_type):
+            result = super().generate(
+                instructions=instructions, input_text=input_text, output_type=output_type
+            )
+            if output_type is DesignProposal:
+                if invalid_kind == "evidence":
+                    result.supporting_evidence_ids.append("invented-evidence")
+                else:
+                    result.distinguished_from_hypothesis_ids.append("unknown-prior-hypothesis")
+            return result
+
+    message = "unknown canonical evidence" if invalid_kind == "evidence" else "unknown prior hypotheses"
+    with pytest.raises(ValueError, match=message):
+        DesignLabOrchestrator(
+            client=InvalidReferenceClient(), root=root, now_factory=lambda: NOW
+        ).run(run_id=RUN_ID)
 
 
 def test_one_structured_repair_attempt_then_cycle_continues(tmp_path):
@@ -228,8 +350,49 @@ def test_semantically_duplicate_hypothesis_is_not_appended(tmp_path):
     first = DesignLabOrchestrator(client=ScriptedClient(), root=root, now_factory=lambda: NOW).run(run_id=RUN_ID)
     duplicate = DesignProposal.model_validate_json(
         (root / f"design-runs/{RUN_ID}/02-design-proposal.json").read_text()
-    )
+    ).model_copy(update={"distinguished_from_hypothesis_ids": [first.hypothesis_id]})
     assert novelty_conflicts(duplicate, [first])
+
+
+def test_duplicate_hypothesis_still_uses_one_bounded_novelty_repair(tmp_path):
+    root = prepare(tmp_path)
+    first = DesignLabOrchestrator(
+        client=ScriptedClient(), root=root, now_factory=lambda: NOW
+    ).run(run_id=RUN_ID)
+    duplicate = DesignProposal.model_validate_json(
+        (root / f"design-runs/{RUN_ID}/02-design-proposal.json").read_text()
+    ).model_copy(update={"distinguished_from_hypothesis_ids": [first.hypothesis_id]})
+    workspace = DesignLabWorkspace.model_validate_json(
+        (root / "state/design-lab.json").read_text()
+    )
+    workspace.design_gaps = [
+        item.model_copy(update={"human_priority_override": 5})
+        if item.gap_id == first.theme_id else item
+        for item in workspace.design_gaps
+    ]
+    publish_json(root / "state/design-lab.json", workspace)
+
+    class DuplicateThenRepairClient(ScriptedClient):
+        def generate(self, *, instructions, input_text, output_type):
+            if output_type is DesignProposal:
+                self.generate_calls += 1
+                return duplicate.model_copy(deep=True)
+            return super().generate(
+                instructions=instructions, input_text=input_text, output_type=output_type
+            )
+
+    second_run = "run-design-novelty-repair"
+    client = DuplicateThenRepairClient(run_id=second_run)
+    second = DesignLabOrchestrator(
+        client=client, root=root, now_factory=lambda: NOW + timedelta(days=1)
+    ).run(run_id=second_run)
+    assert client.repair_calls == 1
+    assert second.hypothesis_id == f"design-hypothesis-{second_run}"
+    assert not novelty_conflicts(
+        DesignProposal.model_validate_json(
+            (root / f"design-runs/{second_run}/02-design-proposal.json").read_text()
+        ), [first]
+    )
 
 
 def test_failed_repair_preserves_workspace_and_public_state(tmp_path):

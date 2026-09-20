@@ -202,6 +202,33 @@ def validate_evidence_ids(value: Any, allowed: set[str]) -> None:
         raise ValueError(f"Design Lab references unknown canonical evidence: {unknown}")
 
 
+def bind_proposal_metadata(
+    proposal: DesignProposal,
+    *,
+    run_id: str,
+    selected_theme: DesignGap,
+    sequence_within_theme: int,
+) -> DesignProposal:
+    """Bind orchestration-owned proposal metadata without changing scientific content."""
+
+    hypothesis_id = f"design-hypothesis-{run_id}"
+    experiment = proposal.experiment.model_copy(
+        update={"experiment_id": f"design-experiment-{run_id}"}
+    )
+    candidates = [
+        candidate.model_copy(update={"source_hypothesis_id": hypothesis_id})
+        for candidate in proposal.candidate_quality_attributes
+    ]
+    bound = proposal.model_copy(update={
+        "primary_domain": selected_theme.domain,
+        "theme_id": selected_theme.gap_id,
+        "sequence_within_theme": sequence_within_theme,
+        "experiment": experiment,
+        "candidate_quality_attributes": candidates,
+    })
+    return DesignProposal.model_validate(bound.model_dump(mode="python"))
+
+
 def _semantic_key(proposal: DesignProposal) -> str:
     text = " ".join((proposal.title, proposal.design_question, proposal.proposed_product_change_or_attribute))
     return " ".join("".join(ch.casefold() if ch.isalnum() else " " for ch in text).split())
@@ -373,17 +400,22 @@ class DesignLabOrchestrator:
             }
             store.write_json("00-run-input.json", context)
             store.write_json("01-selected-gap.json", {"gap": gap, "why_selected": why})
-            proposal = self._generate(DESIGN_SCIENTIST, context, DesignProposal, store, "proposal")
-            validate_evidence_ids(proposal, allowed)
             expected_hypothesis_id = f"design-hypothesis-{active_id}"
             expected_experiment_id = f"design-experiment-{active_id}"
+            required_sequence = gap.times_explored + 1
+            proposal = bind_proposal_metadata(
+                self._generate(DESIGN_SCIENTIST, context, DesignProposal, store, "proposal"),
+                run_id=active_id,
+                selected_theme=gap,
+                sequence_within_theme=required_sequence,
+            )
             def validate_proposal(value: DesignProposal) -> None:
                 validate_evidence_ids(value, allowed)
                 if value.experiment.experiment_id != expected_experiment_id:
                     raise ValueError("experiment ID does not match the immutable run ID")
-                if value.theme_id != gap.gap_id or value.sequence_within_theme != gap.times_explored + 1:
+                if value.theme_id != gap.gap_id or value.sequence_within_theme != required_sequence:
                     raise ValueError("proposal theme or sequence does not match selected persistent theme")
-                if value.primary_domain is not gap.domain:
+                if value.primary_domain != gap.domain:
                     raise ValueError("proposal primary domain must match the selected persistent theme")
                 prior_ids = {item.hypothesis_id for item in workspace.reviewed_hypotheses}
                 if set(value.distinguished_from_hypothesis_ids) - prior_ids:
@@ -394,6 +426,8 @@ class DesignLabOrchestrator:
                 for candidate in value.candidate_quality_attributes:
                     if candidate.source_hypothesis_id != expected_hypothesis_id:
                         raise ValueError("signature candidate must reference this run hypothesis")
+                    if set(candidate.source_hypothesis_ids) - (prior_ids | {expected_hypothesis_id}):
+                        raise ValueError("signature candidate references unknown prior hypotheses")
                     if candidate.role.value == "validated_release_test":
                         raise ValueError("autonomous Design Lab cannot assign validated release tests")
             validate_proposal(proposal)
@@ -408,11 +442,16 @@ class DesignLabOrchestrator:
                 repair = getattr(self.client, "repair", None)
                 if repair is None:
                     raise ValueError(f"duplicate design hypothesis: {conflicts}")
-                proposal = repair(
-                    instructions=(f"{DESIGN_REPAIR}\nNovelty conflicts: {conflicts}. "
-                        "Return a materially distinct testable proposal for the same theme."),
-                    input_text=_json(context),
-                    output_type=DesignProposal,
+                proposal = bind_proposal_metadata(
+                    repair(
+                        instructions=(f"{DESIGN_REPAIR}\nNovelty conflicts: {conflicts}. "
+                            "Return a materially distinct testable proposal for the same theme."),
+                        input_text=_json(context),
+                        output_type=DesignProposal,
+                    ),
+                    run_id=active_id,
+                    selected_theme=gap,
+                    sequence_within_theme=required_sequence,
                 )
                 validate_proposal(proposal)
                 remaining = novelty_conflicts(proposal, workspace.reviewed_hypotheses)
