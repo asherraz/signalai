@@ -1,0 +1,22 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Co-fractionating non-vesicular contaminants (lipoproteins, protein oligomers, extracellular aggregates) produce bioactivity and show apparent membrane-protection or co-localize with particle peaks, producing false-positive EV association (confounding by non-EV particles).",
+    "Cargo tightly adsorbed to EV surfaces or to co-isolated particles is resistant to protease +/- RNase and thus appears membrane-protected despite being extraluminal, falsifying the membrane-protection inference.",
+    "Capture reagents or particle-counting methods selectively bias recovery (e.g., enrich non-EV particles or fail to detect a biologically relevant EV subset), causing apparent co-localization that does not generalize across lots or scales.",
+    "The in vitro neuroinflammation assay has low dynamic range, high variability, or is not specific to the candidate mechanism, so fraction-level activity measurements are noisy, non-reproducible across conditioned-medium lots, or driven by indirect effects (cytotoxicity, endotoxin).",
+    "Material yield or sensitivity limits: density-fractionation plus capture dilutes active material below assay detection limits, producing inconsistent readouts and inability to reproduce co-localization across n\u22653 biological replicates.",
+    "Species and translational mismatch: even if an EV-associated activity is demonstrated in vitro and rodent models, non-human primate biodistribution and retention (e.g., strong nasal retention and negligible brain uptake) suggest the attribute would not predict meaningful in vivo brain exposure or therapeutic effect, undermining CMC investment in EV-enrichment.",
+    "Detergent/protease/RNase treatments incompletely disrupt membranes under the experimental conditions (or over-disrupt and destroy activity nonspecifically), producing ambiguous protection results that cannot distinguish EV-luminal from other protections.",
+    "Assay or reagent-specific artifacts (e.g., capture antibodies cross-reacting with secreted protein aggregates, iodixanol gradient carryover affecting particle counts) create systematic measurement bias and non-orthogonal signals.",
+    "Batch-to-batch variability in source-cell conditioned medium (donor/passage/immortalized line differences) yields inconsistent co-fractionation patterns, preventing a robust, transferable potency metric.",
+    "Overinterpretation of co-localization: particle-count peaks and capture-ELISA signals co-occur by chance or because density windows overlap multiple particle types; the qualitative co-localization metric lacks quantitative specificity to claim EV-luminal activity."
+  ],
+  "strongest_objection": "The most likely bounded failure is that the measured in vitro \"membrane-protected, particle-associated\" activity will be a false linkage: either (a) soluble or non-vesicular secretome components (protein complexes, lipoproteins, or surface-bound cargo) will co-fractionate with particle peaks and resist the planned protection/digestion controls, or (b) the capture/recovery and particle-count signals will not reflect a biologically relevant, EV-luminal cargo population. This yields reproducible co-localization without true EV-luminal mechanism, so the attribute cannot serve as a mechanism-linked potency/identity metric and is not predictive of in vivo translational value (and may be misleading for CMC decisions)."
+}

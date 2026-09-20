@@ -1,0 +1,166 @@
+{
+  "assumptions": [
+    "Assumption: A standardized, reproducible in vitro neuroinflammation-modulation assay exists or can be implemented as a fit-for-purpose readout for the intended biology.",
+    "Assumption: Density fractionation and capture reagents recover intact EVs with sufficient sensitivity to allow co-measurement of particle peaks and bioactivity."
+  ],
+  "biological_rationale": "Rodent efficacy literature supports MSC-EV secretome effects on neuroinflammation and neuroprotection, but program-level identity/potency linkage and cross-species translation are unresolved. Demonstrating that a discrete, particle-associated, membrane-protected bioactivity co-fractionates with intact-EV analytical signatures would (1) link measurable activity to an EV-associated entity rather than bulk soluble factors, (2) enable targeted orthogonal QC and potency assay development, and (3) prioritize fractionation and scale-up decisions per MISEV2023 guidance.",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20260920T082644Z-8f54ff6bf528-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "group": "functional_potency",
+      "human_approved": false,
+      "measurement_concept": "Qualitative co-localization of capture-positive fractions with particle-count peaks and membrane-protection-dependent bioactivity in matched density fractions.",
+      "name": "Intact-EV-associated, membrane-protected bioactivity co-localizing with particle peaks",
+      "rationale": "Links measurable bioactivity to an orthogonal intact-EV analytical signature and membrane-protection, enabling potency-identity coupling per MISEV recommendations.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260920T082644Z-8f54ff6bf528"
+      ],
+      "uncertainty": "High: active cargo identity is unknown and bioactivity may not be EV-associated; requires experimental verification."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Observed in vitro bioactivity could result from soluble proteins or other non-vesicular factors present in co-isolated secretome fractions.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Functional co-fractionation with matched identity and membrane-protection controls (as proposed in the experiment).",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: preclinical efficacy is observed in rodents but does not specify which fraction carries active components; MISEV recommends orthogonal linkage."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "A discrete, membrane-protected cargo population associated with intact EVs exists in MSC-conditioned medium and can be recovered in particle-containing density fractions."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "The membrane-protected, particle-associated fraction carries a reproducible neuroinflammation-modulating bioactivity measurable in a standardized in vitro assay."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Membrane disruption (detergent + protease/RNase) abolishes the bioactivity if it is EV-membrane-protected; non-EV soluble co-isolates will show bioactivity that is detergent/protease-insensitive and will not co-localize with particle peaks."
+      },
+      {
+        "node_id": "n4",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If n1-n3 are observed reproducibly across source-cell lots, this attribute can be used as a candidate potency-linked product-identity metric to guide fractionation and CMC decisions."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Soluble protein complexes or lipoproteins co-fractionate with particles and are membrane-protected by non-vesicular structures, producing a false-positive membrane-protection signal.",
+    "Apparent membrane-protection could reflect cargo tightly bound to particle surfaces rather than luminal protection."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "dependencies": [
+    "Define and produce at least three independent conditioned-medium lots from the selected source-cell bank (MCB/WCB strategy to be defined in parallel).",
+    "Access to validated immuno-capture reagents and particle counting instruments.",
+    "Implementation or selection of a standardized in vitro neuroinflammation assay with documented dynamic range."
+  ],
+  "design_question": "Daily question: Does a membrane-protected, intact-EV-associated fraction from MSC-conditioned medium carry the measurable neuroinflammation-modulating bioactivity (in vitro) that is absent from non-EV secretome fractions after matched fractionation?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7"
+  ],
+  "expected_measurable_effect": "In a matched fractionation workflow, a particle-count peak that is positive for intact-EV capture will co-localize with measurable neuroinflammation-modulating activity that is lost after detergent + protease/RNase treatment; secretome fractions lacking particle peaks will show either no activity or activity that is insensitive to membrane disruption.",
+  "experiment": {
+    "assay": "Orthogonal workflow: (1) density-gradient fractionation with particle counting per fraction; (2) immuno-capture of intact EV markers on fractions; (3) protease/RNase protection +/- detergent on capture material; (4) in vitro neuroinflammation-modulation assay applied to matched fractions or eluates; (5) total protein and protein:particle ratio per fraction.",
+    "comparator": "Matched preparations from the same conditioned-medium lots: (A) enriched small-EV preparation vs (B) concentrated conditioned medium (secretome-retaining).",
+    "complexity": "moderate",
+    "control": "Negative controls: buffer-only fractions, detergent-disrupted fractions; Positive controls: purified characterized small EVs and recombinant positive control modulators of the assay (e.g., dexamethasone or known anti-inflammatory agent) to verify assay responsiveness.",
+    "dependencies": [
+      "Availability of consistent source-cell conditioned-medium lots (same passage/bank)",
+      "Access to validated capture reagents and particle counting instrumentation",
+      "Laboratory capability to run density-gradient fractionation and the selected in vitro neuroinflammation assay",
+      "Sufficient material yield to test fractions in the functional assay"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-kodali-2017-status-epilepticus",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20260920T082644Z-8f54ff6bf528",
+    "failure_criterion": "No reproducible co-localization of bioactivity with particle-count/capture-positive fractions across replicates, or bioactivity in capture-positive fractions is unchanged by membrane-disrupting treatments (detergent + protease/RNase), indicating the activity is not membrane-protected/EV-associated.",
+    "falsification_outcome": "If the failure criterion is met, the hypothesis is falsified and the program must treat the material as functionally indistinguishable from a secretome for potency and product-definition purposes and revisit fractionation or product strategy.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A membrane-protected, particle-associated fraction recovered from MSC-conditioned medium will contain a reproducible neuroinflammation-modulating bioactivity (in vitro) that co-localizes with particle-count peaks and is abolished by detergent + protease/RNase treatment, whereas non-EV secretome fractions will either lack this activity or show detergent-insensitive activity.",
+    "primary_readout": "Presence and magnitude of neuroinflammation-modulating activity (e.g., reduction in LPS-induced cytokine release) in fractions that co-localize with particle-count peaks and capture-positive signal, and loss of that activity after detergent + protease/RNase treatment.",
+    "question": "Does a membrane-protected, intact-EV-associated fraction from MSC-conditioned medium carry the neuroinflammation-modulating bioactivity that co-fractionates with particle peaks and is lost after membrane disruption?",
+    "required_material": [
+      "MSC-conditioned medium (same source-cell lot) processed as: (A) small-EV enrichment (e.g., SEC/ultracentrifugation) and (B) concentrated conditioned medium without EV enrichment (secretome-retaining)",
+      "Purified small-EV positive control (commercial characterized small EVs or lab-validated preparation)",
+      "Immuno-capture reagents for intact EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5 capture reagents)",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Protease (proteinase K), RNase reagents",
+      "Detergent (Triton X-100 or equivalent) for membrane disruption",
+      "Density-gradient materials (iodixanol) and fractionation equipment",
+      "Standardized in vitro neuroinflammation assay system (e.g., LPS-stimulated human iPSC-derived microglia or primary microglia with cytokine readout like IL-6/TNF-\u03b1 ELISA or multiplex cytokine panel)",
+      "Total protein assay reagents and cell-culture supplies"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio differences between preparations and fractions",
+      "Co-localization metrics: fraction index of particle peak vs capture-positive ELISA signal",
+      "Reproducibility across biological replicates (n \u2265 3 independent conditioned-medium preps)",
+      "Assay-specific viability and control readouts"
+    ],
+    "success_criterion": "Qualitative success: In multiple independent conditioned-medium lots (n \u2265 3), the enriched small-EV preparation shows a fraction (or fractions) where particle-count peaks co-localize with capture-positive signal and measurable reduction of pro-inflammatory cytokine readouts in the in vitro assay; this bioactivity is substantially reduced or abolished after detergent + protease/RNase treatment, while secretome-retaining fractions either lack this co-localizing activity or show activity that is insensitive to membrane disruption."
+  },
+  "explicit_inferences": [
+    "Inference: Co-fractionation of bioactivity with intact-EV analytical signatures and sensitivity to membrane disruption implies an EV-associated mechanism that can be targeted by CMC and potency assay development."
+  ],
+  "falsification_criteria": [
+    "Across independent biological replicates (n \u2265 3), the particle-count peaks positive for intact-EV capture do not show measurable bioactivity in the in vitro neuroinflammation assay, or the observed bioactivity in capture-positive fractions is unchanged by detergent + protease/RNase treatment (i.e., bioactivity is detergent/protease/RNase-insensitive), indicating the activity is not membrane-protected and not EV-associated."
+  ],
+  "human_decisions_required": [
+    "Select and approve the in vitro neuroinflammation assay system (cell type, readout) as the program's fit-for-purpose functional readout.",
+    "Decide whether positive functional linkage will drive an EV-enrichment fractionation strategy or whether product will remain secretome-retaining."
+  ],
+  "manufacturability_assessment": "If supported, the result favors investing in an EV-enriched drug-substance fractionation strategy and orthogonal QC focused on intact-EV capture and a linked potency assay; if falsified, the program must treat the product as a secretome-retaining modality with different CMC and scalability trade-offs.",
+  "manufacturing_rationale": "Establishing an intact-EV-associated potency attribute that is amenable to orthogonal capture and resistant to non-vesicular interference will inform CMC decisions (fractionation vs secretome-retaining product), orthogonal QC panel composition, and comparability testing needed for scale-up and regulatory briefing.",
+  "measurement_strategy": "Orthogonal density-fractionation + particle enumeration + immuno-capture of intact EV markers + detergent/protease/RNase protection, coupled to an in vitro neuroinflammation-modulation assay (e.g., LPS-stimulated microglia cytokine readout or human iPSC-derived microglia/astrocyte co-culture inflammatory cytokine panel). All readouts run in matched fractions and biological replicates (n \u2265 3).",
+  "novelty_statement": "Novelty: Unlike the prior hypothesis (design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7), which proposed an orthogonal intact-EV analytical signature to discriminate fractionation state, this hypothesis explicitly links an orthogonal intact-EV analytical signature to a measurable, mechanism-relevant functional bioactivity (neuroinflammation modulation) and proposes a discriminating functional co-fractionation experiment (density fractionation + capture + membrane-protection + in vitro functional readout). This is a substantive advance because it moves beyond identity-only analytics to test whether intact-EV-associated cargo carries the program-relevant activity required to justify EV-enrichment and potency assay development.",
+  "primary_domain": "fractionation",
+  "principal_risks": [
+    "The in vitro bioactivity may not be robust or reproducible across conditioned-medium lots, preventing assay validation.",
+    "Non-vesicular co-isolates could confound membrane-protection readouts, creating false linkages.",
+    "Negative result would force treating product as secretome, with major CMC and scalability implications."
+  ],
+  "proposed_potency_relationship": "If the intact-EV-associated fraction reproducibly carries bioactivity that is abolished by membrane disruption, then this attribute can be used as the basis for a mechanism-linked, stability-indicating potency assay during CMC development.",
+  "proposed_product_change_or_attribute": "If supported, define an intact-EV-associated, membrane-protected bioactivity (co-fractionating with particle peaks and detergent/protease-sensitive) as a candidate potency-linked product-identity attribute distinguishing an EV-enriched small-EV drug substance from an unpurified secretome.",
+  "secondary_domains": [
+    "product_identity",
+    "potency",
+    "manufacturing"
+  ],
+  "sequence_within_theme": 1,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "theme_id": "design-gap-ev-non-ev-composition",
+  "title": "Hypothesis: Intact-EV-associated, membrane-protected cargo mediates a measurable neuroinflammation-modulating bioactivity that co-fractionates with particle peaks and is lost after membrane disruption"
+}
