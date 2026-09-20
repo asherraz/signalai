@@ -8,7 +8,8 @@ that it differs from, and a genuinely new discriminating experiment. Cosmetic wo
 the same intervention with the same experiment, or the same mechanism under new names
 is not novel. Copy the supplied required hypothesis ID, experiment ID, theme ID,
 sequence, and selected theme primary domain exactly. Candidate sourceHypothesisId
-values must copy the required hypothesis ID exactly.
+values must copy the required hypothesis ID exactly. Candidate attribute IDs are
+application-owned placeholders and will be rebound after generation.
 Use only supplied canonical evidence IDs. Treat literature as external support, never
 as SGL-001 results. Label inference and uncertainty. Do not assert efficacy, validated
 mechanism, specifications, process parameters, concentrations, release criteria, human

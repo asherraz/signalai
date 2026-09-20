@@ -216,9 +216,15 @@ def bind_proposal_metadata(
         update={"experiment_id": f"design-experiment-{run_id}"}
     )
     candidates = [
-        candidate.model_copy(update={"source_hypothesis_id": hypothesis_id})
-        for candidate in proposal.candidate_quality_attributes
+        candidate.model_copy(update={
+            "attribute_id": f"design-signature-{run_id}-{index}",
+            "source_hypothesis_id": hypothesis_id,
+        })
+        for index, candidate in enumerate(proposal.candidate_quality_attributes, start=1)
     ]
+    candidate_ids = [candidate.attribute_id for candidate in candidates]
+    if len(candidate_ids) != len(set(candidate_ids)):
+        raise ValueError("duplicate system-bound signature candidate ID")
     bound = proposal.model_copy(update={
         "primary_domain": selected_theme.domain,
         "theme_id": selected_theme.gap_id,
@@ -418,6 +424,15 @@ class DesignLabOrchestrator:
                 if value.primary_domain != gap.domain:
                     raise ValueError("proposal primary domain must match the selected persistent theme")
                 prior_ids = {item.hypothesis_id for item in workspace.reviewed_hypotheses}
+                candidate_ids = [item.attribute_id for item in value.candidate_quality_attributes]
+                expected_candidate_ids = [
+                    f"design-signature-{active_id}-{index}"
+                    for index in range(1, len(candidate_ids) + 1)
+                ]
+                if len(candidate_ids) != len(set(candidate_ids)):
+                    raise ValueError("duplicate system-bound signature candidate ID")
+                if candidate_ids != expected_candidate_ids:
+                    raise ValueError("signature candidate IDs do not match immutable run metadata")
                 if set(value.distinguished_from_hypothesis_ids) - prior_ids:
                     raise ValueError("novelty statement references unknown prior hypotheses")
                 same_theme = set(gap.hypothesis_ids)

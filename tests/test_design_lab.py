@@ -185,6 +185,7 @@ def test_system_metadata_is_bound_without_changing_scientific_content():
     )
 
     assert bound.experiment.experiment_id == "design-experiment-immutable-run"
+    assert bound.candidate_quality_attributes[0].attribute_id == "design-signature-immutable-run-1"
     assert bound.candidate_quality_attributes[0].source_hypothesis_id == "design-hypothesis-immutable-run"
     assert bound.theme_id == theme.gap_id
     assert bound.sequence_within_theme == 3
@@ -197,8 +198,33 @@ def test_system_metadata_is_bound_without_changing_scientific_content():
         data.pop("primary_domain")
         data["experiment"].pop("experiment_id")
         for candidate in data["candidate_quality_attributes"]:
+            candidate.pop("attribute_id")
             candidate.pop("source_hypothesis_id")
     assert bound_data == original_data
+
+
+def test_duplicate_model_candidate_ids_become_distinct_run_scoped_ids():
+    original = proposal().model_copy(deep=True)
+    first = original.candidate_quality_attributes[0]
+    second = first.model_copy(update={
+        "name": "Distinct exploratory cargo profile",
+        "measurement_concept": "distinct cargo profile",
+    })
+    original.candidate_quality_attributes = [first, second]
+    theme = initial_design_lab(NOW).design_gaps[0]
+
+    bound = bind_proposal_metadata(
+        original, run_id="two-candidates", selected_theme=theme,
+        sequence_within_theme=1,
+    )
+
+    assert [item.attribute_id for item in bound.candidate_quality_attributes] == [
+        "design-signature-two-candidates-1",
+        "design-signature-two-candidates-2",
+    ]
+    assert [item.name for item in bound.candidate_quality_attributes] == [
+        first.name, second.name,
+    ]
 
 
 def test_complete_cycle_normalizes_otherwise_valid_model_ids(tmp_path):
@@ -231,21 +257,34 @@ def test_mocked_workflow_continues_to_simulation_publication_and_commit_decision
     before_workspace = DesignLabWorkspace.model_validate_json(
         (tmp_path / "state/design-lab.json").read_text()
     )
-    run_id = "run-mocked-daily-design"
+    run_id = "run-mocked-daily-design-1"
+    second_run_id = "run-mocked-daily-design-2"
     when = datetime(2026, 9, 20, 8, 0, tzinfo=timezone.utc)
 
-    hypothesis = DesignLabOrchestrator(
+    first_hypothesis = DesignLabOrchestrator(
         client=WrongMetadataClient(run_id=run_id), root=tmp_path,
         now_factory=lambda: when,
     ).run(run_id=run_id)
+    hypothesis = DesignLabOrchestrator(
+        client=WrongMetadataClient(run_id=second_run_id), root=tmp_path,
+        now_factory=lambda: when + timedelta(days=1),
+    ).run(run_id=second_run_id)
     simulation = advance_simulation(tmp_path, simulated_date=date(2026, 9, 20))
     public = publish_current_public_state(tmp_path, generated_at=when)
 
     after_workspace = DesignLabWorkspace.model_validate_json(
         (tmp_path / "state/design-lab.json").read_text()
     )
-    assert after_workspace.reviewed_hypotheses[:-1] == before_workspace.reviewed_hypotheses
+    assert after_workspace.reviewed_hypotheses[:-2] == before_workspace.reviewed_hypotheses
+    assert after_workspace.reviewed_hypotheses[-2].hypothesis_id == first_hypothesis.hypothesis_id
     assert after_workspace.reviewed_hypotheses[-1].hypothesis_id == hypothesis.hypothesis_id
+    signature_ids = [item.attribute_id for item in after_workspace.product_signature_candidates]
+    assert len(signature_ids) == len(set(signature_ids))
+    assert any(item.startswith(f"design-signature-{run_id}-") for item in signature_ids)
+    assert any(item.startswith(f"design-signature-{second_run_id}-") for item in signature_ids)
+    experiment_ids = [item.experiment_id for item in after_workspace.proposed_experiments]
+    assert f"design-experiment-{run_id}" in experiment_ids
+    assert f"design-experiment-{second_run_id}" in experiment_ids
     assert public.design_lab.latest_reviewed_hypothesis.hypothesis_id == hypothesis.hypothesis_id
     assert public.clinic_simulation.total_simulated_days == len(simulation.days)
     assert public.clinic_simulation.latest_day.protocol_day == simulation.days[-1].protocol_day
@@ -495,16 +534,60 @@ def test_backward_migration_is_idempotent_and_preserves_existing_hypothesis():
 
 
 def test_product_signature_candidates_merge_references_without_duplicate_record():
-    first = proposal().candidate_quality_attributes[0]
+    first = proposal().candidate_quality_attributes[0].model_copy(update={
+        "evidence_ids": [EVIDENCE_ID],
+        "source_hypothesis_ids": ["first-supporting-hypothesis"],
+    })
     second = first.model_copy(update={
         "attribute_id": "second-display-id", "source_hypothesis_id": "second-hypothesis",
         "source_hypothesis_ids": ["second-hypothesis"],
+        "evidence_ids": ["second-evidence"],
         "rationale": "A new rationale that should not duplicate the display record.",
     })
     merged, mapping = merge_signature_candidates([first], [second])
     assert len(merged) == 1
+    assert merged[0].attribute_id == first.attribute_id
     assert mapping[second.attribute_id] == first.attribute_id
-    assert set(merged[0].source_hypothesis_ids) == {first.source_hypothesis_id, "second-hypothesis"}
+    assert set(merged[0].evidence_ids) == {EVIDENCE_ID, "second-evidence"}
+    assert set(merged[0].source_hypothesis_ids) == {
+        first.source_hypothesis_id, "first-supporting-hypothesis", "second-hypothesis",
+    }
+
+
+def test_consecutive_runs_replace_reused_model_signature_id_without_changing_existing_ids(tmp_path):
+    root = prepare(tmp_path)
+    first_run = "run-signature-first"
+    DesignLabOrchestrator(
+        client=ScriptedClient(run_id=first_run), root=root, now_factory=lambda: NOW
+    ).run(run_id=first_run)
+    after_first = DesignLabWorkspace.model_validate_json(
+        (root / "state/design-lab.json").read_text()
+    )
+    existing_ids = [item.attribute_id for item in after_first.product_signature_candidates]
+
+    class ReusedSignatureIdClient(ScriptedClient):
+        def generate(self, *, instructions, input_text, output_type):
+            result = super().generate(
+                instructions=instructions, input_text=input_text, output_type=output_type
+            )
+            if output_type is DesignProposal:
+                result.candidate_quality_attributes[0].attribute_id = existing_ids[0]
+            return result
+
+    second_run = "run-signature-second"
+    DesignLabOrchestrator(
+        client=ReusedSignatureIdClient(run_id=second_run), root=root,
+        now_factory=lambda: NOW + timedelta(days=1),
+    ).run(run_id=second_run)
+    final = DesignLabWorkspace.model_validate_json(
+        (root / "state/design-lab.json").read_text()
+    )
+    final_ids = [item.attribute_id for item in final.product_signature_candidates]
+    assert final_ids[:len(existing_ids)] == existing_ids
+    assert f"design-signature-{second_run}-1" in final_ids
+    assert len(final_ids) == len(set(final_ids))
+    assert len(final.reviewed_hypotheses) == 2
+    assert len(final.proposed_experiments) == 2
 
 
 def test_public_limits_full_history_to_30_and_keeps_canonical_history():
