@@ -1,0 +1,234 @@
+{
+  "adversary_objection": "The experiment can fail to establish a causal, EV-specific potency metric because intranasally delivered, membrane-intact EVs may not meaningfully reach or persist in the relevant nasal\u2192CNS compartments at detectable levels in vivo, so any ex vivo cytokine modulation observed will be attributable to soluble co-isolates, labeling/artifact bias, or assay noise rather than bona fide intact-EV exposure. This is supported by direct non-human-primate biodistribution data showing negligible brain/CSF detection and strong nasal retention after intranasal dosing, and by consensus guidance that non-orthogonal characterization and contaminating non-vesicular material can confound functional attribution.",
+  "assumptions": [
+    "Assumption: An ex vivo short-term CNS immune-cell readout (e.g., cytokine release from tissue-derived microglia-like cells) can reflect recent in vivo exposure to biologically active factors delivered intranasally.",
+    "Assumption: Sufficient material and analytical sensitivity exist to orthogonally verify intact-EV exposure in relevant tissue compartments within the experimental time window."
+  ],
+  "biological_rationale": "Rodent intranasal functional signals exist but do not establish that intact, membrane-protected EVs (rather than soluble co-isolates or particle counting metrics) mediate the bioactivity. Linking an orthogonally verified intact-EV signature in the administered material to a reproducible downstream ex vivo CNS readout after intranasal dosing would create a mechanism-linked potency metric that cannot be explained by particle abundance alone.",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20260921T104952Z-0973c8779e9c-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Observed ex vivo modulation could result from soluble co-isolates that reach the CNS independently of intact EVs (e.g., small proteins/peptides) or from differences in dosing/administration rather than intact-EV presence.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "In vivo dosing with orthogonal intact-EV verification combined with ex vivo functional readout and membrane-disruption controls.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "High: existing rodent efficacy and MISEV guidance support need for orthogonal linkage, but do not demonstrate the in vivo\u2192ex vivo bridge or that membrane protection is required for in vivo readout."
+      },
+      {
+        "competing_explanation": "Failure to detect in vivo exposure could arise from assay insensitivity or labeling artifacts rather than absence of intact EVs.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "direct_observation",
+        "missing_experiment": "A matched intact-EV verification assay in a relevant large-animal or rodent model concurrent with short-term ex vivo tissue sampling.",
+        "model_or_species": "non-human primate (macaque) context",
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate: limited large-animal biodistribution after intranasal dosing suggests delivery barriers that could confound potency linkage, but the result may reflect formulation/labeling differences."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "An orthogonally defined intact-EV signature (capture-positive, particle-peak co-localization, detergent/protease-sensitive) identifies a membrane-protected fraction in the drug substance."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If an administered preparation contains the orthogonal intact-EV signature and intact-EV exposure in the nasal\u2192CSF/olfactory mucosa compartment is demonstrable in vivo, then downstream CNS immune cells (microglia-like cells) will show a reproducible ex vivo modulation measurable in a standardized cytokine readout."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the preparation lacks the intact-EV signature or the captured material is membrane-disrupted prior to administration, then the ex vivo CNS readout will be absent or qualitatively different, showing that bulk particle counts alone do not predict the assay outcome."
+      }
+    ]
+  },
+  "chair_rationale": "The hypothesis is conceptually testable and supported as an exploratory potency strategy but carries substantial analytic, translational, and CMC uncertainty (insufficient immuno\u2011capture sensitivity in low\u2011biomass fluids, soluble co\u2011isolate confounding, and macaque biodistribution risk). Proceed with a staged test plan: validate capture/detergent\u2011protection assays (spike/recovery, matched\u2011particle controls) and run rodent proof\u2011of\u2011concept with orthogonal in vivo\u2192ex vivo bridging before committing to larger\u2011animal studies or manufacturing investments.",
+  "competing_explanations": [
+    "Bioactivity measured ex vivo could be driven by soluble, non-EV-associated factors that penetrate the nasal barrier independent of intact-EV delivery.",
+    "Differences in administration technique, dose distribution, or labeling artifacts (for in vivo verification) could explain apparent association between intact-EV signature and ex vivo outcomes."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "created_at": "2026-09-21T10:49:52.921635Z",
+  "dependencies": [
+    "Develop and validate capture assays with defined sensitivity/specificity for low-biomass fluids (nasal lavage/CSF).",
+    "Sufficient conditioned-medium production from a qualified source-cell lot (consistent MCB/WCB strategy).",
+    "Animal protocol and biospecimen sampling workflow to permit short-interval lavage/CSF and tissue harvest."
+  ],
+  "design_question": "Daily question: Can an orthogonal in vivo-to-ex vivo bridging experiment demonstrate that an intact-EV-associated, membrane-protected fraction (verified by capture + detergent protection) produces a reproducible, measurable modulation of an ex vivo CNS inflammatory readout after intranasal dosing, independent of bulk particle counts?",
+  "determination": "needs_evidence",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+    "design-hypothesis-run-20260920T082644Z-8f54ff6bf528"
+  ],
+  "expected_measurable_effect": "Demonstrate that only material with an orthogonal intact-EV signature, and not membrane-disrupted or capture-negative material with equivalent particle counts, reproducibly modulates an ex vivo CNS inflammatory cytokine readout after intranasal dosing; this supports a potency attribute that is tied to intact-EV association rather than particle abundance.",
+  "explicit_inferences": [
+    "Inference: Rodent intranasal functional signals do not prove that intact-EV exposure mediates activity; orthogonal in vivo verification plus ex vivo readout is required to establish a mechanism-linked potency attribute. (label: inference)",
+    "Inference: Large-animal negative biodistribution findings increase uncertainty about intranasal intact-EV exposure and therefore the generalizability of an intranasal potency metric. (label: uncertainty)"
+  ],
+  "falsification_criteria": [
+    "No reproducible difference in the ex vivo CNS inflammatory readout between preparations that are orthogonally verified as capture-positive (intact-EV signature) and particle-count-matched capture-negative or membrane-disrupted controls across independent biological replicates (n \u2265 3), indicating that activity is independent of intact-EV association.",
+    "Or: inability to orthogonally demonstrate in vivo intact-EV exposure in the tested model despite validated capture assays and positive controls, leaving the link untestable (treated as falsification for this hypothesis)."
+  ],
+  "human_decisions_required": [
+    "Approve animal sampling windows and species (rodent vs larger species) given translational uncertainty (ev-driedonks-2022-macaque-biodistribution).",
+    "Decide material arms to prioritize (depth of capture-depletion vs detergent-treated pre-administration) based on manufacturable fractionation options."
+  ],
+  "hypothesis_id": "design-hypothesis-run-20260921T104952Z-0973c8779e9c",
+  "manufacturability_assessment": "If supported, the hypothesis favors investing in fractionation and capture-capable analytics to produce an EV-enriched drug substance; if falsified, the program should prioritize a secretome product strategy and deprioritize EV-specific QC burden.",
+  "manufacturing_rationale": "A potency attribute that requires intact-EV association and membrane-protection will drive product-definition choices (fractionation vs secretome-retaining), QC panel selection, and release/potency assay development per MISEV guidance and program CMC priorities.",
+  "measurement_strategy": "Compare matched material variants (intact-EV-enriched; secretome-retaining; capture-positive material treated with detergent/protease to disrupt membranes; and particle-count-matched but capture-negative controls). Verify intact-EV exposure in vivo by orthogonal assays (immuno-capture from nasal lavage/CSF/olfactory mucosa homogenate and particle counts) at short timepoints, then measure ex vivo cytokine readouts from acutely harvested CNS tissue or isolated microglia-like cells.",
+  "minimum_discriminating_experiment": {
+    "assay": "Integrated protocol: (A) characterize administered materials in vitro with orthogonal intact-EV workflow (density fractionation + particle counts + immuno-capture + detergent/protease protection); (B) intranasal administration to rodents with short post-dose interval (predefined, brief window) followed by collection of nasal lavage, CSF (if feasible), and olfactory-mucosa/olfactory-bulb-adjacent tissue; (C) orthogonal verification of intact-EV exposure in collected fluids/tissues (capture and particle counts); (D) prepare ex vivo tissue or isolated microglia-like cells from harvested tissue, apply standardized inflammatory challenge (e.g., LPS) and measure cytokine release with and without co-incubation with eluates from captured fractions; (E) compare cytokine responses across arms.",
+    "comparator": "Four-arm comparison from the same conditioned-medium lot: (1) intact-EV-enriched preparation (capture-positive), (2) secretome-retaining concentrated conditioned medium (capture profile to be determined), (3) intact-EV-enriched material treated with detergent + protease prior to administration (membrane-disrupted), (4) particle-count-matched but capture-depleted preparation (if achievable).",
+    "complexity": "high",
+    "control": "Positive control: characterized small EVs and dexamethasone in the ex vivo assay. Negative controls: vehicle-only and buffer fractions. In-assay viability/assay controls for tissue health.",
+    "dependencies": [
+      "Availability of sufficient conditioned-medium lots from the same source-cell bank and passage range",
+      "Validated immuno-capture reagents and particle-count instrumentation sensitivity for low-biomass lavage/CSF samples",
+      "Animal protocol approvals for short-interval tissue/fluid collection",
+      "Laboratory capability to run both orthogonal capture and ex vivo inflammatory assays with required throughput"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-kodali-2017-status-epilepticus",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20260921T104952Z-0973c8779e9c",
+    "failure_criterion": "No reproducible linkage between in vivo orthogonal intact-EV verification and the ex vivo cytokine readout across replicates (i.e., capture-positive verification does not predict ex vivo modulation), or particle-count-matched capture-negative or membrane-disrupted arms produce equivalent ex vivo effects, indicating activity is not intact-EV-associated.",
+    "falsification_outcome": "If failure criteria are met, treat the material as functionally indistinguishable from secretome with respect to the tested short-term ex vivo inflammatory readout; revise product-definition toward secretome-centric strategy and deprioritize EV-specific potency attribute.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "An intact-EV-associated, membrane-protected fraction (verified by capture + detergent/protease sensitivity and particle-peak co-localization) is necessary for a reproducible short-term ex vivo CNS inflammatory modulation following intranasal administration; particle-count-matched but capture-negative or membrane-disrupted material will not produce the same ex vivo modulation.",
+    "primary_readout": "Magnitude and reproducibility of ex vivo cytokine modulation (e.g., reduction in LPS-induced IL-6/TNF-\u03b1) from tissue-derived microglia-like cells correlated with in vivo orthogonal evidence of intact-EV exposure (presence of capture-positive signal and particle co-localization in lavage/CSF/tissue).",
+    "question": "Can an orthogonal in vivo\u2192ex vivo bridging experiment show that only material with an intact-EV signature (capture-positive and detergent/protease-sensitive) produces a reproducible short-term ex vivo CNS inflammatory modulation after intranasal dosing, independent of bulk particle counts?",
+    "required_material": [
+      "MSC-conditioned medium from a single characterized source-cell lot processed to produce: (A) enriched small-EV preparation (SEC/UC) and (B) concentrated conditioned medium (secretome-retaining) from the same lot",
+      "Matched aliquots of capture-positive material treated with detergent + protease (membrane-disrupted) prior to administration",
+      "Particle-count instruments and reagents (NTA or TRPS)",
+      "Immuno-capture reagents for intact EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5)",
+      "Assays for orthogonal in vivo verification: capture from nasal lavage/CSF/olfactory mucosa homogenates and particle counts",
+      "Short-term ex vivo CNS inflammatory assay platform (e.g., acutely harvested rodent olfactory bulb or olfactory mucosa\u2013adjacent tissue processed to isolate microglia-like cells, LPS challenge ex vivo, and cytokine readouts such as IL-6/TNF-\u03b1 ELISA or multiplex)",
+      "Positive control materials: characterized small EVs (commercial or lab-validated) and a known anti-inflammatory control (e.g., dexamethasone) for the ex vivo assay",
+      "Negative controls: vehicle-only and buffer fractions"
+    ],
+    "secondary_readouts": [
+      "Co-localization metrics between particle-count peaks and capture-positive signal in administered material and in collected lavage/CSF fractions",
+      "Confirmation that captured material's activity is abolished by detergent + protease pre-treatment",
+      "Protein:particle ratios of administered materials and of captured fractions",
+      "Reproducibility across biological replicates (n \u2265 3 independent conditioned-medium preps and separate animal cohorts)"
+    ],
+    "success_criterion": "Qualitative success: In multiple independent conditioned-medium lots and animal cohorts (n \u2265 3), only the arm where administered material is orthogonally verified as capture-positive and shows particle-peak co-localization produces a reproducible reduction in ex vivo inflammatory cytokine readout; this reduction is abolished when captured material is membrane-disrupted prior to administration, and particle-count-matched capture-negative or secretome-retaining arms do not produce equivalent ex vivo modulation."
+  },
+  "novelty_statement": "This hypothesis proposes a novel, discriminating in vivo\u2192ex vivo bridge that (unlike prior fractionation-only or in vitro-only proposals) combines orthogonal intact-EV verification of administered material and of short-term in vivo exposure with an acutely harvested ex vivo CNS inflammatory assay to test whether membrane-protected EV association (not particle counts) is necessary for the downstream readout. Prior proposed experiments focused on in vitro fractionation and in vitro bioassays; this design adds the orthogonal in vivo exposure verification and immediate ex vivo functional measurement to directly link intact-EV presence to a biological signal.",
+  "primary_domain": "potency",
+  "principal_risks": [
+    "Inability to detect intact-EV exposure in vivo due to biodistribution barriers or assay sensitivity limits (evidence: ev-driedonks-2022-macaque-biodistribution).",
+    "Ex vivo readout variability or lack of linkage to in vivo exposure leading to inconclusive results.",
+    "Resource and material burden to run orthogonal capture and in vivo sampling across replicates."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "If the intact-EV-associated bioactivity is present and abolished by membrane disruption, then intact-EV association (not particle counts) is necessary for the measured short-term ex vivo CNS response under the tested administration conditions (inference; uncertainty: program-relevant translation unknown).",
+  "proposed_product_change_or_attribute": "Define a candidate potency attribute as an intact-EV-associated, membrane-protected bioactivity that (A) co-localizes with capture-positive particle fractions in source material, (B) is abolished by membrane-disrupting treatment in the captured material, and (C) is predictive of a short-term ex vivo CNS inflammatory-response modulation after intranasal administration when intact-EV exposure is orthogonally verified in vivo.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Central causal claim (in vivo orthogonal intact-EV verification \u2192 reproducible ex vivo cytokine modulation) is an untested inference in the provided evidence set and is labeled as an inference/uncertainty in the proposal but lacks direct experimental support in cited studies.",
+        "MISEV2023 (ev-misev2023-quality-framework) supports the need for orthogonal characterization and controls but does not provide data that specific immuno-capture assays reach required sensitivity in nasal lavage/CSF\u2014proposal assumes assay performance that is not demonstrated in the canonical evidence.",
+        "Rodent intranasal efficacy reports (ev-hermann-2023-neonatal-hi, ev-kodali-2017-status-epilepticus) show preclinical functional signals but do not establish that intact, membrane-protected EVs (vs soluble co-isolates) mediated those outcomes; the proposal correctly treats this as an uncertainty but empirical linkage is missing.",
+        "Non-human-primate biodistribution (ev-driedonks-2022-macaque-biodistribution) directly contradicts the assumption that intranasal EVs reliably reach CNS compartments in larger species and therefore raises a realistic translational risk that could render the proposed potency metric non-generalizable.",
+        "The proposal\u2019s planned use of detergent/protease sensitivity as a discriminating control is reasonable, but there is no canonical evidence demonstrating that such pre-treatment in administered material will selectively abolish an in vivo exposure signal (as opposed to altering other material properties) in the cited literature."
+      ],
+      "conclusion": "Partially supported but key causal linkage and assay-sensitivity claims lack direct empirical support in the canonical evidence; the proposal is consistent with guidance and rodent efficacy reports and correctly flags large-animal biodistribution as a limiting observation, but the central in vivo\u2192ex vivo intact-EV verification linking detergent-sensitive capture-positive signal to a reproducible ex vivo cytokine modulation is not demonstrated by the cited literature and therefore remains an evidence gap.",
+      "evidence_gap": "No canonical evidence demonstrates that (A) an orthogonally verified, detergent/protease-sensitive, capture-positive intact-EV signal in nasal lavage/CSF/olfactory tissue after intranasal dosing predicts a reproducible short-term ex vivo CNS cytokine modulation; nor is there canonical validation that available immuno-capture workflows have sufficient sensitivity/specificity in low-biomass lavage or CSF to support the proposed in vivo verification. Translation to larger species is also unresolved beyond the cited macaque negative biodistribution.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "evidence_verifier",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Manufacturability burden: Producing an EV\u2011enriched drug substance with consistent capture\u2011positive signature will require routine fractionation (SEC/UC or comparable) and added downstream controls; this increases process steps, failure modes, and cost compared with a secretome\u2011retaining product (supported by ev-misev2023-quality-framework).",
+        "Process sensitivity: The candidate readout depends on detergent/protease treatments and immuno\u2011capture; these manipulations are process\u2011sensitive and may introduce variability unless well\u2011controlled and qualified.",
+        "Measurement feasibility: Orthogonal capture plus particle\u2011peak co\u2011localization in nasal lavage/CSF is technically challenging because of very low biomass and matrix interference; assay sensitivity and specificity must be demonstrated (evidence gap; ev-misev2023-quality-framework).",
+        "Lot comparability: Achieving lot\u2011to\u2011lot consistency of an intact\u2011EV signature across MCB/WCB and scale\u2011up (primary vs immortalized MSC source noted in ev-hermann-2023) is uncertain and will demand expanded comparability studies and release panels.",
+        "Stability: Intact\u2011EV membrane integrity may be lost during processing, storage, or shipping; stability of the proposed attribute (membrane\u2011protected activity) must be shown under intended hold and distribution conditions.",
+        "Scale\u2011up risk: Required material quantities for both in vivo verification and routine QC could be large; scale\u2011up of fractionation and capture\u2011capable analytics presents technical and cost risk before clinical proof of concept.",
+        "Translational risk / QA relevance: The macaque intranasal biodistribution data (ev-driedonks-2022-macaque-biodistribution) indicate possible delivery barriers\u2014if intact EVs do not reach CNS compartments in larger species, the attribute may not be meaningful for product release or clinical potency, making the additional QC burden unjustified."
+      ],
+      "conclusion": "The proposed orthogonal in vivo\u2192ex vivo bridge is scientifically reasonable as an exploratory potency strategy but carries high CMC and translational risk. Key manufacturing and measurement challenges must be resolved before this candidate attribute can be operationalized as a release or stability metric. Given the non\u2011human\u2011primate biodistribution negative result, the program should treat intact\u2011EV linkage as high\u2011uncertainty and stage investments (analytics, small\u2011scale fractionation) to de\u2011risk feasibility before committing to EV\u2011centric product definition.",
+      "evidence_gap": "No validated demonstrations that (a) capture assays have required sensitivity/specificity in low\u2011biomass nasal lavage/CSF in the chosen species, and (b) intact\u2011EV exposure after intranasal dosing is reproducibly detectable in a translationally relevant large\u2011animal model. Also missing: data on stability of the intact\u2011EV signature through scaled fractionation and storage.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Translational biodistribution risk: macaque data (ev-driedonks-2022-macaque-biodistribution) show weak/no detectable intranasal EV brain/CSF signal and strong nasal retention; failure to detect in vivo exposure could reflect true lack of delivery or assay/labeling limits and would undermine the bridge.",
+        "Assay sensitivity/specificity: immuno-capture reagents and particle-count methods may have limited sensitivity in low-biomass lavage/CSF and may capture non-EV particles or soluble complexes (MISEV2023 warns about orthogonal characterization needs).",
+        "Soluble co\u2011isolates confounder: prior rodent efficacy reports (ev-zhuang-2011, ev-kodali-2017, ev-hermann-2023) do not exclude soluble secretome mediators; the experiment must convincingly show activity loss after membrane disruption while preserving soluble factors to attribute effect to membrane\u2011protected cargo.",
+        "Particle\u2011matching difficulty: producing capture\u2011negative but particle-count\u2011matched controls is technically challenging; residual differences in composition (protein:particle ratio, lipid content) could explain readout differences independent of membrane protection.",
+        "Detergent/protease controls caveat: pre\u2011treatment intended to disrupt membranes may also denature or remove cargo in a way that does not cleanly isolate the variable \u201cmembrane protection\u201d vs loss of active component; interpretation requires orthogonal confirmation that only membrane integrity was altered.",
+        "Ex vivo readout variability: short-term tissue-derived microglia cytokine assays can be variable and sensitive to tissue handling; insufficient reproducibility would reduce discriminatory power.",
+        "Administration and sampling artifacts: intranasal dosing variability, differential retention in nasal cavity, or labeling artifacts could create false associations between in vivo verification and ex vivo outcomes."
+      ],
+      "conclusion": "Overall assessment: The proposed in vivo\u2192ex vivo bridging experiment is conceptually plausible and appropriately designed to test whether a membrane-protected, capture-positive EV fraction\u2014rather than bulk particle counts or soluble co\u2011isolates\u2014drives a short-term ex vivo CNS inflammatory modulation after intranasal dosing. Prior rodent reports of intranasal EV-associated effects provide supporting precedent for an in vivo functional signal, and MISEV2023 guidance supports the need for orthogonal characterization and detergent-protection controls. However, substantial uncertainty remains about (A) whether intact EVs are reliably delivered to relevant compartments after intranasal dosing in larger species or even in some rodent preparations, (B) assay sensitivity/specificity for low-biomass lavage/CSF samples and for capture reagents, and (C) whether the planned ex vivo cytokine readout will be sufficiently robust and specific to discriminate intact-EV-mediated activity from soluble co\u2011isolates or administration artifacts. If these analytic and sampling risks are addressed (validated capture/detergent-protection assays, spike-and-recovery, matched particle controls, and appropriate positive/negative controls), the experiment should be able to discriminate the competing explanations described and generate a mechanism-linked potency metric. The macaque biodistribution data increase the translational risk and argue for a staged approach (rodent proof-of-concept with rigorous orthogonal verification, then larger-animal pilot).",
+      "evidence_gap": "Key gaps: validated immuno-capture sensitivity and specificity in low-biomass fluids/tissues (nasal lavage, CSF, olfactory mucosa), quantitative spike/recovery to exclude labeling artifacts, identity/dose\u2013response of active cargo, and demonstration that the orthogonal capture+detergent-protection assay can detect in vivo exposure in the chosen model. Also lacking is evidence that rodent intranasal delivery generalizes to larger species (macaque data suggest possible delivery barriers).",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "role": "mechanism",
+      "supported": true
+    }
+  ],
+  "run_id": "run-20260921T104952Z-0973c8779e9c",
+  "secondary_domains": [
+    "fractionation",
+    "manufacturing",
+    "delivery"
+  ],
+  "selected_gap_id": "design-gap-mechanism-potency",
+  "sequence_within_theme": 1,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-mechanism-potency",
+  "title": "Hypothesis: Intact-EV-associated, mechanism-linked potency can be discriminated from particle abundance by an orthogonal in vivo\u2192ex vivo bridge that requires intact EV capture"
+}

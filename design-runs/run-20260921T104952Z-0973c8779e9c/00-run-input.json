@@ -1,0 +1,1469 @@
+{
+  "allowed_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-misev2023-quality-framework",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "canonical_claims": [
+    {
+      "claim_id": "claim-rodent-cns-delivery",
+      "created_at": "2026-09-12T12:00:00Z",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-misev2023-quality-framework"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "Cross-species biodistribution literature and characterization guidance indicate limited translatability absent orthogonal intact-EV analytics and controlled bridging studies.",
+      "statement": "Rodent intranasal biodistribution data alone are insufficient to predict reproducible intact-EV CNS exposure in larger species without matching intact-EV assays and bridging controls.",
+      "status": "supported"
+    },
+    {
+      "claim_id": "claim-rodent-preclinical-efficacy",
+      "created_at": "2026-09-11T00:00:00Z",
+      "evidence_ids": [
+        "ev-hermann-2023-neonatal-hi",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "Multiple rodent studies show functional benefit; however, these data do not quantify intact-EV CNS exposure or cross-species translation.",
+      "statement": "Rodent intranasal MSC-derived EVs show reproducible benefit in injury models and justify further candidate-defining and translational studies but do not by themselves demonstrate intact-EV CNS exposure in larger species.",
+      "status": "supported"
+    },
+    {
+      "claim_id": "claim-source-cell-scalability",
+      "created_at": "2026-09-12T12:00:00Z",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "No MCB/WCB, validated scale-up or reproducibility data provided; MISEV recommends defined production controls and reporting.",
+      "statement": "Current materials do not demonstrate characterized source-cell MCB/WCB or scalable, reproducible production sufficient to support advancing a specific intranasal formulation.",
+      "status": "disputed"
+    },
+    {
+      "claim_id": "claim-ev-cmc-requirements",
+      "created_at": "2026-09-12T12:00:00Z",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "MISEV2023 consensus supports orthogonal characterization and transparent release/assay criteria to de-risk identity and potency claims.",
+      "statement": "An orthogonal QC panel (particles, protein, lipid markers per MISEV), validated intact-EV assays (LLOQ, specificity, precision), and stability-indicating, mechanism-linked potency assays are required before formulation advancement.",
+      "status": "supported"
+    },
+    {
+      "claim_id": "claim-large-animal-delivery-uncertain",
+      "created_at": "2026-09-03T00:00:00Z",
+      "evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "program_id": "SGL-001",
+      "rationale": "This directly limits extrapolation from rodent localization studies; differences in EV source, formulation, labeling, dosing, and administration remain possible explanations.",
+      "statement": "Intranasal CNS delivery of EVs does not reliably translate across species: one macaque study found negligible brain uptake and no reliable CSF signal after intranasal administration of Expi293F-derived EVs.",
+      "status": "supported"
+    }
+  ],
+  "canonical_evidence": [
+    {
+      "content_sha256": null,
+      "evidence_id": "ev-zhuang-2011-intranasal-exosome",
+      "excerpt": "Curated summary: in mouse models, intranasal exosomes carrying curcumin or a STAT3 inhibitor were reported to reach brain microglia and improve model-specific inflammatory or tumor outcomes. These findings are preclinical and formulation-specific.",
+      "kind": "publication",
+      "locator": "Abstract and Figures 1\u20136",
+      "metadata": {
+        "curated": true,
+        "evidence_role": [
+          "CNS delivery",
+          "preclinical efficacy"
+        ],
+        "human_efficacy": false,
+        "model_or_indication": "mouse brain inflammation and glioma models",
+        "route": "intranasal",
+        "species": "mouse"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "PMID:21915101; DOI:10.1038/mt.2011.164",
+      "source_uri": "https://pubmed.ncbi.nlm.nih.gov/21915101/",
+      "title": "Treatment of brain inflammatory diseases by delivering exosome encapsulated anti-inflammatory drugs from the nasal region to the brain"
+    },
+    {
+      "content_sha256": null,
+      "evidence_id": "ev-kodali-2017-status-epilepticus",
+      "excerpt": "Curated summary: after status epilepticus in young mice, intranasally administered human MSC-derived EVs were reported in the hippocampus and were associated with reduced neuronal loss and inflammation and preservation of neurogenesis and cognitive or memory outcomes versus vehicle.",
+      "kind": "publication",
+      "locator": "Abstract",
+      "metadata": {
+        "curated": true,
+        "evidence_role": [
+          "CNS delivery",
+          "preclinical efficacy"
+        ],
+        "human_efficacy": false,
+        "model_or_indication": "mouse status epilepticus model",
+        "route": "intranasal",
+        "species": "mouse"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "PMID:28396435",
+      "source_uri": "https://pubmed.ncbi.nlm.nih.gov/28396435/",
+      "title": "Intranasal MSC-derived A1-exosomes ease inflammation, and prevent abnormal neurogenesis and memory dysfunction after status epilepticus"
+    },
+    {
+      "content_sha256": null,
+      "evidence_id": "ev-hermann-2023-neonatal-hi",
+      "excerpt": "Curated summary: repeated intranasal EV administration after hypoxic-ischemic injury reduced brain tissue atrophy in neonatal mice; EVs from a clonal immortalized MSC line and primary MSCs showed comparable effects. The study frames source-cell consistency and scale as translational considerations.",
+      "kind": "publication",
+      "locator": "Abstract",
+      "metadata": {
+        "curated": true,
+        "evidence_role": [
+          "preclinical efficacy",
+          "source-cell scalability"
+        ],
+        "human_efficacy": false,
+        "model_or_indication": "neonatal mouse hypoxic-ischemic brain injury",
+        "route": "intranasal",
+        "species": "mouse"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "PMID:37069694",
+      "source_uri": "https://pubmed.ncbi.nlm.nih.gov/37069694/",
+      "title": "Extracellular vesicles from immortalized mesenchymal stromal cells protect against neonatal hypoxic-ischemic brain injury"
+    },
+    {
+      "content_sha256": null,
+      "evidence_id": "ev-misev2023-quality-framework",
+      "excerpt": "Curated summary: the ISEV consensus identifies continuing challenges in EV nomenclature, separation from non-vesicular particles, characterization, functional studies, production reporting, and in-vivo evaluation; it recommends transparent, orthogonal characterization and appropriate controls.",
+      "kind": "publication",
+      "locator": "Sections 3\u20139",
+      "metadata": {
+        "curated": true,
+        "document_type": "expert consensus guideline",
+        "evidence_role": [
+          "manufacturing",
+          "quality control",
+          "translational rigor"
+        ],
+        "model_or_indication": "EV characterization and quality framework"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "PMID:38326288; DOI:10.1002/jev2.12404",
+      "source_uri": "https://pubmed.ncbi.nlm.nih.gov/38326288/",
+      "title": "Minimal information for studies of extracellular vesicles (MISEV2023): From basic to advanced approaches"
+    },
+    {
+      "content_sha256": null,
+      "evidence_id": "ev-driedonks-2022-macaque-biodistribution",
+      "excerpt": "Curated summary: reporter-labeled Expi293F-derived EVs administered intranasally to macaques were not reliably detected above background in CSF, showed negligible brain uptake, and were strongly retained in nasal lavage. EV source, formulation, labeling, administration, and species may affect generalizability.",
+      "kind": "publication",
+      "locator": "Results sections 3.9 and 3.15; Discussion section 4.5",
+      "metadata": {
+        "curated": true,
+        "evidence_role": [
+          "limiting evidence",
+          "translational biodistribution"
+        ],
+        "human_efficacy": false,
+        "model_or_indication": "non-human-primate biodistribution",
+        "route": "intranasal",
+        "species": "non-human primate"
+      },
+      "retrieved_at": "2026-09-03T00:00:00Z",
+      "source_identifier": "PMID:36591537; DOI:10.1002/jex2.59",
+      "source_uri": "https://pubmed.ncbi.nlm.nih.gov/36591537/",
+      "title": "Pharmacokinetics and biodistribution of extracellular vesicles administered intravenously and intranasally to Macaca nemestrina"
+    }
+  ],
+  "cargo": {
+    "focus_candidates": [
+      {
+        "biological_targets": [],
+        "cargo_candidate_id": "cargo-native-msc-ev-secretome",
+        "cargo_type": "native_secretome",
+        "context_dependent": false,
+        "contradictory_evidence_ids": [],
+        "development_status": "focus",
+        "evidence_annotation": null,
+        "evidence_ids": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_level": "moderate",
+        "evidence_rank": 2,
+        "exclusion_reason": null,
+        "legacy_source_file": null,
+        "mechanism": "Multi-component paracrine signaling intended to support neuroregeneration-relevant and inflammation-modulating activity; active components remain undefined.",
+        "name": "Native MSC-EV secretome cargo",
+        "rationale": "This is the operator-selected program focus because it preserves the multi-component EV thesis and has relevant rodent activity, while MISEV2023 highlights the characterization burden.",
+        "relevant_tissues": [
+          "CNS",
+          "hippocampus",
+          "nasal compartment"
+        ],
+        "source": "MSC-derived small extracellular vesicles; final source-cell strategy not selected",
+        "source_citation": null,
+        "supportive_evidence_ids": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "target_pathway_ids": [
+          "pathway-neuroinflammation",
+          "pathway-neural-plasticity"
+        ],
+        "uncertainty": "The active cargo components, potency mechanism, source-cell dependence, and relevance to cognition or aging are not established."
+      }
+    ],
+    "operator_focus_candidate_ids": [
+      "cargo-native-msc-ev-secretome"
+    ],
+    "pathways": [
+      {
+        "description": "Inflammation-modulating activity reported across local preclinical EV evidence; direction and causal cargo are product- and model-dependent.",
+        "evidence_ids": [
+          "ev-zhuang-2011-intranasal-exosome",
+          "ev-kodali-2017-status-epilepticus"
+        ],
+        "name": "Neuroinflammation modulation",
+        "pathway_id": "pathway-neuroinflammation"
+      },
+      {
+        "description": "Preservation or modulation of neurogenesis and functional outcomes observed in rodent injury models, not established in aging or humans.",
+        "evidence_ids": [
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "name": "Neurogenesis and neural plasticity",
+        "pathway_id": "pathway-neural-plasticity"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "PTEN/PI3K-Akt",
+        "pathway_id": "pathway-legacy-pten-pi3k-akt"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "NF-\u03baB",
+        "pathway_id": "pathway-legacy-nf-b"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "cell-cycle/senescence",
+        "pathway_id": "pathway-legacy-cell-cycle-senescence"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "TGF-\u03b2/SMAD",
+        "pathway_id": "pathway-legacy-tgf-smad"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "hypoxia/HIF axis",
+        "pathway_id": "pathway-legacy-hypoxia-hif-axis"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "TGF-\u03b2/SMAD (via CTGF)",
+        "pathway_id": "pathway-legacy-tgf-smad-via-ctgf"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "NF-\u03baB (via HMGB1)",
+        "pathway_id": "pathway-legacy-nf-b-via-hmgb1"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "cell-cycle/senescence (mTOR-linked)",
+        "pathway_id": "pathway-legacy-cell-cycle-senescence-mtor-linked"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "PTEN/PI3K-Akt (family-variable)",
+        "pathway_id": "pathway-legacy-pten-pi3k-akt-family-variable"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "Wnt/\u03b2-catenin",
+        "pathway_id": "pathway-legacy-wnt-catenin"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "Wnt/\u03b2-catenin (osteogenic axis)",
+        "pathway_id": "pathway-legacy-wnt-catenin-osteogenic-axis"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "cell-cycle/senescence (neural stemness axis)",
+        "pathway_id": "pathway-legacy-cell-cycle-senescence-neural-stemness-axis"
+      },
+      {
+        "description": "Pathway assignment reported by the legacy cargo dataset; requires source-level verification before decision use.",
+        "evidence_ids": [],
+        "name": "PTEN/PI3K-Akt (growth-factor-receptor recycling)",
+        "pathway_id": "pathway-legacy-pten-pi3k-akt-growth-factor-receptor-recycling"
+      }
+    ]
+  },
+  "docket": [
+    {
+      "advancement_value": "high",
+      "blocking_stage": "manufacturing comparability",
+      "completed_at": null,
+      "determination": null,
+      "domain": "cmc_manufacturing",
+      "linked_evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "linked_hypothesis_ids": [
+        "hypothesis-sgl001-biodistribution-gate"
+      ],
+      "linked_risk_ids": [
+        "risk-cmc-identity-potency"
+      ],
+      "matter_id": "matter-potency-identity-characterization",
+      "next_action": null,
+      "priority": "quality_blocking",
+      "program_id": "SGL-001",
+      "question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
+      "required_reviewer_roles": [
+        "cmc",
+        "manufacturing",
+        "evidence"
+      ],
+      "selected_at": null,
+      "status": "open",
+      "title": "Potency and identity characterization",
+      "why_it_matters": "Without reproducible identity and potency measures, observed biological differences may reflect uncontrolled product variability."
+    },
+    {
+      "advancement_value": "moderate",
+      "blocking_stage": "efficacy model selection",
+      "completed_at": null,
+      "determination": null,
+      "domain": "translational",
+      "linked_evidence_ids": [
+        "ev-kodali-2017-status-epilepticus",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "linked_hypothesis_ids": [
+        "hypothesis-sgl001-biodistribution-gate"
+      ],
+      "linked_risk_ids": [
+        "risk-model-efficacy-generalizability"
+      ],
+      "matter_id": "matter-cognition-aging-model",
+      "next_action": null,
+      "priority": "experiment_design",
+      "program_id": "SGL-001",
+      "question": "Which preclinical model can test the neuroregeneration and cognitive-function intent without treating injury-model findings as direct efficacy evidence?",
+      "required_reviewer_roles": [
+        "preclinical",
+        "translational",
+        "evidence"
+      ],
+      "selected_at": null,
+      "status": "open",
+      "title": "Cognition and aging model selection",
+      "why_it_matters": "The first efficacy model must align with program intent while preserving the limited translational meaning of current injury-model evidence."
+    }
+  ],
+  "formulation": {
+    "attributes": [
+      {
+        "attribute_id": "attribute-ev-identity-purity",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "name": "EV identity and purity",
+        "rationale": "Required to attribute exposure and activity to a reproducible EV preparation.",
+        "status": "proposed",
+        "target": "Orthogonal identity and purity panel; numeric acceptance limits not yet defined"
+      },
+      {
+        "attribute_id": "attribute-nasal-biodistribution",
+        "evidence_ids": [
+          "ev-zhuang-2011-intranasal-exosome",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "name": "Intranasal biodistribution",
+        "rationale": "Rodent localization conflicts with limiting non-human-primate evidence.",
+        "status": "proposed",
+        "target": "Quantitative intact-EV-associated exposure with label controls; threshold not yet defined"
+      }
+    ],
+    "candidates": [
+      {
+        "active_cargo_strategy": "MSC secretome / conditioned medium (cell-free)",
+        "evidence_ids": [],
+        "exclusion_reason": null,
+        "formulation_candidate_id": "formulation-legacy-msc-secretome-conditioned-medium-cell-free",
+        "legacy_scores": {
+          "evidence_score": 2,
+          "manufacturability_score": 2,
+          "mechanism_score": 2,
+          "regulatory_score": 2
+        },
+        "legacy_source_file": "/Users/raziel/Desktop/signalAgent/artifacts/data/formulation.json",
+        "modality": "secretome",
+        "name": "MSC secretome / conditioned medium (cell-free)",
+        "rationale": "Intended active is the exosome fraction of the secretome. Full exosome purification is cost-prohibitive at consumer nasal-spray scale, so the product is unpurified MSC secretome that retains the exosome fraction rather than a purified isolate. Remaining secretome components (soluble growth factors and cytokines) may contribute additively; this is not established and is not relied on for the core mechanism.",
+        "route": "intranasal",
+        "score": {
+          "evidence": "low",
+          "manufacturability": "low",
+          "mechanism": "low",
+          "methodology": "Legacy 0\u20135 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores.",
+          "regulatory_deployment": "low",
+          "total_score": 4
+        },
+        "status": "focus",
+        "tradeoffs": [
+          "Intended active is the exosome fraction of the secretome. Full exosome purification is cost-prohibitive at consumer nasal-spray scale, so the product is unpurified MSC secretome that retains the exosome fraction rather than a purified isolate. Remaining secretome components (soluble growth factors and cytokines) may contribute additively; this is not established and is not relied on for the core mechanism."
+        ]
+      },
+      {
+        "active_cargo_strategy": "Intranasal insulin",
+        "evidence_ids": [],
+        "exclusion_reason": null,
+        "formulation_candidate_id": "formulation-legacy-intranasal-insulin",
+        "legacy_scores": {
+          "evidence_score": 5,
+          "manufacturability_score": 5,
+          "mechanism_score": 5,
+          "regulatory_score": 5
+        },
+        "legacy_source_file": "/Users/raziel/Desktop/signalAgent/artifacts/data/formulation.json",
+        "modality": "peptide",
+        "name": "Intranasal insulin",
+        "rationale": "Highest four-axis score of any candidate compared \u2014 tracked as a benchmark, not adopted. Not a regenerative/tissue-repair active; would not support the focus candidate's mechanistic framing. SNIFF (NCT01767909), n\u2248240, RCT, 12 months, in the target population (MCI/Alzheimer's).",
+        "route": "intranasal",
+        "score": {
+          "evidence": "high",
+          "manufacturability": "high",
+          "mechanism": "high",
+          "methodology": "Legacy 0\u20135 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores.",
+          "regulatory_deployment": "high",
+          "total_score": 12
+        },
+        "status": "benchmark",
+        "tradeoffs": [
+          "Highest four-axis score of any candidate compared \u2014 tracked as a benchmark, not adopted. Not a regenerative/tissue-repair active; would not support the focus candidate's mechanistic framing. SNIFF (NCT01767909), n\u2248240, RCT, 12 months, in the target population (MCI/Alzheimer's)."
+        ]
+      },
+      {
+        "active_cargo_strategy": "Intranasal oxytocin",
+        "evidence_ids": [],
+        "exclusion_reason": null,
+        "formulation_candidate_id": "formulation-legacy-intranasal-oxytocin",
+        "legacy_scores": {
+          "evidence_score": 3,
+          "manufacturability_score": 5,
+          "mechanism_score": 5,
+          "regulatory_score": 4
+        },
+        "legacy_source_file": "/Users/raziel/Desktop/signalAgent/artifacts/data/formulation.json",
+        "modality": "peptide",
+        "name": "Intranasal oxytocin",
+        "rationale": "Exceeds the focus candidate on mechanism, manufacturability, and regulatory tractability \u2014 tracked as a benchmark, not adopted. Evidence is the most genuinely mixed in the comparison: a well-run RCT (NEJM 2021) found no significant cognitive/social effect.",
+        "route": "intranasal",
+        "score": {
+          "evidence": "moderate",
+          "manufacturability": "high",
+          "mechanism": "high",
+          "methodology": "Legacy 0\u20135 scores normalized to SignalAI ordinal bands; exact source scores retained in legacy_scores.",
+          "regulatory_deployment": "moderate",
+          "total_score": 10
+        },
+        "status": "benchmark",
+        "tradeoffs": [
+          "Exceeds the focus candidate on mechanism, manufacturability, and regulatory tractability \u2014 tracked as a benchmark, not adopted. Evidence is the most genuinely mixed in the comparison: a well-run RCT (NEJM 2021) found no significant cognitive/social effect."
+        ]
+      }
+    ]
+  },
+  "manufacturing": {
+    "next_actions": [
+      {
+        "action": "Define source-cell qualification and MCB/WCB strategy.",
+        "action_id": "manufacturing-action-source-cell-bank",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "requires_human_approval": true,
+        "status": "proposed"
+      },
+      {
+        "action": "Establish an orthogonal QC panel.",
+        "action_id": "manufacturing-action-orthogonal-qc",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "requires_human_approval": true,
+        "status": "proposed"
+      },
+      {
+        "action": "Draft release specifications without asserting acceptance limits.",
+        "action_id": "manufacturing-action-draft-release-specifications",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "requires_human_approval": true,
+        "status": "proposed"
+      },
+      {
+        "action": "Develop fit-for-purpose potency and stability-indicating assays.",
+        "action_id": "manufacturing-action-potency-stability-assays",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "requires_human_approval": true,
+        "status": "proposed"
+      },
+      {
+        "action": "Produce representative GMP-like scale-up batches; none are recorded yet.",
+        "action_id": "manufacturing-action-representative-scale-up",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "requires_human_approval": true,
+        "status": "proposed"
+      },
+      {
+        "action": "Assess release, stability, and comparability after real batches exist.",
+        "action_id": "manufacturing-action-release-stability-comparability",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "requires_human_approval": true,
+        "status": "proposed"
+      },
+      {
+        "action": "Test formulation and device compatibility with intact-EV recovery controls.",
+        "action_id": "manufacturing-action-formulation-device-compatibility",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "requires_human_approval": true,
+        "status": "proposed"
+      }
+    ],
+    "potency_strategy": {
+      "gaps": [
+        "Potency framework is not established.",
+        "No validated acceptance criteria are recorded.",
+        "No program-specific potency result is recorded."
+      ],
+      "latest_determination_id": "signalrb-run-20260915T182041Z-37610c33c578",
+      "latest_determination_run_id": "run-20260915T182041Z-37610c33c578",
+      "particle_count_is_established_potency": false,
+      "potency_strategy_id": "potency-strategy-sgl001",
+      "prior_state_preserved": true,
+      "refs": {
+        "agenda_item_ids": [
+          "agenda-formulation-source-cell"
+        ],
+        "claim_ids": [
+          "claim-ev-cmc-requirements"
+        ],
+        "decision_ids": [],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "matter_ids": [
+          "matter-potency-identity-characterization"
+        ],
+        "risk_ids": [
+          "risk-cmc-identity-potency"
+        ],
+        "run_ids": [
+          "run-20260915T182041Z-37610c33c578"
+        ]
+      },
+      "state": "evidence_gap",
+      "strategy": "Develop a stability-indicating, mechanism-linked potency assay within an orthogonal QC framework.",
+      "validated_acceptance_criteria": false
+    },
+    "product_definition": {
+      "biological_concept": "MSC-derived secretome/EV concept for an intranasal cell-free regenerative product.",
+      "dose_definition": null,
+      "drug_substance_identity": null,
+      "ev_fraction_role": "The EV/exosome fraction is intended to contribute biological signal, but its exact role and active contribution are unresolved.",
+      "product_definition_id": "product-definition-sgl001",
+      "program_id": "SGL-001",
+      "purification_fractionation_state": null,
+      "refs": {
+        "agenda_item_ids": [
+          "agenda-formulation-source-cell"
+        ],
+        "claim_ids": [
+          "claim-ev-cmc-requirements"
+        ],
+        "decision_ids": [],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "matter_ids": [
+          "matter-candidate-product-definition"
+        ],
+        "risk_ids": [
+          "risk-cmc-identity-potency"
+        ],
+        "run_ids": [
+          "run-20260911T120434Z-03f4e21fe096"
+        ]
+      },
+      "route": "intranasal",
+      "state": "proposed",
+      "unresolved_decisions": [
+        "Secretome retaining EVs versus a small-EV preparation.",
+        "Exact drug-substance identity and purification/fractionation state.",
+        "Dose definition.",
+        "Vehicle and stabilizer selection."
+      ],
+      "vehicle_stabilizer": null
+    },
+    "quality_attributes": [
+      {
+        "name": "EV identity and purity",
+        "numeric_acceptance_limits_defined": false,
+        "proposed_requirements": [
+          "Orthogonal particle characterization is required.",
+          "Protein and lipid marker characterization is required.",
+          "Non-vesicular co-isolates must be assessed.",
+          "Fit-for-purpose intact-EV identity testing requires sensitivity, specificity, and precision assessment.",
+          "Stability-indicating testing is required; no SGL-001 stability result is recorded.",
+          "A mechanism-linked potency strategy is required."
+        ],
+        "quality_attribute_id": "attribute-ev-identity-purity",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": []
+        },
+        "state": "proposed",
+        "target": "Orthogonal identity and purity panel; numeric acceptance limits not yet defined"
+      }
+    ],
+    "readiness": [
+      {
+        "dimension": "Product Definition",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-product-definition",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "proposed"
+      },
+      {
+        "dimension": "Source Material Control",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-source-material-control",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "evidence_gap"
+      },
+      {
+        "dimension": "Cell Bank Strategy",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-cell-bank-strategy",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "evidence_gap"
+      },
+      {
+        "dimension": "Process Definition",
+        "rationale": "No canonical assessment or definition is recorded.",
+        "readiness_id": "readiness-process-definition",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "not_defined"
+      },
+      {
+        "dimension": "Analytical Characterization",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-analytical-characterization",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "proposed"
+      },
+      {
+        "dimension": "Potency Assay",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-potency-assay",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "evidence_gap"
+      },
+      {
+        "dimension": "Release Specifications",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-release-specifications",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "proposed"
+      },
+      {
+        "dimension": "Sterility Assurance",
+        "rationale": "No canonical assessment or definition is recorded.",
+        "readiness_id": "readiness-sterility-assurance",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "not_assessed"
+      },
+      {
+        "dimension": "Stability Program",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-stability-program",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "evidence_gap"
+      },
+      {
+        "dimension": "Lot Reproducibility",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-lot-reproducibility",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "evidence_gap"
+      },
+      {
+        "dimension": "Scale Up",
+        "rationale": "A requirement or proposal is recorded, but program-specific verification is absent.",
+        "readiness_id": "readiness-scale-up",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "evidence_gap"
+      },
+      {
+        "dimension": "Fill Finish",
+        "rationale": "No canonical assessment or definition is recorded.",
+        "readiness_id": "readiness-fill-finish",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "state": "not_defined"
+      }
+    ],
+    "risks": [
+      {
+        "description": "Lack of MCB/WCB, orthogonal QC, validated potency/stability assays, and scale-up reproducibility may produce misleading in vitro and in vivo results and block regulatory acceptance.",
+        "mitigation": "Execute Stage 1 actions: generate MCB/WCB, define/validate orthogonal assays, produce representative GMP-like batches, and document stability/potency reproducibility. Escalate assay development resourcing if timelines slip.",
+        "owner": "CMC lead",
+        "refs": {
+          "agenda_item_ids": [
+            "agenda-formulation-source-cell"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements"
+          ],
+          "decision_ids": [],
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "matter_ids": [
+            "matter-potency-identity-characterization"
+          ],
+          "risk_ids": [
+            "risk-cmc-identity-potency"
+          ],
+          "run_ids": [
+            "run-20260915T182041Z-37610c33c578"
+          ]
+        },
+        "risk_id": "risk-cmc-identity-potency",
+        "state": "evidence_gap",
+        "title": "Insufficient CMC/analytics to establish intact-EV identity, potency, and lot-to-lot reproducibility"
+      }
+    ]
+  },
+  "prior_hypotheses": [
+    {
+      "candidate_quality_attributes_affected": [
+        "attribute-ev-identity-purity"
+      ],
+      "causal_chain": {
+        "edges": [
+          {
+            "competing_explanation": "Marker enrichment could reflect co\u2011isolation of protein aggregates or lipoproteins that co-sediment with particles.",
+            "edge_id": "e1",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework"
+            ],
+            "evidence_state": "indirect_support",
+            "missing_experiment": "Program-specific intact-EV capture and protection studies with matched purified and unpurified preparations.",
+            "model_or_species": null,
+            "relation_type": "inference",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "uncertainty": "Moderate: MISEV recommends orthogonal approaches but does not define a single discriminating panel for all source-cell types."
+          },
+          {
+            "competing_explanation": "A true EV-enriched preparation might still fail in biodistribution if dosing or route-specific barriers exist.",
+            "edge_id": "e2",
+            "evidence_ids": [
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "evidence_state": "direct_observation",
+            "missing_experiment": "Matched intact-EV analytics in large-animal dosing studies.",
+            "model_or_species": "non-human primate (macaque) context",
+            "relation_type": "inference",
+            "source_node_id": "n1",
+            "target_node_id": "n3",
+            "uncertainty": "Moderate: lack of CNS detection after intranasal dosing may arise from formulation, administration, or labeling choices rather than absence of intact EVs."
+          },
+          {
+            "competing_explanation": "Even with a defined identity attribute, potency linkage may remain unresolved if active cargo is not EV-associated.",
+            "edge_id": "e3",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-hermann-2023-neonatal-hi"
+            ],
+            "evidence_state": "indirect_support",
+            "missing_experiment": "Potency assays specifically linked to the intact-EV-associated signature.",
+            "model_or_species": null,
+            "relation_type": "inference",
+            "source_node_id": "n2",
+            "target_node_id": "n4",
+            "uncertainty": "Inference: Translational and manufacturing recommendations follow from knowing fractionation state; uncertainty remains about how identity maps to potency in this program."
+          }
+        ],
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "The product is currently defined as 'secretome retaining EVs' versus a purified small\u2011EV drug substance; this distinction is unresolved and blocks product definition and CMC decisions."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If a membrane-protected, particle-associated analytical signature (intact-EV capture, particle counts, detergent/protease sensitivity, density correlation) is observed, then the preparation can be classified as an EV-enriched small\u2011EV preparation rather than mainly non\u2011vesicular secretome."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If no membrane-protected, particle-associated signature is observed and marker signal tracks with bulk soluble protein and is insensitive to membrane disruption, then the preparation is indistinguishable from an unpurified secretome with co-isolated non\u2011vesicular components."
+          },
+          {
+            "node_id": "n4",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "Classifying the drug\u2011substance fractionation state enables targeted CMC actions: orthogonal QC panel, potency assay development, and relevant scale-up comparability testing (MISEV2023 guidance)."
+          }
+        ]
+      },
+      "design_question": "Which measurable composition distinction can discriminate a secretome-retaining-EV product from a small-EV preparation?",
+      "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+      "minimum_discriminating_experiment": {
+        "assay": "Orthogonal workflow combining: (1) density-gradient fractionation followed by particle counting per fraction; (2) immuno-capture ELISA or bead-capture + detection of EV surface markers on intact material per fraction; (3) protease and RNase protection assays on captured material with and without detergent; (4) total protein and protein:particle ratio per fraction.",
+        "comparator": "Matched preparations: (A) enriched small-EV preparation vs (B) concentrated conditioned medium (secretome-retaining EVs) from the same source-cell lot.",
+        "complexity": "moderate",
+        "control": "Negative control: buffer-only and detergent-disrupted samples; Positive control: commercially available characterized small EVs if available.",
+        "dependencies": [
+          "Availability of consistent source-cell conditioned medium lots (same passage/bank)",
+          "Access to validated capture reagents and particle counting instrumentation",
+          "Laboratory capability for density fractionation"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "execution_status": "proposed",
+        "experiment_id": "design-experiment-run-20260917T100510Z-4fa4f7f74ec7",
+        "failure_criterion": "No qualitative difference between enriched small-EV preparation and secretome control in co-localization of capture signal with particle peaks, or lack of membrane-protection behavior (i.e., captured signal unaffected by detergent/protease/RNase) indicating inability to discriminate fractionation state.",
+        "falsification_outcome": "If the criteria for success are not met across independent replicates, the hypothesis is falsified and the program must treat the material as indistinguishable from secretome with respect to intact-EV identity and re-evaluate fractionation strategy.",
+        "human_approval_state": "pending",
+        "hypothesis_tested": "A membrane-protected, particle-associated analytical signature (immuno-capture of EV surface markers + particle enumeration + detergent/protease protection + density fractionation) will be observed in a purified small-EV preparation but not in an unpurified concentrated secretome.",
+        "primary_readout": "Co-localization of particle-count peaks with capture-positive fractions and loss of captured signal after detergent + protease/RNase treatment (indicating membrane protection).",
+        "question": "Can an orthogonal intact-EV analytical signature discriminate an EV-enriched small-EV preparation from an unpurified MSC secretome?",
+        "required_material": [
+          "MSC-conditioned medium (same source-cell lot) processed as: (A) small-EV enrichment (e.g., ultracentrifugation/SEC) and (B) concentrated conditioned medium without EV enrichment",
+          "Purified small-EV positive control from orthogonal source (if available)",
+          "Immuno-capture reagents (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5 capture reagents)",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Protease (e.g., proteinase K) and RNase reagents",
+          "Detergent (e.g., Triton X-100) for membrane disruption",
+          "Density-gradient materials (iodixanol for gradient fractionation)",
+          "Total protein assay reagents",
+          "Appropriate buffers and blocking reagents"
+        ],
+        "secondary_readouts": [
+          "Protein:particle ratio differences between preparations",
+          "Presence/absence of marker signal in secretome control fractions",
+          "Reproducibility across biological replicates (n \u2265 3 independent conditioned medium preps)"
+        ],
+        "success_criterion": "Observed enrichment of capture-positive signal that co-localizes with particle-count peaks in density fractions for the small-EV enriched preparation, and a significant reduction (> qualitative loss) of captured signal after detergent + protease/RNase, while the unpurified secretome shows marker signal that does not co-localize with particle peaks and is largely insensitive to membrane-disrupting treatments (qualitative comparison)."
+      },
+      "proposed_product_change_or_attribute": "Define an orthogonal intact-EV-associated signature (immuno-capture of canonical EV surface markers + particle enumeration + detergent/protease protection and density-fraction correlation) as a discriminating product-identity attribute between a small-EV preparation and an unpurified secretome.",
+      "theme_id": "design-gap-product-identity",
+      "title": "Hypothesis: A membrane-protected, particle-associated analytical signature will discriminate an EV-enriched small\u2011EV preparation from an unpurified MSC secretome that retains non\u2011vesicular co\u2011isolates"
+    },
+    {
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20260920T082644Z-8f54ff6bf528-1"
+      ],
+      "causal_chain": {
+        "edges": [
+          {
+            "competing_explanation": "Observed in vitro bioactivity could result from soluble proteins or other non-vesicular factors present in co-isolated secretome fractions.",
+            "edge_id": "e1",
+            "evidence_ids": [
+              "ev-kodali-2017-status-epilepticus",
+              "ev-hermann-2023-neonatal-hi",
+              "ev-misev2023-quality-framework"
+            ],
+            "evidence_state": "indirect_support",
+            "missing_experiment": "Functional co-fractionation with matched identity and membrane-protection controls (as proposed in the experiment).",
+            "model_or_species": null,
+            "relation_type": "inference",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "uncertainty": "Moderate: preclinical efficacy is observed in rodents but does not specify which fraction carries active components; MISEV recommends orthogonal linkage."
+          }
+        ],
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "A discrete, membrane-protected cargo population associated with intact EVs exists in MSC-conditioned medium and can be recovered in particle-containing density fractions."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "The membrane-protected, particle-associated fraction carries a reproducible neuroinflammation-modulating bioactivity measurable in a standardized in vitro assay."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "Membrane disruption (detergent + protease/RNase) abolishes the bioactivity if it is EV-membrane-protected; non-EV soluble co-isolates will show bioactivity that is detergent/protease-insensitive and will not co-localize with particle peaks."
+          },
+          {
+            "node_id": "n4",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If n1-n3 are observed reproducibly across source-cell lots, this attribute can be used as a candidate potency-linked product-identity metric to guide fractionation and CMC decisions."
+          }
+        ]
+      },
+      "design_question": "Daily question: Does a membrane-protected, intact-EV-associated fraction from MSC-conditioned medium carry the measurable neuroinflammation-modulating bioactivity (in vitro) that is absent from non-EV secretome fractions after matched fractionation?",
+      "hypothesis_id": "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+      "minimum_discriminating_experiment": {
+        "assay": "Orthogonal workflow: (1) density-gradient fractionation with particle counting per fraction; (2) immuno-capture of intact EV markers on fractions; (3) protease/RNase protection +/- detergent on capture material; (4) in vitro neuroinflammation-modulation assay applied to matched fractions or eluates; (5) total protein and protein:particle ratio per fraction.",
+        "comparator": "Matched preparations from the same conditioned-medium lots: (A) enriched small-EV preparation vs (B) concentrated conditioned medium (secretome-retaining).",
+        "complexity": "moderate",
+        "control": "Negative controls: buffer-only fractions, detergent-disrupted fractions; Positive controls: purified characterized small EVs and recombinant positive control modulators of the assay (e.g., dexamethasone or known anti-inflammatory agent) to verify assay responsiveness.",
+        "dependencies": [
+          "Availability of consistent source-cell conditioned-medium lots (same passage/bank)",
+          "Access to validated capture reagents and particle counting instrumentation",
+          "Laboratory capability to run density-gradient fractionation and the selected in vitro neuroinflammation assay",
+          "Sufficient material yield to test fractions in the functional assay"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-kodali-2017-status-epilepticus",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "execution_status": "proposed",
+        "experiment_id": "design-experiment-run-20260920T082644Z-8f54ff6bf528",
+        "failure_criterion": "No reproducible co-localization of bioactivity with particle-count/capture-positive fractions across replicates, or bioactivity in capture-positive fractions is unchanged by membrane-disrupting treatments (detergent + protease/RNase), indicating the activity is not membrane-protected/EV-associated.",
+        "falsification_outcome": "If the failure criterion is met, the hypothesis is falsified and the program must treat the material as functionally indistinguishable from a secretome for potency and product-definition purposes and revisit fractionation or product strategy.",
+        "human_approval_state": "pending",
+        "hypothesis_tested": "A membrane-protected, particle-associated fraction recovered from MSC-conditioned medium will contain a reproducible neuroinflammation-modulating bioactivity (in vitro) that co-localizes with particle-count peaks and is abolished by detergent + protease/RNase treatment, whereas non-EV secretome fractions will either lack this activity or show detergent-insensitive activity.",
+        "primary_readout": "Presence and magnitude of neuroinflammation-modulating activity (e.g., reduction in LPS-induced cytokine release) in fractions that co-localize with particle-count peaks and capture-positive signal, and loss of that activity after detergent + protease/RNase treatment.",
+        "question": "Does a membrane-protected, intact-EV-associated fraction from MSC-conditioned medium carry the neuroinflammation-modulating bioactivity that co-fractionates with particle peaks and is lost after membrane disruption?",
+        "required_material": [
+          "MSC-conditioned medium (same source-cell lot) processed as: (A) small-EV enrichment (e.g., SEC/ultracentrifugation) and (B) concentrated conditioned medium without EV enrichment (secretome-retaining)",
+          "Purified small-EV positive control (commercial characterized small EVs or lab-validated preparation)",
+          "Immuno-capture reagents for intact EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5 capture reagents)",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Protease (proteinase K), RNase reagents",
+          "Detergent (Triton X-100 or equivalent) for membrane disruption",
+          "Density-gradient materials (iodixanol) and fractionation equipment",
+          "Standardized in vitro neuroinflammation assay system (e.g., LPS-stimulated human iPSC-derived microglia or primary microglia with cytokine readout like IL-6/TNF-\u03b1 ELISA or multiplex cytokine panel)",
+          "Total protein assay reagents and cell-culture supplies"
+        ],
+        "secondary_readouts": [
+          "Protein:particle ratio differences between preparations and fractions",
+          "Co-localization metrics: fraction index of particle peak vs capture-positive ELISA signal",
+          "Reproducibility across biological replicates (n \u2265 3 independent conditioned-medium preps)",
+          "Assay-specific viability and control readouts"
+        ],
+        "success_criterion": "Qualitative success: In multiple independent conditioned-medium lots (n \u2265 3), the enriched small-EV preparation shows a fraction (or fractions) where particle-count peaks co-localize with capture-positive signal and measurable reduction of pro-inflammatory cytokine readouts in the in vitro assay; this bioactivity is substantially reduced or abolished after detergent + protease/RNase treatment, while secretome-retaining fractions either lack this co-localizing activity or show activity that is insensitive to membrane disruption."
+      },
+      "proposed_product_change_or_attribute": "If supported, define an intact-EV-associated, membrane-protected bioactivity (co-fractionating with particle peaks and detergent/protease-sensitive) as a candidate potency-linked product-identity attribute distinguishing an EV-enriched small-EV drug substance from an unpurified secretome.",
+      "theme_id": "design-gap-ev-non-ev-composition",
+      "title": "Hypothesis: Intact-EV-associated, membrane-protected cargo mediates a measurable neuroinflammation-modulating bioactivity that co-fractionates with particle peaks and is lost after membrane disruption"
+    }
+  ],
+  "program": {
+    "asset_name": "SGL-001",
+    "claim_ids": [
+      "claim-rodent-cns-delivery",
+      "claim-rodent-preclinical-efficacy",
+      "claim-source-cell-scalability",
+      "claim-ev-cmc-requirements",
+      "claim-large-animal-delivery-uncertain"
+    ],
+    "created_at": "2026-09-03T14:39:24.417641Z",
+    "current_formulation_hypothesis": "Intranasal mesenchymal-stromal-cell-derived small-EV preparation with defined identity, purity, dose, and a mechanism-relevant potency assay; therapeutic cargo remains to be selected.",
+    "decision_ids": [
+      "decision-sgl001-run-biodistribution-package"
+    ],
+    "development_focus": "Neuroregeneration and cognitive function",
+    "evidence_confidence": "moderate",
+    "hypothesis_ids": [
+      "hypothesis-sgl001-biodistribution-gate"
+    ],
+    "indication": null,
+    "largest_unresolved_risk": "Intranasal CNS exposure observed in rodents may not translate to larger species or humans.",
+    "lead_indication": "Not yet selected",
+    "modality": "extracellular-vesicle/exosome therapeutic",
+    "name": "SGL-001 development program",
+    "next_proposed_action": "Program lead to assemble Stage-1 package (GLP large-animal intranasal biodistribution/tox, three GMP-like scale-up runs with draft specs and stability, validated potency/orthogonal QC plan, and regulator briefing) and request pre-IND/Scientific Advice in two jurisdictions; 3-month timeline.",
+    "program_id": "SGL-001",
+    "risk_ids": [
+      "risk-cross-species-cns-delivery",
+      "risk-cmc-identity-potency",
+      "risk-model-efficacy-generalizability"
+    ],
+    "route_of_administration": "intranasal",
+    "status": "preclinical",
+    "updated_at": "2026-09-14T10:06:18.261879Z"
+  },
+  "recent_determinations": [
+    {
+      "determination": "evidence_gap",
+      "matter_id": "matter-potency-identity-characterization",
+      "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+      "run_id": "run-20260917T100333Z-1956ab7e3c6f",
+      "state_changed": false,
+      "what_changed": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed."
+    },
+    {
+      "determination": "evidence_gap",
+      "matter_id": "matter-potency-identity-characterization",
+      "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+      "run_id": "run-20260920T082529Z-727c60553e49",
+      "state_changed": false,
+      "what_changed": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed."
+    },
+    {
+      "determination": "evidence_gap",
+      "matter_id": "matter-potency-identity-characterization",
+      "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+      "run_id": "run-20260921T104827Z-e75c99940035",
+      "state_changed": false,
+      "what_changed": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed."
+    }
+  ],
+  "required_experiment_id": "design-experiment-run-20260921T104952Z-0973c8779e9c",
+  "required_hypothesis_id": "design-hypothesis-run-20260921T104952Z-0973c8779e9c",
+  "required_sequence_within_theme": 1,
+  "required_theme_id": "design-gap-mechanism-potency",
+  "selected_gap": {
+    "blocking_value": 5,
+    "discriminating_value": 5,
+    "domain": "potency",
+    "evidence_availability": 2,
+    "evidence_ids": [],
+    "gap_id": "design-gap-mechanism-potency",
+    "human_priority_override": null,
+    "hypothesis_ids": [],
+    "last_explored_at": null,
+    "latest_hypothesis_id": null,
+    "manufacturing_relevance": 5,
+    "mechanistic_relevance": 5,
+    "open_questions": [
+      "Which functional readout can be linked to a product attribute?"
+    ],
+    "priority": 5,
+    "product_definition_relevance": 5,
+    "question": "Which non-clinical functional readout could discriminate a mechanism-linked product signal from particle abundance alone?",
+    "rationale": "Canonical Manufacturing records potency as an evidence gap and prohibits particle count as established potency.",
+    "status": "open",
+    "testability": 4,
+    "times_explored": 0,
+    "title": "Mechanism-linked potency"
+  },
+  "why_selected": "Selected persistent theme using balanced score 620: development relevance, manufacturing relevance, mechanistic relevance, exploration count (0), staleness, recent diversity, and human override (None)."
+}
