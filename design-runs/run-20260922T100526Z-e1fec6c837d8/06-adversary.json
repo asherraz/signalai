@@ -1,0 +1,18 @@
+{
+  "evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Analytical sensitivity failure: orthogonal intact-EV assays (capture + particle counting + protection assays) cannot reliably detect intact-EV signal above background in short-interval in vivo samples, producing false negatives and masking real source-dependent differences. (Related evidence: ev-driedonks-2022-macaque-biodistribution)",
+    "Dominant delivery/species confounder: intranasal route physics, mucociliary clearance, or primate nasal anatomy causes near-total loss of intact-EV exposure to CSF/olfactory mucosa irrespective of EV source quality, so senescence effects are irrelevant to in vivo recoverability. (Related evidence: ev-driedonks-2022-macaque-biodistribution)",
+    "Process and matrix confounding: observed orthogonal-signature differences between early- and late-passage materials arise from culture media composition, purification artifacts, freeze-thaw, or donor-to-donor genetic variation rather than senescence markers (p16/p21), leading to incorrect attribution and misguided CMC controls. (Related evidence: ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi)",
+    "Non-vesicular contamination/misassignment: capture signals or particle peaks represent protein aggregates, lipoproteins, or other non-EV particles that differ by culture conditions or passage but are not membrane-protected EVs, so detergent/protease assays and co-localization are misinterpreted. (Related evidence: ev-misev2023-quality-framework)",
+    "Scale and operational failure: even if senescence correlates with analytic signatures in small studies, defining narrow passage/p16-p21 windows for manufacturing may be impractical; variability across donors/batches may force frequent retesting and block scale-up. (Related evidence: ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi)",
+    "Signal-labeling and model-transfer failure: labeling or reporter approaches used to detect EVs in vivo alter EV behavior or are too insensitive, leading to either artifactual detection in rodents (positive literature) or lack of detection in larger species, preventing reproducible cross-species bridging. (Related evidence: ev-zhuang-2011-intranasal-exosome; ev-driedonks-2022-macaque-biodistribution)"
+  ],
+  "strongest_objection": "The single strongest, bounded reason this program could fail is that the proposed experiments will be unable to distinguish a true causal effect of donor-MSC senescence on intact-EV short-interval intranasal recoverability from (A) dominant delivery/route- or species-dependent loss of signal and (B) analytical insensitivity and confounding by non-EV material or process variables. Specifically, negative or equivocal in vivo short-interval recovery (as seen in a macaque intranasal study) could reflect mucociliary clearance, dosing/labeling limitations, or species anatomy rather than any senescence-linked change in EV integrity; concurrently, orthogonal intact-EV assays may lack the sensitivity or orthogonality required to separate membrane-protected EV signal from soluble/contaminant signal or to detect modest senescence-linked shifts in low-biomass samples. Thus, even with well-controlled source-cell stratification, the experiment may produce false negatives or ambiguous results that do not support actionable source-cell specifications."
+}

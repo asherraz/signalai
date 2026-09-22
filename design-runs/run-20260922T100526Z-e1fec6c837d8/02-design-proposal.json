@@ -1,0 +1,176 @@
+{
+  "assumptions": [
+    "Assume MSCs from the same donor expanded to different passage ranges present measurable and reproducible differences in canonical senescence markers (p16/p21) that are stable across production of conditioned medium.",
+    "Assume orthogonal intact-EV assays (capture, particle counts, detergent/protease protection, density fractionation) are sufficiently sensitive to detect senescence-linked changes in conditioned-medium-derived preparations and in short-interval in vivo samples."
+  ],
+  "biological_rationale": "MISEV2023 emphasizes source-cell dependence for EV composition and the need to link identity to potency; rodent efficacy studies used MSC-derived materials but did not systematically vary source-cell senescence. A macaque intranasal biodistribution study found negligible brain/CSF signal; one plausible, testable explanation is that source-cell aging alters EV membrane integrity, surface marker display, cargo packaging, or particle stability in the nasal environment, reducing intact-EV recovery and downstream exposure. Inference: source-cell senescence could explain variability in intact-EV analytical signatures and in vivo short-interval detectability after intranasal dosing.",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20260922T100526Z-e1fec6c837d8-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "group": "manufacturing_fingerprint",
+      "human_approved": false,
+      "measurement_concept": "Orthogonal intact-EV analytical signature stratified by source-cell senescence markers (p16/p21, passage).",
+      "name": "Source-cell senescence-linked EV integrity signature",
+      "rationale": "If early-versus-late passage MSCs reproducibly yield conditioned medium with distinct intact-EV capture/particle co-localization and detergent-protection behavior, senescence state becomes a manufacturable source-cell fingerprint to gate lot release and downstream potency/identity testing.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20260922T100526Z-e1fec6c837d8",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260922T100526Z-e1fec6c837d8"
+      ],
+      "uncertainty": "Moderate: literature supports source-cell dependence generally, but no direct canonical evidence links MSC senescence markers to intact-EV recovery after intranasal dosing in larger species."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Observed compositional differences could reflect culture conditions, donor variability unrelated to canonical senescence markers, or purification artifacts.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "inference",
+        "missing_experiment": "Program-specific comparison of conditioned medium from MSCs stratified by validated senescence markers using the orthogonal intact-EV workflow.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Inference: MISEV and source-consistency notes support source-dependent composition, but do not define senescence as causal; uncertainty is moderate."
+      },
+      {
+        "competing_explanation": "Lack of CNS detection in macaque could result from route, dosing, labeling sensitivity, or species-specific mucociliary clearance rather than source-cell-dependent EV integrity.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution",
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Matched short-interval in vivo dosing and orthogonal intact-EV verification comparing materials from early- versus late-passage MSCs.",
+        "model_or_species": "non-human primate (context for delivery uncertainty)",
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: macaque negative biodistribution suggests delivery barriers but does not identify source-cell senescence as the cause; alternative formulation/labeling factors may explain poor detectability."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Donor-MSC senescence state (operationalized by passage number and p16/p21 expression) determines features of the released particle population (membrane integrity, surface-marker display, particle:protein ratio)."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "These senescence-linked particle features produce a distinct orthogonal intact-EV analytical signature: capture-positive signal that co-localizes with particle-count peaks and is detergent/protease-sensitive versus marker signal that tracks with bulk soluble protein and is detergent-insensitive."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Materials with the senescence-favorable intact-EV signature are more likely to produce short-interval in vivo evidence of intact-EV presence in nasal lavage/CSF/olfactory-mucosa after intranasal dosing than materials from senescent MSC sources."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Culture media formulation, donor genetics, or freeze-thaw handling differences (not senescence per se) could explain observed differences.",
+    "In vivo recovery differences could be dominated by nasal anatomy, dosing technique, or species-specific clearance rather than source-cell-derived EV properties."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "dependencies": [
+    "Define senescence marker assay (p16/p21) validation for source-cell bank qualification",
+    "Access to immuno-capture reagents and particle-count instruments with sensitivity for low-biomass samples",
+    "Animal protocol and short-interval collection operationalization"
+  ],
+  "design_question": "Daily question: Does the donor MSC senescence state (early-passage, low p16/p21 expression versus late-passage, high p16/p21 expression) causally alter (A) the orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) and (B) short-interval nasal\u2192CSF/olfactory-mucosa intact-EV detection after matched intranasal dosing of conditioned-medium-derived preparations?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+    "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+    "design-hypothesis-run-20260921T104952Z-0973c8779e9c"
+  ],
+  "expected_measurable_effect": "Systematic differences in orthogonal intact-EV signatures (co-localization of capture-positive signal with particle peaks and detergent/protease sensitivity), and in short-interval in vivo recoverable intact-EV signal in nasal lavage/CSF/olfactory-mucosa after intranasal dosing, comparing early-passage (low p16/p21) versus late-passage (high p16/p21) MSC-conditioned-medium-derived preparations.",
+  "experiment": {
+    "assay": "Orthogonal intact-EV workflow: (1) density-gradient fractionation with particle counting per fraction; (2) immuno-capture ELISA or bead-capture + detection of EV surface markers on intact fractions; (3) protease and RNase protection assays on captured material with and without detergent; (4) measure total protein and protein:particle ratio per fraction. For in vivo arm: perform orthogonal capture and particle count on short-interval collected lavage/CSF/tissues.",
+    "comparator": "Matched conditioned-medium-derived preparations from the same donor source processed identically: early-passage (low p16/p21) versus late-passage (high p16/p21); within each, compare enriched small-EV preparation and secretome-retaining preparation. Include detergent/protease-disrupted aliquots as membrane-disruption controls.",
+    "complexity": "high",
+    "control": "Negative controls: buffer-only, vehicle-only, and detergent-disrupted capture material. Positive controls: commercially available characterized small EVs (if available) and a lab-validated non-senescent MSC small-EV preparation.",
+    "dependencies": [
+      "Availability of matched donor MSC lots expanded to generate clear early- vs late-passage senescence marker separation",
+      "Analytical capability for orthogonal intact-EV workflow and sensitive capture from low-biomass in vivo samples",
+      "Animal protocol approvals for short-interval sample collection"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20260922T100526Z-e1fec6c837d8",
+    "failure_criterion": "No reproducible difference between early- and late-passage source materials in orthogonal intact-EV signatures or in short-interval in vivo recoverable capture/particle evidence across biological replicates; detergent/protease sensitivity does not differ by source senescence state.",
+    "falsification_outcome": "If failure criteria are met, the hypothesis that source-cell senescence state deterministically controls intact-EV analytical signature and short-interval intranasal recoverability is falsified; the program should deprioritize senescence as a gating source-cell specification and investigate alternative source or process variables (donor genetics, media, purification artifacts) as drivers of observed variability.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Conditioned medium from early-passage, low-p16/p21 MSCs will yield an orthogonal intact-EV signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive signal) and greater short-interval in vivo recoverable intact-EV evidence in nasal lavage/CSF/olfactory-mucosa after matched intranasal dosing compared with conditioned medium from late-passage, high-p16/p21 MSCs.",
+    "primary_readout": "Co-localization of particle-count peaks with capture-positive fractions and loss of captured signal after detergent + protease/RNase treatment in conditioned-medium-derived preparations; presence/absence and relative magnitude of capture-positive signal and particle counts in short-interval nasal lavage/CSF/olfactory-mucosa samples after intranasal dosing comparing early- versus late-passage source materials.",
+    "question": "Does donor-MSC senescence state (early vs late passage as measured by p16/p21 expression) causally affect orthogonal intact-EV analytical signature in conditioned-medium-derived preparations and short-interval in vivo recoverable intact-EV signal after intranasal dosing?",
+    "required_material": [
+      "MSC source matched donor(s) expanded to generate: (A) early-passage, low p16/p21 expression lots and (B) late-passage, high p16/p21 expression lots (same donor where feasible)",
+      "Conditioned medium produced from each source-cell lot processed identically into: (1) enriched small-EV preparation (SEC/UC) and (2) concentrated conditioned medium without EV enrichment (secretome-retaining)",
+      "Immuno-capture reagents for intact EV markers (anti-CD63/CD9/CD81 or TIM4/AnxA5)",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-gradient materials (iodixanol) and fractionation equipment",
+      "Protease (proteinase K), RNase reagents, and detergent (Triton X-100 or equivalent)",
+      "Short-interval in vivo dosing capability and animal cohorts (rodent), with ability to collect nasal lavage, CSF (if feasible), and olfactory-mucosa/olfactory-bulb-adjacent tissue at predefined short post-dose intervals",
+      "Total protein assay reagents and orthogonal capture ELISA/reporter assays"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio differences between early- and late-passage preparations and fractions",
+      "Reproducibility across independent biological replicates (n \u2265 3 conditioned-medium lots per senescence state)",
+      "Comparative yield and stability of captured material after incubation in nasal-simulating medium (ex vivo muco-ciliary mimic) as an orthogonal stability proxy"
+    ],
+    "success_criterion": "Qualitative success: Across independent biological replicates (n \u2265 3), materials from early-passage, low p16/p21 MSCs show (A) clear co-localization of particle-count peaks with capture-positive fractions and detergent/protease-sensitive capture signal in the orthogonal workflow, and (B) detectable capture-positive signal and particle-co-localization in short-interval nasal lavage/CSF/olfactory-mucosa samples after intranasal dosing; materials from late-passage, high p16/p21 MSCs do not reproducibly show these features under identical processing and dosing conditions."
+  },
+  "explicit_inferences": [
+    "Inference: Source-cell senescence plausibly alters EV membrane integrity and marker display, which would change capture co-localization and membrane-protection readouts.",
+    "Inference: If senescence reduces intact-EV integrity/stability in nasal environment, this could contribute to poor short-interval in vivo recovery and explain cross-species translation gaps."
+  ],
+  "falsification_criteria": [
+    "Across independent conditioned-medium lots (n \u2265 3) from MSCs stratified by validated senescence markers, there is no reproducible difference in orthogonal intact-EV signature (co-localization of capture signal with particle peaks and detergent/protease sensitivity) between early- and late-passage sources.",
+    "After intranasal dosing in matched short-interval in vivo experiments, recovered lavage/CSF/olfactory-mucosa samples show no reproducible difference in intact-EV capture-positive signal or particle co-localization between materials from early- versus late-passage MSCs."
+  ],
+  "human_decisions_required": [
+    "Select donor(s) and acceptance windows for early- and late-passage MSC production lots",
+    "Approve resource allocation for orthogonal intact-EV assay validation and short-interval in vivo studies",
+    "Decide whether to require senescence-based source qualification as a gating CMC action if hypothesis is supported"
+  ],
+  "manufacturability_assessment": "Operationalizing senescence as a source-cell specification is feasible (define MCB/WCB passage limits and minimal molecular marker panels) and would guide upstream control; however, this increases characterization burden and requires validated release/acceptance metrics. Uncertainty: how narrow passage windows must be to control product signature is unknown and requires the proposed experiment.",
+  "manufacturing_rationale": "If senescence state reproducibly shifts the intact-EV analytical signature and short-interval exposure, then defining and controlling source-cell senescence (MCB/WCB passage limits and molecular markers) becomes a manufacturable, testable specification to reduce lot-to-lot variability and to gate scale-up and potency assay development.",
+  "measurement_strategy": "Use the orthogonal intact-EV workflow (density-gradient fractionation + particle counting per fraction + immuno-capture of intact EV markers on fractions + protease/RNase protection with and without detergent + total protein/protein:particle ratio) on conditioned-medium from MSCs stratified by passage/p16-p21 expression. For in vivo bridging, perform short-interval intranasal dosing with matched materials and collect nasal lavage, CSF (if feasible), and olfactory-mucosa-adjacent tissue for orthogonal capture and particle counting. Label uncertainty and assay sensitivity; include negative and positive controls.",
+  "novelty_statement": "This hypothesis is novel because prior SGL-001 design hypotheses and minimum discriminating experiments focused on orthogonal intact-EV identity versus secretome fractionation, EV-associated bioactivity co-fractionation, and an in vivo\u2192ex vivo bridge to discriminate intact-EV potency. None of the prior hypotheses explicitly tested donor-MSC senescence (operationalized by passage and canonical senescence markers p16/p21) as a causal, manufacturable source-cell attribute that could alter intact-EV membrane integrity, capture co-localization behavior, and short-interval intranasal recoverability. The proposed discriminating experiment uniquely combines source-cell senescence stratification with the orthogonal intact-EV workflow plus short-interval in vivo sampling to test a source-to-identity-to-delivery causal chain that was not previously explored in SGL-001 materials.",
+  "primary_domain": "cell_source",
+  "principal_risks": [
+    "Observed differences may be confounded by media, donor variation, or handling rather than senescence.",
+    "Assays may lack sensitivity to detect meaningful differences in low-biomass in vivo samples, producing false negatives.",
+    "Operationalizing senescence as a specification could complicate donor sourcing and scale-up if narrow acceptance windows are required."
+  ],
+  "proposed_potency_relationship": "If intact-EV integrity (capture-positive co-localization with particle peaks and membrane-protection) depends on source-cell senescence, then potency assays developed on non-senescent-source material may not be predictive for material from senescent sources. Therefore potency assay development must control for source-cell senescence or define separate potency baselines.",
+  "proposed_product_change_or_attribute": "If supported, adopt a source-cell qualification attribute: donor-MSC senescence-status (operationalized by passage range and p16/p21 expression) as a determinative input to lot-definition and a required stratifier for downstream orthogonal intact-EV identity and short-interval intranasal biodistribution testing.",
+  "secondary_domains": [
+    "product_identity",
+    "fractionation",
+    "potency",
+    "delivery"
+  ],
+  "sequence_within_theme": 1,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-source-cell",
+  "title": "Hypothesis: MSC source-cell senescence state controls intact-EV identity, membrane-protection, and short-interval intranasal CNS exposure potential"
+}
