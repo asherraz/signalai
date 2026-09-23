@@ -1,0 +1,229 @@
+{
+  "adversary_objection": "The proposal hinges on interpreting capture-positive co-localization and detergent/protease sensitivity as definitive evidence of membrane-enclosed EVs that are separable from secretome at manufacturing-relevant yields; however, orthogonal signatures can be mimicked by co-isolated non\u2011vesicular particles (lipoproteins, protein/RNA aggregates) that co-elute in the chosen SEC/iodixanol window and that may show partial detergent/protease sensitivity, so the workflow could produce an analytically distinct but biologically non\u2011EV material or a material whose apparent EV signature is lost when scaled \u2014 producing false-positive identity claims or irreproducible analytics at scale (supported by EV characterization concerns in MISEV2023 and by negative large-animal biodistribution results that raise delivery/exposure doubts).",
+  "assumptions": [
+    "Assume access to consistent source-cell conditioned medium lots for method comparison.",
+    "Assume immuno-capture reagents and particle-count instrumentation have sufficient sensitivity for the expected particle concentrations."
+  ],
+  "biological_rationale": "Rodent intranasal efficacy reports motivate defining a producible intact-EV drug substance. MISEV2023 emphasizes orthogonal intact-EV analytics to distinguish EV-enriched fractions from secretome. Demonstrating that a scalable fractionation workflow yields an analytically distinct, membrane-protected, particle-associated fraction will enable a reproducible product identity for CMC development and potency assay linkage rather than reliance on unbounded secretome concentrates (inference; uncertainty labeled).",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20260923T100544Z-cc9987a71dbd-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "An apparent capture-positive co-localization could reflect residual non-vesicular particles (lipoproteins/aggregates) that co-elute in the chosen SEC/iodixanol window.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "inference",
+        "missing_experiment": "Program-specific demonstration that the proposed two-step, scalable workflow produces a membrane-protected, capture-positive particle peak distinct from secretome concentrate and with acceptable yield metrics.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate: MISEV recommends orthogonal characterization and suggests fractionation state matters for identity and potency, but does not specify that a TFF\u2192SEC\u2192single-cushion workflow will preserve membrane-protected signatures at manufacturing yields."
+      },
+      {
+        "competing_explanation": "Lack of CNS detection in macaque might be due to administration, labeling, or species clearance differences rather than fractionation state.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Orthogonal intact-EV verification from materials produced by the scalable workflow tested in short-interval in vivo dosing to confirm detectability in relevant compartments.",
+        "model_or_species": "non-human primate (context for delivery uncertainty)",
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "High: large-animal negative biodistribution suggests delivery/exposure risks that make establishing a reproducible drug-substance identity even more critical for subsequent bridging studies."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "A scalable fractionation workflow (TFF \u2192 SEC \u2192 single-step iodixanol cushion) can produce a size- and density-bounded fraction with a membrane-protected, particle-associated analytical signature (capture-positive co-localization with particle-count peaks and detergent/protease sensitivity)."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "The concentrated conditioned-medium (secretome-retaining) processed only by TFF concentration lacks the co-localized capture-positive particle peak and shows marker signal that is largely detergent/protease-insensitive, consistent with non-vesicular co-isolates."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If n1 is true and yields are manufacturable, the bounded small-EV fraction can serve as a reproducible drug-substance definition to support orthogonal QC and potency assay development (inference; uncertainty noted)."
+      }
+    ]
+  },
+  "chair_rationale": "The hypothesis is scientifically plausible and accompanied by a concrete experimental plan but lacks program-specific empirical support (orthogonal controls, EM/lipoprotein markers, stability) and quantified yield data. Recommend proceeding with the proposed orthogonal fractionation experiments, including lipoprotein/aggregate controls, yield benchmarking across \u22653 lots, and basic stability and small-animal/bridging exposure studies before adopting as a CMC identity gate.",
+  "competing_explanations": [
+    "Co-localized capture-positive signal may reflect co-isolated non-vesicular particles (lipoproteins, aggregates) rather than bona fide membrane-enclosed EVs.",
+    "Manufacturable yields may be insufficient even if orthogonal signature is observed, forcing a tradeoff between identity and scale."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "created_at": "2026-09-23T10:05:44.374605Z",
+  "dependencies": [
+    "Define source-cell lot and ensure matched conditioned-medium production (same bank/passage range)",
+    "Secure validated immuno-capture reagents and particle-count instrumentation",
+    "Establish simple yield acceptance rubric for manufacturability benchmarking (qualitative at this stage)"
+  ],
+  "design_question": "Daily question: Can a scalable two-step fractionation (tangential-flow concentration + size-exclusion chromatography (SEC) followed by a limited iodixanol cushion that preserves yield) produce a reproducible intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) that is absent from a concentrated secretome and is compatible with reasonable manufacturing yield?",
+  "determination": "needs_evidence",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+    "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+    "design-hypothesis-run-20260921T104952Z-0973c8779e9c",
+    "design-hypothesis-run-20260922T100526Z-e1fec6c837d8"
+  ],
+  "expected_measurable_effect": "Orthogonal analytical differentiation: the bounded small-EV fraction will show particle-count peaks that co-localize with capture-positive signal and marked loss of captured signal after detergent + protease/RNase treatment, while the concentrated secretome retains marker signal that does not co-localize with particle peaks and is largely insensitive to membrane disruption; yield (mass/particle recovery) will meet predefined manufacturability thresholds (qualitative for this proposal).",
+  "explicit_inferences": [
+    "Inference: Orthogonal membrane-protection and particle-co-localization are necessary analytical observations to classify a fraction as an intact-EV-enriched drug-substance rather than unpurified secretome.",
+    "Inference: A two-step, scalable fractionation workflow (TFF\u2192SEC\u2192single-step iodixanol cushion) is a plausible manufacturable route to obtain a bounded small-EV fraction for CMC development, but program-specific validation is required."
+  ],
+  "falsification_criteria": [
+    "Across n \u2265 3 independent conditioned-medium lots, the scalable TFF\u2192SEC\u2192single-cushion fraction fails to show reproducible co-localization of particle-count peaks with capture-positive signal and/or captured signal is not reduced by detergent + protease/RNase (i.e., material lacks membrane-protected behavior), and analytical profiles are indistinguishable from concentrated secretome controls; or yields are consistently insufficient for manufacturable recovery."
+  ],
+  "human_decisions_required": [
+    "Approve use of TFF\u2192SEC\u2192single-cushion workflow for program-scale method comparison",
+    "Set qualitative or quantitative yield thresholds that would be considered 'manufacturable' for next decision steps"
+  ],
+  "hypothesis_id": "design-hypothesis-run-20260923T100544Z-cc9987a71dbd",
+  "manufacturability_assessment": "The proposed workflow prioritizes scalable unit operations (TFF, SEC) plus a single density cushion rather than research ultracentrifugation; this increases plausibility of translation to GMP-like runs but requires experimental yield and recovery benchmarking (evidence_gap).",
+  "manufacturing_rationale": "A two-step workflow (TFF concentration to enable scalable handling, followed by SEC to remove bulk soluble proteins, and a single-step iodixanol cushion to enrich particle-containing density range) is more likely to be manufacturable at scale than ultracentrifugation-based lab workflows while preserving an orthogonal intact-EV signature if such a signature is present (inference; uncertainty labeled).",
+  "measurement_strategy": "Orthogonal intact-EV analytical panel applied to matched materials: (1) density-fraction particle counts, (2) immuno-capture ELISA/bead-capture for canonical EV surface markers on intact fractions, (3) detergent + protease/RNase protection on captured material, (4) total protein and protein:particle ratio per fraction, plus yield metrics (mass, particle recovery) after the scalable workflow.",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal workflow: (1) perform density-fractionation of the candidate fraction (single-cushion fractions) with particle counting per fraction; (2) immuno-capture ELISA/bead-capture detection of EV surface markers on intact fractions; (3) protease/RNase protection \u00b1 detergent on captured material; (4) total protein and protein:particle ratio per fraction; (5) measure manufacturing yield metrics (mass and particle recovery) across workflows.",
+    "comparator": "Matched preparations from the same conditioned-medium lot: (A) TFF-concentrated secretome-retaining material (no SEC/cushion) versus (B) TFF\u2192SEC\u2192single-step iodixanol-cushion bounded small-EV fraction.",
+    "complexity": "moderate",
+    "control": "Negative controls: buffer-only, detergent-disrupted captured material. Positive control: commercially available characterized small EVs or lab-validated small-EV preparation (if available) to verify capture and particle-count co-localization behavior.",
+    "dependencies": [
+      "Availability of consistent source-cell conditioned-medium lots (same passage/bank)",
+      "Access to capture reagents and particle-count instrumentation",
+      "Analytical capacity for single-step iodixanol cushion fractionation and rapid particle counting"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-driedonks-2022-macaque-biodistribution",
+      "ev-hermann-2023-neonatal-hi"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20260923T100544Z-cc9987a71dbd",
+    "failure_criterion": "No qualitative difference between the bounded small-EV fraction and concentrated secretome in co-localization or membrane-protection behavior across replicates, or yields are consistently inadequate for manufacturing considerations.",
+    "falsification_outcome": "If failure criteria are met, the hypothesis is falsified: the proposed scalable fractionation does not produce an analytically distinct intact-EV drug-substance candidate and the program should treat the material as indistinguishable from secretome for product-definition and prioritize alternative isolation strategies or secretome-centric product definitions.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A scalable, two-step fractionation (TFF\u2192SEC\u2192single-step iodixanol cushion) yields a size-and-density-bounded fraction with a membrane-protected, particle-associated analytical signature that is absent from concentrated secretome, while providing acceptable yield for manufacturing consideration.",
+    "primary_readout": "Qualitative co-localization of particle-count peaks with capture-positive fractions and demonstrable loss of captured signal after detergent + protease/RNase treatment in the bounded small-EV fraction but not in the concentrated secretome; plus qualitative assessment of yield (recovery sufficient to support GMP-like batch considerations).",
+    "question": "Can the proposed scalable fractionation workflow (TFF concentration \u2192 SEC \u2192 single-step iodixanol cushion) produce a bounded small-EV fraction that (A) displays an orthogonal intact-EV signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive signal) and (B) achieves manufacturable yield compared with a concentrated secretome control?",
+    "required_material": [
+      "MSC-conditioned medium (same source-cell lot) processed into: (A) TFF-concentrated conditioned medium (secretome-retaining) and (B) TFF \u2192 SEC \u2192 single-step iodixanol cushion bounded fraction from the same lot",
+      "Immuno-capture reagents (anti-CD63/CD9/CD81 or TIM4/AnxA5 capture reagents)",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Protease (proteinase K) and RNase reagents",
+      "Detergent (Triton X-100 or equivalent)",
+      "Iodixanol materials for a single-step cushion",
+      "Total protein assay reagents and equipment to measure mass recovery",
+      "Buffers and consumables for SEC and TFF"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio differences between the bounded fraction and the secretome control",
+      "Reproducibility across biological replicates (n \u2265 3 independent conditioned-medium lots)",
+      "Mass and particle recovery percentages for each workflow"
+    ],
+    "success_criterion": "Qualitative success: In \u2265 3 independent conditioned-medium lots, the TFF\u2192SEC\u2192single-step cushion fraction shows a particle-count peak that co-localizes with capture-positive signal and the captured signal is substantially reduced after detergent + protease/RNase, whereas the TFF-concentrated secretome shows marker signal that does not co-localize with particle peaks and is largely detergent/protease-insensitive; yield estimates indicate recovery sufficient for preliminary GMP-like batch scale considerations (qualitative pass)."
+  },
+  "novelty_statement": "Novel: This hypothesis couples an explicitly scalable, minimal-density-step fractionation (TFF\u2192SEC\u2192single-step iodixanol cushion) to an orthogonal intact-EV analytical signature (capture + particle co-localization + detergent/protease protection) and adds manufacturability (yield) as a gating dimension. Prior program hypotheses focused on analytical discrimination using laboratory enrichment methods (ultracentrifugation/SEC) or on source-cell senescence or potency linkage; this proposal uniquely tests a translation-minded fractionation process that is deliberately constrained to one density step and includes yield benchmarking to resolve the product-definition tradeoff between identity and manufacturability.",
+  "primary_domain": "fractionation",
+  "principal_risks": [
+    "Risk that the scalable workflow fails to produce an orthogonal intact-EV signature distinct from secretome (evidence_gap).",
+    "Risk that observed capture-positive signals reflect non-vesicular co-isolates (competing explanation).",
+    "Risk that yields are too low for GMP-like production despite favorable analytics."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "If an intact-EV-enriched, membrane-protected fraction is identified and reproducibly recovered with manufacturable yield, that fraction will be used as the prioritized input for subsequent potency-linkage experiments (inference; separate experiments required).",
+  "proposed_product_change_or_attribute": "Adopt a manufacturable fractionation gate: a size-and-density-bounded small-EV drug-substance fraction (produced by TFF concentration \u2192 SEC \u2192 single-step iodixanol cushion) that shows an orthogonal intact-EV signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive signal) and meets yield criteria to be treated as the drug-substance for downstream CMC decisions.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Core hypothesis correctly labeled as inference but is untested: the canonical MISEV guidance recommends orthogonal analytics but does not validate the proposed two-step manufacturing-friendly workflow\u2014experimental validation is required.",
+        "Manufacturability claim lacks quantitative thresholds or empirical yield data; proposal depends on qualitative/assumed \u2018acceptable\u2019 yields (evidence_gap).",
+        "Driedonks et al. (NHP intranasal biodistribution negative) raises a translational risk that administration, labeling, or species differences could limit downstream delivery/exposure\u2014this weakens intranasal efficacy motivation for later bridging without additional biodistribution/administration controls.",
+        "Immuno-capture co-localization can be confounded by non-vesicular co-isolates (lipoproteins/aggregates); MISEV guidance supports orthogonal controls but does not remove this competing explanation\u2014proposal notes this competing explanation appropriately but needs decisive orthogonal experiments.",
+        "Assumptions about capture reagent and particle-counter sensitivity are unproven in the canonical evidence and are critical dependencies for the proposed readouts."
+      ],
+      "conclusion": "Partially supported. The proposal correctly cites MISEV2023 guidance to justify orthogonal intact-EV analytics and leverages rodent intranasal efficacy studies as biological motivation, but the central, program-level claim\u2014that a scalable TFF\u2192SEC\u2192single-step iodixanol-cushion workflow will reproducibly yield a membrane-protected, capture-positive, particle-associated small\u2011EV fraction at manufacturable yield\u2014lacks direct empirical support in the supplied canonical evidence. This specific workflow and the manufacturability/yield assertion are presented as inferences and require program-specific experiments (evidence gap).",
+      "evidence_gap": "No direct experimental evidence in the supplied canonical set demonstrates that the specific scalable workflow (TFF\u2192SEC\u2192single-step iodixanol cushion) produces a membrane\u2011protected, capture-positive particle peak distinct from concentrated secretome while also achieving manufacturable yields. Program-specific fractionation, orthogonal membrane-protection assays, and yield benchmarking are missing.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "evidence_verifier",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Manufacturability risk: Yield and recovery after adding even a single density cushion are unproven; favorable analytics at lab scale may not translate to acceptable process yields for GMP batches (primary program risk).",
+        "Process sensitivity: SEC and single\u2011cushion steps are sensitive to load volume, column lot, flow rates, and TFF conditioning; small operational shifts could alter co\u2011isolate profiles and invalidate the orthogonal signature unless process windows are defined and controlled.",
+        "Measurement feasibility: Orthogonal capture + particle co\u2011localization + detergent/protease protection requires validated, matrix\u2011appropriate immuno\u2011capture reagents and particle counters with sufficient sensitivity and specificity; MISEV2023 recommends orthogonality but does not prescribe assays\u2014reagent variability and non\u2011vesicular co\u2011isolate cross\u2011reactivity are real risks.",
+        "Lot comparability: Hermann et al. supports source\u2011cell scalability conceptually, but there is no program evidence that the proposed workflow yields consistent identity/purity metrics across independent conditioned\u2011medium lots (passage/batch effects remain untested).",
+        "Stability and QC transfer: No data presented on short\u2011term hold stability, freeze/thaw effects, or stability of the capture signal; absence of stability data complicates QC assay qualification and manufacturing scheduling.",
+        "Scale\u2011up risk: Moving from lab SEC/cushion to manufacturing scale may require alternative unit operations or column formats that change fractionation behavior; a single\u2011cushion constraint may be insufficient at larger scale and force tradeoffs between identity and throughput.",
+        "Quality\u2011attribute relevance: Even if an orthogonal intact\u2011EV signature is observed, causal linkage between that analytical signature and biological activity (potency) is unproven; adopting the signature as a primary drug\u2011substance identity attribute without potency linkage risks prioritizing an analytically convenient but biologically irrelevant attribute.",
+        "Translational delivery uncertainty: Driedonks et al. report poor nasal\u2192CNS detection in macaques and strong nasal retention; even a well\u2011characterized, manufacturable fraction may fail to achieve in vivo exposure in large species, increasing the risk that manufacturing effort does not translate to therapeutic effect."
+      ],
+      "conclusion": "The proposed TFF \u2192 SEC \u2192 single-step iodixanol-cushion workflow is conceptually aligned with MISEV2023 recommendations for orthogonal intact\u2011EV characterization and with translational concerns about source-cell consistency, but current evidence does not establish that this specific minimal-density, scalable workflow will (A) produce a membrane\u2011protected, capture\u2011positive particle peak that is analytically distinct from concentrated secretome across lots, (B) do so with yields compatible with GMP\u2011like production, nor (C) deliver measurable, stable material in relevant in vivo matrices. Program\u2011specific experimental demonstration of yield, repeatability, measurement sensitivity in conditioned\u2011medium and biofluids, and basic stability is required before adopting the fractionation gate for CMC/potency linkage.",
+      "evidence_gap": "No direct program data for the proposed TFF\u2192SEC\u2192single\u2011cushion workflow demonstrating (1) reproducible orthogonal intact\u2011EV signature versus concentrated secretome across \u22653 conditioned\u2011medium lots, (2) quantitative yield/recovery metrics scalable to GMP\u2011like batches, (3) analytical sensitivity/readout validation in nasal lavage/CSF/brain matrices, and (4) basic product stability (short\u2011term hold and post\u2011process) to support manufacturing and QC transfer.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Competing-explanation risk: co\u2011isolated non\u2011vesicular particles (lipoproteins, protein aggregates) can co\u2011elute and bind capture reagents, producing apparent co\u2011localization; MISEV guidance warns that orthogonal panels and controls are required (ev-misev2023-quality-framework).",
+        "Assay specificity and capture-epitope accessibility: immuno\u2011capture depends on surface marker expression and antibody specificity; differential epitope masking or loss during fractionation could confound comparisons between workflows.",
+        "Membrane\u2011protection readout ambiguity: detergent + protease/RNase sensitivity is necessary but not wholly sufficient to prove bona fide membrane\u2011enclosed EVs\u2014dense aggregates or vesicle\u2011like lipoprotein particles can show partial protection or atypical responses.",
+        "Particle\u2011count limitations: NTA/TRPS have limited resolution for co\u2011localization at the fraction level and are sensitive to large protein complexes and buffer composition; false co\u2011localization is possible if particle counts include non\u2011vesicular objects.",
+        "Yield vs identity tradeoff: observing an orthogonal signature at low yields would not by itself justify adoption as a manufacturable drug\u2011substance; the proposal lacks quantitative acceptance criteria and may still face scaling failures (manufacturability risk described).",
+        "Lack of potency or delivery linkage: the experiment discriminates analytic identity but does not test whether the bounded fraction is responsible for any functional activity (potency assays or in\u2011vivo exposure/efficacy). Given negative NHP biodistribution data after intranasal dosing (ev-driedonks-2022-macaque-biodistribution), proof of downstream relevance is essential before CMC gating.",
+        "Species and delivery uncertainties: positive rodent intranasal efficacy reports (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi) do not guarantee translatability to larger species or the chosen route\u2014Driedonks et al. show intranasal biodistribution can fail in macaques, so analytic identity alone may not mitigate delivery risk."
+      ],
+      "conclusion": "Supported as a well-motivated analytical discrimination study but not definitive for product identity or for establishing a biophysical mechanism or translational delivery. The proposed orthogonal panel (capture + particle co-localization + membrane-protection) combined with yield benchmarking is a plausible and appropriate experiment to distinguish a bounded small\u2011EV fraction from bulk concentrated secretome. However, important alternative explanations (co\u2011isolated non\u2011vesicular particles, assay artifacts, particle\u2011counter limits) and practical gaps (quantitative yield thresholds, linkage to potency or in\u2011vivo exposure) remain and require additional controls and follow\u2011on experiments before treating the fraction as a drug\u2011substance for CMC decisions.",
+      "evidence_gap": "Program-specific demonstration is required that the proposed TFF\u2192SEC\u2192single\u2011cushion workflow reproducibly yields a membrane\u2011protected, capture\u2011positive particle peak distinct from secretome across \u22653 independent conditioned\u2011medium lots with acceptable, quantified recoveries. Additional orthogonal assays (e.g., lipoprotein markers, EM/cryo\u2011EM, spike\u2011in recovery, finer density resolution) and predefined manufacturability thresholds are needed. Critically, potency linkage or biodistribution/bridging studies are required to connect this analytic identity to functional or in\u2011vivo exposure relevance (non\u2011human primate data indicate delivery risks).",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "role": "mechanism",
+      "supported": true
+    }
+  ],
+  "run_id": "run-20260923T100544Z-cc9987a71dbd",
+  "secondary_domains": [
+    "manufacturing",
+    "product_identity",
+    "process"
+  ],
+  "selected_gap_id": "design-gap-isolation-fractionation",
+  "sequence_within_theme": 1,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "theme_id": "design-gap-isolation-fractionation",
+  "title": "Hypothesis: A defined size-and-density-bounded small-EV fraction recovered by scalable SEC+density-gradient yields an orthogonal intact-EV signature absent in concentrated secretome, enabling a manufacturable fractionation gate"
+}

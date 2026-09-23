@@ -1,0 +1,18 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Co-elution artifact: lipoproteins or aggregated protein/nucleic acid complexes co-elute with the particle peak and bind capture reagents, producing apparent co-localization and detergent-sensitivity without true membrane-enclosed EVs (ev-misev2023-quality-framework).",
+    "Scale-dependent loss: procedures that produce an EV-like signature at lab scale (small volumes, delicate handling) may yield poorly after TFF/SEC/cushion processing at manufacturing scale (reduced particle recovery or altered particle:protein ratios) so the identity gate cannot be met with manufacturable yields (ev-misev2023-quality-framework).",
+    "Labeling/assay sensitivity mismatch: immuno-capture reagents or particle counting instrumentation may falsely report co-localization due to insufficient specificity or sensitivity, masking lack of genuine membrane protection or giving batch-to-batch variability that confounds reproducibility (ev-misev2023-quality-framework).",
+    "Partial membrane susceptibility: some non-vesicular assemblies or loosely membrane\u2011associated complexes may lose signal after detergent/protease/RNase, producing a false-positive membrane-protection readout that does not reflect bona fide lipid-bilayer enclosed EVs (ev-misev2023-quality-framework).",
+    "Biological irrelevance despite analytical success: even if an analytically distinct bounded fraction is obtained, it may not translate to in vivo delivery or functional potency in relevant species (rodent positive reports exist, but negative macaque biodistribution suggests delivery/exposure uncertainty) \u2014 leading to wasted CMC effort on a product definition that cannot be bridged to efficacy (ev-driedonks-2022-macaque-biodistribution; ev-hermann-2023-neonatal-hi).",
+    "Assay confounding by secretome remnants: concentrated secretome controls may contain high-abundance markers or soluble forms of canonical EV proteins that obscure differences unless orthogonal, rigorous depletion and controls are used, causing ambiguous or unmeasurable discrimination (ev-misev2023-quality-framework)."
+  ],
+  "strongest_objection": "The proposal hinges on interpreting capture-positive co-localization and detergent/protease sensitivity as definitive evidence of membrane-enclosed EVs that are separable from secretome at manufacturing-relevant yields; however, orthogonal signatures can be mimicked by co-isolated non\u2011vesicular particles (lipoproteins, protein/RNA aggregates) that co-elute in the chosen SEC/iodixanol window and that may show partial detergent/protease sensitivity, so the workflow could produce an analytically distinct but biologically non\u2011EV material or a material whose apparent EV signature is lost when scaled \u2014 producing false-positive identity claims or irreproducible analytics at scale (supported by EV characterization concerns in MISEV2023 and by negative large-animal biodistribution results that raise delivery/exposure doubts)."
+}
