@@ -35,6 +35,7 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "clinicSimulation",
     "designLab",
     "productStrategy",
+    "clinicalNetworkOpportunity",
 }
 
 

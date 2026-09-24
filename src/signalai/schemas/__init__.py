@@ -42,6 +42,13 @@ from signalai.schemas.clinical_network import (
     ReviewStatus,
     TreatmentVolume,
 )
+from signalai.schemas.clinical_network_recruitment import (
+    ClinicalNetworkIntakeDefinition, ClinicalNetworkOpportunity,
+    ClinicalNetworkPublicProjection, ClinicalNetworkRecruitmentConfiguration,
+    OpportunityAvailability, RecruitmentAcknowledgement, RecruitmentCapability,
+    RecruitmentCtaLabels, RecruitmentInterest, RecruitmentOrganizationType,
+    RecruitmentProfessionalRole, RecruitmentReviewStage,
+)
 from signalai.schemas.clinic_intelligence import (
     ClinicConfidence,
     ClinicExtraction,
@@ -469,4 +476,16 @@ __all__ = [
     "StrategyChairRecommendation",
     "PublicProductStrategy",
     "PublicStrategyDimension",
+    "ClinicalNetworkOpportunity",
+    "ClinicalNetworkIntakeDefinition",
+    "ClinicalNetworkPublicProjection",
+    "ClinicalNetworkRecruitmentConfiguration",
+    "OpportunityAvailability",
+    "RecruitmentAcknowledgement",
+    "RecruitmentCapability",
+    "RecruitmentCtaLabels",
+    "RecruitmentInterest",
+    "RecruitmentOrganizationType",
+    "RecruitmentProfessionalRole",
+    "RecruitmentReviewStage",
 ]

@@ -17,6 +17,10 @@ from signalai.design_lab_export import export_design_lab, validate_design_lab_ev
 from signalai.product_strategy_export import export_product_strategy
 from signalai.product_strategy import initial_product_strategy, validate_strategy_evidence
 from signalai.schemas.product_strategy import ProductStrategyWorkspace
+from signalai.clinical_network_recruitment import (
+    export_recruitment_configuration, initial_recruitment_configuration,
+)
+from signalai.schemas.clinical_network_recruitment import ClinicalNetworkRecruitmentConfiguration
 from signalai.schemas.design_lab import DesignLabWorkspace
 from signalai.schemas.clinic_intelligence import ClinicIntelligenceDataset
 from signalai.product_export import export_product_layer
@@ -130,6 +134,15 @@ def build_current_public_state(
     )
     validate_strategy_evidence(strategy_workspace, {item.evidence_id for item in scientific.evidence})
     product_strategy = export_product_strategy(strategy_workspace)
+    recruitment_path = root / "state" / "clinical-network-recruitment.json"
+    recruitment = (
+        ClinicalNetworkRecruitmentConfiguration.model_validate_json(
+            recruitment_path.read_text(encoding="utf-8")
+        )
+        if recruitment_path.exists()
+        else initial_recruitment_configuration(updated_at=generated_at)
+    )
+    clinical_network_opportunity = export_recruitment_configuration(recruitment)
     simulation_path = root / "state" / "clinic-simulation.json"
     clinic_simulation = (
         export_clinic_simulation(
@@ -169,6 +182,7 @@ def build_current_public_state(
         clinic_intelligence=clinic_intelligence,
         design_lab=design_lab,
         product_strategy=product_strategy,
+        clinical_network_opportunity=clinical_network_opportunity,
         product=product,
         intelligence_feed=feed,
         live_intelligence=live_intelligence,
