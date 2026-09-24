@@ -259,7 +259,7 @@ def test_mocked_workflow_continues_to_simulation_publication_and_commit_decision
     )
     run_id = "run-mocked-daily-design-1"
     second_run_id = "run-mocked-daily-design-2"
-    when = datetime(2026, 9, 20, 8, 0, tzinfo=timezone.utc)
+    when = before_workspace.updated_at + timedelta(days=1)
 
     first_hypothesis = DesignLabOrchestrator(
         client=WrongMetadataClient(run_id=run_id), root=tmp_path,
