@@ -14,6 +14,7 @@ from signalai.schemas.public_design_lab import PublicDesignLab
 from signalai.schemas.public_strategy import PublicProductStrategy
 from signalai.schemas.clinical_network_recruitment import ClinicalNetworkPublicProjection
 from signalai.schemas.clinic_simulation import PublicClinicSimulation
+from signalai.schemas.molecular_atlas import PublicMolecularAtlas
 
 from signalai.schemas.models import (
     Claim,
@@ -122,6 +123,7 @@ class PublicSignalState(SignalModel):
     clinical_network_opportunity: ClinicalNetworkPublicProjection | None = Field(
         default=None, alias="clinicalNetworkOpportunity"
     )
+    molecular_atlas: PublicMolecularAtlas | None = Field(default=None, alias="molecularAtlas")
 
     @model_validator(mode="after")
     def migrate_legacy_board(self):
@@ -263,6 +265,7 @@ class PublicSignalState(SignalModel):
         design_lab: PublicDesignLab | None = None,
         product_strategy: PublicProductStrategy | None = None,
         clinical_network_opportunity: ClinicalNetworkPublicProjection | None = None,
+        molecular_atlas: PublicMolecularAtlas | None = None,
         generated_at: datetime | None = None,
     ) -> PublicSignalState:
         public = cls(
@@ -309,6 +312,7 @@ class PublicSignalState(SignalModel):
             designLab=design_lab,
             productStrategy=product_strategy,
             clinicalNetworkOpportunity=clinical_network_opportunity,
+            molecularAtlas=molecular_atlas,
         )
         from signalai.flagship_export import export_flagship_program
 

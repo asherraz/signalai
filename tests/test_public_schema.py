@@ -36,6 +36,7 @@ EXPECTED_TOP_LEVEL_FIELDS = {
     "designLab",
     "productStrategy",
     "clinicalNetworkOpportunity",
+    "molecularAtlas",
 }
 
 
@@ -64,6 +65,9 @@ def test_generated_public_payload_matches_frontend_contract() -> None:
     assert validated.airb.run_id == validated.latest_run.run_id
     assert validated.cargo is not None
     assert validated.product_strategy is not None
+    assert validated.molecular_atlas is not None
+    assert len(validated.molecular_atlas.layers) == 9
+    assert "not validated" in validated.molecular_atlas.disclaimer
     assert len(validated.product_strategy.candidates) == 5
     assert len(validated.cargo.theoretical_moa.steps) == 9
     assert [step.step for step in validated.cargo.theoretical_moa.steps] == list(range(1, 10))

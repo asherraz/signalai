@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T10:18:13.896477Z",
+  "generatedAt": "2026-09-25T12:40:10.174665Z",
   "version": "2.0",
   "status": "awaiting_human_review",
   "program": {
@@ -12649,5 +12649,324 @@
     "review_process_disclaimer": "The stages are informational, applicants may stop at any stage, and every later stage requires separate review.",
     "contact_reference": null,
     "privacy_policy_reference": null
+  },
+  "molecularAtlas": {
+    "title": "SGL-001 Molecular Atlas",
+    "subtitle": "Connecting cell source and manufacturing to surface chemistry, cargo, secretome composition, and functional potency.",
+    "disclaimer": "Discovered records are candidates for human review, not validated SGL-001 evidence, product specifications, clinical findings, or automatic model-training data.",
+    "layers": [
+      {
+        "layer": "cell_source",
+        "label": "Cell Source",
+        "coverage": "low",
+        "main_gap": "Link donor and source-cell state to reproducible product attributes.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 5
+      },
+      {
+        "layer": "manufacturing_process",
+        "label": "Manufacturing Process",
+        "coverage": "low",
+        "main_gap": "Connect process variables to lot composition and potency.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 0
+      },
+      {
+        "layer": "surface_chemistry",
+        "label": "Surface Chemistry",
+        "coverage": "low",
+        "main_gap": "Resolve proteins, glycans, lipids, and targeting relevance across lots.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 1
+      },
+      {
+        "layer": "rna_cargo",
+        "label": "Rna Cargo",
+        "coverage": "moderate",
+        "main_gap": "Separate measured cargo from causal and functional cargo.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 3
+      },
+      {
+        "layer": "protein_cargo",
+        "label": "Protein Cargo",
+        "coverage": "moderate",
+        "main_gap": "Establish orthogonal quantification and lot reproducibility.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 3
+      },
+      {
+        "layer": "lipid_and_metabolite_cargo",
+        "label": "Lipid And Metabolite Cargo",
+        "coverage": "low",
+        "main_gap": "Define composition, stability, and biological relevance.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 1
+      },
+      {
+        "layer": "soluble_secretome",
+        "label": "Soluble Secretome",
+        "coverage": "low",
+        "main_gap": "Distinguish vesicular from non-vesicular contributions.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 1
+      },
+      {
+        "layer": "functional_potency",
+        "label": "Functional Potency",
+        "coverage": "low",
+        "main_gap": "Validate assays linking composition to a relevant biological response.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 0
+      },
+      {
+        "layer": "product_signature",
+        "label": "Product Signature",
+        "coverage": "none",
+        "main_gap": "Define a human-approved, evidence-linked identity and potency signature.",
+        "reviewed_source_count": 0,
+        "candidate_source_count": 0
+      }
+    ],
+    "current_questions": [
+      "Which surface and cargo attributes are reproducible across lots?",
+      "Which process variables explain composition changes?",
+      "Which composition patterns predict a relevant potency response?",
+      "What measurements distinguish vesicular from soluble secretome activity?"
+    ],
+    "discovery_counts": {
+      "discovered": 0,
+      "triage_required": 15,
+      "eligible_for_review": 0,
+      "reviewed": 0,
+      "rejected": 0,
+      "papers": 12,
+      "public_omics_datasets": 3
+    },
+    "source_status": "One or more sources were unavailable; prior records were preserved.",
+    "recent_discoveries": [
+      {
+        "source_id": "atlas-source-5f1e8d6dfd5d1b76",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "30637094",
+        "title": "Minimal information for studies of extracellular vesicles 2018 (MISEV2018): a position statement of the International Society for Extracellular Vesicles and update of the MISEV2014 guidelines.",
+        "source_url": "https://europepmc.org/article/MED/30637094",
+        "publication_date": "2018-11-23",
+        "dataset_accession": null,
+        "layers": [
+          "rna_cargo"
+        ],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-345917e88a736701",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "25979354",
+        "title": "Biological properties of extracellular vesicles and their physiological functions.",
+        "source_url": "https://europepmc.org/article/MED/25979354",
+        "publication_date": "2015-05-14",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-c8cebc3349bb65c1",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "33634751",
+        "title": "Guidelines for the use and interpretation of assays for monitoring autophagy (4th edition)&lt;sup&gt;1&lt;/sup&gt;.",
+        "source_url": "https://europepmc.org/article/MED/33634751",
+        "publication_date": "2021-01-01",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-8006af0259aac109",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "32203277",
+        "title": "Targeting apoptosis in cancer therapy.",
+        "source_url": "https://europepmc.org/article/MED/32203277",
+        "publication_date": "2020-03-23",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-a76fcfad61ff2df2",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "34459017",
+        "title": "Autophagy in major human diseases.",
+        "source_url": "https://europepmc.org/article/MED/34459017",
+        "publication_date": "2021-08-30",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-f52e2bc2efc23fe8",
+        "source_name": "OmicsDI",
+        "source_kind": "public_omics_dataset",
+        "record_id": "PXD035303",
+        "title": "Global Extracellular Vesicle Proteome Changes Across Time Upon Intraarticular Treatment of Mesenchymal Stromal Cells in an In Vivo model of Equine Osteoarthritis",
+        "source_url": "https://www.omicsdi.org/dataset/PXD035303",
+        "publication_date": "20230311",
+        "dataset_accession": "PXD035303",
+        "layers": [
+          "cell_source",
+          "surface_chemistry",
+          "protein_cargo",
+          "lipid_and_metabolite_cargo"
+        ],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-f2f6b54e7a6e3625",
+        "source_name": "OmicsDI",
+        "source_kind": "public_omics_dataset",
+        "record_id": "S-EPMC11294870",
+        "title": "Mesenchymal stromal/stem cell tissue source and in vitro expansion impact extracellular vesicle protein and miRNA compositions as well as angiogenic and immunomodulatory capacities.",
+        "source_url": "https://www.omicsdi.org/dataset/S-EPMC11294870",
+        "publication_date": null,
+        "dataset_accession": "S-EPMC11294870",
+        "layers": [
+          "cell_source",
+          "rna_cargo",
+          "protein_cargo"
+        ],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-ee9efe1c231b2097",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "36522308",
+        "title": "Aging and aging-related diseases: from molecular mechanisms to interventions and treatments.",
+        "source_url": "https://europepmc.org/article/MED/36522308",
+        "publication_date": "2022-12-16",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-1af96f9ca1ef97d1",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "27979573",
+        "title": "Extracellular Vesicles: Unique Intercellular Delivery Vehicles.",
+        "source_url": "https://europepmc.org/article/MED/27979573",
+        "publication_date": "2016-12-13",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-ec84561ba3019db4",
+        "source_name": "OmicsDI",
+        "source_kind": "public_omics_dataset",
+        "record_id": "S-EPMC12532472",
+        "title": "Extracellular vesicle bioactivity and potential for clinical development are determined by mesenchymal stromal cell clonal subtype.",
+        "source_url": "https://www.omicsdi.org/dataset/S-EPMC12532472",
+        "publication_date": null,
+        "dataset_accession": "S-EPMC12532472",
+        "layers": [
+          "cell_source"
+        ],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-e5ecb61c28390678",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "23974980",
+        "title": "Recent advances in 2D and 3D in vitro systems using primary hepatocytes, alternative hepatocyte sources and non-parenchymal liver cells and their use in investigating mechanisms of hepatotoxicity, cell signaling and ADME.",
+        "source_url": "https://europepmc.org/article/MED/23974980",
+        "publication_date": "2013-08-23",
+        "dataset_accession": null,
+        "layers": [
+          "rna_cargo"
+        ],
+        "review_status": "triage_required"
+      },
+      {
+        "source_id": "atlas-source-4d2b9de7046ec529",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "31069028",
+        "title": "Defining mesenchymal stromal cell (MSC)-derived small extracellular vesicles for therapeutic applications.",
+        "source_url": "https://europepmc.org/article/MED/31069028",
+        "publication_date": "2019-04-29",
+        "dataset_accession": null,
+        "layers": [
+          "cell_source"
+        ],
+        "review_status": "triage_required"
+      }
+    ],
+    "contribution_headline": "Contribute to the Signal Molecular Atlas",
+    "contribution_description": "Share well-annotated EV and secretome datasets to help evaluate reproducible product signatures and generate testable hypotheses.",
+    "contribution_fields": [
+      {
+        "field_id": "dataset-type",
+        "label": "Dataset and assay type",
+        "required": true,
+        "help_text": "For example RNA-seq, proteomics, lipidomics, surface profiling, or potency."
+      },
+      {
+        "field_id": "sample-provenance",
+        "label": "Sample provenance",
+        "required": true,
+        "help_text": "Species, tissue or cell source, donor context, and cohort structure."
+      },
+      {
+        "field_id": "process-metadata",
+        "label": "Process metadata",
+        "required": true,
+        "help_text": "Culture, conditioning, harvest, isolation, storage, lot, and batch information."
+      },
+      {
+        "field_id": "methods-controls",
+        "label": "Methods and controls",
+        "required": true,
+        "help_text": "Protocols, platform, replicates, controls, normalization, and QC."
+      },
+      {
+        "field_id": "access-rights",
+        "label": "Consent, access, and reuse rights",
+        "required": true,
+        "help_text": "Data-use limitations, participant consent, license, and desired attribution."
+      },
+      {
+        "field_id": "record-location",
+        "label": "Repository accession or dataset description",
+        "required": true,
+        "help_text": "Register metadata first; do not upload files or participant data here."
+      }
+    ],
+    "contribution_steps": [
+      "Register dataset metadata",
+      "Scientific and governance review",
+      "Document rights and permitted uses",
+      "Controlled data transfer",
+      "QC and harmonization",
+      "Human-reviewed analysis and publication"
+    ],
+    "accepted_data_types": [
+      "Small-RNA and transcriptomics",
+      "Proteomics and surface proteomics",
+      "Lipidomics, metabolomics, and glycomics",
+      "Soluble-factor panels",
+      "Particle identity, purity, and morphology",
+      "Manufacturing and lot metadata",
+      "Functional and potency assays"
+    ],
+    "prohibited_submission": "Do not submit patient identifiers, protected health information, credentials, confidential files, or human-level omics through the public website.",
+    "cta_primary": "Register a dataset",
+    "cta_secondary": "Discuss a collaboration",
+    "last_discovery_at": "2026-09-25T12:14:30.939017Z"
   }
 }

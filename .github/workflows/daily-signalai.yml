@@ -57,6 +57,11 @@ jobs:
           output="$(python -m signalai design-lab)"
           echo "$output"
           echo "run_id=${output##* }" >> "$GITHUB_OUTPUT"
+      - name: Discover molecular-atlas papers and public omics records
+        shell: bash
+        env:
+          SIGNALAI_ATLAS_RESULTS_PER_QUERY: "5"
+        run: python -m signalai molecular-atlas-discover
       - name: Advance the fictional clinic demonstration
         shell: bash
         run: python -m signalai clinic-simulate

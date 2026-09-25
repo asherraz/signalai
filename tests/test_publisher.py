@@ -25,6 +25,8 @@ def test_complete_public_state_is_rebuilt_without_using_public_json() -> None:
     assert state.live_intelligence.latest_run.run_id == max(history.runs, key=lambda run: run.started_at).run_id
     assert state.loop.run_id == scientific.run_id
     assert state.cargo is not None
+    assert state.molecular_atlas is not None
+    assert state.molecular_atlas.cta_primary == "Register a dataset"
     assert len(state.cargo.theoretical_moa.steps) == 9
     assert state.cargo.theoretical_moa.steps[-1].title == "Regenerative tissue response"
     assert state.formulation is not None

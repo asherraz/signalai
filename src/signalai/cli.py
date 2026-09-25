@@ -18,6 +18,7 @@ from signalai.publisher import publish_current_public_state
 from signalai.clinic_simulation import advance_simulation
 from signalai.design_lab import DesignLabOrchestrator
 from signalai.product_strategy import ProductStrategyOrchestrator
+from signalai.molecular_atlas import run_discovery
 from signalai.schemas import (
     DevelopmentAgenda,
     SignalState,
@@ -127,6 +128,19 @@ def publish_state_main() -> None:
     root = Path.cwd()
     state = publish_current_public_state(root)
     print(f"Published complete public state at {state.generated_at.isoformat()}")
+
+
+def molecular_atlas_discover_main() -> None:
+    root = Path.cwd()
+    workspace = run_discovery(
+        root,
+        limit_per_query=int(environ.get("SIGNALAI_ATLAS_RESULTS_PER_QUERY", "5")),
+    )
+    publish_current_public_state(root)
+    print(
+        f"Molecular Atlas discovery completed: {len(workspace.sources)} candidate records; "
+        "all require human review"
+    )
 
 
 def clinic_simulation_main(target: str | None = None) -> None:

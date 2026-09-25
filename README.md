@@ -9,11 +9,11 @@ and does not use Anthropic or Claude dependencies.
 
 ## Current scope
 
-The current milestone provides a minimal sequential therapeutic-development run
-over curated local evidence. Four bounded roles extract claims, propose a
-hypothesis, critique it and identify risks, and produce a decision proposal that
-remains pending human approval. It deliberately does **not** implement PubMed or
-web retrieval, scheduled workflows, or frontend code.
+The system runs bounded therapeutic-development reviews over curated evidence,
+publishes a sanitized frontend contract, and maintains separate hypothesis,
+strategy, clinic-simulation, and Molecular Atlas workspaces. Internet discovery
+is limited to candidate paper and public-omics metadata; discovered records do
+not become canonical evidence or model-training data without human review.
 
 ## Architecture
 
@@ -31,6 +31,27 @@ web retrieval, scheduled workflows, or frontend code.
 - `public/`: generated, sanitized JSON for the separate frontend.
 - `evals/`: evaluation cases and fixtures for later agent behavior.
 - `tests/`: schema and runtime tests.
+
+## SGL-001 Molecular Atlas
+
+`state/molecular-atlas.json` is an append-only registry of candidate papers and
+public omics records relevant to cell source, manufacturing, EV surface
+chemistry, cargo, soluble secretome, and functional potency. Run a bounded
+metadata discovery cycle with:
+
+```bash
+python -m signalai molecular-atlas-discover
+```
+
+The scheduled daily workflow runs this step against Europe PMC and OmicsDI.
+External-source failures preserve prior records and are reported in atlas source
+status. Every discovered record remains `triage_required`; discovery does not
+validate a claim, download controlled human data, update canonical SGL-001
+state, or authorize model training. The public `molecularAtlas` projection gives
+Lovable the product-to-function visual layers, coverage and gap summaries,
+candidate-source metadata, and a metadata-first researcher contribution flow.
+Raw or participant-level contributions must use separately governed storage,
+rights review, and controlled transfer—not Git or the public JSON contract.
 
 The intended data flow is evidence -> typed scientific records -> reviewed
 decisions -> generated public state. Scientific claims retain evidence IDs;

@@ -77,6 +77,11 @@ from signalai.schemas.manufacturing import (
 from signalai.schemas.public_manufacturing import (
     PublicFlagshipManufacturingSummary, PublicManufacturingState,
 )
+from signalai.schemas.molecular_atlas import (
+    AtlasContributionField, AtlasCoverage, AtlasCoverageItem, AtlasLayer,
+    AtlasReviewStatus, AtlasSourceKind, MolecularAtlasSource,
+    MolecularAtlasWorkspace, PublicAtlasDiscovery, PublicMolecularAtlas,
+)
 from signalai.schemas.design_lab import (
     AttributeGroup, AttributeRole, CausalChain, CausalEdge, CausalNode,
     DesignAdversaryReview, DesignChairClassification, DesignDetermination,

@@ -9,6 +9,8 @@ from signalai.clinical_network_export import export_clinical_network
 from signalai.clinic_intelligence_export import export_clinic_intelligence
 from signalai.clinic_simulation import export_clinic_simulation
 from signalai.schemas.clinic_simulation import ClinicSimulationState
+from signalai.molecular_atlas import export_molecular_atlas, initial_molecular_atlas
+from signalai.schemas.molecular_atlas import MolecularAtlasWorkspace
 from signalai.signalrb import export_signalrb
 from signalai.flagship_export import export_flagship_program
 from signalai.manufacturing import initialize_manufacturing, validate_manufacturing_operational_refs
@@ -143,6 +145,13 @@ def build_current_public_state(
         else initial_recruitment_configuration(updated_at=generated_at)
     )
     clinical_network_opportunity = export_recruitment_configuration(recruitment)
+    atlas_path = root / "state" / "molecular-atlas.json"
+    atlas_workspace = (
+        MolecularAtlasWorkspace.model_validate_json(atlas_path.read_text(encoding="utf-8"))
+        if atlas_path.exists()
+        else initial_molecular_atlas(now=generated_at)
+    )
+    molecular_atlas = export_molecular_atlas(atlas_workspace)
     simulation_path = root / "state" / "clinic-simulation.json"
     clinic_simulation = (
         export_clinic_simulation(
@@ -183,6 +192,7 @@ def build_current_public_state(
         design_lab=design_lab,
         product_strategy=product_strategy,
         clinical_network_opportunity=clinical_network_opportunity,
+        molecular_atlas=molecular_atlas,
         product=product,
         intelligence_feed=feed,
         live_intelligence=live_intelligence,
