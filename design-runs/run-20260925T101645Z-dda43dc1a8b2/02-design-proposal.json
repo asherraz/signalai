@@ -1,0 +1,178 @@
+{
+  "assumptions": [
+    "Assay reagents (capture antibodies/beads, particle counter) behave consistently across buffer conditions or appropriate assay-interference controls will identify reagent-buffer interactions.",
+    "Sufficient material yield exists to perform parallel analytic comparisons across process conditions."
+  ],
+  "biological_rationale": "Intact-EV membrane integrity and surface-marker display are candidate determinants of a membrane-protected, EV-associated analytical signature that MISEV2023 recommends verifying with orthogonal assays. Process-induced membrane disruption (freeze-thaw, surfactant exposure, buffer ionic-strength/pH shifts) could convert EV-associated signal to soluble, detergent-insensitive marker signal and thereby decouple particle counts from intact-EV identity and potency linkage. Inference: maintaining an intact-EV signature during downstream processing is required for treating a fraction as an EV-enriched drug substance.",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20260925T101645Z-dda43dc1a8b2-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "group": "identity_markers",
+      "human_approved": false,
+      "measurement_concept": "Orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks + detergent/protease-sensitive behavior) measured pre/post-process exposures.",
+      "name": "EV identity and purity",
+      "rationale": "Process-sensitive preservation of an orthogonal intact-EV analytical signature is proposed as a process-sensitive identity attribute to gate downstream manufacturing decisions and potency assay linkage.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20260925T101645Z-dda43dc1a8b2",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260925T101645Z-dda43dc1a8b2"
+      ],
+      "uncertainty": "Moderate: attribute is conceptually supported but requires experimental verification under process conditions."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Apparent loss of capture-positive signal after processing could reflect selective loss of a minor particle subpopulation or assay interference (e.g., buffer components affecting capture reagents) rather than true membrane disruption.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Matrixed, controlled comparison of orthogonal intact-EV signature before and after defined process exposures with appropriate buffer-only and reagent-interference controls.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV2023 recommends orthogonal intact-EV analytics and highlights sensitivity of EV-associated measures to handling; rodent studies note activity but do not link to specific processing sensitivities."
+      },
+      {
+        "competing_explanation": "Even if signature loss is demonstrated, alternative mitigations (e.g., reformulation or immediate capture) might be required instead of defining acceptance windows.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "inference",
+        "missing_experiment": "Pilot manufacturing-scale runs applying the defined gates to confirm yield and assay robustness under near-GMP conditions.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Inference-level: establishing process gates follows if an analytically reproducible signature can be preserved; uncertainty remains about quantitative acceptance limits and transferability across source-cell lots."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Downstream processing exposures (number of freeze-thaw cycles and contact with candidate formulation buffers) can alter membrane integrity, surface-marker accessibility, and particle:protein characteristics of MSC-conditioned-medium-derived material."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If membrane integrity and surface-marker display are lost, the orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive behavior) will be abolished while bulk particle counts may remain similar."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Preservation of the orthogonal intact-EV analytical signature through defined downstream-process conditions enables use of that signature as a process gate for drug-substance definition and supports development of potency-linked assays."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Loss of capture-positive co-localization could be caused by simple assay interference from buffer components rather than true membrane disruption.",
+    "Observed changes could reflect removal of a minor, highly bioactive particle subpopulation during processing rather than wholesale membrane disruption of the dominant particle population."
+  ],
+  "contradicting_evidence_ids": [],
+  "dependencies": [
+    "Availability of consistent source-cell conditioned-medium lots (same passage/bank)",
+    "Access to validated capture reagents and particle-count instrumentation",
+    "Laboratory capability for density-fractionation and protection assays"
+  ],
+  "design_question": "Daily question: Which specific downstream processing step(s) (controlled freeze-thaw cycles and exposure to candidate nasal formulation buffers) cause loss of an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive behavior) independent of bulk particle counts?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+    "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+    "design-hypothesis-run-20260921T104952Z-0973c8779e9c",
+    "design-hypothesis-run-20260922T100526Z-e1fec6c837d8",
+    "design-hypothesis-run-20260923T100544Z-cc9987a71dbd"
+  ],
+  "expected_measurable_effect": "Defined downstream exposures (e.g., >1 freeze-thaw cycle or contact with specific buffer classes) will qualitatively abolish co-localization of capture-positive signal with particle-count peaks and render captured signal insensitive to detergent + protease/RNase protection assays while bulk particle counts change minimally.",
+  "experiment": {
+    "assay": "Orthogonal intact-EV workflow per MISEV-style guidance: (1) density-fractionation (iodixanol cushion or gradient) and particle counting per fraction; (2) immuno-capture ELISA or bead-capture + detection of EV surface markers on intact fractions; (3) protease and RNase protection assays on captured material with and without detergent; (4) total protein and protein:particle ratio per fraction; (5) capture-reagent buffer-compatibility assessment.",
+    "comparator": "Matched aliquots from the same enriched small-EV preparation: (A) no-process-exposure control, (B) 1 freeze-thaw, (C) 3 freeze-thaw, (D) incubation with formulation-buffer A, (E) formulation-buffer B, (F) formulation-buffer C, and combinations (e.g., 3 freeze-thaw + buffer exposure). Positive control: characterized small EVs handled identically. Negative control: buffer-only.",
+    "complexity": "moderate",
+    "control": "Buffer-only controls; detergent-disrupted samples as assay-positive disruption controls; capture-reagent compatibility panels (capture + buffer only) to identify assay interference.",
+    "dependencies": [
+      "Availability of \u00003 independent conditioned-medium lots from the same source-cell bank",
+      "Access to validated capture reagents and particle-count instrumentation",
+      "Analytical capacity for density-fractionation and protection assays",
+      "Sufficient material yield for matrixed condition testing"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20260925T101645Z-dda43dc1a8b2",
+    "failure_criterion": "No reproducible qualitative difference in orthogonal intact-EV signature across all tested downstream exposures compared with no-exposure controls across independent replicates, or apparent losses are attributable to assay interference by formulation buffers per compatibility controls.",
+    "falsification_outcome": "If failure criterion is met, the hypothesis that the tested downstream processing exposures deterministically disrupt the intact-EV analytical signature is falsified; the program should deprioritize these specific process steps as primary drivers of signature loss and investigate alternative causes (e.g., upstream source-cell variability, fractionation method) or focus on assay-buffer compatibility remediation.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Controlled downstream processing exposures (defined freeze-thaw cycles and contact with specific formulation buffer classes) will abolish the orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive behavior) in MSC-conditioned-medium-derived materials, even when bulk particle counts are similar.",
+    "primary_readout": "Qualitative co-localization of particle-count peaks with capture-positive fractions and loss (or preservation) of captured signal after detergent + protease/RNase treatment in post-exposure samples compared with unexposed control. Report whether co-localization is preserved, diminished, or abolished while bulk particle counts remain similar.",
+    "question": "Which downstream process exposures (freeze-thaw cycles; contact with candidate nasal formulation buffers of varying pH/ionic strength/surfactant content) cause loss of an orthogonal intact-EV analytical signature while leaving bulk particle counts relatively unchanged?",
+    "required_material": [
+      "MSC-conditioned medium (same source-cell lot) processed to produce an enriched small-EV fraction (SEC/UC) prior to downstream exposures",
+      "Aliquots of the enriched small-EV fraction subjected to matrixed process exposures: 0, 1, 3 freeze-thaw cycles; contact (incubation) for defined time with candidate formulation buffers representing a matrix of pH (acidic/neutral/basic), ionic strength (low/physiologic/high), and surfactant content (none/low non-ionic surfactant)",
+      "Purified small-EV positive control (commercial characterized small EVs or lab-validated preparation)",
+      "Immuno-capture reagents (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5 capture reagents)",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Protease (proteinase K) and RNase reagents",
+      "Detergent (Triton X-100 or equivalent) for membrane disruption",
+      "Density-gradient materials (iodixanol) for fractionation",
+      "Total protein assay reagents and buffers",
+      "Buffer-only controls and capture-reagent compatibility control panels"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio per fraction pre/post exposure",
+      "Capture-signal-to-noise in buffer compatibility panels to detect assay interference",
+      "Reproducibility across biological replicates (n \u00003 independent conditioned-medium preps)",
+      "Mass/particle recovery (yield) after exposures"
+    ],
+    "success_criterion": "Qualitative success: In \u00003 independent conditioned-medium preparations, at least one defined process exposure condition (e.g., \u00003 freeze-thaw cycles or a specific formulation-buffer class) reproducibly abolishes the orthogonal intact-EV analytical signature (loss of capture-positive co-localization with particle peaks and captured signal becomes detergent/protease-insensitive) while bulk particle counts change minimally compared with no-exposure control; assay-interference controls verify that signal loss is not due to direct capture-reagent incompatibility with buffer components."
+  },
+  "explicit_inferences": [
+    "Inference: Orthogonal intact-EV analytics (capture + particle co-localization + detergent/protease protection) are more sensitive to process-induced membrane disruption than bulk particle counting.",
+    "Inference: Process-stage conditions that abolish the intact-EV signature will invalidate downstream potency-linkage assumptions unless mitigated."
+  ],
+  "falsification_criteria": [
+    "Failure to observe any qualitative difference in the orthogonal intact-EV analytical signature between pre- and post-processing conditions across independent replicates (n \u00003) and across multiple buffer classes despite applying stressors (freeze-thaw, ionic/pH shifts)\u2014i.e., capture-positive co-localization and detergent/protease sensitivity persist irrespective of tested downstream exposures\u2014would falsify the hypothesis that these process steps are determinative for signature loss.",
+    "If assay-interference controls indicate that apparent signature loss is due to reagent-buffer interactions rather than particle membrane disruption, the hypothesis as stated is falsified and must be reframed to focus on assay compatibility rather than process sensitivity."
+  ],
+  "human_decisions_required": [
+    "Select 2\u20133 candidate nasal formulation buffer prototypes to include in the exposure matrix.",
+    "Define acceptable qualitative pass/fail criteria for retention of the orthogonal intact-EV signature for process acceptance.",
+    "Decide whether to prioritize freeze-thaw avoidance or buffer reformulation based on experimental outcome."
+  ],
+  "manufacturability_assessment": "Matrixed experiments are implementable at bench scale with candidate formulation buffers and controlled freeze-thaw cycles; success would enable clear process gates without immediately requiring full GMP-scale runs. Yield and assay robustness must be evaluated before adoption as manufacturing criteria.",
+  "manufacturing_rationale": "Defining permissible process-stage exposures (freeze-thaw, buffer composition) that preserve an intact-EV analytical signature would create actionable process acceptance gates, reduce CMC uncertainty, and enable reproducible lot definition and downstream potency assay development.",
+  "measurement_strategy": "Orthogonal intact-EV workflow before and after controlled process exposures: density-fractionation (iodixanol single-cushion or gradient) with particle counting per fraction, immuno-capture ELISA or bead-capture detection of EV surface markers on intact material per fraction, detergent + protease/RNase protection assays on captured material, and total protein and protein:particle ratios per fraction. Include buffer-only interference controls and positive EV controls.",
+  "novelty_statement": "Novel: This hypothesis specifically tests whether common downstream, bench-to-manufacturing-relevant exposures (quantified freeze-thaw cycles and contact with candidate nasal formulation buffers) \u2014 rather than source-cell attributes, fractionation method, or bulk particle counts \u2014 are sufficient to abolish an orthogonal intact-EV analytical signature. Prior hypotheses explored identity/fractionation, source-cell senescence, scalable isolation workflows, and in vivo bridging; none directly evaluated matrixed downstream processing exposures (freeze-thaw and formulation-buffer compatibility) as discrete, testable manufacturing-process gates. This experiment is a distinct discriminating test that isolates post-fractionation handling as a causal variable and includes assay-interference controls to separate true membrane disruption from analytic artifacts.",
+  "primary_domain": "process",
+  "principal_risks": [
+    "Assay interference by formulation buffers could mimic signature loss and lead to false-positive process failures.",
+    "Bench-scale findings may not translate to manufacture-scale; yield or stability tradeoffs may prevent practical acceptance gates.",
+    "If signature preservation cannot be achieved across required process steps, program may need to pivot to a secretome-centric product definition."
+  ],
+  "proposed_potency_relationship": "If the intact-EV analytical signature is process-sensitive, only materials processed within defined acceptance windows that preserve the signature should be tested for potency linkage; otherwise potency attribution to intact EVs is uncertain.",
+  "proposed_product_change_or_attribute": "If supported, specify downstream-process acceptance conditions: permissible freeze-thaw exposure and formulation-buffer classes that preserve an orthogonal intact-EV-associated signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive behavior) as a manufacturing-process gate.",
+  "secondary_domains": [
+    "fractionation",
+    "formulation",
+    "stability"
+  ],
+  "sequence_within_theme": 1,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-manufacturing-process",
+  "title": "Process-stage sensitivity hypothesis: does freeze-thaw and formulation-buffer exposure during downstream processing disrupt the intact-EV-associated analytical signature?"
+}

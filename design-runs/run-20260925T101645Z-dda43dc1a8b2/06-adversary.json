@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Assay-interference false positive: formulation buffer components (ionic strength, pH, or surfactants) directly impair capture-antibody/bead binding or detection chemistry, producing loss of capture-positive co-localization despite intact EV membranes. (Mitigant: buffer-only capture-compatibility panels, but residual subtle effects may persist.)",
+    "Subpopulation loss confounder: processing selectively removes or alters a small, capture\u2011positive and highly bioactive EV subpopulation while leaving bulk particle counts intact; the signature change would reflect compositional shift not wholesale membrane disruption, undermining the inference that common process steps broadly destroy EV integrity.",
+    "Analytical sensitivity/orthogonality gap: density-fractionation + capture + protection assays may lack the resolution or reproducibility to detect partial membrane perturbations or to reproducibly co-localize markers with particle peaks across biological lots, yielding variable or non-reproducible outcomes that fail the reproducibility/falsification criteria.",
+    "Material-yield and replicate limitation: insufficient yield from independent conditioned-medium lots (n \u22653) to run the full matrix (buffers \u00d7 freeze-thaw \u00d7 controls), forcing compromises in replication or condition coverage and reducing statistical confidence in qualitative conclusions.",
+    "Bench-to-manufacturing nonlinearity: effects observed at bench scale (small aliquots, controlled tubes) may not scale predictably to manufacturing (bulk freezing, different container surfaces, shear), so even validated bench gates may be inapplicable, leaving the program unable to implement practical process acceptance criteria.",
+    "Misattribution due to upstream variability: between-lot source-cell variability (secretome composition, minor particle subpopulations) could produce signature differences that are mistaken for process effects, especially if starting-material characterization is incomplete.",
+    "Negative translational signal: non-primate positive preclinical reports (mouse intranasal efficacy) may not predict relevant intact-EV markers or process sensitivity in larger species; NHP biodistribution data showing nasal retention and negligible brain uptake raise the possibility that the whole EV-centric gate is irrelevant to clinical delivery, so even a robust analytic signature may not link to in vivo potency for the intended nasal route.",
+    "Capture-reagent variability and standardization risk: commercial or lab antibodies (anti-CD63/CD9/CD81, TIM4, AnxA5) differ in epitope sensitivity to processing and may not be stable reagents for a manufacturing gate, making the signature non-transferable between labs or lots as MISEV highlights."
+  ],
+  "strongest_objection": "The observed loss of the proposed orthogonal intact\u2011EV analytical signature after downstream exposures may be indistinguishable from assay artifact (capture-reagent\u2013buffer interactions or detection interference) or selective depletion of a minor, bioactive subpopulation, rather than true, process-driven membrane disruption of the bulk EV population; if so, the experiment will either produce false-positive 'process failures' or be unable to connect signature changes to biologically meaningful potency, making the proposed process-gating approach misleading or unmeasurable."
+}
