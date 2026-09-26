@@ -1,0 +1,22 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Capture-reagent incompatibility or buffer/carrier residues from TFF causing suppressed immuno-capture signal (false positive for damage).",
+    "Membrane- or cassette-derived leachables adsorbing to EVs or to capture reagents and altering assay readout without altering EV integrity.",
+    "Particle counters reporting similar particle counts because they detect membrane fragments, protein aggregates, or other non\u2011EV nanoparticles created or enriched by TFF, leading to misinterpretation that particle yield is preserved while intact-EV signal is lost.",
+    "Upstream source-cell variability (donor, passage, senescence, conditioned\u2011medium composition) not fully controlled across lots, confounding attribution of signal loss to TFF parameters.",
+    "Insufficient or non-representative TFF hardware/membrane selection (bench proxies not matching manufacturing cassettes) producing misleading parameter\u2013effect relationships that fail at scale.",
+    "Inadequate orthogonality or sensitivity of protection assays (incomplete protease/RNase digestion, detergent artifacts) producing ambiguous protection/unprotection signatures.",
+    "Inadequate positive controls or reference EV preparations (commercial/lab controls not matching material matrix), causing inability to detect assay drift or to distinguish true effects from assay variability.",
+    "Low replicate number or biological variance causing apparent reproducibility that fails when expanded (type M error).",
+    "Downstream processing (density gradients, concentration steps, formulations) performed after TFF but not isolated experimentally causes the observed signature loss, misattributing causality to TFF.",
+    "Findings (analytical signature loss) that do not map to functional or in vivo readouts (preclinical efficacy/biodistribution), yielding a manufacturing gate that is irrelevant to product performance (non-translatability)."
+  ],
+  "strongest_objection": "The single strongest bounded objection is assay-confounding: residual TFF buffers/cleaning agents, membrane-derived leachables, or capture-reagent incompatibility (plus co-isolated non\u2011vesicular material) can produce apparent loss of \u2018intact\u2011EV\u2019 capture signal independent of any true TFF-induced membrane damage, and given known EV analytical fragility (MISEV2023) and species/formulation-dependent biodistribution (Driedonks et al.), a reproducible analytical loss may reflect measurement artefact or non-generalizable preparation differences rather than a true, manufacturable TFF-driven biological effect."
+}

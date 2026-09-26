@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "program_id": "SGL-001",
-  "current_design_question": "Daily question: Which specific downstream processing step(s) (controlled freeze-thaw cycles and exposure to candidate nasal formulation buffers) cause loss of an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive behavior) independent of bulk particle counts?",
+  "current_design_question": "Daily question: Does the TFF concentration step used during scale-up reproducibly reduce the orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) in a manner that tracks with process-scale parameters (flux, transmembrane pressure, and cumulative processed volume) rather than reflecting assay variability?",
   "reviewed_hypotheses": [
     {
       "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
@@ -1394,6 +1394,234 @@
       ],
       "theme_id": "design-gap-manufacturing-process",
       "sequence_within_theme": 1
+    },
+    {
+      "hypothesis_id": "design-hypothesis-run-20260926T095725Z-139664c13c1d",
+      "program_id": "SGL-001",
+      "run_id": "run-20260926T095725Z-139664c13c1d",
+      "created_at": "2026-09-26T09:57:25.029084Z",
+      "title": "Hypothesis: A scale-sensitive intact-EV recovery loss during TFF-based concentration distinguishes manufacturing scale effects from analytical noise",
+      "design_question": "Daily question: Does the TFF concentration step used during scale-up reproducibly reduce the orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) in a manner that tracks with process-scale parameters (flux, transmembrane pressure, and cumulative processed volume) rather than reflecting assay variability?",
+      "primary_domain": "manufacturing",
+      "secondary_domains": [
+        "fractionation",
+        "product_identity",
+        "process"
+      ],
+      "selected_gap_id": "design-gap-scale-control",
+      "proposed_product_change_or_attribute": "If supported, define a scale-control acceptance gate: allowable TFF operating envelope (transmembrane pressure/flux/volume per cassette) that preserves an intact-EV-associated analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive behavior) for downstream drug-substance definition.",
+      "biological_rationale": "MISEV2023 emphasizes that handling and processing can alter apparent EV identity and that analytical signals can be lost by processing artifacts. Demonstrating that a specific, scalable TFF exposure reproducibly degrades a membrane-protected, particle-associated signature would identify a manufacturable process parameter set that preserves putative intact-EV identity and supports downstream CMC decisions.",
+      "manufacturing_rationale": "TFF is a widely used scalable concentration step. If TFF operating parameters (pressure/flux/volume) cause loss of membrane-protected capture signal while leaving bulk particle counts similar, that loss is a true manufacturing-scale effect that must be controlled as a process gate prior to representative production runs.",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "TFF concentration operating parameters (transmembrane pressure, flux, cumulative processed volume per membrane) can mechanically or shear-damage EV membranes or otherwise alter surface-marker accessibility without necessarily changing bulk particle counts."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "Loss of membrane integrity or marker accessibility will abolish an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) while particle counters may report similar counts due to non-membrane particle debris."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "Demonstrating a reproducible, parameter-linked loss of orthogonal signature across scale-relevant TFF conditions distinguishes true scale effects from analytical noise and enables definition of an operational TFF envelope as a manufacturing control."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate: MISEV recommends orthogonal analytics and notes processing sensitivity but does not quantify TFF-specific effects.",
+            "competing_explanation": "Assay interference (buffer components or capture-reagent incompatibility) or random assay variability could produce apparent loss of capture signal independent of TFF-induced damage.",
+            "missing_experiment": "Matrixed TFF parameter study with orthogonal intact-EV analytics and explicit capture-reagent compatibility controls."
+          },
+          {
+            "edge_id": "e2",
+            "source_node_id": "n2",
+            "target_node_id": "n3",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate-to-high: large-animal intranasal biodistribution concerns increase the importance of defining manufacturing effects but do not prove TFF is the causal factor.",
+            "competing_explanation": "Downstream fractionation or formulation steps (not TFF) might cause signature loss observed at scale.",
+            "missing_experiment": "Short-interval in vivo detectability comparison using materials produced under different TFF envelopes to confirm that TFF-linked signature loss affects downstream in vivo recoverability."
+          }
+        ]
+      },
+      "expected_measurable_effect": "A reproducible, parameter-dependent qualitative loss of immuno-capture signal co-localized with particle-count peaks and loss of detergent/protease sensitivity after TFF exposures that mimic scale-up conditions, while bulk particle counts remain similar between conditions.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "contradicting_evidence_ids": [],
+      "explicit_inferences": [
+        "Inference: Orthogonal intact-EV analytics (capture + particle co-localization + protection assays) are sensitive to processing conditions and can reveal scale-sensitive loss of membrane-protected signal even when particle counts are unchanged."
+      ],
+      "assumptions": [
+        "Assay reproducibility and capture-reagent compatibility controls will distinguish true signal loss from assay interference.",
+        "Source-cell conditioned-medium lots used for the matrix will be sufficiently consistent (same bank/passage) so that observed effects are attributable to TFF parameters rather than upstream variability."
+      ],
+      "competing_explanations": [
+        "Observed signal loss could be due to capture-reagent incompatibility with residual TFF membrane cleaning agents or buffers, not physical damage to EVs.",
+        "Upstream source-cell variability (senescence, donor differences) rather than TFF parameters could explain differences if not controlled."
+      ],
+      "manufacturability_assessment": "A targeted, matrixed TFF study is tractable at pilot scale. If a clear operating envelope that preserves orthogonal signature is identified, it can be translated into a controllable process gate prior to full-scale representative runs.",
+      "measurement_strategy": "Use an orthogonal intact-EV analytics workflow (density fractionation + particle counts per fraction + immuno-capture of intact material + protease/RNase protection ± detergent + protein:particle ratio) applied to matched aliquots before and after defined TFF exposures; include capture-reagent compatibility panels and positive small-EV controls.",
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20260926T095725Z-139664c13c1d-1"
+      ],
+      "proposed_potency_relationship": "If TFF exposure degrades an intact-EV identity signature, potency assays linked to membrane-protected cargo are unlikely to be reproducible across scale; preserving the signature is necessary before advancing potency assay validation.",
+      "principal_risks": [
+        "Assay interference or variability mistaken for true process-induced loss (false positive).",
+        "Upstream lot variability may confound attribution to TFF parameters if not tightly controlled.",
+        "If TFF is not the cause, resources could be wasted optimizing an irrelevant parameter."
+      ],
+      "falsification_criteria": [
+        "Failure to observe any reproducible difference in orthogonal intact-EV signature across a matrix of scale-relevant TFF parameters compared with no-TFF or gentle-control conditions across independent biological replicates (n \b8) suggests the hypothesis is falsified and TFF is not a dominant scale-sensitive driver of signature loss."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20260926T095725Z-139664c13c1d",
+        "question": "Do scale-relevant TFF concentration parameters (transmembrane pressure, flux, cumulative processed volume per cassette) reproducibly abolish an orthogonal intact-EV analytical signature while leaving bulk particle counts similar?",
+        "hypothesis_tested": "TFF operating envelope parameters encountered during scale-up cause a reproducible loss of an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) independent of bulk particle counts.",
+        "required_material": [
+          "MSC-conditioned medium from a single characterized source-cell lot (sufficient volume to run matrixed TFF conditions; same bank/passage)",
+          "Aliquots of the same enriched small-EV preparation split for TFF exposures",
+          "TFF system and membranes representative of manufacturing cassette (with controllable TMP/flux settings)",
+          "Immuno-capture reagents (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5 capture reagents)",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Protease (proteinase K) and RNase reagents",
+          "Detergent (Triton X-100 or equivalent) for membrane disruption",
+          "Density-gradient materials (iodixanol) for fractionation",
+          "Total protein assay reagents and buffers",
+          "Buffer-only and capture-reagent compatibility control panels",
+          "Positive control: characterized small EV prep (commercial or lab-validated)"
+        ],
+        "comparator": "Matched aliquots processed identically except for TFF exposure: (A) no-TFF gentle-concentration control (e.g., low-speed centrifugation or low-shear concentrator) versus (B) TFF at low TMP/low flux/low cumulative volume (bench-scale) versus (C) TFF at scale-proxy high TMP/high flux/high cumulative processed volume per cassette; include detergent-disrupted post-TFF aliquots and capture-reagent compatibility controls.",
+        "control": "Negative controls: buffer-only and detergent-disrupted samples; Positive control: commercially available characterized small EVs processed identically to verify capture and protection assay performance; capture-reagent buffer compatibility panels to detect assay interference.",
+        "assay": "Orthogonal intact-EV workflow: (1) density-gradient fractionation with particle counting per fraction; (2) immuno-capture detection of EV surface markers on intact fractions; (3) protease and RNase protection assays ± detergent on captured material; (4) total protein and protein:particle ratio per fraction; include capture-reagent compatibility checks.",
+        "primary_readout": "Qualitative co-localization (yes/no and relative strength) of particle-count peaks with capture-positive fractions and loss of captured signal after detergent + protease/RNase treatment in post-TFF samples compared with no-TFF controls, while reporting bulk particle-count differences.",
+        "secondary_readouts": [
+          "Protein:particle ratio per fraction pre/post TFF exposure",
+          "Capture-signal-to-noise in buffer compatibility panels to rule out assay interference",
+          "Mass and particle recovery (yield) after TFF conditions",
+          "Reproducibility across independent biological replicates (n \b6 conditioned-medium preps)"
+        ],
+        "success_criterion": "Qualitative success: Across independent conditioned-medium lots (n \b6), at least one scale-relevant TFF condition reproducibly abolishes or substantially diminishes the orthogonal intact-EV analytical signature (loss of capture co-localization with particle peaks and loss of detergent/protease-sensitive captured signal) while bulk particle counts remain similar to no-TFF controls; capture-reagent compatibility controls exclude assay interference.",
+        "failure_criterion": "No reproducible qualitative difference in orthogonal intact-EV signature across tested TFF parameter matrix compared with no-TFF or gentle-concentration controls across independent replicates, or apparent losses explained by capture-reagent incompatibility in buffer controls.",
+        "falsification_outcome": "If failure criteria are met, the hypothesis is falsified: TFF concentration within the tested parameter space is not a dominant scale-sensitive driver of intact-EV signature loss and the program should reprioritize other upstream or downstream process variables (e.g., fractionation, formulation, source-cell senescence) as likely causes.",
+        "dependencies": [
+          "Availability of sufficient conditioned-medium lots from the same source-cell bank and passage range",
+          "Access to a TFF system that can reproducibly set TMP/flux and cumulative processed volume to represent bench and scale-proxy conditions",
+          "Validated capture reagents and particle-count instrumentation",
+          "Analytical capacity for density-fractionation and protection assays"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "complexity": "moderate",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "Access to TFF equipment and membranes representative of intended manufacturing cassette",
+        "Sourcing of consistent conditioned-medium lots (same bank/passage) to control upstream variability",
+        "Availability of validated capture reagents and particle-count instrumentation"
+      ],
+      "human_decisions_required": [
+        "Select TFF membrane type and cassette geometry representative of intended scale",
+        "Define the TFF parameter matrix (TMP, flux, cumulative volume) to test as scale proxies",
+        "Approve use of the orthogonal intact-EV analytics panel and positive control materials"
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "Supported: The proposal is consistent with the cited canonical evidence as an inference-driven, manufacturing-focused hypothesis and experimental plan. MISEV2023 legitimately supports the need for orthogonal analytics, controls for processing sensitivity, and capture-reagent compatibility checks; driedonks et al. provides relevant translational caution about intranasal biodistribution and highlights sensitivity of outcome interpretation to formulation/labeling/species. The proposal does not claim direct TFF-caused damage as established fact and frames the missing, required experiments appropriately.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "No direct canonical evidence demonstrating that TFF operating parameters (TMP/flux/cumulative volume) mechanically or shear-damage EV membranes or alter capture-accessible surface markers in a scale-dependent way. The proposal correctly lists this as the missing experiment (matrixed TFF study with orthogonal intact-EV analytics and capture-reagent compatibility controls). Also missing are canonical data showing which TFF membrane types/cassette geometries or representative TMP/flux ranges produce such effects, and published positive controls validating the exact immuno-capture + protection workflow under TFF-relevant buffers.",
+          "concerns": [
+            "No cited direct experimental literature on TFF-specific effects on intact-EV identity—proposal depends on inference from MISEV recommendations rather than empirical TFF studies.",
+            "Upstream source-cell variability is acknowledged but remains a practical risk; rigorous lot standardization and replication (biological n) will be essential and are not yet evidenced as feasible for the claimed n.",
+            "Capture-reagent compatibility and buffer/membrane-cleaning-agent interference are plausible confounders; while the proposal includes compatibility controls, success depends on validated reagents and controls that are not guaranteed.",
+            "Driedonks et al. is used appropriately as translational caution, but it addresses intranasal biodistribution in NHPs rather than manufacturing-induced analytical signature loss—its support is indirect and should not be over-interpreted as evidence that manufacturing effects will alter in vivo recoverability."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "The proposal is a justified, actionable CMC-focused hypothesis to test whether scale-relevant TFF concentration parameters reproducibly degrade an orthogonal intact‑EV analytical signature. ISEV/MISEV guidance supports the need for orthogonal characterization and concern about processing sensitivity, and non‑human‑primate biodistribution data emphasize the translational risk of manufacturing-linked losses—so the study is appropriate and tractable at pilot scale. However, important evidence gaps and assay‑interference risks remain and must be addressed in the experimental design (capture‑reagent compatibility controls, tightly controlled source‑cell lots, and demonstration that any in‑vitro signature loss predicts downstream functional or biodistribution impact).",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-hermann-2023-neonatal-hi"
+          ],
+          "evidence_gap": "No direct experimental evidence links specific TFF operating parameters (TMP/flux/cumulative volume) to reproducible loss of orthogonal intact‑EV signatures across independent conditioned‑medium lots and scales. Missing: (1) matrixed TFF parameter data with orthogonal capture + protection assays and capture‑reagent compatibility panels; (2) replication across multiple source‑cell lots to exclude upstream variability; (3) demonstration that in‑vitro signature loss meaningfully alters downstream stability, potency, or in‑vivo biodistribution.",
+          "concerns": [
+            "Manufacturability: selection of TFF membrane/cassette geometry must match intended scale; results from one membrane or cassette type may not translate—define representative membranes and run scale‑proxy cassettes.",
+            "Process sensitivity: assay readouts (immuno‑capture, protection assays) are themselves processing‑sensitive; without capture‑reagent compatibility controls, buffer or residual cleaning agents could produce false positives attributed to TFF.",
+            "Measurement feasibility: the proposed orthogonal workflow is feasible but resource‑intensive (density gradients, particle counts per fraction, protease/RNase protection); requires validated capture reagents and sensitive particle counters—ensure assay validation and positive control EVs are available.",
+            "Lot comparability: upstream source‑cell lot variability (bank, passage, donor) is a major confounder; proposal’s reliance on a single bank/passage is necessary—plan n≥6 independent conditioned‑medium lots to assess biological reproducibility.",
+            "Stability: potential time‑dependent recovery or delayed degradation post‑TFF (e.g., during hold/storage) is not addressed—include short‑term stability/time‑course sampling post‑TFF to detect delayed effects.",
+            "Scale‑up risk: if TFF parameters do cause loss of membrane‑protected signatures while bulk particle counts are unchanged, downstream potency and identity assays will be non‑robust at scale; conversely, failure to find an effect risks wasting resources optimizing an irrelevant parameter.",
+            "Quality‑attribute relevance: the orthogonal intact‑EV signature is a plausible critical quality attribute for product identity and potency linkage but is currently exploratory; bridging any observed analytical loss to a defined CQAs (potency, in‑vivo recovery) will be required before gating production."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "The proposed matrixed TFF vs no-TFF comparison using an orthogonal intact-EV analytics workflow is causally plausible and appropriately framed to test whether TFF operating parameters can selectively abolish a membrane-protected, capture-positive EV signature while leaving bulk particle counts similar. The design includes key controls (detergent disruption, capture-reagent compatibility panels, positive EV controls) that should help discriminate assay interference from true process-induced loss. However, the proposal does not fully close two important gaps: (1) direct prior evidence that TFF-specific TMP/flux/volume exposures cause the described signature loss is limited, and (2) the linkage between the orthogonal analytical signature and downstream functional or in vivo recoverability (potency/relevancy) is asserted but not empirically addressed in the plan. To strengthen inference, add orthogonal spike-in standards, membrane-cleaning-residual assays, and an orthogonal short-term in vivo or functional readout (or rapid in vitro potency surrogate) to show that signature loss maps to impaired biological recoverability.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-hermann-2023-neonatal-hi"
+          ],
+          "evidence_gap": "No direct, published data demonstrating that controlled TFF parameters (TMP/flux/cumulative volume) reproducibly cause loss of an orthogonal intact-EV capture+protection signature while leaving particle counts unchanged. Also missing is empirical linkage showing that loss of this analytical signature predicts reduced functional activity or in vivo detectability/recoverability.",
+          "concerns": [
+            "Assay-interference risk: residual buffer components, TFF membrane cleaning agents, or capture-buffer incompatibilities could produce apparent capture-signal loss; while compatibility panels are included, additional spike-in standards and assays for residual cleaning agents would reduce false positives.",
+            "Upstream variability: source-cell lot, passage, or conditioning differences could confound attribution to TFF unless the plan enforces strict lot control and sufficient biological replicates (proposal lists n \u001e6 but falsification criterion requests n \u001e8).",
+            "Specificity of readouts to membrane integrity: immuno-capture loss could reflect epitope masking rather than membrane rupture; protease/detergent protection assays help but must be quantified and orthogonalized (e.g., lipid dye accessibility assays, electron microscopy) to strengthen mechanistic inference.",
+            "Limited linkage to function or in vivo relevance: the design tests an analytic identity signature but does not include a downstream functional or short-term in vivo recoverability readout to show that analytical loss translates to loss of biologically relevant EV properties (preclinical intranasal efficacy studies show EV-dependent outcomes but do not connect to TFF exposure).",
+            "Scale representativeness: bench-scale TFF settings may not capture cassette geometry or shear profiles at manufacturing scale; selection of membrane type and cassette geometry is a critical human decision and must be justified to generalize findings.",
+            "Yield vs identity trade-off: TFF conditions that preserve the orthogonal signature might reduce yield; the plan should pre-specify acceptable yield thresholds or how to weigh identity preservation against recovery."
+          ]
+        }
+      ],
+      "adversary_objection": "The single strongest bounded objection is assay-confounding: residual TFF buffers/cleaning agents, membrane-derived leachables, or capture-reagent incompatibility (plus co-isolated non‑vesicular material) can produce apparent loss of ‘intact‑EV’ capture signal independent of any true TFF-induced membrane damage, and given known EV analytical fragility (MISEV2023) and species/formulation-dependent biodistribution (Driedonks et al.), a reproducible analytical loss may reflect measurement artefact or non-generalizable preparation differences rather than a true, manufacturable TFF-driven biological effect.",
+      "chair_rationale": "The hypothesis is justified and experimentally tractable at pilot scale, but execution hinges on specific human decisions before testing—selecting representative TFF membrane/cassette geometry and scale-proxy parameter matrix, approving the orthogonal analytic panel and positive controls, and defining replication/controls to rule out assay interference (buffer/leachables) and upstream lot variability.",
+      "determination": "human_decision_required",
+      "status": "reviewed",
+      "promotion_human_approved": false,
+      "novelty_statement": "This hypothesis is novel because it directly tests whether a specific, scalable concentration operation (TFF) produces a reproducible, parameter-linked loss of an orthogonal intact-EV analytical signature—distinguishing true manufacturing scale effects from analytical noise—whereas prior program hypotheses proposed discrimination of fractionation state, membrane-protected bioactivity, source-cell senescence effects, or fractionation workflows without explicitly isolating a scalable concentration step and mapping it to controllable TFF process parameters.",
+      "distinguished_from_hypothesis_ids": [
+        "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+        "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+        "design-hypothesis-run-20260921T104952Z-0973c8779e9c",
+        "design-hypothesis-run-20260922T100526Z-e1fec6c837d8",
+        "design-hypothesis-run-20260923T100544Z-cc9987a71dbd",
+        "design-hypothesis-run-20260925T101645Z-dda43dc1a8b2"
+      ],
+      "theme_id": "design-gap-scale-control",
+      "sequence_within_theme": 1
     }
   ],
   "proposed_experiments": [
@@ -1648,6 +1876,50 @@
       "complexity": "moderate",
       "human_approval_state": "pending",
       "execution_status": "proposed"
+    },
+    {
+      "experiment_id": "design-experiment-run-20260926T095725Z-139664c13c1d",
+      "question": "Do scale-relevant TFF concentration parameters (transmembrane pressure, flux, cumulative processed volume per cassette) reproducibly abolish an orthogonal intact-EV analytical signature while leaving bulk particle counts similar?",
+      "hypothesis_tested": "TFF operating envelope parameters encountered during scale-up cause a reproducible loss of an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) independent of bulk particle counts.",
+      "required_material": [
+        "MSC-conditioned medium from a single characterized source-cell lot (sufficient volume to run matrixed TFF conditions; same bank/passage)",
+        "Aliquots of the same enriched small-EV preparation split for TFF exposures",
+        "TFF system and membranes representative of manufacturing cassette (with controllable TMP/flux settings)",
+        "Immuno-capture reagents (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5 capture reagents)",
+        "Particle counter (NTA or TRPS) and reagents",
+        "Protease (proteinase K) and RNase reagents",
+        "Detergent (Triton X-100 or equivalent) for membrane disruption",
+        "Density-gradient materials (iodixanol) for fractionation",
+        "Total protein assay reagents and buffers",
+        "Buffer-only and capture-reagent compatibility control panels",
+        "Positive control: characterized small EV prep (commercial or lab-validated)"
+      ],
+      "comparator": "Matched aliquots processed identically except for TFF exposure: (A) no-TFF gentle-concentration control (e.g., low-speed centrifugation or low-shear concentrator) versus (B) TFF at low TMP/low flux/low cumulative volume (bench-scale) versus (C) TFF at scale-proxy high TMP/high flux/high cumulative processed volume per cassette; include detergent-disrupted post-TFF aliquots and capture-reagent compatibility controls.",
+      "control": "Negative controls: buffer-only and detergent-disrupted samples; Positive control: commercially available characterized small EVs processed identically to verify capture and protection assay performance; capture-reagent buffer compatibility panels to detect assay interference.",
+      "assay": "Orthogonal intact-EV workflow: (1) density-gradient fractionation with particle counting per fraction; (2) immuno-capture detection of EV surface markers on intact fractions; (3) protease and RNase protection assays ± detergent on captured material; (4) total protein and protein:particle ratio per fraction; include capture-reagent compatibility checks.",
+      "primary_readout": "Qualitative co-localization (yes/no and relative strength) of particle-count peaks with capture-positive fractions and loss of captured signal after detergent + protease/RNase treatment in post-TFF samples compared with no-TFF controls, while reporting bulk particle-count differences.",
+      "secondary_readouts": [
+        "Protein:particle ratio per fraction pre/post TFF exposure",
+        "Capture-signal-to-noise in buffer compatibility panels to rule out assay interference",
+        "Mass and particle recovery (yield) after TFF conditions",
+        "Reproducibility across independent biological replicates (n \b6 conditioned-medium preps)"
+      ],
+      "success_criterion": "Qualitative success: Across independent conditioned-medium lots (n \b6), at least one scale-relevant TFF condition reproducibly abolishes or substantially diminishes the orthogonal intact-EV analytical signature (loss of capture co-localization with particle peaks and loss of detergent/protease-sensitive captured signal) while bulk particle counts remain similar to no-TFF controls; capture-reagent compatibility controls exclude assay interference.",
+      "failure_criterion": "No reproducible qualitative difference in orthogonal intact-EV signature across tested TFF parameter matrix compared with no-TFF or gentle-concentration controls across independent replicates, or apparent losses explained by capture-reagent incompatibility in buffer controls.",
+      "falsification_outcome": "If failure criteria are met, the hypothesis is falsified: TFF concentration within the tested parameter space is not a dominant scale-sensitive driver of intact-EV signature loss and the program should reprioritize other upstream or downstream process variables (e.g., fractionation, formulation, source-cell senescence) as likely causes.",
+      "dependencies": [
+        "Availability of sufficient conditioned-medium lots from the same source-cell bank and passage range",
+        "Access to a TFF system that can reproducibly set TMP/flux and cumulative processed volume to represent bench and scale-proxy conditions",
+        "Validated capture reagents and particle-count instrumentation",
+        "Analytical capacity for density-fractionation and protection assays"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "complexity": "moderate",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
     }
   ],
   "parked_hypothesis_ids": [],
@@ -1762,6 +2034,23 @@
         "design-hypothesis-run-20260925T101645Z-dda43dc1a8b2"
       ],
       "measurement_concept": "Orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks + detergent/protease-sensitive behavior) measured pre/post-process exposures.",
+      "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20260926T095725Z-139664c13c1d-1",
+      "name": "EV identity and purity",
+      "group": "identity_markers",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "This hypothesis directly probes whether TFF-scale exposures compromise an orthogonal intact-EV identity signature required for product definition.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "uncertainty": "Moderate",
+      "source_hypothesis_id": "design-hypothesis-run-20260926T095725Z-139664c13c1d",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260926T095725Z-139664c13c1d"
+      ],
+      "measurement_concept": "Orthogonal intact-EV-associated signature preservation after TFF exposure (capture co-localization with particle peaks, detergent/protease sensitivity)",
       "human_approved": false
     }
   ],
@@ -2092,10 +2381,12 @@
       "rationale": "Scale-up, source control, and process control remain canonical evidence gaps.",
       "evidence_ids": [],
       "status": "open",
-      "times_explored": 0,
-      "last_explored_at": null,
-      "latest_hypothesis_id": null,
-      "hypothesis_ids": [],
+      "times_explored": 1,
+      "last_explored_at": "2026-09-26T09:57:25.029084Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20260926T095725Z-139664c13c1d",
+      "hypothesis_ids": [
+        "design-hypothesis-run-20260926T095725Z-139664c13c1d"
+      ],
       "open_questions": [
         "Which control can distinguish scale effect from analytical noise?"
       ],
@@ -2146,7 +2437,14 @@
       "gap_id": "design-gap-manufacturing-process",
       "determination": "needs_evidence",
       "created_at": "2026-09-25T10:16:45.067683Z"
+    },
+    {
+      "run_id": "run-20260926T095725Z-139664c13c1d",
+      "hypothesis_id": "design-hypothesis-run-20260926T095725Z-139664c13c1d",
+      "gap_id": "design-gap-scale-control",
+      "determination": "human_decision_required",
+      "created_at": "2026-09-26T09:57:25.029084Z"
     }
   ],
-  "updated_at": "2026-09-25T10:16:45.067683Z"
+  "updated_at": "2026-09-26T09:57:25.029084Z"
 }
