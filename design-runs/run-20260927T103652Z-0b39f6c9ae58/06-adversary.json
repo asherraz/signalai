@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Consistent co\u2011isolation artifact: immuno-capture or fractionation reproducibly enriches non\u2011vesicular particles (lipoproteins, protein aggregates) so the multi\u2011omic fingerprint is specific to a contaminant class rather than EVs (false positive identity signal).",
+    "Insufficient analytic sensitivity / low biomass: capture-positive, detergent/protease\u2011protected fractions have too little material for reliable multi\u2011omic measurement, producing noisy, nonreproducible profiles or false negatives that confound similarity metrics.",
+    "Assay-induced artifacts: protease/detergent treatments, capture elution buffers, or spike\u2011ins differentially affect recovery across molecular classes, producing artifactual detergent-sensitivity patterns or apparent membrane protection that do not reflect in\u2011situ EV biology.",
+    "Labeling / capture\u2011reagent bias: choice of capture reagent (tetraspanin vs TIM4/AnxA5) selectively enriches distinct particle subpopulations (or co\u2011enriches bound secretome complexes), so cross\u2011lot \u201cconsistency\u201d is method\u2011dependent and not generalizable across capture methods or to in vivo function.",
+    "Downstream processing damage: manufacturing or formulation exposures selectively destroy membrane\u2011protected cargo in some lots (or during storage), creating lot\u2011to\u2011lot variability that reflects process sensitivity rather than biologically meaningful differences\u2014leading to false negatives or over\u2011stringent rejection.",
+    "Cross\u2011species translation limit: biodistribution and functional relevance of captured EV cargo may not map to clinically relevant delivery or potency (e.g., intranasal rodent efficacy vs. negligible intranasal macaque brain uptake), so an EV\u2011centric fingerprint may not predict in vivo performance or de\u2011risk translational outcomes.",
+    "Overfitting to limited lots: deriving a fingerprint from only \u22653 matched lots risks identifying process\u2011specific but not source\u2011general signatures; the metric may fail when scaled to broader donor/passage variability or alternate manufacturing runs.",
+    "Inadequate controls: inability to run sufficiently informative secretome-only, positive EV, and spike\u2011in controls (or to show that captured signals are detergent/protease\u2011sensitive) will leave ambiguity whether signals arise from membrane protection or soluble/co\u2011isolated material."
+  ],
+  "strongest_objection": "The most bounded and plausible failure is that the candidate \u201cprotected\u201d multi-omic fingerprint actually reflects reproducible co\u2011isolation of non\u2011vesicular secretome components or assay artifacts (e.g., lipoproteins, protein aggregates, or capture-reagent-associated contaminants) rather than bona fide membrane-enclosed EV cargo; because such co-isolates can be consistently carried through matched upstream processes, the assay would report a stable cross\u2011lot signature that is not specific to intact EVs and therefore would mislead downstream lot\u2011gating and translational inferences."
+}
