@@ -464,7 +464,7 @@ def test_daily_workflow_runs_design_lab_between_intelligence_and_simulation():
     design = workflow.index("python -m signalai design-lab")
     simulation = workflow.index("python -m signalai clinic-simulate")
     assert daily < design < simulation
-    assert "git add public state runs design-runs simulation-runs" in workflow
+    assert "git add public state runs design-runs atlas-runs simulation-runs" in workflow
 
 
 def test_continuous_generation_revisits_themes_and_preserves_history(tmp_path):

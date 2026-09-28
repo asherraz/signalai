@@ -43,6 +43,33 @@ class AtlasCoverage(StrEnum):
     HIGH = "high"
 
 
+class AtlasAccessLevel(StrEnum):
+    METADATA_ONLY = "metadata_only"
+    ABSTRACT = "abstract"
+    FULL_TEXT = "full_text"
+    DATASET_DESCRIPTION = "dataset_description"
+
+
+class AtlasReviewPackage(SignalModel):
+    package_id: Identifier
+    source_id: Identifier
+    relevance_summary: NonEmptyText
+    access_level: AtlasAccessLevel
+    source_locator: NonEmptyText
+    source_excerpt: NonEmptyText
+    extracted_layers: list[AtlasLayer]
+    limitations: list[NonEmptyText]
+    ready_for_human_review: bool
+    processed_at: datetime
+
+    @model_validator(mode="after")
+    def validate_package(self):
+        object.__setattr__(self, "processed_at", _require_timezone(self.processed_at, "processed_at"))
+        if self.ready_for_human_review and not self.extracted_layers:
+            raise ValueError("a review-ready package must identify at least one Atlas layer")
+        return self
+
+
 class MolecularAtlasSource(SignalModel):
     source_id: Identifier
     source_name: NonEmptyText
@@ -59,12 +86,26 @@ class MolecularAtlasSource(SignalModel):
     review_status: AtlasReviewStatus = AtlasReviewStatus.DISCOVERED
     provenance_note: NonEmptyText
     data_use_note: NonEmptyText
+    review_package: AtlasReviewPackage | None = None
+    approved_by: str | None = None
+    approved_at: datetime | None = None
 
     @model_validator(mode="after")
     def validate_source(self):
         object.__setattr__(self, "discovered_at", _require_timezone(self.discovered_at, "discovered_at"))
         if self.source_kind is AtlasSourceKind.CONTRIBUTED_DATASET:
             raise ValueError("researcher contributions must never be created by internet discovery")
+        if self.review_package and self.review_package.source_id != self.source_id:
+            raise ValueError("review package must belong to its source")
+        if self.approved_at is not None:
+            object.__setattr__(self, "approved_at", _require_timezone(self.approved_at, "approved_at"))
+        if self.review_status is AtlasReviewStatus.REVIEWED:
+            if not self.review_package or not self.review_package.ready_for_human_review:
+                raise ValueError("reviewed source requires a review-ready package")
+            if not self.approved_by or self.approved_at is None:
+                raise ValueError("reviewed source requires human approval provenance")
+        elif self.approved_by is not None or self.approved_at is not None:
+            raise ValueError("approval provenance is only valid for reviewed sources")
         return self
 
 
@@ -85,7 +126,9 @@ class MolecularAtlasWorkspace(SignalModel):
     coverage: list[AtlasCoverageItem]
     search_queries: list[NonEmptyText]
     last_discovery_at: datetime | None = None
+    last_processing_at: datetime | None = None
     discovery_errors: list[NonEmptyText] = Field(default_factory=list)
+    processing_errors: list[NonEmptyText] = Field(default_factory=list)
     updated_at: datetime
 
     @model_validator(mode="after")
@@ -93,6 +136,8 @@ class MolecularAtlasWorkspace(SignalModel):
         object.__setattr__(self, "updated_at", _require_timezone(self.updated_at, "updated_at"))
         if self.last_discovery_at is not None:
             object.__setattr__(self, "last_discovery_at", _require_timezone(self.last_discovery_at, "last_discovery_at"))
+        if self.last_processing_at is not None:
+            object.__setattr__(self, "last_processing_at", _require_timezone(self.last_processing_at, "last_processing_at"))
         if self.program_id != "SGL-001":
             raise ValueError("the molecular atlas must describe SGL-001")
         ids = [item.source_id for item in self.sources]
@@ -121,6 +166,9 @@ class PublicAtlasDiscovery(SignalModel):
     dataset_accession: str | None = None
     layers: list[AtlasLayer]
     review_status: AtlasReviewStatus
+    relevance_summary: str | None = None
+    access_level: AtlasAccessLevel | None = None
+    processed_at: datetime | None = None
 
 
 class PublicMolecularAtlas(SignalModel):
@@ -131,6 +179,7 @@ class PublicMolecularAtlas(SignalModel):
     current_questions: list[NonEmptyText]
     discovery_counts: dict[str, int]
     source_status: NonEmptyText
+    processing_status: NonEmptyText
     recent_discoveries: list[PublicAtlasDiscovery]
     contribution_headline: NonEmptyText
     contribution_description: NonEmptyText
@@ -141,3 +190,4 @@ class PublicMolecularAtlas(SignalModel):
     cta_primary: NonEmptyText
     cta_secondary: NonEmptyText
     last_discovery_at: datetime | None = None
+    last_processing_at: datetime | None = None

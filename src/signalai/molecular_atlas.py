@@ -3,19 +3,25 @@
 from __future__ import annotations
 
 import hashlib
+import html
 import json
-from datetime import datetime, timezone
+import re
+import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Callable
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 from signalai.schemas.molecular_atlas import (
-    AtlasContributionField, AtlasCoverage, AtlasCoverageItem, AtlasLayer,
+    AtlasAccessLevel, AtlasContributionField, AtlasCoverage, AtlasCoverageItem, AtlasLayer,
+    AtlasReviewPackage,
     AtlasReviewStatus, AtlasSourceKind, MolecularAtlasSource,
     MolecularAtlasWorkspace, PublicAtlasDiscovery, PublicMolecularAtlas,
 )
 from signalai.storage import publish_json
+from signalai.storage import RunStore, new_run_id
+from signalai.schemas.models import Evidence, EvidenceKind, SignalState
 
 
 DEFAULT_QUERIES = [
@@ -54,13 +60,22 @@ def _get_json(url: str, timeout: int = 30) -> dict:
         return json.loads(response.read().decode("utf-8"))
 
 
+def _get_text(url: str, timeout: int = 30) -> str:
+    request = Request(url, headers={"User-Agent": "SignalAI/0.1 molecular-atlas processing"})
+    with urlopen(request, timeout=timeout) as response:  # noqa: S310 - fixed trusted endpoints
+        return response.read().decode("utf-8", errors="replace")
+
+
 def _source_id(source: str, record_id: str) -> str:
     digest = hashlib.sha256(f"{source}:{record_id}".encode()).hexdigest()[:16]
     return f"atlas-source-{digest}"
 
 
 def discover_europe_pmc(query: str, *, limit: int, now: datetime, getter: Callable[[str], dict] = _get_json) -> list[MolecularAtlasSource]:
-    params = urlencode({"query": query, "format": "json", "pageSize": limit, "sort": "CITED desc"})
+    start = (now - timedelta(days=30)).date().isoformat()
+    end = now.date().isoformat()
+    rolling_query = f"({query}) AND FIRST_PDATE:[{start} TO {end}]"
+    params = urlencode({"query": rolling_query, "format": "json", "pageSize": limit, "sort": "FIRST_PDATE_D desc"})
     payload = getter(f"https://www.ebi.ac.uk/europepmc/webservices/rest/search?{params}")
     records = []
     for item in payload.get("resultList", {}).get("result", []):
@@ -83,7 +98,8 @@ def discover_europe_pmc(query: str, *, limit: int, now: datetime, getter: Callab
 
 
 def discover_omicsdi(query: str, *, limit: int, now: datetime, getter: Callable[[str], dict] = _get_json) -> list[MolecularAtlasSource]:
-    params = urlencode({"query": query, "start": 0, "size": limit})
+    params = urlencode({"query": query, "start": 0, "size": limit,
+                        "sortfield": "publicationDate", "order": "descending"})
     payload = getter(f"https://www.omicsdi.org/ws/dataset/search?{params}")
     records = []
     for item in payload.get("datasets", []):
@@ -118,6 +134,148 @@ def infer_layers(text: str) -> list[AtlasLayer]:
         AtlasLayer.FUNCTIONAL_POTENCY: ("potency", "functional", "bioassay"),
     }
     return [layer for layer, terms in rules.items() if any(term in lower for term in terms)]
+
+
+def _plain_text(value: str, *, limit: int = 4000) -> str:
+    value = re.sub(r"<[^>]+>", " ", value)
+    value = re.sub(r"\s+", " ", html.unescape(value)).strip()
+    return value[:limit]
+
+
+def retrieve_source_material(source: MolecularAtlasSource, *, text_getter=_get_text,
+                             json_getter=_get_json) -> tuple[AtlasAccessLevel, str, str]:
+    """Retrieve a bounded, public source excerpt without downloading raw omics files."""
+    if source.source_kind is AtlasSourceKind.PAPER:
+        url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search?{urlencode({'query': f'EXT_ID:{source.record_id}', 'format': 'json', 'pageSize': 1})}"
+        payload = json_getter(url)
+        results = payload.get("resultList", {}).get("result", [])
+        if not results:
+            return AtlasAccessLevel.METADATA_ONLY, "Europe PMC record metadata", source.title
+        item = results[0]
+        abstract = str(item.get("abstractText") or "").strip()
+        if abstract:
+            return AtlasAccessLevel.ABSTRACT, "Europe PMC abstract", _plain_text(abstract)
+        return AtlasAccessLevel.METADATA_ONLY, "Europe PMC record metadata", _plain_text(
+            " ".join(str(item.get(key) or "") for key in ("title", "journalTitle", "authorString"))
+        )
+    if source.source_kind is AtlasSourceKind.PUBLIC_OMICS_DATASET:
+        payload = json_getter(f"https://www.omicsdi.org/ws/dataset/{source.record_id}")
+        excerpt = _plain_text(" ".join(str(payload.get(key) or "") for key in (
+            "title", "name", "description", "sampleDescription", "dataProtocol", "publicationDate"
+        )))
+        return AtlasAccessLevel.DATASET_DESCRIPTION, "OmicsDI dataset metadata", excerpt or source.title
+    raise ValueError("contributed datasets require a separate governed intake pipeline")
+
+
+def _build_review_package(source: MolecularAtlasSource, *, access_level: AtlasAccessLevel,
+                          locator: str, excerpt: str, now: datetime) -> AtlasReviewPackage:
+    layers = list(dict.fromkeys([*source.layers, *infer_layers(f"{source.title} {excerpt}")]))
+    ready = bool(layers and excerpt.strip())
+    limitations = [
+        "Automated screening has not established study quality, reproducibility, or relevance to SGL-001 materials.",
+        "Reported associations must not be treated as causal mechanisms or product specifications.",
+    ]
+    if access_level is AtlasAccessLevel.METADATA_ONLY:
+        limitations.append("Only metadata was available; claims cannot be verified from the full report.")
+    if source.source_kind is AtlasSourceKind.PUBLIC_OMICS_DATASET:
+        limitations.append("Dataset files were not downloaded or analyzed; access, consent, and reuse terms remain to be reviewed.")
+    return AtlasReviewPackage(
+        package_id=f"atlas-review-{source.source_id.removeprefix('atlas-source-')}",
+        source_id=source.source_id,
+        relevance_summary=(
+            "Potentially relevant to " + ", ".join(layer.value.replace("_", " ") for layer in layers)
+            + "; requires human scientific review before use as SGL-001 evidence."
+            if layers else "No configured Molecular Atlas layer was identified during bounded screening."
+        ),
+        access_level=access_level, source_locator=locator,
+        source_excerpt=excerpt or source.title, extracted_layers=layers,
+        limitations=limitations, ready_for_human_review=ready, processed_at=now,
+    )
+
+
+def run_processing(root: Path, *, max_records: int = 2, now: datetime | None = None,
+                   retriever=retrieve_source_material) -> MolecularAtlasWorkspace:
+    """Advance a small deterministic queue; never promote evidence automatically."""
+    timestamp = now or datetime.now(timezone.utc)
+    path = root / "state" / "molecular-atlas.json"
+    workspace = MolecularAtlasWorkspace.model_validate_json(path.read_text(encoding="utf-8"))
+    selected = [item for item in workspace.sources if item.review_status is AtlasReviewStatus.TRIAGE_REQUIRED][:max_records]
+    run_id = new_run_id()
+    store = RunStore(root / "atlas-runs", run_id)
+    store.write_json("00-run-input.json", {"run_id": run_id, "source_ids": [item.source_id for item in selected], "max_records": max_records})
+    errors: list[str] = []
+    replacements: dict[str, MolecularAtlasSource] = {}
+    for index, source in enumerate(selected, start=1):
+        try:
+            access, locator, excerpt = retriever(source)
+            package = _build_review_package(source, access_level=access, locator=locator, excerpt=excerpt, now=timestamp)
+            status = AtlasReviewStatus.ELIGIBLE_FOR_REVIEW if package.ready_for_human_review else AtlasReviewStatus.REJECTED
+            replacements[source.source_id] = source.model_copy(update={
+                "layers": package.extracted_layers or source.layers,
+                "review_package": package, "review_status": status,
+            })
+            store.write_json(f"{index:02d}-review-package.json", package)
+        except Exception as exc:
+            errors.append(f"{source.source_id}: {type(exc).__name__}")
+            store.write_json(f"{index:02d}-processing-error.json", {
+                "source_id": source.source_id, "error_type": type(exc).__name__,
+            })
+    sources = [replacements.get(item.source_id, item) for item in workspace.sources]
+    updated = workspace.model_copy(update={
+        "sources": sources, "last_processing_at": timestamp,
+        "processing_errors": errors, "updated_at": timestamp,
+    })
+    publish_json(path, updated)
+    store.write_json("99-run-complete.json", {
+        "run_id": run_id, "selected": len(selected), "processed": len(replacements),
+        "errors": errors, "completed_at": timestamp,
+    })
+    return updated
+
+
+def approve_source(root: Path, source_id: str, *, reviewer: str,
+                   now: datetime | None = None) -> Evidence:
+    """Human-gated promotion of one processed candidate into canonical evidence."""
+    if not reviewer.strip():
+        raise ValueError("reviewer identity is required")
+    timestamp = now or datetime.now(timezone.utc)
+    atlas_path = root / "state" / "molecular-atlas.json"
+    state_path = root / "state" / "signal-state.json"
+    workspace = MolecularAtlasWorkspace.model_validate_json(atlas_path.read_text(encoding="utf-8"))
+    source = next((item for item in workspace.sources if item.source_id == source_id), None)
+    if source is None:
+        raise ValueError("unknown Molecular Atlas source")
+    if source.review_status is not AtlasReviewStatus.ELIGIBLE_FOR_REVIEW or not source.review_package:
+        raise ValueError("source is not eligible for human approval")
+    package = source.review_package
+    evidence = Evidence(
+        evidence_id=f"ev-atlas-{source.source_id.removeprefix('atlas-source-')}",
+        kind=(EvidenceKind.PUBLICATION if source.source_kind is AtlasSourceKind.PAPER else EvidenceKind.DATASET),
+        title=source.title, source_uri=source.source_url,
+        source_identifier=source.dataset_accession or source.record_id,
+        locator=package.source_locator, excerpt=package.source_excerpt,
+        retrieved_at=package.processed_at,
+        content_sha256=hashlib.sha256(package.source_excerpt.encode()).hexdigest(),
+        metadata={
+            "atlas_source_id": source.source_id, "access_level": package.access_level.value,
+            "layers": [item.value for item in package.extracted_layers],
+            "human_reviewed_by": reviewer, "human_reviewed_at": timestamp.isoformat(),
+            "limitations": package.limitations,
+        },
+    )
+    scientific = SignalState.model_validate_json(state_path.read_text(encoding="utf-8"))
+    by_id = {item.evidence_id: item for item in scientific.evidence}
+    by_id[evidence.evidence_id] = evidence
+    publish_json(state_path, scientific.model_copy(update={"evidence": list(by_id.values())}))
+    reviewed = source.model_copy(update={
+        "review_status": AtlasReviewStatus.REVIEWED,
+        "approved_by": reviewer, "approved_at": timestamp,
+    })
+    publish_json(atlas_path, workspace.model_copy(update={
+        "sources": [reviewed if item.source_id == source_id else item for item in workspace.sources],
+        "updated_at": timestamp,
+    }))
+    return evidence
 
 
 def run_discovery(root: Path, *, limit_per_query: int = 5, now: datetime | None = None,
@@ -169,12 +327,20 @@ def export_molecular_atlas(workspace: MolecularAtlasWorkspace) -> PublicMolecula
         ], discovery_counts=counts,
         source_status=("All configured sources responded." if not workspace.discovery_errors
                        else "One or more sources were unavailable; prior records were preserved."),
+        processing_status=(
+            "Candidate processing is current."
+            if not workspace.processing_errors
+            else "One or more candidates could not be processed; they remain queued for a later run."
+        ),
         recent_discoveries=[PublicAtlasDiscovery(
             source_id=item.source_id, source_name=item.source_name,
             source_kind=item.source_kind, record_id=item.record_id, title=item.title,
             source_url=item.source_url, publication_date=item.publication_date,
             dataset_accession=item.dataset_accession, layers=item.layers,
             review_status=item.review_status,
+            relevance_summary=(item.review_package.relevance_summary if item.review_package else None),
+            access_level=(item.review_package.access_level if item.review_package else None),
+            processed_at=(item.review_package.processed_at if item.review_package else None),
         ) for item in workspace.sources[:12]],
         contribution_headline="Contribute to the Signal Molecular Atlas",
         contribution_description="Share well-annotated EV and secretome datasets to help evaluate reproducible product signatures and generate testable hypotheses.",
@@ -191,4 +357,5 @@ def export_molecular_atlas(workspace: MolecularAtlasWorkspace) -> PublicMolecula
         prohibited_submission="Do not submit patient identifiers, protected health information, credentials, confidential files, or human-level omics through the public website.",
         cta_primary="Register a dataset", cta_secondary="Discuss a collaboration",
         last_discovery_at=workspace.last_discovery_at,
+        last_processing_at=workspace.last_processing_at,
     )

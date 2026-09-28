@@ -18,7 +18,7 @@ from signalai.publisher import publish_current_public_state
 from signalai.clinic_simulation import advance_simulation
 from signalai.design_lab import DesignLabOrchestrator
 from signalai.product_strategy import ProductStrategyOrchestrator
-from signalai.molecular_atlas import run_discovery
+from signalai.molecular_atlas import approve_source, run_discovery, run_processing
 from signalai.schemas import (
     DevelopmentAgenda,
     SignalState,
@@ -139,8 +139,29 @@ def molecular_atlas_discover_main() -> None:
     publish_current_public_state(root)
     print(
         f"Molecular Atlas discovery completed: {len(workspace.sources)} candidate records; "
-        "all require human review"
+        "all new records require review"
     )
+
+
+def molecular_atlas_process_main() -> None:
+    root = Path.cwd()
+    workspace = run_processing(
+        root,
+        max_records=int(environ.get("SIGNALAI_ATLAS_PROCESS_LIMIT", "2")),
+    )
+    publish_current_public_state(root)
+    counts = {}
+    for item in workspace.sources:
+        counts[item.review_status.value] = counts.get(item.review_status.value, 0) + 1
+    print(f"Molecular Atlas processing completed: {json.dumps(counts, sort_keys=True)}")
+
+
+def molecular_atlas_approve_main(source_id: str, reviewer: str | None) -> None:
+    if not reviewer:
+        raise ValueError("--reviewer is required for evidence approval")
+    evidence = approve_source(Path.cwd(), source_id, reviewer=reviewer)
+    publish_current_public_state(Path.cwd())
+    print(f"Approved canonical evidence {evidence.evidence_id}")
 
 
 def clinic_simulation_main(target: str | None = None) -> None:

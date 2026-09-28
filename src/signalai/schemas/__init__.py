@@ -78,8 +78,8 @@ from signalai.schemas.public_manufacturing import (
     PublicFlagshipManufacturingSummary, PublicManufacturingState,
 )
 from signalai.schemas.molecular_atlas import (
-    AtlasContributionField, AtlasCoverage, AtlasCoverageItem, AtlasLayer,
-    AtlasReviewStatus, AtlasSourceKind, MolecularAtlasSource,
+    AtlasAccessLevel, AtlasContributionField, AtlasCoverage, AtlasCoverageItem, AtlasLayer,
+    AtlasReviewPackage, AtlasReviewStatus, AtlasSourceKind, MolecularAtlasSource,
     MolecularAtlasWorkspace, PublicAtlasDiscovery, PublicMolecularAtlas,
 )
 from signalai.schemas.design_lab import (

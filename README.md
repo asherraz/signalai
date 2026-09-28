@@ -53,6 +53,25 @@ candidate-source metadata, and a metadata-first researcher contribution flow.
 Raw or participant-level contributions must use separately governed storage,
 rights review, and controlled transfer—not Git or the public JSON contract.
 
+Discovery uses a rolling recent-publication window and deduplication rather than
+repeating one unbounded search. The daily workflow then advances at most two
+queued records through bounded metadata/abstract screening:
+
+```bash
+python -m signalai molecular-atlas-process
+```
+
+Processing can mark a record `eligible_for_review`, but it cannot add canonical
+evidence. A named human reviewer must explicitly promote one eligible record:
+
+```bash
+python -m signalai molecular-atlas-approve <atlas-source-id> --reviewer <reviewer-id>
+```
+
+Only that approval command appends the provenance-linked record to canonical
+`state/signal-state.json`. Public counts, queue states, summaries, and source
+health can update daily even when no source is approved.
+
 The intended data flow is evidence -> typed scientific records -> reviewed
 decisions -> generated public state. Scientific claims retain evidence IDs;
 major decisions expose an explicit human-approval state. Run artifacts are
