@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-misev2023-quality-framework",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Assay insensitivity / low-biomass false negatives: immuno-capture and particle-count methods may lack sensitivity in nasal lavage/CSF/olfactory-mucosa, producing artifactual absence of intact-EV signal despite biologically relevant exposure (ev-misev2023-quality-framework).",
+    "Transient/kinetic miss: the intact-EV exposure window may be too brief or shifted relative to fixed short-interval sampling, so true exposure is systematically missed and linkage fails (ev-driedonks-2022-macaque-biodistribution).",
+    "Species and formulation generalizability: rodent intranasal positive findings may not translate to larger animals or human-relevant anatomy/formulations\u2014large-animal data show strong nasal retention and negligible brain uptake, confounding the inference that rodent effects imply intact-EV delivery (ev-driedonks-2022-macaque-biodistribution; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi).",
+    "Soluble co\u2011isolates confounding causality: bioactivity in ex vivo assays may be produced by soluble secretome components that penetrate mucosa and reach sampled compartments independently of intact EVs; membrane-disruption or capture-depletion may not remove bound or co-purified active molecules, generating false attribution to EVs (ev-misev2023-quality-framework; ev-kodali-2017-status-epilepticus).",
+    "Labeling / capture artifacts producing false positives: immuno-capture or reporter labels can bind non-EV particles or free protein, creating apparent capture-positive signals that do not reflect intact, membrane-protected vesicles (ev-misev2023-quality-framework).",
+    "Membrane-disruption incomplete or non-specific: detergent/protease treatment intended to abolish EV-associated activity could (a) fail to fully disrupt protected cargo, (b) alter co-purified soluble factors differently across arms, or (c) generate new bioactive fragments\u2014confounding interpretation (ev-misev2023-quality-framework).",
+    "Ex vivo assay relevance and sensitivity: the chosen short-interval ex vivo microglia-like cytokine assay might not reflect the in vivo mechanism that mediates longer-term or therapeutic-relevant outcomes seen in rodent studies, leading to false-negative conclusions about EV necessity (ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi).",
+    "Batch/source variability and manufacturing signal loss: lot-to-lot differences or processing steps required to create \u2018capture-positive\u2019 fractions may change the bioactivity or the ability to detect intact-EV signatures, making reproducible linkage unmeasurable across replicates (ev-misev2023-quality-framework)."
+  ],
+  "strongest_objection": "The single strongest bounded objection is that intranasal administration may not deliver a verifiable, biologically relevant intact-EV signal to the sampled CNS compartments under realistic experimental conditions (so the proposed in vivo\u2192ex vivo bridge cannot be established): non-detection can reflect true delivery failure in larger or differently formulated models (ev-driedonks-2022-macaque-biodistribution) or reflect assay/labeling limitations called out by ISEV (ev-misev2023-quality-framework), while positive rodent functional readouts could instead be mediated by soluble secretome components (ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi). Together these make the core causal link (capture-positive intact EV exposure \u2192 unique ex vivo modulation) likely unmeasurable or confounded."
+}
