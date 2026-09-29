@@ -1,0 +1,176 @@
+{
+  "assumptions": [
+    "Assay reagents (capture antibodies / TIM4/AnxA5) have sufficient specificity for intended markers in the MSC-conditioned-medium matrix.",
+    "Particle-counting instruments (NTA/TRPS) provide reliable fractionation co-localization resolution in the chosen workflow.",
+    "Detergent + protease/RNase treatment reliably differentiates membrane-protected cargo from soluble material in this context."
+  ],
+  "biological_rationale": "MISEV2023 emphasizes orthogonal intact-EV analytics and cautions against relying on particle counts alone. Rodent intranasal efficacy literature lacks intact-EV identity linkage; a surface-marker, membrane-protection-based identity gate would enable attributing measurable exposure and support reproducible manufacturing decisions while avoiding potency claims.",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20260929T112607Z-b48027db5ada-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "group": "surface_phenotype",
+      "human_approved": false,
+      "measurement_concept": "Qualitative orthogonal identity metric: capture-positive fractions co-localizing with particle peaks and losing capture signal after membrane-disrupting treatment. Numeric acceptance limits not yet defined.",
+      "name": "Intact-EV surface-marker phenotype (capture-positive, detergent/protease-sensitive, particle-peak co-localization)",
+      "rationale": "A surface-marker phenotype measured on intact material and shown to be membrane-protected would define product identity that distinguishes EV-enriched fractions from secretome retains without making potency claims.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20260929T112607Z-b48027db5ada",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260929T112607Z-b48027db5ada"
+      ],
+      "uncertainty": "Moderate: marker-panel selection, assay sensitivity in low-biomass fractions, and buffer compatibility remain unresolved."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Capture-positive signal co-localizing with particles could reflect co-eluting non-vesicular particles (lipoproteins/aggregates) that carry or bind the same antigenic epitopes.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Program-specific co-fractionation with detergent/protease protection to confirm membrane association and rule out co-eluting non-vesicular sources.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV recommends membrane-protection and orthogonal capture as distinguishing features but does not prescribe exact marker panels or thresholds."
+      },
+      {
+        "competing_explanation": "Even if the surface-phenotype metric is measurable, it may not predict in vivo exposure differences (delivery barriers or species differences may dominate).",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Short-interval in vivo verification of capture-positive material in lavage/CSF/tissue to connect identity measurement with recoverable exposure.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: large-animal negative biodistribution after intranasal dosing increases the need for a rigorous identity gate, but does not prove that surface-phenotype preservation will enable cross-species delivery."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Presence of immuno-capture-positive canonical EV surface markers on intact material that co-localize with particle-count peaks identifies a membrane-protected particle population distinct from soluble secretome co-isolates."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Detergent + protease/RNase sensitivity of capture-positive signal (loss after membrane disruption) distinguishes membrane-protected surface-marker display from marker signal arising from non-vesicular co-isolates."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Defining this orthogonal surface-phenotype metric enables a reproducible product-identity gate that is independent of bulk particle-counts and supports downstream QC and comparability workflows."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Co-localized capture signal may arise from co-isolated non-vesicular particles that share or bind marker epitopes.",
+    "Apparent detergent sensitivity might reflect selective loss of fragile particle subpopulations or assay interference rather than universal membrane protection."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "dependencies": [
+    "Availability of \u22653 independent conditioned-medium production lots from the same source-cell bank and documented processing",
+    "Capture reagent procurement and buffer-compatibility pre-tests",
+    "Analytical throughput for fraction-level particle counting and capture assays"
+  ],
+  "design_question": "Daily design question: Which specific intact-EV surface-marker measurements (capture-positive signal on intact material, detergent/protease sensitivity, and co-localization with particle-peak fractions) constitute a reproducible product-identity metric that discriminates EV-enriched drug-substance candidates from secretome-retaining concentrates without implying potency?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+    "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+    "design-hypothesis-run-20260921T104952Z-0973c8779e9c",
+    "design-hypothesis-run-20260922T100526Z-e1fec6c837d8",
+    "design-hypothesis-run-20260923T100544Z-cc9987a71dbd",
+    "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58"
+  ],
+  "expected_measurable_effect": "In the proposed experiment, EV-enriched preparations will show capture-positive surface-marker signal that co-localizes with particle-count peaks and is substantially reduced after detergent + protease/RNase treatment; secretome-retaining concentrates will either lack co-localization or show capture signal that is detergent-insensitive.",
+  "experiment": {
+    "assay": "Orthogonal fraction-level workflow combining: (1) fractionation (iodixanol cushion or SEC) with particle-count per fraction; (2) immuno-capture ELISA or bead-capture detection of canonical EV surface markers on intact fractions; (3) protease and RNase protection assays on captured material with and without detergent; (4) total protein and protein:particle ratio per fraction.",
+    "comparator": "Matched pair from same conditioned-medium lot: (A) EV-enriched bounded fraction vs (B) concentrated secretome-retaining preparation; include detergent+protease/RNase-treated aliquots as membrane-disruption controls and buffer-only controls. Positive control: characterized small EV preparation processed in parallel.",
+    "complexity": "moderate",
+    "control": "Negative controls: buffer-only and detergent-disrupted samples. Positive controls: characterized small EV prep and capture-reagent compatibility panels.",
+    "dependencies": [
+      "Availability of consistent conditioned-medium lots (same bank/passage) for replicate testing",
+      "Access to validated capture reagents and particle-count instrumentation with sufficient sensitivity for fraction-level measurements",
+      "Laboratory capability for density/size fractionation and protection assays"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20260929T112607Z-b48027db5ada",
+    "failure_criterion": "No reproducible qualitative difference between EV-enriched fractions and secretome-retaining concentrates in co-localization or detergent/protease sensitivity across replicates, or capture-signal losses attributable to capture-reagent incompatibility per buffer-compatibility controls (see assumptions).",
+    "falsification_outcome": "If the failure criteria are met, the hypothesis is falsified: the proposed intact-EV surface-marker phenotype cannot be used as a discriminating product-identity metric and the program should treat surface-marker readouts as insufficient for identity gating and prioritize alternative fractionation, assay development, or secretome-centric definitions.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A capture-positive canonical EV surface-marker signal that co-localizes with particle-count peaks and is substantially reduced after detergent + protease/RNase treatment will be observed in EV-enriched fractions but not in concentrated secretome-retaining material from the same source-cell lots.",
+    "primary_readout": "Qualitative co-localization of particle-count peaks with capture-positive fractions and marked reduction/abolition of captured signal after detergent + protease/RNase treatment for EV-enriched fractions but not for secretome-retaining concentrates.",
+    "question": "Can an orthogonal intact-EV surface-marker workflow (capture on intact material + particle-count co-localization + detergent/protease sensitivity) discriminate EV-enriched fractions from secretome-retaining concentrates as a product-identity metric without implying potency?",
+    "required_material": [
+      "MSC-conditioned medium (same source-cell lot) processed as: (A) enriched small-EV preparation (e.g., SEC/UC or program-defined bounded fraction) and (B) concentrated conditioned medium (secretome-retaining) from the same lot",
+      "Immuno-capture reagents for canonical EV surface markers (anti-CD63, anti-CD9, anti-CD81 and/or TIM4/AnxA5 capture reagents)",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-gradient or cushion materials (iodixanol) and fractionation equipment (or SEC fractionation with known size windows)",
+      "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent)",
+      "Total protein assay reagents and buffers",
+      "Buffer-only negative controls and a characterized small-EV positive control (commercial or lab-validated) if available"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio differences between fractions",
+      "Capture-signal-to-noise and buffer-compatibility checks for capture reagents",
+      "Reproducibility across independent biological replicates (n \u2265 3 conditioned-medium lots)"
+    ],
+    "success_criterion": "Qualitative success: Across \u2265 3 independent conditioned-medium lots, EV-enriched fractions show a fraction-level particle-count peak that co-localizes with capture-positive surface-marker signal and that capture signal is substantially reduced or abolished after detergent + protease/RNase treatment; concentrated secretome-retaining preparations either lack co-localizing capture-positive fractions or show capture signal that is detergent-insensitive."
+  },
+  "explicit_inferences": [
+    "Inference: Surface-marker capture on intact material plus detergent/protease sensitivity is a mechanistically plausible discriminator of membrane-protected EVs vs non-vesicular co-isolates (MISEV-aligned).",
+    "Inference: Demonstrating this metric reproducibly across lots and through defined downstream exposures would allow its use as an identity gate without asserting potency."
+  ],
+  "falsification_criteria": [
+    "Failure to observe qualitative co-localization of capture-positive marker signal with particle-count peaks in EV-enriched fractions across independent conditioned-medium lots (n \u2265 3), or failure of captured signal to be reproducibly reduced/abolished by detergent + protease/RNase treatment, or observation that secretome-retaining concentrates display equivalent detergent-sensitive capture-positive co-localization across replicates."
+  ],
+  "human_decisions_required": [
+    "Select canonical marker panel (CD9/CD63/CD81 vs TIM4/AnxA5) for capture testing",
+    "Decide acceptable qualitative yield thresholds for treating a bounded fraction as a drug-substance candidate",
+    "Approve short list of candidate formulation buffers for capture-compatibility screening"
+  ],
+  "manufacturability_assessment": "Measuring an orthogonal surface-phenotype gate is compatible with fractionation workflows and can be integrated into scale-relevant process checks (fraction-level capture + particle counting). Yield and assay throughput constraints must be evaluated in pilot GMP-like runs before formal adoption.",
+  "manufacturing_rationale": "A surface-phenotype gate based on intact-marker capture and detergent sensitivity can be measured during fractionation and downstream processing and used as a process gate (yield + identity), addressing current CMC gaps in orthogonal QC and lot definition.",
+  "measurement_strategy": "Orthogonal fraction-level workflow: density/size fractionation (iodixanol/SEC), particle-count per fraction, immuno-capture ELISA or bead-capture on intact fractions for canonical EV surface markers (CD9/CD63/CD81 or TIM4/AnxA5), and detergent + protease/RNase challenge on captured material with matched protein and protein:particle readouts.",
+  "novelty_statement": "This hypothesis is novel because it focuses specifically on an orthogonal intact-EV surface-phenotype identity metric (capture-positive canonical-surface markers on intact material that are detergent/protease-sensitive and co-localize with particle-peak fractions) as a product-identity gate for SGL-001 secretome-derived intranasal candidates. Prior program hypotheses addressed intact-EV fractionation, protected cargo, potency linkage, source-cell senescence, and process sensitivity, but none proposed adopting a surface-marker, membrane-protection-based identity gate as the primary product-identity discriminator distinct from potency. This proposal introduces a discrete, testable identity attribute intended solely for product-definition and CMC gating rather than efficacy linkage.",
+  "primary_domain": "product_identity",
+  "principal_risks": [
+    "Capture signal may reflect co-isolated non-vesicular particles leading to false-positive identity assignment.",
+    "Assay sensitivity may be insufficient in low-biomass fractions or after scale-relevant processing, producing false negatives and blocking advancement.",
+    "Adoption as an identity gate before confirming manufacturable yield may create undue process constraints."
+  ],
+  "proposed_potency_relationship": "None asserted. The attribute is explicitly positioned as a product-identity metric and not as a potency or efficacy measure.",
+  "proposed_product_change_or_attribute": "Adopt a surface-phenotype identity gate defined by: (A) immuno-capture positive signal for canonical EV surface markers on intact material that co-localizes with particle-count peaks in density/size-bounded fractions, and (B) loss or marked reduction of that capture signal after detergent + protease/RNase treatment (detergent sensitivity) \u2014 to be used as a controllable identity attribute distinct from bulk particle metrics.",
+  "secondary_domains": [
+    "manufacturing",
+    "fractionation",
+    "stability"
+  ],
+  "sequence_within_theme": 1,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "theme_id": "design-gap-surface-phenotype",
+  "title": "Hypothesis: A defined intact-EV surface-marker panel (capture-positive, detergent-sensitive) provides a reproducible product-identity metric distinct from bulk particle counts for SGL-001 intranasal secretome-derived materials"
+}
