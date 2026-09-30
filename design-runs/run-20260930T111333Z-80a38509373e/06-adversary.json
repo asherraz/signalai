@@ -1,0 +1,18 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Assay interference by excipients: capture reagents or assay readouts are chemically inhibited or masked by formulation components, causing false loss of capture-positive signal despite intact EVs (mitigation: capture-compatibility matrix, but residual risk remains).",
+    "Low post-exposure biomass / detection floor: particle counts and capture signals fall below assay sensitivity after device or buffer exposure, producing false negatives that cannot be distinguished from true loss of membrane integrity.",
+    "Soluble-factor\u2013mediated bioactivity: the in vitro anti-inflammatory effect is driven by non-vesicular soluble components that survive formulation/device exposures, producing discordant outcomes where identity metrics are lost but bioactivity remains (or vice versa), undermining the intended linkage. ",
+    "Species and route translation gap: positive intranasal outcomes in rodents (preclinical efficacy) may not translate to large animals or humans\u2014large-animal intranasal data show strong retention in nasal lavage and negligible brain uptake, so compatibility gates that pass in vitro may still fail to enable short-interval in vivo recoverability. ",
+    "Capture-reagent variability and epitope masking: formulation or shear may alter surface epitope accessibility without destroying functional cargo, leading to loss of the chosen orthogonal signature while relevant activity is preserved (or the reverse), making the gate both over- and under-inclusive. ",
+    "Reproducibility across lots and manufacturing variability: minor upstream lot-to-lot differences in EV composition or carryover contaminants can interact with excipients or device shear to produce inconsistent pass/fail outcomes across the required >=3 lots, making the gate non-actionable for CMC decisions."
+  ],
+  "strongest_objection": "The single strongest bounded risk is that assay interference and sensitivity limits will make the proposed orthogonal identity + protected-bioactivity gate unmeasurable or misleading: excipient or device-exposure chemicals (or their effects on matrices) can directly inhibit capture reagents or downstream assays and low post-exposure EV biomass can fall below detection, producing reproducible \u2018\u2018compatibility-fail\u2019\u2019 results that reflect analytical artefact or detection floor rather than true loss of membrane-protected EV activity. Even if in vitro readouts are interpretable, rodent intranasal success does not guarantee recoverability or functional delivery in larger species, so preserved in vitro signatures may not predict in vivo deliverability."
+}

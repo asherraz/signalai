@@ -1,0 +1,237 @@
+{
+  "assumptions": [
+    "Assay sensitivity is adequate to detect capture-positive signal and protected bioactivity at post-processing concentrations.",
+    "Capture reagents and particle counters are available and their compatibility with excipients can be controlled for.",
+    "Candidate in vitro bioassay (LPS-stimulated human iPSC-microglia cytokine readout) is a relevant, reproducible proxy for program-relevant anti-inflammatory activity."
+  ],
+  "biological_rationale": "MISEV2023 emphasizes orthogonal intact-EV analytics and warns that handling, buffers, and process exposures can alter membrane integrity or marker accessibility; large-animal intranasal biodistribution failures further heighten the need to test whether formulation or device exposures destroy EV-associated signatures even when particle counts remain similar (evidence: ev-misev2023-quality-framework, ev-driedonks-2022-macaque-biodistribution, ev-hermann-2023-neonatal-hi).",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20260930T111333Z-80a38509373e-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "group": "identity_markers",
+      "human_approved": false,
+      "measurement_concept": "Qualitative preservation (yes/no) of capture co-localization and detergent/protease-sensitive capture signal after exposure.",
+      "name": "EV identity and purity",
+      "rationale": "Compatibility-preservation of the orthogonal intact-EV signature will be used to accept or reject formulation/device candidates for further development; numeric limits are not yet asserted.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20260930T111333Z-80a38509373e",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260930T111333Z-80a38509373e"
+      ],
+      "uncertainty": "Moderate"
+    },
+    {
+      "attribute_id": "design-signature-run-20260930T111333Z-80a38509373e-2",
+      "evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "group": "physical_attributes",
+      "human_approved": false,
+      "measurement_concept": "Qualitative detection (presence/absence) of capture-positive, particle-co-localized signal in short-interval lavage/CSF/tissue samples.",
+      "name": "Intranasal biodistribution (short-interval detectability)",
+      "rationale": "In vivo short-interval recovery in nasal lavage/CSF/olfactory-mucosa after dosing with a formulation/device condition that passed in vitro compatibility supports downstream delivery decisions (no numeric thresholds asserted).",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20260930T111333Z-80a38509373e",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260930T111333Z-80a38509373e"
+      ],
+      "uncertainty": "High"
+    },
+    {
+      "attribute_id": "design-signature-run-20260930T111333Z-80a38509373e-3",
+      "evidence_ids": [
+        "ev-kodali-2017-status-epilepticus",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-misev2023-quality-framework"
+      ],
+      "group": "functional_potency",
+      "human_approved": false,
+      "measurement_concept": "Qualitative preservation (yes/no) of protected anti-inflammatory readout (e.g., LPS-induced cytokine reduction) in capture-positive fractions and loss after detergent/protease treatment.",
+      "name": "Membrane-protected neuroinflammation-modulating bioactivity",
+      "rationale": "A membrane-protected, detergent/protease-sensitive in vitro bioactivity that is preserved after formulation/device exposures will be used as a functional compatibility metric without asserting mechanism or potency numeric limits.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20260930T111333Z-80a38509373e",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20260930T111333Z-80a38509373e"
+      ],
+      "uncertainty": "High"
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Apparent loss of capture signal could reflect assay interference by excipient components rather than true membrane damage.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Matrixed capture-reagent compatibility controls and detergent/protease protection checks for each excipient and device-exposure condition.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV recommends orthogonal analytics and notes processing sensitivity but does not quantify specific excipient or device thresholds."
+      },
+      {
+        "competing_explanation": "In vitro bioactivity could be mediated by soluble factors that survive or are unaffected by excipients, so bioactivity preservation might not track with membrane-protection.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Parallel identity and protected-bioactivity readouts after formulation/device exposures.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: rodent functional observations exist but do not establish that preserved membrane protection or identity metrics are required for activity; linkage must be tested."
+      },
+      {
+        "competing_explanation": "Delivery failures in large animals may reflect administration route or species-specific clearance independent of formulation/device compatibility.",
+        "edge_id": "e3",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution",
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Short-interval in vivo detection after model-selected formulation/device exposures to confirm that in vitro compatibility predicts in vivo recoverability.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n4",
+        "uncertainty": "High: large-animal nasal delivery uncertainty increases priority of compatibility testing, but does not identify which excipients or device parameters are causal for detectability loss."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Contact with specific nasal formulation excipient classes (ionic strength extremes, non-ionic surfactants, chelators) or passage through delivery-device geometries that create shear can alter EV membrane integrity or surface-marker accessibility without changing bulk particle counts."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Loss of membrane integrity or mask\u00ading of surface epitopes will abolish an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) while particle counters report limited change."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If a candidate formulation/device condition preserves the orthogonal intact-EV signature, the same condition will also preserve a membrane-protected in vitro neuroinflammation-modulating bioactivity (or conversely, loss of the signature will correlate with loss of membrane-protected bioactivity)."
+      },
+      {
+        "node_id": "n4",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Defining formulation/device compatibility by preservation of both the orthogonal identity signature and membrane-protected bioactivity enables a non-assumptive, functional compatibility gate suitable for CMC and comparability decisions."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Bioactivity loss after exposure may reflect selective removal of an active soluble factor rather than EV membrane disruption.",
+    "Apparent loss of capture signal could be due to direct chemical interference of excipient with the capture reagent rather than loss of EV integrity."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "dependencies": [
+    "Capture-reagent buffer-compatibility matrix development",
+    "Access to a short list of candidate nasal excipient classes prioritized by CMC and regulatory input",
+    "Device shear-profile characterization (vendor or bench simulation)"
+  ],
+  "design_question": "Daily question: Which specific nasal vehicle excipient classes and device shear exposures preserve an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive behavior) and a matched in vitro membrane-protected anti-inflammatory bioactivity, versus those that abolish both signatures despite similar bulk particle counts?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260923T100544Z-cc9987a71dbd",
+    "design-hypothesis-run-20260925T101645Z-dda43dc1a8b2",
+    "design-hypothesis-run-20260926T095725Z-139664c13c1d",
+    "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58"
+  ],
+  "expected_measurable_effect": "Qualitative partitioning of formulation/device conditions into 'compatibility-pass' (preserve capture-positive/particle-peak co-localization and detergent/protease-sensitive protected bioactivity) versus 'compatibility-fail' (loss of capture co-localization and loss/insensitivity of bioactivity) across independent lots and capture-reagent compatibility controls.",
+  "experiment": {
+    "assay": "Parallel orthogonal workflows: (1) density/size fractionation with particle counting per fraction and immuno-capture ELISA/bead-capture on intact fractions to assess co-localization; (2) protease/RNase protection \u00b1 detergent on captured material to test membrane protection; (3) apply matched fraction eluates to the in vitro neuroinflammation assay (LPS-challenged microglia readout) to test protected bioactivity; (4) total protein and protein:particle ratios per fraction; (5) capture-reagent buffer-compatibility panels to detect assay interference.",
+    "comparator": "Matrixed, paired comparisons per conditioned-medium lot: (A) no-exposure control (aliquot in baseline buffer, no device pass), versus (B...N) each formulation buffer condition \u00b1 device-shear exposure (low/mid/high). Include detergent/protease-disrupted aliquots as negative membrane-protection controls and capture-reagent compatibility controls (capture reagent incubated with formulation buffer alone).",
+    "complexity": "moderate",
+    "control": "Positive control: characterized small EV prep processed identically; assay positive control: dexamethasone in bioassay. Negative controls: vehicle-only and buffer-only fractions. Capture-compatibility controls for each excipient condition.",
+    "dependencies": [
+      "Availability of \u22653 independent conditioned-medium production lots from the same source-cell bank for reproducibility testing",
+      "Access to capture reagents, particle counters, and fractionation equipment with sufficient sensitivity",
+      "Laboratory capability for the selected in vitro neuroinflammation assay",
+      "Device-shear characterization data or rigs to simulate device exposures",
+      "Human approvals for material handling and biosafety"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-driedonks-2022-macaque-biodistribution",
+      "ev-hermann-2023-neonatal-hi"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20260930T111333Z-80a38509373e",
+    "failure_criterion": "After capture-compatibility controls, no tested formulation/device condition reproducibly preserves both the orthogonal intact-EV signature and membrane-protected bioactivity across \u22653 lots (i.e., all conditions either abolish signature or produce assay-interference indistinguishable from true loss).",
+    "falsification_outcome": "If the failure criterion is met, the hypothesis is falsified for the tested excipient/device envelope: the program should not assume formulation/device compatibility preserves intact-EV identity or protected bioactivity, and must investigate alternative approaches (immediate capture/lyophilization, secretome-centric product definition, or alternative delivery routes).",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Specific formulation excipient classes and delivery-device shear exposures will either preserve or abolish an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks + detergent/protease sensitivity) and a matched membrane-protected in vitro anti-inflammatory bioactivity; conditions that preserve both are compatible for intranasal use without assuming prior EV identity.",
+    "primary_readout": "Qualitative preservation (yes/no) per condition of (A) particle-count peak co-localizing with capture-positive fraction and detergent/protease-sensitive loss of capture signal, and (B) presence of membrane-protected anti-inflammatory effect in capture-positive fraction eluates that is abolished after detergent/protease treatment.",
+    "question": "Which nasal excipient classes and device-shear exposures preserve the orthogonal intact-EV signature and membrane-protected in vitro anti-inflammatory bioactivity versus those that abolish both, independent of bulk particle counts?",
+    "required_material": [
+      "MSC-conditioned medium (same source-cell lot) processed to yield an enriched small-EV fraction (program-defined bounded fraction) in sufficient volume for matrixing",
+      "A panel of candidate formulation buffers/excipient classes (matrix across pH, ionic strength, osmolarity, non-ionic surfactant at low and moderate concentrations, chelator presence/absence, sugar/polyol stabilizers) representative of nasal-spray formulations",
+      "Device-shear simulation rigs or representative nasal spray devices with characterized shear/pressure profiles (low-, mid-, high-shear exposures) to pass aliquots through device geometries",
+      "Immuno-capture reagents for canonical EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5 capture reagents) and capture-compatibility control reagents",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Protease (proteinase K) and RNase reagents",
+      "Detergent (e.g., Triton X-100) for membrane disruption controls",
+      "Density-fractionation materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Standardized in vitro neuroinflammation assay platform (e.g., LPS-stimulated human iPSC-derived microglia or primary microglia with IL-6/TNF-\u03b1 readout via ELISA or multiplex)",
+      "Total protein assay reagents, buffers, and consumables",
+      "Buffer-only and positive control small EV preparation (commercial or lab-validated) and a known anti-inflammatory assay control (e.g., dexamethasone)"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio per fraction post-exposure",
+      "Capture-signal-to-noise and buffer-compatibility metrics to exclude assay interference",
+      "Reproducibility across biological replicates (n \u2265 3 independent conditioned-medium lots)",
+      "Mass and particle recovery (yield) after formulation/device exposure"
+    ],
+    "success_criterion": "Qualitative success: For \u22651 formulation excipient class (and corresponding device-shear envelope), across \u22653 independent conditioned-medium lots, the condition reproducibly preserves both (A) the orthogonal intact-EV identity signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive capture signal) and (B) a membrane-protected in vitro anti-inflammatory bioactivity in capture-positive fractions, while capture-compatibility controls confirm signal is not assay interference."
+  },
+  "explicit_inferences": [
+    "Inference: Preservation of an orthogonal intact-EV identity signature is necessary (but not proven sufficient) for preserving a membrane-protected bioactivity after formulation/device exposure; this must be empirically tested with matched controls.",
+    "Inference: Capture-reagent compatibility checks are required to distinguish assay interference from true membrane damage."
+  ],
+  "falsification_criteria": [
+    "If, after appropriate capture-reagent compatibility controls, no formulation or device condition shows reproducible preservation of both the orthogonal intact-EV signature and membrane-protected bioactivity across >=3 independent conditioned-medium lots, the hypothesis is falsified for the tested excipient/device envelope and the program must treat compatibility as unresolved and consider alternative vehicle strategies (e.g., immediate capture, lyophilized formats, or secretome-centric product definition)."
+  ],
+  "human_decisions_required": [
+    "Select prioritized excipient classes and concentrations for the initial matrix (CMC/formulation lead)",
+    "Decide acceptable device-shear envelope to simulate (formulation + device engineering)",
+    "Approve selection of the in vitro neuroinflammation assay platform and success readout (preclinical lead)"
+  ],
+  "manufacturability_assessment": "Feasible: matrixed compatibility testing across a limited excipient class set and a small set of device-shear simulations is manageable in Stage-1; positive compatibility gates would simplify downstream CMC by constraining excipient and device choices.",
+  "manufacturing_rationale": "Formulation excipients and device shear are common, controllable contributors to post-production attribute loss; defining a preservative compatibility envelope early protects downstream CMC and comparability work and reduces risk of scale-up failures.",
+  "measurement_strategy": "Orthogonal intact-EV analytical signature (capture + particle-count co-localization + detergent/protease protection) and a matched in vitro membrane-protected functional assay run in parallel for each condition; include capture-reagent compatibility and buffer controls; require >=3 independent conditioned-medium lots per tested condition for reproducibility.",
+  "novelty_statement": "Novel discriminant: This hypothesis defines a compatibility test that jointly requires preservation of an orthogonal intact-EV analytical signature AND a matched membrane-protected functional readout after formulation and device-shear exposures. Prior program hypotheses tested fractionation, source senescence, scale effects, or process-induced signature loss but did not propose a single matrixed formulation+device compatibility experiment that treats formulation-induced assay interference explicitly and requires parallel protected-bioactivity verification. This explicitly bridges formulation/device compatibility decisions to orthogonal intact-EV identity and protected functional readouts rather than relying on particle counts or repeat of prior fractionation/process experiments.",
+  "primary_domain": "formulation",
+  "principal_risks": [
+    "Apparent signal loss due to capture-reagent/excipient interference rather than true EV damage (mitigate with matrixed capture-compatibility controls).",
+    "Insufficient assay sensitivity for low-biomass post-exposure samples leading to false negatives.",
+    "In vitro compatibility may not predict in vivo short-interval recoverability or large-animal translation."
+  ],
+  "proposed_potency_relationship": "Exploratory: preservation of membrane-protected bioactivity in capture-positive fractions will be used as an initial functional compatibility readout; not asserted as a validated potency assay.",
+  "proposed_product_change_or_attribute": "If supported, adopt a compatibility gate: allowed formulation excipient classes and device-shear exposure envelope that preserve an orthogonal intact-EV identity signature plus membrane-protected bioactivity (used as a process/formulation compatibility acceptance attribute), distinct from bulk-particle-based compatibility criteria.",
+  "secondary_domains": [
+    "manufacturing",
+    "potency",
+    "delivery"
+  ],
+  "sequence_within_theme": 1,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "theme_id": "design-gap-intranasal-compatibility",
+  "title": "Hypothesis: Specific intranasal formulation excipients and delivery-device shear preserve or abolish an orthogonal intact-EV analytical signature and membrane-protected bioactivity \u2014 enabling a compatibility test that does not assume pre-existing EV identity"
+}
