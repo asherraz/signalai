@@ -80,7 +80,8 @@ from signalai.schemas.public_manufacturing import (
 from signalai.schemas.molecular_atlas import (
     AtlasAccessLevel, AtlasContributionField, AtlasCoverage, AtlasCoverageItem, AtlasLayer,
     AtlasReviewPackage, AtlasReviewStatus, AtlasSourceKind, MolecularAtlasSource,
-    MolecularAtlasWorkspace, PublicAtlasDiscovery, PublicMolecularAtlas,
+    MolecularAtlasWorkspace, PublicAtlasCandidateRecord, PublicAtlasDiscovery,
+    PublicMolecularAtlas,
 )
 from signalai.schemas.design_lab import (
     AttributeGroup, AttributeRole, CausalChain, CausalEdge, CausalNode,

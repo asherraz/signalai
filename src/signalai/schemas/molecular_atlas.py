@@ -171,6 +171,32 @@ class PublicAtlasDiscovery(SignalModel):
     processed_at: datetime | None = None
 
 
+class PublicAtlasCandidateRecord(SignalModel):
+    """Sanitized, allow-listed candidate metadata for the public Atlas pipeline."""
+
+    source_id: Identifier
+    source_name: NonEmptyText
+    source_kind: AtlasSourceKind
+    record_id: NonEmptyText
+    title: NonEmptyText
+    source_url: HttpUrl
+    publication_date: str | None = None
+    dataset_accession: str | None = None
+    layers: list[AtlasLayer]
+    review_status: AtlasReviewStatus
+    relevance_summary: str | None = None
+    access_level: AtlasAccessLevel | None = None
+    discovered_at: datetime
+    processed_at: datetime | None = None
+
+    @model_validator(mode="after")
+    def validate_timestamps(self):
+        object.__setattr__(self, "discovered_at", _require_timezone(self.discovered_at, "discovered_at"))
+        if self.processed_at is not None:
+            object.__setattr__(self, "processed_at", _require_timezone(self.processed_at, "processed_at"))
+        return self
+
+
 class PublicMolecularAtlas(SignalModel):
     title: NonEmptyText
     subtitle: NonEmptyText
@@ -181,6 +207,7 @@ class PublicMolecularAtlas(SignalModel):
     source_status: NonEmptyText
     processing_status: NonEmptyText
     recent_discoveries: list[PublicAtlasDiscovery]
+    candidate_records: list[PublicAtlasCandidateRecord]
     contribution_headline: NonEmptyText
     contribution_description: NonEmptyText
     contribution_fields: list[AtlasContributionField]

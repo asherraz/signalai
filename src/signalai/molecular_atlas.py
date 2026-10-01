@@ -17,7 +17,8 @@ from signalai.schemas.molecular_atlas import (
     AtlasAccessLevel, AtlasContributionField, AtlasCoverage, AtlasCoverageItem, AtlasLayer,
     AtlasReviewPackage,
     AtlasReviewStatus, AtlasSourceKind, MolecularAtlasSource,
-    MolecularAtlasWorkspace, PublicAtlasDiscovery, PublicMolecularAtlas,
+    MolecularAtlasWorkspace, PublicAtlasCandidateRecord, PublicAtlasDiscovery,
+    PublicMolecularAtlas,
 )
 from signalai.storage import publish_json
 from signalai.storage import RunStore, new_run_id
@@ -314,6 +315,39 @@ def export_molecular_atlas(workspace: MolecularAtlasWorkspace) -> PublicMolecula
     counts = {status.value: sum(item.review_status is status for item in workspace.sources) for status in AtlasReviewStatus}
     counts["papers"] = sum(item.source_kind is AtlasSourceKind.PAPER for item in workspace.sources)
     counts["public_omics_datasets"] = sum(item.source_kind is AtlasSourceKind.PUBLIC_OMICS_DATASET for item in workspace.sources)
+    review_order = {
+        AtlasReviewStatus.ELIGIBLE_FOR_REVIEW: 0,
+        AtlasReviewStatus.TRIAGE_REQUIRED: 1,
+        AtlasReviewStatus.REJECTED: 2,
+    }
+    ordered_candidates = sorted(
+        workspace.sources,
+        key=lambda item: (
+            review_order.get(item.review_status, 3),
+            -item.discovered_at.timestamp(),
+            item.source_id,
+        ),
+    )
+
+    def public_candidate(item: MolecularAtlasSource) -> PublicAtlasCandidateRecord:
+        package = item.review_package
+        return PublicAtlasCandidateRecord(
+            source_id=item.source_id,
+            source_name=item.source_name,
+            source_kind=item.source_kind,
+            record_id=item.record_id,
+            title=item.title,
+            source_url=item.source_url,
+            publication_date=item.publication_date,
+            dataset_accession=item.dataset_accession,
+            layers=item.layers,
+            review_status=item.review_status,
+            relevance_summary=package.relevance_summary if package else None,
+            access_level=package.access_level if package else None,
+            discovered_at=item.discovered_at,
+            processed_at=package.processed_at if package else None,
+        )
+
     return PublicMolecularAtlas(
         title="SGL-001 Molecular Atlas",
         subtitle="Connecting cell source and manufacturing to surface chemistry, cargo, secretome composition, and functional potency.",
@@ -342,6 +376,7 @@ def export_molecular_atlas(workspace: MolecularAtlasWorkspace) -> PublicMolecula
             access_level=(item.review_package.access_level if item.review_package else None),
             processed_at=(item.review_package.processed_at if item.review_package else None),
         ) for item in workspace.sources[:12]],
+        candidate_records=[public_candidate(item) for item in ordered_candidates],
         contribution_headline="Contribute to the Signal Molecular Atlas",
         contribution_description="Share well-annotated EV and secretome datasets to help evaluate reproducible product signatures and generate testable hypotheses.",
         contribution_fields=[

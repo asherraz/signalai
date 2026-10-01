@@ -5,12 +5,20 @@ from signalai.molecular_atlas import (
     approve_source, discover_europe_pmc, discover_omicsdi, export_molecular_atlas,
     initial_molecular_atlas, run_discovery, run_processing,
 )
-from signalai.schemas.molecular_atlas import AtlasAccessLevel, AtlasReviewStatus, AtlasSourceKind
+from signalai.schemas.molecular_atlas import (
+    AtlasAccessLevel, AtlasReviewStatus, AtlasSourceKind, MolecularAtlasWorkspace,
+)
 from signalai.storage import publish_json
 from signalai.schemas.models import SignalState
 
 
 NOW = datetime(2026, 9, 25, 8, 0, tzinfo=timezone.utc)
+
+PUBLIC_CANDIDATE_FIELDS = {
+    "source_id", "source_name", "source_kind", "record_id", "title", "source_url",
+    "publication_date", "dataset_accession", "layers", "review_status",
+    "relevance_summary", "access_level", "discovered_at", "processed_at",
+}
 
 
 def test_discovery_adapters_create_provenance_linked_candidates():
@@ -43,6 +51,55 @@ def test_public_projection_never_claims_discoveries_are_evidence():
     assert "not validated SGL-001 evidence" in public.disclaimer
     assert "Do not submit patient identifiers" in public.prohibited_submission
     assert public.cta_primary == "Register a dataset"
+
+
+def test_public_projection_publishes_every_candidate_with_only_safe_fields():
+    root = Path(__file__).resolve().parents[1]
+    workspace = MolecularAtlasWorkspace.model_validate_json(
+        (root / "state/molecular-atlas.json").read_text()
+    )
+    public = export_molecular_atlas(workspace)
+
+    assert len(workspace.sources) == 43
+    assert len(public.candidate_records) == len(workspace.sources)
+    assert {item.source_id for item in public.candidate_records} == {
+        item.source_id for item in workspace.sources
+    }
+    for candidate in public.candidate_records:
+        assert set(candidate.model_dump(mode="json")) == PUBLIC_CANDIDATE_FIELDS
+
+    for status in AtlasReviewStatus:
+        assert public.discovery_counts[status.value] == sum(
+            item.review_status is status for item in public.candidate_records
+        )
+    assert public.discovery_counts["papers"] == sum(
+        item.source_kind is AtlasSourceKind.PAPER for item in public.candidate_records
+    )
+    assert public.discovery_counts["public_omics_datasets"] == sum(
+        item.source_kind is AtlasSourceKind.PUBLIC_OMICS_DATASET
+        for item in public.candidate_records
+    )
+
+
+def test_public_candidate_order_is_status_then_newest_and_recent_feed_is_compatible():
+    root = Path(__file__).resolve().parents[1]
+    workspace = MolecularAtlasWorkspace.model_validate_json(
+        (root / "state/molecular-atlas.json").read_text()
+    )
+    public = export_molecular_atlas(workspace)
+    rank = {
+        AtlasReviewStatus.ELIGIBLE_FOR_REVIEW: 0,
+        AtlasReviewStatus.TRIAGE_REQUIRED: 1,
+        AtlasReviewStatus.REJECTED: 2,
+    }
+    actual = [
+        (rank[item.review_status], -item.discovered_at.timestamp(), item.source_id)
+        for item in public.candidate_records
+    ]
+    assert actual == sorted(actual)
+    assert [item.source_id for item in public.recent_discoveries] == [
+        item.source_id for item in workspace.sources[:12]
+    ]
 
 
 def test_processing_advances_only_a_bounded_queue(tmp_path: Path):
