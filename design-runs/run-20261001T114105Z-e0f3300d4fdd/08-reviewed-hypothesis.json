@@ -1,0 +1,239 @@
+{
+  "adversary_objection": "The single strongest bounded objection is that preserved orthogonal intact\u2011EV signatures in vitro (capture co\u2011localization, detergent/protease sensitivity, protected\u2011cargo fingerprint, protein:particle ratio) will not predict recoverable intact\u2011EV exposure or functional delivery in relevant in vivo contexts\u2014particularly larger species and intranasal administration\u2014so passing the proposed stability gates would not ensure translational delivery or potency (i.e., the attributes are not predictive of the main clinical/PK/PD failure mode).",
+  "assumptions": [
+    "Assumption: The orthogonal assays (capture on intact material, detergent/protease protection, density/size co-localization, protected-cargo readouts) can be made robust and compatible with formulation excipients after appropriate buffer-compatibility controls (labeled as inference).",
+    "Assumption: Preserved orthogonal signatures in vitro will be necessary (but not necessarily sufficient) for in vivo short-interval recoverable intact-EV exposure; this is an inference and remains unproven."
+  ],
+  "biological_rationale": "If intact EV membranes and associated protected cargo are required to attribute activity to the EV fraction, then destabilizing storage or formulation exposures that disrupt membranes or remove protected cargo will change orthogonal intact-EV signatures even when bulk particle counts remain similar. Loss of these orthogonal signals would therefore indicate loss of the hypothesized mechanism-relevant product integrity.",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20261001T114105Z-e0f3300d4fdd-1",
+    "design-signature-run-20261001T114105Z-e0f3300d4fdd-2",
+    "design-signature-run-20261001T114105Z-e0f3300d4fdd-3"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Apparent signal loss could reflect assay interference from excipients or capture-reagent incompatibility rather than true membrane/cargo loss.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Matrixed stability and buffer-compatibility study pairing orthogonal identity/cargo analytics with controls for assay interference.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Inference: MISEV recommends orthogonal analytics and prior rodent work highlights processing sensitivity, but program-specific stability linkages are untested."
+      },
+      {
+        "competing_explanation": "Even with stability-indicating metrics, in vivo delivery failures could persist because of route or species-specific barriers unrelated to product stability.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "inference",
+        "missing_experiment": "Short-interval in vivo recovery studies using materials pass/fail by the proposed stability attributes to test whether attribute preservation predicts recoverable intact-EV exposure.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate: large-animal biodistribution uncertainty increases manufacturing risk if stability-indicating attributes are not defined; however, cross-species delivery failure may also arise from administration or species clearance factors."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Orthogonal intact-EV analytical signatures (capture-positive surface-marker co-localization with particle peaks, detergent/protease-sensitive captured signal, protected-cargo fingerprint, and particle:protein ratio) operationally report membrane integrity and EV-associated cargo protection in the drug substance."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Storage and formulation exposures (temperature, time, freeze-thaw, excipient class, device-shear) that damage EV membranes or strip associated cargo will abolish or substantially alter these orthogonal signatures while bulk particle counts may be preserved."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If orthogonal signatures change reproducibly with defined exposures, then those signatures can be used as stability-indicating attributes to define acceptable storage/formulation envelopes and as comparability criteria during manufacturing scale-up."
+      }
+    ]
+  },
+  "chair_rationale": "Technically feasible and aligned with community guidance; the hypothesis is ready to be experimentally evaluated but requires upfront capture-compatibility controls, secured \u22653 independent production lots, and short-interval in vivo recovery/comparability studies to address assay-interference, biomass, and translational-predictivity gaps before using these attributes for CMC decisions.",
+  "competing_explanations": [
+    "Assay interference by excipients or incompatibility of capture reagents with formulation buffers could masquerade as signature loss.",
+    "Bulk particle counts might remain unchanged because detection methods capture membrane fragments or non-vesicular particles that do not carry protected cargo, so particle counts alone are not stability-indicating."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "created_at": "2026-10-01T11:41:05.601035Z",
+  "dependencies": [
+    "Develop capture-compatibility buffer control panels before stability interpretation",
+    "Secure \u22653 independent, matched conditioned-medium production lots from the selected source-cell bank/passage range",
+    "Analytical platform access for protected-cargo multi-omics with spike-in normalization"
+  ],
+  "design_question": "Daily design question: Which orthogonal intact-EV analytical signals (surface-marker capture co-localized with particle peaks, detergent/protease protection, protected-cargo multi-omic fingerprint, and particle:protein ratio) are reliably lost or altered by clinically relevant storage and formulation exposures and therefore serve as stability-indicating attributes for SGL-001?",
+  "determination": "needs_evidence",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260923T100544Z-cc9987a71dbd",
+    "design-hypothesis-run-20260925T101645Z-dda43dc1a8b2",
+    "design-hypothesis-run-20260930T111333Z-80a38509373e",
+    "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58"
+  ],
+  "expected_measurable_effect": "Defined orthogonal signatures (capture-positive particle-peak co-localization, detergent/protease-sensitive captured signal, protected-cargo fingerprint, and stable protein:particle ratio) will be preserved under permitted storage/formulation conditions and reproducibly lost or altered under unacceptable conditions (e.g., multiple freeze-thaw cycles, incompatible excipient classes, elevated storage temperature).",
+  "explicit_inferences": [
+    "Inference: Orthogonal intact-EV analytics that demonstrate membrane protection and cargo association are more specific indicators of EV integrity than bulk particle counts (evidence: ev-misev2023-quality-framework).",
+    "Inference: Processing or formulation conditions that abolish orthogonal signatures may explain poor short-interval in vivo recoverability reported in larger species (evidence: ev-driedonks-2022-macaque-biodistribution); however, this is not established and requires direct testing."
+  ],
+  "falsification_criteria": [
+    "Failure to observe any reproducible, qualitative change in orthogonal intact-EV signatures (capture co-localization, detergent/protease sensitivity, protected-cargo fingerprint, or protein:particle ratio) across a matrix of clinically relevant storage/formulation exposures (n \u2265 3 lots) despite assay-compatibility controls \u2014 this would falsify the hypothesis that these signals are stability-indicating for SGL-001.",
+    "If observed signature changes are attributable to assay interference (confirmed by buffer-compatibility controls) rather than true product changes, the hypothesis is not supported until assay compatibility is addressed."
+  ],
+  "human_decisions_required": [
+    "Select the prioritized orthogonal attributes to include in the stability matrix (from the candidate attributes listed)",
+    "Define the set of clinically relevant storage/formulation/device exposure conditions to test",
+    "Allocate material and analytics budget for multi-omic protected-cargo assays across \u22653 lots"
+  ],
+  "hypothesis_id": "design-hypothesis-run-20261001T114105Z-e0f3300d4fdd",
+  "manufacturability_assessment": "Feasible: orthogonal assays use standard density-fractionation, immuno-capture, particle counters, and protected-cargo assays; implementing them as stability readouts requires investment in assay-buffer compatibility work and sufficient material yield for matrixed studies.",
+  "manufacturing_rationale": "Defining stability-indicating attributes that track membrane integrity and protected cargo enables actionable CMC criteria (acceptable storage conditions, formulation excipient classes, permissible freeze-thaw cycles, and shelf-life claims) and prevents misleading reliance on particle counts alone when evaluating batch comparability or stability.",
+  "measurement_strategy": "Matrixed stability study combining orthogonal intact-EV identity and protected-cargo analytics with buffer-compatibility controls: test relevant temperatures, durations, freeze-thaw cycles, a representative excipient matrix, and device-shear exposures. Use qualitative pass/fail criteria per condition and prioritize attributes that change reproducibly across biological lots (n \u2265 3).",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal stability workflow per condition: (1) fractionation (density or size) with particle counting per fraction; (2) immuno-capture on intact fractions and capture ELISA/bead readout for canonical surface markers; (3) detergent + protease/RNase protection testing on captured material; (4) protected-cargo profiling (targeted small-RNA panel \u00b1 detergent treatment; targeted proteomics \u00b1 protease); (5) total protein and protein:particle ratio per fraction; (6) capture-compatibility panels to detect assay interference.",
+    "comparator": "Matrixed within-lot paired comparisons: (A) no-exposure baseline control, versus matrixed conditions including defined storage temperatures (e.g., refrigerated, room temperature, elevated), durations (short/medium), 0/1/3 freeze-thaw cycles, each formulation excipient condition, and device-shear exposures. Include detergent/protease-disrupted aliquots and capture-compatibility buffer-only controls.",
+    "complexity": "moderate",
+    "control": "Negative controls: buffer-only and detergent-disrupted samples; capture-compatibility controls (capture reagents incubated with formulation buffers alone). Positive controls: commercially available characterized small EV prep (if available) processed identically and spike-in synthetic standards for omic assays; in-bioassay positive anti-inflammatory control (e.g., dexamethasone) for downstream optional protected-bioactivity readout.",
+    "dependencies": [
+      "Sufficient conditioned-medium yields from \u22653 independent lots",
+      "Validated capture reagents and particle-count instrumentation",
+      "Analytical capacity for protected-cargo multi-omic assays with spike-in standards",
+      "Buffer-compatibility and capture-assay interference controls developed prior to interpretation"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261001T114105Z-e0f3300d4fdd",
+    "failure_criterion": "No reproducible, qualitative change in orthogonal intact-EV signatures across tested conditions (n \u2265 3 lots), or all observed changes are attributable to assay interference per compatibility controls.",
+    "falsification_outcome": "If failure criteria are met, the hypothesis that these orthogonal intact-EV signatures are stability-indicating for SGL-001 is falsified; the program should (A) treat particle-count-based metrics as insufficient for stability decisions and (B) pivot to alternative stability strategies (e.g., secretome-centric definitions, immediate capture/lyophilization, or alternative identity assays) after investigating assay limitations.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Orthogonal intact-EV analytical signatures (capture-positive surface-marker co-localization with particle peaks, detergent/protease-sensitive captured signal, protected-cargo fingerprint, and protein:particle ratio) are reproducibly altered (lost or substantially changed) by unacceptable storage/formulation exposures and preserved under acceptable conditions; these changes are not due to assay interference.",
+    "primary_readout": "Qualitative preservation vs loss of: (A) co-localization of particle-count peaks with capture-positive fractions and (B) loss of captured signal after detergent + protease/RNase treatment compared with baseline control, per condition and lot.",
+    "question": "Which orthogonal intact-EV identity and protected-cargo signals are stability-indicating across storage temperatures, durations, freeze-thaw cycles, candidate nasal formulation excipients, and device-shear exposures?",
+    "required_material": [
+      "MSC-conditioned medium from \u22653 independent production lots (same source-cell bank/passage range)",
+      "Enriched small-EV preparation (program-defined bounded fraction) from each lot sufficient for matrixed testing",
+      "Candidate formulation excipient matrix (pH variants, ionic strength, representative non-ionic surfactant levels, sugars/polyols, chelators) and baseline control buffer",
+      "Device-shear simulation rigs or representative nasal spray devices with characterized shear profiles",
+      "Immuno-capture reagents for canonical EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5) and capture-compatibility control reagents",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-gradient materials (iodixanol) or SEC fractionation setup",
+      "Protease (proteinase K), RNase reagents, and detergent (e.g., Triton X-100)",
+      "Reagents and platforms for protected-cargo profiling (targeted small-RNA panel and targeted proteomics or targeted lipidomics) with spike-in controls",
+      "Total protein assay reagents and consumables"
+    ],
+    "secondary_readouts": [
+      "Presence/absence and relative conservation of protected-cargo fingerprint (protected miRNAs and detergent/protease-sensitive proteins) across conditions and lots",
+      "Protein:particle ratio shifts per fraction",
+      "Capture-compatibility metrics indicating whether observed signal loss is due to assay interference",
+      "Reproducibility across biological lots (n \u2265 3)"
+    ],
+    "success_criterion": "Qualitative success: Across \u22653 independent production lots, at least one orthogonal attribute (e.g., capture co-localization + detergent/protease sensitivity, or protected-cargo fingerprint) is reproducibly preserved under a defined set of storage/formulation/device conditions and reproducibly lost or substantially altered under at least one other tested, clinically relevant failure condition (e.g., specific excipient class or \u22653 freeze-thaw cycles), and capture-compatibility controls show that signal loss is not assay interference."
+  },
+  "novelty_statement": "This hypothesis is novel relative to prior SGL-001 design work because it reframes orthogonal intact-EV identity and protected-cargo readouts explicitly as stability-indicating attributes for formulation and shelf-life decision-making, rather than merely as identity/potency gating assays or fractionation discriminants. The proposed discriminating experiment pairs matrixed storage/formulation/device exposures with rigorous assay-compatibility controls and protected-cargo multi-omic readouts across multiple independent production lots \u2014 an integrated stability-focused test not previously proposed in the program documents.",
+  "primary_domain": "stability",
+  "principal_risks": [
+    "Assay interference by formulation excipients leading to false-positive loss of signal.",
+    "Insufficient material yield for protected-cargo multi-omic assays across a matrix of stability conditions.",
+    "Preserved orthogonal signatures may not predict in vivo exposure or functional potency in larger species."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "Exploratory: preserved intact-EV signatures and protected-cargo presence are hypothesized prerequisites for EV-associated potency but linkage to a validated mechanism-linked potency assay remains to be demonstrated (inference; uncertainty: high).",
+  "proposed_product_change_or_attribute": "Adopt one or more orthogonal intact-EV-associated stability-indicating attributes (e.g., preservation of capture-positive particle-peak co-localization with detergent/protease-sensitive signal; presence of protected-cargo fingerprint; stable protein:particle ratio) as acceptance gates for shelf-life and formulation suitability decisions.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Key inference labeled correctly but unproven: linkage between preserved orthogonal signatures and in vivo recoverable intact\u2011EV exposure is not demonstrated by provided evidence (requires direct in vivo correlation).",
+        "Assay interference risk: MISEV guidance supports orthogonal analytics but also warns that capture reagents and buffers/excipients can cause artefactual losses\u2014proposal needs robust capture\u2011compatibility controls before interpretation (explicitly noted but operational readiness unclear).",
+        "Material/bioassay sensitivity: protected multi\u2011omic fingerprinting requires sufficient biomass and cross\u2011lot reproducibility; canonical rodent studies show efficacy but do not establish reproducible multi\u2011omic fingerprints across manufacturing lots or formulations.",
+        "Translational uncertainty: NHP data (ev-driedonks-2022) show poor intranasal recoverable EV signal and strong nasal retention, providing a competing explanation for delivery failure independent of stability\u2014proposal acknowledges this but must test whether stability attributes or delivery/administration/species barriers are dominant.",
+        "Potential overreliance on particle counts: proposal correctly distinguishes particle counts from integrity metrics; nonetheless, validating that capture\u2011positive particle peaks represent intact, functional EVs (not fragments or non\u2011vesicular particles) is essential and not yet demonstrated in the canonical evidence."
+      ],
+      "conclusion": "The proposal is plausibly grounded in the ISEV quality framework and preclinical intranasal EV efficacy reports, and it correctly identifies key risks (assay interference, material yield, cross-species delivery). However, the canonical evidence does not demonstrate that the proposed orthogonal intact\u2011EV signatures actually predict recoverable intact\u2011EV exposure or in vivo delivery in larger species; that is a critical missing link. Recommend proceeding with the proposed matrixed stability and short\u2011interval in vivo recovery experiments and prioritizing capture\u2011compatibility controls and biomass assessments before relying on these attributes for CMC decisions.",
+      "evidence_gap": "No direct experimental evidence in the canonical set shows that preservation or loss of the proposed orthogonal intact\u2011EV signatures (capture co\u2011localization, detergent/protease sensitivity, protected\u2011cargo fingerprint, protein:particle ratio) predicts short\u2011interval in vivo recoverable intact\u2011EV exposure or functional delivery in larger species (e.g., non\u2011human primates) or humans. Also missing are program\u2011specific assay compatibility data demonstrating that excipients and formulation buffers do not produce false positive signature loss.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "role": "evidence_verifier",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Assay interference: formulation excipients or buffer components can alter capture or detection reagents and masquerade as loss of EV integrity; MISEV recommends orthogonal and compatibility controls (ev-misev2023-quality-framework).",
+        "Material yield and measurement feasibility: protected multi-omic cargo profiling requires sufficient biomass and validated spike-in normalization; securing \u22653 lots at scale may be limiting (noted uncertainty in proposed experiment).",
+        "Lot comparability risk: cross-lot reproducibility of protected-cargo fingerprints and capture-positive co-localization is unproven for MSC-derived preparations\u2014Hermann et al. note source-cell consistency as a translational consideration (ev-hermann-2023-neonatal-hi).",
+        "Stability vs detection ambiguity: bulk particle counts can remain similar despite loss of membrane-protected cargo (MISEV); relying on particle counts alone risks false stability conclusions (ev-misev2023-quality-framework).",
+        "Scale-up and translational risk: preservation of in vitro orthogonal signatures may not predict in vivo delivery in larger species\u2014macaque data showed poor intranasal brain/CSF recovery despite nasal retention (ev-driedonks-2022-macaque-biodistribution), so failure to demonstrate predictive linkage increases downstream clinical risk.",
+        "Process sensitivity: freeze-thaw, device-shear, and excipient classes may differentially affect membrane integrity; the proposed matrixed stability study is appropriate but operationally complex and resource-intensive."
+      ],
+      "conclusion": "The proposal to use orthogonal intact-EV signatures (capture co-localization with particle peaks, detergent/protease sensitivity, protected-cargo fingerprint, and protein:particle ratio) as stability-indicating attributes is technically feasible and aligned with community best-practice recommendations, but it is unproven as a predictive stability/potency gate for SGL-001. Key enabling analytics are standard but require upfront buffer-compatibility work and sufficient material; principal risks include assay interference, limited biomass for multi-omic readouts, lot-to-lot reproducibility, and uncertain linkage of preserved signatures to recoverable in vivo exposure (especially in larger species). Recommended next steps are to implement capture-compatibility controls, secure \u22653 independent production lots for matrixed stability testing, and run short-interval in vivo recovery/comparability studies to test whether preserved orthogonal signatures predict intact-EV exposure/potency.",
+      "evidence_gap": "No direct evidence links preservation of the proposed orthogonal intact-EV analytical signatures to reproducible, recoverable in vivo intact-EV exposure or functional potency across species and scaled production lots. Also missing are program-specific demonstration of assay compatibility with candidate excipients and data showing multi-omic protected-cargo fingerprints are reproducible across \u22653 independent production lots with available biomass.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Assay interference by formulation excipients or capture\u2011reagent incompatibility could mimic \u2018\u2018loss\u2019\u2019 of signature (MISEV guidance indicates need for orthogonal and compatibility controls).",
+        "Bulk particle counts can be preserved while membrane integrity/protected cargo are lost or replaced by non\u2011vesicular material, so particle counts alone are not stability\u2011indicating.",
+        "Protected multi\u2011omic fingerprints and detergent/protease sensitivity require sufficient biomass and well\u2011validated assays; cross\u2011lot reproducibility is uncertain and may be a limiting bottleneck for matrixed stability testing.",
+        "Preservation of orthogonal signatures in vitro may not predict in vivo recoverable intact\u2011EV exposure or therapeutic effect in larger species; non\u2011stability causes (route, species clearance, mucosal retention) could explain poor biodistribution (ev-driedonks\u20112022).",
+        "The proposed attributes do not yet have a validated, mechanism\u2011linked potency assay; thus treating them as surrogates for potency or efficacy is premature.",
+        "Material demand for multi\u2011condition, multi\u2011lot matrixed testing and for device\u2011shear simulations may be high and needs planning before committing to the proposed matrix."
+      ],
+      "conclusion": "Supported with moderate confidence for being a plausible, testable stability-hypothesis (i.e., orthogonal intact\u2011EV signatures are reasonable candidate stability-indicating attributes), but important gaps and alternative explanations remain that require experimental discrimination before using these attributes for CMC decisions.",
+      "evidence_gap": "No direct evidence links preservation or loss of the proposed orthogonal intact\u2011EV signatures in vitro to short\u2011interval recoverable intact\u2011EV exposure or functional activity in vivo across relevant species (especially larger species). Program-specific buffer/assay\u2011compatibility data and cross\u2011lot reproducibility of protected\u2011cargo fingerprints are also missing.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "mechanism",
+      "supported": true
+    }
+  ],
+  "run_id": "run-20261001T114105Z-e0f3300d4fdd",
+  "secondary_domains": [
+    "manufacturing",
+    "product_identity",
+    "fractionation",
+    "formulation"
+  ],
+  "selected_gap_id": "design-gap-stability",
+  "sequence_within_theme": 1,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "theme_id": "design-gap-stability",
+  "title": "Hypothesis: Orthogonal intact-EV identity and protected-cargo signatures are stability-indicating for SGL-001 intranasal secretome-derived materials"
+}
