@@ -1,0 +1,215 @@
+{
+  "adversary_objection": "The most bounded, high-impact failure mode is that the proposed composite \u201cintact-EV\u201d fingerprint will appear reproducible across pilot lots and sites while in fact reflecting consistent co\u2011isolation or assay artifacts (non\u2011vesicular proteins/lipoproteins, formulation components, or capture reagent interactions) rather than bona fide, membrane\u2011protected EV signals. Under that scenario the blinded inter\u2011lab concordance metric will falsely pass, producing a non\u2011numeric comparability gate that does not track the true EV material or its functional/biological relevance; this risk is amplified by species- and formulation-dependent biodistribution differences that undermine assumptions about what cargo or surface markers are mechanistically meaningful in translational contexts.",
+  "assumptions": [
+    "Sufficient material yield will be producible from pilot GMP-like lots to support multi-omic and orthogonal assays.",
+    "Capture reagents and omics platforms are available and can be harmonized with buffer-compatibility controls.",
+    "Literature supports the need for orthogonal linkage but is treated as external support (not SGL-001 results)."
+  ],
+  "biological_rationale": "MISEV2023 and rodent efficacy reports indicate intact-EV analytical linkage is needed to attribute activity and permit translational bridging; reproducible multi-omic and surface-phenotype patterns that are membrane-protected are mechanistically consistent with EV-mediated delivery hypotheses and would enable comparability decisions without prematurely fixing numeric release limits.",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20261002T111032Z-1b44f84c42fb-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Apparent reproducibility across lots could reflect consistent co-isolation of non-vesicular components or assay harmonization artifacts rather than true EV-associated conserved signals.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "A blinded, multi-lot, multi-site measurement study using the proposed orthogonal workflow with predefined qualitative pass/fail/readout rules and assay-compatibility controls.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: guidance and rodent data support the need for orthogonal linkage but do not prove which composite fingerprint elements will be robust across manufacturing."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If a reproducible, membrane-protected multi-layer fingerprint (surface-phenotype co-localized with particle peaks, protected-cargo multi-omics, and particle:protein relationships) can be measured consistently across independent pilot lots and analytical sites, then these composite signals can serve as a comparability gate without requiring immediate numeric release limits."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the fingerprint is not reproducible across lots or labs, then lot-to-lot variability is unresolved and the program cannot rely on this fingerprint for comparability decisions; numeric specification development should be deferred until robustness is demonstrated."
+      }
+    ]
+  },
+  "chair_rationale": "Proceed to the blinded, pre-specified multi-lot, multi-site feasibility experiment as described, because the approach is conceptually aligned with MISEV guidance but lacks direct empirical support. The planned study must explicitly address the highest-risk failure modes (consistent co-isolation/assay-interference, detergent/protease protection controls, spike-ins/buffer-compatibility, pilot-lot yield and stability, and inter-lab harmonization) before the fingerprint can be used as a non-numeric comparability gate.",
+  "competing_explanations": [
+    "Observed fingerprint reproducibility could be driven by consistent co-isolation of non-vesicular components rather than bona fide EV-associated, membrane-protected cargo.",
+    "Inter-lab assay harmonization rather than true biological consistency may produce apparent reproducibility."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "created_at": "2026-10-02T11:10:32.309384Z",
+  "dependencies": [
+    "Produce >=3 pilot GMP-like representative lots (manufacturing-action-representative-scale-up)",
+    "Establish orthogonal QC panel and capture-compatibility controls (manufacturing-action-orthogonal-qc)",
+    "Prepare characterized small-EV positive control material or source a validated commercial control"
+  ],
+  "design_question": "Daily question: Can a blinded, multi-lot orthogonal fingerprint composed of (A) capture-positive, detergent/protease-sensitive surface-phenotype co-localized with particle peaks, (B) a protected-cargo multi-omic fingerprint (protected miRNA + detergent-sensitive proteins), and (C) particle:protein pattern, be measured reproducibly across representative pilot lots and analytical sites to enable a comparability gate that is not a numeric release specification?",
+  "determination": "needs_evidence",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
+    "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+    "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58"
+  ],
+  "expected_measurable_effect": "A qualitative determination (reproducible fingerprint present / reproducible fingerprint absent) across >=3 independent pilot lots and at least two analytical sites, with assay-compatibility controls excluding buffer/interference artifacts; no numeric acceptance thresholds are proposed at this stage.",
+  "explicit_inferences": [
+    "Inference: Orthogonal, membrane-protection\u2013anchored fingerprints are more likely to track with biologically meaningful EV identity than bulk particle counts alone.",
+    "Inference: Blinded multi-site assessment reduces operator and analytical bias and reveals assay robustness prior to committing to numeric specifications."
+  ],
+  "falsification_criteria": [
+    "Failure to observe a reproducible composite fingerprint (capture-positive, detergent/protease-sensitive surface-phenotype co-localized with particle peaks; protected-cargo pattern in capture-positive fractions; coherent particle:protein context) across >=3 independent pilot lots and at least two analytical sites after removing assay-interference artifacts; or assay controls demonstrate that apparent signals arise from co-isolated non-vesicular components."
+  ],
+  "human_decisions_required": [
+    "Approve material allocation and blinded-sample plan for multi-site analysis",
+    "Approve participating analytical sites and harmonized SOPs",
+    "Decide go/no-go rules for using the qualitative fingerprint as a non-numeric comparability gate"
+  ],
+  "hypothesis_id": "design-hypothesis-run-20261002T111032Z-1b44f84c42fb",
+  "manufacturability_assessment": "Feasible to run three pilot GMP-like representative lots and split aliquots for blinded orthogonal analytics across two laboratories; may require material pooling or scaled single-batch runs to meet sample mass demands for multi-omic profiling.",
+  "manufacturing_rationale": "A blinded, multi-lot orthogonal fingerprint measured across pilot GMP-like runs and independent labs will reveal which composite, non-numeric signatures are robust to manufacturing and handling variability and therefore suitable to gate comparability decisions prior to defining validated numeric acceptance criteria.",
+  "measurement_strategy": "Blinded, multi-lot, multi-site orthogonal workflow: density/size fractionation to identify particle peaks; immuno-capture on intact fractions for canonical surface markers with detergent/protease protection tests; targeted protected-cargo (miRNA panel + targeted proteomics) on capture-positive fractions \u00b1 detergent/protease; particle and total protein measures to derive particle:protein context; buffer-compatibility and spike-in controls; qualitative reproducibility readout defined a priori.",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal multi-site workflow: (1) fractionate each lot to identify particle peaks and record particle counts per fraction; (2) perform immuno-capture on intact fractions for canonical surface markers and test detergent/protease sensitivity; (3) capture-positive fractions proceed to protected-cargo targeted small-RNA profiling and targeted proteomics \u00b1 detergent/protease controls; (4) measure total protein and compute particle:protein context per fraction; (5) harmonize data across sites using spike-in controls and predefined qualitative scoring rubric for fingerprint presence.",
+    "comparator": "Blinded per-lot comparisons across pilot lots and sites. Include positive control: characterized small-EV preparation processed identically; negative controls: buffer-only and detergent-disrupted aliquots; spike-in synthetic standards to monitor recovery and detect assay interference.",
+    "complexity": "high",
+    "control": "Blinded positive (characterized small EV) and negative (buffer-only, detergent-disrupted) controls at each analytical site; capture-compatibility buffer-only controls and spike-ins for omic assays.",
+    "dependencies": [
+      "Production of >=3 representative pilot GMP-like lots with sufficient yield",
+      "Two or more analytical laboratories with required orthogonal assay capability and documented capture-compatibility controls",
+      "Logistics for blinded aliquot splitting, cold-chain shipping, and harmonized assay SOPs",
+      "Access to characterized small-EV positive control material and spike-in standards"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261002T111032Z-1b44f84c42fb",
+    "failure_criterion": "No reproducible composite fingerprint across lots and sites (discordant qualitative calls), or controls reveal signals are due to assay interference or co-isolated non-vesicular components.",
+    "falsification_outcome": "If failure criterion is met, the hypothesis is falsified: the program must not rely on the proposed composite fingerprint for comparability and should pursue alternative paths (tighten fractionation, select different candidate attributes for exploration, or move toward secretome-centric definition).",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A composite orthogonal fingerprint (membrane-protected surface-phenotype co-localized with particle peaks; protected-cargo miRNA + detergent-sensitive proteins; and particle:protein pattern) will be reproducibly observed in capture-positive particle-peak fractions across >=3 pilot GMP-like lots and at least two analytical sites when assays include buffer-compatibility and spike-in controls, enabling a qualitative comparability gate without numeric release criteria.",
+    "primary_readout": "Qualitative reproducibility call: fingerprint reproducible (yes/no) per lot across sites, supported by concordant presence of (A) capture-positive surface-marker signal co-localizing with particle-count peaks and detergent/protease sensitivity, (B) protected-cargo multi-omic pattern in capture-positive fractions that is reduced after detergent/protease, and (C) consistent particle:protein context trend across lots; plus documentation that assay controls exclude buffer-interference.",
+    "question": "Can a blinded, multi-lot, multi-site orthogonal fingerprint (capture-positive detergent-sensitive surface phenotype co-localized with particle peaks; protected-cargo multi-omic pattern on captured fractions; particle:protein context) be measured reproducibly across representative pilot lots and analytical sites to support a non-numeric comparability gate?",
+    "required_material": [
+      "Aliquots from >=3 independent pilot GMP-like representative lots (same source-cell bank/passage) sufficient for orthogonal assays",
+      "Split, blinded aliquots shipped to >=2 analytical sites",
+      "Immuno-capture reagents for canonical EV markers (anti-CD63/CD9/CD81 or TIM4/AnxA5), capture-compatibility buffer panels",
+      "Particle counter (NTA or TRPS) and reagents at each site",
+      "Density-gradient (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Protease (proteinase K), RNase reagents and detergent (Triton X-100) for protection tests",
+      "Targeted small-RNA panel reagents and spike-in controls; targeted proteomics reagents and standards",
+      "Total protein assay reagents and consumables"
+    ],
+    "secondary_readouts": [
+      "Inter-site concordance metrics (qualitative agreement rates)",
+      "Spike-in recovery and assay-compatibility control results",
+      "Per-lot particle and protein recovery percentages and particle:protein ratios",
+      "Detergent/protease sensitivity of cargo signals (presence vs loss after disruption)"
+    ],
+    "success_criterion": "Qualitative success: Across >=3 independent pilot lots and >=2 analytical sites, the composite fingerprint is reproducibly detected (same qualitative fingerprint call per lot across sites) and assay-compatibility/spike-in controls exclude buffer/reagent interference. This yields a 'fingerprint reproducible' determination enabling use of the fingerprint as a comparability gate (non-numeric) for advancing lots into bridging studies."
+  },
+  "novelty_statement": "This hypothesis proposes a blinded, multi-lot, multi-site demonstration that a composite, non-numeric orthogonal fingerprint (membrane-protected surface phenotype + protected-cargo multi-omics + particle:protein context) can be used as a comparability gate prior to defining numeric release specifications. Prior hypotheses proposed orthogonal identity/cargo assays at single-site or single-lot scale or tied identity to potency or fractionation workflows; this proposal is novel because it (A) formalizes a blinded inter-lab reproducibility test specifically to create a non-numeric comparability gate, (B) mandates spike-in and buffer-compatibility controls to disambiguate assay interference and co-isolates, and (C) explicitly avoids premature numeric specification while producing evidence to support later specification development.",
+  "primary_domain": "reproducibility",
+  "principal_risks": [
+    "Insufficient material yields from pilot lots for multi-omic assays",
+    "Assay interference by formulation buffers or capture reagents producing false signals",
+    "Blinding and inter-lab harmonization complexities delaying timely readout"
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "This hypothesis does not assert potency; it treats the fingerprint as a comparability gate to select lots for subsequent potency-linkage studies.",
+  "proposed_product_change_or_attribute": "If supported, adopt a non-numeric lot-comparability fingerprint (orthogonal intact-EV identity + protected-cargo pattern + particle:protein relationship) as a gate for advancing representative lots into Stage\u20111 bridging studies and for selecting which attributes to formalize later as specifications after additional validation.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Key assumption (sufficient material yield from pilot GMP-like lots for multi-omic and orthogonal assays) is unproven in the supplied evidence \u2014 material-yield risk could prevent execution.",
+        "The proposal infers that orthogonal, membrane-protection\u2013anchored fingerprints are likely to track EV identity; canonical evidence provides guidance (ev-misev2023) but not empirical proof of inter-lot/inter-lab reproducibility for such composite fingerprints.",
+        "ev-driedonks-2022-macaque-biodistribution contradicts generalizability of delivery/readout across species and formulations and highlights that negative or nasal-retained signals could confound interpretation if not controlled.",
+        "MISEV2023 (ev-misev2023-quality-framework) specifically warns that consistent signals can arise from co-isolated non-vesicular components and recommends orthogonal controls \u2014 the proposal includes such controls, but their sufficiency and pre-specified qualitative scoring rules are not demonstrated by the supplied literature.",
+        "The rodent efficacy studies (ev-hermann-2023-neonatal-hi and related rodent reports cited elsewhere in the proposal) are preclinical efficacy evidence and should not be used as direct proof that an analytical fingerprint will predict potency or clinical relevance; the proposal correctly treats potency linkage as a later step, but the distinction must be maintained in downstream claims.",
+        "No supplied evidence documents successful blinded inter-lab harmonization of the exact assays proposed (immuno-capture + detergent/protease protection + targeted small-RNA + targeted proteomics + particle:protein ratio) or the qualitative reproducibility metrics; this is the critical missing experiment noted in the proposal."
+      ],
+      "conclusion": "Not supported. The cited consensus guidance (ev-misev2023-quality-framework) justifies orthogonal, controlled characterization and highlights risks from co-isolated non-vesicular material and assay artifacts, and the rodent MSC/EV efficacy work (ev-hermann-2023-neonatal-hi) illustrates translational considerations for source-cell consistency \u2014 both provide indirect support for running rigorous orthogonal and control-rich studies. However, no canonical evidence shows that a composite, membrane-protected multi-omic + capture-phenotype + particle:protein fingerprint is reproducibly measurable across independent pilot lots and multiple analytical sites; non-human-primate biodistribution data (ev-driedonks-2022-macaque-biodistribution) further cautions about generalizability of delivery/findings across species and formulations. Therefore the central propositional claim (that this composite fingerprint can serve as a non-numeric comparability gate prior to numeric specification) lacks direct empirical support in the supplied canonical evidence and remains an open experimental question.",
+      "evidence_gap": "No blinded, multi-lot, multi-site empirical demonstration that the proposed composite fingerprint (membrane-protected surface phenotype co-localized with particle peaks; protected-cargo multi-omics sensitive to detergent/protease; consistent particle:protein context) is reproducibly observed across \u22653 pilot GMP-like lots and \u22652 analytical sites with controls excluding assay interference or co-isolates.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "evidence_verifier",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Material yield & scale-up risk: proposal assumes pilot lots will yield sufficient material for multi-omic and orthogonal assays; this is high risk without measured yield data\u2014pooling or larger-scale single-batch runs may be required and could change product characteristics.",
+        "Measurement feasibility & process sensitivity: the workflow is complex (fractionation + immuno-capture + protected-cargo assays + particle:protein) and therefore sensitive to buffer composition, capture-reagent compatibility, and operator/lab variation; spike-ins and buffer-compatibility controls are essential to exclude assay interference.",
+        "Assay specificity / co-isolates: MISEV2023 warns that consistent co-isolation of non-vesicular components can produce artifactual 'fingerprints'; without capture-compatibility and detergent/protease protection rigor, apparent reproducibility could reflect co-isolates rather than bona fide EV-associated signals (high false-positive risk).",
+        "Inter-lab harmonization & lot comparability: blinded multi-site reproducibility is unproven; harmonizing fractionation, capture, and omics platforms across sites is operationally difficult and may delay readout or produce discordant qualitative calls.",
+        "Stability & sample handling: no stability data are presented for candidate fingerprint elements; protected RNA and detergent-sensitive proteins may degrade or be altered by freeze/thaw, shipping, or formulation, undermining comparability and increasing false negatives.",
+        "Translational relevance / species differences: robust rodent intranasal delivery and efficacy reports exist, but macaque data show poor intranasal biodistribution for some Expi293F-derived EVs, indicating route, source-cell, formulation, labeling, or species effects that could influence which fingerprint elements are relevant for lot selection and downstream potency linkage.",
+        "Operational complexity & timelines: requirement for >=3 representative pilot GMP-like lots, two analytical sites, and many orthogonal assays raises cost, timeline, and coordination risk; contingency plans for insufficient material or discordant site results are not specified."
+      ],
+      "conclusion": "The proposed blinded, multi-lot, multi-site orthogonal fingerprint approach is conceptually aligned with ISEV/MISEV guidance and rodent demonstrations of EV-associated signals, and it is a reasonable, conservative path for gating lot comparability without premature numeric release limits. However, it faces important practical and translational risks that must be resolved before it can be relied on: uncertain pilot-lot yields for multi-omic assays, high assay complexity and susceptibility to co-isolated non-vesicular material or buffer interference, inter-lab harmonization challenges, potential instability of putative fingerprint components during storage/handling/scale-up, and limited non-human-primate evidence for intranasal EV brain delivery that could affect downstream potency-linkage choices. Execute a blinded, pre-specified multi-lot, multi-site feasibility study with defined positive/negative controls, spike-ins, and yield/stability metrics before adopting the fingerprint as a comparability gate.",
+      "evidence_gap": "No direct experimental evidence provided that (a) sufficient material yield from representative pilot GMP-like lots exists to support the specified orthogonal multi-omic workflow, (b) the composite fingerprint is reproducible across blinded lots and independent analytical sites, and (c) fingerprint components are stable through anticipated storage/shipping/scale-up conditions. A blinded multi-site, multi-lot experimental demonstration with predefined qualitative pass/fail rules and stability/yield data is missing.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Primary competing explanations are plausible and not fully excluded: consistent co\u2011isolation of non\u2011vesicular components (protein complexes, lipoproteins, aggregated cargo) could produce reproducible signatures across lots and sites; assay harmonization artifacts (shared reagents, capture reagents that pull non\u2011EV particles) could create false concordance.",
+        "The proposed readouts (surface capture + protected\u2011cargo profiling + particle:protein) are logically linked to EV identity but are not by themselves mechanistically linked to therapeutic potency; absence of an orthogonal potency linkage weakens the claim that the fingerprint is therapeutically meaningful.",
+        "Detergent/protease protection tests reduce but do not completely prove membrane\u2011enclosure for all signals (e.g., strong protein complexes or membrane fragments can show partial sensitivity patterns); additional orthogonal evidence (density/floatation behavior, EM visualization, protease accessibility mapping) is needed.",
+        "The plan relies on sufficient material yields for multi\u2011omic profiling; low yields could force pooling or compromise blinded design and reduce the ability to assess lot variability.",
+        "Non\u2011rodent biodistribution data (NHP) indicate intranasal delivery outcomes may not generalize across species, routes, or EV sources\u2014this raises concern about assuming a fingerprint tied to a delivery mechanism will be relevant for downstream functional bridging without species\u2011appropriate data.",
+        "Inter\u2011lab harmonization is operationally challenging; residual site\u2011specific preanalytics (freeze/thaw, fractionation timing, instrument calibration) could drive discordance or artificial concordance if not tightly controlled."
+      ],
+      "conclusion": "The proposed blinded, multi\u2011lot, multi\u2011site orthogonal fingerprint is conceptually plausible as a non\u2011numeric comparability gate and aligns with MISEV2023 recommendations to use orthogonal, membrane\u2011protection\u2013anchored assays. Rodent studies showing intranasal EV delivery and protective effects provide indirect support that EV\u2011anchored cargo can be biologically meaningful. However, substantial risk remains that apparent inter\u2011lot reproducibility could reflect co\u2011isolated non\u2011vesicular materials or harmonization/artifact effects rather than true, membrane\u2011protected EV signals. The plan as written addresses many key controls (detergent/protease, spike\u2011ins, blinded multi\u2011site) but lacks direct linkage of the fingerprint to any functional/potency readout and does not fully mitigate cross\u2011species or formulation generalizability concerns highlighted by NHP biodistribution data. Before adopting the fingerprint as a comparability gate, the program needs blinded multi\u2011site demonstration that (A) signals are membrane\u2011protected and lost after disruption, (B) signals are not explained by co\u2011isolated soluble or matrix components, and (C) the fingerprint predicts at least one biological activity in an orthogonal potency assay.",
+      "evidence_gap": "No blinded, multi\u2011lot, multi\u2011site data demonstrating the proposed composite fingerprint is reproducibly detectable and that it tracks with an orthogonal functional/potency endpoint. Additional gaps: standardized positive control EV material, rigorous demonstration that detergent/protease sensitivity excludes non\u2011vesicular co\u2011isolates, and cross\u2011species/route generalizability given NHP intranasal retention findings.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "mechanism",
+      "supported": false
+    }
+  ],
+  "run_id": "run-20261002T111032Z-1b44f84c42fb",
+  "secondary_domains": [
+    "product_identity",
+    "manufacturing",
+    "stability",
+    "potency"
+  ],
+  "selected_gap_id": "design-gap-lot-comparability",
+  "sequence_within_theme": 1,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-lot-comparability",
+  "title": "Hypothesis: A blinded, multi-lot orthogonal fingerprint (protected-cargo + surface-phenotype + particle:protein pattern) reproducibly distinguishes manufacturing-consistent lots without defining premature numeric release limits"
+}

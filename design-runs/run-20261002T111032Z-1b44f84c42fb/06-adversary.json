@@ -1,0 +1,18 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Consistent co\u2011isolation artifact: orthogonal assays repeatedly detect the same protein/miRNA/particle:protein pattern because non\u2011vesicular contaminants (e.g., protein aggregates, lipoproteins, or secreted complexes) co-fractionate and are captured by the immuno-capture reagents, so the fingerprint is not EV-specific (ev-misev2023-quality-framework).",
+    "Assay interference / buffer effects: formulation buffers, capture-compatibility reagents, or spike-ins systematically alter recovery or readouts in a way that mimics a lot-specific fingerprint (false positives) or masks real differences (false negatives) across sites (ev-misev2023-quality-framework).",
+    "Limited material / sampling bias: insufficient yield from pilot GMP-like lots forces pooling, heavy subsampling, or limited replicate testing, reducing power to detect lot variability and increasing chance of overfitting a non-generalizable fingerprint (ev-hermann-2023-neonatal-hi).",
+    "Inter\u2011lab harmonization artifacts: harmonized SOPs, reagents, or centralized data\u2011processing pipelines introduce correlated biases across sites so that apparent inter\u2011site concordance reflects shared method bias rather than true robustness (ev-misev2023-quality-framework).",
+    "Biological irrelevance / translation gap: even if the fingerprint is EV\u2011specific and reproducible in vitro, it may not relate to in vivo delivery or function\u2014e.g., intranasal biodistribution and brain uptake differ by species and formulation, so attributes that look conserved in production may not predict clinical or NHP behavior (ev-driedonks-2022-macaque-biodistribution; ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus).",
+    "False security enabling downstream failures: adopting a non\u2011numeric fingerprint as a gate could allow lots into bridging/potency studies that later fail functional linkage studies, wasting resources and delaying corrective action (ev-misev2023-quality-framework)."
+  ],
+  "strongest_objection": "The most bounded, high-impact failure mode is that the proposed composite \u201cintact-EV\u201d fingerprint will appear reproducible across pilot lots and sites while in fact reflecting consistent co\u2011isolation or assay artifacts (non\u2011vesicular proteins/lipoproteins, formulation components, or capture reagent interactions) rather than bona fide, membrane\u2011protected EV signals. Under that scenario the blinded inter\u2011lab concordance metric will falsely pass, producing a non\u2011numeric comparability gate that does not track the true EV material or its functional/biological relevance; this risk is amplified by species- and formulation-dependent biodistribution differences that undermine assumptions about what cargo or surface markers are mechanistically meaningful in translational contexts."
+}
