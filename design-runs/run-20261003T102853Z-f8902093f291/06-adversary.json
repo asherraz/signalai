@@ -1,0 +1,18 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "failure_modes": [
+    "Surrogate mismatch: spike-in physicochemical properties or surface marker display differ from key endogenous EV subpopulations, producing discordant recovery and protection behavior and misleading conclusions.",
+    "Selective endogenous loss: processing or source-cell variability destroys or alters an endogenous EV subpopulation while leaving the spike-in intact, so spike-in recovery masks absence of biologically relevant endogenous EVs.",
+    "Cross-reactive or non-orthogonal tracer: spike-in tracer overlaps with endogenous markers or is liberated/adsorbed in fractionation, producing artifactual co-localization or false positives.",
+    "Assay perturbation by spike-in: added spike-in alters fractionation behavior (competition for capture reagents, changes in particle:protein ratios), changing endogenous EV recovery and confounding readouts.",
+    "Inconsistent spike-in QC or batch variability: variability in spike-in preparations causes inconsistent membrane-protection readouts across replicates, producing inconclusive assay-control outcomes (assay-failure outcome).",
+    "Insufficient sensitivity or interference: capture reagents, particle counters, or protease/detergent assays lack the sensitivity or are incompatible with spike-in or matrix, producing apparent preservation of spike-in but failure to detect low-abundance endogenous signals.",
+    "Species/route translational confound persists: even with a validated in vitro spike-in-controlled identity gate, in vivo biodistribution uncertainties (e.g., intranasal retention seen in macaques) mean identity gating may not predict delivery or clinical relevance, misleading downstream decisions.",
+    "Resource/sample constraints: added assay complexity increases sample consumption and variability, reducing the number of independent lots tested and undermining reproducibility claims required by the success criterion."
+  ],
+  "strongest_objection": "The spike-in control may not be a faithful surrogate for the relevant endogenous EV subpopulation(s), so preserved spike-in recovery would validate assay performance but still permit false classification of the product as \u2018not EV-enriched\u2019 (if endogenous EVs are selectively lost or masked) or conversely permit incorrect acceptance of preparations that lack the biologically relevant endogenous EV species because the spike-in behaves differently in capture/protection assays. This surrogate-mismatch risk bounds the proposal: the control can demonstrate assay function but cannot, by itself, prove that the endogenous particles that matter for identity or downstream biology are present or preserved."
+}
