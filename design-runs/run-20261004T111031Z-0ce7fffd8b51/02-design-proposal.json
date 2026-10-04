@@ -1,0 +1,176 @@
+{
+  "assumptions": [
+    "Assay compatibility controls (capture-reagent buffer panels) will detect and exclude direct assay interference by formulation or matrix components.",
+    "The exogenous intact-EV spike-in is analytically distinguishable from endogenous EVs to permit within-sample recovery control.",
+    "The selected in vitro neuroinflammation assay is sensitive and specific enough to detect relevant modulation from fraction eluates."
+  ],
+  "biological_rationale": "Rodent intranasal efficacy reports support a secretome/EV-driven bioactivity signal but do not link activity to intact, membrane-protected EVs. MISEV2023 recommends orthogonal, membrane-protection controls and spike-ins to exclude assay failures or non-vesicular co-isolates. A spike-in-controlled, fraction-level functional assay directly links an intact-EV-associated signature to measurable bioactivity and discriminates EV-dependent versus soluble-secretome-driven effects prior to manufacturing commitments.",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20261004T111031Z-0ce7fffd8b51-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "group": "identity_markers",
+      "human_approved": false,
+      "measurement_concept": "Qualitative pass/fail: bounded fraction = EV-enriched if spike-in recovery + endogenous capture co-localization + detergent/protease-sensitive bioactivity observed.",
+      "name": "EV identity and purity",
+      "rationale": "This experiment operationalizes an orthogonal identity gate (capture-positive co-localization with particle peaks and detergent/protease sensitivity) and pairs it with spike-in recovery to control assay performance; it feeds directly into defining EV identity and purity for SGL-001.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20261004T111031Z-0ce7fffd8b51",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261004T111031Z-0ce7fffd8b51"
+      ],
+      "uncertainty": "Moderate: success depends on capture reagent performance and functional assay sensitivity."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Observed in vitro bioactivity could result from soluble proteins or non-vesicular co-isolates that co-fractionate, rather than EV-associated cargo.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Fraction-level spike-in-controlled functional co-fractionation with detergent/protease protection controls.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: literature and consensus guidance recommend membrane-protection and orthogonal assays but do not provide program-specific linkage to the selected in vitro readout."
+      },
+      {
+        "competing_explanation": "Failure to detect intact-EV exposure in vivo may arise from administration, labeling sensitivity, or species clearance differences rather than absence of EV-associated cargo.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Short-interval in vivo/bridging verification using materials classified by the proposed spike-in-controlled identity assay.",
+        "model_or_species": "non-human primate (context for delivery uncertainty)",
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: large-animal negative biodistribution increases the operational importance of proving intact-EV identity and excluding assay failure, but species- and administration-related factors remain competing explanations."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "An orthogonal intact-EV signature (exogenous spike-in recovery + endogenous capture-positive co-localization with particle peaks and detergent/protease sensitivity) identifies a membrane-protected particle fraction distinct from non-vesicular secretome co-isolates."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the membrane-protected particle fraction contains a reproducible neuroinflammation-modulating bioactivity in vitro that is abolished by detergent/protease treatment, then the bioactivity is plausibly EV-associated rather than driven by soluble secretome co-isolates."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the secretome-retaining concentrated conditioned medium lacks spike-in-validated, capture-positive particle co-localization or contains detergent-insensitive activity, then the functional signal is likely non-EV and the material should be treated as secretome for product-definition and CMC planning."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Functional signals could be mediated by soluble secretome components that co-elute with particles in the chosen fractionation window.",
+    "Apparent detergent/protease sensitivity might reflect loss of an assay-detectable epitope rather than loss of membrane protection of active cargo."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "dependencies": [
+    "Define and source an analytically traceable exogenous intact-EV spike-in (orthogonal tracer)",
+    "Develop capture-compatibility buffer panels before interpreting capture-signal loss as membrane disruption",
+    "Ensure conditioned-medium yields sufficient for fraction-level functional testing across replicates"
+  ],
+  "design_question": "Daily question: Does a membrane-protected, capture-positive particle fraction recovered from MSC-conditioned medium contain the neuroinflammation-modulating bioactivity (in vitro) while matched secretome-retaining fractions do not, when assay recovery is controlled by an exogenous intact-EV spike-in?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260920T082644Z-8f54ff6bf528"
+  ],
+  "expected_measurable_effect": "Qualitative discrimination: capture-positive, spike-in-validated particle-peak fractions produce detergent/protease-sensitive reduction of LPS-induced cytokine readout in an in vitro neuroinflammation assay, whereas secretome-retaining fractions either lack this co-localizing activity or show detergent-insensitive activity.",
+  "experiment": {
+    "assay": "Orthogonal workflow: (1) add exogenous intact-EV spike-in to each sample prior to fractionation; (2) density/size fractionation and particle-count per fraction; (3) immuno-capture on intact fractions with separate readout for spike-in tracer and endogenous markers; (4) protease/RNase protection \u00b1 detergent on captured material (both spike-in and endogenous readouts); (5) apply fraction eluates to in vitro neuroinflammation assay and measure cytokine readouts; (6) total protein and protein:particle ratio per fraction.",
+    "comparator": "Matched pair from same conditioned-medium lot: (A) bounded EV-enriched fraction spiked with exogenous intact-EV tracer versus (B) concentrated conditioned medium (secretome-retaining) spiked identically; include detergent+protease-treated aliquots and buffer-only negative controls.",
+    "complexity": "high",
+    "control": "Positive controls: characterized small EVs and dexamethasone in the bioassay. Negative controls: vehicle-only, buffer-only, and detergent-disrupted samples. Spike-in recovery serves as within-sample assay performance control.",
+    "dependencies": [
+      "Availability of consistent conditioned-medium lots (same source-cell bank/passage) and sufficient yield for multi-fraction functional testing",
+      "Access to a characterized intact-EV spike-in tracer and validated capture reagents",
+      "Laboratory capability for density/size fractionation, particle counting, and in vitro neuroinflammation assays"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-kodali-2017-status-epilepticus",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261004T111031Z-0ce7fffd8b51",
+    "failure_criterion": "Either (A) spike-in recovery confirms assay performance but endogenous capture-positive co-localization and membrane-protected bioactivity are not reproducibly observed in bounded fractions across replicates, falsifying the hypothesis, or (B) spike-in recovery is inconsistent across replicates, preventing assay-controlled discrimination (method failure) and requiring assay redesign.",
+    "falsification_outcome": "If spike-in recovery is validated but endogenous capture-positive co-localization and detergent/protease-sensitive activity do not reproducibly occur in bounded fractions, the hypothesis is falsified: the program should treat conditioned-medium-derived material as functionally indistinguishable from secretome for identity/potency decisions and redirect efforts to alternative fractionation, source-cell specification, or secretome-centric strategies.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "An orthogonal intact-EV identity gate defined by (A) recovery of an exogenous intact-EV spike-in that co-localizes with particle-count peaks and is detergent/protease-sensitive, and (B) endogenous capture-positive signal that co-localizes with particle peaks and is detergent/protease-sensitive in the bounded small-EV fraction but not in secretome-retaining concentrates, will discriminate an EV-enriched drug-substance candidate from secretome-retaining conditioned medium.",
+    "primary_readout": "Presence and reproducible magnitude of anti-inflammatory effect (e.g., reduction in LPS-induced IL-6/TNF-\u03b1) that co-localizes with particle-count peaks and capture-positive fractions and is abolished by detergent + protease/RNase; plus confirmation of spike-in membrane-protected recovery in the same fractions.",
+    "question": "Does a spike-in-validated, membrane-protected, capture-positive particle fraction from MSC-conditioned medium carry detergent/protease-sensitive neuroinflammation-modulating activity (in vitro) that is absent or detergent-insensitive in secretome-retaining concentrates?",
+    "required_material": [
+      "MSC-conditioned medium (same source-cell lot) processed into: (A) enriched small-EV preparation (SEC/UC or program-defined bounded fraction) and (B) concentrated conditioned medium without EV enrichment (secretome-retaining), matched per lot",
+      "Exogenous characterized intact-EV spike-in (orthogonal tracer: non-overlapping species or isotope-labeled) with verified marker display",
+      "Immuno-capture reagents for canonical EV surface markers (anti-CD63/CD9/CD81 and/or TIM4/AnxA5) and capture-compatibility buffer panels",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent) for membrane-disruption controls",
+      "Standardized in vitro neuroinflammation assay (e.g., LPS-stimulated human iPSC-derived microglia or primary microglia with IL-6/TNF-\u03b1 ELISA or multiplex readouts)",
+      "Total protein assay reagents and consumables",
+      "Buffer-only negative controls and characterized small-EV positive control (commercial or lab-validated) processed in parallel"
+    ],
+    "secondary_readouts": [
+      "Spike-in recovery percentage and membrane-protection behavior per fraction",
+      "Protein:particle ratio differences between bounded fraction and secretome control",
+      "Co-localization metrics: fraction index of particle peak vs capture-positive endogenous and spike-in signals",
+      "Reproducibility across independent biological replicates (n \u2265 3 conditioned-medium lots)"
+    ],
+    "success_criterion": "Qualitative success: Across \u22653 independent conditioned-medium lots, (1) the exogenous spike-in is recovered in capture-positive, particle-peak fractions and shows loss after detergent+protease (validating assay recovery and membrane protection), and (2) endogenous capture-positive co-localization with particle peaks and detergent/protease-sensitive neuroinflammation-modulating activity are observed reproducibly in the bounded small-EV fraction but not in the secretome-retaining concentrate processed identically. This pattern enables a pass/fail identity gate (bounded fraction = EV-enriched; secretome = not EV-enriched)."
+  },
+  "explicit_inferences": [
+    "Inference: Spike-in recovery controls separate assay failure from true absence of intact EV enrichment in conditioned-medium-derived materials.",
+    "Inference: A detergent/protease-sensitive functional signal that co-fractionates with capture-positive particle peaks supports EV-associated bioactivity and can serve as a candidate potency-linked identity attribute."
+  ],
+  "falsification_criteria": [
+    "Spike-in recovery confirms assay performance (spike-in detected and membrane-protected) but endogenous capture-positive co-localization with particle peaks is absent in bounded fractions across independent replicates, or endogenous activity in capture-positive fractions is detergent/protease-insensitive; under these conditions the hypothesis is falsified and the material should be treated as secretome for identity/potency decisions."
+  ],
+  "human_decisions_required": [
+    "Select the specific exogenous spike-in material and tracer modality (species/isotope labeling) and approve procurement",
+    "Approve the in vitro neuroinflammation assay platform and its acceptance controls",
+    "Decide whether bounded fractionation method (SEC/UC/iodixanol cushion) selected for initial experiments is the program-preferred candidate for downstream manufacturability evaluation"
+  ],
+  "manufacturability_assessment": "This experiment is compatible with early-stage manufacturing: bounded fractionation (e.g., SEC/iodixanol fractionation) and spike-in controls are implementable at bench scale to inform whether a manufacturable small-EV fraction is a justified drug-substance target. Yields must be sufficient to run functional assays; if not, further fractionation or concentration optimization is required.",
+  "manufacturing_rationale": "Establishing an identity/potency linkage that requires a membrane-protected particle fraction enables rational fractionation gating (drug-substance definition), orthogonal QC panel selection, and early manufacturability assessments. Demonstrating spike-in recovery separates analytical failure from true absence of intact EVs, reducing downstream scale and CMC risk.",
+  "measurement_strategy": "Orthogonal fraction-level analytics (particle counting, immuno-capture ELISA for intact material, spike-in tracer detection) combined with detergent + protease/RNase protection and a standardized in vitro LPS-induced cytokine readout (IL-6/TNF-\u03b1 ELISA or multiplex). Include capture-compatibility buffer controls and spike-in recovery quantitation to validate assay performance.",
+  "novelty_statement": "This hypothesis is novel because it combines an exogenous intact-EV spike-in recovery control with fraction-level orthogonal capture + protection analytics and a matched in vitro neuroinflammation functional assay to discriminate EV-associated activity from co-isolated soluble secretome effects. Prior program hypotheses proposed membrane-protection and capture-based signatures or functional co-fractionation alone; this proposal adds a within-sample spike-in tracer to unambiguously separate assay failure from true absence of intact-EV enrichment and couples that control directly to a discriminating bioassay.",
+  "primary_domain": "fractionation",
+  "principal_risks": [
+    "Capture-reagent or buffer incompatibility may produce false-negative endogenous capture signal despite spike-in controls.",
+    "Functional assay sensitivity may be insufficient for low-biomass fractions, producing ambiguous outcomes.",
+    "Even if EV-associated activity is demonstrated in vitro, intranasal delivery and cross-species CNS exposure remain unresolved and require separate bridging studies."
+  ],
+  "proposed_potency_relationship": "If a membrane-protected, capture-positive fraction reproducibly contains detergent/protease-sensitive neuroinflammation-modulating activity, then that intact-EV-associated activity can serve as a mechanism-linked, exploratory potency attribute for downstream assay development and comparability gates.",
+  "proposed_product_change_or_attribute": "If supported, define a candidate potency-linked product-identity attribute: a spike-in-validated, membrane-protected, capture-positive particle fraction that (A) co-localizes with particle-count peaks, (B) contains detergent/protease-sensitive neuroinflammation-modulating activity in an in vitro assay, and (C) is absent or detergent-insensitive in unpurified secretome-retaining concentrates.",
+  "secondary_domains": [
+    "product_identity",
+    "cargo",
+    "manufacturing"
+  ],
+  "sequence_within_theme": 2,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "theme_id": "design-gap-ev-non-ev-composition",
+  "title": "Discriminate EV-associated versus non-EV bioactivity by matched protected-fraction functional assay (spike-in controlled)"
+}

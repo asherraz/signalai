@@ -1,0 +1,18 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Co-fractionating soluble proteins, lipoproteins, or protein aggregates produce the observed bioactivity and are detergent-/protease-sensitive (or become undetectable after treatment) leading to false attribution to EV cargo despite spike-in recovery controlling assay performance (ev-misev2023-quality-framework).",
+    "The exogenous intact-EV spike-in differs in buoyancy, surface marker display, detergent sensitivity, or capture-efficiency from the endogenous active species, so spike-in recovery passes even though endogenous active particles are lost during fractionation or fail to capture, producing false-negative endogenous capture signals or false confidence in assay performance (ev-misev2023-quality-framework).",
+    "Capture-reagent or buffer incompatibility selectively impairs detection of endogenous EVs but not the spike-in (e.g., species mismatch, epitope masking, or matrix effects), causing apparent absence of capture-positive endogenous signal despite real intact EVs being present (ev-misev2023-quality-framework).",
+    "Low biomass in bounded fractions yields functional readouts below assay sensitivity; detergent/protease treatment further reduces measurable signal, producing ambiguous outcomes that can be misinterpreted as absence of EV-associated activity rather than assay-limit effects (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi).",
+    "Even if an EV-associated in vitro signal is demonstrated, intranasal delivery and CNS exposure in larger species/humans may fail (e.g., strong nasal retention and negligible brain uptake reported in macaques), making the identity/potency gate irrelevant to translational success and potentially misdirecting development resources (ev-driedonks-2022-macaque-biodistribution).",
+    "Detergent/protease sensitivity of the functional readout could reflect disruption or loss of an assay-detectable epitope or cofactor rather than loss of membrane protection of the true active cargo (ev-misev2023-quality-framework)."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is analytical misattribution: non-vesicular, soluble or aggregate secretome components that co-fractionate with particle peaks (or that adsorb to captured surfaces) could produce detergent-/protease-sensitive loss of assay signal or differential capture behavior that mimics an EV-associated signature, while the exogenous spike-in tracer fails to faithfully report the behavior of endogenous active material. In that scenario the proposed orthogonal spike-in + capture + protection workflow would validate assay performance (spike-in recovery) yet still misclassify non-EV bioactivity as 'EV-associated', producing a misleading identity/potency gate and driving incorrect CMC/product-definition choices. Evidence that co-isolates and characterization gaps are a recognized problem and that negative large-animal biodistribution complicates downstream translational interpretation supports this risk (see evidence_ids)."
+}

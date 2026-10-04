@@ -1,0 +1,21 @@
+{
+  "concerns": [
+    "Capture-reagent and buffer incompatibility: immuno-capture can fail in complex matrices or specific buffers, producing false-negative endogenous signals despite spike-in recovery behaving differently (misleading co-localization conclusions).",
+    "Spike-in representativeness: an exogenous tracer that differs in size, surface composition, or density from endogenous MSC-EVs may fractionate or capture differently, limiting its value as a true within-sample control.",
+    "Functional assay sensitivity and biomass: bounded EV fractions can be low-biomass; the neuroinflammation assay may lack sensitivity for eluates, producing false negatives or noisy discrimination between EV and secretome fractions.",
+    "Detergent/protease readout interpretation: loss of functional signal after detergent/protease could reflect destruction of assay-detectable epitopes or matrix effects rather than removal of membrane-protected active cargo; orthogonal readouts (e.g., RNase protection, cargo assays) are needed to strengthen interpretation.",
+    "Co-eluting soluble mediators: certain soluble proteins or lipoprotein/non-vesicular nanoparticles can co-fractionate with small-EV windows and be detergent-sensitive or protease-sensitive, confounding attribution to membrane-enclosed cargo.",
+    "Assay-interference risks: residual detergent/protease or fractionation reagents carried into the bioassay can directly affect cell responses or cytokine detection, so rigorous wash/neutralization and buffer-matched controls are required.",
+    "Translation risk from biodistribution evidence: negative or low intranasal brain uptake in NHPs (ev-driedonks-2022-macaque-biodistribution) implies that even if an EV-linked in vitro activity is found, additional bridging studies are essential to assess whether an intranasally administered EV drug-substance can reach CNS targets in clinically relevant species.",
+    "Reproducibility and sample throughput: the design requires multiple independent conditioned-medium lots and sufficient yield for parallel analytics; low yield or high variability may limit statistical confidence and decision-making."
+  ],
+  "conclusion": "The proposed spike-in\u2013controlled, fraction-level functional workflow is a plausible and useful experiment to discriminate EV-associated versus soluble-secretome bioactivity in vitro and to operationalize an EV-linked candidate potency/identity attribute. The approach codifies ISEV-recommended orthogonal controls (capture, membrane-protection) and adds a within-sample intact-EV spike-in that meaningfully separates analytical failure from true absence of intact EVs. However, success is sensitive to capture-reagent/buffer compatibility, spike-in design fidelity to endogenous EV behavior, and functional-assay sensitivity; even a positive in vitro result would not establish in vivo CNS delivery or therapeutic efficacy without bridging biodistribution and delivery studies.",
+  "evidence_gap": "Key gaps relevant to translational inference: (1) lack of direct evidence that an in vitro detergent/protease-sensitive, capture-positive signal predicts intact-EV exposure or activity after intranasal administration in larger species/humans; (2) uncertainty whether the chosen exogenous spike-in will mimic endogenous EV behavior during fractionation, capture, and membrane-protection assays; (3) limited prior demonstration that capture reagents work robustly in complex conditioned-medium matrices without producing false negatives/positives.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "supported": true
+}
