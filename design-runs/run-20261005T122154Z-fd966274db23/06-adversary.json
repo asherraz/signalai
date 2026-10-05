@@ -1,0 +1,19 @@
+{
+  "evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-misev2023-quality-framework",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Species- or route-dependent delivery barrier: intranasal dosing results in nasal retention and negligible CNS/CSF exposure in larger species, preventing orthogonal in vivo verification of intact-EVs (ev-driedonks-2022-macaque-biodistribution).",
+    "Assay sensitivity/labeling limits: capture reagents or particle-count instruments lack the sensitivity or specificity required for low-biomass lavage/CSF samples, producing nondetects or noisy readouts that preclude establishing reproducible co-localization or membrane-protection signatures (assumption dependency).",
+    "Spike-in mismatch or recovery failure: exogenous tracer differs in surface markers, stability, or clearance from endogenous EVs, yielding non-representative recovery and misleading conclusions about endogenous EV exposure or protection status (dependency risk).",
+    "Assay interference / buffer incompatibility: detergents, protease/RNase treatments or capture-compatibility buffers introduce artifacts or incompletely disrupt non-EV co-isolates, causing false-positive protection readouts or false-negative loss-of-function after membrane disruption (principal risk).",
+    "Confounding secretome activity: soluble proteins or other non-vesicular secretome components co-fractionate and drive the ex vivo cytokine modulation; detergent/protease treatments do not fully abolish their activity (or do so nonspecifically), so the assay cannot discriminate EV-associated from secretome-mediated effects (ev-misev2023-quality-framework, ev-kodali-2017-status-epilepticus, ev-hermann-2023-neonatal-hi).",
+    "Reproducibility/manufacturing variability: lot-to-lot differences in source-cell secretome or EV yield prevent consistent demonstration that the orthogonal intact-EV attribute predicts ex vivo effects across \u22653 conditioned-medium lots (uncertainty in candidate_quality_attributes).",
+    "False equivalence from particle-count matching: capture-depleted but particle-count-matched preparations may be technically infeasible or still retain functional contaminants, so the comparator arms fail to isolate the variable of interest, undermining falsification criteria (experimental complexity)."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is that intranasal administration (or its measurement in short-interval lavage/CSF/tissue) will not reliably deliver or permit orthogonal detection of intact, membrane-protected EVs in the sampled compartments in the translationally-relevant setting (e.g., larger animals/humans). If intact-EV exposure cannot be verified in vivo due to species-specific delivery/clearance, retention in nasal cavities, labeling/detection sensitivity limits, or device/formulation-dependent deposition (as shown by negative macaque biodistribution after IN dosing), then the proposed in vivo\u2192ex vivo bridge cannot be executed or will yield false negatives and the potency-gate will be unmeasurable or non-predictive."
+}
