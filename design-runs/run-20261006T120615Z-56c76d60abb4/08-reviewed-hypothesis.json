@@ -1,0 +1,232 @@
+{
+  "adversary_objection": "The proposed experiment may conflate assay and administration limits with a true biological effect of senescence mechanism: existing large-animal data show intranasal EVs can be retained in the nose and not reach CSF/brain (ev-driedonks-2022-macaque-biodistribution), and MI SEV guidance warns that EV separation/labeling/capture methods and non-vesicular co\u2011purified material frequently drive apparent differences (ev-misev2023-quality-framework). Therefore a null or discordant in vivo recovery result could reflect insufficient assay sensitivity, spike-in incompatibility, formulation/device-driven mucociliary clearance, or labeling/processing artifacts rather than any senescence\u2011mechanism effect\u2014making the causal inference (senescence mechanism \u2192 altered membrane protection and nasal\u2192CNS recoverability) unmeasurable or misleading without additional controls and orthogonal in vivo delivery validation. Rodent efficacy/biodistribution reports (ev-hermann-2023-neonatal-hi) support feasibility in small animals but do not resolve whether senescence mechanism or other source/process variables (donor, media, fractionation, device) explain differences, so relying on short-interval rodent recovery alone risks overinterpreting species- and assay-limited signals.",
+  "assumptions": [
+    "Assay systems (capture reagents, particle counters) have sufficient sensitivity and compatibility for low-biomass lavage/CSF samples.",
+    "Induced senescence (oxidative/irradiation) and replicative-passage senescence can be produced and characterized reproducibly in the same donor MSCs."
+  ],
+  "biological_rationale": "MISEV2023 and rodent intranasal efficacy reports highlight source-cell dependence and the need for orthogonal identity and bridging studies (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi). Large-animal negative biodistribution increases risk that different senescence mechanisms could alter membrane integrity, surface marker display, and cargo protection, thereby affecting nasal\u2192CNS recoverability (ev-driedonks-2022-macaque-biodistribution).",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20261006T120615Z-56c76d60abb4-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Culture conditions, donor genetics, or purification artifacts (not senescence mechanism) may explain observed differences.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Program-specific orthogonal intact-EV comparison across senescence mechanisms with spike-in recovery controls.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV recommends orthogonal analytics and rodent reports indicate source dependence but do not specify senescence mechanism effects."
+      },
+      {
+        "competing_explanation": "Short-interval in vivo detectability differences could reflect formulation/device compatibility or labeling sensitivity rather than inherent particle integrity differences driven by senescence.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Short-interval in vivo dosing comparing materials from well-characterized senescence mechanisms with orthogonal intact-EV verification of recovered lavage/CSF/tissue.",
+        "model_or_species": "non-human primate context",
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: macaque data show delivery barriers; senescence could be one cause but administration, formulation, or labeling remain competing explanations."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Donor-MSC senescence mechanism can be operationalized as: (A) induced SASP-rich senescence (oxidative/irradiation-induced) versus (B) replicative-passage senescence (chronological passage with high p16/p21)."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Senescence mechanism (SASP vs replicative) produces distinct effects on released particle membrane integrity, surface-marker accessibility, and particle:protein context measurable by an orthogonal intact-EV workflow (capture co-localization with particle peaks, detergent/protease protection, protein:particle ratio)."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Materials from SASP-rich senescent MSCs are more likely to release damaged particles or soluble complexes that fail orthogonal intact-EV criteria and show reduced short-interval nasal\u2192CSF/olfactory-mucosa recoverability after intranasal dosing than materials from low-p16/p21 replicative-passage MSCs."
+      },
+      {
+        "node_id": "n4",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If n2 and n3 are observed reproducibly, then senescence-mechanism classification should be adopted as a source-cell qualification attribute and used to gate lot advancement and MCB/WCB selection."
+      }
+    ]
+  },
+  "chair_rationale": "The hypothesis is actionable and justified by orthogonal-analytics and rodent delivery precedent, so it should be advanced to experimental testing; however experiments must pre-validate assay sensitivity and spike-in behavior in low-biomass matrices, include multiple donor-paired replicates, control for formulation/device and labeling artifacts, and plan for translation risk (NHP) before using any senescence-based manufacturing gates.",
+  "competing_explanations": [
+    "Donor genetic background or medium composition, not senescence mechanism, drives observed differences.",
+    "In vivo administration variables (device, dosing technique, mucociliary clearance) dominate short-interval recoverability differences."
+  ],
+  "contradicting_evidence_ids": [],
+  "created_at": "2026-10-06T12:06:15.286280Z",
+  "dependencies": [
+    "Access to donor-matched MSC lots and ability to induce reproducible SASP-rich senescence and replicative-passage senescence in the same donor background",
+    "Availability of characterized exogenous intact-EV spike-in tracer",
+    "Analytical and animal-protocol approvals for short-interval in vivo sampling"
+  ],
+  "design_question": "Daily design question: Does senescence driven by a SASP-rich phenotype (induced by oxidative stress or irradiation) versus replicative-passage-associated markers (p16/p21 high) differentially affect orthogonal intact-EV identity signatures and short-interval nasal\u2192CSF/olfactory-mucosa recoverability after matched intranasal dosing?",
+  "determination": "needs_evidence",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260922T100526Z-e1fec6c837d8"
+  ],
+  "expected_measurable_effect": "Distinct orthogonal intact-EV signatures (presence vs loss of capture-positive co-localized particle peaks and detergent/protease-sensitive signal; spike-in recovery) and differing short-interval in vivo recoverability in nasal lavage/CSF/olfactory-mucosa after intranasal dosing between SASP-induced and replicative-passage senescent MSC-derived materials.",
+  "explicit_inferences": [
+    "Inference: Senescence mechanism, not merely passage number, may alter particle membrane integrity and surface phenotype in ways that affect intranasal recoverability.",
+    "Inference: Spike-in controls and orthogonal intact-EV assays are required to separate assay failure from true loss of membrane-protected particles."
+  ],
+  "falsification_criteria": [
+    "Across \u22653 independent donor-matched conditioned-medium preparations, induced SASP-rich senescence and replicative-passage senescence do not produce reproducible differences in orthogonal intact-EV identity signatures (capture co-localization with particle peaks and spike-in-protected recovery) or in short-interval nasal\u2192CSF/olfactory-mucosa recoverability after matched intranasal dosing, controlling for assay compatibility\u2014then the hypothesis is falsified and senescence mechanism should not be used as a gating source-cell attribute."
+  ],
+  "human_decisions_required": [
+    "Select donor(s) for paired induced vs replicative senescence studies",
+    "Approve use of exogenous spike-in tracer and selection of orthogonal capture reagent panel",
+    "Authorize animal protocol for short-interval intranasal sampling"
+  ],
+  "hypothesis_id": "design-hypothesis-run-20261006T120615Z-56c76d60abb4",
+  "manufacturability_assessment": "If senescence mechanism proves determinative, adopt mechanistic source-cell screening (SASP markers plus p16/p21) and tighten MCB/WCB criteria; this may increase upstream QC burden but reduces downstream lot failure risk and de-risks large-animal bridging.",
+  "manufacturing_rationale": "Distinguishing senescence mechanism permits targeted source-cell bank criteria (MCB/WCB), informs passaging limits and harvest timing, and directs process envelopes (fractionation and TFF parameters) to preserve an intact-EV signature for downstream QC and potency assay development.",
+  "measurement_strategy": "Orthogonal intact-EV workflow with spike-in recovery controls plus defined short-interval intranasal dosing and collection: (1) in vitro orthogonal analytics per lot (density/SEC fractionation + particle counts per fraction; immuno-capture on intact fractions; detergent/protease protection; protein:particle ratios; exogenous intact-EV spike-in tracer recovery), (2) matched intranasal dosing to rodents with short post-dose collection of nasal lavage, CSF (if feasible), and olfactory-mucosa tissue for orthogonal capture and particle-count readouts, (3) blinded qualitative pass/fail criteria (presence of capture-positive particle-peak co-localization and spike-in-protected recovery) across replicates.",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal identity workflow + short-interval in vivo verification: (1) add spike-in tracer; (2) fractionate (SEC or iodixanol) and measure particle counts per fraction; (3) immuno-capture on intact fractions with separate readouts for spike-in tracer and endogenous markers; (4) protease/RNase protection \u00b1 detergent on captured material; (5) measure total protein and protein:particle ratio per fraction; (6) intranasal administration to rodents and short-interval collection of lavage/CSF/tissue for orthogonal verification of recovered intact-EV signal (capture + particle counts).",
+    "comparator": "Within-donor comparisons: (1) bounded small-EV fraction from early-passage baseline MSCs; (2) bounded small-EV fraction from replicative-passage senescent MSCs; (3) bounded small-EV fraction from induced SASP-rich senescent MSCs. Each sample spiked with identical exogenous intact-EV tracer prior to fractionation. Include matched concentrated secretome-retaining controls per source type and detergent+protease-treated aliquots as membrane-disruption controls.",
+    "complexity": "high",
+    "control": "Positive control: characterized small EV preparation spiked and processed in parallel to verify capture/protection assays. Negative controls: buffer-only and detergent-disrupted samples. Spike-in tracer recovery used as internal assay control.",
+    "dependencies": [
+      "Robust characterization of senescence state per lot (p16/p21 expression, SASP protein panel),",
+      "Validated spike-in tracer and capture reagents with established buffer compatibility,",
+      "Animal protocol approvals for short-interval sampling."
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261006T120615Z-56c76d60abb4",
+    "failure_criterion": "No reproducible difference between senescence mechanisms across replicates in orthogonal intact-EV signatures or in short-interval in vivo recoverability, or spike-in controls fail to validate assay recovery\u2014hypothesis falsified or assay needs redesign.",
+    "falsification_outcome": "If falsified, senescence mechanism should not be used as a deterministic source-cell gate; program should deprioritize senescence-centric specification and focus on alternative source or process variables (donor selection, media, fractionation) for identity and recoverability control.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Conditioned medium from donor-matched MSCs with induced SASP-rich senescence versus replicative-passage senescence will show different outcomes in (A) orthogonal intact-EV signature (capture-positive co-localization with particle peaks, spike-in-protected recovery, detergent/protease sensitivity) and (B) short-interval nasal\u2192CSF/olfactory-mucosa recoverability after matched intranasal dosing.",
+    "primary_readout": "Qualitative presence/absence of capture-positive particle-peak co-localization and spike-in-protected recovery in source material and in recovered nasal lavage/CSF/tissue after intranasal dosing for each senescence condition; report detergent/protease sensitivity (loss after disruption).",
+    "question": "Does senescence mechanism (SASP-induced vs replicative-passage) deterministically alter orthogonal intact-EV identity and short-interval intranasal recoverability when assay recovery is controlled with an exogenous intact-EV spike-in?",
+    "required_material": [
+      "Donor-matched MSC cultures expanded to generate: (A) early-passage, low p16/p21 baseline lots; (B) replicative-passage senescent lots (high p16/p21); and (C) induced SASP-rich senescent lots (oxidative stress or sublethal irradiation) from the same donor where feasible",
+      "Conditioned medium produced from each source-cell lot processed identically into enriched small-EV fraction (program-defined bounded fraction) and concentrated conditioned medium (secretome-retaining) for within-lot controls",
+      "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) for within-sample recovery control",
+      "Immuno-capture reagents for canonical EV markers (anti-CD63/CD9/CD81 or TIM4/AnxA5) and capture-compatibility buffer panels",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent) for membrane-disruption controls",
+      "Assay capability for short-interval intranasal dosing in rodents with collection of nasal lavage, CSF (if feasible), and olfactory-mucosa/olfactory-bulb-adjacent tissue at predefined brief post-dose intervals",
+      "Total protein assay reagents and consumables"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio per fraction",
+      "Spike-in recovery percentage per fraction (qualitative: recovered & membrane-protected vs not recovered)",
+      "Reproducibility across biological replicates (\u22653 independent MSC preparations per condition)",
+      "Short-interval in vivo recovered particle counts and capture signal in lavage/CSF/tissue"
+    ],
+    "success_criterion": "Qualitative success: Across \u22653 independent donor-matched preparations, materials from one senescence mechanism (e.g., replicative-passage low-p16/p21) reproducibly show preserved orthogonal intact-EV signatures (capture co-localization with particle peaks, spike-in protected recovery, detergent/protease-sensitive captured signal) and detectable short-interval nasal\u2192CSF/olfactory-mucosa recoverability after matched intranasal dosing, while materials from the contrasting senescence mechanism (e.g., SASP-rich induced senescence) reproducibly fail these orthogonal identity and recoverability criteria under identical processing and dosing."
+  },
+  "novelty_statement": "Novelty: This hypothesis distinguishes senescence *mechanism* (SASP-driven induced senescence versus replicative-passage-associated markers) as the testable causal variable affecting intact-EV membrane integrity and short-interval intranasal recoverability. Prior program hypotheses considered passage/replicative senescence broadly (design-hypothesis-run-20260922T100526Z-e1fec6c837d8). The proposed experiment introduces (A) induced SASP-rich senescence as an independent perturbation, (B) within-donor paired comparisons between induced and replicative senescence, and (C) mandatory exogenous intact-EV spike-in recovery combined with short-interval in vivo recovery\u2014an integrated assay set not previously proposed and specifically designed to discriminate senescence mechanism from passage number, donor, or process artifacts.",
+  "primary_domain": "cell_source",
+  "principal_risks": [
+    "Assay sensitivity and capture-compatibility may limit detection in low-biomass in vivo samples.",
+    "Induced senescence models may not faithfully recapitulate clinically relevant donor senescence.",
+    "Findings may not generalize across donors; donor variability could confound mechanistic interpretation."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "If senescence mechanism correlates with loss/preservation of membrane-protected intact-EV fractions, use preserved intact-EV signature to prioritize lots for subsequent potency linkage (in vitro protected-bioactivity and in vivo\u2192ex vivo bridging experiments).",
+  "proposed_product_change_or_attribute": "Adopt a source-cell qualification attribute that distinguishes donor-MSCs by senescence mechanism (SASP-positive induced senescence vs replicative-passage senescence) and require orthogonal intact-EV identity verification and short-interval in vivo recoverability as go/no-go gates for lot advancement.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Causal leap: proposal infers mechanistic causation (senescence mechanism \u2192 membrane integrity \u2192 in vivo recoverability) but the cited studies provide only indirect support (MISEV: need for orthogonal assays; Hermann: source\u2011cell/scalability relevance in rodents; Driedonks: intranasal delivery barriers in NHP). None directly test senescence\u2011mechanism effects on EV integrity or biodistribution.",
+        "Assay sensitivity risk: the proposal assumes capture reagents and particle counters work in low\u2011biomass lavage/CSF; Driedonks NHP data highlight signal loss and nasal retention as confounders \u2014 this is listed as a principal risk but remains an evidence gap until assay validation in those matrices is shown.",
+        "Alternative explanations acknowledged but not resolved: competing explanations (donor genetics, media, formulation/device, labeling sensitivity) are appropriate and labeled as such, but the proposal lacks prior data separating these factors from senescence mechanism effects.",
+        "Generality and translation: rodent intranasal efficacy (Hermann, Kodali cited elsewhere in canonical set) does not predict NHP or clinical recoverability; relying on rodent positive outcomes to justify gating based on senescence mechanism risks overfitting to small\u2011animal models.",
+        "Control/marker selection: MISEV recommends orthogonal characterization and appropriate controls; the proposal adopts these principles but must ensure chosen capture markers (CD63/CD9/CD81, TIM4, AnxA5) and spike-in tracers are themselves unaffected by senescence\u2011induced changes or matrix interactions (no direct evidence supplied)."
+      ],
+      "conclusion": "Not supported as a demonstrated causal claim. The cited canonical evidence (MISEV2023; Hermann2023; Driedonks2022) provides appropriate rationale for orthogonal analytics, source-cell dependence, and translational delivery barriers, but does not provide direct experimental evidence that distinct senescence mechanisms (SASP-induced vs replicative-passage) deterministically alter EV membrane integrity or short-interval intranasal nasal\u2192CSF/olfactory recoverability. The proposal\u2019s inference that senescence mechanism causally drives altered intact\u2011EV signatures and intranasal recoverability is therefore plausible and reasonably framed (with labeled inferences and experimental falsification criteria) but remains an unproven hypothesis requiring the missing experiments described.",
+      "evidence_gap": "No direct experimental evidence links specific senescence mechanisms (SASP-rich induced vs replicative-passage) to changes in EV membrane integrity, surface-marker accessibility, or to altered short-interval intranasal\u2192CSF/olfactory-mucosa recoverability. Additional gaps: (1) absence of large-animal or human-relevant data showing senescence-dependent biodistribution differences; (2) lack of published demonstrations that the proposed orthogonal intact\u2011EV workflow (with spike-in tracer) has sufficient sensitivity/compatibility for low-biomass nasal lavage/CSF samples; (3) no evidence provided that induced SASP models in the same donor background reproducibly produce the distinct EV phenotypes claimed.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "evidence_verifier",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Assay sensitivity and matrix compatibility: low biomass of nasal lavage/CSF may yield false negatives unless particle counters, capture reagents, and spike\u2011in tracers are validated specifically for those matrices (ev-misev2023-quality-framework; principal risk listed).",
+        "Reproducible senescence modeling: induced SASP and replicative senescence must be induced and characterized reproducibly in the same donor background; failure here undermines lot comparability and any bank gating strategy (proposal dependency).",
+        "Donor variability and confounding: genetic background or culture/medium differences could explain observed effects; within\u2011donor paired design mitigates but may not eliminate this risk (competing explanations acknowledged).",
+        "Scale\u2011up and MCB/WCB impact: adopting senescence\u2011mechanism screening as an MCB/WCB gate increases upstream QC burden, may reduce usable bank yield, and complicates passaging timelines\u2014tradeoffs between tighter release criteria and manufacturing throughput (manufacturability assessment).",
+        "Process sensitivity and stability: fractionation, TFF, or other downstream steps could differentially affect fragile particles; classification based on source alone risks conflating process\u2011induced damage with source differences (ev-misev2023-quality-framework).",
+        "Translatability of short\u2011interval in vivo readouts: robust rodent short\u2011interval recovery does not guarantee NHP/human nasal\u2192CNS delivery (ev-driedonks-2022-macaque-biodistribution indicates strong species/formulation sensitivity).",
+        "Measurement feasibility of spike\u2011in controls: choice of orthogonal exogenous tracer (species/isotope) must be compatible with capture reagents and not alter particle behavior during fractionation or in vivo dosing; validation failure would invalidate conclusions.",
+        "Lot comparability and stability over time: if senescence mechanism becomes a gating attribute, stability of the senescence phenotype across expansions, cryopreservation, and thaw cycles must be demonstrated to avoid batch instability and release failures."
+      ],
+      "conclusion": "The proposal is provisionally supported as a focused, actionable study to evaluate whether senescence mechanism (induced SASP-rich vs replicative-passage) meaningfully affects orthogonal intact\u2011EV identity signatures and short\u2011interval intranasal recoverability. The MISEV consensus (ev-misev2023-quality-framework) justifies orthogonal analytics and spike\u2011in controls; rodent efficacy/scale comments (ev-hermann-2023-neonatal-hi) support source\u2011cell and scale considerations; macaque biodistribution (ev-driedonks-2022-macaque-biodistribution) raises a realistic translational risk that delivery/recoverability may fail in larger species. The experimental approach is manufacturability\u2011relevant and could justify adding a senescence\u2011mechanism source\u2011cell gate if reproducible differences are observed. However, key measurement and translation risks (assay sensitivity in low\u2011biomass samples, donor variability, and relevance of rodent short\u2011interval recoverability to NHP/human intranasal delivery) must be addressed before adopting process or bank\u2011level acceptance criteria.",
+      "evidence_gap": "No direct experimental evidence in the allowed corpus demonstrates that different senescence mechanisms (SASP\u2011induced vs replicative) causally alter intact\u2011EV membrane integrity or nasal\u2192CNS short\u2011interval recoverability in large animals or humans; absence of prior validated spike\u2011in tracer performance in low\u2011biomass lavage/CSF matrices and limited data connecting rodent short\u2011interval recoverability to clinically relevant NHP/human outcomes.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": true
+    },
+    {
+      "concerns": [
+        "Primary mechanistic link is indirect: MISEV2023 supports orthogonal characterization but does not demonstrate that senescence mechanism drives membrane-disruptive changes detectable by the proposed assays.",
+        "Translational risk from large-animal data (ev-driedonks-2022-macaque-biodistribution): intranasal retention and species differences could mask senescence-dependent effects observed in rodents, limiting relevance for clinical gating decisions.",
+        "Alternative explanations likely and need active discrimination: donor genetic/background effects, media or purification artifacts, labeling/formulation/device compatibility, mucociliary clearance, and short-interval sampling logistics can each produce the same readout differences attributed to senescence mechanism.",
+        "Assay sensitivity and compatibility risk: low-biomass nasal lavage/CSF samples and capture-reagent buffer compatibility may limit detection; spike-in tracer must be well-characterized and behave like endogenous intact EVs to serve as a valid internal control.",
+        "Fidelity of senescence models: induced (oxidative/irradiation) SASP-rich senescence may not recapitulate clinically relevant donor senescence, and replicative-passage senescence phenotypes can vary by donor\u2014this may confound mechanistic attribution.",
+        "Donor variability/generalizability: within-donor paired design mitigates some confounding, but results across only a few donors may not generalize; the proposal should require multiple independent donors.",
+        "Discrimination of in vivo causes requires controls: to attribute reduced recovery to particle integrity rather than delivery/formulation or labeling, include formulation/device-matched controls, label-free orthogonal detection where possible, and experiments that vary administration parameters.",
+        "Operational risk: short-interval rodent sampling (CSF/olfactory mucosa) can be technically challenging and may yield inconsistent recovery; robust SOPs and assay validation (including spike-in recovery across matrices) are required."
+      ],
+      "conclusion": "The hypothesis is biologically plausible but only indirectly supported by the cited literature. ISEV guidance and rodent intranasal EV efficacy reports justify orthogonal characterization and within-donor comparisons, and the macaque biodistribution data flag a realistic translational barrier. However, no cited evidence directly links distinct senescence mechanisms (SASP-rich induced vs replicative-passage) to altered EV membrane integrity that reduces short-interval nasal\u2192CSF/olfactory recoverability. The proposed paired, spike-in\u2013controlled orthogonal workflow is an appropriate and discriminating experimental approach if executed with rigorous controls, but key assay and translation gaps remain and could yield false positives/negatives unless explicitly addressed.",
+      "evidence_gap": "No direct experimental evidence in the provided citations shows that (A) distinct senescence mechanisms reproducibly alter membrane integrity or surface marker accessibility of released EVs, and (B) such changes causally reduce short-interval intranasal recoverability. Additionally, large-animal (macaque) intranasal biodistribution data indicate delivery/retention problems that may dominate any senescence-related signal and are not resolved by the proposed rodent short-interval sampling.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "mechanism",
+      "supported": false
+    }
+  ],
+  "run_id": "run-20261006T120615Z-56c76d60abb4",
+  "secondary_domains": [
+    "product_identity",
+    "fractionation",
+    "manufacturing",
+    "delivery"
+  ],
+  "selected_gap_id": "design-gap-source-cell",
+  "sequence_within_theme": 2,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-source-cell",
+  "title": "Hypothesis: Donor-MSC senescence *mechanism* (SASP-driven vs replicative-passage markers) causally determines intact-EV membrane integrity and short-interval intranasal recoverability"
+}

@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Assay sensitivity floor: particle counters, immuno-capture reagents, or spike-in tracer fail to detect low-biomass recovered material from lavage/CSF/tissue, producing false negatives attributed to senescence.",
+    "Spike-in tracer incompatibility: exogenous tracer behaves differently from endogenous EVs during fractionation, capture, or in vivo mucosal transit, invalidating recovery-normalization and masking true sample differences.",
+    "Capture reagent bias: antibody panel preferentially binds subsets of vesicles or protein complexes that differ by senescence condition independent of membrane integrity (false positive/negative identity calls).",
+    "Co\u2011purified non-vesicular material: soluble SASP components or protein/RNA complexes from SASP-rich samples co-elute with particle peaks and produce capture signal that is detergent/protease-resistant in some assays, confounding membrane-protection interpretation (misclassify non-EV signals as membrane-protected or vice versa).",
+    "Formulation/device and administration confounds: intranasal dosing technique, formulation viscosity, droplet size, or mucociliary clearance rates dominate short-interval recoverability differences across samples, producing artifactual group differences unrelated to particle integrity.",
+    "Species and scale mismatch: rodent short-interval recoverability positive controls may not translate to primates/humans (ev-driedonks-2022-macaque-biodistribution), so an effect seen in rodents could be non-predictive for clinical delivery risk.",
+    "Donor heterogeneity and culture artifacts: within-donor induction of replicative versus induced senescence may not be reproducible, or donor genetics/media differences drive observed EV signatures rather than the intended senescence mechanism.",
+    "Detergent/protease assay misinterpretation: incomplete membrane disruption or protease access issues lead to ambiguous protection results, preventing clear classification of membrane\u2011protected versus soluble material.",
+    "Insufficient biological replicates: observed differences do not reproduce across \u22653 donor-matched preparations, leaving the hypothesis underpowered and unresolvable.",
+    "Overfitting to orthogonal signature: defining a go/no-go gate on a narrowly chosen orthogonal readout that is highly assay-dependent could cause inappropriate lot rejection or false security if that readout does not correlate with potency or in vivo delivery in relevant species."
+  ],
+  "strongest_objection": "The proposed experiment may conflate assay and administration limits with a true biological effect of senescence mechanism: existing large-animal data show intranasal EVs can be retained in the nose and not reach CSF/brain (ev-driedonks-2022-macaque-biodistribution), and MI SEV guidance warns that EV separation/labeling/capture methods and non-vesicular co\u2011purified material frequently drive apparent differences (ev-misev2023-quality-framework). Therefore a null or discordant in vivo recovery result could reflect insufficient assay sensitivity, spike-in incompatibility, formulation/device-driven mucociliary clearance, or labeling/processing artifacts rather than any senescence\u2011mechanism effect\u2014making the causal inference (senescence mechanism \u2192 altered membrane protection and nasal\u2192CNS recoverability) unmeasurable or misleading without additional controls and orthogonal in vivo delivery validation. Rodent efficacy/biodistribution reports (ev-hermann-2023-neonatal-hi) support feasibility in small animals but do not resolve whether senescence mechanism or other source/process variables (donor, media, fractionation, device) explain differences, so relying on short-interval rodent recovery alone risks overinterpreting species- and assay-limited signals."
+}
