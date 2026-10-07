@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Membrane perturbation: low-shear claim fails in practice and depletion buffers or resin interactions disrupt EV membranes, making captured marker signal detergent-insensitive or reducing protected cargo (false enrichment or false-negative potency).",
+    "Selective subpopulation loss: depletion reagents bind EVs (directly or via EV-associated abundant proteins) or remove sub-fractions that carry functional cargos/surface markers, altering the therapeutic entity composition while improving apparent marker co-localization.",
+    "Assay interference / resin leachables: depletion media or buffer components co-elute or interfere with immuno-capture, protease/RNase protection assays, or particle counting, producing misleading readouts unless rigorous capture-compatibility and spike-in controls are used.",
+    "Yield shortfall / non-manufacturable throughput: the depletion step materially reduces recoverable particle mass or is not scalable without introducing shear/leachables, so the bounded fraction cannot meet GMP-like yield expectations across lots.",
+    "Analytical-artifact improvement without functional gain: orthogonal analytic sharpening (particle:marker co-localization) does not translate to improved in vivo recoverability, biodistribution, or potency \u2014 e.g., species/formulation delivery barriers dominate, so fractionation gains are irrelevant to translational performance.",
+    "Reproducibility failure across lots: depletion efficacy and its impact on EV integrity vary between conditioned-medium lots (donor, passage, secretome differences), preventing a consistent drug-substance definition.",
+    "Misleading protection assay outcomes: protease/RNase + detergent controls are insufficiently sensitive or confounded by residual reagents, allowing detergent-insensitive signals to be misinterpreted as membrane-protected.",
+    "Comparator bias: the chosen TFF->SEC->cushion comparator may underperform in the lab setup (or vice versa), and head-to-head differences reflect operational artifacts rather than true superiority of one fractionation path."
+  ],
+  "strongest_objection": "The single strongest bounded reason this proposal could fail is that the affinity-depletion step perturbs EV integrity or selectively removes EV subpopulations (or their surface markers), producing apparently \"cleaner\" capture-positive peaks while actually reducing true intact-EV content or shifting the product identity \u2014 i.e., an analytical improvement that reflects loss or alteration of target material rather than genuine enrichment. This outcome would both invalidate downstream potency linkages and undermine manufacturability despite passing the proposed orthogonal assays unless spike-in/orthogonal controls robustly exclude selective loss or membrane damage. (Supported by MISEV concerns about confounding non-vesicular co-isolates and process effects, and by evidence that source/process affects measurable signals.)"
+}

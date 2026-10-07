@@ -1,0 +1,174 @@
+{
+  "assumptions": [
+    "Affinity depletion can be implemented under low-shear, low-salt/physiologic conditions that do not disrupt EV membranes.",
+    "Capture reagents and assays used downstream are compatible with depletion buffer components (assay-compatibility must be checked)."
+  ],
+  "biological_rationale": "High-abundance soluble proteins in concentrated conditioned medium can mask or co-elute with EV-associated markers and reduce the apparent enrichment of membrane-protected particle peaks. Removing a defined set of abundant soluble proteins prior to SEC should reduce co-elution of non-vesicular material and enable clearer capture-positive particle-peak co-localization, preserving membrane-protected cargo and surface phenotype signals (inference).",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20261007T115111Z-a494dac2c2e9-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "group": "process_related_impurities",
+      "human_approved": false,
+      "measurement_concept": "Qualitative co-localization of particle-count peaks with capture-positive fractions; detergent/protease-sensitive captured signal; qualitative recovery (mass and particle) sufficient for preliminary GMP-batch considerations.",
+      "name": "Pre-SEC-depleted bounded small-EV fraction: orthogonal intact-EV signature + manufacturable yield",
+      "rationale": "A process-derived bounded fraction that preserves membrane-protected capture-positive co-localization and provides acceptable recovery would serve as a drug-substance candidate enabling downstream QC and potency linkage.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20261007T115111Z-a494dac2c2e9",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261007T115111Z-a494dac2c2e9"
+      ],
+      "uncertainty": "High: process impact on membrane integrity and yield is uncertain until experimentally tested."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Affinity depletion could remove or damage EV-bound proteins or otherwise perturb membrane integrity, producing apparent improvement in marker signal that actually reflects loss of EV-associated material.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Program-specific comparison of pre-SEC depletion + SEC versus TFF->SEC->single-cushion with orthogonal capture/protection and yield metrics.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV warns that non-vesicular co-isolates complicate marker interpretation; rodent work indicates source/process affect measurable signals, but does not evaluate pre-SEC depletion."
+      },
+      {
+        "competing_explanation": "Improved analytical co-localization after depletion may not translate to improved in vivo recoverability or delivery; delivery barriers (species/formulation) may still dominate.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Short-interval in vivo recoverability testing after production by the selected fractionation workflows.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: large-animal biodistribution concerns emphasize the need for a reproducible drug-substance identity prior to bridging studies, but do not prove that pre-SEC depletion will enable cross-species detectability."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "High-abundance soluble secretome proteins co-elute with particle fractions during standard concentration+SEC workflows and can obscure or contribute to marker signal that is not membrane-protected (supported by MISEV guidance that non-vesicular co-isolates complicate interpretation)."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Introducing a gentle affinity depletion of predefined abundant soluble proteins prior to SEC will reduce non-vesicular marker signal in SEC fractions and sharpen co-localization between particle-count peaks and capture-positive intact-EV marker signal (novel intervention hypothesis)."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If n2 is true and yields are acceptable, the resulting bounded small-EV fraction can serve as a reproducible drug-substance candidate compatible with orthogonal QC (capture + protection + particle:protein) and with preliminary manufacturing-yield criteria; if not, fractionation strategy must be reconsidered."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Apparent improvement after depletion could reflect selective removal of a minor EV subpopulation or assay interference rather than true enrichment of intact EVs.",
+    "Delivery or labeling issues (per macaque study) rather than fractionation state may explain lack of in vivo detectability; fractionation improvements may not overcome species-specific delivery barriers."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "dependencies": [
+    "Demonstrated capture-compatibility of depletion buffer components prior to full experiment",
+    "Access to scalable low-shear depletion media and SEC columns compatible with downstream GMP workflows",
+    "Sufficient conditioned-medium volume to run paired workflows across >=3 biological lots"
+  ],
+  "design_question": "Daily question: Does applying a gentle, scalable affinity-based depletion of high-abundance soluble secretome proteins prior to SEC produce a bounded small-EV fraction that (A) shows an orthogonal intact-EV signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) and (B) yields materially more recovered EV-associated particles than a TFF->SEC->single-step cushion workflow without increasing non-vesicular co-isolates?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260923T100544Z-cc9987a71dbd"
+  ],
+  "expected_measurable_effect": "Qualitative sharpening of particle-peak vs capture-positive fraction co-localization and preservation of detergent/protease-sensitive capture signal in the bounded small-EV fraction produced by pre-SEC depletion, with demonstrably equal-or-higher recovered particle yield (qualitative pass) versus the TFF->SEC->cushion comparator, and no increase in detergent-insensitive marker signal in bounded fractions.",
+  "experiment": {
+    "assay": "Orthogonal workflow: (1) fractionate each processed sample (SEC fractions and, if used, cushion fractions) and record particle counts per fraction; (2) immuno-capture detection of canonical EV surface markers on intact fractions; (3) protease + RNase protection testing with and without detergent on captured material; (4) total protein and particle:protein ratio per fraction; (5) measure mass and particle recovery to assess qualitative yield (recoverable material sufficient for GMP-like considerations).",
+    "comparator": "Matched-pair processing from identical conditioned-medium lots: (A) pre-SEC affinity depletion -> SEC (test arm) versus (B) TFF -> SEC -> single-step iodixanol cushion bounded fraction (current program comparator per prior hypothesis).",
+    "complexity": "moderate",
+    "control": "Negative controls: buffer-only fractions, detergent-disrupted samples. Positive controls: commercially available characterized small EVs or lab-validated small-EV preparation processed in parallel to verify capture and protection assay performance. Capture-compatibility controls for depletion/buffer components.",
+    "dependencies": [
+      "Availability of consistent conditioned-medium lots (same bank/passage) for replicate testing",
+      "Capture-reagent compatibility validation with depletion buffer components prior to interpretation",
+      "Analytical capacity for SEC fractionation, particle counting, and protection assays"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261007T115111Z-a494dac2c2e9",
+    "failure_criterion": "As in falsification_criteria: no qualitative improvement in co-localization or membrane-protection behavior across replicates; captured signal is detergent-insensitive; or yield is consistently inadequate for manufacturable consideration.",
+    "falsification_outcome": "If the failure criterion is met across independent lots, the hypothesis is falsified: pre-SEC depletion does not produce an analytically distinct, manufacturable bounded small-EV fraction and the program should deprioritize this fractionation path and explore alternative fractionation or secretome-centric definitions.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Pre-SEC affinity depletion (targeted removal of abundant soluble secretome proteins) followed by SEC yields a bounded small-EV fraction that shows capture-positive co-localization with particle-count peaks and detergent/protease-sensitive captured signal while providing qualitatively improved recovery relative to TFF->SEC->single-step cushion, whereas the comparator will show weaker co-localization or lower apparent EV enrichment.",
+    "primary_readout": "Qualitative co-localization of particle-count peaks with capture-positive fractions and loss of captured signal after detergent + protease/RNase in the test arm compared with the comparator; plus qualitative assessment that recovered particle and mass yields for the bounded fraction are equal or improved (qualitative pass) versus comparator.",
+    "question": "Does a gentle, scalable affinity-based depletion of abundant soluble secretome proteins prior to SEC produce a bounded small-EV fraction with preserved orthogonal intact-EV signature and acceptable recovery compared with the TFF->SEC->single-step iodixanol cushion workflow?",
+    "required_material": [
+      "MSC-conditioned medium from the same source-cell lot sufficient for paired processing (>=3 independent biological lots recommended)",
+      "Affinity depletion resin or flowthrough column media targeting abundant secretome proteins (e.g., albumin/major serum proteins or operator-selected abundant secretome targets) with documented low-shear handling protocol",
+      "TFF system and membranes for concentration, SEC column(s) and consumables, single-step iodixanol cushion materials for comparator workflow",
+      "Immuno-capture reagents for canonical EV markers (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5 capture reagents) and capture-compatibility buffer panels",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Protease (proteinase K) and RNase reagents",
+      "Detergent (Triton X-100 or equivalent) for membrane disruption",
+      "Total protein assay reagents and mass/yield measurement equipment",
+      "Optional: exogenous intact-EV spike-in tracer to monitor assay recovery"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio differences between test and comparator bounded fractions",
+      "Spike-in recovery (if used) demonstrating assay function",
+      "Reproducibility across independent conditioned-medium lots (n \u0003 3)"
+    ],
+    "success_criterion": "Qualitative success: Across >=3 independent conditioned-medium lots, the pre-SEC affinity-depletion -> SEC workflow reproducibly shows (A) particle-count peak(s) that co-localize with capture-positive signal in bounded fractions, (B) captured-signal reduction after detergent + protease/RNase (indicating membrane protection), and (C) qualitatively equal-or-improved recovered particle/mass yield for bounding a drug-substance candidate versus the TFF->SEC->single-cushion comparator; capture-compatibility controls exclude assay interference."
+  },
+  "explicit_inferences": [
+    "Inference: Non-vesicular abundant proteins in conditioned medium can mask or co-elute with particle-associated signals and thus confound identity gating; reducing those proteins should improve orthogonal discrimination if EV membranes are preserved.",
+    "Inference: A depletion step is manufacturable if implemented with low-shear, scalable resins or flowthrough columns; however, operational parameters must be qualified to avoid membrane disruption."
+  ],
+  "falsification_criteria": [
+    "Failure to observe a qualitative improvement in co-localization of particle-count peaks with capture-positive fractions for the pre-SEC depletion workflow compared with TFF->SEC->single-cushion across independent conditioned-medium lots (n \u0003 3), OR",
+    "Observed captured signal in bounded fractions from the pre-SEC-depleted workflow is detergent/protease-insensitive (indicating non-membrane-associated markers) to the same extent as the comparator, OR",
+    "Yield and recovery are consistently lower for the pre-SEC-depleted workflow such that the bounded fraction is not manufacturable for GMP-like batch considerations."
+  ],
+  "human_decisions_required": [
+    "Select depletion target panel (which abundant soluble proteins to remove) and depletion modality (batch resin vs flowthrough column) with supplier and leachables assessment",
+    "Define qualitative yield acceptance language for preliminary manufacturability (non-numeric)",
+    "Approve capture-compatibility control panel and spike-in tracer usage"
+  ],
+  "manufacturability_assessment": "Pre-SEC depletion using scalable affinity media implemented as a flowthrough or gentle batch step is conceptually compatible with GMP; key risks include resin leachables, scale-dependent shear, and buffer-exchange needs that must be addressed in process development and verified to preserve intact-EV signatures (evidence_gap).",
+  "manufacturing_rationale": "An affinity-depletion step using scalable, low-shear capture (e.g., column or batch resin targeting abundant secretome proteins) can be implemented inline with SEC and TFF platforms, potentially improving downstream SEC performance and yield while remaining compatible with GMP workflows if conditions preserve membrane integrity (inference).",
+  "measurement_strategy": "Orthogonal intact-EV analytics per MISEV-style panel: density/size fractionation with particle counting per fraction; immuno-capture ELISA or bead-capture of canonical surface markers on intact fractions; detergent + protease/RNase protection on captured material; total protein and protein:particle ratio per fraction; qualitative yield/recovery assessment (mass and particle recovery). Include capture-compatibility and buffer-interference controls and exogenous spike-in recovery controls if available.",
+  "novelty_statement": "This hypothesis proposes a novel, operationally distinct fractionation strategy \u2014 gentle affinity-based depletion of abundant soluble secretome proteins before SEC \u2014 that differs materially from the previously explored TFF->SEC->iodixanol-cushion workflow. It is not a cosmetic variation: it introduces a different mechanistic intervention (targeted removal of high-abundance soluble co-isolates prior to size-exclusion) intended to sharpen orthogonal intact-EV signatures and improve yield while remaining compatible with scalable GMP implementation. The discriminating experiment explicitly compares this new process path head-to-head with the prior TFF->SEC->cushion comparator using orthogonal capture + protection analytics and qualitative yield assessment.",
+  "primary_domain": "fractionation",
+  "principal_risks": [
+    "Affinity depletion may remove EV-associated surface proteins or perturb membranes, producing false-negative intact-EV signatures.",
+    "Resin leachables or buffer components may interfere with downstream capture assays, confounding interpretation.",
+    "Yield improvement may be marginal or not reproducible across lots, preventing manufacturability benefit."
+  ],
+  "proposed_potency_relationship": "If the bounded fraction preserves membrane-protected EV-associated signatures, it becomes a candidate for subsequent potency-linkage experiments (inference). This hypothesis does not assert potency or mechanism; it only proposes a fractionation approach that may enable later potency assays.",
+  "proposed_product_change_or_attribute": "Adopt a manufacturable pre-SEC depletion step (gentle affinity removal of abundant soluble proteins) as an alternative fractionation gate to produce a bounded small-EV drug-substance candidate that (A) retains an orthogonal intact-EV analytical signature and (B) meets qualitative yield/recovery expectations for GMP-like batch considerations.",
+  "secondary_domains": [
+    "manufacturing",
+    "product_identity"
+  ],
+  "sequence_within_theme": 2,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-isolation-fractionation",
+  "title": "Hypothesis: Mild pre-SEC depletion of abundant soluble secretome components (affinity-depletion) before size-exclusion chromatography produces a manufacturable, bounded small-EV fraction that preserves an orthogonal intact-EV analytical signature while improving yield relative to TFF->SEC->cushion"
+}
