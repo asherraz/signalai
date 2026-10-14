@@ -1,0 +1,19 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Assay incompatibility or spike-in control failure (capture reagents or buffers interfere with recovery/readout), producing false-positive or false-negative signature calls.",
+    "Upstream source-cell or lot-to-lot biological variability dominates the measured differences, so TFF-envelope changes have negligible causal impact on signature preservation.",
+    "Insufficient recovered yield from the low-shear envelope (overly conservative TMP/flux limits or added depth-filter losses) renders the approach non-manufacturable despite preserved analytics.",
+    "Preserved orthogonal analytical signature does not translate to preserved biological function or in vivo detectability (species/route-specific clearance prevents brain exposure), confounding program decisions.",
+    "Depth prefilter use, cassette rotation, or other hardware controls introduce new contaminants or shear modes (e.g., entrapment, elution artifacts) that alter particle composition or interfere with downstream assays.",
+    "Labeling or tracer choice (non-orthogonal species, unstable label) yields misleading recovery patterns that masquerade as membrane protection.",
+    "Regulatory/MISEV-alignment gaps: incomplete orthogonality or insufficient reporting prevents the signature from serving as a defensible manufacturing gate per MISEV guidance."
+  ],
+  "strongest_objection": "The single strongest bounded reason this proposal could fail is assay-confounded inference: capture-reagent incompatibility, incomplete spike-in control qualification, or fractionation artifacts could explain apparent \u2018preservation\u2019 or \u2018loss\u2019 of the intact-EV signature regardless of true TFF-induced membrane damage. If the orthogonal analytic panel is not fully validated for the exact buffers, filters, and tracers used, the experiment will not distinguish assay failure from real process effects\u2014leading to false acceptance or false rejection of the low-shear envelope. Even if analytic artifacts are controlled, preserved analytic signatures may still be irrelevant to in vivo delivery or detectability (see NHP biodistribution limits)."
+}

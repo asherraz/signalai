@@ -1,0 +1,20 @@
+{
+  "concerns": [
+    "Primary mechanism not established: MISEV2023 supports processing sensitivity but does not attribute signature loss to specific TFF parameters \u2014 the proposal must avoid assuming causality prior to the parameter-matrix test.",
+    "Assay interference risk: capture-reagent or buffer incompatibility could produce apparent signature loss; success depends on validated spike-in tracer and capture-compatibility panels (already noted as dependencies).",
+    "Manufacturability trade-off: the low-shear envelope may preserve analytical signatures but reduce recovery/yield below practical thresholds; quantitative yield metrics (not only qualitative) are needed for a manufacturing decision.",
+    "Translational relevance gap: even if identity is preserved, intranasal delivery and cross-species clearance may still prevent in vivo exposure \u2014 Driedonks et al. indicate poor macaque brain uptake after intranasal dosing, so downstream in vivo bridging is required before claiming translational benefit.",
+    "Statistical/reproducibility risk: planned n>=3 lots is minimal; consider increasing biological replicates and including blinded analysis to strengthen discrimination of small effects.",
+    "Outcome criteria are qualitative: consider prespecifying quantitative thresholds for co-localization, detergent/protease sensitivity, and acceptable yield to reduce subjective interpretation."
+  ],
+  "conclusion": "The hypothesis is biologically and technically plausible but not established by the cited literature. MISEV2023 supports the general premise that downstream processing can alter EV analytical signatures and recommends orthogonal controls, which makes the proposed low-shear envelope a reasonable mitigation to test. The proposed experiment includes appropriate orthogonal analytics and spike-in controls that \u2014 if performed and validated \u2014 should discriminate between true processing-induced membrane damage versus assay or capture-reagent artifacts. However, there is no direct published evidence that the specific TFF parameter set proposed (high TMP/flux per cassette vs staged low-shear envelope) is the dominant cause of the signature loss in this program; that remains an empirical question requiring the proposed parameter-matrix comparison with validated spike-ins and capture-compatibility panels. Even if an orthogonal intact-EV signature is preserved after low-shear concentration, the translational impact is uncertain: non-human-primate data show intranasally administered, reporter-labeled EVs may be retained in the nasal cavity and not reach CSF/brain reliably, so preserving an analytical identity at scale does not assure in vivo detectability or clinical relevance without additional bridging studies.",
+  "evidence_gap": "No direct experimental evidence links quantified TFF TMP/flux/cassette operational parameters to loss of the specific intact-EV capture/protection signature in the program's material; also missing are validated spike-in tracer compatibility data and bridging in vivo recoverability data (large-animal or route-appropriate) showing that preserved analytical identity correlates with improved biodistribution/detectability.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "supported": false
+}
