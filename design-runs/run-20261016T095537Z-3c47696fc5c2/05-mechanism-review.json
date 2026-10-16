@@ -1,0 +1,20 @@
+{
+  "concerns": [
+    "Sensitivity risk in low-biomass capture fractions: targeted miRNA RT-qPCR and targeted proteomics may fail to detect genuine luminal cargo even when present (false negatives).",
+    "Panel-selection bias: a small, operator\u2011selected panel (3\u20136 miRNAs, 2\u20134 proteins) risks capturing recurrent co-isolates or culture-conditioned soluble complexes rather than EV-specific cargo (false positives) unless candidates are chosen and validated with orthogonal evidence.",
+    "Capture-reagent specificity and capture workflow: immuno-capture (anti\u2011tetraspanins, TIM4/AnxA5) may co-capture non\u2011vesicular particles or aggregates; capture reagent carryover can confound downstream proteomics/RT-qPCR unless thoroughly controlled.",
+    "Detergent/protease/RNase interpretation caveats: detergent sensitivity demonstrates loss of protection but not necessarily membrane origin \u2014 some soluble complexes can be disrupted by detergents/proteases, and protease susceptibility depends on enzyme accessibility and conditions.  RNase controls must distinguish external surface RNA from luminal RNA robustly (e.g., RNase + membrane-impermeable RNase controls).",
+    "Spike-in tracer behavior: an orthogonal intact\u2011EV spike-in is essential, but differences in biophysical behavior between spike-in and endogenous EVs (density, surface markers, size) could mislead fraction recovery interpretation.",
+    "Does not establish potency or delivery: even if a conserved protected fingerprint is found across lots, this experiment does not link that fingerprint to in vivo delivery or therapeutic effect; NHP intranasal biodistribution data (ev-driedonks-2022-macaque-biodistribution) raise specific concerns about translational delivery for intranasal routes.",
+    "Competing explanations insufficiently excluded: the planned controls (detergent+protease/RNase and spike-in) improve discrimination but to fully rule out alternatives will require additional orthogonal assays (see evidence_gap)."
+  ],
+  "conclusion": "The proposed protected-cargo panel experiment is a mechanistically sensible, practical test to distinguish membrane-protected (EV-associated) cargo from bulk secretome co\u2011isolates at the lot level, and it follows MISEV-style orthogonality and control principles. The core causal claim (that detergent/protease/RNase-sensitive signals on immuno-captured, particle-peak fractions indicate EV-associated luminal cargo) is plausible and experimentally falsifiable with the described controls (detergent+protease/RNase and exogenous intact-EV spike-in). However, the experiment as designed will not by itself establish that the protected fingerprint predicts functional potency or in vivo delivery, and it may not fully exclude tightly associated soluble complexes, lipoproteins, or assay cross-reactivity as alternative explanations without additional orthogonal assays and sensitivity validation. Large-animal biodistribution uncertainty (limited intranasal brain delivery in macaques) further limits inference about in vivo relevance of any conserved fingerprint.",
+  "evidence_gap": "Key gaps: (1) validation that the protected signals in low\u2011biomass, capture-positive fractions are above assay LOD/LOQ and not driven by assay cross-reactivity or capture-reagent carryover; (2) orthogonal intact-EV-level confirmation (e.g., single-particle imaging with cargo co-localization, immuno-EM or single-particle immunofluorescence) to exclude tightly bound soluble complexes or lipoproteins; (3) demonstration that the fingerprint correlates with a relevant functional potency or delivery outcome (especially in a species/model predictive of human biodistribution), given NHP evidence of poor intranasal brain access.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "supported": false
+}

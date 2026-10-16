@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Protected-panel signals derive from co\u2011isolated soluble complexes or lipoproteins that co-fractionate with particle-peak fractions and are not membrane-enclosed EV cargo (false positive EV fingerprint).",
+    "Detergent/protease/RNase treatments produce ambiguous results because non\u2011EV complexes are partially sensitive or assay readouts are interfered with by detergents/enzymes, yielding false inference of membrane protection.",
+    "Immuno-capture reagents preferentially bind abundant non-EV surface-associated material or aggregated proteins, enriching non-EV species and biasing the panel toward co\u2011isolates rather than true EVs.",
+    "Assay sensitivity is insufficient in low-biomass capture fractions (particle-peak eluates) to detect real but low-abundance protected cargo, producing false negatives or inconsistent presence/absence calls across lots.",
+    "Spike-in tracer is not fully orthogonal (different biophysical behavior) and therefore does not validate recovery or membrane-protection behavior of endogenous cargo, permitting undetected assay bias.",
+    "Panel selection (operator-nominated miRNAs/proteins) captures source-cell secretome fingerprints (donor/culture consistency) rather than EV-specific packaging, so reproducibility reflects upstream process uniformity, not EV identity.",
+    "Yield constraints prevent running detergent\u00b1protease splits with orthogonal targeted assays at sufficient replication, making qualitative gating unmeasurable or irreproducible at scale.",
+    "Even if an EV-associated protected fingerprint exists in rodent models, conserved detection may not predict biodistribution or functional delivery in larger species or humans (translation failure).",
+    "The protected-cargo fingerprint, even if EV-associated, may lack causal linkage to potency or therapeutic delivery, making it uninformative for lot gating and downstream decision-making."
+  ],
+  "strongest_objection": "The most convincing bounded failure mode is that the proposed \"protected-cargo\" signals reflect consistently co-isolated non\u2011EV entities (tightly bound soluble protein/RNA complexes, lipoproteins, or other extracellular aggregates) or assay cross-reactivity rather than bona fide lumenal EV cargo; as a result, detergent/protease/RNase treatments and immuno-capture readouts could give misleading protection signatures (e.g., partial sensitivity or matrix effects) and the panel will reproducibly appear across lots while not being EV\u2011specific or predictive of in vivo delivery or function."
+}
