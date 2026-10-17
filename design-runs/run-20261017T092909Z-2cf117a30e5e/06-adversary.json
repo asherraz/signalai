@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "failure_modes": [
+    "Assay insensitivity or interference in low-biomass lavage/CSF/olfactory samples leading to false-negative in vivo verification (capture signal below detection despite biologically relevant EV exposure).",
+    "Species- or route-specific biodistribution barriers (e.g., strong retention in nasal cavity, negligible brain/CSF transfer) causing genuine absence of recovered intact EVs after intranasal dosing, so a negative linkage reflects delivery failure rather than lack of EV mechanism for the material class.",
+    "Labeling, spike-in, or capture reagent artifacts (loss during administration, altered biodistribution, or cross-reactivity) that decouple tracer/detection behavior from native EV behavior and mislead exposure assessment.",
+    "Co-enrichment or co-fractionation of soluble proteins/peptides or non-vesicular nanoparticles that are membrane-resistant or survive the detergent/protease conditions used \u2014 producing ex vivo cytokine modulation even when intact EVs are disrupted or capture-depleted, thereby yielding false attribution to non-EV components.",
+    "Detergent/protease conditions insufficiently selective (e.g., incomplete membrane disruption or protease inactivation in complex matrices) so 'membrane-protection' readouts are misleading and do not cleanly separate membrane-protected EV cargo from membrane-associated complexes or tightly bound soluble factors.",
+    "Short-interval ex vivo assay lacks specificity or physiological relevance (microglia-like preparation, LPS challenge, cytokine readout) so observed modulation is assay-specific noise or an epiphenomenon that does not reflect in vivo therapeutic-relevant biology.",
+    "Inter-lot variability or insufficient biological replicates (low n for conditioned-medium lots or animals) producing irreproducible results and overfitting to spurious correlations between capture-signal and cytokine readouts.",
+    "Particle-count matching between arms is imperfect (different particle composition, non-vesicular particle types) so 'particle-count-matched capture-negative' controls are not truly comparable, invalidating the comparator logic."
+  ],
+  "strongest_objection": "The core proposal can fail because a negative or ambiguous linkage between orthogonally verified 'intact-EV' presence in short-interval nasal/CSF/olfactory samples and the ex vivo cytokine readout may be driven not by absence of an EV-mediated mechanism but by (a) route- and species-dependent delivery barriers and retention in the nasal compartment, and/or (b) limited assay sensitivity and labeling/capture artifacts in low-biomass samples \u2014 producing false negatives or equivocal in vivo exposure data that leave the ex vivo pharmacodynamic signal uninterpretable. This single failure mode both confounds causal inference (intact EVs might be present but undetected) and allows soluble secretome components that co-fractionate or survive membrane-disruption-like steps to produce the ex vivo effect, so the experiment cannot reliably distinguish EV-mediated from non-EV-mediated activity."
+}
