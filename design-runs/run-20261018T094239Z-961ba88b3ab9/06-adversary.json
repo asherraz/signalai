@@ -1,0 +1,21 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Spike-in mismatch: the chosen exogenous intact-EV spike-in (different source species, surface composition, size distribution, or label) does not recapitulate capture-affinity, membrane robustness, or formulation interactions of the endogenous EV subpopulation; spike-in recovery therefore gives false confidence while endogenous markers are lost or masked.",
+    "Assay interference residuals: certain formulation excipients or device rinse components partially inhibit capture reagents or block epitopes in ways not fully revealed by capture-compatibility panels (matrix effects, non-linear inhibition), producing false negatives that mimic epitope masking or membrane disruption.",
+    "Particle-count confound: bulk particle counters (NTA/TRPS) detect membrane fragments, lipoproteins, or protein aggregates produced by device/formulation exposure that overlap particle-peak fractions, so co-localization of capture-signal with particle peaks is misleading because particle peaks no longer represent intact EVs.",
+    "Spike-in-protection decoupling: the spike-in tracer is lost to aggregation/adsorption onto device surfaces or fractionation media in a manner that still yields an apparent detergent/protease-sensitive signal (e.g., spike-in-derived label freed and re-associated), producing artifactual \u2018\u2018membrane-protection\u2019\u2019 readouts.",
+    "Species/route translatability limit: in vitro or rodent-validated capture/protection behavior may not predict in vivo detectability for the intended intranasal route or in larger species (NHP/human); as shown in macaques, intranasal retention and low CSF/brain recovery can confound whether negative capture results reflect device/formulation masking versus delivery failure.",
+    "Heterogeneous endogenous populations: endogenous EV surface-phenotype may be heterogenous across conditioned-medium lots (donor or passage variability), causing irreproducible pass/fail calls across the >=3 lots despite robust spike-in performance.",
+    "Device simulation insufficiency: the simulated device/shear rig and device rinse solutions do not replicate the relevant stresses (contact time, air/liquid interfaces, dosing geometry) of the clinical device, so negative results in experiment either under- or over-estimate real-world epitope loss.",
+    "Over-reliance on qualitative pass/fail: the proposed qualitative identity gate lacks quantitative acceptance boundaries, causing marginal or variable results to be adjudicated inconsistently and preventing clear go/no-go decisions for CMC comparability.",
+    "Unresolved non-vesicular co-isolates: MISEV-recommended orthogonal characterization may still leave non-vesicular particles (protein complexes, lipoproteins) that co-capture or co-fractionate, confounding interpretation of capture sensitivity to detergent/protease as an EV-specific readout."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is that the exogenous spike-in tracer and the endogenous EV subpopulation(s) of interest will behave differently during device/formulation passage and in the capture/protection assays, such that preserved spike-in recovery (validating assay performance) co-occurs with inconsistent or absent endogenous multi-epitope capture co-localization\u2014making the proposed identity gate uninterpretable and effectively indistinguishable from assay insensitivity or biological non-detectability rather than true loss/preservation of EV surface-phenotype."
+}
