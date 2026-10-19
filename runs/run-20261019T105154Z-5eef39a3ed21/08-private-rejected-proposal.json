@@ -1,0 +1,151 @@
+{
+  "outcome": "evidence_gap",
+  "rejected_recommendation": {
+    "evidence_assessment": "The single provided item (ev-misev2023-quality-framework) supports the required framework and best practices for EV characterization but is insufficient to demonstrate that SGL-001 meets Stage-1 gating criteria. Program-specific CMC, analytical validation, stability/potency correlation, and lot comparability data are missing; confidence that requirements are met is therefore moderate for the guidance and low for program readiness.",
+    "findings": [
+      "MISEV2023 (ev-misev2023-quality-framework) endorses orthogonal EV characterization, appropriate controls, and transparent reporting but is guidance-level and not program-specific evidence that SGL-001 meets Stage-1 CMC/analytics gates.",
+      "No program-specific MCB/WCB documentation, validated intact-EV release and orthogonal QC assay validation reports (LLOQ, specificity, precision), stability-indicating potency assay correlated to an in vivo PD endpoint, >=3 GMP-like batch comparability data, or formulation/device compatibility study reports were provided.",
+      "Advancing to cross-species PK/PD and formulation comparability testing without the listed CMC/analytics deliverables risks misattribution of biological signals to uncharacterized product variability."
+    ],
+    "matter_id": "matter-potency-identity-characterization",
+    "objections": [
+      "MISEV2023 is a consensus guideline and does not constitute program-specific evidence that SGL-001 meets Stage-1 CMC/analytics or lot-comparability requirements.",
+      "There is no provided MCB/WCB creation and characterization, validated intact-EV release assays with LLOQ/specificity/precision, a stability-indicating potency assay with in vivo PD correlation, comparability across >=3 GMP-like batches, or formulation/device compatibility data for SGL-001.",
+      "Proceeding directly to cross-species PK/PD and formulation comparability studies without the above deliverables would be premature and increase technical and interpretive risk."
+    ],
+    "proposed_changes": {
+      "claim_updates": [
+        {
+          "claim_id": "claim-ev-cmc-requirements",
+          "created_at": "2026-10-19T00:00:00Z",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "program_id": "SGL-001",
+          "rationale": "Only guideline-level evidence provided; no program-specific MCB/WCB, assay validation, potency correlation, or comparability data were supplied.",
+          "statement": "SGL-001 meets Stage-1 CMC/analytics requirements for identity, potency, and lot comparability.",
+          "status": "disputed"
+        },
+        {
+          "claim_id": "claim-rodent-cns-delivery",
+          "created_at": "2026-10-19T00:00:00Z",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "program_id": "SGL-001",
+          "rationale": "Guidance supports necessary controls but does not replace program-specific CMC and validated assays required to interpret cross-species PK/PD or comparability studies.",
+          "statement": "Rodent intranasal biodistribution data and guideline citation justify advancing directly into cross-species PK/PD and formulation comparability testing.",
+          "status": "disputed"
+        },
+        {
+          "claim_id": "claim-source-cell-scalability",
+          "created_at": "2026-10-19T00:00:00Z",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "program_id": "SGL-001",
+          "rationale": "No comparability datasets from >=3 GMP-like batches were provided; the guideline does not constitute evidence of executed, reproducible manufacturing.",
+          "statement": "Manufacturing scale-up reproducibility and comparability across >=3 GMP-like batches have been demonstrated for SGL-001.",
+          "status": "disputed"
+        }
+      ],
+      "decision_update": {
+        "approval_status": "pending",
+        "approved_at": null,
+        "approved_by": null,
+        "decision_id": "decision-sgl001-run-biodistribution-package",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "outcome": null,
+        "program_id": "SGL-001",
+        "question": "Should SGL-001 advance into cross-species PK/PD and formulation comparability studies?",
+        "rationale": "Current evidence is limited to guideline-level recommendations (ev-misev2023-quality-framework) without program-specific MCB/WCB, validated release/potency assays, stability/potency correlation, or >=3 GMP-like lot comparability required to de-risk cross-species and comparability studies.",
+        "requires_human_approval": true,
+        "risk_ids": [
+          "risk-cmc-identity-potency",
+          "risk-cross-species-cns-delivery",
+          "risk-model-efficacy-generalizability"
+        ],
+        "supporting_claim_ids": [
+          "claim-ev-cmc-requirements",
+          "claim-rodent-cns-delivery",
+          "claim-source-cell-scalability"
+        ]
+      },
+      "editorial_clarification": "Label MISEV2023 as guidance only in program dossier. For each submitted dataset, provide a one-line pointer to the specific claim it is intended to support.",
+      "evidence_confidence_update": "moderate",
+      "hypothesis_update": null,
+      "next_action": "Require submission of the Stage-1 CMC/analytics package before re-evaluation: (1) MCB and WCB creation and full characterization reports; (2) validated intact-EV release assay(s) and orthogonal QC assay validation reports (fit-for-purpose validation including LLOQ, specificity, accuracy/precision, robustness) and SOPs used for release testing; (3) a validated, stability-indicating potency assay with data demonstrating correlation to an in vivo PD endpoint relevant to the intended mechanism of action; (4) comparability reports from >=3 GMP-like production runs showing reproducible release specifications, stability profiles, and potency across lots (with statistical comparability analysis); (5) formulation and device compatibility study reports demonstrating intact-EV recovery and stability after formulation and device handling; (6) after submission, convene a human-review panel to approve any advancement.",
+      "program_status_update": null,
+      "risk_updates": [
+        {
+          "description": "Absence of validated intact-EV release assays, stability-indicating potency assay correlated to in vivo PD, and MCB/WCB documentation increases risk that observed biological effects are due to uncharacterized product variability or assay artifacts.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "likelihood": "high",
+          "mitigation": "Require validated assay reports, MCB/WCB documentation, and >=3 GMP-like batch comparability before advancing.",
+          "owner": null,
+          "program_id": "SGL-001",
+          "risk_id": "risk-cmc-identity-potency",
+          "severity": "high",
+          "status": "open",
+          "title": "Insufficient identity/potency characterization"
+        },
+        {
+          "description": "Without orthogonal QC and lot comparability, cross-species PK/PD signals may be confounded by formulation, device handling, or lot-to-lot variability.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "likelihood": "moderate",
+          "mitigation": "Require formulation/device compatibility studies and demonstrated lot comparability prior to cross-species PK/PD.",
+          "owner": null,
+          "program_id": "SGL-001",
+          "risk_id": "risk-cross-species-cns-delivery",
+          "severity": "high",
+          "status": "open",
+          "title": "Interpretation risk for cross-species PK/PD"
+        },
+        {
+          "description": "Limited characterization and lack of validated potency correlation reduce confidence that preclinical PD readouts will translate across species.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "likelihood": "moderate",
+          "mitigation": "Establish validated potency assay with in vivo PD correlation and include cross-species bridging studies after CMC gaps are closed.",
+          "owner": null,
+          "program_id": "SGL-001",
+          "risk_id": "risk-model-efficacy-generalizability",
+          "severity": "moderate",
+          "status": "open",
+          "title": "Model-to-human efficacy generalizability risk"
+        }
+      ]
+    },
+    "recommendation": "Do not advance SGL-001 into cross-species PK/PD or formulation comparability testing at this time. Require the Stage-1 CMC/analytics package (items listed below) be submitted for re-evaluation. Major advancement decisions require human approval and should remain pending until program-specific data are reviewed.",
+    "supporting_evidence_ids": [
+      "ev-misev2023-quality-framework"
+    ]
+  },
+  "unsupported_conclusions": [
+    {
+      "conclusion": "Current program materials lack demonstrated MCB/WCB, validated intact-EV release assays (LLOQ, specificity, precision), stability-indicating potency assays linked to a PD endpoint, and reproducible release/stability across >=3 GMP-like batches \u2014 therefore the program is not ready to advance to cross-species PK/PD or formulation comparability testing.",
+      "evidence_gap": "Program-specific CMC and analytics data are missing: (1) MCB/WCB documentation; (2) validated intact-EV release assays with fit-for-purpose validation reports (LLOQ, specificity, precision); (3) stability-indicating potency assay with correlation to an in vivo PD endpoint; (4) manufacturing comparability data from >=3 GMP-like batches showing reproducible release/stability/potency.",
+      "reviewer_role": "cmc"
+    },
+    {
+      "conclusion": "Without defined MCB/WCB, documented scale-up reproducibility, and orthogonal QC with validated assays, formulation/device compatibility and bridging studies will risk attributing signals to non-EV artifacts or uncharacterized lot-to-lot variability; Stage-1 gating requirements should remain in place until the program supplies the missing CMC/analytics package.",
+      "evidence_gap": "Missing manufacturing and analytical execution evidence required to de-risk comparability: documented MCB/WCB, scale-up and reproducibility data (>=3 runs), orthogonal QC assay definitions and validations, and formulation/device compatibility studies demonstrating intact-EV recovery.",
+      "reviewer_role": "manufacturing"
+    }
+  ],
+  "verification_objections": [
+    "The program has not produced a Master Cell Bank (MCB) or Working Cell Bank (WCB).",
+    "Validated intact\u2011EV release assays (including LLOQ, specificity, and precision) are absent for the program.",
+    "A stability\u2011indicating potency assay with demonstrated correlation to an in vivo PD endpoint has not been provided.",
+    "Comparability demonstrating reproducible release, stability, and potency across \u22653 GMP\u2011like production batches is lacking.",
+    "Formulation/device compatibility studies demonstrating intact\u2011EV recovery for this program are not available."
+  ],
+  "verification_supports_state_change": false
+}
