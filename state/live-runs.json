@@ -1,6 +1,6 @@
 {
   "program_id": "SGL-001",
-  "updated_at": "2026-10-19T10:53:03.980600Z",
+  "updated_at": "2026-10-20T10:10:47.561176Z",
   "runs": [
     {
       "run_id": "run-20260911T101854Z-e4dd7c990790",
@@ -4131,6 +4131,142 @@
         "run-20261019T105154Z-5eef39a3ed21:06-verification.json",
         "run-20261019T105154Z-5eef39a3ed21:07-adversary.json",
         "run-20261019T105154Z-5eef39a3ed21:08-chair-determination.json"
+      ]
+    },
+    {
+      "run_id": "run-20261020T100827Z-62899b036dd1",
+      "program_id": "SGL-001",
+      "started_at": "2026-10-20T10:08:27.168519Z",
+      "completed_at": "2026-10-20T10:10:47.561176Z",
+      "selected_matter": {
+        "matter_id": "matter-potency-identity-characterization",
+        "program_id": "SGL-001",
+        "title": "Potency and identity characterization",
+        "question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
+        "domain": "cmc_manufacturing",
+        "why_it_matters": "Without reproducible identity and potency measures, observed biological differences may reflect uncontrolled product variability.",
+        "priority": "quality_blocking",
+        "advancement_value": "high",
+        "blocking_stage": "manufacturing comparability",
+        "linked_hypothesis_ids": [
+          "hypothesis-sgl001-biodistribution-gate"
+        ],
+        "linked_risk_ids": [
+          "risk-cmc-identity-potency"
+        ],
+        "linked_evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "required_reviewer_roles": [
+          "cmc",
+          "manufacturing",
+          "evidence"
+        ],
+        "status": "completed",
+        "selected_at": "2026-10-20T10:08:27.168519Z",
+        "completed_at": "2026-10-20T10:10:47.561176Z",
+        "determination": "evidence_gap",
+        "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change."
+      },
+      "why_selected": "Selected quality_blocking matter with high advancement value. Deterministic ranking favors program-invalidating issues, then real-world stage blockers, product definition, deployment, quality, contradictions, experiment design, and refinement.",
+      "reviewers_convened": [
+        "cmc",
+        "manufacturing",
+        "evidence",
+        "verifier",
+        "adversary",
+        "chair"
+      ],
+      "reviewer_conclusions": [
+        {
+          "reviewer_role": "cmc",
+          "conclusion": "Supported: The MISEV2023 guidance establishes that transparent, orthogonal characterization and defined release/assay criteria are required to de-risk identity and potency claims; therefore a defined orthogonal QC and validated intact-EV assays are prerequisite to progressing formulation comparability and cross-species PK/PD bridging.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements",
+            "claim-rodent-cns-delivery"
+          ],
+          "limitations": [
+            "MISEV2023 is a consensus guidance highlighting needs and best practices but is not primary experimental data showing this program's products meet criteria.",
+            "No program-supplied assay validation reports, MCB/WCB records, or batch comparability data are present in the supplied evidence to confirm implementation."
+          ],
+          "evidence_gap": null,
+          "search_needed": false,
+          "requested_evidence": [],
+          "unsupported": false
+        },
+        {
+          "reviewer_role": "manufacturing",
+          "conclusion": "Unsupported (insufficient program-specific evidence): While MISEV2023 recommends defined source-cell control (MCB/WCB) and reproducible scale-up, the supplied evidence set does not contain program-specific MCB/WCB documentation, representative GMP-like batch records, or scale-up/tech-transfer data to support the claim that current materials either meet or fail those requirements. The claim cannot be confirmed from the provided corpus.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-source-cell-scalability"
+          ],
+          "limitations": [
+            "MISEV2023 recommends production reporting and controls but does not provide program-specific MCB/WCB, scale-up, or GMP-like batch data for SGL-001 in the provided evidence set.",
+            "Therefore the claim that current materials do not demonstrate characterized MCB/WCB or scalable production is plausible but is not directly proven by the supplied evidence alone."
+          ],
+          "evidence_gap": "No program batch records, MCB/WCB documentation, scale-up/tech transfer reports, or reproducibility metrics were provided.",
+          "search_needed": true,
+          "requested_evidence": [
+            "Program MCB/WCB master cell bank documentation and characterization",
+            "Representative GMP-like batch records (>=3 runs) with release results and stability data",
+            "Scale-up/tech-transfer reports and in-process control data",
+            "Assay SOPs and validation summaries for identity/purity/potency"
+          ],
+          "unsupported": true
+        },
+        {
+          "reviewer_role": "evidence",
+          "conclusion": "Unsupported (evidence gap): The MISEV2023 consensus guideline supports that orthogonal analytics and process controls are needed before asserting intact-EV identity, potency, and cross-species comparability; however, the provided evidence set lacks the program-specific experimental and validation data required to demonstrate compliance with those expectations. The claim that the program meets the necessary criteria cannot be confirmed from the supplied corpus.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-rodent-cns-delivery",
+            "claim-ev-cmc-requirements",
+            "claim-source-cell-scalability"
+          ],
+          "limitations": [
+            "Key experimental evidence referenced in the original claim records (e.g., cross-species biodistribution, large-animal data, assay validation reports) are not present in the allowed evidence for this review.",
+            "Inference that rodent intranasal data are insufficient to predict larger-species CNS exposure is consistent with MISEV recommendations but is not directly demonstrated by program-specific comparative data in the provided corpus."
+          ],
+          "evidence_gap": "Absence of program-specific biodistribution bridging data, intact-EV assay validation, and MCB/GMP-like batch comparability in the supplied evidence.",
+          "search_needed": true,
+          "requested_evidence": [
+            "Rodent and large-animal intranasal biodistribution/toxicity study reports (with intact-EV-specific readouts and controls)",
+            "Intact-EV assay validation reports (LLOQ, specificity, precision, accuracy) and orthogonal QC panel results",
+            "MCB/WCB characterization and representative GMP-like batch release/stability data"
+          ],
+          "unsupported": true
+        }
+      ],
+      "strongest_supporting_evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "strongest_contradictory_evidence_ids": [],
+      "adversary_objection": "The recommendation to proceed to comparability or cross-species bridging before receiving program-specific CMC/analytics/batch data rests on incomplete program evidence: the supplied corpus contains only the MISEV2023 guidance and no program MCB/WCB records, assay validation reports, GMP-like batch records, stability and potency correlation data, or formulation/device compatibility studies. Therefore the core advance (that comparability/bridging can be meaningfully assessed now) is unsupported until those program-specific data are delivered.",
+      "chair_determination": "evidence_gap",
+      "state_changed": false,
+      "change_scope": "none",
+      "scientific_state_changed": false,
+      "operational_state_changed": false,
+      "previous_state_preserved": true,
+      "what_changed": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
+      "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+      "artifact_ids": [
+        "run-20261020T100827Z-62899b036dd1:01-compact-state.json",
+        "run-20261020T100827Z-62899b036dd1:02-development-docket.json",
+        "run-20261020T100827Z-62899b036dd1:03-selected-matter.json",
+        "run-20261020T100827Z-62899b036dd1:04-reviewer-panel.json",
+        "run-20261020T100827Z-62899b036dd1:05-analysis.json",
+        "run-20261020T100827Z-62899b036dd1:06-verification.json",
+        "run-20261020T100827Z-62899b036dd1:07-adversary.json",
+        "run-20261020T100827Z-62899b036dd1:08-chair-determination.json"
       ]
     }
   ]

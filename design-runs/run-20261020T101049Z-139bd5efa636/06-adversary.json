@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Capture-reagent incompatibility or buffer effects reduce capture efficiency in specific formulations, causing false 'loss' calls even though EV membranes and cargo are intact (assay artifact).",
+    "Formulation excipients or device-shear release non-vesicular particles or protein aggregates that inflate particle counts and protein:particle ratios, obscuring true EV degradation (false 'preserved' calls).",
+    "Spike-in exogenous intact-EV tracer behaves differently from endogenous product EVs in given buffers or fractionation workflows, undermining its utility to detect assay interference or to normalize readouts.",
+    "Particle counters (NTA/TRPS) detect non-vesicular nanoparticles or label-artefacts; co-localization with capture fractions may reflect non-specific adsorption rather than bona fide surface-marker+ EVs.",
+    "Protected-cargo assays (targeted small-RNA, targeted proteomics) lack sensitivity or are differentially affected by detergents/excipients across conditions, producing inconsistent protection readouts across lots (unmeasurable or irreproducible fingerprints).",
+    "Insufficient conditioned-medium yield or lot-to-lot heterogeneity prevents n>=3 independent lots from being tested across the full matrix, reducing statistical confidence and enabling overinterpretation of stochastic assay variation.",
+    "Even if orthogonal in vitro signatures can be defined, they may not predict in vivo delivery or function because route- and species-specific clearance or nasal retention prevent brain delivery independent of product stability (translatability failure).",
+    "Labeling or fractionation steps introduce artifacts (e.g., reporter retention in nasal lavage as seen in NHP) that confound linking in vitro stability signatures to in vivo recovery or efficacy."
+  ],
+  "strongest_objection": "The plan most likely fails or misleads because formulation excipients, fractionation buffers, or capture reagents will interfere with one or more orthogonal assays (immuno-capture, particle counting, protected-cargo profiling), producing apparent qualitative \u2018loss\u2019 or \u2018preservation\u2019 of EV-associated signals that reflect assay incompatibility or non-vesicular co-isolates rather than true membrane/cargo damage; if assay interference cannot be conclusively excluded by the proposed compatibility controls and spike-ins, the attributes will be unmeasurable or misleading for stability gating and comparability decisions."
+}
