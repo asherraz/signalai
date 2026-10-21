@@ -1,0 +1,19 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Exogenous spike-in tracer does not mimic endogenous EV physicochemical behavior (capture efficiency, fractionation profile, detergent/protease protection), so spike-in validation gives false confidence while endogenous signals are absent or inconsistent.",
+    "Concordant readouts across sites reflect consistent co-isolation or detection of non-vesicular particles (protein/RNA complexes, lipoproteins, aggregates) rather than EV-specific signals, producing false-positive 'fingerprint reproducible' calls.",
+    "Assay harmonization fails: minor, site-specific differences in fractionation, particle counting, capture reagent performance, or protection assays produce discordant qualitative calls that reflect procedural variability rather than lot differences.",
+    "Spike-in signal dominates limited-sensitivity assays such that robust spike-in recovery masks poor or absent endogenous protected-cargo signatures (apparent assay validation but no endogenous fingerprint), leading to mistaken advancement of non-comparable lots.",
+    "Cold-chain, shipping, or pre-analytical instability differentially affects endogenous EV components more than the spike-in (e.g., endogenous membranes rupture while spike-in (different formulation/species) remains intact), causing misleading discordance or false negatives/positives across sites.",
+    "Batch-to-batch biological heterogeneity is so large that even flawlessly harmonized assays and appropriate spike-ins detect true lot variability; the fingerprint will then be irreproducible for manufacturing reasons, and the qualitative gate provides no operational utility.",
+    "Orthogonal protected-cargo panels (small-RNA/targeted proteomics) lack sensitivity, specificity, or cross-site reproducibility, making the composite readout noisy and dependent on a few low-information features that are not robust indicators of intact EV content.",
+    "Positive-control EV reference material differs materially from program EVs (source cell, surface markers, density) so it does not validate capture-compatibility for endogenous analytes; sites pass controls but endogenous capture fails.",
+    "Interpretation ambiguity: concordant 'pass' across sites could be driven by a single dominant attribute (e.g., particle:protein ratio or spike-in recovery) that does not reflect intact-EV identity, yet the rubric treats the composite as sufficient for comparability decisions."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is that apparent inter-site concordance (or discordance) will reflect assay artifacts\u2014either consistent co-isolation/detection of non-vesicular material or differential behavior of the exogenous spike-in versus endogenous EVs\u2014rather than true, reproducible preservation of an intact-EV composite fingerprint across production lots. In that case the blinded, spike-in\u2013controlled multi-site design cannot distinguish assay-driven signals from biologically meaningful, lot-level EV identity, so the proposed qualitative comparability gate would be uninformative or misleading."
+}
