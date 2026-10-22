@@ -1,0 +1,225 @@
+{
+  "adversary_objection": "The proposal can be falsified by assay- and matrix-driven false negatives or false-positives: capture reagents and the exogenous spike-in may behave differently from endogenous material in the program-specific buffers, fractionation steps, or device/formulation exposures, and co-eluting non\u2011vesicular particles (lipoproteins, aggregates) can display the same capture/signature pattern as membrane\u2011protected EVs. Together these mechanisms would make the proposed spike\u2011in + capture + detergent/protease workflow unable to reliably distinguish true intact EV enrichment from secretome or artifactual signal across lots, producing irreproducible identity calls (either false 'pass' from non\u2011vesicular binders or false 'fail' from assay interference).",
+  "assumptions": [
+    "Validated capture reagents and spike\u2011in tracer are available and compatible with buffers used in fractionation and formulation.",
+    "Particle counting (NTA/TRPS) and fractionation (SEC/iodixanol) have sufficient sensitivity for fraction\u2011level co\u2011localization in the program's material biomass.",
+    "Detergent + protease/RNase treatments reliably disrupt membranes and eliminate membrane\u2011protected signal without causing assay artifacts when controls are included."
+  ],
+  "biological_rationale": "MISEV2023 and program rodent evidence indicate that particle counts alone and bulk marker readouts can reflect non\u2011vesicular co\u2011isolates. A spike\u2011in control plus fraction\u2011level immuno\u2011capture co\u2011localization and membrane\u2011protection (detergent/protease sensitivity) distinguishes membrane\u2011protected particle\u2011associated marker/cargo from soluble secretome signal, enabling an identity definition independent of potency claims.",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20261022T101836Z-a8c838a819c7-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Spike\u2011in recovery might validate assay function while endogenous signal absence could reflect true lack of EV enrichment or lot variability.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Spike\u2011in controlled fractionation comparing bounded small\u2011EV fraction versus secretome control across >=3 lots.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV recommends orthogonal controls; program rodent studies motivate linkage but do not prove identity in all processing states."
+      },
+      {
+        "competing_explanation": "Loss of endogenous co\u2011localized signal could stem from downstream exposures (formulation/device/TFF) rather than initial fractionation state.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution",
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Short\u2011interval in vivo recovery using materials passing/failing the spike\u2011in identity gate to test linkage to recoverable exposure.",
+        "model_or_species": "non-human primate context (delivery uncertainty)",
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate: large\u2011animal negative biodistribution increases need for rigorous identity gating; delivery issues remain a competing explanation for negative in vivo detection."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If an exogenous intact\u2011EV spike\u2011in is recovered in capture\u2011positive, particle\u2011peak fractions and shows membrane\u2011protection (loss after detergent + protease), the orthogonal assay functions and endogenous negative capture co\u2011localization reflects absence of intact EV enrichment rather than assay failure."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If endogenous capture\u2011positive signal co\u2011localizes with particle peaks and is detergent/protease\u2011sensitive in bounded fractions but not in secretome controls, the preparation can be classified as EV\u2011enriched for drug\u2011substance definition."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the bounded fraction lacks endogenous co\u2011localized, detergent\u2011sensitive signal despite preserved spike\u2011in recovery, the preparation is indistinguishable from secretome and should not be advanced as an EV drug\u2011substance."
+      }
+    ]
+  },
+  "chair_rationale": "Conceptually sound and operationally feasible but significant analytic and process risks remain (spike\u2011in vs endogenous compatibility, co\u2011eluting non\u2011vesicular particles, reproducibility across \u22653 lots, buffer/device compatibility, and linkage to in\u2011vivo recoverable exposure). Proceed to the proposed experiments and buffer/compatibility orthogonal controls before using the gate for release decisions.",
+  "competing_explanations": [
+    "Co\u2011localizing capture signal could reflect co\u2011eluting non\u2011vesicular particles (lipoproteins/aggregates) that bind capture reagents.",
+    "Loss of endogenous capture signal could be due to assay interference from formulation or process buffers rather than loss of membrane integrity."
+  ],
+  "contradicting_evidence_ids": [],
+  "created_at": "2026-10-22T10:18:36.751251Z",
+  "dependencies": [
+    "establish spike\u2011in procurement and QC",
+    "capture\u2011compatibility panel for candidate formulation buffers and device rinses",
+    "sufficient conditioned\u2011medium production (>=3 lots) from qualified source cells"
+  ],
+  "design_question": "Which orthogonal measurable attributes can define SGL-001 product identity (EV\u2011enriched small\u2011EV fraction) without implying potency or efficacy?",
+  "determination": "proposed_for_testing",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7"
+  ],
+  "expected_measurable_effect": "Qualitative pass/fail identity calls per lot: 'EV\u2011enriched pass' if spike\u2011in recovery is membrane\u2011protected and endogenous capture co\u2011localizes with particle peaks and is detergent/protease\u2011sensitive; otherwise 'secretome fail'.",
+  "explicit_inferences": [
+    "Spike\u2011in recovery controls separate assay failure from true endogenous absence of membrane\u2011protected particles.",
+    "Fraction\u2011level co\u2011localization of capture signal with particle peaks plus detergent/protease sensitivity operationally indicates membrane\u2011protected, particle\u2011associated markers/cargo."
+  ],
+  "falsification_criteria": [
+    "Validated spike\u2011in recovery is observed across replicates, but endogenous capture\u2011positive, detergent/protease\u2011sensitive co\u2011localization with particle peaks is not reproducibly observed in the bounded fraction across >=3 independent lots (hypothesis falsified for identity gate).",
+    "Observed losses of endogenous capture signal are explained entirely by capture\u2011reagent/formulation incompatibility per buffer\u2011compatibility controls rather than true membrane disruption (invalidates interpretability of the gate)."
+  ],
+  "human_decisions_required": [
+    "Select exogenous intact\u2011EV spike\u2011in (species or tracer) and purchase/validate source",
+    "Approve capture reagent panel (CD63/CD9/CD81 and TIM4/AnxA5) and compatibility testing plan",
+    "Decide whether to prioritize bounded fractionation workflow (TFF->SEC->cushion) or an alternative (pre\u2011SEC depletion -> SEC) for identity gating experiments"
+  ],
+  "hypothesis_id": "design-hypothesis-run-20261022T101836Z-a8c838a819c7",
+  "manufacturability_assessment": "Operationally feasible: uses standard fractionation (SEC/iodixanol), spike\u2011in controls, immuno\u2011capture assays, particle counting, and detergent/protease protection assays. Requires establishing spike\u2011in supply and capture\u2011compatibility panels and modest material yields (>=3 lots) for reproducibility testing.",
+  "manufacturing_rationale": "An operational qualitative identity gate (spike\u2011in validated + co\u2011localization + detergent sensitivity) provides a manufacturable go/no\u2011go for downstream CMC activities (orthogonal QC panel development, potency assay linkage, scale\u2011up comparability) without prematurely asserting numeric release limits.",
+  "measurement_strategy": "Fraction\u2011level orthogonal workflow with within\u2011sample exogenous intact\u2011EV spike\u2011in control: (1) add spike\u2011in prior to fractionation; (2) identify particle peaks by NTA/TRPS per fraction; (3) immuno\u2011capture ELISA/bead capture for canonical surface markers on intact fractions with separate readouts for spike\u2011in tracer and endogenous signal; (4) detergent + protease/RNase protection testing on captured material; (5) total protein and protein:particle ratio per fraction. Qualitative pass/fail identity rubric applied per lot.",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal fraction\u2011level workflow: (1) add exogenous intact\u2011EV spike\u2011in to each sample prior to fractionation; (2) fractionate (iodixanol cushion or SEC) and measure particle counts per fraction; (3) perform immuno\u2011capture on intact fractions and quantify endogenous marker signal and spike\u2011in tracer signal separately; (4) perform protease/RNase protection +/- detergent on captured material for both spike\u2011in tracer and endogenous signal; (5) measure total protein and protein:particle ratio per fraction.",
+    "comparator": "Matched pair from same conditioned\u2011medium lot: bounded EV\u2011enriched fraction with identical spike\u2011in versus concentrated secretome\u2011retaining concentrate with identical spike\u2011in. Include detergent+protease\u2011treated aliquots and buffer\u2011only negative controls.",
+    "complexity": "moderate",
+    "control": "Positive control: characterized small EV preparation spiked into buffer and processed in parallel to confirm capture and protection assay performance. Negative controls: buffer\u2011only and detergent\u2011disrupted samples. Capture\u2011compatibility buffer panels to rule out assay interference.",
+    "dependencies": [
+      "Availability of a characterized exogenous intact\u2011EV spike\u2011in and validated capture reagents with buffer compatibility",
+      "Sufficient conditioned\u2011medium yields from >=3 independent lots",
+      "Analytical capacity for fractionation, particle counting, immuno\u2011capture, and protection assays"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261022T101836Z-a8c838a819c7",
+    "failure_criterion": "Either (A) validated spike\u2011in recovery but no reproducible endogenous capture co\u2011localization in bounded fractions across >=3 lots (identity gate falsified), or (B) spike\u2011in recovery is inconsistent across replicates (assay failure preventing discrimination).",
+    "falsification_outcome": "If spike\u2011in recovery is confirmed but endogenous co\u2011localized, detergent/protease\u2011sensitive signals are not reproducibly observed in bounded fractions across independent lots, treat the material as indistinguishable from secretome for identity and pivot to secretome\u2011centric CMC strategy or alternative fractionation. If spike\u2011in control fails, redesign/control the spike\u2011in and assays before relying on identity gating.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "An orthogonal intact\u2011EV identity gate consisting of spike\u2011in protected recovery co\u2011localized with particle peaks and endogenous capture\u2011positive, detergent/protease\u2011sensitive co\u2011localization in the bounded small\u2011EV fraction discriminates EV\u2011enriched drug\u2011substance from secretome controls.",
+    "primary_readout": "Qualitative co\u2011localization: particle\u2011count peak fractions that are capture\u2011positive and show (A) preserved spike\u2011in tracer signal that is lost after detergent+protease (validating assay function and membrane protection) and (B) endogenous capture\u2011positive signal that co\u2011localizes with particle peaks and is detergent/protease\u2011sensitive in bounded fraction but not in secretome control.",
+    "question": "Does adding an exogenous intact\u2011EV spike\u2011in before fractionation enable discrimination between a bounded EV\u2011enriched fraction and a secretome\u2011retaining concentrate by demonstrating (A) spike\u2011in membrane\u2011protected recovery in capture\u2011positive particle\u2011peak fractions and (B) endogenous capture\u2011positive, detergent/protease\u2011sensitive co\u2011localization in the bounded fraction but not in secretome control?",
+    "required_material": [
+      "MSC\u2011conditioned medium from the same source\u2011cell lot processed as: (A) bounded small\u2011EV enrichment (e.g., TFF->SEC->single\u2011step iodixanol cushion) and (B) concentrated conditioned medium without enrichment (secretome\u2011retaining)",
+      "Exogenous characterized intact\u2011EV spike\u2011in (non\u2011overlapping species or isotope\u2011labeled tracer) QC\u2011characterized for particle counts and marker display",
+      "Immuno\u2011capture reagents for canonical EV markers (anti\u2011CD63, anti\u2011CD9, anti\u2011CD81 or TIM4/AnxA5 capture reagents)",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Protease (proteinase K) and RNase reagents",
+      "Detergent (Triton X\u2011100 or equivalent) for membrane disruption",
+      "Density\u2011fractionation materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Total protein assay reagents and consumables",
+      "Buffers and capture\u2011compatibility control reagents"
+    ],
+    "secondary_readouts": [
+      "Spike\u2011in recovery percentage per fraction (qualitative recovered & membrane\u2011protected vs not recovered)",
+      "Protein:particle ratio differences between bounded fraction and secretome control",
+      "Reproducibility across biological replicates (n >= 3 independent conditioned\u2011medium lots)",
+      "Capture\u2011compatibility control readouts per buffer"
+    ],
+    "success_criterion": "Across >=3 independent conditioned\u2011medium lots, (1) the spike\u2011in tracer is recovered in capture\u2011positive, particle\u2011peak fractions and shows loss after detergent+protease (validating assay recovery and membrane protection), and (2) endogenous capture\u2011positive co\u2011localization with particle peaks and detergent/protease\u2011sensitive behavior is observed reproducibly in the bounded small\u2011EV fraction but not in the secretome\u2011retaining concentrate processed identically. This pattern enables a pass/fail identity gate: bounded fraction = EV\u2011enriched (pass); secretome = not EV\u2011enriched (fail)."
+  },
+  "novelty_statement": "This proposal changes substantive product strategy by operationalizing a spike\u2011in\u2011controlled, fraction\u2011level identity gate (spike\u2011in recovery + endogenous capture co\u2011localization + detergent/protease sensitivity) rather than relying on bulk particle counts or single marker metrics. Unlike prior hypotheses that only described co\u2011localization or capture metrics, this proposal mandates within\u2011sample spike\u2011in recovery as an assay control and uses the combined readout as a qualitative pass/fail drug\u2011substance definition. This is a substantive methodological shift (introduces a required spike\u2011in and explicit pass/fail identity rubric) rather than a mere wording change.",
+  "primary_domain": "product_identity",
+  "principal_risks": [
+    "Spike\u2011in tracer or capture reagents may be incompatible with certain buffers or formulation/device exposures, producing false negatives.",
+    "Endogenous protected signals may be absent or variable across lots, leading to frequent 'secretome fail' calls and potential program derailment unless upstream/source\u2011cell or fractionation controls are addressed.",
+    "Even with an identity gate, intranasal delivery may still fail to produce recoverable intact\u2011EV exposure in larger species (non\u2011human primate evidence)."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "This identity gate is intentionally defined to avoid asserting potency; it enables subsequent potency linkage studies by ensuring the material classified as 'EV\u2011enriched' contains membrane\u2011protected particle\u2011associated markers/cargo.",
+  "proposed_product_change_or_attribute": "Adopt an orthogonal intact\u2011EV identity gate: (A) recovery of an exogenous intact\u2011EV spike\u2011in that co\u2011localizes with particle\u2011count peaks and is detergent/protease\u2011sensitive (validating assay recovery and membrane protection), plus (B) endogenous immuno\u2011capture positive signal for canonical EV surface markers (CD63/CD9/CD81 or TIM4/AnxA5) that co\u2011localizes with particle peaks and is lost or substantially reduced after detergent + protease/RNase treatment in bounded small\u2011EV fractions but not in secretome\u2011retaining concentrates. Use this combined spike\u2011in\u2011validated, fraction\u2011level co\u2011localization + detergent sensitivity as a qualitative pass/fail identity gate (non\u2011numeric) for classifying a preparation as an EV\u2011enriched small\u2011EV drug substance versus secretome.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Assay compatibility risk: spike-in tracer and capture reagents may be inhibited by formulation or device-associated buffers leading to false negatives (proposal notes this but experimental support is missing).",
+        "Analytical sensitivity and resolution: canonical evidence does not confirm that NTA/TRPS plus fraction-level immunocapture can reproducibly co-localize endogenous markers with particle peaks in the program's material and across lots.",
+        "Potential false attribution: capture-positive signals could reflect co-eluting non-vesicular particles (lipoproteins/aggregates) that bind capture reagents; this competing explanation needs explicit orthogonal controls beyond detergent/protease (e.g., density profile, lipoprotein markers).",
+        "Translational delivery risk: non-human-primate intranasal biodistribution negative findings (ev-driedonks-2022-macaque-biodistribution) remain a substantive program risk\u2014identity gating alone does not address in vivo exposure limitations."
+      ],
+      "conclusion": "The proposal is generally supported by the supplied canonical evidence for using orthogonal characterization and membrane-protection controls to define an EV identity gate, but key operational assumptions (spike-in compatibility, fraction-level sensitivity/co-localization reproducibility across lots and buffers) lack direct experimental support in the provided evidence set. The translational limitation of intranasal delivery in larger species is correctly cited as a program risk.",
+      "evidence_gap": "No canonical evidence provided demonstrates that a within-sample exogenous intact-EV spike-in reliably (a) survives the program's fractionation/formulation/device workflows and (b) yields reproducible fraction-level co-localization with endogenous markers and particle peaks across >=3 independent conditioned-medium lots and buffer panels. Similarly, there is no direct canonical evidence showing that particle counting (NTA/TRPS) and immunocapture at fraction resolution have the sensitivity in the program's material matrix to discriminate bounded small-EV fractions from secretome controls.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "evidence_verifier",
+      "supported": true
+    },
+    {
+      "concerns": [
+        "Manufacturability: requirement for a characterized exogenous intact\u2011EV spike\u2011in and validated capture panel adds supply/QC burden; sourcing and QC of spike\u2011in must be established and sustained for routine lot testing.",
+        "Process sensitivity / scale\u2011up risk: fractionation methods (TFF/SEC/iodixanol) can be sensitive to scale and operating conditions; reproducible co\u2011elution profiles and particle peaks may change with scale\u2011up, risking inconsistent identity calls.",
+        "Measurement feasibility: particle counters (NTA/TRPS) and immuno\u2011capture have limited resolution\u2014co\u2011localization at fraction level may not uniquely identify vesicles versus lipoproteins/aggregates without orthogonal biochemical or density evidence.",
+        "Assay interference risk: buffers, detergents, device materials or residuals can inhibit capture reagents or spike\u2011in detection, producing false negatives; pre\u2011qualification of buffer/capture compatibility is required.",
+        "Lot comparability & yields: proposal requires >=3 independent conditioned\u2011medium lots with sufficient biomass; low or variable yields or variable marker display across lots will lead to frequent 'secretome fail' outcomes and may necessitate upstream process remediation.",
+        "Stability: canonical surface markers and membrane protection may be lost or altered by processing steps (TFF, concentration, storage, formulation), complicating interpretation of detergent/protease sensitivity as an identity marker without stability studies.",
+        "Quality\u2011attribute relevance: the gate is deliberately qualitative and avoids potency claims, but for regulatory acceptance it will need validated assay performance characteristics (specificity, sensitivity, robustness), documented acceptance criteria, and linkage to downstream CQAs/potency in comparability studies."
+      ],
+      "conclusion": "The proposed spike\u2011in\u2013controlled, fraction\u2011level identity gate is a manufacturable and conceptually appropriate strategy to discriminate EV\u2011enriched bounded fractions from secretome concentrates, and it aligns with MISEV2023 recommendations for orthogonal controls. However, key analytical and process risks must be mitigated before this gate can be relied on for lot release: capture/spike\u2011in compatibility with formulation/device buffers, assay sensitivity/specificity to distinguish vesicles from co\u2011eluting non\u2011vesicular particles, lot yield and marker reproducibility, and potential process\u2011 or species\u2011dependent loss of recoverable EV signal during downstream processing or in vivo delivery.",
+      "evidence_gap": "No direct evidence that (a) the proposed spike\u2011in + capture + detergent/protease workflow reproducibly distinguishes EV\u2011enriched versus secretome material across multiple manufacturing lots at production scale, or (b) capture reagents and spike\u2011in tracers remain compatible and robust in candidate formulation buffers and through device passages. Non\u2011human primate biodistribution uncertainty also leaves an evidence gap linking identity gate success to recoverable in vivo exposure.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": true
+    },
+    {
+      "concerns": [
+        "Spike\u2011in and capture reagent compatibility: spike\u2011in recovery validates assay function only if the spike behaves like endogenous material in the same matrices; formulation or device residues can differentially affect endogenous vs spike\u2011in binding and produce false negatives (supported by MISEV caution).",
+        "Non\u2011vesicular co\u2011elution: immuno\u2011capture co\u2011localization with particle peaks and detergent sensitivity is consistent with membrane\u2011protected particles but can also arise if lipoproteins/aggregates carrying target epitopes co\u2011elute or bind capture reagents; orthogonal compositional evidence (EM, mass spectrometry, lipoprotein markers) is needed to exclude this competing explanation (MISEV recommendation).",
+        "Detergent/protease assay interpretation: membrane disruption readouts can be confounded by incomplete digestion, protease access differences, or detergent effects on capture reagents; include reagent\u2011only controls and enzyme/inhibitor checks.",
+        "Lot variability risk: endogenous capture signal may be variable across lots (biological or process variation), producing frequent 'secretome fail' outcomes; the success criterion requires reproducible results across >=3 lots\u2014this may reveal source cell or process issues rather than assay failure.",
+        "Translational linkage: even with a robust in\u2011vitro identity gate, intranasal delivery and recoverable intact EV exposure in larger species/humans is uncertain (Driedonks NHP biodistribution negative result); a positive identity gate does not assure in vivo delivery or efficacy, so in vivo short\u2011interval recovery/correlation studies are required to link identity to exposure.",
+        "Assay specificity for canonical markers: reliance on canonical tetraspanin capture (CD63/CD9/CD81) can miss EV subtypes or capture non\u2011EV proteins; a broader capture panel and depletion controls are advisable."
+      ],
+      "conclusion": "The proposed spike\u2011in + fraction\u2011level capture + detergent/protease protection identity gate is a plausible and useful experimental approach to distinguish membrane\u2011protected, particle\u2011associated signal from soluble secretome in lot release testing. It follows ISEV/MISEV recommendations for orthogonal controls and addresses a real gap versus bulk particle/protein metrics. However, it does not by itself establish that the captured particles are bona fide EVs (vs. co\u2011eluting non\u2011vesicular particles that bind capture reagents), nor does it link the identity gate to in vivo exposure or functional potency. Additional orthogonal specificity controls and in vivo correlation experiments are needed before the gate can be treated as a surrogate for product behavior after administration.",
+      "evidence_gap": "Important gaps remain: (1) direct orthogonal demonstration that capture\u2011positive, detergent/protease\u2011sensitive fractions contain EVs rather than non\u2011vesicular co\u2011eluters (lipoproteins/aggregates) using independent methods (e.g., EM/cryo\u2011EM, proteomics for lipoprotein markers); (2) demonstration that the identity gate predicts in vivo recoverable intact EV exposure (especially in larger species) or links to any bioactivity; (3) formal buffer/device compatibility data showing that loss of endogenous signal is not an assay artifact and that spike\u2011in performance is robust across process matrices.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "mechanism",
+      "supported": true
+    }
+  ],
+  "run_id": "run-20261022T101836Z-a8c838a819c7",
+  "secondary_domains": [
+    "manufacturing",
+    "fractionation",
+    "process"
+  ],
+  "selected_gap_id": "design-gap-product-identity",
+  "sequence_within_theme": 3,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-product-identity",
+  "title": "Define an orthogonal intact\u2011EV identity gate to discriminate EV\u2011enriched small\u2011EV drug substance from secretome-retaining concentrates"
+}

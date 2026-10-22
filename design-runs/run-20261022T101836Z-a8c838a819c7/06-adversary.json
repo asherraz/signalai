@@ -1,0 +1,19 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Capture\u2011reagent incompatibility with formulation or fractionation buffers causing loss of endogenous signal independent of EV integrity (false negatives).",
+    "Spike\u2011in tracer not mimicking endogenous EVs (differential recovery or detergent/protease sensitivity) so spike\u2011in validates the assay while endogenous EVs are missed (false confidence).",
+    "Co\u2011eluting non\u2011vesicular particles (lipoproteins, protein aggregates, viral particles) bind capture reagents and co\u2011localize with particle peaks and show partial detergent/protease sensitivity, yielding false 'EV\u2011enriched' passes.",
+    "Fractionation or downstream process steps (TFF, SEC, device surfaces) selectively remove or disrupt endogenous EVs but not spike\u2011in or vice versa, decoupling the identity gate from real product composition across lots. ",
+    "Inconsistent spike\u2011in recovery across runs or lots (assay failure) preventing discrimination between assay failure and true absence of EVs. ",
+    "Biological variability across source\u2011cell lots yields absent/variable endogenous markers despite proper assay performance, causing high false\u2011fail rates that derail program decisions. ",
+    "Even if the identity gate is satisfied in vitro, the product may still fail to produce recoverable intact EV exposure in vivo (especially in large animals/humans), making the identity gate poorly predictive of deliverable exposure or relevance to route\u2011specific programs."
+  ],
+  "strongest_objection": "The proposal can be falsified by assay- and matrix-driven false negatives or false-positives: capture reagents and the exogenous spike-in may behave differently from endogenous material in the program-specific buffers, fractionation steps, or device/formulation exposures, and co-eluting non\u2011vesicular particles (lipoproteins, aggregates) can display the same capture/signature pattern as membrane\u2011protected EVs. Together these mechanisms would make the proposed spike\u2011in + capture + detergent/protease workflow unable to reliably distinguish true intact EV enrichment from secretome or artifactual signal across lots, producing irreproducible identity calls (either false 'pass' from non\u2011vesicular binders or false 'fail' from assay interference)."
+}
