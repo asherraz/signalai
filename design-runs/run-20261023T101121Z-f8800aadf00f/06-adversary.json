@@ -1,0 +1,22 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Capture reagent cross-reactivity: the mucin-resistant affinity reagent binds non-EV particulate material (lipoproteins, aggregates, extracellular protein complexes) producing capture-positive signal that co-localizes with particle peaks and survives simulated mucus/device passage.",
+    "Incomplete or misleading protection assay: detergent+protease/RNase conditions or their application to captured material do not fully disrupt non-EV complexes (e.g., lipid-rich lipoproteins or protease-resistant aggregates), giving false membrane-protection readout.",
+    "Spike-in control mismatch: the exogenous spike-in tracer (different species/isotope or engineered particle) does not mimic the behavior of endogenous EV subpopulations under mucin or device stress, giving misleading recovery validation while endogenous material behaves differently.",
+    "Simulated mucus/device non-representativeness: the mucin-mimic composition or device-shear rig fails to reproduce the biochemical and mechanical insults that govern EV fate in human or large-animal intranasal delivery, so in vitro \u2018survivors\u2019 will still fail to be delivered or to reach target tissue in vivo (contradicted by macaque data showing intranasal loss/retention in nasal lavage).",
+    "Assay interference by simulation reagents: mucin-mimic components or device-rinse matrices interfere with immuno-capture reagents or particle counting (masking epitopes or altering light-scattering) producing artifactual loss or preservation signals not reflective of particle integrity.",
+    "Insufficient yield or scale: even if a mucin-resistant fraction is identified analytically, its absolute yield may be too low or heterogeneous across conditioned-medium lots to permit reproducible biological replicate results or later manufacturability assessment, causing apparent positives that cannot be advanced.",
+    "Secretome mimicry in controls: concentrated conditioned-medium controls may contain soluble complexes that re-associate or aggregate during fractionation to produce detergent-sensitive activities indistinguishable from EV-associated activity, preventing discrimination.",
+    "Species-translation failure: prior rodent efficacy signals (mouse intranasal studies) do not predict large-animal or human intranasal delivery; the macaque biodistribution showing negligible brain uptake and strong nasal retention suggests a different dominant failure mode in vivo not addressed by the proposed in vitro gate.",
+    "Orthogonal-characterization gap: reliance on qualitative co-localization and protection without rigorous orthogonal evidence (morphology by EM, lipid bilayer markers by cryo-EM, density behavior, proteomics showing membrane-anchored proteins) increases chance of misclassification.",
+    "False negative from assay loss: capture reagents or particle assays may be inhibited by simulated-mucus residues causing loss of detectable signal despite intact EVs, leading to incorrect rejection of viable EV fractions."
+  ],
+  "strongest_objection": "The mucin-resistant capture step can enrich a non-EV particle or complex (e.g., lipoprotein, protein aggregate, or loosely associated secretome complex) that (A) inherently resists mucin and device shear, (B) binds the chosen capture reagent, (C) co-fractionates with a particle-count peak, and (D) retains detergent/protease-insensitive functional cargo or a protease-insensitive activity surrogate \u2014 producing an apparent \u201cmembrane-protected\u201d signal that is not due to bona fide lipid-bilayer-enclosed EVs. Because the proposal\u2019s main discrimination is qualitative (preserved capture+particle co-localization + loss of signal after detergent/protease/RNase), enrichment of a non-EV entity that mimics those readouts or resists some protection assays would systematically misclassify secretome artifacts as EV-associated and mislead downstream product prioritization; this risk is amplified by relying on simulated nasal-mucus/device stresses that may not recapitulate the dominant loss mechanisms observed in larger species (see macaque biodistribution), so a passing in vitro discrimination may not predict in vivo recoverability or therapeutic relevance."
+}

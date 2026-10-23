@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "program_id": "SGL-001",
-  "current_design_question": "Which orthogonal measurable attributes can define SGL-001 product identity (EV‑enriched small‑EV fraction) without implying potency or efficacy?",
+  "current_design_question": "Daily question: Does a mucin-resistant capture-enriched, membrane-protected small-EV fraction retain a detergent/protease-sensitive neuroinflammation-modulating bioactivity after simulated nasal-mucus incubation and device passage, whereas matched secretome-retaining fractions do not?",
   "reviewed_hypotheses": [
     {
       "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
@@ -6226,6 +6226,240 @@
       ],
       "theme_id": "design-gap-product-identity",
       "sequence_within_theme": 3
+    },
+    {
+      "hypothesis_id": "design-hypothesis-run-20261023T101121Z-f8800aadf00f",
+      "program_id": "SGL-001",
+      "run_id": "run-20261023T101121Z-f8800aadf00f",
+      "created_at": "2026-10-23T10:11:21.513739Z",
+      "title": "Hypothesis: A mucin-resistant, capture-enriched intact-EV fraction preserves membrane-protected bioactivity after simulated intranasal exposure and discriminates EV-associated activity from secretome artifacts",
+      "design_question": "Daily question: Does a mucin-resistant capture-enriched, membrane-protected small-EV fraction retain a detergent/protease-sensitive neuroinflammation-modulating bioactivity after simulated nasal-mucus incubation and device passage, whereas matched secretome-retaining fractions do not?",
+      "primary_domain": "fractionation",
+      "secondary_domains": [
+        "formulation",
+        "mechanism",
+        "manufacturing"
+      ],
+      "selected_gap_id": "design-gap-ev-non-ev-composition",
+      "proposed_product_change_or_attribute": "Define a mucin-resistant, capture-enriched intact-EV product-identity attribute: particle-peak co-localized, capture-positive material (enriched by a capture chemistry selected for mucin-resistant surface display) that (A) is membrane-protected (loss of captured signal and activity after detergent + protease/RNase) and (B) preserves a membrane-protected in vitro neuroinflammation-modulating activity after simulated nasal-mucus incubation and device passage; use this attribute to discriminate EV-enriched drug-substance candidates from secretome-retaining concentrates for intranasal deployment.",
+      "biological_rationale": "Rodent intranasal functional signals exist but cross-species delivery is uncertain and nasal mucus/device exposure can mask or destroy EV surface epitopes; selecting a capture-enriched fraction that resists mucin-mediated masking and testing its protected bioactivity after simulated nasal exposure provides a direct discrimination between EV-associated, membrane-protected activity and soluble secretome artifacts (inference).",
+      "manufacturing_rationale": "Adopting a capture-enriched fraction selected for mucin-resistant surface display plus a downstream acceptance gate based on preserved membrane protection after simulated-use stresses creates a practical product-identity and compatibility gate to prioritize fractions for scale-up and CMC investment (inference).",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If an orthogonal intact-EV signature (capture-positive co-localized with particle-peak fractions and detergent/protease-sensitive) is preserved in material that withstands simulated nasal-mucus and device passage, then that material more plausibly carries EV-associated, membrane-protected cargo capable of surviving the intranasal exposure milieu."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If activity in an in vitro neuroinflammation assay is present in capture-positive, membrane-protected fractions after simulated nasal-mucus/device exposure and is abolished by detergent+protease/RNase, then the activity is likely EV-associated rather than driven by soluble secretome co-isolates."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If secretome-retaining concentrates lose capture co-localization or retain detergent-insensitive activity after the same simulated exposures, then secretome-derived non-EV components explain functional signals and the material should not be advanced as an EV-enriched drug-substance for intranasal use."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-hermann-2023-neonatal-hi"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate: MISEV2023 recommends orthogonal intact-EV analytics and rodent studies show functional effects, but neither demonstrates survival of EV-associated signals through nasal-mucus/device stresses.",
+            "competing_explanation": "Protected capture-positive signal after simulated exposure could reflect selection of a minor soluble complex that co-binds capture reagents and resists mucin, not a bona fide membrane-protected EV population.",
+            "missing_experiment": "Direct fraction-level activity + membrane-protection readouts after simulated nasal-mucus and device passage with spike-in recovery controls."
+          },
+          {
+            "edge_id": "e2",
+            "source_node_id": "n1",
+            "target_node_id": "n3",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "relation_type": "inference",
+            "model_or_species": "non-human primate context (delivery uncertainty)",
+            "uncertainty": "High: macaque data show intranasal detectability limitations, supporting testing of mucus/device resilience, but species/formulation differences remain competing explanations.",
+            "competing_explanation": "Loss of detectability in larger species could be driven mainly by administration or species-specific clearance rather than mucus-mediated masking or device-shear effects.",
+            "missing_experiment": "Short-interval in vivo recoverability after selecting fractions that pass the simulated-mucus/device preservation gate."
+          }
+        ]
+      },
+      "expected_measurable_effect": "Qualitative preservation of capture-positive particle-peak co-localization and membrane-protected in vitro anti-inflammatory activity after simulated nasal-mucus incubation and device passage in the mucin-resistant capture-enriched fraction, and loss or detergent-insensitive activity in matched secretome-retaining controls.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "contradicting_evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "explicit_inferences": [
+        "Inference: nasal-mucus and device passage are plausible, testable stressors that can mask or damage EV surface phenotype and thereby confound intracompartmental exposure and activity claims.",
+        "Inference: a capture chemistry chosen for mucin-resistant binding (operationalized below) can enrich for a subpopulation that better preserves membrane-protected cargo through simulated-use stresses."
+      ],
+      "assumptions": [
+        "Assay compatibility controls (capture-reagent buffer compatibility and spike-in recovery) are used to exclude reagent interference as a source of signal loss.",
+        "Simulated nasal-mucus composition and device-pass conditions reasonably approximate clinical-use stresses for initial discrimination; in vivo bridging will be required later.",
+        "This proposal treats literature as external support only and does not assert validated in vivo efficacy or exposure in large species."
+      ],
+      "competing_explanations": [
+        "Apparent preservation of capture-positive signal after simulated exposure could derive from selection of a non-EV particle (lipoprotein or aggregate) that resists mucin and binds the chosen capture reagent.",
+        "Loss of signal in secretome controls after simulated exposure could reflect assay interference unique to those matrices rather than true loss of protected EVs."
+      ],
+      "manufacturability_assessment": "The mucin-resistant capture step is proposed as an analytical/enrichment gate (research-scale) to define candidate fractions for scale evaluation; manufacturability (scalable capture chemistry, yields) must be assessed after initial proof-of-concept and is a dependency for downstream adoption.",
+      "measurement_strategy": "Orthogonal fraction-level analytics with spike-in recovery controls and simulated-use stressors: particle counting per fraction (NTA/TRPS), immuno-capture detection (mucin-resistant capture reagent + canonical tetraspanin panel on parallel aliquots), detergent + protease/RNase protection assays, total protein and protein:particle ratio per fraction, and in vitro neuroinflammation assay (LPS-challenged microglia IL-6/TNF-α readout) applied to eluates from capture-positive fractions.",
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20261023T101121Z-f8800aadf00f-1"
+      ],
+      "proposed_potency_relationship": "If supported, the mucin-resistant intact-EV attribute will be treated as an exploratory potency-linked identity gate (mechanism-linked, qualitative) to prioritize fractions for formal potency assay development and scale-up; it is not a validated potency assay.",
+      "principal_risks": [
+        "Assay interference by simulated mucus or formulation components producing false negatives or false positives.",
+        "Capture chemistry may enrich non-EV particles that resist mucin and confound interpretation.",
+        "Yields of capture-enriched fractions may be insufficient for manufacturable drug-substance definition even if analytically distinct."
+      ],
+      "falsification_criteria": [
+        "Failure to reproducibly observe (across >=3 independent conditioned-medium preparations) preserved capture-positive particle-peak co-localization and detergent/protease-sensitive in vitro anti-inflammatory activity in the mucin-resistant capture-enriched fraction after simulated nasal-mucus incubation and device passage, while matched spike-in controls confirm assay recovery (qualitative fail).",
+        "If secretome-retaining controls show identical membrane-protected activity and co-localization (i.e., no discrimination), hypothesis is falsified."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20261023T101121Z-f8800aadf00f",
+        "question": "Does a mucin-resistant capture-enriched, membrane-protected small-EV fraction retain detergent/protease-sensitive neuroinflammation-modulating activity after simulated nasal-mucus incubation and device passage, while matched secretome-retaining fractions do not, when assay recovery is controlled with an exogenous intact-EV spike-in?",
+        "hypothesis_tested": "A mucin-resistant capture-enriched intact-EV fraction will (A) co-localize capture-positive signal with particle-count peaks, (B) show loss of captured signal and activity after detergent + protease/RNase (membrane protection), and (C) preserve membrane-protected in vitro neuroinflammation-modulating activity after simulated nasal-mucus incubation and representative device passage, whereas secretome-retaining controls will not.",
+        "required_material": [
+          "MSC-conditioned medium (same source-cell lot) processed into: (A) mucin-resistant capture-enriched fraction (capture-based enrichment applied after a minimal concentration step) and (B) concentrated conditioned medium (secretome-retaining) from the same lot",
+          "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) to add to each sample prior to simulated-exposure and fractionation",
+          "Mucin-mimic matrix reagents to simulate nasal mucus (validated composition panel representative of human nasal mucus)",
+          "Representative intranasal device or device-shearing rig to simulate clinical passage",
+          "Immuno-capture reagents: mucin-resistant capture chemistry (operator-selected lectin/affinity reagent validated for low-mucin interference) plus canonical EV capture reagents (anti-CD63/CD9/CD81 or TIM4/AnxA5) for parallel comparison",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Protease (proteinase K) and RNase reagents",
+          "Detergent (Triton X-100 or equivalent) for membrane disruption",
+          "Density-gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+          "Standardized in vitro neuroinflammation assay platform (e.g., LPS-stimulated human iPSC-derived microglia or primary microglia with IL-6/TNF-α ELISA or multiplex readout)",
+          "Total protein assay reagents and buffers",
+          "Buffers and capture-compatibility control reagents"
+        ],
+        "comparator": "Matched paired comparisons per conditioned-medium lot (same spike-in): (1) mucin-resistant capture-enriched fraction after simulated nasal-mucus incubation + device passage; (2) mucin-resistant capture-enriched fraction baseline (no simulated exposure); (3) concentrated conditioned medium (secretome-retaining) after simulated exposure; (4) concentrated conditioned medium baseline. Include detergent+protease-treated aliquots of capture eluates and spike-in controls for each arm.",
+        "control": "Positive controls: characterized small EV preparation spiked and processed in parallel; in vitro assay positive control (dexamethasone). Negative controls: buffer-only, detergent-disrupted samples. Capture-compatibility controls: capture reagents incubated with mucin-mimic and device rinse solutions to detect assay interference.",
+        "assay": "Orthogonal workflow: (1) add spike-in tracer to each sample, (2) subject aliquots to simulated nasal-mucus incubation and device passage or baseline handling, (3) fractionate and identify particle-peak fractions by particle counting per fraction, (4) perform immuno-capture on intact fractions using mucin-resistant capture reagent and canonical capture reagents in parallel; quantify spike-in tracer and endogenous capture signal separately, (5) apply detergent + protease/RNase to captured material to test membrane protection (loss of signal indicates membrane protection), (6) apply capture-eluted fraction eluates to the in vitro neuroinflammation assay and measure cytokine readouts, (7) measure total protein and compute protein:particle ratio per fraction, (8) interpret co-localization and activity preservation qualitatively.",
+        "primary_readout": "Qualitative preservation (yes/no) of: (A) co-localization of particle-count peaks with mucin-resistant capture-positive fractions after simulated exposure, (B) presence of membrane-protected in vitro anti-inflammatory effect in captured eluates that is abolished after detergent + protease/RNase, and (C) spike-in tracer recovery demonstrating assay function.",
+        "secondary_readouts": [
+          "Protein:particle ratio per fraction pre/post simulated exposure",
+          "Comparison of mucin-resistant capture vs canonical tetraspanin capture co-localization behavior",
+          "Spike-in recovery percentage per fraction (qualitative recovered & membrane-protected vs not recovered)",
+          "Reproducibility across biological replicates (n >= 3 conditioned-medium lots)"
+        ],
+        "success_criterion": "Qualitative success: Across >=3 independent conditioned-medium lots, the mucin-resistant capture-enriched fraction after simulated nasal-mucus incubation and device passage (A) shows particle-count peak(s) that co-localize with mucin-resistant capture-positive signal, (B) yields a membrane-protected in vitro anti-inflammatory effect in the captured eluate that is abolished by detergent + protease/RNase, and (C) recovers the exogenous spike-in tracer in the same fractions indicating assay function; matched secretome-retaining controls processed identically either lack co-localizing capture-positive fractions or show detergent-insensitive activity. If these criteria are not met reproducibly, the hypothesis is falsified.",
+        "failure_criterion": "Either (1) spike-in recovery confirms assay performance but the mucin-resistant capture-enriched fraction does not reproducibly preserve capture co-localization and membrane-protected activity after simulated exposure across replicates, or (2) secretome-retaining controls show equivalent membrane-protected activity and co-localization, indicating inability to discriminate EV-associated activity.",
+        "falsification_outcome": "If the experiment fails (per failure_criterion), the mucin-resistant capture enrichment does not discriminate EV-associated membrane-protected bioactivity from secretome artifacts in the simulated intranasal-exposure context; the program should treat the material as functionally indistinguishable from secretome with respect to resilience to nasal-mucus/device stresses and deprioritize mucin-resistant capture as an identity gate.",
+        "dependencies": [
+          "Availability of consistent conditioned-medium lots (same passage/bank) and sufficient material for >=3 replicates",
+          "Access to validated spike-in tracer and mucin-mimic reagents",
+          "Validated capture reagents and particle-count instrumentation",
+          "Laboratory capability to run density-fractionation/SEC, protection assays, and the in vitro neuroinflammation assay",
+          "Device-shear simulation rig or representative nasal delivery device"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "complexity": "high",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "Assay-compatibility and spike-in control validation prior to interpretation",
+        "Selection and validation of a mucin-resistant capture reagent that does not itself introduce non-EV binding artifacts",
+        "Sufficient conditioned-medium production to support matrixed testing and biological replicates"
+      ],
+      "human_decisions_required": [
+        "Select specific mucin-resistant capture chemistry (lectin vs engineered affinity reagent) and approve procurement",
+        "Approve simulated nasal-mucus composition and device-shear parameters used in testing",
+        "Decide whether a passing mucin-resistant capture-enriched fraction will be advanced into pilot-scale fractionation/yield assessment"
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "Supported with important evidence gaps. The proposal correctly cites MISEV2023 for methodological rigor and rodent studies (Hermann, Kodali) for intranasal preclinical functional signals while acknowledging non-human-primate limitations (Driedonks). The core inferences are appropriately labeled as inferences and not presented as validated in vivo clinical/large-animal proof. However, direct evidence that a mucin-resistant capture step (a) selectively enriches bona fide membrane-protected small EVs versus non-EV particles after mucin/device stress, and (b) yields in vivo-recoverable EV exposure in a large species, is missing — these are required to justify advancing the capture-enriched attribute toward manufacturing or translational decisions.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "No direct experimental evidence supports that a mucin-resistant capture-enriched fraction (as operationalized) selectively retains bona fide membrane-protected EVs (vs lipoproteins/aggregates) after simulated nasal-mucus and device passage, nor that such fractions yield short-interval in vivo recoverability/exposure in a large species (non-human primate) after intranasal administration. Also missing are documented assay-compatibility spike-in recovery results demonstrating that the proposed simulated-mucus/device conditions do not create false-positive protected signals or false-negative loss of genuine EV signal.",
+          "concerns": [
+            "Capture-enrichment may select non-EV particles (lipoproteins/aggregates) that resist mucin and bind the chosen reagent, confounding interpretation — experiment-level controls to exclude this are required (density/biochemical orthogonality, proteomics).",
+            "Simulated nasal-mucus and device-shear conditions may introduce assay interference (matrix effects) causing false negatives or false positives; while the proposal lists spike-in controls, formal pre-validation data are absent.",
+            "Driedonks et al. (macaque) report negligible intranasal brain uptake and strong nasal retention; this contradicts any implicit expectation that preserving surface epitopes alone will ensure large-species intranasal exposure — species, formulation, and administration-route explanations remain competing hypotheses and require short-interval in vivo bridging experiments in NHP or other large models before translational claims.",
+            "Manufacturability and yield risks: even if analytically discriminating, capture-enriched fractions may have insufficient yield/scalability; proposal notes this but lacks any preliminary yield estimates or orthogonal capture scalability evidence.",
+            "The proposal's inferential steps are correctly labeled as inferences, but the experiment-to-decision path depends critically on qualitative (yes/no) readouts; lack of predefined quantitative thresholds may complicate reproducibility and CMC gating."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "Supported as an exploratory analytical/selection strategy but with substantial practical and translational risks that must be resolved before any CMC adoption. The proposal aligns with community recommendations for orthogonal intact-EV analytics (ev-misev2023-quality-framework), addresses source-cell and scale considerations noted in rodent-clonal vs primary comparisons (ev-hermann-2023-neonatal-hi), and is motivated by documented intranasal detectability limits in a primate model (ev-driedonks-2022-macaque-biodistribution). Key gaps remain in capture-reagent specificity, process yields, and large-species in vivo relevance; these drive high scale-up and lot-comparability risk and limit immediate QA applicability.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "No direct evidence provided that a mucin-resistant capture chemistry (1) selectively enriches bona fide membrane-enclosed small EVs rather than non-EV particles under mucus/device stresses, (2) yields manufacturing-relevant material quantities, or (3) predicts recoverable intranasal exposure in large species; experimental data on capture specificity, enrichment yield, and NHP bridging are missing.",
+          "concerns": [
+            "Manufacturability and scale-up: capture-based enrichment selected for mucin resistance may be difficult to scale (cost, resin/ligand availability, reuse, and lot-to-lot ligand performance). Yields of the capture-enriched fraction are unknown and may be insufficient to define a manufacturable drug-substance even if analytically distinct (supported by ev-hermann-2023-neonatal-hi dependency on source-cell scalability).",
+            "Process sensitivity: the capture step and simulated nasal-mucus/device passage introduce multiple process variables (mucin composition, shear profile, capture reagent conditioning) that can cause fragile assay-dependent pass/fail results; small changes may flip outcome, reducing robustness for release decisions (ev-misev2023-quality-framework recommends orthogonal characterization and control of process variables).",
+            "Measurement feasibility and interference: simulated mucus and device residues can interfere with immuno-capture and activity assays, producing false negatives/positives; rigorous spike-in recovery and capture-compatibility controls are necessary but add complexity and potential residual uncertainty (proposal acknowledges this dependency).",
+            "Lot comparability and biological variability: conditioned-medium lots from MSCs can vary; the qualitative pass/fail endpoint requires reproducible success across >=3 independent lots—this is challenging biologically and will pressure upstream cell-bank and process controls (ev-hermann-2023-neonatal-hi highlights source-cell consistency as a translational consideration).",
+            "Stability and relevance to in vivo exposure: preservation of a membrane-protected signal after simulated mucus/device passage in vitro may not predict survival, biodistribution, or detectability after intranasal dosing in larger species; macaque data showing poor intranasal detectability (ev-driedonks-2022-macaque-biodistribution) indicate species- and formulation-dependent delivery failures that are not addressed by the in vitro gate alone.",
+            "Scale-up risk: if the capture chemistry is treated as a product-defining gate, significant downstream CMC investment will be required to validate ligand supply, process robustness, cleaning/validation, and acceptable yields; failure at scale would force programmatic rework.",
+            "Quality-attribute relevance: as currently proposed the attribute is exploratory/qualitative and not a validated potency or release assay. Without quantitative, orthogonal, and reproducible readouts and defined acceptance criteria, it has limited immediate value for release or stability testing (consistent with ev-misev2023-quality-framework recommendations).",
+            "Potential confounders: capture reagents may enrich non-EV particles (lipoproteins or aggregates) that resist mucin and mimic membrane-protected signal; detergent/protease protection assays reduce but do not eliminate this risk—additional orthogonal identity assays will be required (ev-misev2023-quality-framework)."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "The proposed experiment is a logically coherent, use-condition–relevant test that can meaningfully discriminate between membrane-protected, EV-associated activity and soluble secretome artifacts under the specific simulated intranasal stresses described. Existing rodent efficacy reports and ISEV guidance give indirect support for the causal rationale and the need for orthogonal intact-EV analytics, and the macaque biodistribution data appropriately motivate simulated-use testing. However, important gaps and risks remain: the proposed mucin-resistant capture chemistry could enrich non-EV particles (lipoproteins/aggregates) that mimic membrane-protection readouts; simulated nasal-mucus and device-shear conditions may not reproduce the dominant in vivo loss mechanisms in larger species; and assay interference by mucus/formulation or low-yield capture fractions could produce false positives/negatives. If those gaps are addressed (especially capture specificity, spike-in recoveries, and an in vivo bridging step in a larger species), the experiment should provide discriminating evidence to support or falsify the stated hypothesis, but it would not by itself establish an in vivo mechanism or clinical efficacy.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "Key gaps: (1) validation that the chosen mucin-resistant capture reagent specifically enriches bona fide membrane-bound small EVs rather than non-EV complexes (requires orthogonal particle+marker co-localization, density-profile and EM-level confirmation); (2) demonstration that the simulated nasal-mucus + device-shear regimen captures the dominant in vivo failure modes seen in larger species (non-human-primate bridging); and (3) sufficient analytic sensitivity/yield to exclude capture or assay-interference artefacts (requires robust spike-in recovery metrics and negative-process controls).",
+          "concerns": [
+            "Capture-specificity risk: The mucin-resistant affinity step may preferentially bind non-EV particles (lipoproteins, protein aggregates, or mucin–protein complexes) that resist protease/detergent assays or co-elute with particle peaks, producing a false attribution of membrane-protection to EVs. (Relevant: ev-misev2023-quality-framework.)",
+            "Simulated-use translatability: Nasal-mucus mimic and device-shearing may not reproduce the biological clearance, mucociliary transport, or species-specific anatomical barriers that likely explain poor intranasal detectability in macaques; therefore preservation in simulation may not predict in vivo survival or brain exposure. (Relevant: ev-driedonks-2022-macaque-biodistribution.)",
+            "Assay-interference and matrix effects: Mucin-mimic or device rinse components can interfere with capture reagents, particle counting, or the neuroinflammation assay readout, producing false negatives or positives unless orthogonal compatibility controls and spike-in recovery are comprehensive. (Relevant: ev-misev2023-quality-framework.)",
+            "Detergent/protease interpretation limits: Loss of captured signal after detergent+protease/RNase is consistent with membrane protection but is not uniquely diagnostic of intact EVs (some non-EV complexes may also be disrupted); orthogonal evidence (density, EM, tetraspanin co-detection) is required to strengthen the mechanistic claim. (Relevant: ev-misev2023-quality-framework.)",
+            "Species and formulation uncertainty: Rodent intranasal efficacy studies support that intranasal EVs can have functional effects, but those are species- and formulation-specific; macaque negative/low-detection results caution against assuming that an in vitro simulation correlates with clinical-scale intranasal delivery. An in vivo bridging experiment in a large species is needed before advancing a capture-selected fraction as an intranasal drug-substance candidate. (Relevant: ev-hermann-2023-neonatal-hi; ev-driedonks-2022-macaque-biodistribution.)",
+            "Yield and manufacturability: Even if a mucin-resistant capture-enriched fraction passes the analytical gate, capture-based enrichment may have low yields or be difficult to scale; early assessment of capture efficiency and downstream yield is required before treating this attribute as a practical manufacturing gate. (Relevant: ev-misev2023-quality-framework.)"
+          ]
+        }
+      ],
+      "adversary_objection": "The mucin-resistant capture step can enrich a non-EV particle or complex (e.g., lipoprotein, protein aggregate, or loosely associated secretome complex) that (A) inherently resists mucin and device shear, (B) binds the chosen capture reagent, (C) co-fractionates with a particle-count peak, and (D) retains detergent/protease-insensitive functional cargo or a protease-insensitive activity surrogate — producing an apparent “membrane-protected” signal that is not due to bona fide lipid-bilayer-enclosed EVs. Because the proposal’s main discrimination is qualitative (preserved capture+particle co-localization + loss of signal after detergent/protease/RNase), enrichment of a non-EV entity that mimics those readouts or resists some protection assays would systematically misclassify secretome artifacts as EV-associated and mislead downstream product prioritization; this risk is amplified by relying on simulated nasal-mucus/device stresses that may not recapitulate the dominant loss mechanisms observed in larger species (see macaque biodistribution), so a passing in vitro discrimination may not predict in vivo recoverability or therapeutic relevance.",
+      "chair_rationale": "Supported as an exploratory analytical/selection strategy — proceed with the proposed proof-of-concept experiments (rigorous spike-in recovery, orthogonal EV identity assays (EM/density/proteomics), assay-compatibility controls, and reproducibility across ≥3 lots) to resolve capture-specificity, assay-interference, yield, and NHP-bridging gaps. Not ready for CMC adoption or manufacturing commitment until those data and a manufacturability assessment are completed.",
+      "determination": "proposed_for_testing",
+      "status": "reviewed",
+      "promotion_human_approved": false,
+      "novelty_statement": "This hypothesis introduces a new discriminating test not previously proposed in the SGL-001 record: specifically evaluating a mucin-resistant capture-enriched intact-EV fraction for preservation of membrane-protected bioactivity after simulated nasal-mucus incubation and device passage, with exogenous spike-in recovery controls. Prior program hypotheses examined orthogonal capture/protection, spike-in controls, fractionation, and device/formulation compatibility separately; none tested a capture-enrichment strategy explicitly chosen to resist mucin-mediated masking and then challenged with simulated nasal-mucus + device passage as the discriminating stress. This experiment therefore provides a novel, use-condition–relevant discrimination between EV-associated and non-EV secretome contributions.",
+      "distinguished_from_hypothesis_ids": [
+        "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
+        "design-hypothesis-run-20261004T111031Z-0ce7fffd8b51"
+      ],
+      "theme_id": "design-gap-ev-non-ev-composition",
+      "sequence_within_theme": 3
     }
   ],
   "proposed_experiments": [
@@ -7384,6 +7618,53 @@
       "complexity": "moderate",
       "human_approval_state": "pending",
       "execution_status": "proposed"
+    },
+    {
+      "experiment_id": "design-experiment-run-20261023T101121Z-f8800aadf00f",
+      "question": "Does a mucin-resistant capture-enriched, membrane-protected small-EV fraction retain detergent/protease-sensitive neuroinflammation-modulating activity after simulated nasal-mucus incubation and device passage, while matched secretome-retaining fractions do not, when assay recovery is controlled with an exogenous intact-EV spike-in?",
+      "hypothesis_tested": "A mucin-resistant capture-enriched intact-EV fraction will (A) co-localize capture-positive signal with particle-count peaks, (B) show loss of captured signal and activity after detergent + protease/RNase (membrane protection), and (C) preserve membrane-protected in vitro neuroinflammation-modulating activity after simulated nasal-mucus incubation and representative device passage, whereas secretome-retaining controls will not.",
+      "required_material": [
+        "MSC-conditioned medium (same source-cell lot) processed into: (A) mucin-resistant capture-enriched fraction (capture-based enrichment applied after a minimal concentration step) and (B) concentrated conditioned medium (secretome-retaining) from the same lot",
+        "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) to add to each sample prior to simulated-exposure and fractionation",
+        "Mucin-mimic matrix reagents to simulate nasal mucus (validated composition panel representative of human nasal mucus)",
+        "Representative intranasal device or device-shearing rig to simulate clinical passage",
+        "Immuno-capture reagents: mucin-resistant capture chemistry (operator-selected lectin/affinity reagent validated for low-mucin interference) plus canonical EV capture reagents (anti-CD63/CD9/CD81 or TIM4/AnxA5) for parallel comparison",
+        "Particle counter (NTA or TRPS) and reagents",
+        "Protease (proteinase K) and RNase reagents",
+        "Detergent (Triton X-100 or equivalent) for membrane disruption",
+        "Density-gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+        "Standardized in vitro neuroinflammation assay platform (e.g., LPS-stimulated human iPSC-derived microglia or primary microglia with IL-6/TNF-α ELISA or multiplex readout)",
+        "Total protein assay reagents and buffers",
+        "Buffers and capture-compatibility control reagents"
+      ],
+      "comparator": "Matched paired comparisons per conditioned-medium lot (same spike-in): (1) mucin-resistant capture-enriched fraction after simulated nasal-mucus incubation + device passage; (2) mucin-resistant capture-enriched fraction baseline (no simulated exposure); (3) concentrated conditioned medium (secretome-retaining) after simulated exposure; (4) concentrated conditioned medium baseline. Include detergent+protease-treated aliquots of capture eluates and spike-in controls for each arm.",
+      "control": "Positive controls: characterized small EV preparation spiked and processed in parallel; in vitro assay positive control (dexamethasone). Negative controls: buffer-only, detergent-disrupted samples. Capture-compatibility controls: capture reagents incubated with mucin-mimic and device rinse solutions to detect assay interference.",
+      "assay": "Orthogonal workflow: (1) add spike-in tracer to each sample, (2) subject aliquots to simulated nasal-mucus incubation and device passage or baseline handling, (3) fractionate and identify particle-peak fractions by particle counting per fraction, (4) perform immuno-capture on intact fractions using mucin-resistant capture reagent and canonical capture reagents in parallel; quantify spike-in tracer and endogenous capture signal separately, (5) apply detergent + protease/RNase to captured material to test membrane protection (loss of signal indicates membrane protection), (6) apply capture-eluted fraction eluates to the in vitro neuroinflammation assay and measure cytokine readouts, (7) measure total protein and compute protein:particle ratio per fraction, (8) interpret co-localization and activity preservation qualitatively.",
+      "primary_readout": "Qualitative preservation (yes/no) of: (A) co-localization of particle-count peaks with mucin-resistant capture-positive fractions after simulated exposure, (B) presence of membrane-protected in vitro anti-inflammatory effect in captured eluates that is abolished after detergent + protease/RNase, and (C) spike-in tracer recovery demonstrating assay function.",
+      "secondary_readouts": [
+        "Protein:particle ratio per fraction pre/post simulated exposure",
+        "Comparison of mucin-resistant capture vs canonical tetraspanin capture co-localization behavior",
+        "Spike-in recovery percentage per fraction (qualitative recovered & membrane-protected vs not recovered)",
+        "Reproducibility across biological replicates (n >= 3 conditioned-medium lots)"
+      ],
+      "success_criterion": "Qualitative success: Across >=3 independent conditioned-medium lots, the mucin-resistant capture-enriched fraction after simulated nasal-mucus incubation and device passage (A) shows particle-count peak(s) that co-localize with mucin-resistant capture-positive signal, (B) yields a membrane-protected in vitro anti-inflammatory effect in the captured eluate that is abolished by detergent + protease/RNase, and (C) recovers the exogenous spike-in tracer in the same fractions indicating assay function; matched secretome-retaining controls processed identically either lack co-localizing capture-positive fractions or show detergent-insensitive activity. If these criteria are not met reproducibly, the hypothesis is falsified.",
+      "failure_criterion": "Either (1) spike-in recovery confirms assay performance but the mucin-resistant capture-enriched fraction does not reproducibly preserve capture co-localization and membrane-protected activity after simulated exposure across replicates, or (2) secretome-retaining controls show equivalent membrane-protected activity and co-localization, indicating inability to discriminate EV-associated activity.",
+      "falsification_outcome": "If the experiment fails (per failure_criterion), the mucin-resistant capture enrichment does not discriminate EV-associated membrane-protected bioactivity from secretome artifacts in the simulated intranasal-exposure context; the program should treat the material as functionally indistinguishable from secretome with respect to resilience to nasal-mucus/device stresses and deprioritize mucin-resistant capture as an identity gate.",
+      "dependencies": [
+        "Availability of consistent conditioned-medium lots (same passage/bank) and sufficient material for >=3 replicates",
+        "Access to validated spike-in tracer and mucin-mimic reagents",
+        "Validated capture reagents and particle-count instrumentation",
+        "Laboratory capability to run density-fractionation/SEC, protection assays, and the in vitro neuroinflammation assay",
+        "Device-shear simulation rig or representative nasal delivery device"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "complexity": "high",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
     }
   ],
   "parked_hypothesis_ids": [],
@@ -7978,6 +8259,25 @@
       ],
       "measurement_concept": "Qualitative pass/fail per lot based on spike‑in recovery + endogenous co‑localization + detergent/protease sensitivity",
       "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20261023T101121Z-f8800aadf00f-1",
+      "name": "Mucin-resistant capture-enriched intact-EV fraction (membrane-protected, activity-preserving)",
+      "group": "identity_markers",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "A fraction that (A) shows capture-positive co-localization with particle-peak fractions using a capture chemistry selected for mucin-resistant surface display, (B) loses captured signal and activity after detergent + protease/RNase (membrane protection), and (C) preserves membrane-protected neuroinflammation-modulating activity after simulated nasal-mucus incubation and device passage, would discriminate EV-associated activity from secretome artifacts for intranasal use.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "uncertainty": "High: novel capture approach and simulated-use stressor relevance to real-world intranasal delivery is unproven; assay interference must be controlled.",
+      "source_hypothesis_id": "design-hypothesis-run-20261023T101121Z-f8800aadf00f",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261023T101121Z-f8800aadf00f"
+      ],
+      "measurement_concept": "Qualitative pass/fail: preserved mucin-resistant capture-positive, particle-peak co-localization + detergent/protease-sensitive activity after simulated nasal-mucus and device passage (non-numeric).",
+      "human_approved": false
     }
   ],
   "design_gaps": [
@@ -8108,12 +8408,13 @@
       "rationale": "The relative contribution of EV and non-EV secretome components remains unresolved.",
       "evidence_ids": [],
       "status": "open",
-      "times_explored": 2,
-      "last_explored_at": "2026-10-04T11:10:31.085512Z",
-      "latest_hypothesis_id": "design-hypothesis-run-20261004T111031Z-0ce7fffd8b51",
+      "times_explored": 3,
+      "last_explored_at": "2026-10-23T10:11:21.513739Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20261023T101121Z-f8800aadf00f",
       "hypothesis_ids": [
         "design-hypothesis-run-20260920T082644Z-8f54ff6bf528",
-        "design-hypothesis-run-20261004T111031Z-0ce7fffd8b51"
+        "design-hypothesis-run-20261004T111031Z-0ce7fffd8b51",
+        "design-hypothesis-run-20261023T101121Z-f8800aadf00f"
       ],
       "open_questions": [
         "Which matched fractions preserve or lose a candidate functional signal?"
@@ -8536,7 +8837,14 @@
       "gap_id": "design-gap-product-identity",
       "determination": "proposed_for_testing",
       "created_at": "2026-10-22T10:18:36.751251Z"
+    },
+    {
+      "run_id": "run-20261023T101121Z-f8800aadf00f",
+      "hypothesis_id": "design-hypothesis-run-20261023T101121Z-f8800aadf00f",
+      "gap_id": "design-gap-ev-non-ev-composition",
+      "determination": "proposed_for_testing",
+      "created_at": "2026-10-23T10:11:21.513739Z"
     }
   ],
-  "updated_at": "2026-10-22T10:18:36.751251Z"
+  "updated_at": "2026-10-23T10:11:21.513739Z"
 }
