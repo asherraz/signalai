@@ -2596,7 +2596,95 @@
         "next_action": "Continue the fictional protocol schedule and generate the next synthetic day."
       },
       "generated_at": "2026-10-23T10:12:45.080451Z"
+    },
+    {
+      "run_id": "sim-run-20261024T094025Z-c2c04a7749c4",
+      "simulated_date": "2026-10-24",
+      "protocol_day": 30,
+      "observations": [
+        {
+          "observation_id": "synthetic-observation-day-30-SIM-001",
+          "participant_id": "SIM-001",
+          "protocol_day": 30,
+          "adherence": "missed",
+          "nasal_tolerability_score": null,
+          "cognitive_task_index": null,
+          "reported_wellbeing_score": null,
+          "synthetic_safety_flag": "none",
+          "note": "Synthetic record withheld because the fictional visit was missed."
+        },
+        {
+          "observation_id": "synthetic-observation-day-30-SIM-002",
+          "participant_id": "SIM-002",
+          "protocol_day": 30,
+          "adherence": "recorded",
+          "nasal_tolerability_score": 1,
+          "cognitive_task_index": 58,
+          "reported_wellbeing_score": 7,
+          "synthetic_safety_flag": "none",
+          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+        },
+        {
+          "observation_id": "synthetic-observation-day-30-SIM-003",
+          "participant_id": "SIM-003",
+          "protocol_day": 30,
+          "adherence": "recorded",
+          "nasal_tolerability_score": 3,
+          "cognitive_task_index": 52,
+          "reported_wellbeing_score": 4,
+          "synthetic_safety_flag": "none",
+          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+        },
+        {
+          "observation_id": "synthetic-observation-day-30-SIM-004",
+          "participant_id": "SIM-004",
+          "protocol_day": 30,
+          "adherence": "recorded",
+          "nasal_tolerability_score": 0,
+          "cognitive_task_index": 55,
+          "reported_wellbeing_score": 5,
+          "synthetic_safety_flag": "none",
+          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+        },
+        {
+          "observation_id": "synthetic-observation-day-30-SIM-005",
+          "participant_id": "SIM-005",
+          "protocol_day": 30,
+          "adherence": "recorded",
+          "nasal_tolerability_score": 1,
+          "cognitive_task_index": 49,
+          "reported_wellbeing_score": 7,
+          "synthetic_safety_flag": "review",
+          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+        },
+        {
+          "observation_id": "synthetic-observation-day-30-SIM-006",
+          "participant_id": "SIM-006",
+          "protocol_day": 30,
+          "adherence": "recorded",
+          "nasal_tolerability_score": 2,
+          "cognitive_task_index": 51,
+          "reported_wellbeing_score": 7,
+          "synthetic_safety_flag": "none",
+          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+        }
+      ],
+      "review": {
+        "operations_finding": "5 of 6 fictional daily records were complete.",
+        "safety_finding": "Synthetic flags: 1 review and 0 pause; these are generated demo events.",
+        "data_quality_finding": "1 synthetic records were missing.",
+        "adversary_objection": "Generated observations cannot establish safety, efficacy, potency, exposure, or clinical feasibility for SGL-001.",
+        "chair_rationale": "The determination is limited to operating the fictional demo and cannot update canonical SGL-001 state."
+      },
+      "determination": {
+        "determination_type": "human_decision_required",
+        "summary": "Synthetic observations require human review; no efficacy or program conclusion is permitted.",
+        "protocol_state_changed": false,
+        "human_review_required": true,
+        "next_action": "Review the flagged fictional observations and record a simulation-only disposition."
+      },
+      "generated_at": "2026-10-24T09:40:25.809647Z"
     }
   ],
-  "updated_at": "2026-10-23T10:12:45.080451Z"
+  "updated_at": "2026-10-24T09:40:25.809647Z"
 }
