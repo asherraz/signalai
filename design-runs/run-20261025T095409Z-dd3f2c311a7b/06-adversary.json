@@ -1,0 +1,18 @@
+{
+  "evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Analytical sensitivity floor: endogenous intact-EV concentration in nasal lavage/CSF after intranasal dosing is below detection even with optimized capture and validated spike-in, yielding false negatives for all senescence states.",
+    "Species/delivery confounder: large-animal (or translational human) nasal anatomy and mucociliary clearance prevent any measurable intact-EV recovery regardless of source-cell differences (evidence: macaque study showed retention in lavage and negligible brain uptake).",
+    "Downstream process dominance: TFF/SEC/gradient fractionation, formulation, or device interactions alter particle integrity or marker accessibility in a way that correlates with but is independent of the original senescence state, causing misattribution of causal effect to senescence.",
+    "Co-isolation artifact: capture-positive signals and protected-cargo readouts reflect non-vesicular complexes (protein/RNA aggregates, lipoproteins) that co-fractionate and mimic detergent/protease sensitivity, misleading interpretation of 'intact-EV' signatures.",
+    "Spike-in non-equivalence: the exogenous tracer used for recovery control behaves differently from endogenous EVs during fractionation/capture/disruption (different size, membrane robustness, or marker display), so validated spike-in recovery does not guarantee accurate measurement of endogenous EVs.",
+    "Inter-assay incompatibility: capture reagents or buffers that work on source-material fractions fail with low-biomass biological matrices (lavage/CSF), producing inconsistent capture-performance across matrices and invalid cross-context comparisons.",
+    "Biological heterogeneity and low reproducibility: within-donor variability and small effect sizes across >=3 biological replicates make the proposed qualitative pass/fail rule non-reproducible and unmeasurable at manufacturing scale.",
+    "Mis-specified senescence metric: p16/p21 expression or chosen SASP panel may not map to the actual biophysical EV features (membrane integrity, surface marker accessibility) hypothesized to drive recoverability, so the selected cellular gate lacks functional linkage to the measured product signature."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is that orthogonal capture/particle-co\u2011localization and short-interval in vivo recoverability are dominated by downstream variables (administration route/formulation, species-specific nasal clearance, purification/co-isolation artifacts, or assay sensitivity/compatibility) rather than by donor-MSC senescence mechanism; with validated spike-in recovery, endogenous intact-EV signal may still be below biological or analytical detection limits in lavage/CSF (especially in larger species), producing reproducible null results that misattribute delivery or assay limits to 'no effect of senescence' or, conversely, spuriously ascribe importance to senescence when co-isolated non-vesicular material or processing artifacts drive the signature."
+}
