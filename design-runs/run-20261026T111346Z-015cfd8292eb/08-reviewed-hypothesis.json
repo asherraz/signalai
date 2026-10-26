@@ -1,0 +1,230 @@
+{
+  "adversary_objection": "The single strongest bounded failure mode is assay-confounding removal or alteration of true EV content by the pre-SEC affinity depletion step such that downstream orthogonal readouts (capture co-localization and detergent/protease sensitivity) appear improved but do not reflect preservation of the native, bioactive EV population. This can occur either because (A) the depletion resin selectively strips EV-surface proteins or EV-associated cargo/coat layers (removing subpopulations that carry key markers or activity), (B) the depletion process perturbs membrane integrity (creating detergent-/protease-sensitive artifacts or destroying membrane protection), or (C) residual depletion reagents or altered buffer conditions create assay interference that mimics capture-positive, membrane-protected signal despite loss or modification of authentic EVs. Any of these produces a misleading \u201cpass\u201d that is analytically bounded but biologically irrelevant and/or non-manufacturable, and would not be detected reliably by the proposed qualitative pass/fail gating even with spike-ins.",
+  "assumptions": [
+    "Capture reagents and particle-count instruments with adequate sensitivity are available and compatible with depletion buffers (compatibility controls will be run).",
+    "Exogenous spike-in controls will be used to validate assay recovery and to distinguish assay failure from true absence of endogenous signal.",
+    "Qualitative (non-numeric) pass/fail determinations are sufficient for initial gating; numeric release limits are deferred until assays are validated."
+  ],
+  "biological_rationale": "MISEV2023 emphasizes orthogonal intact\u2011EV analytics to distinguish vesicular from non\u2011vesicular secretome co\u2011isolates. Rodent intranasal efficacy reports and large-animal negative biodistribution underscore the need to define an analytically reproducible EV\u2011enriched drug\u2011substance before translational bridging.",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20261026T111346Z-015cfd8292eb-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Affinity depletion could remove or damage EVs or EV-bound proteins, or otherwise perturb membrane integrity; improved apparent marker behavior could reflect loss of EV subpopulations.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Direct paired comparison of pre-SEC depletion -> SEC versus TFF->SEC->single-cushion including orthogonal capture/protection assays and yield metrics.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV2023 identifies non\u2011vesicular co\u2011isolates as a confounder; program rodent work shows source/process sensitivity but does not prove pre\u2011SEC depletion efficacy."
+      },
+      {
+        "competing_explanation": "Even with improved analytic identity, delivery barriers, device/formulation incompatibility, or species clearance may still prevent in vivo detectability; orthogonal in vivo verification will still be required.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Short-interval in vivo detectability using materials characterized as EV-enriched by the orthogonal assay.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: success in preserving orthogonal identity does not guarantee cross-species intranasal recoverability but is a precondition for interpretable bridging studies."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "High-abundance soluble secretome proteins can co-elute with particle fractions and produce marker signal that is not membrane-protected, obscuring true EV-associated capture co-localization."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "A gentle, scalable pre-SEC affinity depletion that removes abundant soluble proteins prior to SEC will reduce non-vesicular marker signal and increase the likelihood that capture-positive signal co-localizes with particle-count peaks in downstream fractions."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If pre-SEC depletion -> SEC yields a bounded fraction with membrane-protected capture signal and acceptable yields, that fraction can be treated as the drug-substance for downstream orthogonal QC, potency-assay linkage, and comparability testing."
+      }
+    ]
+  },
+  "chair_rationale": "Reviewers converge that the pre-SEC affinity-depletion -> SEC hypothesis is testable and conceptually justified but unproven; proceed to the paired matched\u2011arm experiments with the specified orthogonal capture+protection assays, spike\u2011ins, and \u22653 independent lots to resolve the central risks (selective EV loss, assay interference, and qualitative yield uncertainty) before any product decision.",
+  "competing_explanations": [
+    "Apparent improvement after depletion could result from selective loss of EV subpopulations or assay interference from depletion reagents.",
+    "Even an analytically distinct bounded fraction may not recover in vivo after intranasal dosing because of administration or species-specific barriers."
+  ],
+  "contradicting_evidence_ids": [],
+  "created_at": "2026-10-26T11:13:46.502572Z",
+  "dependencies": [
+    "Analytical capability for capture + protection assays and particle counting",
+    "Selection/qualification of depletion targets and low-shear depletion protocol",
+    "Sourcing of characterized small-EV positive control and spike-in tracer"
+  ],
+  "design_question": "Which scalable fractionation workflow (pre-SEC gentle affinity depletion -> SEC versus TFF -> SEC -> single-step iodixanol cushion) produces a bounded small-EV fraction that (A) shows an orthogonal intact\u2011EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) and (B) yields acceptable recovery for manufacturable drug-substance candidacy?",
+  "determination": "needs_evidence",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260923T100544Z-cc9987a71dbd",
+    "design-hypothesis-run-20261007T115111Z-a494dac2c2e9"
+  ],
+  "expected_measurable_effect": "Qualitative demonstration (pass/fail) that pre-SEC depletion -> SEC bounded fraction shows (A) particle-count peak(s) that co-localize with capture-positive signal and (B) captured signal that is substantially reduced after detergent + protease/RNase (membrane protection), while showing qualitatively equal or improved particle/mass recovery versus TFF->SEC->single-cushion across >=3 independent conditioned-medium lots.",
+  "explicit_inferences": [
+    "Orthogonal intact-EV analytics (capture co-localization + protection) are required to classify a preparation as EV-enriched versus secretome-retaining.",
+    "Manufacturable yield is necessary in addition to analytic identity for an operational drug\u2011substance gate."
+  ],
+  "falsification_criteria": [
+    "No qualitative difference between pre-SEC depletion -> SEC and TFF->SEC->single-cushion in co-localization or membrane-protection behavior across >=3 independent lots, OR",
+    "Pre-SEC depletion yields materially lower particle/mass recovery such that the bounded fraction is not compatible with GMP-like batch considerations, OR",
+    "Apparent improvements are explained by capture-assay interference (confirmed by capture-compatibility controls) rather than true membrane protection."
+  ],
+  "human_decisions_required": [
+    "Select depletion targets and vendor/resin for pre-SEC affinity depletion",
+    "Approve use of exogenous spike-in tracer and its identity",
+    "Confirm qualitative manufacturing yield thresholds sufficient to proceed"
+  ],
+  "hypothesis_id": "design-hypothesis-run-20261026T111346Z-015cfd8292eb",
+  "manufacturability_assessment": "Pre-SEC affinity depletion materials and SEC are established, scalable unit operations; success depends on selecting depletion targets and conditions that minimally perturb EV membranes and achieve acceptable yield. The experiment includes qualitative yield metrics to assess manufacturability before committing to the workflow.",
+  "manufacturing_rationale": "A scalable, simple fractionation gate that both preserves an orthogonal intact\u2011EV signature and yields sufficient material would enable reproducible lot definition, support orthogonal QC/potency assay development, and de-risk bridging studies. Pre-SEC depletion is a potentially scalable mitigation to reduce high-abundance soluble co\u2011isolates that obscure capture co-localization.",
+  "measurement_strategy": "Use an orthogonal intact\u2011EV workflow per MISEV-style guidance at fraction level: (1) density or SEC fractionation with particle counting (NTA/TRPS) per fraction; (2) immuno-capture ELISA/bead-capture for canonical EV surface markers on intact fractions; (3) protease/RNase protection +/- detergent for captured material; (4) total protein and protein:particle ratio per fraction; (5) qualitative mass and particle recovery estimates; include exogenous intact-EV spike-in controls and capture-compatibility buffer panels.",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal fraction-level workflow: (1) fractionate outputs and record particle counts per fraction; (2) immuno-capture ELISA/bead-capture detection of canonical EV surface markers on intact fractions; (3) protease + RNase protection testing +/- detergent on captured material; (4) total protein and protein:particle ratio per fraction; (5) mass and particle recovery measurements to assess qualitative yield.",
+    "comparator": "Matched-pair processing from identical conditioned-medium lots: (A) pre-SEC affinity depletion -> SEC (test arm) versus (B) TFF -> SEC -> single-step iodixanol cushion bounded fraction (comparator arm).",
+    "complexity": "moderate",
+    "control": "Negative controls: buffer-only fractions and detergent-disrupted samples. Positive control: characterized small EV preparation processed in parallel. Capture-compatibility buffer panels and spike-in controls included.",
+    "dependencies": [
+      "Availability of consistent conditioned-medium lots (same passage/bank) for replicate testing",
+      "Validated capture reagents and particle-count instrumentation",
+      "Capture-compatibility and spike-in controls to exclude assay artifacts"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261026T111346Z-015cfd8292eb",
+    "failure_criterion": "No qualitative improvement in co-localization or membrane-protection behavior across replicates, captured signal is detergent-insensitive, or yields are consistently inadequate for manufacturable consideration.",
+    "falsification_outcome": "If failure criteria are met across independent lots, pre-SEC depletion does not produce an analytically distinct, manufacturable bounded small-EV fraction and the program should deprioritize this fractionation path and explore alternative fractionation or secretome-centric definitions.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Pre-SEC affinity depletion (targeting abundant soluble secretome proteins) before SEC yields a bounded small-EV fraction with membrane-protected capture-positive co-localization and acceptable yield compared with the TFF->SEC->single-cushion workflow.",
+    "primary_readout": "Qualitative co-localization of particle-count peaks with capture-positive fractions and loss of captured signal after detergent + protease/RNase in the test arm but not in the comparator, plus qualitative assessment that recovered particle/mass yield for the bounded fraction is equal or improved versus comparator.",
+    "question": "Does pre-SEC gentle affinity depletion followed by SEC produce a bounded small-EV fraction that (A) displays an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive signal) and (B) provides qualitatively acceptable recovery relative to TFF->SEC->single-step iodixanol cushion?",
+    "required_material": [
+      "MSC-conditioned medium from the same source-cell lot sufficient for paired processing (>=3 independent biological lots recommended)",
+      "Affinity depletion resin/flow-through media targeting abundant secretome proteins (low-shear handling protocol)",
+      "TFF system and membranes for concentration (if used), SEC columns and consumables, iodixanol for single-step cushion",
+      "Immuno-capture reagents (anti-CD63/CD9/CD81 or TIM4/AnxA5) and capture-compatibility buffer panels",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Protease (proteinase K) and RNase reagents",
+      "Detergent (Triton X-100 or equivalent) for membrane disruption",
+      "Total protein assay reagents and equipment to measure mass recovery",
+      "Exogenous intact-EV spike-in (recommended) to monitor assay recovery"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio differences between bounded fraction and secretome control",
+      "Spike-in recovery percentage per fraction (if used) demonstrating assay function",
+      "Reproducibility across independent conditioned-medium lots (>=3)"
+    ],
+    "success_criterion": "Across >=3 independent conditioned-medium lots, the pre-SEC affinity-depletion -> SEC workflow reproducibly shows: (A) particle-count peak(s) that co-localize with capture-positive signal in bounded fractions, (B) captured-signal reduction after detergent + protease/RNase (indicating membrane protection), and (C) qualitatively equal-or-improved recovered particle/mass yield for bounding a drug-substance candidate versus the TFF->SEC->single-cushion comparator; capture-compatibility controls exclude assay interference."
+  },
+  "novelty_statement": "The substantive change versus prior hypotheses is the explicit, testable adoption of a gentle, scalable pre-SEC affinity-depletion step (targeting abundant soluble secretome proteins) as an alternative fractionation gate to produce a bounded small-EV drug-substance candidate. This differs from earlier proposals that considered only TFF->SEC->cushion or purely SEC-based approaches: here the intervention purposefully removes abundant soluble confounders upstream of SEC to sharpen capture co-localization while preserving manufacturability. If validated, this yields a different operational product attribute (pre-depleted bounded fraction) rather than a mere rewording of the same fractionation scheme.",
+  "primary_domain": "fractionation",
+  "principal_risks": [
+    "Affinity depletion may remove EV-bound proteins or damage EV membranes, producing false-positive analytic improvement or reduced bioactivity.",
+    "Observed analytic improvement may not translate to improved in vivo recoverability or to manufacturable yields.",
+    "Capture-reagent incompatibility with depletion buffers or residual reagents could produce assay artifacts unless compatibility controls are performed."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "If a bounded small-EV fraction meeting the orthogonal identity gate also shows membrane-protected bioactivity in downstream functional assays, that attribute will be evaluated as a candidate potency-linked metric; potency linkage is not assumed at this stage and requires separate, targeted in vitro/in vivo experiments.",
+  "proposed_product_change_or_attribute": "Adopt a manufacturable fractionation gate: bounded small-EV drug-substance fraction produced by a pre-SEC gentle affinity\u2011depletion -> SEC workflow that (A) demonstrates orthogonal intact\u2011EV identity (capture-positive co-localization with particle peaks and detergent/protease-sensitive signal) and (B) achieves qualitatively acceptable particle/mass recovery for GMP-like batch considerations; if falsified, retain secretome-centric definition or explore alternative fractionation.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Key inference (pre-SEC depletion improves analytic identity without unacceptable loss of EV subpopulations) is plausible but untested in the provided evidence\u2014risk of selective EV loss or damage during depletion.",
+        "Assay-interference risk: depletion reagents or buffers may confound capture assays unless capture-compatibility controls and spike-ins are rigorously applied (proposal acknowledges but this is a critical dependency).",
+        "Translatability: even if an analytically distinct bounded fraction is obtained, non-human-primate intranasal biodistribution data (ev-driedonks-2022-macaque-biodistribution) indicate species/formulation/device barriers that could prevent in vivo recoverability; orthogonal in vivo verification is necessary.",
+        "Manufacturability uncertainty: qualitative yield criteria are proposed but current evidence does not demonstrate that pre-SEC depletion preserves GMP-scale yields\u2014this must be quantified during the proposed experiments.",
+        "Potency linkage is assumed as a downstream possibility but is not demonstrated; analytic identity alone does not prove preserved bioactivity and could mask loss of functional EV subpopulations."
+      ],
+      "conclusion": "The proposal is conceptually consistent with cited canonical evidence (MISEV guidance and rodent intranasal efficacy reports) and correctly cites a large-animal negative biodistribution study as a translational caveat; however the central claim that pre-SEC gentle affinity depletion will produce an analytically distinct, manufacturable bounded small-EV drug-substance is not directly supported by the supplied evidence and requires the paired comparative experiments described. Recommend proceeding to the proposed matched-pair experiment and inclusion of orthogonal controls to resolve the identified gaps before accepting the workflow as a release gate.",
+      "evidence_gap": "No direct experimental evidence in the supplied canonical set demonstrates that pre-SEC affinity depletion -> SEC (versus TFF->SEC->single-cushion) reproducibly yields a bounded fraction with membrane-protected capture co-localization and acceptable manufacturable yield across independent lots; a paired comparative study with the orthogonal fraction-level assays is therefore required.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "role": "evidence_verifier",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Manufacturability: Selecting depletion targets/resins that remove abundant soluble proteins without binding or shearing EVs is uncertain; vendor/resin qualification and low-shear process design are required to avoid unacceptable yield loss.",
+        "Process sensitivity: EV membrane integrity and marker presentation may be altered by depletion buffers or flow conditions, producing misleading capture behavior or loss of functional subpopulations (supported by MISEV caution).",
+        "Measurement feasibility: Capture-based co-localization + protease/detergent protection is feasible per MISEV guidance but depends on capture-reagent compatibility with depletion reagents and on particle-counter sensitivity; robust spike-in and compatibility controls are essential.",
+        "Lot comparability: Biological lot-to-lot variability in conditioned medium and source-cell material may confound interpretation; >=3 independent lots are required and may still leave residual uncertainty about broader GMP-scale lots.",
+        "Stability: The proposal does not address stability of the bounded fraction post-isolation (hold times, formulation), which will affect manufacturability and comparability testing later.",
+        "Scale-up risk: Affinity depletion at manufacturing scale may introduce cost, resin lifetime, throughput, and cleaning/validation challenges; the qualitative yield gate may mask numeric scalability limits until quantified.",
+        "Quality-attribute relevance: Demonstrating orthogonal intact-EV identity is necessary but not sufficient \u2014 linkage to potency or in vivo recoverability (especially intranasal in larger species) is unresolved and must be established before treating the attribute as a critical quality attribute."
+      ],
+      "conclusion": "The proposed pre-SEC gentle affinity-depletion -> SEC fractionation experiment is a reasonable, testable approach to produce an analytically distinct, manufacturable small-EV bounded fraction. It aligns with MISEV2023 guidance to use orthogonal intact-EV analytics and addresses source/process sensitivity flagged by rodent efficacy and large-animal biodistribution data. Key risks remain: (1) depletion may remove or damage EV subpopulations (reducing yield or bioactivity) or create assay artifacts unless capture-compatibility controls and spike-ins are rigorously applied; (2) analytic identity improvement may not predict in vivo intranasal recoverability (Driedonks macaque negative biodistribution); and (3) scalable depletion reagent selection and low-shear handling are critical to manufacturability and scale-up. If the experiment shows reproducible co-localization with membrane-protected capture signal and qualitatively acceptable yields across >=3 lots, the workflow can serve as an in-process drug-substance gate; if not, the fractionation path should be deprioritized.",
+      "evidence_gap": "No direct paired-process data exist comparing pre-SEC depletion -> SEC versus TFF->SEC->single-cushion with orthogonal intact-EV capture+protection assays and recoveries; likewise, there is no direct evidence that an analytically distinct bounded fraction improves intranasal brain delivery in large animals.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": true
+    },
+    {
+      "concerns": [
+        "Analytic versus biological readout linkage: Demonstrating membrane-protected capture co-localizing with particle peaks is required to classify an EV-enriched fraction (per MISEV2023), but this analytic success does not guarantee improved in vivo biodistribution or efficacy \u2014 non-human-primate data report intranasal failure to recover reporter-labeled EVs despite rodent intranasal efficacy, so an in vivo detectability/bridging step is needed before claiming translational benefit (ev-driedonks-2022-macaque-biodistribution; ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus).",
+        "Assay interference and false-positives: Affinity-depletion reagents or residuals could interfere with immuno-capture or protection assays, generating apparent improvements. The proposal includes capture-compatibility panels and spike-ins, but those controls must be rigorous and quantified to exclude reagent-driven artifacts (ev-misev2023-quality-framework).",
+        "Selective EV loss or damage: Apparent sharpening of capture co-localization could result from selective depletion or membrane perturbation that removes or alters EV subpopulations rather than removing soluble confounders. Pairwise yield and particle:protein ratios plus spike-in recovery are necessary but may not fully reveal functional losses; orthogonal structural assays (e.g., EM, high-resolution sizing) could strengthen discrimination (ev-misev2023-quality-framework).",
+        "Manufacturability versus analytic success: The experiment's qualitative yield gate may miss subtle but cumulative yield losses that matter at GMP scale. The pre-SEC depletion must be validated for low-shear handling and consistent recovery across >=3 lots as proposed, but further scale-up studies would be required to confirm manufacturability (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi).",
+        "Translational uncertainty and species/formulation sensitivity: Even if pre-SEC depletion produces an analytically distinct bounded fraction in vitro, intranasal delivery success is species-, formulation-, and device-dependent. The negative macaque biodistribution warns that analytic gating should be followed by species-appropriate short-interval in vivo recovery studies and functional assays before investing in clinical bridging (ev-driedonks-2022-macaque-biodistribution; ev-hermann-2023-neonatal-hi).",
+        "Potency linkage not established: The experiment is not designed to test whether the bounded fraction retains or improves bioactivity. A pre-specified downstream potency assay (in vitro or short in vivo functional readout) should be planned to test whether analytic identity correlates with biological effect (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi)."
+      ],
+      "conclusion": "The proposed paired fractionation experiment is causally plausible and will discriminate key analytic-level competing explanations (true membrane-protected EV signal vs soluble/assay artifacts) if executed with the stated orthogonal controls. MISEV2023 supports the need for orthogonal capture + protection assays to distinguish vesicular from non-vesicular signal, and the assay panel described (fraction-level particle counts, immuno-capture on intact fractions, detergent+protease/RNase protection, protein:particle ratios, spike-ins and compatibility controls) is appropriate to test whether pre-SEC depletion sharpens an EV-enriched bounded fraction versus the TFF->SEC->cushion comparator. The design directly addresses the primary competing explanations that improved marker behavior could reflect (a) removal of soluble confounders producing genuine co-localized, membrane-protected signal, or (b) selective loss/damage of EV subpopulations or capture-assay interference producing an artifactual readout.",
+      "evidence_gap": "The experiment is focused on analytic identity and manufacturable yield but does not by itself test whether an analytically distinct bounded fraction increases in vivo deliverability or functional activity after intranasal (or other) dosing. Large-animal biodistribution data (ev-driedonks-2022-macaque-biodistribution) and species/formulation sensitivity in rodent efficacy reports (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi) imply that preserving orthogonal identity is necessary but not sufficient to predict in vivo recovery; a short-interval in vivo detectability/functional bridging experiment using the validated bounded fraction is a missing experiment to link analytic success to translational relevance.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "role": "mechanism",
+      "supported": true
+    }
+  ],
+  "run_id": "run-20261026T111346Z-015cfd8292eb",
+  "secondary_domains": [
+    "manufacturing",
+    "product_identity"
+  ],
+  "selected_gap_id": "design-gap-isolation-fractionation",
+  "sequence_within_theme": 3,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-isolation-fractionation",
+  "title": "Resolve fractionation gate: determine whether pre-SEC affinity-depletion -> SEC yields a manufacturable bounded small\u2011EV fraction with an orthogonal intact\u2011EV signature versus TFF->SEC->single\u2011cushion"
+}

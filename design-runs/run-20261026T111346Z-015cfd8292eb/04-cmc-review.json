@@ -1,0 +1,19 @@
+{
+  "concerns": [
+    "Manufacturability: Selecting depletion targets/resins that remove abundant soluble proteins without binding or shearing EVs is uncertain; vendor/resin qualification and low-shear process design are required to avoid unacceptable yield loss.",
+    "Process sensitivity: EV membrane integrity and marker presentation may be altered by depletion buffers or flow conditions, producing misleading capture behavior or loss of functional subpopulations (supported by MISEV caution).",
+    "Measurement feasibility: Capture-based co-localization + protease/detergent protection is feasible per MISEV guidance but depends on capture-reagent compatibility with depletion reagents and on particle-counter sensitivity; robust spike-in and compatibility controls are essential.",
+    "Lot comparability: Biological lot-to-lot variability in conditioned medium and source-cell material may confound interpretation; >=3 independent lots are required and may still leave residual uncertainty about broader GMP-scale lots.",
+    "Stability: The proposal does not address stability of the bounded fraction post-isolation (hold times, formulation), which will affect manufacturability and comparability testing later.",
+    "Scale-up risk: Affinity depletion at manufacturing scale may introduce cost, resin lifetime, throughput, and cleaning/validation challenges; the qualitative yield gate may mask numeric scalability limits until quantified.",
+    "Quality-attribute relevance: Demonstrating orthogonal intact-EV identity is necessary but not sufficient \u2014 linkage to potency or in vivo recoverability (especially intranasal in larger species) is unresolved and must be established before treating the attribute as a critical quality attribute."
+  ],
+  "conclusion": "The proposed pre-SEC gentle affinity-depletion -> SEC fractionation experiment is a reasonable, testable approach to produce an analytically distinct, manufacturable small-EV bounded fraction. It aligns with MISEV2023 guidance to use orthogonal intact-EV analytics and addresses source/process sensitivity flagged by rodent efficacy and large-animal biodistribution data. Key risks remain: (1) depletion may remove or damage EV subpopulations (reducing yield or bioactivity) or create assay artifacts unless capture-compatibility controls and spike-ins are rigorously applied; (2) analytic identity improvement may not predict in vivo intranasal recoverability (Driedonks macaque negative biodistribution); and (3) scalable depletion reagent selection and low-shear handling are critical to manufacturability and scale-up. If the experiment shows reproducible co-localization with membrane-protected capture signal and qualitatively acceptable yields across >=3 lots, the workflow can serve as an in-process drug-substance gate; if not, the fractionation path should be deprioritized.",
+  "evidence_gap": "No direct paired-process data exist comparing pre-SEC depletion -> SEC versus TFF->SEC->single-cushion with orthogonal intact-EV capture+protection assays and recoveries; likewise, there is no direct evidence that an analytically distinct bounded fraction improves intranasal brain delivery in large animals.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "supported": true
+}
