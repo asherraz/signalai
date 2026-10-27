@@ -1,0 +1,222 @@
+{
+  "adversary_objection": "The single strongest bounded failure mode is assay-confounding: excipient or device-rinse components (or spike-in mismatch) interfere with immuno-capture chemistry or fractionation readouts so that apparent \u2018\u2018loss\u2019\u2019 of the orthogonal intact\u2011EV signature is an analytic artifact rather than true membrane/epitope damage. If capture-compatibility panels or spike-in controls are incomplete or the spike-in behaves differently from endogenous EVs, the experiment will misattribute measurement interference to process-induced product damage and thus either (A) falsely exclude acceptable process conditions or (B) fail to identify real vulnerabilities.",
+  "assumptions": [
+    "Assay-level: immuno-capture reagents, spike-in tracer, and particle counters are available and can be validated for buffer compatibility prior to interpretation (label as assumption).",
+    "Biological: MSC source-cell lots used for tests are representative of intended production bank; results generalize across similar source lots (assumption)."
+  ],
+  "biological_rationale": "MISEV2023 and rodent studies emphasize that intact-EV identity and membrane protection are required to attribute activity to EVs; downstream process stresses (freeze-thaw, surfactant exposure, and mechanical shear) are plausible causes of membrane disruption that particle counts alone do not reveal. Spike-in controls are necessary to distinguish assay failure from true sample damage (inference; labeled).",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20261027T104049Z-da57fe2ba669-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Apparent loss of capture signal could reflect capture-reagent incompatibility with excipient components rather than true membrane damage.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Capture-compatibility panels and spike-in recovery controls for each tested excipient and device rinse.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV recommends orthogonal analytics and notes processing sensitivity; program-level rodent results show processing-dependent activity but do not quantify downstream exposures."
+      },
+      {
+        "competing_explanation": "Even if orthogonal identity is preserved, in vivo delivery or species clearance may still prevent recoverable exposure; identity preservation is necessary but not sufficient for bridging.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Matrixed combination testing with spike-in recovery and capture-compatibility controls; short-list of worst-case excipient/device envelopes to prioritize.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: large-animal negative biodistribution increases the need for robust process gates, but cross-species delivery barriers could still dominate."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Downstream exposures (defined freeze-thaw cycles combined with device-relevant shear and contact with certain nasal-excipient classes) can disrupt EV membrane integrity or mask surface epitopes while leaving bulk particle counts similar."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Loss of membrane integrity or epitope masking will abolish an orthogonal intact-EV analytical signature: (A) immuno-capture positive signal that co-localizes with particle-count peaks and (B) detergent/protease-sensitive behavior, even if NTA/TRPS counts are unchanged."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the orthogonal signature is reproducibly lost under defined process-exposure combinations, then those combinations should be excluded from acceptable downstream-process conditions and used as qualitative process gates for lot acceptance."
+      }
+    ]
+  },
+  "chair_rationale": "Supported and actionable: the experimental design is appropriate to test the hypothesis, but execution must require pre-validated exogenous intact\u2011EV spike\u2011in and capture\u2011compatibility panels, use of \u22653 independent conditioned\u2011medium lots, and selection/approval of excipient and device\u2011shear profiles before initiation to avoid assay\u2011confounding and ensure reproducibility.",
+  "competing_explanations": [
+    "Apparent signal loss could be due to capture-reagent incompatibility with specific excipients rather than true membrane disruption (measurement artifact).",
+    "Cross-species intranasal delivery failures in macaques could arise from administration, labeling, or species-specific clearance rather than process-induced product damage; identity preservation may still not guarantee detectability in larger species."
+  ],
+  "contradicting_evidence_ids": [],
+  "created_at": "2026-10-27T10:40:49.500282Z",
+  "dependencies": [
+    "Capture-compatibility matrix and spike-in tracer validation must be completed before interpreting downstream-exposure results.",
+    "Availability of >=3 independent conditioned-medium lots from the same source-cell bank/passage range for reproducibility."
+  ],
+  "design_question": "Which specific downstream processing exposure combination (freeze-thaw cycles \u00d7 device-relevant shear \u00d7 candidate nasal excipient class) reproducibly abolishes an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive behavior) while bulk particle counts remain similar, when assay recovery is controlled by an exogenous intact-EV spike-in?",
+  "determination": "proposed_for_testing",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260925T101645Z-dda43dc1a8b2",
+    "design-hypothesis-run-20261013T145337Z-aa5ccefa391a"
+  ],
+  "expected_measurable_effect": "Qualitative abolition (loss) of capture-positive co-localization with particle-count peaks and loss of detergent/protease-sensitive captured signal in tested downstream-exposure combinations, while NTA/TRPS particle counts remain similar across paired controls.",
+  "explicit_inferences": [
+    "Inference: Particle counts alone are insufficient to detect process-induced loss of membrane integrity; orthogonal intact-EV assays with spike-in controls are required.",
+    "Inference: Demonstrating reproducible loss under defined exposures enables adoption of qualitative process gates for CMC comparability decisions."
+  ],
+  "falsification_criteria": [
+    "After capture-compatibility and spike-in recovery controls, no tested downstream exposure combination reproducibly abolishes the orthogonal intact-EV signature (co-localized, detergent/protease-sensitive capture signal) across >=3 independent conditioned-medium lots while particle counts remain similar; or observed losses are attributable to capture-reagent/excipient incompatibility per controls \u2014 then the hypothesis is falsified and downstream exposures tested are not dominant drivers of signature loss."
+  ],
+  "human_decisions_required": [
+    "Select the specific excipient classes and representative concentrations to include in the matrix (prioritize worst-case clinical candidate excipients).",
+    "Select device-shear profiles representative of intended clinical delivery devices.",
+    "Approve use of the chosen exogenous intact-EV spike-in tracer."
+  ],
+  "hypothesis_id": "design-hypothesis-run-20261027T104049Z-da57fe2ba669",
+  "manufacturability_assessment": "Experiment uses matrixed small-volume process simulations (freeze-thaw incubations, device-shear rig passes, and candidate excipient incubations) compatible with analytical labs; scale-validation would follow only if qualitative gates are identified. Spike-in tracer and capture-compatibility controls add assay development overhead but are feasible within Stage-1 CMC scope.",
+  "manufacturing_rationale": "Defining a qualitative process gate (permissible freeze-thaw, device-shear envelope, excipient classes) prevents advancing process-damaged lots and focuses CMC resources on process envelopes that preserve an EV-associated signature required for downstream potency and comparability development (inference; labeled).",
+  "measurement_strategy": "Orthogonal fraction-level workflow with within-sample exogenous intact-EV spike-in to control assay recovery: (1) spike-in prior to exposure; (2) apply matrixed downstream exposures (0/1/3 freeze-thaw \u00d7 device-shear low/med/high \u00d7 excipient classes); (3) fractionate (iodixanol cushion or SEC) and particle-count per fraction; (4) immuno-capture for canonical EV markers on intact fractions with separate readout of spike-in tracer and endogenous signal; (5) detergent + protease/RNase protection on captures; (6) total protein and protein:particle ratio; (7) capture-compatibility buffer controls to exclude assay interference. Primary qualitative readout is presence vs loss of co-localized, detergent-sensitive capture signal in spike-in-validated fractions.",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal workflow per sample: (1) fractionation (iodixanol cushion or SEC) and particle-count per fraction; (2) immuno-capture on intact fractions with separate readout for spike-in tracer and endogenous signal; (3) detergent + protease/RNase protection testing on captured material to assess membrane protection; (4) total protein and protein:particle ratio per fraction; (5) capture-compatibility panels to exclude assay interference.",
+    "comparator": "Matched paired aliquots from the same enriched small-EV preparation: (A) no-exposure control (baseline handling) versus (B..N) each matrixed combination (freeze-thaw level \u00d7 device-shear level \u00d7 excipient condition). All samples receive identical spike-in prior to exposures.",
+    "complexity": "moderate",
+    "control": "Positive controls: characterized small EV preparation spiked and processed in parallel to verify capture and protection assay performance; Negative controls: buffer-only, detergent-disrupted samples; capture-compatibility controls for each excipient and device rinse (capture reagent incubated with formulation buffer alone).",
+    "dependencies": [
+      "Validated spike-in tracer availability and capture-compatibility pretesting",
+      "Sufficient conditioned-medium yields from representative source-cell lots",
+      "Analytical capacity for fractionation, capture, protection assays, and particle counting"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261027T104049Z-da57fe2ba669",
+    "failure_criterion": "If no exposure combination reproducibly abolishes the orthogonal signature across >=3 lots after excluding assay interference (or if spike-in recovery fails), the hypothesis is falsified or assay redesign is required.",
+    "falsification_outcome": "Falsified outcome: no reproducible loss of orthogonal intact-EV signature across tested downstream exposures (or loss attributable solely to assay interference) \u2014 conclude these downstream stresses are not dominant drivers of signature loss and reprioritize upstream source-cell, fractionation, or other process stages.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Controlled combinations of downstream exposures (freeze-thaw \u00d7 device shear \u00d7 excipient class) will reproducibly abolish a spike-in-validated orthogonal intact-EV signature (loss of capture-positive co-localization with particle peaks and loss of detergent/protease-sensitive captured signal) while NTA/TRPS particle counts change minimally.",
+    "primary_readout": "Qualitative presence vs loss of co-localized capture-positive signal in particle-peak fractions that is spike-in-validated and detergent/protease-sensitive (i.e., captured signal lost after membrane disruption) comparing exposure combinations to no-exposure control, while reporting bulk particle counts per fraction.",
+    "question": "Which combinations of freeze-thaw cycles, device-relevant shear, and candidate nasal excipient classes reproducibly abolish an orthogonal intact-EV analytical signature while bulk particle counts remain similar, when assay recovery is controlled by an exogenous intact-EV spike-in?",
+    "required_material": [
+      "MSC-conditioned medium (same source-cell lot) processed to produce an enriched small-EV fraction sufficient for matrixed testing (>=3 independent lots recommended)",
+      "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) for within-sample recovery control",
+      "Panel of candidate formulation buffers/excipient classes (matrix across pH, ionic strength, low/non-ionic surfactant levels, chelators, sugar/polyol stabilizers)",
+      "Device-shear simulation rig or representative nasal spray device(s) with low/medium/high shear profiles",
+      "Controlled freeze-thaw capability to apply 0,1,3 defined cycles",
+      "Immuno-capture reagents for canonical EV markers (anti-CD63, anti-CD9, anti-CD81 and/or TIM4/AnxA5) and capture-compatibility buffer panels",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Protease (proteinase K) and RNase reagents",
+      "Detergent (Triton X-100 or equivalent) for membrane disruption controls",
+      "Total protein assay reagents and consumables"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio per fraction pre/post exposure",
+      "Spike-in recovery percentage per fraction (qualitative recovered & membrane-protected vs not recovered)",
+      "Capture-signal-to-noise in buffer-compatibility panels to detect assay interference",
+      "Reproducibility across biological replicates (>=3 lots)"
+    ],
+    "success_criterion": "Qualitative success: For at least one defined downstream-exposure combination (e.g., 3 freeze-thaw cycles \u00d7 high device-shear \u00d7 surfactant-containing excipient), across >=3 independent conditioned-medium lots, the condition reproducibly abolishes the orthogonal intact-EV signature: spike-in is recovered (validating assay) but endogenous capture-positive co-localization with particle peaks is lost and captured signal is detergent/protease-insensitive, while NTA/TRPS particle counts per fraction remain similar to no-exposure controls. Capture-compatibility controls must confirm that loss is not due to assay interference."
+  },
+  "novelty_statement": "Novel combination: prior program hypotheses separately proposed testing freeze-thaw or formulation exposures (design-hypothesis-run-20260925T101645Z-dda43dc1a8b2) and downstream-process envelopes/TFF shear (design-hypothesis-run-20261013T145337Z-aa5ccefa391a). This hypothesis is distinct and testable because it (A) systematically tests matrixed combinations of freeze-thaw \u00d7 device-relevant shear \u00d7 excipient class (not previously combined), and (B) requires per-sample exogenous intact-EV spike-in recovery plus capture-compatibility panels to discriminate true process-induced membrane/capture loss from measurement artifacts. The discriminating experiment therefore distinguishes process-driven identity loss from assay interference and isolates combinatorial downstream vulnerabilities not previously explored together.",
+  "primary_domain": "process",
+  "principal_risks": [
+    "Assay-compatibility confounds leading to false attribution of identity loss to process rather than measurement interference.",
+    "Negative result (no reproducible exposure that abolishes the signature) leaves process gate undefined and raises need for alternative drivers (upstream variability, fractionation) to explain prior signature loss."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "Not asserted. This hypothesis only addresses preservation/loss of an identity-associated analytical signature after downstream exposures; potency linkage requires additional orthogonal functional assays and in vivo bridging.",
+  "proposed_product_change_or_attribute": "If supported, define downstream-process acceptance gates as specific combinations of allowed freeze-thaw exposure, device-shear envelope, and excipient-class compatibility that preserve an orthogonal intact-EV identity signature (spike-in-validated capture co-localization with particle peaks and detergent/protease sensitivity). Materials failing the gate will be treated as process-damaged (identity lost) for CMC comparability decisions.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Risk that capture\u2011reagent/excipient incompatibility could confound attribution of loss to membrane damage\u2014proposal correctly identifies and requires capture\u2011compatibility/spike\u2011in controls but these controls are preconditions and must be executed before interpretation (dependency).",
+        "Generalisability: proposal assumes MSC source\u2011cell lots represent production bank; evidence for cross\u2011lot reproducibility is not provided (dependency noted).",
+        "Translational limitation: macaque intranasal biodistribution negative result warns that preserving an analytic identity does not ensure in vivo detectability/bridging\u2014proposal frames this as indirect support but additional large\u2011animal/administration validation will be required to link analytic gates to in vivo exposure.",
+        "Assay readiness: availability and orthogonal validation of an exogenous intact\u2011EV spike\u2011in (orthogonal species or label) is critical; lack of cited validation data is an execution risk."
+      ],
+      "conclusion": "The proposal is internally consistent and appropriately attributes supporting literature as indirect support for the inference that downstream freeze-thaw \u00d7 device-shear \u00d7 excipient exposures can abolish an orthogonal intact\u2011EV analytical signature while leaving bulk particle counts similar. MISEV2023 is correctly cited for analytic rigor and assay-compatibility recommendations; the rodent MSC/EV studies (Hermann) are correctly characterized as program\u2011level preclinical examples of processing-sensitive efficacy; the macaque biodistribution study (Driedonks) is correctly used as limiting translational evidence cautioning that preserved analytic identity may still not yield detectable delivery in larger species. Inference statements are labeled in the proposal. No literature fact is misrepresented as SGL-001 experimental evidence.",
+      "evidence_gap": "No direct experimental evidence is cited showing that the specific matrixed downstream exposures (defined freeze\u2011thaw cycles \u00d7 device\u2011relevant shear profiles \u00d7 named excipient classes) reproducibly abolish the orthogonal intact\u2011EV capture+particle co\u2011localization signature across \u22653 independent conditioned\u2011medium lots while spike\u2011in recovery confirms assay integrity. Additionally, there is no cited data demonstrating availability/validation of the proposed exogenous intact\u2011EV spike\u2011in tracer or capture\u2011compatibility panels for the specific excipient/device matrices and source\u2011cell material to be used.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "evidence_verifier",
+      "supported": true
+    },
+    {
+      "concerns": [
+        "Measurement feasibility: immuno-capture + fractionation + detergent/protease protection workflow is feasible but technically demanding; without pre-validated capture-compatibility panels and a characterized spike-in tracer, assay interference could produce false positives (apparent identity loss). (ev-misev2023-quality-framework)",
+        "Assay sensitivity and controls: availability and validation of an orthogonal exogenous intact-EV spike-in (distinct tracer) is critical; failure to validate spike-in recovery for each excipient/device matrix will confound interpretation. (ev-misev2023-quality-framework)",
+        "Process sensitivity and reproducibility: freeze-thaw and device shear are plausible drivers of membrane/epitope loss, but demonstration across \u22653 independent conditioned-medium lots is required to set defensible comparability gates; lot-to-lot source-cell variability could obscure true process effects. (ev-hermann-2023-neonatal-hi; ev-misev2023-quality-framework)",
+        "Lot comparability and stability: defining a qualitative gate at small scale is manufacturable, but stability over intended storage/transport (longer-term freeze-thaw equivalents, real-world handling) and translation to batch-release criteria require additional time-course and real-scale stress testing; otherwise gates may not capture real-world degradation modes. (ev-misev2023-quality-framework)",
+        "Scale-up risk: matrixed small-volume simulations are compatible with analytical labs, but operationalizing exclusionary gates at manufacturing scale (bulk handling, fill/finish, device assembly) may uncover additional stresses (e.g., TFF/TFF shear, larger-volume freeze/thaw heterogeneity) not captured by the proposed device-shear rig. (ev-hermann-2023-neonatal-hi)",
+        "Translational relevance: even if the orthogonal signature is preserved or lost reproducibly, large-animal intranasal biodistribution and detectability barriers (negative macaque results) mean identity gates do not guarantee recoverable exposure or in vivo delivery in higher species\u2014additional bridging studies will be needed before using gates to infer potency or clinical relevance. (ev-driedonks-2022-macaque-biodistribution)"
+      ],
+      "conclusion": "Overall supported. The proposed experiment and qualitative process-gate approach are appropriate and actionable for detecting downstream process-induced loss of an intact-EV analytical signature, provided the recommended assay compatibility and spike-in controls are implemented before interpretation. Key risks remain around measurement-interference confounders, tracer availability/validation, bridging to functional potency and larger-species delivery, and how identified qualitative gates will be operationalized at manufacturing scale.",
+      "evidence_gap": "No direct evidence that the specific combined downstream exposures (freeze-thaw \u00d7 device-relevant shear \u00d7 nasal excipient classes) reproducibly abolish an orthogonal intact-EV signature in multiple independent MSC lots; also lacking are validated exogenous intact-EV spike-in tracers and capture-compatibility panels for the candidate excipients and device rinses, and bridging data linking the analytical signature to in vivo potency or large-animal biodistribution.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": true
+    },
+    {
+      "concerns": [
+        "Primary measurement-artifact risk: capture-reagent incompatibility with certain excipients (or device rinse components) could mimic \"loss of identity\" unless capture-compatibility panels and within-sample spike-in recovery are robust and validated (MISEV2023 supports orthogonal analytics and appropriate controls).",
+        "Even if the orthogonal analytical signature is lost in vitro, preserved signature in vitro does not ensure in vivo delivery or detectability in larger species \u2014 macaque intranasal biodistribution shows poor brain/CSF signal and strong nasal retention, so species/delivery barriers could dominate observed in vivo outcomes and confound interpretation.",
+        "The plan characterizes identity-preservation but does not by itself establish linkage between the analytical signature and functional potency; additional orthogonal functional assays or bridging in vivo studies will be required to connect analytical gates to biological relevance (avoid asserting potency linkage).",
+        "Reproducibility risk: the experiment depends on availability of multiple representative source\u2011cell lots and a validated exogenous intact\u2011EV spike-in tracer; insufficient biological replicates or an unvalidated spike-in would undermine conclusions.",
+        "Assay sensitivity/resolution: using fractionation + particle counting + capture readouts is appropriate, but small changes in particle:protein ratios or epitope masking could be subtle; quantitative thresholds and pass/fail criteria must be predefined and justified."
+      ],
+      "conclusion": "The proposed hypothesis and experiment are plausible and appropriately targeted to distinguish true process-induced loss of an intact-EV analytical signature from assay artifacts, but the causal link to in vivo detectability or potency remains untested. Existing consensus guidance and rodent intranasal efficacy studies support the premise that EV identity is assay-sensitive and process-vulnerable, while non-human-primate biodistribution data emphasize that preserved identity does not guarantee detectable or efficacious exposure in larger species. The experimental plan correctly prioritizes spike-in recovery and capture-compatibility controls; these controls are essential because assay interference and species/delivery limitations are the main alternative explanations that the current design must exclude.",
+      "evidence_gap": "No direct published evidence demonstrates that the specific matrixed combination (freeze-thaw \u00d7 device-relevant shear \u00d7 defined nasal excipient classes) reproducibly abolishes an orthogonal intact\u2011EV capture + protection signature while leaving bulk particle counts unchanged; additionally, there is no direct data linking such analytical-signature loss to loss of in vivo delivery or potency in large animals or humans.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "mechanism",
+      "supported": true
+    }
+  ],
+  "run_id": "run-20261027T104049Z-da57fe2ba669",
+  "secondary_domains": [
+    "fractionation",
+    "formulation",
+    "manufacturing",
+    "stability"
+  ],
+  "selected_gap_id": "design-gap-manufacturing-process",
+  "sequence_within_theme": 3,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-manufacturing-process",
+  "title": "Hypothesis: Combined freeze-thaw stress plus device-relevant shear and selected nasal-excipient exposure reproducibly abolishes the orthogonal intact-EV analytical signature while leaving bulk particle counts similar (spike-in controlled)"
+}

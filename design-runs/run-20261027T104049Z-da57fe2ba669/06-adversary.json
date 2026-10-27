@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Capture-reagent/excipient incompatibility produces false-positive loss of capture signal despite intact EVs (measurement artifact).",
+    "Exogenous spike-in tracer does not mimic endogenous EV behavior under exposures (different stability, partitioning), so spike-in recovery validates the assay incorrectly and masks endogenous damage or vice versa.",
+    "Loss of capture signal reflects epitope masking (antigen conformational change) without loss of membrane integrity, causing detergent/protease readouts to be ambiguous and misclassify products.",
+    "Bulk particle-counting (NTA/TRPS) lacks sensitivity to subtle membrane breaches or formation of non-vesicular particles; small particle-count parity could coexist with functional inactivation, making the chosen primary readout insufficiently predictive of in vivo activity.",
+    "Inter-lot biological variability across source-cell conditioned-medium overwhelms exposure effects; a combination may appear non-reproducible across >=3 lots, leading to falsification even though some lots are vulnerable.",
+    "Even if orthogonal identity is preserved in vitro, species- and administration-route dependent biodistribution/clearance (e.g., poor intranasal brain exposure in NHP) prevent bridging to in vivo relevance; preserved identity may be necessary but not sufficient for clinical detectability/effect.",
+    "Insufficient assay dynamic range or fractionation resolution causes co-localization calls to be noisy, reducing ability to detect qualitative \u2018\u2018loss\u2019\u2019 against background variability.",
+    "Device-shear simulation/representation mismatch: rig or chosen device profiles do not capture true clinical shear exposures, so identified gates are non-representative and either over- or under-protective."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is assay-confounding: excipient or device-rinse components (or spike-in mismatch) interfere with immuno-capture chemistry or fractionation readouts so that apparent \u2018\u2018loss\u2019\u2019 of the orthogonal intact\u2011EV signature is an analytic artifact rather than true membrane/epitope damage. If capture-compatibility panels or spike-in controls are incomplete or the spike-in behaves differently from endogenous EVs, the experiment will misattribute measurement interference to process-induced product damage and thus either (A) falsely exclude acceptable process conditions or (B) fail to identify real vulnerabilities."
+}
