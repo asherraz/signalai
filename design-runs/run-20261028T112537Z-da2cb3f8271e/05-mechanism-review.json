@@ -1,0 +1,20 @@
+{
+  "concerns": [
+    "Assay-artifact risk: buffer incompatibility, capture-reagent masking, or spike-in failure could mimic signature loss or preservation; strong pre-validation controls (matrixed spike-in recovery, capture-compatibility tests) are required before interpreting TFF effects (supported by ev-misev2023-quality-framework).",
+    "Insufficient quantitative criteria: the current primary readout is qualitative (pass/fail co-localization); without numeric thresholds for acceptable co-localization, protection loss, and recovery, reproducibility and go/no-go decisions may be ambiguous.",
+    "Manufacturing-yield tradeoff: lower TMP/flux and added prefilter/cassette rotation may reduce throughput or recovery; the experiment assesses qualitative acceptability but should include planned quantitative yield targets to evaluate manufacturability.",
+    "Upstream/downstream confounders: source-cell variability, fractionation method, or downstream formulation/device exposures could be dominant drivers of analytic signature changes; the experiment should control for upstream lot variability (proposed n>=3) and hold fractionation/formulation constant.",
+    "Translational linkage missing: even if analytic identity is preserved, intranasal delivery and cross-species biodistribution remain uncertain\u2014mouse studies show intranasal EV effects (ev-zhuang-2011, ev-kodali-2017, ev-hermann-2023) but NHP biodistribution was poor (ev-driedonks-2022), so analytic preservation does not ensure in vivo recoverability or clinical translatability.",
+    "Discriminatory power depends on spike-in design: using an orthogonal intact-EV spike-in (species- or isotope-distinct) is necessary to distinguish assay loss from true material loss; design and validation of that tracer are critical and currently assumed but not detailed."
+  ],
+  "conclusion": "The proposed staged low-shear TFF envelope is causally plausible as a mitigation for TFF-induced loss of membrane-protected EV analytical signatures and is consistent with MISEV2023 guidance emphasizing orthogonal characterization. The proposed orthogonal intact-EV assay (capture + particle co-localization + detergent/protease protection + spike-in controls) is an appropriate discriminator between true membrane damage and bulk-particle-only readouts, provided the spike-in/capture compatibility controls are implemented and validated. However, preserving the analytic intact-EV signature is a prerequisite, not proof, of retained biological activity or of translatable in vivo biodistribution; non-human-primate data indicate intranasal delivery and cross-species recoverability remain uncertain. To strengthen the design, add quantitative acceptance criteria and thresholds, pre-validate spike-ins and capture reagents with matrix compatibility experiments, and plan short-interval in vivo recoverability or potency-bridging studies (including a NHP or other higher-order bridging step) if analytic preservation is observed.",
+  "evidence_gap": "Quantitative TFF parameter thresholds (TMP/flux limits, shear metrics) that cause analytic signature loss are not defined; the proposal lacks pre-validated spike-in/capture reagent compatibility data in the intended buffer/matrix and lacks short-interval in vivo recoverability/potency bridging to link preserved analytic signature to biologically relevant delivery or function across species.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "supported": true
+}

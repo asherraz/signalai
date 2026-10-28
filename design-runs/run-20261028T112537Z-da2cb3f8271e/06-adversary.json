@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Assay interference: buffer components, residual surfactant, or TFF membrane leachates alter capture reagent binding or particle counting (false loss or false preservation).",
+    "Spike-in tracer failure: spike-in species chemically/physically behaves differently from test EVs (differential retention, aggregation, or capture inefficiency) leading to misleading recovery controls.",
+    "Insufficient assay sensitivity or dynamic range: capture + fractionation workflow cannot distinguish modest but biologically meaningful membrane alterations from normal lot-to-lot variability, producing unmeasurable or equivocal results.",
+    "Operational variability: uncontrolled differences in TFF cassette age, staking, or prefilter performance across replicates confound causal attribution to the staged envelope vs comparator.",
+    "Upstream/downstream confounders: source\u2011cell heterogeneity, upstream fractionation differences, or downstream formulation steps drive the analytical signature more than TFF, so changing TFF envelope does not change the measured outcome but the experiment incorrectly attributes causality to TFF.",
+    "Translatability failure: even if the orthogonal signature is preserved, preserved identity may not predict in vivo recoverability or function across species/routes (intranasal biodistribution and clearance issues), so preserving the analytic gate does not meaningfully de-risk translational performance.",
+    "Qualitative gating ambiguity: the planned non\u2011numeric pass/fail co-localization calls permit subjective interpretation and reduce reproducibility across analysts and sites.",
+    "False reassurance leading to misprioritization: passing the analytic gate may lead to committing to scale-up while an unmeasured critical attribute (e.g., cargo integrity or small-molecule co-factors) was lost during TFF."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is analytical confounding: buffer, capture-reagent, or spike-in incompatibility (or assay sensitivity limits) could produce apparent loss or preservation of the orthogonal \u201cintact\u2011EV\u201d signature independent of any real TFF-induced membrane damage. If the protection/co\u2011localization readouts are susceptible to reagent- or matrix-driven false negatives/positives, the proposed qualitative pass/fail gate will misclassify process arms and therefore mislead process decisions despite following the experiment plan."
+}
