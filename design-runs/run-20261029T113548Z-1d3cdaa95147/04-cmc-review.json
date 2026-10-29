@@ -1,0 +1,20 @@
+{
+  "concerns": [
+    "Assay sensitivity and interference risk: targeted RT\u2011qPCR and targeted proteomics on capture eluates may yield false negatives or variable recovery without validated spike-ins and buffer compatibility (supported by MISEV guidance).",
+    "Capture specificity/process-sensitivity: immuno-capture may co-enrich non-vesicular co-isolates (lipoproteins, protein aggregates) that produce a reproducible but non-EV fingerprint\u2014detergent/protease/RNase controls mitigate but do not fully eliminate this interpretive risk.",
+    "Lot comparability and material sufficiency: workflow requires adequate particle yield per lot (density/SEC fractionation + capture + split assays); insufficient yields or high inter-lot yield variability will limit feasibility and bias gating decisions.",
+    "Scale-up and source variability: process parameters (TFF, fractionation, cell-bank/donor variability, immortalized vs primary MSC source) can change cargo profiles; the small panel may not be robust across process scale or upstream source changes (Hermann et al. note source/scale considerations).",
+    "Stability and process sensitivity: protected cargo (miRNA, luminal proteins) may be degraded or redistributed by downstream processing or storage; without stability data the fingerprint could be lost or artifactual.",
+    "Translational relevance uncertainty: a reproducible protected-cargo fingerprint is an analytic comparability gate but is not demonstrated to predict in vivo delivery or potency\u2014NHP intranasal biodistribution showing poor brain uptake (Driedonks et al.) highlights translational uncertainty for delivery routes relevant to the program."
+  ],
+  "conclusion": "The proposed small, qualitative protected-cargo panel and the described fraction-level workflow are a pragmatic, implementable early-stage CMC gating strategy that aligns with ISEV/MISEV recommendations for orthogonal characterization and controls. The approach is manufacturable and measurement-feasible in principle (immuno-capture + targeted RT\u2011qPCR and targeted proteomics with spike-ins) and is appropriate as a non-numeric lot-consistency gate prior to potency linkage. Key risks remain: assay sensitivity and capture/reagent compatibility, potential consistent co-isolation of non-vesicular material that would confound the fingerprint, adequacy of per-lot yield to run the workflow, and lack of evidence that a reproducible fingerprint predicts in vivo delivery or potency\u2014especially given limited NHP biodistribution after intranasal dosing. Addressing these risks requires pre-qualification of capture reagents and spike-ins, demonstration of per-lot material sufficiency and inter-lot reproducibility across \u22653 lots, and a defined plan to tie the fingerprint to functional or short-interval in vivo recovery studies.",
+  "evidence_gap": "Experimental gaps: (1) qualification data showing capture-reagent buffer-compatibility and spike-in recovery across the intended downstream assays; (2) demonstration of assay sensitivity and limits of detection for the chosen protected-miRNA and proteomic targets in capture eluates; (3) blinded cross-lot reproducibility on \u22653 production lots with documented yields sufficient to run the full workflow; (4) data linking the reproducible fingerprint to a functional/potency endpoint or to short-interval in vivo recoverability to establish relevance beyond analytic consistency; (5) stability data showing protected-cargo signals survive intended processing and storage conditions.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "supported": true
+}

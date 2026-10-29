@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Reproducible co-isolation artefact: a process-consistent non-vesicular particle (protein aggregate, lipoprotein, or reagent-associated complex) that is detergent-insensitive or partially detergent-sensitive could carry the targeted miRNAs/proteins and pass the protection assays, producing false attribution to EVs (ev-misev2023-quality-framework).",
+    "Assay cross-reactivity or buffer interference: capture reagents, eluants, or spike-ins could produce matrix effects or reagent-bound signals that mimic protected cargo despite spike-in controls, yielding false positives.",
+    "Insufficient analytical sensitivity or recovery variability: low abundance true EV cargo falls below detection in some lots leading to false negatives, or spike-in tracer does not mimic endogenous cargo behavior, invalidating recovery normalization (ev-misev2023-quality-framework).",
+    "Panel-selection misspecification (Type II error): chosen miRNA/protein panel does not include conserved, biologically relevant cargo, so lots with correct EV content are falsely rejected because the panel misses the true markers (ev-hermann-2023-neonatal-hi; ev-kodali-2017-status-epilepticus indicating variability across models and sources).",
+    "Capture-reagent bias: immuno-capture against selected markers (CD63/CD9/CD81 or alternatives) could enrich a subpopulation that is not representative of therapeutic EVs or could preferentially bind non-EV complexes, producing a non-generalizable fingerprint (ev-misev2023-quality-framework).",
+    "Process-driven variability masquerading as biological signal: differences in TFF/SEC/iodixanol handling or donor/source heterogeneity could create lot-to-lot differences that the fingerprint reflects, confounding interpretation of whether variability is biological or manufacturing-related (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi).",
+    "Lack of linkage to functional delivery/potency or to relevant in vivo biodistribution: even if the fingerprint genuinely marks membrane-protected cargo, it may not correlate with bioavailability or efficacy in relevant species/routes (ev-driedonks-2022-macaque-biodistribution; ev-zhuang-2011-intranasal-exosome).",
+    "Poor cross-species or route generalizability: protected cargo observed in mouse models or in vitro may not predict behavior in larger animals or humans (ev-zhuang-2011-intranasal-exosome vs ev-driedonks-2022-macaque-biodistribution)."
+  ],
+  "strongest_objection": "The single strongest, bounded failure mode is that the observed \u201cprotected-cargo fingerprint\u201d simply tracks a co-isolated, detergent-resistant or otherwise assay-reactive non-vesicular complex (or a capture-reagent\u2013dependent artefact) that is reproducibly produced by the process, so the fingerprint would be reproducible across lots yet not report bona fide membrane-protected EV cargo nor predict in vivo delivery or potency. This outcome is consistent with ISEV concerns about co-isolates and assay specificity and with non-human-primate intranasal biodistribution data showing negligible brain delivery despite measurable, process-retained signal in lavage, so a reproducible fingerprint could be misleading for translational or CMC decisions."
+}

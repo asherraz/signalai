@@ -1,0 +1,178 @@
+{
+  "assumptions": [
+    "Capture reagents and protected-cargo assays can be qualified to exclude buffer/reagent interference and demonstrate recovery using spike-in controls.",
+    "Sufficient material yield per lot exists to perform fraction-level capture and targeted cargo assays across >=3 lots.",
+    "Detection sensitivity of targeted assays is adequate to measure protected cargo in capture eluates."
+  ],
+  "biological_rationale": "If EV-associated cargo elements are membrane-protected and reproducibly enriched in capture-positive, particle-peak fractions across lots, that composite indicates a stable particle-associated cargo ensemble consistent with an EV-mediated delivery hypothesis. Protected miRNAs and detergent-sensitive luminal proteins provide orthogonal molecular layers that, together, reduce the chance that observed signals arise from soluble co-isolates.",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20261029T113548Z-1d3cdaa95147-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "group": "cargo_profile",
+      "human_approved": false,
+      "measurement_concept": "Qualitative protected-cargo panel presence in capture-positive particle-peak fractions (yes/no) validated by detergent/protease sensitivity and spike-in recovery.",
+      "name": "Protected multi-analyte cargo fingerprint (qualitative)",
+      "rationale": "A small qualitative panel combining protected miRNAs and detergent-sensitive luminal proteins provides orthogonal evidence of particle-associated cargo and is practical for early lot-consistency gating without numeric release criteria.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20261029T113548Z-1d3cdaa95147",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261029T113548Z-1d3cdaa95147"
+      ],
+      "uncertainty": "Moderate: assay sensitivity and panel selection uncertainty; requires cross-lot reproducibility testing."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Consistent cargo signals could reflect consistent co-isolation of non-vesicular complexes (e.g., aggregated proteins or lipoproteins) rather than bona fide EV-protected cargo.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Protected-cargo profiling on immuno-captured particle-peak fractions with detergent/protease controls and spike-in controls across matched lots.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV2023 and rodent studies support linking protected cargo to EV identity but do not define which cargo elements will be conserved across MSC sources or survive processing."
+      },
+      {
+        "competing_explanation": "A reproducible analytic fingerprint might still not correlate with in vivo delivery or potency; fingerprint reproducibility alone does not establish functional relevance.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Blinded cross-lot reproducibility testing and subsequent linkage to functional or in vivo short-interval recoverability studies.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: establishing a reproducible fingerprint is a necessary precondition for CMC gating, but cross-species delivery uncertainties mean it is not sufficient to predict in vivo translation."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "A membrane-protected, capture-positive particle fraction contains discrete protected cargo elements (miRNAs + luminal proteins) that can be reproducibly detected across production lots."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Detection of a conserved, membrane-protected multi-analyte fingerprint in capture-positive particle-peak fractions distinguishes EV-associated cargo from variable, non-membrane secretome co-isolates."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the protected-cargo fingerprint is reproducible across >=3 lots, it can be used as a qualitative lot-consistency gate to advance lots for potency linkage and CMC comparability, reducing manufacturing risk from undefined cargo variability."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Apparent conserved cargo could reflect consistent co-isolation of non-vesicular components or assay cross-reactivity rather than true EV-protected cargo.",
+    "Process or source variability (TFF parameters, downstream exposures, donor heterogeneity) rather than an intrinsic EV-associated fingerprint could drive observed inter-lot differences."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "dependencies": [
+    "Establish capture-reagent buffer-compatibility and spike-in tracer qualification prior to interpretation",
+    "Produce >=3 representative conditioned-medium lots from the same source-cell bank/passage range",
+    "Analytical capacity for targeted miRNA and targeted proteomics with spike-in normalization"
+  ],
+  "design_question": "Which small, protected multi-analyte cargo panel (selected protected miRNAs + detergent/protease-sensitive luminal proteins) reproducibly co-occurs in immuno-capture-positive, particle-peak fractions across independent production lots and therefore discriminates EV-associated cargo from variable secretome co-isolates without presuming a single active molecule?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58",
+    "design-hypothesis-run-20261016T095537Z-3c47696fc5c2"
+  ],
+  "expected_measurable_effect": "A qualitative 'protected-cargo fingerprint present' call in capture-positive particle-peak fractions across >=3 independent production lots: detection of a predefined set of protected miRNAs and detergent/protease-sensitive luminal proteins in capture eluates that is substantially reduced after detergent + protease/RNase treatment.",
+  "experiment": {
+    "assay": "Orthogonal fraction-level workflow: (1) density/SEC fractionation with particle counting per fraction to locate particle peaks; (2) immuno-capture on intact particle-peak fractions and eluate recovery; (3) split eluates \u00b1 detergent + protease/RNase; (4) targeted protected-miRNA panel RT-qPCR with spike-ins and targeted proteomics (SRM/PRM) for luminal proteins on each split; (5) total protein and protein:particle ratio calculation per fraction.",
+    "comparator": "Per lot: (A) capture-positive particle-peak fractions from bounded small-EV fraction versus (B) matched fractions from concentrated conditioned-medium (secretome-retaining). Include \u00b1 detergent + protease/RNase splits and spike-in tracer in all samples.",
+    "complexity": "high",
+    "control": "Positive control: characterized small EV preparation processed in parallel (validates capture and protection assays). Negative controls: buffer-only and detergent-disrupted samples. Spike-in tracer for within-sample recovery validation.",
+    "dependencies": [
+      "Availability of >=3 independent production lots with sufficient yield",
+      "Validated capture reagents and spike-in tracer with defined buffer compatibility",
+      "Analytical platforms for targeted miRNA and targeted proteomics with appropriate sensitivity and spike-in controls"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-kodali-2017-status-epilepticus"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261029T113548Z-1d3cdaa95147",
+    "failure_criterion": "Spike-in controls validate recovery but protected-cargo panel members are not reproducibly observed in capture-positive fractions across >=3 lots, or detected signals are detergent-insensitive (indicating non-membrane association); experiment fails to support the fingerprint hypothesis.",
+    "falsification_outcome": "If failure criteria are met, the protected-cargo fingerprint hypothesis is falsified: cargo composition cannot be used as a reproducible lot-consistency gate and the program should (A) tighten fractionation/source controls, (B) pursue alternative composite attributes (surface-phenotype or spike-in fraction gates), or (C) adopt a secretome-centric product definition for early CMC decisions.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A focused protected-cargo composite fingerprint (selected protected miRNAs + detergent/protease-sensitive luminal proteins) will be reproducibly detected in immuno-capture-positive particle-peak fractions across >=3 independent production lots and will be substantially reduced or abolished after detergent + protease/RNase treatment, whereas concentrated conditioned-medium controls will lack this protected fingerprint or show detergent-insensitive signals.",
+    "primary_readout": "Qualitative presence/absence call: reproducible detection of the predefined protected-cargo panel members in capture-positive particle-peak fractions across >=3 lots and substantial reduction/abolition of those signals after detergent + protease/RNase treatment.",
+    "question": "Which multi-omic protected-cargo panel (protected miRNAs + detergent/protease-sensitive luminal proteins) reproducibly occurs in capture-positive, particle-peak fractions across >=3 independent lots and is abolished after detergent + protease/RNase treatment?",
+    "required_material": [
+      "MSC-conditioned medium from >=3 independent production lots (same source-cell bank/passage range)",
+      "Matched bounded small-EV fraction and concentrated conditioned-medium (secretome-retaining) outputs per lot (via program-defined fractionation)",
+      "Immuno-capture reagents for intact EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5)",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Exogenous intact-EV spike-in tracer (orthogonal species or isotope-labeled) for per-sample recovery control",
+      "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent)",
+      "Reagents for targeted small-RNA measurement (RT-qPCR panels with spike-in controls) and targeted proteomics (SRM/PRM) with standards",
+      "Total protein assay reagents and consumables"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio differences between bounded fraction and secretome controls",
+      "Spike-in recovery percentages per fraction (validate assay performance)",
+      "Inter-lot qualitative similarity of panel presence (clustering of presence/absence across lots)"
+    ],
+    "success_criterion": "Qualitative success: Across >=3 independent lots, capture-positive particle-peak fractions reproducibly show the predefined protected-cargo panel (>=3 protected miRNA panel members and >=1 detergent-sensitive luminal protein) and these signals are substantially reduced or abolished after detergent + protease/RNase; concentrated conditioned-medium controls either lack this protected pattern or show detergent-insensitive signals. Spike-in recovery confirms assay performance."
+  },
+  "explicit_inferences": [
+    "Protected-cargo signals that are detergent/protease-sensitive and co-localize with particle-count peaks are more likely to be EV-associated than signals that are detergent-insensitive or distributed across secretome fractions.",
+    "A small, qualitative protected-cargo panel is a pragmatic near-term comparability gate: it reduces risk of advancing lots with inconsistent particle-associated cargo while remaining agnostic about a single molecular active."
+  ],
+  "falsification_criteria": [
+    "Spike-in controls validate assay recovery but the predefined protected-cargo panel members are not reproducibly detected (presence/absence) in capture-positive particle-peak fractions across >=3 independent lots, or detected signals are detergent/protease-insensitive, indicating non-membrane association."
+  ],
+  "human_decisions_required": [
+    "Select the protected-miRNA panel members (3\t6) and candidate luminal proteins (2\t4) based on preliminary discovery data or literature-noted candidates",
+    "Approve use of exogenous spike-in tracer and its identity (species/isotope) for assay control",
+    "Authorize allocation of >=3 production lots to this orthogonal analytic program"
+  ],
+  "manufacturability_assessment": "Implementing a focused, targeted protected-cargo panel is compatible with early-stage CMC: it uses capture-based fractionation and targeted assays (RT-qPCR/targeted proteomics) which are scalable; numeric limits are not required initially, reducing validation burden. Spike-in controls and capture-compatibility testing are necessary prerequisites.",
+  "manufacturing_rationale": "A small, qualitative protected-cargo panel can be implemented with capture-based fractionation and targeted assays to serve as a non-numeric lot-consistency gate for early-stage comparability and to prioritize lots for downstream potency-linkage work without committing to numeric release limits or a single molecular active ingredient.",
+  "measurement_strategy": "Orthogonal fraction-level workflow: fractionate to identify particle peaks (iodixanol or SEC), immuno-capture of intact particle-peak fractions, split eluates for (A) targeted protected-miRNA panel (RT-qPCR with spike-ins) and (B) targeted proteomics for luminal candidate proteins, each run \u00b1 detergent + protease/RNase to confirm membrane protection. Use qualitative presence/absence calls across >=3 lots with spike-in recovery to assert reproducibility.",
+  "novelty_statement": "This hypothesis is novel because it proposes a focused, membrane-protection\u2013controlled, multi-layer (protected miRNA + detergent-sensitive luminal protein) fingerprint measured specifically on immuno-capture-positive, particle-peak fractions as a non-numeric, lot-consistency gate. Prior SGL-001 proposals explored broader protected-cargo profiling and multi-omic fingerprints (e.g., design-hypothesis-run-20260927T103652Z-0b39f6c9ae58) but did not define a small, operational protected panel optimized for early manufacturing comparability with an explicit spike-in recovery control and a deterministic falsification rule across >=3 lots. This proposal is intentionally constrained (small panel, qualitative pass/fail, spike-in control) to be implementable as an early CMC gate without presuming a single active molecule.",
+  "primary_domain": "cargo",
+  "principal_risks": [
+    "Assay interference or insufficient sensitivity could produce false negatives or false positives.",
+    "Observed conserved signals may reflect co-isolates rather than EV-associated cargo.",
+    "Panel selection may miss the true conserved cargo elements, producing a Type II error and incorrectly deeming lots inconsistent."
+  ],
+  "proposed_potency_relationship": "This proposal does not assert potency; if the protected-cargo fingerprint is reproducible, prioritized downstream experiments will test whether the fingerprint co-fractionates with a membrane-protected in vitro neuroinflammation-modulating bioactivity to establish potency linkage.",
+  "proposed_product_change_or_attribute": "Adopt a non-numeric protected-cargo composite fingerprint (qualitative presence of a predefined panel of membrane-protected miRNAs co-enriched with a small panel of detergent/protease-sensitive luminal proteins in immuno-capture-positive, particle-peak fractions) as a lot-consistency gating attribute to distinguish an EV-enriched drug-substance candidate from secretome-retaining material.",
+  "secondary_domains": [
+    "product_identity",
+    "manufacturing",
+    "potency"
+  ],
+  "sequence_within_theme": 3,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "theme_id": "design-gap-cargo-composition",
+  "title": "Protected multi-analyte cargo fingerprint (focused panel) as a lot-level, EV-associated consistency metric for SGL-001"
+}

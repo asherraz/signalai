@@ -1,0 +1,22 @@
+{
+  "concerns": [
+    "Assay sensitivity and specificity: targeted RT-qPCR and SRM/PRM must be qualified on capture eluates with spike-ins to demonstrate limits of detection and that negative results are not false negatives (MISEV2023 emphasizes orthogonal characterization).",
+    "Capture-reagent and fraction specificity: immuno-capture must be shown to enrich bona fide particle-associated material rather than abundant secretome complexes; detergent/protease/RNase controls and capture-minus controls are necessary to discriminate membrane-protection from tightly bound soluble complexes (addresses the primary competing explanation).",
+    "Co-isolate/confound risk: consistent protected signals could still reflect reproducible co\u2011isolation of non\u2011vesicular particles (e.g., lipoproteins, protein aggregates). The proposed detergent/protease sensitivity test helps, but additional orthogonal evidence (e.g., imaging, density co\u2011migration, enzymatic accessibility on intact vs disrupted particles) strengthens discrimination.",
+    "Lack of potency/delivery linkage: reproducible presence of a protected-cargo fingerprint does not demonstrate in vitro bioactivity or in vivo delivery to target tissue. Preclinical intranasal efficacy shown in rodents (ev-zhuang-2011, ev-kodali-2017, ev-hermann-2023) supports feasibility of EV-mediated brain effects in small animals but does not validate the fingerprint as a surrogate for potency or CNS access.",
+    "Translatability limits: non-human-primate biodistribution data (ev-driedonks-2022-macaque-biodistribution) show limited intranasal EV brain uptake and strong nasal retention in macaques, highlighting species-, formulation-, and route-dependent uncertainties in extrapolating a manufacturing fingerprint to clinical delivery/outcome. This reduces confidence that a lot-level cargo fingerprint predicts therapeutic delivery in humans.",
+    "Panel selection and Type II error risk: selecting only a small set of miRNAs/proteins risks missing the true conserved or active cargo, leading to false negatives in lot gating. A discovery-driven initial screen or inclusion of redundant markers is advisable.",
+    "Operational dependencies: successful implementation depends on producing >=3 lots with sufficient yield, validated spike-in tracers, and capture buffers compatible with downstream assays; these prerequisites must be demonstrated before interpretation (noted in dependencies).",
+    "Discrimination of competing explanations: the experiment as designed can partially discriminate the main competing explanation (co-isolated soluble complexes) using detergent/protease/RNase sensitivity, spike-in recovery, and fractionation co-localization. However, to fully exclude non-vesicular explanations, additional orthogonal assays (e.g., EM or single-particle imaging with cargo co-localization, protease protection on intact particles, and density-shift experiments) would strengthen causal attribution to EVs."
+  ],
+  "conclusion": "The proposed protected multi-analyte fingerprint is a plausible, pragmatic analytic gate for early lot-consistency assessment of an EV-enriched product: orthogonal protected miRNA and detergent-sensitive luminal-protein measurements on immuno-capture-positive, particle-peak fractions map onto widely recommended EV characterization practices and address key MISEV2023 concerns about co\u2011isolates and assay orthogonality. However, the proposal does not establish functional relevance or in vivo delivery, and important experimental gaps remain (assay sensitivity/validation, capture reagent specificity, spike-in tracer behavior, and cross-lot/passage/source variability). Non\u2011vesicular co\u2011isolates and species-dependent biodistribution limit inference about translation; follow-up potency linkage and short-interval recoverability/in vivo studies will be required before using the fingerprint as evidence of delivery or therapeutic mechanism.",
+  "evidence_gap": null,
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "supported": true
+}
