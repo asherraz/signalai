@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-misev2023-quality-framework",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "False-negative in vivo orthogonal detection due to low analyte mass, species-specific clearance, or sample matrix retention (e.g., strong nasal-lavage retention seen in ev-driedonks-2022-macaque-biodistribution) leading to premature falsification of the hypothesis.",
+    "False-positive or misattributed mechanism: ex vivo cytokine modulation maps to the capture-positive particle fraction but is actually mediated by soluble secretome factors that co-fractionate or co-elute with particles (MISEV2023 warns about co-isolated non-vesicular components) (ev-misev2023-quality-framework).",
+    "Assay interference: immuno-capture reagents, spike-in tracer, or detergents/proteases alter the functional readout or recovery (buffer incompatibility or reagent cross-reactivity), producing artifactual protection/degradation signals and invalidating detergent-protection logic (ev-misev2023-quality-framework).",
+    "Incomplete capture-depletion: inability to fully remove capture-positive entities leaves residual intact-EV or EV-like material in the \u2018\u2018capture-depleted\u2019\u2019 arm, producing equivalent ex vivo effects across arms and obscuring causal inference (MISEV concerns about capture specificity) (ev-misev2023-quality-framework).",
+    "Membrane-disruption non-specificity: detergent + protease/RNase treatment destroys or modifies non-EV components (e.g., protein aggregates, protein\u2013RNA complexes) that are needed for activity, so loss of effect after treatment would not uniquely implicate EV membranes or cargo (ev-misev2023-quality-framework).",
+    "Ex vivo assay non-specificity or insensitivity: the short-interval ex vivo microglia cytokine readout may not reflect relevant EV biology (either insensitive to EV-mediated signals or overly sensitive to soluble immunomodulators), making linkage to intact EV exposure unreliable (contrasting positive rodent intranasal efficacy reports like ev-kodali-2017-status-epilepticus and ev-hermann-2023-neonatal-hi may reflect different mechanisms or dosing regimens).",
+    "Cross-species delivery/translation gap: positive rodent short-interval linkage (ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi) may not predict detectability or mechanism in higher-order species or devices; success in rodents would not guarantee human-relevance, and negative large-animal evidence (ev-driedonks-2022-macaque-biodistribution) may reflect realistic translational barriers.",
+    "Spike-in tracer mismatch: spike-in material (species/isotope/label) behaves differently from test EVs during fractionation or clearance, so spike-in recovery may not validate endogenous EV detectability, producing false confidence in assay performance (ev-misev2023-quality-framework)."
+  ],
+  "strongest_objection": "Large-animal biodistribution and EV field analytical limitations together make it plausible that the proposed experiment will either (A) fail to detect orthogonally-verified intact EVs in the relevant post-intranasal samples despite true biological activity (false negative), or (B) attribute ex vivo pharmacodynamic effects to an \u2018\u2018intact-EV\u2019\u2019 fraction that are in fact driven by co-recovered non-vesicular secretome components or assay artefacts (false attribution). The Driedonks macaque negative biodistribution (ev-driedonks-2022-macaque-biodistribution) demonstrates that intranasally dosed, reporter-labeled EVs can be retained in nasal lavage and not reach CSF/brain in a large mammal; combined with MISEV2023 caution about separation/characterization limits (ev-misev2023-quality-framework) this yields a bounded risk that the orthogonal in vivo detection or its linkage to ex vivo activity will be unmeasurable or misleading under realistic assay and delivery constraints."
+}
