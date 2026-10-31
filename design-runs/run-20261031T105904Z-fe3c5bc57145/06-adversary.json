@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "False-positive identity calls: Non-vesicular complexes (protein aggregates, lipoproteins, other secretome components) that survive detergent/protease treatment or bind capture reagents produce capture-positive, particle-coincident signals indistinguishable from bona fide EVs under the proposed detergent/protease conditions (assay-level false acceptance).",
+    "Spike-in non-equivalence: The exogenous intact-EV spike-in tracer does not reproduce the mechanical, chemical, or surface-epitope vulnerability of endogenous EV subpopulations during device/formulation passage, so spike-in recovery validates only the spike-in behavior and can mask endogenous loss of phenotype (misleading internal control).",
+    "Assay interference / false negatives: Formulation excipients or device rinse residues interfere with immuno-capture (blocking, crosslinking, or altering antigen accessibility) causing loss of capture-signal that is assay-artifactual rather than reflecting true membrane damage (false rejection of acceptable EVs).",
+    "Co-elution confounds: Fractionation methods (SEC, cushion/iodixanol) permit co-elution of small particles or soluble complexes with similar size/density to EVs, so particle-peak co-localization with capture-signal can arise from non-EV species; detergent/protease conditions may not degrade some structured non-vesicular complexes, producing persistent signal.",
+    "Insufficient analytical sensitivity or dynamic range: Low endogenous EV abundance after device/formulation passage (or strong nasal retention/clearance in larger species) yields signal near background, making qualitative pass/fail calls unmeasurable or highly variable across lots.",
+    "Inter-lot and inter-source variability: Biological lot-to-lot heterogeneity in surface-epitope display means the chosen multi-epitope panel may only detect a subset of biologically relevant EVs, reducing reproducibility and leading to inconsistent pass/fail outcomes across \u22653 lots.",
+    "Species and delivery-route mismatch: Large-animal intranasal biodistribution (strong nasal retention, negligible brain uptake) suggests device/formulation stresses and host mucosal interactions differ across species; an in vitro device-passage identity gate may not predict in vivo delivery or relevance to human intranasal administration.",
+    "Operational assay limits: Detergent/protease+RNase conditions and capture formats may need extensive optimization; suboptimal selection could either remove true EV signal (overly harsh) or leave non-vesicular survivors (insufficient), and the proposal lacks a defined orthogonal orthogonal biochemical degradation (e.g., lipid-specific hydrolysis) to adjudicate such cases."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is that assay-positive, detergent-resistant capture signal after device/formulation passage will not reliably report bona fide membrane-protected EVs but instead reflect either (A) non-vesicular, detergent/protease-resistant complexes that bind the chosen capture reagents or (B) assay interference by formulation/device residues \u2014 and these alternatives cannot be excluded by the proposed workflow because (1) spike-in tracers may not faithfully mimic endogenous EVs across device/formulation stresses or co-elution behavior, and (2) co-fractionation of aggregates/protein complexes (and species- or device-dependent retention shown in large-animal intranasal work) can produce qualitatively similar readouts even when endogenous EV identity or in vivo delivery competence is lost."
+}

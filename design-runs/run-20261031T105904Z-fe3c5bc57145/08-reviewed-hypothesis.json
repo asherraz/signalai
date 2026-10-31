@@ -1,0 +1,233 @@
+{
+  "adversary_objection": "The single strongest bounded failure mode is that assay-positive, detergent-resistant capture signal after device/formulation passage will not reliably report bona fide membrane-protected EVs but instead reflect either (A) non-vesicular, detergent/protease-resistant complexes that bind the chosen capture reagents or (B) assay interference by formulation/device residues \u2014 and these alternatives cannot be excluded by the proposed workflow because (1) spike-in tracers may not faithfully mimic endogenous EVs across device/formulation stresses or co-elution behavior, and (2) co-fractionation of aggregates/protein complexes (and species- or device-dependent retention shown in large-animal intranasal work) can produce qualitatively similar readouts even when endogenous EV identity or in vivo delivery competence is lost.",
+  "assumptions": [
+    "Assay compatibility controls (capture-compatibility panels) and spike-in tracer behave as intended and are available.",
+    "Sufficient conditioned-medium yield exists to perform matrixed device/formulation and replicate testing.",
+    "Detergent + protease/RNase treatment is a valid operational test for membrane protection in the chosen capture format."
+  ],
+  "biological_rationale": "MISEV2023 and program preclinical literature emphasize that canonical marker signal can arise from non-vesicular co-isolates; combining intact immuno-capture with particle-peak co-localization and membrane-protection tests (and controlling for assay recovery with an exogenous intact-EV spike-in) is the minimal orthogonal approach to distinguish bona fide membrane-protected EV surface phenotype from soluble/aggregate confounders, and to determine whether device/formulation passage preserves identity-relevant epitopes needed for intranasal deployment.",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20261031T105904Z-fe3c5bc57145-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Preserved capture signal after device/formulation might reflect selective survival of a non-vesicular complex that binds capture reagents and resists detergent/protease in the chosen assay conditions.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Spike-in\u2013controlled device/formulation passage followed by fraction-level detergent/protease protection to rule out non-vesicular survivor artifacts.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV supports orthogonal approaches; large-animal intranasal negative biodistribution motivates testing whether identity survives delivery stresses."
+      },
+      {
+        "competing_explanation": "Loss of surface-phenotype after passage could reflect capture-reagent incompatibility with formulation excipients rather than true epitope masking or membrane damage.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "inference",
+        "missing_experiment": "Capture-compatibility panels for each formulation buffer and device rinse to exclude assay interference.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: identity preservation is necessary but may not guarantee cross-species recoverability or downstream potency; further in vivo bridging would be required."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If an EV-enriched bounded fraction displays multi-epitope immuno-capture signal on intact material that co-localizes with particle-count peaks and is lost after detergent + protease/RNase, then that signal reports membrane-protected EV surface phenotype distinguishable from soluble secretome co-isolates."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the multi-epitope, spike-in\u2013validated surface-phenotype is preserved after passage through the intended nasal device and candidate formulation buffers, then the preparation retains an operational identity attribute compatible with intranasal delivery and downstream CMC comparability."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the surface-phenotype is lost after device/formulation passage (despite spike-in recovery), then observed marker signal reflects assay or secretome artifacts and the material should not be advanced as an EV-enriched drug-substance for intranasal use."
+      }
+    ]
+  },
+  "chair_rationale": "Plausible and implementable as a non\u2011potency identity gate but lacks direct experimental validation; key gaps must be addressed before CMC use\u2014validated exogenous spike\u2011in behavior, capture\u2011compatibility with candidate formulations/device residues, orthogonal evidence to exclude detergent\u2011resistant non\u2011vesicular artifacts, and \u22653\u2011lot reproducibility/scale/device\u2011relevant testing.",
+  "competing_explanations": [
+    "Capture-positive, particle-coincident signal after device/formulation passage could reflect co-eluting, detergent-resistant non-vesicular complexes rather than bona fide membrane-protected EVs.",
+    "Loss of capture signal could instead be assay interference from formulation components or device rinse residues, not true loss of EV membrane integrity."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "created_at": "2026-10-31T10:59:04.213702Z",
+  "dependencies": [
+    "Define and procure an exogenous intact-EV spike-in tracer with orthogonal readout",
+    "Validate capture-reagent compatibility with candidate formulation buffers and device rinse fluids",
+    "Select representative device(s) and formulation excipient matrix for intranasal delivery simulation",
+    "Secure \u22653 independent conditioned-medium lots from the selected source-cell bank/passage range"
+  ],
+  "design_question": "Daily question: After passage through the candidate intranasal device and exposure to candidate formulation buffers, can a spike-in\u2013controlled, multi-epitope intact-EV surface-phenotype workflow (multi-epitope immuno-capture on intact material + particle-peak co-localization + detergent/protease sensitivity) reproducibly discriminate EV-enriched bounded fractions from secretome-retaining concentrates as a product-identity metric (non-potency)?",
+  "determination": "needs_evidence",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260929T112607Z-b48027db5ada",
+    "design-hypothesis-run-20261018T094239Z-961ba88b3ab9"
+  ],
+  "expected_measurable_effect": "Qualitative pass/fail identity calls per condition: 'EV-enriched pass' if (A) exogenous intact-EV spike-in is recovered and membrane-protected in capture-positive particle-peak fractions, (B) endogenous multi-epitope capture signal co-localizes with particle-count peaks after device/formulation passage, and (C) capture signal is abolished or substantially reduced after detergent + protease/RNase; otherwise 'fail' (treated as secretome-like).",
+  "explicit_inferences": [
+    "Inference: Spike-in recovery validates assay performance and distinguishes genuine loss of endogenous intact-EV phenotype from assay failure or buffer incompatibility.",
+    "Inference: Preservation of an orthogonal surface-phenotype through device/formulation passage is a prerequisite for treating a product as EV-enriched for intranasal use; it does not prove potency or in-human delivery."
+  ],
+  "falsification_criteria": [
+    "Validated spike-in recovery (spike-in recovered in capture-positive, particle-peak fractions and lost after detergent + protease) but endogenous multi-epitope capture signal does not co-localize with particle peaks after device/formulation passage across replicates (n \u2265 3) \u2014 hypothesis falsified.",
+    "Observed capture-signal loss fully explained by capture-compatibility controls (assay interference) rather than true membrane disruption \u2014 hypothesis not supported until assay reagents/formulation are redesigned."
+  ],
+  "human_decisions_required": [
+    "Select the spike-in tracer (species or isotopic label) and validate its marker overlap and orthogonality to endogenous readouts",
+    "Choose the multi-epitope capture panel (which combination of CD63/CD9/CD81 \u00b1 TIM4/AnxA5) and intact-capture format",
+    "Define the candidate formulation excipient matrix and representative device shear profiles to test"
+  ],
+  "hypothesis_id": "design-hypothesis-run-20261031T105904Z-fe3c5bc57145",
+  "manufacturability_assessment": "Feasible: immuno-capture assays and particle counters are standard analytical tools; spike-in tracer procurement and device/formulation simulation require coordination but are manufacturable. The gate is qualitative (pass/fail) and can be applied without numeric release limits while informing CMC decisions and downstream potency linkage work.",
+  "manufacturing_rationale": "A spike-in\u2013validated intact-surface-phenotype gate provides a qualitative, actionable identity metric that can be applied after formulation and device compatibility testing and after scale-relevant concentration steps; it supports go/no-go comparability and avoids premature numeric spec setting until multi-site reproducibility and assay validation are demonstrated.",
+  "measurement_strategy": "Implement a spike-in\u2013controlled orthogonal workflow applied to aliquots that (A) are passed through the intended device and incubated in candidate formulation buffers, (B) are fractionated (iodixanol cushion or SEC) to identify particle peaks, (C) undergo intact multi-epitope capture for endogenous and spike-in readouts, and (D) are tested \u00b1 detergent + protease/RNase. Include capture-compatibility buffer panels and replicate lots (n \u2265 3) for qualitative reproducibility calls.",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal fraction-level workflow: (1) add exogenous spike-in prior to device/formulation passage; (2) pass aliquots through device or device-simulating rig and incubate with each formulation buffer condition; (3) fractionate (iodixanol cushion or SEC) and identify particle-peak fractions by particle counting; (4) perform intact multi-epitope immuno-capture on fractions and quantify endogenous and spike-in signals separately; (5) apply detergent + protease/RNase to captured material to test membrane protection (loss indicates membrane-protection); (6) capture-compatibility checks for each buffer; (7) qualitative replicate calls (pass/fail) per lot/condition.",
+    "comparator": "Paired comparisons per conditioned-medium lot: (1) EV-enriched bounded fraction passed through device + exposed to test formulation; (2) EV-enriched bounded fraction baseline (no device/formulation passage); (3) concentrated conditioned medium (secretome-retaining) passed identically through device + formulation; (4) secretome baseline. All samples spiked identically with exogenous intact-EV tracer prior to device/formulation exposure.",
+    "complexity": "moderate",
+    "control": "Positive controls: characterized small EV prep spiked and processed in parallel to verify capture/protection assay performance; Negative controls: buffer-only and detergent-disrupted samples. Capture-compatibility buffer panels for each formulation condition to detect assay interference. Spike-in recovery acts as internal assay performance control.",
+    "dependencies": [
+      "Availability of a characterized exogenous intact-EV spike-in and validated multi-epitope capture reagents with buffer-compatibility data",
+      "Sufficient conditioned-medium yields from \u22653 independent lots",
+      "Device-shear simulation capability or access to clinical device prototypes",
+      "Analytical capacity for fractionation, particle counting, and capture+protection assays"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261031T105904Z-fe3c5bc57145",
+    "failure_criterion": "Either (1) validated spike-in recovery but endogenous multi-epitope capture signal does not co-localize with particle peaks after device/formulation passage across replicates (n \u2265 3) \u2014 hypothesis falsified; or (2) observed capture-signal loss is fully explained by capture-compatibility controls (assay interference) \u2014 unable to support hypothesis until reagents or formulations are changed.",
+    "falsification_outcome": "If falsified (spike-in validates assay but endogenous capture co-localization fails reproducibly), treat the material as indistinguishable from secretome for identity gating for intranasal deployment and prioritize alternative identity attributes (protected-cargo fingerprint, spike-in fractionation gates) or reformulation/device options.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A multi-epitope immuno-capture surface-phenotype (CD63/CD9/CD81 \u00b1 TIM4/AnxA5) that co-localizes with particle-count peaks and is detergent/protease-sensitive will be preserved in EV-enriched bounded fractions after device/formulation passage and validated by recovery of an exogenous intact-EV spike-in tracer; secretome-retaining concentrates will either lack co-localizing capture-positive fractions or show capture signal that is detergent-insensitive.",
+    "primary_readout": "Qualitative pass/fail per lot/condition: (A) spike-in recovery in capture-positive particle-peak fractions and detergent/protease-sensitive behavior (yes/no), (B) endogenous multi-epitope capture co-localization with particle-peak fractions after device/formulation passage (yes/no), (C) marked reduction/abolition of capture signal after detergent + protease/RNase (yes/no). 'Pass' requires yes to all three; otherwise 'fail'.",
+    "question": "Can a spike-in\u2013controlled, multi-epitope intact-EV surface-phenotype workflow applied after device/formulation passage qualitatively discriminate EV-enriched bounded fractions from secretome-retaining concentrates?",
+    "required_material": [
+      "MSC-conditioned medium (same source-cell lot) processed into: (A) EV-enriched bounded fraction and (B) concentrated conditioned medium (secretome-retaining) from the same lot",
+      "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) with verified marker display",
+      "Immuno-capture reagents: anti-CD63, anti-CD9, anti-CD81 and TIM4/AnxA5 capture reagents (intact-capture formats) and capture-compatibility buffer panels",
+      "Panel of candidate formulation buffers/excipient classes (matrix across pH, ionic strength, low non-ionic surfactant levels) and baseline control buffer",
+      "Representative nasal-delivery device(s) or device-flow rigs to simulate clinical passage and device rinse solutions",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Protease (proteinase K) and RNase reagents and detergent (Triton X-100 or equivalent) for membrane-disruption tests",
+      "Total protein assay reagents and consumables",
+      "Buffer-only negative controls and characterized small-EV positive control (commercial or lab-validated) processed in parallel"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio per fraction",
+      "Capture-signal-to-noise and capture-compatibility metrics per formulation buffer",
+      "Mass and particle recovery qualitative assessment for manufacturability",
+      "Reproducibility across independent biological replicates (n \u2265 3 conditioned-medium lots)"
+    ],
+    "success_criterion": "Qualitative success: For at least one formulation/device condition representative of intended use, across \u22653 independent conditioned-medium lots, the EV-enriched bounded fraction after device/formulation passage (A) shows spike-in recovery in capture-positive particle-peak fractions with detergent/protease-sensitive behavior, (B) shows endogenous multi-epitope capture signal co-localized with particle peaks that is substantially reduced after detergent + protease/RNase, and (C) capture-compatibility controls confirm the result is not assay interference. If criteria met, the spike-in\u2013controlled, multi-epitope surface-phenotype gate is supported for non-numeric identity gating."
+  },
+  "novelty_statement": "Novel: This hypothesis requires concurrent device/formulation passage plus an exogenous intact-EV spike-in internal control applied before exposure, combined with multi-epitope intact immuno-capture, particle-peak co-localization, and detergent/protease protection testing at the fraction level. Prior hypotheses proposed surface-phenotype measurement or in vivo\u2194ex vivo bridges in isolation; this design uniquely demands spike-in\u2013controlled verification of surface phenotype after realistic device/formulation stresses as a non-potency identity gate. The experiment therefore discriminates true preservation of membrane-protected surface phenotype through delivery-relevant exposures from assay artifacts or secretome-derived artifacts\u2014an operationally new intervention for SGL-001.",
+  "primary_domain": "product_identity",
+  "principal_risks": [
+    "False positives due to capture-reagent binding of non-vesicular complexes that resist detergent/protease under assay conditions.",
+    "Assay interference from formulation excipients or device rinse that masks or mimics capture signal.",
+    "Spike-in tracer behavior not perfectly mirroring endogenous EVs, complicating interpretation."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "None asserted. This is explicitly a non-potency product-identity gate; any potency linkage (in vitro or in vivo) must be tested in separate mechanism-focused experiments.",
+  "proposed_product_change_or_attribute": "Adopt a spike-in\u2013controlled surface-phenotype identity gate: multi-epitope capture-positive signal (CD63/CD9/CD81 \u00b1 TIM4/AnxA5) on intact material that (A) co-localizes with particle-count peaks in density/size-bounded fractions after realistic device/formulation passage, and (B) is substantially reduced or abolished after detergent + protease/RNase treatment (detergent sensitivity). Use preservation of this composite surface-phenotype as a qualitative pass/fail identity gate (non-numeric) to classify a preparation as an EV-enriched bounded drug-substance candidate for downstream CMC and comparability workflows.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Primary operational claim lacks direct experimental validation in the cited literature (MISEV is a guideline; Driedonks documents intranasal biodistribution limitations but does not test the analytic gate).",
+        "Risk of false positives: non-vesicular complexes that bind capture reagents and resist detergent/protease under the chosen assay conditions could produce misleading 'pass' calls (this competing explanation is noted but not resolved by the provided evidence).",
+        "Assay interference: formulation excipients or device rinse residues could mask or mimic capture signal; MISEV recommends controls but does not provide specific compatibility outcomes for the proposed capture panel/formulations.",
+        "Spike-in representativeness: no cited evidence here shows that an exogenous intact-EV spike-in will replicate endogenous EV susceptibility to device/formulation stresses and capture-recovery, complicating interpretation of recovery-based controls."
+      ],
+      "conclusion": "The proposal is conceptually consistent with and appropriately attributed to the cited canonical evidence (MISEV2023 for need for orthogonal characterization and Driedonks et al. for intranasal translational risk), and the proposal correctly treats the macaque negative-biodistribution data as a limiting/contradicting input rather than positive proof of delivery. However, the specific operational claim that a pre-device spike-in plus intact multi-epitope immuno-capture co-localized with particle peaks and detergent/protease sensitivity will reproducibly distinguish EV-enriched fractions from secretome across formulation/device stresses lacks direct experimental support in the supplied evidence set \u2014 MISEV provides methodological recommendations but not direct experimental validation of this exact spike-in + intact-capture workflow, and the macaque study documents delivery limitations but does not validate the proposed analytic gate. Therefore the design is plausible and well-attributed but not fully supported by the provided canonical evidence.",
+      "evidence_gap": "No supplied canonical evidence demonstrates empirical validation of the proposed combined workflow (exogenous intact-EV spike-in applied prior to device/formulation passage + intact multi-epitope immuno-capture co-localized with particle peaks + detergent/protease protection) as an operational discriminator of EV-enriched versus secretome-retaining concentrates. Also absent is evidence that candidate spike-in tracers faithfully mimic endogenous EV behavior across device/formulation stresses and capture assays.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "evidence_verifier",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Spike\u2011in tracer availability and representativeness: choice and validation of an exogenous intact\u2011EV tracer that mimics endogenous EV behavior across fractionation and device shear is critical and currently unresolved (manufacturing and measurement feasibility risk).",
+        "Assay interference and false negatives/positives: formulation excipients or device rinse residues can mask capture epitopes (false loss) or bind capture reagents (false positive); capture\u2011compatibility panels and buffer controls are required before using the gate for comparability decisions (process sensitivity and measurement feasibility concern).",
+        "Detergent/protease resistance of non\u2011vesicular complexes: some non\u2011vesicular co\u2011isolates may resist the planned protection assay under chosen conditions, producing false positives; orthogonal orthogonalization (e.g., alternative membrane\u2011disruption chemistries or cargo protection readouts) may be needed (measurement feasibility and QA relevance).",
+        "Lot comparability and reproducibility: the gate is qualitative and dependent on replicate concordance across \u22653 independent conditioned\u2011medium lots; without demonstrated cross\u2011lot reproducibility and inter\u2011operator/site robustness, the gate cannot reliably support comparability or release decisions (lot comparability risk).",
+        "Scale\u2011up and device shear: passage through clinical device prototypes or scale\u2011relevant flow rigs may induce epitope loss or particle aggregation not observed at small scale; risk of product loss or altered identity during scale\u2011up and fill/finish steps (scale\u2011up and stability risk).",
+        "Stability in candidate formulations: compatibility of EV surface phenotype with intended excipient matrix over intended storage/handling conditions is unproven; the gate could fail during stability stress even if initial passage is acceptable (stability risk).",
+        "Measurement limits: particle counters and fractionation methods have limits and may not resolve low\u2011abundance, co\u2011localized signals post\u2011device/formulation; sensitivity must be demonstrated to avoid false negatives (measurement feasibility).",
+        "Regulatory interpretation: a qualitative pass/fail identity gate is pragmatic pre\u2011specification, but regulators will expect documented orthogonality, reproducibility, and justification before accepting it as a comparability/identity criterion (QA relevance)."
+      ],
+      "conclusion": "Supported as a plausible, manufacturable non\u2011potency identity gate but requires targeted experiments and controls before CMC adoption. The proposed spike\u2011in\u2013validated intact multi\u2011epitope capture + particle\u2011peak co\u2011localization + detergent/protease protection workflow is implementable with standard analytical platforms (immuno\u2011capture, fractionation, particle counting), and it addresses key MISEV2023 concerns about co\u2011isolates and orthogonal characterization. Major residual risks relate to spike\u2011in sourcing/behavior, assay interference from formulation/device matrices, potential detergent\u2011resistant non\u2011vesicular artifacts, lot\u2011to\u2011lot reproducibility, and scale/flow stresses not yet bridged to large\u2011scale manufacture or NHP biodistribution.",
+      "evidence_gap": "No direct experimental evidence is provided that a spike\u2011in\u2013controlled intact\u2011capture + fractionation + detergent/protease protection workflow survives the candidate intranasal device/formulation passage across scaled lots; missing are (1) spike\u2011in behavior/availability data, (2) capture\u2011compatibility panels for the specific formulation/device matrices, (3) multi\u2011lot (\u22653) reproducibility and inter\u2011site assay validation, and (4) demonstration that the gate scales without unacceptable particle/protein loss or changes in stability.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": true
+    },
+    {
+      "concerns": [
+        "Detergent/protease protection is an operational (not definitive) indicator of membrane\u2011enclosed material; some non\u2011vesicular complexes or tightly bound protein\u2013lipid aggregates can resist these treatments and bind capture reagents, yielding false positives (matches the causal competing explanation e1). Use of orthogonal denaturation/biophysical readouts (e.g., proteomics of captured fractions, lipid profiling, or electron microscopy on fractionated peaks) would reduce this risk.",
+        "Assay interference from formulation excipients or device rinse residues could abolish or mask capture signals independent of EV integrity (matching competing explanation e2). Rigorous capture\u2011compatibility panels and buffer\u2011matched controls are essential; failure to detect assay incompatibility would confound interpretation.",
+        "Spike\u2011in selection and behavior: an exogenous intact\u2011EV tracer that differs in surface composition, size distribution, or stability may not faithfully report recovery/performance of endogenous EVs. The plan requires spike\u2011in validation across buffer/device conditions; otherwise spike\u2011in recovery may give a false assurance of assay performance.",
+        "Species and source differences: prior intranasal positive preclinical outcomes are in mice (ev-zhuang-2011, ev-kodali-2017, ev-hermann-2023) while negative or limited nasal biodistribution was reported in macaques (ev-driedonks-2022). Even if the assay shows preserved surface phenotype ex vivo, this may not predict nasal mucosal clearance, retention in lavage, or negligible brain uptake observed in larger species. The experiment does not resolve cross\u2011species delivery variability.",
+        "Discrimination of alternatives is contingent on multi\u2011layer orthogonality: particle\u2011peak co\u2011localization, spike\u2011in recovery, and detergent sensitivity must all be met and reproducible across \u22653 independent conditioned\u2011medium lots. If any single layer is omitted or underpowered, the design will not definitively rule out the competing explanations.",
+        "No potency or delivery claim: the proposed identity gate is non\u2011potency. Without separate functional or in vivo bridging experiments, passing the identity gate should not be interpreted as evidence of preserved biological activity or intranasal CNS delivery."
+      ],
+      "conclusion": "The proposed spike-in\u2013controlled, multi-epitope intact-EV surface\u2011phenotype workflow is a causally plausible and appropriate analytical approach to discriminate membrane\u2011protected, capture\u2011positive particle fractions from secretome-derived, capture-positive artifacts after device/formulation passage. If executed with the specified orthogonal controls (exogenous intact\u2011EV spike\u2011in added before passage, fraction\u2011level particle-peak co\u2011localization, detergent+protease/RNase protection, and capture\u2011compatibility panels), the experiment should meaningfully distinguish the two competing explanations named in the design (true membrane\u2011protected EVs vs. capture\u2011binding non\u2011vesicular survivors or assay interference). However, confidence is moderate rather than high because (1) detergent/protease resistance is an operational test that can give false positives for some non-vesicular complexes and (2) spike\u2011in tracers may not perfectly mimic endogenous material under device/formulation stresses. The experiment, as proposed, does not and does not claim to establish delivery to brain or potency; those remain separate translational questions requiring in vivo or functional bridging studies.",
+      "evidence_gap": "Key gaps: (A) lack of direct in vivo linkage showing that preservation of the proposed surface\u2011phenotype after device/formulation passage predicts in\u2011host biodistribution or functional/therapeutic readouts; (B) limited orthogonal demonstration that detergent+protease resistance in the chosen capture format cannot be exhibited by non\u2011vesicular aggregates or matrix\u2011bound complexes under the same assay conditions; (C) need for data demonstrating that the selected exogenous spike\u2011in truly recapitulates endogenous EV stability and capture behavior through device/formulation stresses and fractionation.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "role": "mechanism",
+      "supported": true
+    }
+  ],
+  "run_id": "run-20261031T105904Z-fe3c5bc57145",
+  "secondary_domains": [
+    "manufacturing",
+    "fractionation",
+    "stability",
+    "delivery"
+  ],
+  "selected_gap_id": "design-gap-surface-phenotype",
+  "sequence_within_theme": 3,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-surface-phenotype",
+  "title": "Hypothesis: A spike-in\u2013controlled, multi-epitope intact-EV surface-phenotype assay preserved after device/formulation passage discriminates an EV-enriched bounded fraction from secretome and provides a non-potency product-identity gate for SGL-001"
+}
