@@ -1,0 +1,19 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Formulation-mucin components block or alter capture-antibody epitopes on endogenous EVs but not on the exogenous spike-in (species/label differences), causing discordant spike-in validation and false-negative endogenous capture calls despite preserved intact endogenous EVs.",
+    "Excipients or mucin complexes co-elute with particle peaks and bind capture reagents, creating detergent/protease-resistant, capture-positive fractions that yield apparent membrane-protected bioactivity from non-vesicular material (false-positive compatibility).",
+    "Low biomass of captured eluates produces high assay variability in the microglia cytokine readout; small but biologically relevant effects are lost in noise, leading to false negatives and unreproducible lot-to-lot decisions.",
+    "Spike-in tracer itself is altered differentially by device shear or mucin chemistry (aggregation, adsorption, label-stripping) such that its recovery no longer reports on assay integrity, producing invalid controls and inability to interpret endogenous results.",
+    "Capture-reagent buffer-compatibility panels fail to simulate the full chemical complexity of test arms (e.g., mucin-bound lipids, glycosylated excipients), so residual assay interference remains undetected and confounds co-localization metrics.",
+    "Detergent/protease treatments incompletely discriminate membrane-protected vesicular cargo from cargo protected by non-vesicular lipid/protein aggregates or mucin shielding, producing ambiguous protection-readout interpretation.",
+    "A compatibility pass in vitro does not predict in vivo intranasal biodistribution or detectability in larger species (e.g., macaque), so resources are misallocated to formulations/devices that still fail in bridging studies (false assurance)."
+  ],
+  "strongest_objection": "The primary bounded risk is that the in vitro spike-in + capture + detergent/protease + low-biomass bioassay workflow cannot reliably distinguish true intact-EV preservation from assay artifacts across the tested formulation/device matrix because (A) formulation excipients or mucin mimic components non-specifically alter capture-antibody binding or spike-in tracer detectability in a way not fully controllable by the proposed buffer-compatibility panels, and (B) the low protein mass of captured eluates makes the cytokine readout too noisy or prone to contribution from co-purifying soluble, non-vesicular factors that are detergent-resistant or protease-protected by mucin complexes. In this scenario, spike-in recovery may validate some assay steps while failing to catch selective interference affecting endogenous EV capture or functional readout, producing false passes (misleadingly compatible) or false fails (discarding viable conditions), and rendering the gate unmeasurable or uninformative for in vivo translation."
+}
