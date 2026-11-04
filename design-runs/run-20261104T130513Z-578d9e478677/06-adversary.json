@@ -1,0 +1,19 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "failure_modes": [
+    "Assay interference by formulation excipients or device leachables produces apparent loss or alteration of capture-positive signal or protected-cargo readouts, and capture-compatibility controls fail to fully detect or correct for this, leading to false positive \"failure\" calls.",
+    "Capture reagents (antibodies/lipid binders) show variable affinity/epitope accessibility across buffers, lots, or after stress, producing inconsistent co-localization with particle peaks and poor inter-lot reproducibility.",
+    "Spike-in intact-EV tracer is unavailable, behaves differently from product EVs, or is unreliable in recovery, preventing valid within-sample normalization and leaving observed changes uninterpretable.",
+    "Protected-cargo assays (targeted miRNA/protein panels) lack sensitivity on low-biomass eluates or show high variability across biological lots, so the protected-cargo fingerprint is not reproducible (high uncertainty) and cannot serve as a stability gate.",
+    "Bulk particle counts remain unchanged while orthogonal signatures vary unpredictably, making it impossible to set a qualitative pass/fail rule that meaningfully separates acceptable from unacceptable conditions (i.e., no consistent pattern across >=3 lots).",
+    "Orthogonal signatures, even if robust in vitro, do not predict in vivo intact-EV recoverable exposure or functional potency (route- and species-specific delivery barriers), so passing the gate does not increase confidence in translational delivery \u2014 delivering a false sense of product readiness.",
+    "Density/SEC fractionation and fraction-level analyses introduce dilution, adsorption, or loss that differentially affect markers and cargos versus particles, confounding co-localization metrics and protection assays.",
+    "Device/shear simulations and matrixed conditions do not reproduce clinically relevant stresses or produce variable stress intensity across replicates, undermining conclusions about \"clinically relevant\" failure modes.",
+    "Regulatory or manufacturing pressure to convert qualitative gates into numeric release limits before sufficient validation leads to inappropriate thresholds or batch rejections based on assay artifacts."
+  ],
+  "strongest_objection": "The single strongest bounded reason this proposal could fail is that observed changes in the proposed orthogonal \"intact-EV\" signatures are dominated by assay interference or capture-reagent incompatibility (including excipient- or device-derived interference) rather than by true membrane/cargo damage, so the workflow cannot reproducibly discriminate stable vs damaged material across lots and conditions \u2014 i.e., the proposed qualitative gate reports assay artifacts, not product stability or intact-EV exposure potential."
+}
