@@ -1,0 +1,21 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Exogenous spike-in is not fully distinguishable from endogenous material or co-isolates, so recovery/readout conflates spike-in and native signals leading to false-positive concordance across sites (spike-in artifact).",
+    "Spike-in or capture reagents consistently co-isolate non-vesicular protein/RNP/lipoprotein complexes that are detergent/protease-sensitive or mimic protected cargo, producing a fingerprint driven by co-isolates rather than intact EVs (assay specificity failure).",
+    "Harmonized SOPs fail to eliminate site-specific pre-analytic variability (fractionation technique, particle counting calibration, buffer composition), producing apparent concordance that actually reflects shared procedural bias or centralized reagent lot effects (site harmonization fragility).",
+    "Insufficient pilot-lot yield or aliquot-splitting causes differential degradation or low-input artifacts (cold-chain breaches, adsorption loss), producing discordant calls unrelated to intrinsic lot reproducibility (logistics failure).",
+    "Spike-in behaves differently in different matrices or after shipment (aggregation, differential capture, differential susceptibility to detergent/protease), yielding inconsistent spike-in recovery and invalidating the per-sample assay control (control unreliability).",
+    "Capture antibodies or capture platforms preferentially bind abundant non-EV particles (e.g., lipoproteins, protein aggregates) that co-elute with particle peaks, so the surface-phenotype + particle-peak co-localization criterion is not specific to EV membranes (marker specificity failure).",
+    "Protected-cargo panel reads (small RNAs or proteins) reflect tightly bound extracellular nucleoprotein complexes or free nucleic acids that are incompletely removed by protease/RNase paradigms, leading to misattribution of protected cargo to membrane-enclosed EVs (protection-assay misinterpretation).",
+    "Concordant in vitro fingerprint calls do not translate to in vivo delivery or functional relevance in larger species (NHP/human), so adopting the fingerprint as a comparability gate yields lots that still fail bridging/PK/PD studies (lack of translational predictivity).",
+    "Centralized or blinded data-collation introduces bias (pre-specified rubric misapplied or post-hoc thresholding) creating apparent agreement despite raw-data heterogeneity (analysis/decision-rule risk)."
+  ],
+  "strongest_objection": "The single strongest, bounded failure mode is that assay- or spike-in\u2013driven artifacts (including co-isolation or capture of non-vesicular components, spike-in material behaving differently than endogenous EVs, or buffer/reagent\u2013dependent signals) produce apparent inter-site concordance of the composite fingerprint despite not reflecting reproducible, intact EV-associated material. That false concordance would create unjustified confidence to advance lots into costly bridging or in vivo studies and could mask true lot heterogeneity or assay fragility."
+}
