@@ -1,0 +1,21 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Co-eluting non-vesicular particles (lipoproteins, protein aggregates, or matrix complexes) bind capture reagents and co-localize with particle peaks while being detergent/protease-resistant under the assay conditions, causing false-positive EV identity calls.",
+    "Spike-in tracer is not compositionally or biophysicaly representative of endogenous EVs (different density, surface ligands, or detergent sensitivity), so spike-in recovery validates assay mechanics but does not validate that endogenous captured material is membrane-protected EVs (false reassurance).",
+    "Capture-reagent cross-reactivity or nonspecific binding to abundant secretome components produces endogenous signal that mimics EV-marker capture despite absence of intact EVs (misleading identity readout).",
+    "Buffer or fractionation incompatibility with capture reagents or particle counters causes selective loss or masking of endogenous signals (false negatives) while spike-in (if optimized differently) remains recoverable, leading to inconsistent or misleading within-lot comparisons.",
+    "Detergent/protease conditions chosen to preserve spike-in readout may be insufficient to disrupt certain non-vesicular particles or conversely too harsh and destroy native EV epitopes, producing discordant spike-in versus endogenous protection behaviors and making the binary gate unmeasurable or uninterpretable.",
+    "Lot-to-lot biological variability in EV abundance or composition causes true absence of endogenous capture-positive, detergent-sensitive signal in some lots despite valid fractionation; this is indistinguishable from analytical failure without orthogonal compositional assays, causing inappropriate rejection or unnecessary rework.",
+    "Analytical sensitivity limits in particle counting or immuno-detection (especially for low-yield conditioned medium) result in failure to observe co-localization even when intact EVs are present, producing false negatives and undermining reproducibility across the >=3-lot requirement.",
+    "Labeling or tracer readout artifacts (bleaching, dissociation, species overlap) reduce spike-in detectability in some fractions, yielding inconsistent spike-in recovery that prevents assay-controlled discrimination (method failure).",
+    "Species- and route-dependent in vivo detectability (e.g., intranasal delivery) is poorly predicted by the in vitro identity gate\u2014an EV-enriched pass may not translate to biological exposure or function in larger species, thus misleading downstream advancement decisions."
+  ],
+  "strongest_objection": "The single strongest bounded failure mode is that endogenous capture-positive signal that co-localizes with particle-count peaks will frequently reflect detergent-resistant, non-vesicular co-isolates (lipoproteins, protein aggregates, matrix complexes, or labeled debris) or capture-reagent cross-reactivity rather than bona fide membrane-enclosed EVs; because such species can co-fractionate with particle peaks and survive the chosen detergent/protease conditions (or require harsher disruption that also destroys spike-in readout), the proposed spike-in\u2013controlled qualitative gate can systematically misclassify secretome-like lots as \u2018EV-enriched\u2019 or produce unresolvable ambiguous calls despite validated spike-in recovery."
+}

@@ -1,0 +1,21 @@
+{
+  "concerns": [
+    "Assay-buffer and capture-reagent incompatibility can produce false negatives\u2014buffer compatibility testing is mandatory before interpreting negative endogenous signal.",
+    "Co-eluting non-vesicular particles (lipoproteins, protein aggregates) can bind capture reagents and be detergent-resistant under some conditions; immuno-capture + protection alone may not exclude these contaminants\u2014add orthogonal biophysical/EM or gradient-based depletion controls.",
+    "Spike-in design risks: tracer must be well-characterized, non-cross-reactive, and processed identically to endogenous EVs; poor spike-in performance undermines the gate and can masquerade as assay failure.",
+    "Reproducibility risk: the gate requires consistent endogenous co-localization across >=3 independent lots; donor/lot biological variability could produce legitimate \u2018fail\u2019 lots that are not assay artifacts.",
+    "The proposed identity gate does not establish potency or in vivo delivery; even a robust analytical gate may not predict large-animal or human biodistribution (Driedonks et al. highlight limited macaque intranasal detectability).",
+    "Detergent/protease regimes must be optimized: insufficient disruption may yield false-positive membrane protection; overly harsh conditions could destroy assay readouts including legitimate EV-associated proteins or spike-in tracer.",
+    "The experiment will not distinguish whether endogenous captured material that is detergent-sensitive is the active agent responsible for any downstream bioactivity; potency linkage requires separate functional assays."
+  ],
+  "conclusion": "Overall the proposed spike-in\u2013controlled, fraction-level orthogonal identity gate is a plausible, useful approach to distinguish EV-enriched bounded fractions from secretome-retaining concentrates for CMC triage. The plan is consistent with MISEV2023 recommendations for orthogonal characterization and with rodent demonstrations that intranasal EVs can be biologically active, and it directly addresses common analytical failure modes by adding an in-sample recovery control. Key uncertainties remain: (1) assay-buffer and capture-reagent compatibility could produce false negatives; (2) co-eluting non-vesicular particles that bind capture reagents or are detergent-resistant could generate false-positive \u201cEV\u201d identity calls; and (3) validated spike-in performance and reproducibility across independent lots must be demonstrated before relying on the gate. The experiment as designed will discriminate several competing explanations (assay failure vs true absence of membrane-protected particles) but will not prove in vivo biological activity or resolve interspecies delivery limitations without dedicated bridging biodistribution/potency studies.",
+  "evidence_gap": "Critical experimental gaps that must be closed before the identity gate can be operationally trusted: (1) empirical spike-in characterization (non-overlap from endogenous markers, buffer compatibility, limit-of-detection and recovery reproducibility across >=3 independent conditioned-medium lots); (2) orthogonal demonstration that capture-positive, particle-peak signals are membrane-protected EVs rather than detergent-resistant non-vesicular particles (e.g., complementary biophysical or electron-microscopy validation on captured fractions, or additional biochemical fractionation to separate lipoproteins/aggregates); (3) explicit capture-reagent/buffer compatibility panels to rule out assay interference; and (4) follow-on short-interval in vivo recovery/bridging experiments (especially in large-animal models) to test whether an analytically \u201cEV-enriched\u201d bounded fraction yields improved detectability or delivery compared with secretome controls.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "supported": true
+}
