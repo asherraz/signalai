@@ -1,6 +1,6 @@
 {
   "program_id": "SGL-001",
-  "updated_at": "2026-11-06T13:01:09.567289Z",
+  "updated_at": "2026-11-07T11:48:20.838207Z",
   "runs": [
     {
       "run_id": "run-20260911T101854Z-e4dd7c990790",
@@ -6370,6 +6370,148 @@
         "run-20261106T125955Z-49bb39846f31:06-verification.json",
         "run-20261106T125955Z-49bb39846f31:07-adversary.json",
         "run-20261106T125955Z-49bb39846f31:08-chair-determination.json"
+      ]
+    },
+    {
+      "run_id": "run-20261107T114651Z-eecfcd185a40",
+      "program_id": "SGL-001",
+      "started_at": "2026-11-07T11:46:51.339450Z",
+      "completed_at": "2026-11-07T11:48:20.838207Z",
+      "selected_matter": {
+        "matter_id": "matter-potency-identity-characterization",
+        "program_id": "SGL-001",
+        "title": "Potency and identity characterization",
+        "question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
+        "domain": "cmc_manufacturing",
+        "why_it_matters": "Without reproducible identity and potency measures, observed biological differences may reflect uncontrolled product variability.",
+        "priority": "quality_blocking",
+        "advancement_value": "high",
+        "blocking_stage": "manufacturing comparability",
+        "linked_hypothesis_ids": [
+          "hypothesis-sgl001-biodistribution-gate"
+        ],
+        "linked_risk_ids": [
+          "risk-cmc-identity-potency"
+        ],
+        "linked_evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "required_reviewer_roles": [
+          "cmc",
+          "manufacturing",
+          "evidence"
+        ],
+        "status": "completed",
+        "selected_at": "2026-11-07T11:46:51.339450Z",
+        "completed_at": "2026-11-07T11:48:20.838207Z",
+        "determination": "evidence_gap",
+        "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change."
+      },
+      "why_selected": "Selected quality_blocking matter with high advancement value. Deterministic ranking favors program-invalidating issues, then real-world stage blockers, product definition, deployment, quality, contradictions, experiment design, and refinement.",
+      "reviewers_convened": [
+        "cmc",
+        "manufacturing",
+        "evidence",
+        "verifier",
+        "adversary",
+        "chair"
+      ],
+      "reviewer_conclusions": [
+        {
+          "reviewer_role": "cmc",
+          "conclusion": "Unsupported to advance formulation comparison or cross-species PK/PD bridging. The MISEV2023 consensus (ev-misev2023-quality-framework) mandates transparent, orthogonal characterization, production reporting, and validated assays to de-risk identity and potency claims; those deliverables are not documented in the provided state. Specific gaps include absence of reported MCB/WCB, lack of defined orthogonal QC panel with validated performance characteristics (LLOQ, specificity, precision), no stability-indicating potency assay tied to an in vivo PD endpoint, and no evidence of reproducible release/stability/potency across \u00003\u00003 GMP-like batches.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-ev-cmc-requirements",
+            "claim-source-cell-scalability",
+            "claim-rodent-cns-delivery"
+          ],
+          "limitations": [
+            "Assessment limited to the supplied evidence (ev-misev2023-quality-framework). Program-provided internal CMC records or batch data were not available for review.",
+            "MISEV is a consensus guidance; it describes best practices but is not a regulatory filing \u000212 program must map these practices to jurisdictional regulatory requirements."
+          ],
+          "evidence_gap": "No primary CMC documentation (MCB/WCB records, batch records for GMP-like runs, validated assay reports, stability/potency datasets) supplied.",
+          "search_needed": true,
+          "requested_evidence": [
+            "MCB/WCB generation records and characterization data",
+            "Representative release specifications and batch records for \u00003 GMP-like lots",
+            "Validation reports for orthogonal assays (particle counting, protein/lipid marker assays, intact-EV assays) showing LLOQ, specificity, precision, accuracy",
+            "Stability studies and stability-indicating potency assay data linked to an in vivo PD endpoint",
+            "Formulation/device compatibility recovery data (ex vivo/in vivo) with controls"
+          ],
+          "unsupported": false
+        },
+        {
+          "reviewer_role": "manufacturing",
+          "conclusion": "Manufacturing is currently not demonstrably scalable or reproducible per MISEV-quality expectations. The provided evidence (ev-misev2023-quality-framework) requires defined production controls and reporting; no evidence of scale-up runs, process characterization, or reproducible release criteria was provided.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-source-cell-scalability",
+            "claim-ev-cmc-requirements"
+          ],
+          "limitations": [
+            "No manufacturing batch data or process descriptions were available to verify scalability or reproducibility.",
+            "MISEV provides guidance on reporting and controls but does not define numeric acceptance criteria for specific unit operations."
+          ],
+          "evidence_gap": "Process validation / scale-up run data and comparability studies between lab and GMP-like processes are missing.",
+          "search_needed": true,
+          "requested_evidence": [
+            "Process descriptions and scale-up plan (unit operations, critical parameters)",
+            "Results from at least three GMP-like production runs with release test outcomes and comparability analyses",
+            "Manufacturing deviation/CAPA history (if any) for those runs"
+          ],
+          "unsupported": false
+        },
+        {
+          "reviewer_role": "evidence",
+          "conclusion": "The available guideline (ev-misev2023-quality-framework) supports the claims that orthogonal characterization and validated intact-EV assays are required before relying on rodent biodistribution to predict larger-species CNS exposure. However, direct empirical evidence demonstrating lack of cross-species translatability for these specific SGL-001 materials is not present in the supplied evidence set.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "claim_ids": [
+            "claim-rodent-cns-delivery",
+            "claim-ev-cmc-requirements"
+          ],
+          "limitations": [
+            "MISEV is a high-level consensus guideline describing methodological risks and recommended controls; it does not contain program-specific biodistribution or bridging data.",
+            "Other cited primary studies referenced in the matter (e.g., species biodistribution papers) were not available for review in this evidence package."
+          ],
+          "evidence_gap": "No program-specific or external empirical biodistribution bridging data (rodent vs large-animal) or intact-EV orthogonal assay comparison data provided.",
+          "search_needed": true,
+          "requested_evidence": [
+            "Peer-reviewed or internal biodistribution studies comparing intranasal intact-EV CNS exposure across rodent and large-animal species",
+            "Comparative performance data from candidate intact-EV assays across species matrices (e.g., nasal lavage, CSF, brain homogenate)",
+            "Data linking intact-EV assay outputs to functional PD endpoints"
+          ],
+          "unsupported": false
+        }
+      ],
+      "strongest_supporting_evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "strongest_contradictory_evidence_ids": [],
+      "adversary_objection": "The supplied evidence is a high-level consensus guideline (MISEV2023) that recommends best practices but does not demonstrate that SGL-001 program records (MCB/WCB, validated orthogonal assays, GMP-like batch data, stability‑indicating potency linked to in vivo PD, or cross‑species biodistribution bridging data) are absent. Therefore it is not justified to assert those program‑specific items are missing or to conclude manufacturing/scalability failures based solely on this guideline.",
+      "chair_determination": "evidence_gap",
+      "state_changed": false,
+      "change_scope": "none",
+      "scientific_state_changed": false,
+      "operational_state_changed": false,
+      "previous_state_preserved": true,
+      "what_changed": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
+      "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+      "artifact_ids": [
+        "run-20261107T114651Z-eecfcd185a40:01-compact-state.json",
+        "run-20261107T114651Z-eecfcd185a40:02-development-docket.json",
+        "run-20261107T114651Z-eecfcd185a40:03-selected-matter.json",
+        "run-20261107T114651Z-eecfcd185a40:04-reviewer-panel.json",
+        "run-20261107T114651Z-eecfcd185a40:05-analysis.json",
+        "run-20261107T114651Z-eecfcd185a40:06-verification.json",
+        "run-20261107T114651Z-eecfcd185a40:07-adversary.json",
+        "run-20261107T114651Z-eecfcd185a40:08-chair-determination.json"
       ]
     }
   ]

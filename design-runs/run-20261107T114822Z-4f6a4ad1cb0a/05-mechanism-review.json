@@ -1,0 +1,22 @@
+{
+  "concerns": [
+    "Assay artifact risk: capture reagents, buffers, spike-in tracer format, and detergent/protease treatments can produce false positives/negatives (e.g., spike-in may be differentially recovered vs endogenous EVs, detergent may denature soluble factors and produce artifactual loss of activity).",
+    "Representativeness of the spike-in: an orthogonal/exogenous EV tracer must be carefully chosen (species, size, surface markers, label chemistry) and validated to behave like the endogenous EV population in the chosen fractionation and capture workflows; mismatch undermines the control.",
+    "Detergent/protease interpretation ambiguity: loss of activity after detergent+protease supports membrane protection but could also reflect disruption of multi-component assemblies or assay interference; include controls for reagent carryover into functional assays (detergent quench/dilution, mock-treated blanks).",
+    "Co-elution confounders: lipoproteins, protein aggregates, or ribonucleoprotein complexes can co-elute with particle peaks and bind capture reagents; orthogonal orthogonality (density shift, enzymatic removal of lipoproteins, or additional capture markers) is advisable to strengthen discrimination.",
+    "Functional assay specificity: the chosen in vitro microglia/LPS cytokine readout should be validated for sensitivity/specificity to EV cargo versus soluble modulators and for tolerance to residual fractionation buffers or spike-in label carryover.",
+    "Yield and replication constraints: bounded fractions may yield insufficient material for replicate protection + functional testing across \u22653 independent lots; plan for input scaling or pooling strategies and prespecify minimum acceptable material.",
+    "Decision-rule granularity: the proposal uses qualitative pass/fail rules \u2014 these should be prespecified with objective criteria (what constitutes \u2018\u2018recovered & membrane-protected\u2019\u2019 signal, acceptable spike-in recovery thresholds, and minimum functional effect size) to avoid post-hoc interpretation.",
+    "Translation risk: even if EV-associated activity is confirmed in vitro/rodent models (supported by ev-hermann-2023 and ev-kodali-2017), non-human-primate biodistribution (ev-driedonks-2022) cautions that intranasal delivery may not achieve CNS exposure in larger species; negative downstream delivery data could invalidate product development choices based solely on in vitro linkage.",
+    "Recommended orthogonal confirmations: include at least one orthogonal approach (e.g., density-based separation, protease-only controls, RNase with/without detergent, lipid-depletion or apolipoprotein removal) and a buffer-compatibility matrix to show the observed protection/functional linkage is robust to methodological variation."
+  ],
+  "conclusion": "The proposed spike-in\u2013controlled, fraction-level protection + functional assay is a plausible and well-targeted experimental design to discriminate EV-associated, membrane-protected anti-inflammatory activity from soluble/secretome contributions in MSC-conditioned medium. It aligns with MISEV recommendations for orthogonal characterization and protection controls and directly addresses the key alternative that activity resides in non-vesicular co-isolates. However, important uncertainties remain (assay-interference/artifact risk, spike-in representativeness, detergent/protease interpretability, and cross-species delivery/translation), so the experiment should be run with prespecified failure rules and orthogonal confirmatory checks before using results to make go/no-go manufacturing decisions.",
+  "evidence_gap": "Translatability of an in vitro, spike-in\u2013validated EV-associated signal to meaningful in vivo CNS delivery and efficacy in larger species is unresolved: primate data show poor intranasal EV brain delivery and strong nasal retention, so even if an EV-associated activity is demonstrated in vitro and in rodent models, delivery barriers could prevent translation.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "supported": true
+}
