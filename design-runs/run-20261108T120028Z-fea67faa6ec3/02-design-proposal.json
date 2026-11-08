@@ -1,0 +1,183 @@
+{
+  "assumptions": [
+    "Assay sensitivity: immuno-capture and particle-count instrumentation are sufficiently sensitive to detect orthogonal intact-EV signatures in short-interval lavage/CSF/tissue samples.",
+    "Spike-in validity: an exogenous, orthogonally labeled intact-EV spike-in is available and behaves as an internal recovery control without altering biological readouts.",
+    "Feasibility: short-interval tissue harvest and single-cell processing are operationally feasible within the chosen animal model and institutional/ethical approvals."
+  ],
+  "biological_rationale": "Rodent intranasal studies report functional effects but lack orthogonal intact-EV exposure linkage (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi). MISEV2023 emphasizes membrane-protection and orthogonal controls to attribute activity to intact EVs (ev-misev2023-quality-framework). A spike-in\u2013controlled in vivo\u2192ex vivo bridge with a single-cell transcriptional readout in tissue-resident microglia provides a higher-dimensional, mechanism-relevant discrimination between membrane-protected EV-associated effects and soluble/secretome artifacts; this addresses translation risk flagged by macaque biodistribution uncertainty (ev-driedonks-2022-macaque-biodistribution).",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20261108T120028Z-fea67faa6ec3-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "group": "functional_potency",
+      "human_approved": false,
+      "measurement_concept": "Presence of a reproducible, predefined single-cell transcriptional module shift in microglia ex vivo that correlates with orthogonal intact-EV exposure (spike-in recovery + capture-positive particle co-localization + detergent/protease sensitivity).",
+      "name": "Mechanism-linked potency: intact-EV\u2013predictive ex vivo microglial single-cell transcriptional signature",
+      "rationale": "Single-cell microglial transcriptional modulation after orthogonally verified intact-EV exposure provides a mechanism-relevant, discriminating potency signal that is not reducible to bulk particle counts.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20261108T120028Z-fea67faa6ec3",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261108T120028Z-fea67faa6ec3"
+      ],
+      "uncertainty": "High: this is an exploratory potency attribute requiring replication and assay development."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Observed ex vivo transcriptional changes could be driven by soluble secretome components that reach sampled compartments independently of intact EVs.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Spike-in\u2013controlled in vivo\u2192ex vivo bridge with membrane-disruption and capture-depleted arms combined with single-cell transcriptomics.",
+        "model_or_species": "rodent context for ex vivo readout",
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "High: rodent efficacy literature shows functional outcomes but lacks orthogonal intact-EV exposure linkage; inference required to propose single-cell microglial readout as a discriminating PD endpoint."
+      },
+      {
+        "competing_explanation": "Failure to detect intact-EV exposure in larger species may reflect administration route, labeling sensitivity, or species-specific clearance rather than absence of EV-mediated exposure.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "direct_observation",
+        "missing_experiment": "Matched intact-EV verification assay in short-interval in vivo samples concurrent with ex vivo single-cell readout.",
+        "model_or_species": "non-human primate context (delivery uncertainty)",
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate: macaque data demonstrate intranasal delivery limitations that heighten the need for orthogonal in vivo verification; competing explanations include formulation/administration differences or labeling artifacts."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "An orthogonally defined intact-EV signature (exogenous spike-in recovery + capture-positive signal that co-localizes with particle-count peaks and is detergent/protease-sensitive) identifies a membrane-protected particle fraction in the administered material."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If orthogonally verified intact-EV exposure is present in short-interval nasal lavage/CSF/olfactory-mucosa samples after intranasal dosing, then ex vivo tissue-resident microglia isolated from treated animals will show a reproducible, specific single-cell transcriptional modulation (distinct cluster-level gene-expression shifts) relative to controls."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the administered material is capture-depleted or membrane-disrupted prior to dosing, or lacks the spike-in\u2013validated intact-EV signature, then the short-interval ex vivo microglial transcriptional modulation will be absent or qualitatively different, indicating the effect depends on intact EV-associated cargo rather than particle abundance or soluble secretome."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Soluble secretome components that co-fractionate or survive membrane disruption mediate ex vivo transcriptional changes independent of intact EVs.",
+    "Apparent orthogonal in vivo exposure may reflect residual label or spike-in/tracer artifacts rather than native intact-EV delivery."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "dependencies": [
+    "Access to a characterized exogenous intact-EV spike-in tracer and validated immuno-capture reagents",
+    "Single-cell sequencing and microglia-isolation capabilities",
+    "Short-interval in vivo sampling approvals and operational setup"
+  ],
+  "design_question": "Daily question: Does orthogonally verified in vivo exposure of a spike-in\u2013validated, membrane-protected intact-EV fraction after intranasal dosing causally produce a reproducible short-interval ex vivo microglial transcriptional signature that is lost when the same material is membrane-disrupted or capture-depleted?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260921T104952Z-0973c8779e9c",
+    "design-hypothesis-run-20261005T122154Z-fd966274db23",
+    "design-hypothesis-run-20261024T093736Z-300733401458"
+  ],
+  "expected_measurable_effect": "If the hypothesis is supported: short-interval (predefined brief post-dose window) ex vivo single-cell RNA-seq of microglia-like cells from olfactory-bulb\u2013adjacent tissue will show a reproducible transcriptional signature (cluster shift and differential expression of predefined inflammatory/regenerative gene modules) that correlates with orthogonal in vivo evidence of intact-EV exposure (presence of capture-positive spike-in-validated signal and particle co-localization). This signature will be absent or qualitatively altered in capture-depleted or detergent/protease-treated arms (falsification outcome).",
+  "experiment": {
+    "assay": "Integrated orthogonal in vivo\u2192ex vivo workflow: (A) pre-dose in vitro characterization of all arms with density/size fractionation, particle counts per fraction, immuno-capture readouts for endogenous markers and spike-in tracer, and detergent/protease protection testing; (B) intranasal administration (randomized animals) with a predefined short post-dose interval optimized to maximize recoverable signal; (C) collect nasal lavage, CSF (if feasible), and olfactory-bulb\u2013adjacent tissue; (D) orthogonally verify intact-EV exposure in collected fluids/tissue (capture + particle counts + spike-in recovery); (E) isolate tissue microglia (acutely) and perform single-cell RNA-seq; (F) analyze for predefined transcriptional modules (inflammatory and regenerative gene sets) and cluster shifts comparing arms; (G) correlate presence/absence and reproducibility of microglial single-cell signature with orthogonal in vivo exposure evidence.",
+    "comparator": "Four-arm in vivo design (same conditioned-medium lot; all arms spiked identically with exogenous tracer prior to fractionation where applicable): (1) intact-EV\u2013enriched preparation (capture-positive bounded fraction), (2) secretome-retaining concentrated conditioned medium, (3) intact-EV\u2013enriched preparation treated with detergent + protease (membrane-disrupted) prior to administration, (4) particle-count\u2013matched but capture-depleted preparation (if achievable).",
+    "complexity": "high",
+    "control": "Positive assay controls: characterized small EVs and dexamethasone in ex vivo microglial assay; negative controls: vehicle-only and buffer fractions; internal recovery control: exogenous spike-in per sample; capture-compatibility and spike-in controls to exclude assay interference.",
+    "dependencies": [
+      "Availability of an orthogonally labeled intact-EV spike-in tracer and validated capture reagents",
+      "Operational single-cell RNA-seq capacity and bioinformatics pipeline for microglial module analysis",
+      "Animal protocol approvals for short-interval tissue/fluid collection"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-kodali-2017-status-epilepticus",
+      "ev-driedonks-2022-macaque-biodistribution",
+      "ev-zhuang-2011-intranasal-exosome"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261108T120028Z-fea67faa6ec3",
+    "failure_criterion": "No reproducible linkage between orthogonal in vivo intact-EV verification and the ex vivo microglial single-cell signature across replicates (i.e., capture-positive verification does not predict the transcriptional outcome), or particle-count\u2013matched capture-negative or membrane-disrupted arms produce equivalent single-cell signatures, indicating the effect is not intact-EV\u2013dependent.",
+    "falsification_outcome": "If failure criteria are met (with validated spike-in recovery and capture-compatibility controls), the hypothesis is falsified: short-interval microglial transcriptional modulation is not dependent on intact-EV exposure for this preparation and route. The program must treat the material as functionally indistinguishable from secretome for short-interval PD and redirect potency/CMC strategy accordingly.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "An orthogonally verified, membrane-protected intact-EV fraction (spike-in validated, capture-positive, particle-peak co-localized, detergent/protease-sensitive) is necessary for a reproducible short-interval ex vivo microglial transcriptional modulation following intranasal dosing; particle-count-matched capture-depleted or membrane-disrupted material will not produce the same transcriptional signature.",
+    "primary_readout": "Qualitative, reproducible presence (yes/no across replicates) of a predefined microglial single-cell transcriptional signature (cluster-level differential expression of inflammatory/regenerative modules) in animals dosed with capture-positive, spike-in\u2013validated intact-EV material that correlates with orthogonal evidence of intact-EV exposure (capture-positive signal co-localized with particle peaks and spike-in recovery) and is absent or qualitatively altered in membrane-disrupted or capture-depleted arms.",
+    "question": "Does orthogonally verified intact-EV exposure (spike-in recovery + capture-positive particle co-localization + detergent/protease sensitivity) after intranasal dosing produce a reproducible short-interval ex vivo microglial single-cell transcriptional modulation that is lost when the same material is membrane-disrupted or capture-depleted?",
+    "required_material": [
+      "MSC-conditioned medium from a single characterized source-cell lot processed into: (A) bounded intact-EV\u2013enriched fraction (e.g., program-defined SEC/iodixanol-bounded) and (B) concentrated conditioned medium (secretome-retaining) from same lot",
+      "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) to add pre-fractionation for recovery controls",
+      "Immuno-capture reagents for canonical EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5) and validated capture-compatibility buffers",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Detergent (Triton X-100 or equivalent), protease (proteinase K), and RNase reagents for membrane-disruption/protection controls",
+      "Density-gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Animal model: rodents suitable for short-interval intranasal dosing and rapid tissue harvest (approved protocol), with capacity for collecting nasal lavage, CSF (if feasible), and olfactory-bulb\u2013adjacent tissue",
+      "Single-cell RNA-seq pipeline reagents and instrumentation for microglia isolation (enzymatic tissue dissociation, microglia enrichment), library prep, sequencing, and downstream analysis pipelines",
+      "Controls: characterized small-EV positive control material; vehicle-only and buffer-only negative controls; dexamethasone or known anti-inflammatory control for assay validation"
+    ],
+    "secondary_readouts": [
+      "Spike-in tracer recovery percentage and membrane-protection behavior in lavage/CSF/tissue capture fractions (qualitative: recovered & detergent-sensitive vs not recovered)",
+      "Co-localization metrics between particle-count peaks and capture-positive ELISA signal in both administered material and recovered lavage/CSF fractions",
+      "Protein:particle ratios of administered materials and of captured fractions",
+      "Single-cell metrics: proportion of microglia in altered transcriptional clusters, differential expression of predefined gene modules, and reproducibility across biological replicates (n >= 3 animals per arm, multiple independent conditioned-medium preps if feasible)"
+    ],
+    "success_criterion": "Qualitative success: across independent replicates (n >= 3 animals per arm and >= 3 conditioned-medium preps where feasible), only animals dosed with spike-in\u2013validated, capture-positive intact-EV material reproducibly show the predefined microglial single-cell transcriptional signature; this signature is abolished or absent in membrane-disrupted or capture-depleted arms, and orthogonal in vivo exposure metrics (spike-in recovery + capture co-localized with particle peaks) are concordant with the presence/absence of the signature."
+  },
+  "explicit_inferences": [
+    "Inference: Rodent intranasal efficacy signals motivate an in vivo\u2192ex vivo bridge but do not establish intact-EV exposure; orthogonal spike-in and membrane-protection controls are required to attribute ex vivo transcriptional modulation to intact EVs (labeling and assay controls per MISEV2023).",
+    "Inference: A single-cell transcriptional readout in tissue-resident microglia increases mechanistic resolution relative to bulk cytokine assays and can discriminate subtle, EV-dependent PD signals from soluble-secretome effects."
+  ],
+  "falsification_criteria": [
+    "Validated spike-in recovery in capture-positive fractions is observed but no reproducible microglial single-cell transcriptional signature is detected across independent biological replicates (n >= 3), implying intact-EV exposure does not produce the proposed short-interval ex vivo effect.",
+    "Particle-count\u2013matched capture-depleted or detergent/protease-disrupted arms produce equivalent microglial transcriptional responses to capture-positive arms, indicating the effect is not dependent on intact EV capture/protection."
+  ],
+  "human_decisions_required": [
+    "Select single-cell microglial transcriptional modules / gene sets to predefine as the primary mechanistic readout",
+    "Approve source-cell lot and production parity for the bounded vs secretome preparations",
+    "Approve animal numbers, short-interval timing, and ethical protocols"
+  ],
+  "manufacturability_assessment": "Requires production of matched bounded (capture-positive) and secretome-retaining preparations from the same source-cell lot, plus a characterized exogenous intact-EV spike-in. Early investment in orthogonal capture reagents, particle counting, and single-cell processing capacity is needed; success would focus CMC on fractionation and process envelopes that preserve membrane protection.",
+  "manufacturing_rationale": "Requiring a spike-in\u2013validated, membrane-protected fraction as the drug-substance identity gate focuses CMC development on fractionation and process conditions that preserve membrane integrity (reducing downstream assay ambiguity), enabling targeted potency assay development and comparability testing per MISEV guidance.",
+  "measurement_strategy": "Qualitative orthogonal in vivo verification (spike-in recovery + capture-positive particle co-localization + detergent/protease sensitivity) plus ex vivo single-cell RNA-seq of microglia with predefined module-based readout (presence/absence and reproducibility across replicates). Use spike-in to control assay recovery and include detergent/protease and capture-depleted arms to falsify EV-dependence.",
+  "novelty_statement": "Novelty: This hypothesis couples per-sample exogenous intact-EV spike-in recovery and orthogonal capture/protection verification in short-interval in vivo samples with an ex vivo single-cell transcriptional readout of tissue-resident microglia. Prior SGL-001 proposals used bulk cytokine or ELISA-based ex vivo readouts; the proposed single-cell microglial transcriptomic bridge provides a higher-resolution, mechanism-relevant PD discriminator that is not present in the cited prior hypotheses and is designed specifically to discriminate intact-EV\u2013associated potency from soluble secretome effects under matched orthogonal exposure controls.",
+  "primary_domain": "potency",
+  "principal_risks": [
+    "Assay sensitivity: inability to detect orthogonal intact-EV exposure in short-interval lavage/CSF/tissue confounds interpretation.",
+    "Spike-in behavior: spike-in tracer may not faithfully reflect endogenous EV behavior in vivo.",
+    "Biological relevance: microglial transcriptional changes may be subtle or confounded by tissue harvest stress."
+  ],
+  "proposed_potency_relationship": "If present reproducibly, the single-cell microglial transcriptional signature will serve as a qualitative potency gate predictive of short-interval PD linked to intact-EV exposure; absence across replicates falsifies EV-mediated short-interval PD for this assay.",
+  "proposed_product_change_or_attribute": "Adopt a mechanism-linked potency gate defined as: a spike-in\u2013validated, membrane-protected intact-EV fraction (capture-positive, particle-peak co-localized, detergent/protease-sensitive) that predicts a reproducible short-interval ex vivo microglial transcriptional modulation after intranasal administration; use as a qualitative potency-linked product-identity attribute (non-numeric).",
+  "secondary_domains": [
+    "mechanism",
+    "manufacturing",
+    "delivery"
+  ],
+  "sequence_within_theme": 4,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "theme_id": "design-gap-mechanism-potency",
+  "title": "Hypothesis: A spike-in\u2013validated, membrane-protected intact-EV fraction predicts a reproducible short-interval ex vivo microglial transcriptional modulation after intranasal dosing (single-cell readout)"
+}
