@@ -1,0 +1,22 @@
+{
+  "concerns": [
+    "Manufacturability: Elution efficiency and capture capacity are unproven at pilot/GMP scale; incomplete release would reduce yield and bias product composition (loss of subpopulations). (ev-misev2023-quality-framework)",
+    "Process sensitivity: Capture and elution buffers may strip epitopes, introduce assay interference, or alter particle integrity; buffer compatibility testing is required before analytics can be interpreted. (ev-misev2023-quality-framework)",
+    "Measurement feasibility: MISEV2023 supports orthogonal analytics, but success depends on validated spike\u2011in tracers and capture\u2011compatible assays; without these, co\u2011localization and membrane\u2011protection readouts risk artifact. (ev-misev2023-quality-framework)",
+    "Lot comparability: Reproducible capture/release behavior across independent conditioned\u2011medium lots and different source\u2011cell preparations is not demonstrated; risk of high inter\u2011lot variability that undermines comparability. (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi highlights source consistency considerations)",
+    "Scale\u2011up risk: Consumable costs, column/cassette parallelization, sterile single\u2011use format selection, and robustness of low\u2011shear flow control need evaluation; unknowns could limit throughput or increase COGs. (ev-misev2023-quality-framework)",
+    "Stability: No data on short\u2011term or long\u2011term stability of captured vs eluted fractions (physical integrity, potency surrogates, aggregation) \u2014 critical for release and shelf\u2011life decisions.",
+    "Quality\u2011attribute relevance: Even if the capture->SEC fraction shows a stronger orthogonal analytic signature, Driedonks et al. show that improved analytics do not guarantee CNS biodistribution in larger species (intranasal NHP study), so the selected fraction\u2019s analytic 'improvement' may not map to clinical exposure or activity. (ev-driedonks-2022-macaque-biodistribution)",
+    "Biological representativeness: Capture chemistry may preferentially bind particular membrane compositions, enriching a non\u2011representative subpopulation and altering intended biological activity; functional linkage assays will be required to confirm relevance. (ev-misev2023-quality-framework)"
+  ],
+  "conclusion": "The reversible affinity capture -> SEC concept is plausible as a manufacturable, low\u2011shear pre\u2011enrichment (implementable as flow\u2011through columns or disposable cassettes) and aligns with MISEV2023 recommendations for orthogonal intact\u2011EV analytics. However, current evidence does not demonstrate that such a unit operation will preserve representative EV subpopulations, provide reliable elution efficiency at pilot/GMP scale, or predict in\u2011vivo recoverability. Pilot manufacturing runs with capture/elution buffer compatibility, spike\u2011in recovery, and stability testing are required before committing to this fractionation gate for lot definition or release testing.",
+  "evidence_gap": "Critical manufacturability and CMC evidence are missing: pilot\u2011scale runs documenting elution efficiency and qualitative particle/mass recovery at GMP\u2011like scale; buffer compatibility demonstrating no assay interference; spike\u2011in tracer validation across capture/elution conditions; lot\u2011to\u2011lot comparability data; accelerated and real\u2011time stability of captured and eluted fractions. Also absent are data on whether analytic improvements translate to improved in\u2011vivo recoverability in relevant large\u2011animal models.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "supported": false
+}

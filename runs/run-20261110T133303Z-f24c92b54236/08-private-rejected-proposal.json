@@ -1,0 +1,82 @@
+{
+  "outcome": "evidence_gap",
+  "rejected_recommendation": {
+    "evidence_assessment": "Insufficient to support advancement to cross-species PK/PD. The available guidance supports the need for an orthogonal, validated CMC/analytics gating package but does not substitute for program-specific validation and batch data. Confidence in the program meeting identity/potency gating criteria based on supplied evidence: low.",
+    "findings": [
+      "The submitted evidence is consensus guidance and prescribes principles for EV characterization and reporting but does not provide program-specific CMC/analytics deliverables.",
+      "Key program-level artifacts are absent: source-cell MCB/WCB records and characterization, validated orthogonal intact-EV assays (fit-for-purpose LLOQ, specificity vs non-vesicular particles, precision/accuracy), a stability-indicating mechanism-relevant potency assay quantitatively correlated to an in vivo PD endpoint, \u22653 GMP-like production runs with release/stability/potency data demonstrating lot-to-lot reproducibility, and formulation/device compatibility data with intact-EV recovery and appropriate controls.",
+      "Without the above, rodent intranasal biodistribution or cross-species PK/PD studies cannot be confidently attributed to intact EVs or used to de-risk identity/potency claims."
+    ],
+    "matter_id": "matter-potency-identity-characterization",
+    "objections": [
+      "Consensus guidance alone cannot demonstrate that SGL-001 meets the CMC/analytics gating criteria\u2014program-specific MCB/WCB master records, validated orthogonal assays, GMP-like batch records, stability-indicating potency correlation, and formulation/device compatibility data are required.",
+      "No program data were provided to confirm assay specificity for intact EVs vs non-vesicular particles or to establish quantitative assay sensitivity and reproducibility.",
+      "Advancing to cross-species PK/PD without the requested artifacts risks misattributing biological signals to product rather than uncontrolled variability or assay artifacts."
+    ],
+    "proposed_changes": {
+      "claim_updates": [],
+      "decision_update": {
+        "approval_status": "pending",
+        "approved_at": null,
+        "approved_by": null,
+        "decision_id": "decision-sgl001-run-biodistribution-package",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "outcome": null,
+        "program_id": "SGL-001",
+        "question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
+        "rationale": "A Stage-1 CMC/analytics package is required to de-risk identity/potency attribution before cross-species PK/PD or lot-comparison studies.",
+        "requires_human_approval": true,
+        "risk_ids": [
+          "risk-cmc-identity-potency"
+        ],
+        "supporting_claim_ids": []
+      },
+      "editorial_clarification": "Stage-1 CMC/analytics is required and must include program-specific validated artifacts; guidance documents do not substitute for these deliverables.",
+      "evidence_confidence_update": "low",
+      "hypothesis_update": null,
+      "next_action": "Assemble Stage-1 CMC/analytics package (items 1\u20136 listed in recommendation). Prepare regulator briefing materials in parallel after initial package assembly. Prioritize assay validation and MCB/WCB documentation. Target initial internal review within ~3 months if resources available.",
+      "program_status_update": null,
+      "risk_updates": [
+        {
+          "description": "Absent program-specific MCB/WCB records, validated orthogonal intact-EV assays, stability-indicating potency correlation, and GMP-like batch reproducibility undermine confidence that in vivo signals reflect a consistent, well-characterized product.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "likelihood": "high",
+          "mitigation": "Complete Stage-1 CMC/analytics package: produce and characterize MCB/WCB; validate orthogonal intact-EV assays with appropriate controls and performance metrics; develop and correlate a stability-indicating potency assay to in vivo PD; generate \u22653 GMP-like batches with full release/stability/potency data; demonstrate formulation/device compatibility with intact-EV recovery studies.",
+          "owner": null,
+          "program_id": "SGL-001",
+          "risk_id": "risk-cmc-identity-potency",
+          "severity": "high",
+          "status": "open",
+          "title": "Insufficient CMC identity and potency de-risks cross-species testing"
+        }
+      ]
+    },
+    "recommendation": "Do not proceed to cross-species PK/PD or bridging studies until a Stage-1 CMC/analytics package is assembled and reviewed. Required Stage-1 deliverables: 1) source-cell MCB/WCB master records and characterization demonstrating identity and absence of adventitious agents; 2) a defined orthogonal QC panel (particle count, protein/lipid markers, nucleic acid, and non-vesicular particle controls) and validation reports for each intact-EV assay (documented LLOQ, specificity vs non-vesicular particles, precision, accuracy); 3) validated intact-EV assays (orthogonal methods and negative/positive controls) that attribute signal to intact vesicles; 4) a stability-indicating, mechanism-relevant potency assay and quantitative correlation to an in vivo PD endpoint in controlled studies; 5) manufacturing records for \u22653 GMP-like production runs with release, stability, and potency data demonstrating lot-to-lot reproducibility within pre-specified acceptance criteria; 6) formulation and delivery-device compatibility demonstrated by ex vivo intact-EV recovery and a short in vivo recovery study using intact-EV-specific assays and non-vesicular controls. Initiate a regulatory briefing (e.g., pre-IND/Scientific Advice) in parallel after initial package assembly. Estimated timeline: ~3 months contingent on dedicated resources and assay/manufacturing capacity. Program-level advancement decisions require human approval and remain pending.",
+    "supporting_evidence_ids": [
+      "ev-misev2023-quality-framework"
+    ]
+  },
+  "unsupported_conclusions": [
+    {
+      "conclusion": "Unsupported to advance. The supplied evidence (MISEV2023 consensus) establishes required principles (orthogonal characterization, controls, transparent reporting) but does not provide program-specific CMC deliverables (MCB/WCB, validated orthogonal assays, stability-indicating potency assays, GMP-like batch reproducibility). Therefore the program has not met the gating criteria needed to de-risk identity and potency claims before bridging studies.",
+      "evidence_gap": "Program-specific CMC/analytics artifacts are missing (see requested_evidence).",
+      "reviewer_role": "cmc"
+    },
+    {
+      "conclusion": "Operational scale-up and lot-to-lot reproducibility are not demonstrated. The MISEV consensus highlights the need for defined production controls and reporting; no evidence was presented that source-cell banking, controlled scale-up processes, or reproducibility across manufacturing runs have been established.",
+      "evidence_gap": "Missing manufacturing records and demonstration of reproducible scale-up.",
+      "reviewer_role": "manufacturing"
+    },
+    {
+      "conclusion": "The single provided evidence source (MISEV2023) supports the general claims that orthogonal characterization and validated intact-EV assays are necessary, and that rodent-only biodistribution is insufficient without orthogonal analytics and bridging controls; however, it does not supply program-specific data to satisfy those requirements. Consequently, the hypothesis that a gating package is required before high-confidence cross-species testing is supported in principle but unproven for SGL-001 without additional data.",
+      "evidence_gap": "Lack of program-specific orthogonal analytics, validated intact-EV assays, and bridging biodistribution controls.",
+      "reviewer_role": "evidence"
+    }
+  ],
+  "verification_objections": [],
+  "verification_supports_state_change": false
+}
