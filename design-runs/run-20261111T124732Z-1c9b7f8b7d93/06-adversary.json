@@ -1,0 +1,21 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Assay interference: excipients, formulation buffers, or residual process reagents reduce antibody binding, quench detection, or block capture surfaces (false-positive loss of signature) despite intact vesicles (mitigation: exhaustive capture-compatibility panels and orthogonal chemistry).",
+    "Inadequate spike-in control: the exogenous tracer differs in composition or stability from endogenous EVs (different sensitivity to stresses), leading to false assurance that assay recovery is valid when endogenous material is actually affected, or vice versa.",
+    "Insufficient material/replicates: low conditioned-medium yield prevents robust n>=3 lot testing across the full matrix, producing underpowered or non-reproducible conclusions and overfitting to idiosyncratic lots.",
+    "Overinterpreting in vitro readout for in vivo relevance: even if the orthogonal signature is abolished in vitro, materials that 'pass' may still fail to be recoverable or functional in relevant large-animal/human delivery (evidence of poor macaque intranasal uptake), so excluding envelopes based solely on this gate could be misaligned with clinical delivered activity.",
+    "Source-cell variability confounder: upstream donor/passage heterogeneity could drive observed signature loss across lots, wrongly attributing causality to downstream exposures and leading to inappropriate process exclusion.",
+    "Labeling/measurement artifact: particle counting methods (NTA/TRPS) and fractionation can misassign particle peaks and co-localization, so apparent preservation of bulk counts while capture signal changes could reflect analytic artefacts rather than true biology.",
+    "Binary gate brittleness: a qualitative yes/no exclusion may lack nuance\u2014marginal changes in clinical-relevant cargo protection could be treated as categorical failures, impeding iterative process optimization.",
+    "Species/route generalizability failure: preclinical efficacy with intranasal EVs in mice contrasts with poor NHP intranasal biodistribution; a gate tuned to in vitro preservation may not translate to clinically useful criteria for nasal delivery.",
+    "Protease/detergent assay sensitivity limits: incomplete protease access or detergent efficacy on captured material could give ambiguous protection assay results, confounding interpretation of membrane integrity."
+  ],
+  "strongest_objection": "The key bounded failure is assay-interpretation confounding: excipient- or buffer-mediated interference with immuno-capture or protection-readout (or incomplete spike-in orthogonality) could produce apparent loss of the \u2018\u2018intact-EV\u2019\u2019 signature despite preserved membrane integrity and in vivo functionality, meaning the proposed qualitative gate would falsely exclude acceptable process envelopes. This risk is amplified because downstream exposure effects on in vivo recoverability/delivery are species- and route-dependent (nonhuman-primate intranasal biodistribution was poor in one study), so even a technically validated in vitro signature loss may not predict clinically relevant loss of delivery or potency."
+}

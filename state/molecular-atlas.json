@@ -726,10 +726,25 @@
       "layers": [],
       "search_query": "MSC secretome proteomics potency assay manufacturing",
       "discovered_at": "2026-10-31T11:00:24.198932Z",
-      "review_status": "triage_required",
+      "review_status": "rejected",
       "provenance_note": "Discovered from Europe PMC metadata; the full text and underlying data have not been reviewed.",
       "data_use_note": "Metadata-only discovery. Any full-text or dataset use remains subject to its license and repository terms.",
-      "review_package": null,
+      "review_package": {
+        "package_id": "atlas-review-5c853931f1c9f920",
+        "source_id": "atlas-source-5c853931f1c9f920",
+        "relevance_summary": "No configured Molecular Atlas layer was identified during bounded screening.",
+        "access_level": "metadata_only",
+        "source_locator": "Europe PMC record metadata",
+        "source_excerpt": "Beyond cell replacement: restoring organelle homeostasis as the next frontier of regenerative medicine. Front Bioeng Biotechnol Ferreira-Antunes F, Lima MF, Moreira A, Silva FJ, Sampaio-Marques B, Salgado AJ.",
+        "extracted_layers": [],
+        "limitations": [
+          "Automated screening has not established study quality, reproducibility, or relevance to SGL-001 materials.",
+          "Reported associations must not be treated as causal mechanisms or product specifications.",
+          "Only metadata was available; claims cannot be verified from the full report."
+        ],
+        "ready_for_human_review": false,
+        "processed_at": "2026-11-11T12:50:08.972047Z"
+      },
       "approved_by": null,
       "approved_at": null
     },
@@ -3523,14 +3538,16 @@
     "extracellular vesicle glycomics surface lipidomics targeting",
     "MSC secretome proteomics potency assay manufacturing"
   ],
-  "last_discovery_at": "2026-11-10T13:36:08.061374Z",
-  "last_processing_at": "2026-11-10T13:37:46.208840Z",
+  "last_discovery_at": "2026-11-11T12:49:31.843487Z",
+  "last_processing_at": "2026-11-11T12:50:08.972047Z",
   "discovery_errors": [
-    "OmicsDI discovery failed for one configured query: TimeoutError",
     "OmicsDI discovery failed for one configured query: HTTPError",
-    "OmicsDI discovery failed for one configured query: TimeoutError",
-    "OmicsDI discovery failed for one configured query: TimeoutError"
+    "OmicsDI discovery failed for one configured query: HTTPError",
+    "OmicsDI discovery failed for one configured query: HTTPError",
+    "OmicsDI discovery failed for one configured query: HTTPError"
   ],
-  "processing_errors": [],
-  "updated_at": "2026-11-10T13:37:46.208840Z"
+  "processing_errors": [
+    "atlas-source-b128ff5dbe9e2acd: TimeoutError"
+  ],
+  "updated_at": "2026-11-11T12:50:08.972047Z"
 }

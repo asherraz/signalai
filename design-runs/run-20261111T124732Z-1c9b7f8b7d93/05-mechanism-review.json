@@ -1,0 +1,18 @@
+{
+  "concerns": [
+    "Assay interference by excipients or buffer components could mimic loss of capture signal; although the design includes capture-compatibility panels and spike-in controls, these must be rigorously validated (orthogonal spike species, dose-response) to be decisive.",
+    "Upstream source-cell variability (donor, senescence, lot-to-lot differences) could confound attribution of signature loss to downstream exposures; the experiment requires >=3 independent lots from the same source-cell bank/passage range and ideally additional donor lots to bound this risk.",
+    "The linkage from an in vitro orthogonal signature loss to clinically relevant outcomes (in vivo recovery, delivery to target tissue, or potency) is unproven; Driedonks et al. highlight species- and route-dependent biodistribution limits for intranasal delivery in larger animals, so even materials that preserve the in vitro signature may fail in vivo.",
+    "Device shear simulation choices (low/mid/high) must be justified and mapped to realistic device operating regimes; otherwise the tested shear envelopes may not reflect manufacturable or clinically relevant exposures.",
+    "Relying on a qualitative pass/fail gate (yes/no loss) risks discarding materials with partial damage that could retain function; consideration of graded metrics or linking to downstream potency assays would improve decision-making.",
+    "Particle-count methods (NTA/TRPS) have limited ability to discriminate vesicular from non-vesicular particles; interpretation depends critically on orthogonal fractionation and protein:particle readouts as planned, and on maintaining sufficient material for low-biomass capture assays."
+  ],
+  "conclusion": "The proposed matrixed, spike-in\u2013controlled experiment is causally plausible and addresses an important manufacturing-quality gap: downstream stresses can plausibly disrupt membrane integrity or mask epitopes without changing bulk particle counts, producing false-positive particle-based release metrics. The plan appropriately emphasizes orthogonal intact-EV signatures (immuno-capture co-localization + detergent/protease sensitivity) and per-sample spike-in and buffer-compatibility controls to discriminate assay interference from true membrane/cargo loss. Existing community guidance and preclinical findings support the rationale but do not prove the specific downstream-exposure envelope proposed; additional controls and follow-up in vivo recoverability checks will be required before adopting a process exclusion gate.",
+  "evidence_gap": "No direct experimental evidence demonstrates the specific combined envelope (freeze-thaw \u00d7 device shear \u00d7 low non-ionic surfactant) reproducibly abolishes the orthogonal intact-EV signature across independent lots while leaving particle counts unchanged. Key gaps include (1) spike-in\u2013controlled matrixed in vitro data that rule out assay interference, (2) demonstration that the in vitro loss-of-signature predicts reduced in vivo recoverability or function (bridging to delivery/efficacy), and (3) validated capture-reagent compatibility across the chosen formulation/excipient panel.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "supported": true
+}
