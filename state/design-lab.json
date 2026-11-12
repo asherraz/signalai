@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "program_id": "SGL-001",
-  "current_design_question": "Daily question: Which specific downstream processing exposure combination (freeze-thaw cycles × device-relevant shear × candidate nasal excipient class) reproducibly abolishes an orthogonal intact‑EV analytical signature (capture-positive co‑localization with particle peaks and detergent/protease sensitivity) while bulk particle counts remain similar, when assay recovery is controlled by an exogenous intact‑EV spike‑in?",
+  "current_design_question": "Daily question: Does replacing TFF-based concentration with a continuous-flow acoustic-focusing low-shear concentration module (inline, cassette-compatible) preserve orthogonal intact-EV signatures (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) across scale-proxy processed volumes while maintaining qualitatively acceptable recovery versus staged low-shear TFF and current high-flux TFF envelopes?",
   "reviewed_hypotheses": [
     {
       "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
@@ -10394,6 +10394,222 @@
       ],
       "theme_id": "design-gap-manufacturing-process",
       "sequence_within_theme": 4
+    },
+    {
+      "hypothesis_id": "design-hypothesis-run-20261112T135116Z-6dd307985a2b",
+      "program_id": "SGL-001",
+      "run_id": "run-20261112T135116Z-6dd307985a2b",
+      "created_at": "2026-11-12T13:51:16.695047Z",
+      "title": "Hypothesis: Low-shear acoustic-focusing concentration preserves intact-EV analytical signatures at scale better than staged low-shear TFF and prevents scale-dependent loss observed with high-flux TFF",
+      "design_question": "Daily question: Does replacing TFF-based concentration with a continuous-flow acoustic-focusing low-shear concentration module (inline, cassette-compatible) preserve orthogonal intact-EV signatures (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) across scale-proxy processed volumes while maintaining qualitatively acceptable recovery versus staged low-shear TFF and current high-flux TFF envelopes?",
+      "primary_domain": "manufacturing",
+      "secondary_domains": [
+        "fractionation",
+        "process",
+        "reproducibility"
+      ],
+      "selected_gap_id": "design-gap-scale-control",
+      "proposed_product_change_or_attribute": "If supported, adopt an acoustic-focusing, low-shear concentration step as the scale-up concentration gate for SGL-001 drug-substance definition: a concentration envelope that demonstrably preserves an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) and yields qualitatively acceptable particle/mass recovery for pilot GMP-like batches (non-numeric qualitative gate).",
+      "biological_rationale": "MISEV2023 emphasizes orthogonal intact-EV analytics and warns that mechanical/shear stresses during concentration can disrupt membrane integrity; acoustic focusing offers a fundamentally different, low-shear physical principle (acoustic radiation forces in laminar flow) that can concentrate particles without thin-film high-TMP shear exposures that TFF imposes. Demonstrating preservation of membrane-protected signatures after acoustic concentration would provide a new manufacturable control that is mechanistically distinct from TFF-envelope modification.",
+      "manufacturing_rationale": "A continuous-flow acoustic concentrator is cassette-compatible, can be run at scale-proxy throughputs with lower transmembrane/mechanical stress than TFF, and can be integrated upstream of SEC or capture steps. If it preserves orthogonal intact-EV signatures while providing acceptable yield, it provides a scale-appropriate mitigation to the documented risk that high-flux TFF envelopes can abolish identity signals.",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "High-flux or high-TMP TFF concentration parameters induce shear/pressure-related alteration of EV membranes or epitope masking that abolishes orthogonal intact-EV analytical signatures without proportionate loss in bulk particle counts (observed program risk)."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "A continuous-flow acoustic-focusing concentration step applies acoustic radiation forces to move particles into a central stream with minimal shear, reducing membrane perturbation risk relative to high-flux TFF and preserving capture-positive, detergent/protease-sensitive signatures."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If acoustic-focusing preserves orthogonal intact-EV signatures across scale-proxy processed volumes and recovers sufficient particle/mass for pilot batches, it can be adopted as the concentration envelope gate to enable downstream orthogonal QC, potency linkage, and comparability workflows."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate: MISEV recommends orthogonal analytics and prior program findings implicate concentration-related signature loss; acoustic focusing is mechanistically different but untested in this program.",
+            "competing_explanation": "Preservation by acoustic focusing could reflect selective retention of a minor particle subpopulation rather than true mitigation of shear damage; spike-in controls and multi-lot replication are required to distinguish these possibilities.",
+            "missing_experiment": "Pilot-scale comparison of acoustic-focusing versus staged low-shear TFF and high-flux TFF with spike-in recovery and orthogonal intact-EV analytics across lots."
+          }
+        ]
+      },
+      "expected_measurable_effect": "Qualitative preservation of orthogonal intact-EV signature (co-localizing capture-positive signal with particle-count peaks and marked loss of captured signal after detergent + protease/RNase) in acoustic-concentrated outputs across >=3 independent conditioned-medium lots at scale-proxy processed volumes, while staged low-shear TFF shows partial preservation and high-flux TFF shows reproducible loss; spike-in tracer is recovered as membrane-protected in the acoustic arm; particle/mass recovery is judged qualitatively sufficient for pilot GMP-like batches.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "contradicting_evidence_ids": [],
+      "explicit_inferences": [
+        "Inference: mechanical/shear exposure during concentration can alter membrane integrity without changing bulk particle counts, therefore a low-shear physical concentration principle may reduce signature loss.",
+        "Inference: demonstration of preserved orthogonal signatures under acoustic concentration would materially de-risk TFF-envelope scale-up decisions and enable downstream comparability work."
+      ],
+      "assumptions": [
+        "Assay compatibility: immuno-capture reagents and particle counters are compatible with buffers used in acoustic concentrator elution and with spike-in tracer readouts (buffer-compatibility controls required).",
+        "Sufficient pilot volumes are available to run scale-proxy acoustic and TFF runs from matched conditioned-medium lots.",
+        "Acoustic concentrator hardware is available or accessible at pilot scale and can be run under sterile, low-shear conditions without introducing new contaminants."
+      ],
+      "competing_explanations": [
+        "Apparent preservation could reflect selective enrichment of a minor, more robust particle subpopulation that is not representative of the original EV complement; multi-omic protected-cargo checks and spike-in recovery are required to detect this.",
+        "Observed TFF-associated signature loss may reflect downstream fractionation or formulation incompatibilities rather than TFF alone; the experiment controls for downstream steps to isolate concentration effect."
+      ],
+      "manufacturability_assessment": "Acoustic concentrators are available as continuous-flow, cassette-compatible modules at pilot throughput in some bioprocess contexts; their integration requires evaluation of elution buffers, membrane compatibility, and closed aseptic operation. Pilot runs will also assess recoverable mass/particle yields qualitatively relative to TFF-envelope comparators.",
+      "measurement_strategy": "Orthogonal intact-EV workflow per MISEV-style guidance plus spike-in recovery controls and qualitative yield assessment: density/SEC fractionation with particle counts per fraction; intact immuno-capture ELISA/bead-capture on fractions; protease/RNase protection +/- detergent on captured material; protected-cargo panel optional; total protein and protein:particle ratio per fraction; exogenous intact-EV spike-in tracer added pre-concentration to control for recovery and assay function.",
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20261112T135116Z-6dd307985a2b-1"
+      ],
+      "proposed_potency_relationship": "Exploratory only: preserved intact-EV identity is a precondition for potency linkage but no potency claim is asserted. If preserved, the acoustic-concentrated outputs will be carried forward into existing potency linkage experiments (orthogonal in vitro protected-bioactivity assays and in vivo->ex vivo bridging) described elsewhere.",
+      "principal_risks": [
+        "Acoustic concentrator may selectively enrich a non-representative particle subpopulation or strip labile cargo despite preserving surface epitopes.",
+        "Scale integration (closed-system, sterile operation) and elution-buffer compatibility may be non-trivial, requiring additional process development.",
+        "Spike-in tracer or capture reagents may interact with acoustic device materials or elution buffers, confounding recovery measures unless compatibility controls are run."
+      ],
+      "falsification_criteria": [
+        "Across >=3 independent conditioned-medium lots run at scale-proxy cumulative processed volumes, the acoustic-focusing concentration arm fails to reproducibly preserve co-localization of particle-count peaks with capture-positive fractions and/or the captured signal is not detergent/protease-sensitive (i.e., no membrane-protected signature), while validated spike-in recovery indicates assay function; or acoustic recovery yields are qualitatively insufficient for pilot manufacture compared with staged low-shear TFF (program comparator). Meeting these outcomes falsifies the hypothesis."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20261112T135116Z-6dd307985a2b",
+        "question": "Can an acoustic-focusing continuous-flow concentrator preserve orthogonal intact-EV signatures at scale-proxy throughput compared with staged low-shear TFF and high-flux TFF when evaluated with spike-in recovery and orthogonal protection assays?",
+        "hypothesis_tested": "A continuous-flow acoustic-focusing low-shear concentration module preserves capture-positive co-localization with particle-count peaks and detergent/protease-sensitive captured signal across scale-proxy processed volumes while providing qualitatively acceptable recovery, whereas high-flux TFF reproducibly abolishes these signatures and staged low-shear TFF provides partial preservation.",
+        "required_material": [
+          "MSC-conditioned medium from the same source-cell lot (sufficient volume to run matched scale-proxy runs for acoustic concentrator, staged low-shear TFF, and high-flux TFF; >=3 independent lots recommended)",
+          "Pilot-scale acoustic-focusing continuous-flow concentrator and consumables configured for sterile, closed operation; validated mild elution buffer formulations compatible with downstream capture assays",
+          "TFF system and membranes to run staged low-shear envelope (reduced TMP/flux per cassette + cassette rotation + inline depth prefilter) and high-flux TFF comparator envelope",
+          "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) to add prior to concentration for within-sample recovery controls",
+          "Downstream fractionation capability (SEC columns or single-step iodixanol cushion and fraction collectors)",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Immuno-capture reagents for canonical EV surface markers (anti-CD63/CD9/CD81 and/or TIM4/AnxA5) in intact-capture format and capture-compatibility buffer panels",
+          "Protease (proteinase K), RNase reagents and detergent (e.g., Triton X-100) for membrane-disruption/protection assays",
+          "Total protein assay reagents and consumables for mass/particle recovery assessment"
+        ],
+        "comparator": "Three-arm matched comparison from identical conditioned-medium lots processed to equivalent cumulative processed volumes: (A) acoustic-focusing continuous-flow low-shear concentration -> downstream SEC (test arm), (B) staged low-shear TFF envelope (reduced TMP/flux per cassette + cassette rotation + inline depth prefilter) -> downstream SEC (program mitigation comparator), (C) high-flux TFF envelope (current program comparator) -> downstream SEC (negative comparator). All arms receive identical exogenous spike-in tracer prior to concentration and identical downstream fractionation and orthogonal analytics.",
+        "control": "Positive control: characterized small-EV preparation spiked and processed in parallel to confirm capture/protection assay performance. Negative controls: buffer-only processed through each concentration device and detergent-disrupted aliquots to confirm protection assay behavior. Capture-compatibility control panels for elution and buffer components per arm.",
+        "assay": "Orthogonal intact-EV workflow per fraction: (1) collect density/SEC fractions and measure particle counts (NTA/TRPS) per fraction; (2) perform intact immuno-capture on fractions and quantify endogenous capture signal and spike-in tracer signal separately; (3) apply protease/RNase protection testing +/- detergent on captured material to test membrane protection (loss of signal after detergent + protease indicates membrane protection); (4) total protein and protein:particle ratio per fraction; (5) qualitative mass and particle recovery (yield) assessment per arm.",
+        "primary_readout": "Qualitative preservation (yes/no across >=3 lots) of co-localization between particle-count peaks and capture-positive fractions and demonstrable loss of captured signal after detergent + protease/RNase in the acoustic-focusing arm; concurrent validated spike-in membrane-protected recovery in same fractions; assessed versus staged low-shear TFF (partial preservation expected) and high-flux TFF (loss expected).",
+        "secondary_readouts": [
+          "Spike-in recovery percentage per fraction (qualitative: recovered & membrane-protected vs not recovered) to validate assay function",
+          "Protein:particle ratio differences between arms and across fractions",
+          "Qualitative particle and mass recovery estimates for manufacturability comparison",
+          "Reproducibility across independent lots (>=3)"
+        ],
+        "success_criterion": "Qualitative success: Across >=3 independent conditioned-medium lots processed at scale-proxy cumulative volumes, the acoustic-focusing arm reproducibly shows (A) particle-count peak(s) that co-localize with capture-positive signal in downstream fractions and (B) captured-signal reduction or loss after detergent + protease/RNase (membrane protection), while validated spike-in tracer is recovered as membrane-protected in the same fractions and qualitative recovered particle/mass is judged sufficient for pilot GMP-like runs. Staged low-shear TFF shows partial preservation; high-flux TFF shows reproducible loss of orthogonal signature despite similar bulk particle counts.",
+        "failure_criterion": "Either (A) validated spike-in recovery but acoustic-focusing outputs do not reproducibly show co-localization of particle peaks with capture-positive fractions and detergent/protease-sensitive captured signal across >=3 lots (hypothesis falsified), or (B) acoustic-focusing yields are qualitatively insufficient for pilot manufacture (falsified for manufacturability), or (C) spike-in recovery is inconsistent across arms (assay-methodology failure requiring redesign).",
+        "falsification_outcome": "If falsification criteria are met, reject acoustic-focusing as a scale-control mitigation for intact-EV signature loss; prioritize alternative mitigations (pre- or post-concentration capture strategies, different fractionation gates, or secretome-centric program redefinition) and re-evaluate process-stage effects observed in prior TFF-focused experiments.",
+        "dependencies": [
+          "Access to pilot-scale acoustic concentrator hardware and integration with closed sterile flow path",
+          "Availability of validated exogenous intact-EV spike-in tracer and capture reagents with buffer-compatibility data",
+          "Sufficient conditioned-medium volume from matched source-cell lots and instrument time to run three matched arms per lot"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "complexity": "high",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "Procurement and qualification of a pilot-scale acoustic-focusing concentrator and consumables",
+        "Validation of exogenous intact-EV spike-in tracer compatibility with acoustic concentrator elution buffers and downstream capture reagents",
+        "Availability of >=3 independent conditioned-medium lots from the same source-cell bank/passage range"
+      ],
+      "human_decisions_required": [
+        "Select acoustic concentrator vendor and pilot-scale configuration (closed-system, elution buffer composition).",
+        "Approve allocation of conditioned-medium lots and instrument time for matched scale-proxy runs.",
+        "Authorize spike-in tracer selection and target capture panel for orthogonal assays."
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "Partially supported but key experimental gap. The proposal is consistent with cited literature about the need for orthogonal intact-EV analytics and translational caution, and it frames a plausible, testable hypothesis; however none of the supplied canonical evidence directly demonstrates that acoustic-focusing concentration preserves orthogonal intact‑EV signatures or that TFF-associated signature loss (as framed) occurs in this program. A dedicated head-to-head experimental comparison is therefore required to validate the core claim.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-hermann-2023-neonatal-hi"
+          ],
+          "evidence_gap": "No canonical evidence directly tests or shows that continuous‑flow acoustic‑focusing concentration preserves capture-positive, detergent/protease‑sensitive orthogonal intact‑EV signatures at scale, nor is there program‑independent experimental data directly linking high‑flux TFF parameters to reproducible loss of those orthogonal signatures. The proposal’s primary causal inference (acoustic focusing mitigates signature loss seen with high‑flux TFF) is unproven by the supplied literature; the proposed three-arm pilot experiment is therefore a necessary missing experiment.",
+          "concerns": [
+            "Core inference labeled as 'inference' is mechanistically plausible but currently unsupported by direct experimental data in the canonical evidence set — experimental validation head‑to‑head is required (as recognized in the proposal).",
+            "Risk that apparent preservation reflects selective enrichment of a robust minor particle subpopulation rather than true preservation of the original EV complement; MISEV2023 supports need for orthogonal and protected‑cargo controls to detect this (appropriate concern, already noted in proposal).",
+            "Compatibility and assay‑interference risks (spike‑in tracer, elution buffer, capture reagents interacting with acoustic device materials) are real and cited as dependencies; literature does not provide device‑specific compatibility data, so buffer‑compatibility controls and device qualification are required.",
+            "Translational biodistribution literature (ev-driedonks-2022-macaque-biodistribution) highlights interspecies and formulation limitations for intranasal delivery and the difficulty of detecting EVs in complex in vivo matrices; this limits generalizability of any positive small‑scale analytic preservation result to in‑vivo efficacy or clinical biodistribution and should not be overinterpreted by the program.",
+            "Hermann et al. (ev-hermann-2023-neonatal-hi) supports that intranasal MSC‑EVs can be efficacious in mouse models but does not inform concentration‑method effects; it cannot be used as evidence that acoustic concentration will preserve potency."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "The hypothesis is conceptually plausible and aligns with ISEV/MISEV recommendations to use orthogonal intact-EV analytics, but the provided evidence does not directly support manufacturability or demonstrable benefit of an acoustic-focusing concentrator for this program. Critical data gaps remain (no prior acoustic-concentrator performance or compatibility data in this product context), creating medium–high scale-up and assay-integration risk. A focused pilot campaign as proposed is required before adopting acoustic focusing as a concentration gate.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus"
+          ],
+          "evidence_gap": "No direct experimental evidence showing (a) acoustic-focusing concentrator preserves orthogonal intact-EV signatures or protected-cargo in this cell-source/formulation context, (b) acceptable particle/mass yields from pilot-scale acoustic devices versus TFF, or (c) compatibility of elution buffers and capture/spike-in reagents with the acoustic hardware. Existing references support the need for orthogonal analytics and highlight translational biodistribution variability and source-to-source comparability, but do not address the specific concentrator technology or its integration.",
+          "concerns": [
+            "Manufacturability integration: pilot-scale acoustic concentrators exist in other contexts but there is no program-specific data on closed-system, sterile integration, elution-buffer compatibility, or consumable availability — risk of protracted engineering and vendor qualification.",
+            "Process sensitivity/selectivity: acoustic focusing could selectively enrich a particle subpopulation (not representative of starting EV complement) or alter cargo despite preserving some surface epitopes; orthogonal protected-cargo assays and multi-omic checks are required to detect selective bias.",
+            "Measurement feasibility: proposed orthogonal workflow is consistent with MISEV guidance, but success depends on validated spike-in tracer compatibility with device elution buffers, immuno-capture reagents, and fractionation methods — these compatibilities are currently assumed, not demonstrated.",
+            "Lot comparability and reproducibility: hypothesis requires ≥3 independent conditioned-medium lots to demonstrate reproducible preservation; absence of prior acoustic-device reproducibility data creates risk that observed effects will be lot- or device-dependent.",
+            "Yield and manufacturability risk: qualitative acceptability of recovered particle/mass for pilot GMP-like runs is unproven; acoustic recovery may be insufficient compared with TFF, compromising downstream process throughput and costing additional development.",
+            "Stability and downstream effects: even if surface-capture signatures are preserved, acoustic processing could still affect labile internal cargo or downstream potency attributes; linkage to potency is exploratory and currently unproven.",
+            "Scale-up risk: acoustic concentrator behavior at scale-proxy throughputs, and its robustness to process fouling/blocked flow over run durations needed for production, are untested and could invalidate its use as a production gate."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "The proposed experiment is conceptually plausible and addresses a real program risk (concentration-associated loss of orthogonal intact‑EV signatures) by testing a mechanistically distinct, low‑shear concentration principle. The design appropriately uses spike‑in recovery and orthogonal protection assays to discriminate between (A) true membrane preservation by acoustic focusing, (B) selective enrichment of a robust subpopulation, and (C) TFF‑specific or downstream/buffer artifacts. However, existing evidence only indirectly supports the central claim: community guidance (MISEV2023) supports orthogonal analytics and the need for rigorous controls, and program/non‑clinical biodistribution and efficacy reports highlight species- and formulation‑dependent outcomes; none provide direct positive evidence that acoustic focusing will preserve membrane‑protected cargo or that preserved analytical signatures will map to potency. Key gaps remain around spike‑in and device compatibility, detection of selective subpopulation enrichment, and demonstration that preserved analytical signatures predict functional activity or manufacturable yields.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "No direct published data compare acoustic‑focusing concentration to TFF for effects on EV membrane integrity, protected cargo retention, or linkage of preserved orthogonal signatures to biological potency. Also missing are validated compatibility studies showing the chosen spike‑in tracer and capture reagents behave predictably with the acoustic device materials and elution buffers, and quantitative recovery/yield benchmarks needed to judge manufacturability.",
+          "concerns": [
+            "Indirect support only: MISEV2023 supports orthogonal analytics and rigorous controls but does not endorse any specific concentration technology; prior biodistribution/efficacy studies are context‑ and species‑dependent and do not validate acoustic focusing as a mitigation.",
+            "Selective enrichment confounder: the proposed readouts (co‑localization of particle peaks with capture signal and detergent/protease sensitivity) may not distinguish preservation of the original EV population from selective survival/enrichment of a minor, more robust subpopulation. Protected‑cargo profiling (multi‑omic protected cargo checks) or orthogonal markers of source‑cell identity should be added to detect this.",
+            "Spike‑in and buffer compatibility risk: acoustic concentrator elution buffers or device materials could alter spike‑in behavior or interfere with capture reagents, producing false positives/negatives unless explicit compatibility controls are run (buffer panels, device material blanks).",
+            "Assay sensitivity and quantitation: primary readout is qualitative; without quantitative recovery/yield metrics and predefined manufacturability thresholds, passing the gate may be ambiguous for process decisions. Consider adding quantitative yield and variability acceptance criteria.",
+            "Potency linkage missing: preserving an analytical intact‑EV signature is necessary but not sufficient for product function. The experiment should plan a downstream linkage step (in‑vitro protected bioactivity or in‑vivo/ex‑vivo bridge) on at least representative fractions to test whether preserved signatures correspond to retained potency.",
+            "Scale integration and sterile operation risk: pilot acoustic concentrator integration (closed sterile flow path, elution composition) is non‑trivial and could itself introduce artifacts; run device material and buffer‑only negative controls and assess sterility/adsorption losses.",
+            "Reproducibility requirement: success criterion demands >=3 independent lots; ensure lots span realistic process variability (donor/passage) to avoid overfitting to a single conditioned‑medium profile."
+          ]
+        }
+      ],
+      "adversary_objection": "The most bounded and plausible failure mode is that the acoustic-focusing arm will produce an apparent preservation of orthogonal intact‑EV signatures by selectively enriching a minor, more robust particle subpopulation or by producing assay artifacts (buffer/device interactions) rather than by preserving the original EV population’s membrane integrity. Because spike‑in tracers, capture reagents, and elution buffers can differ in physical/chemical behavior from endogenous EVs, validated spike‑in recovery and capture-compatibility controls may falsely reassure even while the bulk product composition and protected cargo (the biologically relevant material) are altered or depleted. This would mislead downstream comparability and potency linkage decisions and be hard to detect without multi‑omic protected‑cargo checks, orthogonal source‑matched controls, and multi‑lot reproducibility.",
+      "chair_rationale": "Conceptually plausible and consistent with community guidance but lacks direct program-specific evidence and device/buffer compatibility and yield data. Recommend proceeding with the proposed pilot head‑to‑head experiments (spike‑in + orthogonal protection assays, multi‑lot replication, and qualitative yield assessment) to validate preservation, assay compatibility, and manufacturability before any adoption decision.",
+      "determination": "needs_evidence",
+      "status": "reviewed",
+      "promotion_human_approved": false,
+      "novelty_statement": "This hypothesis proposes a genuinely different concentration principle (continuous-flow acoustic focusing) as the scale-control intervention; prior program hypotheses considered TFF envelope modification (low-shear TFF staging) or TFF parameter matrices. Acoustic focusing uses a distinct, low-shear physical mechanism not previously explored in the SGL-001 design-space and therefore provides a novel discriminating lever to separate true scale-dependent membrane damage from TFF-specific effects.",
+      "distinguished_from_hypothesis_ids": [
+        "design-hypothesis-run-20260926T095725Z-139664c13c1d",
+        "design-hypothesis-run-20261014T101905Z-1f332775a5ca",
+        "design-hypothesis-run-20261028T112537Z-da2cb3f8271e"
+      ],
+      "theme_id": "design-gap-scale-control",
+      "sequence_within_theme": 4
     }
   ],
   "proposed_experiments": [
@@ -12319,6 +12535,47 @@
       "complexity": "moderate",
       "human_approval_state": "pending",
       "execution_status": "proposed"
+    },
+    {
+      "experiment_id": "design-experiment-run-20261112T135116Z-6dd307985a2b",
+      "question": "Can an acoustic-focusing continuous-flow concentrator preserve orthogonal intact-EV signatures at scale-proxy throughput compared with staged low-shear TFF and high-flux TFF when evaluated with spike-in recovery and orthogonal protection assays?",
+      "hypothesis_tested": "A continuous-flow acoustic-focusing low-shear concentration module preserves capture-positive co-localization with particle-count peaks and detergent/protease-sensitive captured signal across scale-proxy processed volumes while providing qualitatively acceptable recovery, whereas high-flux TFF reproducibly abolishes these signatures and staged low-shear TFF provides partial preservation.",
+      "required_material": [
+        "MSC-conditioned medium from the same source-cell lot (sufficient volume to run matched scale-proxy runs for acoustic concentrator, staged low-shear TFF, and high-flux TFF; >=3 independent lots recommended)",
+        "Pilot-scale acoustic-focusing continuous-flow concentrator and consumables configured for sterile, closed operation; validated mild elution buffer formulations compatible with downstream capture assays",
+        "TFF system and membranes to run staged low-shear envelope (reduced TMP/flux per cassette + cassette rotation + inline depth prefilter) and high-flux TFF comparator envelope",
+        "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) to add prior to concentration for within-sample recovery controls",
+        "Downstream fractionation capability (SEC columns or single-step iodixanol cushion and fraction collectors)",
+        "Particle counter (NTA or TRPS) and reagents",
+        "Immuno-capture reagents for canonical EV surface markers (anti-CD63/CD9/CD81 and/or TIM4/AnxA5) in intact-capture format and capture-compatibility buffer panels",
+        "Protease (proteinase K), RNase reagents and detergent (e.g., Triton X-100) for membrane-disruption/protection assays",
+        "Total protein assay reagents and consumables for mass/particle recovery assessment"
+      ],
+      "comparator": "Three-arm matched comparison from identical conditioned-medium lots processed to equivalent cumulative processed volumes: (A) acoustic-focusing continuous-flow low-shear concentration -> downstream SEC (test arm), (B) staged low-shear TFF envelope (reduced TMP/flux per cassette + cassette rotation + inline depth prefilter) -> downstream SEC (program mitigation comparator), (C) high-flux TFF envelope (current program comparator) -> downstream SEC (negative comparator). All arms receive identical exogenous spike-in tracer prior to concentration and identical downstream fractionation and orthogonal analytics.",
+      "control": "Positive control: characterized small-EV preparation spiked and processed in parallel to confirm capture/protection assay performance. Negative controls: buffer-only processed through each concentration device and detergent-disrupted aliquots to confirm protection assay behavior. Capture-compatibility control panels for elution and buffer components per arm.",
+      "assay": "Orthogonal intact-EV workflow per fraction: (1) collect density/SEC fractions and measure particle counts (NTA/TRPS) per fraction; (2) perform intact immuno-capture on fractions and quantify endogenous capture signal and spike-in tracer signal separately; (3) apply protease/RNase protection testing +/- detergent on captured material to test membrane protection (loss of signal after detergent + protease indicates membrane protection); (4) total protein and protein:particle ratio per fraction; (5) qualitative mass and particle recovery (yield) assessment per arm.",
+      "primary_readout": "Qualitative preservation (yes/no across >=3 lots) of co-localization between particle-count peaks and capture-positive fractions and demonstrable loss of captured signal after detergent + protease/RNase in the acoustic-focusing arm; concurrent validated spike-in membrane-protected recovery in same fractions; assessed versus staged low-shear TFF (partial preservation expected) and high-flux TFF (loss expected).",
+      "secondary_readouts": [
+        "Spike-in recovery percentage per fraction (qualitative: recovered & membrane-protected vs not recovered) to validate assay function",
+        "Protein:particle ratio differences between arms and across fractions",
+        "Qualitative particle and mass recovery estimates for manufacturability comparison",
+        "Reproducibility across independent lots (>=3)"
+      ],
+      "success_criterion": "Qualitative success: Across >=3 independent conditioned-medium lots processed at scale-proxy cumulative volumes, the acoustic-focusing arm reproducibly shows (A) particle-count peak(s) that co-localize with capture-positive signal in downstream fractions and (B) captured-signal reduction or loss after detergent + protease/RNase (membrane protection), while validated spike-in tracer is recovered as membrane-protected in the same fractions and qualitative recovered particle/mass is judged sufficient for pilot GMP-like runs. Staged low-shear TFF shows partial preservation; high-flux TFF shows reproducible loss of orthogonal signature despite similar bulk particle counts.",
+      "failure_criterion": "Either (A) validated spike-in recovery but acoustic-focusing outputs do not reproducibly show co-localization of particle peaks with capture-positive fractions and detergent/protease-sensitive captured signal across >=3 lots (hypothesis falsified), or (B) acoustic-focusing yields are qualitatively insufficient for pilot manufacture (falsified for manufacturability), or (C) spike-in recovery is inconsistent across arms (assay-methodology failure requiring redesign).",
+      "falsification_outcome": "If falsification criteria are met, reject acoustic-focusing as a scale-control mitigation for intact-EV signature loss; prioritize alternative mitigations (pre- or post-concentration capture strategies, different fractionation gates, or secretome-centric program redefinition) and re-evaluate process-stage effects observed in prior TFF-focused experiments.",
+      "dependencies": [
+        "Access to pilot-scale acoustic concentrator hardware and integration with closed sterile flow path",
+        "Availability of validated exogenous intact-EV spike-in tracer and capture reagents with buffer-compatibility data",
+        "Sufficient conditioned-medium volume from matched source-cell lots and instrument time to run three matched arms per lot"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "complexity": "high",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
     }
   ],
   "parked_hypothesis_ids": [],
@@ -13294,6 +13551,24 @@
       ],
       "measurement_concept": "Qualitative preservation of capture co‑localization and detergent/protease sensitivity after downstream exposure (yes/no)",
       "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20261112T135116Z-6dd307985a2b-1",
+      "name": "Scale concentration envelope: acoustic-focusing preservation of intact-EV signature",
+      "group": "manufacturing_fingerprint",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "Defines a process-level concentration gate based on qualitative preservation of orthogonal intact-EV signatures after scale-proxy concentration; exploratory until multi-lot reproducibility is demonstrated.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "uncertainty": "High: novel intervention for this program; assay and integration risks remain.",
+      "source_hypothesis_id": "design-hypothesis-run-20261112T135116Z-6dd307985a2b",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261112T135116Z-6dd307985a2b"
+      ],
+      "measurement_concept": "Orthogonal intact-EV signature preservation (qualitative) controlled by spike-in recovery; non-numeric pass/fail for concentration envelope gating.",
+      "human_approved": false
     }
   ],
   "design_gaps": [
@@ -13665,13 +13940,14 @@
       "rationale": "Scale-up, source control, and process control remain canonical evidence gaps.",
       "evidence_ids": [],
       "status": "open",
-      "times_explored": 3,
-      "last_explored_at": "2026-10-28T11:25:37.569579Z",
-      "latest_hypothesis_id": "design-hypothesis-run-20261028T112537Z-da2cb3f8271e",
+      "times_explored": 4,
+      "last_explored_at": "2026-11-12T13:51:16.695047Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20261112T135116Z-6dd307985a2b",
       "hypothesis_ids": [
         "design-hypothesis-run-20260926T095725Z-139664c13c1d",
         "design-hypothesis-run-20261014T101905Z-1f332775a5ca",
-        "design-hypothesis-run-20261028T112537Z-da2cb3f8271e"
+        "design-hypothesis-run-20261028T112537Z-da2cb3f8271e",
+        "design-hypothesis-run-20261112T135116Z-6dd307985a2b"
       ],
       "open_questions": [
         "Which control can distinguish scale effect from analytical noise?"
@@ -13996,7 +14272,14 @@
       "gap_id": "design-gap-manufacturing-process",
       "determination": "needs_manufacturing_assessment",
       "created_at": "2026-11-11T12:47:32.603202Z"
+    },
+    {
+      "run_id": "run-20261112T135116Z-6dd307985a2b",
+      "hypothesis_id": "design-hypothesis-run-20261112T135116Z-6dd307985a2b",
+      "gap_id": "design-gap-scale-control",
+      "determination": "needs_evidence",
+      "created_at": "2026-11-12T13:51:16.695047Z"
     }
   ],
-  "updated_at": "2026-11-11T12:47:32.603202Z"
+  "updated_at": "2026-11-12T13:51:16.695047Z"
 }
