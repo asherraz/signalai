@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "program_id": "SGL-001",
-  "current_design_question": "Daily question: Does replacing TFF-based concentration with a continuous-flow acoustic-focusing low-shear concentration module (inline, cassette-compatible) preserve orthogonal intact-EV signatures (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) across scale-proxy processed volumes while maintaining qualitatively acceptable recovery versus staged low-shear TFF and current high-flux TFF envelopes?",
+  "current_design_question": "Which intact-EV-associated multi-omic cargo comparison (protected miRNA + detergent-sensitive protein markers + lipid-class distribution) across matched fractionation states best separates lot-conserved EV cargo from variable secretome co-isolates without presuming a single active molecule?",
   "reviewed_hypotheses": [
     {
       "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
@@ -10610,6 +10610,242 @@
       ],
       "theme_id": "design-gap-scale-control",
       "sequence_within_theme": 4
+    },
+    {
+      "hypothesis_id": "design-hypothesis-run-20261113T131325Z-03ee8f833fd0",
+      "program_id": "SGL-001",
+      "run_id": "run-20261113T131325Z-03ee8f833fd0",
+      "created_at": "2026-11-13T13:13:25.306312Z",
+      "title": "Protected multi-analyte cargo fingerprint to distinguish EV-associated vs secretome contributions",
+      "design_question": "Which intact-EV-associated multi-omic cargo comparison (protected miRNA + detergent-sensitive protein markers + lipid-class distribution) across matched fractionation states best separates lot-conserved EV cargo from variable secretome co-isolates without presuming a single active molecule?",
+      "primary_domain": "cargo",
+      "secondary_domains": [
+        "product_identity",
+        "manufacturing",
+        "stability"
+      ],
+      "selected_gap_id": "design-gap-cargo-composition",
+      "proposed_product_change_or_attribute": "Define a candidate cargo-consistency fingerprint comprising (A) miRNA species enriched in capture-positive, detergent-protected particle fractions; (B) a panel of detergent/protease-sensitive capture-positive proteins; and (C) a lipid-class distribution that together form a reproducible lot-level signature to gate lot acceptance and prioritize downstream potency linkage studies.",
+      "biological_rationale": "If a membrane-protected, capture-positive particle fraction contains a reproducible multi-omic cargo fingerprint across independent production lots, that fingerprint can function as an EV-associated lot-consistency metric independent of a single assigned active molecule.",
+      "manufacturing_rationale": "A qualitative, non-numeric fingerprint that is reproducible across production lots enables a comparability gate to advance representative lots into bridging and potency-linkage studies without premature numeric release limits.",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "A membrane-protected, capture-positive particle fraction contains discrete protected cargo elements (miRNAs + luminal proteins) that can be reproducibly detected across production lots."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "Detection of a conserved, membrane-protected multi-analyte fingerprint in capture-positive particle-peak fractions distinguishes EV-associated cargo from variable, non-membrane secretome co-isolates."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If the protected-cargo fingerprint is reproducible across >=3 lots, it can be used as a qualitative lot-consistency gate to advance lots for potency linkage and CMC comparability, reducing manufacturing risk from undefined cargo variability."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-hermann-2023-neonatal-hi",
+              "ev-kodali-2017-status-epilepticus"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate: guidance supports protected-cargo linkage to EV identity; rodent efficacy shows activity but does not define protected cargo.",
+            "competing_explanation": "Consistent cargo signals could reflect consistent co-isolation of non-vesicular complexes rather than bona fide EV-protected cargo.",
+            "missing_experiment": "Protected-cargo profiling on immuno-captured particle-peak fractions with detergent/protease controls and spike-in controls across matched lots."
+          },
+          {
+            "edge_id": "e2",
+            "source_node_id": "n2",
+            "target_node_id": "n3",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate-to-high: establishing a reproducible fingerprint is necessary for CMC gating, but cross-species delivery uncertainties mean functional relevance still requires bridging.",
+            "competing_explanation": "A reproducible analytic fingerprint might not correlate with in vivo delivery or potency; fingerprint reproducibility alone does not establish functional relevance.",
+            "missing_experiment": "Blinded cross-lot reproducibility testing and subsequent linkage to functional or in vivo short-interval recoverability studies."
+          }
+        ]
+      },
+      "expected_measurable_effect": "A qualitative, reproducible presence of a protected multi-omic fingerprint (>=3 protected miRNAs and >=1 detergent-sensitive luminal protein plus consistent lipid-class pattern) in capture-positive particle-peak fractions across >=3 lots; loss of these signals after detergent+protease confirms membrane protection.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "contradicting_evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "explicit_inferences": [
+        "A protected multi-omic fingerprint that is reproducible across lots can be used as a non-numeric lot-comparability gate.",
+        "Spike-in and detergent/protease protection controls are required to distinguish assay failure or co-isolates from true EV-protected cargo."
+      ],
+      "assumptions": [
+        "Capture reagents and multi-omic assays have sufficient sensitivity for low-biomass capture fractions.",
+        "Spike-in tracer behaves like endogenous intact EVs for recovery/protection readouts.",
+        "Detergent+protease treatment adequately disrupts membranes and exposes protease-sensitive cargo for discrimination."
+      ],
+      "competing_explanations": [
+        "Observed conserved cargo could reflect consistent co-isolation of abundant soluble complexes or assay cross-reactivity.",
+        "Reproducible fingerprint may not predict in vivo delivery or potency and thus would remain a manufacturing/comparability gate only."
+      ],
+      "manufacturability_assessment": "Feasible if capture and protected-cargo assays are sufficiently sensitive at intended pilot scale; requires >=3 production lots and validated spike-in controls. Does not assert numeric release limits at this stage.",
+      "measurement_strategy": "Orthogonal intact-EV capture workflow with density/SEC fractionation to identify particle peaks, immuno-capture of intact material, detergent+protease protection splits, targeted small-RNA panels, targeted proteomics for luminal proteins, and targeted lipidomics on particle-peak fractions; include exogenous spike-in tracer and buffer-compatibility controls.",
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20261113T131325Z-03ee8f833fd0-1"
+      ],
+      "proposed_potency_relationship": "If the protected-cargo fingerprint correlates with a reproducible in vitro protected bioactivity (to be tested), it can be used to prioritize potency-linkage experiments; currently proposed as independent of assumed single active molecule.",
+      "principal_risks": [
+        "Assay sensitivity and compatibility may be insufficient to detect protected cargo in low-biomass capture eluates.",
+        "Conserved fingerprints may reflect non-vesicular co-isolates rather than true EV-protected cargo.",
+        "A reproducible fingerprint may not translate to in vivo exposure or potency; bridging studies remain necessary."
+      ],
+      "falsification_criteria": [
+        "Spike-in controls validate assay recovery but protected-cargo panel members are absent or not detergent/protease-sensitive in capture-positive fractions across >=3 lots.",
+        "Detected signals are detergent-insensitive indicating non-membrane association and inability to discriminate EV-protected cargo."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20261113T131325Z-03ee8f833fd0",
+        "question": "Which protected multi-analyte cargo comparison reproducibly distinguishes EV-associated cargo from secretome co-isolates?",
+        "hypothesis_tested": "A reproducible multi-omic cargo fingerprint (protected miRNAs + detergent/protease-sensitive luminal proteins + lipid-class pattern) will be detected in capture-positive particle-peak fractions across >=3 independent lots and lost after detergent+protease.",
+        "required_material": [
+          "MSC-conditioned medium from >=3 independent production lots (same source-cell bank/passage range)",
+          "Matched bounded small-EV fraction and concentrated conditioned-medium outputs per lot",
+          "Immuno-capture reagents for intact EV markers (anti-CD63/CD9/CD81 or TIM4/AnxA5)",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Iodixanol or SEC fractionation materials and fraction collectors",
+          "Exogenous intact-EV spike-in tracer (orthogonal species or isotope-labeled)",
+          "Protease (proteinase K), RNase reagents and detergent (Triton X-100)",
+          "Reagents and platforms for targeted small-RNA profiling and targeted proteomics and lipidomics with spike-in/internal standards",
+          "Total protein assay reagents and consumables"
+        ],
+        "comparator": "For each lot, compare capture-positive particle-peak fractions from bounded small-EV fraction versus matched concentrated conditioned-medium fractions; include +/- detergent+protease splits and spike-in controls.",
+        "control": "Positive control: characterized small EV preparation processed in parallel; Negative controls: buffer-only and detergent-disrupted samples; spike-in to validate recovery.",
+        "assay": "Orthogonal capture workflow with fractionation, particle counts, immuno-capture, detergent+protease protection splits, targeted miRNA, targeted proteomics and lipidomics on capture-positive particle-peak fractions.",
+        "primary_readout": "Qualitative reproducible presence of predefined protected miRNAs and proteomic markers plus lipid-class pattern in capture-positive particle-peak fractions across >=3 lots and loss after detergent+protease.",
+        "secondary_readouts": [
+          "Protein:particle ratio per fraction",
+          "Co-localization metrics (fraction index of particle peak vs capture-positive signal)",
+          "Spike-in recovery and detergent/protease sensitivity"
+        ],
+        "success_criterion": "Across >=3 independent lots, capture-positive particle-peak fractions reproducibly show the predefined protected-cargo panel and signals are substantially reduced/abolished after detergent+protease; concentrated secretome controls lack this protected pattern.",
+        "failure_criterion": "No reproducible multi-omic fingerprint across >=3 independent lots, or signals in captured fractions are detergent/protease-insensitive, or spike-in controls reveal assay artifacts.",
+        "falsification_outcome": "If falsified, cargo composition cannot be used as a reproducible lot-consistency gate; prioritize alternative attributes (surface-phenotype, spike-in fraction gates), tighten fractionation or source-cell control, or adopt secretome-centric product definitions.",
+        "dependencies": [
+          "Analytical sensitivity and platform availability for targeted multi-omic assays",
+          "Validated immuno-capture reagents and spike-in tracer performance",
+          "Sufficient production lots and material yield"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus",
+          "ev-driedonks-2022-macaque-biodistribution",
+          "ev-zhuang-2011-intranasal-exosome"
+        ],
+        "complexity": "high",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "availability of >=3 pilot GMP-like lots",
+        "analytical platforms for targeted miRNA, proteomics, and lipidomics",
+        "validated exogenous intact-EV spike-in tracer and capture reagents"
+      ],
+      "human_decisions_required": [
+        "Select the predefined protected-cargo panel (exact miRNA and protein targets) and lipid-class metrics to assay",
+        "Approve allocation of >=3 pilot lots and resources for multi-omic assays",
+        "Decide whether to adopt the fingerprint as a non-numeric comparability gate if reproduced"
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "The proposal is plausible and partially supported by consensus-quality guidance and rodent preclinical reports, but lacks direct canonical experimental support that a detergent-sensitive, protected multi-omic fingerprint reproducibly discriminates EVs from co-isolates across independent lots or that such a fingerprint predicts in vivo delivery/potency in larger species. Key experimental validation (protected-cargo profiling with spike-in controls across >=3 lots, orthogonal capture, and demonstration that spike-in tracers behave like intact EVs) is missing and required before adopting the fingerprint as a non-numeric comparability gate.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus"
+          ],
+          "evidence_gap": "No canonical evidence demonstrates that (a) the proposed protected multi-omic fingerprint (protected miRNAs + detergent-sensitive luminal proteins + lipid-class pattern) reproducibly distinguishes bona fide EVs from co-isolated secretome complexes across >=3 independent production lots using orthogonal capture and detergent+protease splits, or (b) that the proposed exogenous spike-in tracer reliably models endogenous intact-EV recovery/protection in these assays. Also absent is bridging evidence that a reproduced fingerprint predicts in vivo delivery or potency in relevant larger-animal models (non-human primate) or human-relevant systems.",
+          "concerns": [
+            "Assay sensitivity for low-biomass, capture-positive eluates may be insufficient to detect predefined miRNA/protein/lipid targets, undermining reproducibility claims.",
+            "An exogenous spike-in tracer may not mimic endogenous intact EVs for recovery/protection readouts (behavioral/biophysical mismatch).",
+            "Detergent+protease treatment may incompletely discriminate membrane-protected luminal cargo from resilient non-vesicular complexes or tightly associated protein/RNA complexes, risking false attribution to EVs.",
+            "Conserved fingerprints could reflect consistent co-isolation of abundant soluble or non-vesicular complexes or shared artifacts (assay cross-reactivity) rather than true EV luminal cargo.",
+            "Reproducible analytic fingerprint alone does not establish biological relevance: no canonical evidence links such a fingerprint to in vivo delivery or potency, and Driedonks et al. (non-human primate) indicates intranasal biodistribution may not generalize across species, raising translational risk."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "The protected multi-omic fingerprint concept is scientifically plausible and aligns with ISEV/MISEV guidance and rodent activity data, but current evidence is indirect and insufficient to adopt as a CMC gate. Key analytical and translational gaps must be closed (sensitivity/assay validation, spike-in performance, detergent/protease protection controls, multi‑lot reproducibility, and linkage to exposure/potency), and non-vesicular co-isolates and species-dependent delivery remain concrete risks to operationalization.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "No direct evidence that (a) the proposed orthogonal capture + detergent/protease protection workflow yields sufficiently sensitive, interference‑free readouts in low‑biomass capture eluates across >=3 independent GMP-like lots; (b) spike-in tracer mimics endogenous EV recovery/protection; or (c) a reproducible protected fingerprint predicts in‑vivo exposure or potency (non-human-primate data show limited intranasal brain uptake for one EV source). Experimental validation of assay limits, spike-in behavior, and cross‑lot reproducibility plus short‑interval in‑vivo recoverability/potency bridging are required.",
+          "concerns": [
+            "Measurement feasibility — Targeted miRNA/proteomics/lipidomics on immuno-captured, low‑biomass eluates is high‑risk without demonstrated analytical sensitivity, matrix effects assessment, and orthogonal controls (ISEV recommends).",
+            "Process sensitivity — Immuno-capture reagents, fractionation (iodixanol/SEC), and particle-counting steps may introduce lot-to-lot variability; small changes in upstream culture/harvest can alter cargo and confound the fingerprint.",
+            "Lot comparability — Requirement for >=3 pilot GMP-like lots is appropriate, but source‑cell consistency (primary vs immortalized MSC) and upstream scale/bioreactor parameters may drive artifactual conserved signals (consistent co-isolates) rather than true EV-protected cargo.",
+            "Scale-up risk — Methods relying on laborious fractionation and immuno-capture at release scale are difficult to scale robustly; reagents (capture antibodies, spike-ins) and fractionation throughput present supply-chain and cost risks.",
+            "Manufacturability — A qualitative, non‑numeric gate is manufacturable in principle but only if capture and protection assays are validated for throughput and robustness; otherwise lot advancement decisions will be unreliable.",
+            "Stability — Lipid-class patterns and luminal cargo can be altered by storage/freeze-thaw and downstream processing; stability studies must confirm fingerprint persistence under intended hold/transport conditions.",
+            "Quality-attribute relevance — A reproducible protected fingerprint does not by itself demonstrate relevance to biological activity or delivery; Driedonks NHP data highlight species- and source-dependent biodistribution limitations, so linkage studies to exposure/potency are required before assigning regulatory/comparability weight."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "The proposed protected multi-omic fingerprint is a plausible and potentially useful non-numeric lot-consistency gate, but its validity depends on critical analytical and biological demonstrations that are not yet provided. Specifically, orthogonal controls (validated intact-EV spike-in, detergent+protease protection, and immuno-capture specificity), assay sensitivity for low-biomass fractions, and demonstration that the fingerprint discriminates vesicle-protected cargo from consistent co-isolated non-vesicular complexes are required. Even if analytically reproducible, the fingerprint will still require bridging to functional or short-interval recovery/in vivo exposure studies to establish relevance for potency or delivery decisions.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "Key experimental gaps: (1) direct demonstration that the candidate panel members reside inside membrane-bound vesicles in capture-positive particle-peak fractions (orthogonal protection assays plus independent imaging or single-particle co-localization), (2) validation that the proposed exogenous spike-in tracer truly mimics endogenous intact EV recovery/protection across the entire workflow, (3) analytical sensitivity/LOD assessments for targeted miRNA, proteomics and lipidomics on the expected low-biomass eluates, and (4) blinded cross-lot reproducibility plus linkage to short-interval in vivo recovery or functional assays to show the fingerprint predicts relevant exposure or activity.",
+          "concerns": [
+            "Assay sensitivity risk: targeted multi-omic assays may lack the limit-of-detection required for low-yield immuno-captured fractions; MISEV guidance (ev-misev2023-quality-framework) emphasizes orthogonal characterization and assay validation to avoid false negatives/positives.",
+            "Protection-control interpretation: detergent+protease splits can support membrane protection claims but may not fully discriminate tightly bound non-vesicular RNP/protein complexes or surface-adherent cargo; orthogonal methods (e.g., EM, single-particle co-localization, density-shift assays) are advisable per MISEV guidance.",
+            "Spike-in representativeness: the proposal assumes the spike-in tracer behaves like endogenous intact EVs for recovery/protection readouts; without empirical validation, spike-in artifacts could mask co-isolation or capture biases.",
+            "Alternative explanation risk: reproducible cargo signals could reflect consistent co-isolation of abundant soluble complexes or assay cross-reactivity rather than bona fide luminal vesicle cargo; the missing experiments need to directly test this competing explanation (e.g., compare detergent-insensitive versus -sensitive components, RNase accessibility with/without detergent, and orthogonal separation to remove soluble complexes).",
+            "Functional relevance gap: preclinical intranasal activity in rodents (ev-zhuang-2011-intranasal-exosome, ev-kodali-2017-status-epilepticus, ev-hermann-2023-neonatal-hi) supports therapeutic plausibility of EV-associated cargo, but non-human-primate biodistribution (ev-driedonks-2022-macaque-biodistribution) highlights species, formulation and route-dependent limitations in delivery—therefore a reproducible fingerprint alone does not establish in vivo delivery or potency.",
+            "Discrimination of competing explanations: as designed, the experiment will partly discriminate EV-protected cargo vs some secretome co-isolates if spike-in and detergent/protease controls function as intended; however, without orthogonal imaging/density or single-particle assays, it may not rule out tightly associated non-vesicular complexes or assay cross-reactivity."
+          ]
+        }
+      ],
+      "adversary_objection": "A reproducible multi-omic “protected” fingerprint in capture-positive particle-peak fractions can be produced by consistent co-isolation of non‑vesicular, detergent‑resistant complexes or by assay cross‑reactivity/artifact (including spike‑in mismatch), so the measured signature may not reflect bona fide membrane‑enclosed EV cargo and therefore would not be a valid lot-consistency gate or predict in‑vivo delivery/potency.",
+      "chair_rationale": "The protected multi-omic fingerprint is scientifically plausible and supported by guidance/rodent data but lacks critical experimental validation to serve as a CMC gate. Proceed to targeted testing: validate analytical sensitivity on low-biomass capture eluates, confirm the exogenous spike-in reliably mimics endogenous intact EV recovery/protection, demonstrate detergent+protease splits discriminate luminal cargo from resilient non-vesicular co-isolates with orthogonal imaging/density/single-particle assays, and perform blinded >=3–lot reproducibility plus short-interval in vivo/functional bridging before any comparability use.",
+      "determination": "needs_manufacturing_assessment",
+      "status": "reviewed",
+      "promotion_human_approved": false,
+      "novelty_statement": "This proposal shifts the product-attribute focus from single-molecule potency claims to a composite, membrane-protected multi-omic fingerprint (protected miRNAs + detergent-sensitive proteins + lipid-class pattern) as a non-numeric lot-consistency gate. This is a substantive change from prior hypotheses that emphasized single markers or bulk particle metrics; here the program adopts a composite, protected-cargo fingerprint requiring multi-omic protected-cargo assays and spike-in controls.",
+      "distinguished_from_hypothesis_ids": [
+        "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58",
+        "design-hypothesis-run-20261016T095537Z-3c47696fc5c2",
+        "design-hypothesis-run-20261029T113548Z-1d3cdaa95147"
+      ],
+      "theme_id": "design-gap-cargo-composition",
+      "sequence_within_theme": 4
     }
   ],
   "proposed_experiments": [
@@ -12576,6 +12812,49 @@
       "complexity": "high",
       "human_approval_state": "pending",
       "execution_status": "proposed"
+    },
+    {
+      "experiment_id": "design-experiment-run-20261113T131325Z-03ee8f833fd0",
+      "question": "Which protected multi-analyte cargo comparison reproducibly distinguishes EV-associated cargo from secretome co-isolates?",
+      "hypothesis_tested": "A reproducible multi-omic cargo fingerprint (protected miRNAs + detergent/protease-sensitive luminal proteins + lipid-class pattern) will be detected in capture-positive particle-peak fractions across >=3 independent lots and lost after detergent+protease.",
+      "required_material": [
+        "MSC-conditioned medium from >=3 independent production lots (same source-cell bank/passage range)",
+        "Matched bounded small-EV fraction and concentrated conditioned-medium outputs per lot",
+        "Immuno-capture reagents for intact EV markers (anti-CD63/CD9/CD81 or TIM4/AnxA5)",
+        "Particle counter (NTA or TRPS) and reagents",
+        "Iodixanol or SEC fractionation materials and fraction collectors",
+        "Exogenous intact-EV spike-in tracer (orthogonal species or isotope-labeled)",
+        "Protease (proteinase K), RNase reagents and detergent (Triton X-100)",
+        "Reagents and platforms for targeted small-RNA profiling and targeted proteomics and lipidomics with spike-in/internal standards",
+        "Total protein assay reagents and consumables"
+      ],
+      "comparator": "For each lot, compare capture-positive particle-peak fractions from bounded small-EV fraction versus matched concentrated conditioned-medium fractions; include +/- detergent+protease splits and spike-in controls.",
+      "control": "Positive control: characterized small EV preparation processed in parallel; Negative controls: buffer-only and detergent-disrupted samples; spike-in to validate recovery.",
+      "assay": "Orthogonal capture workflow with fractionation, particle counts, immuno-capture, detergent+protease protection splits, targeted miRNA, targeted proteomics and lipidomics on capture-positive particle-peak fractions.",
+      "primary_readout": "Qualitative reproducible presence of predefined protected miRNAs and proteomic markers plus lipid-class pattern in capture-positive particle-peak fractions across >=3 lots and loss after detergent+protease.",
+      "secondary_readouts": [
+        "Protein:particle ratio per fraction",
+        "Co-localization metrics (fraction index of particle peak vs capture-positive signal)",
+        "Spike-in recovery and detergent/protease sensitivity"
+      ],
+      "success_criterion": "Across >=3 independent lots, capture-positive particle-peak fractions reproducibly show the predefined protected-cargo panel and signals are substantially reduced/abolished after detergent+protease; concentrated secretome controls lack this protected pattern.",
+      "failure_criterion": "No reproducible multi-omic fingerprint across >=3 independent lots, or signals in captured fractions are detergent/protease-insensitive, or spike-in controls reveal assay artifacts.",
+      "falsification_outcome": "If falsified, cargo composition cannot be used as a reproducible lot-consistency gate; prioritize alternative attributes (surface-phenotype, spike-in fraction gates), tighten fractionation or source-cell control, or adopt secretome-centric product definitions.",
+      "dependencies": [
+        "Analytical sensitivity and platform availability for targeted multi-omic assays",
+        "Validated immuno-capture reagents and spike-in tracer performance",
+        "Sufficient production lots and material yield"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "complexity": "high",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
     }
   ],
   "parked_hypothesis_ids": [],
@@ -13569,6 +13848,26 @@
       ],
       "measurement_concept": "Orthogonal intact-EV signature preservation (qualitative) controlled by spike-in recovery; non-numeric pass/fail for concentration envelope gating.",
       "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20261113T131325Z-03ee8f833fd0-1",
+      "name": "Protected multi-omic cargo fingerprint (miRNA + protein + lipid) in capture-positive particle-peak fractions",
+      "group": "cargo_profile",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "A composite protected-cargo fingerprint provides a non-numeric lot-consistency metric to distinguish EV-associated cargo from secretome co-isolates.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "uncertainty": "High-to-moderate: requires multi-lot verification and assay sensitivity validation.",
+      "source_hypothesis_id": "design-hypothesis-run-20261113T131325Z-03ee8f833fd0",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261113T131325Z-03ee8f833fd0",
+        "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58"
+      ],
+      "measurement_concept": "Presence/absence and detergent-sensitivity of a predefined panel of protected miRNAs and luminal proteins plus lipid-class ratios in capture-positive particle-peak fractions.",
+      "human_approved": false
     }
   ],
   "design_gaps": [
@@ -13675,13 +13974,14 @@
       "rationale": "Cargo strategy and active biological contributors remain unresolved.",
       "evidence_ids": [],
       "status": "open",
-      "times_explored": 3,
-      "last_explored_at": "2026-10-29T11:35:48.182746Z",
-      "latest_hypothesis_id": "design-hypothesis-run-20261029T113548Z-1d3cdaa95147",
+      "times_explored": 4,
+      "last_explored_at": "2026-11-13T13:13:25.306312Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20261113T131325Z-03ee8f833fd0",
       "hypothesis_ids": [
         "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58",
         "design-hypothesis-run-20261016T095537Z-3c47696fc5c2",
-        "design-hypothesis-run-20261029T113548Z-1d3cdaa95147"
+        "design-hypothesis-run-20261029T113548Z-1d3cdaa95147",
+        "design-hypothesis-run-20261113T131325Z-03ee8f833fd0"
       ],
       "open_questions": [
         "Does any cargo profile track a functional readout across future preparations?"
@@ -14279,7 +14579,14 @@
       "gap_id": "design-gap-scale-control",
       "determination": "needs_evidence",
       "created_at": "2026-11-12T13:51:16.695047Z"
+    },
+    {
+      "run_id": "run-20261113T131325Z-03ee8f833fd0",
+      "hypothesis_id": "design-hypothesis-run-20261113T131325Z-03ee8f833fd0",
+      "gap_id": "design-gap-cargo-composition",
+      "determination": "needs_manufacturing_assessment",
+      "created_at": "2026-11-13T13:13:25.306312Z"
     }
   ],
-  "updated_at": "2026-11-12T13:51:16.695047Z"
+  "updated_at": "2026-11-13T13:13:25.306312Z"
 }

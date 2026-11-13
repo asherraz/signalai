@@ -1,0 +1,20 @@
+{
+  "concerns": [
+    "Assay sensitivity risk: targeted multi-omic assays may lack the limit-of-detection required for low-yield immuno-captured fractions; MISEV guidance (ev-misev2023-quality-framework) emphasizes orthogonal characterization and assay validation to avoid false negatives/positives.",
+    "Protection-control interpretation: detergent+protease splits can support membrane protection claims but may not fully discriminate tightly bound non-vesicular RNP/protein complexes or surface-adherent cargo; orthogonal methods (e.g., EM, single-particle co-localization, density-shift assays) are advisable per MISEV guidance.",
+    "Spike-in representativeness: the proposal assumes the spike-in tracer behaves like endogenous intact EVs for recovery/protection readouts; without empirical validation, spike-in artifacts could mask co-isolation or capture biases.",
+    "Alternative explanation risk: reproducible cargo signals could reflect consistent co-isolation of abundant soluble complexes or assay cross-reactivity rather than bona fide luminal vesicle cargo; the missing experiments need to directly test this competing explanation (e.g., compare detergent-insensitive versus -sensitive components, RNase accessibility with/without detergent, and orthogonal separation to remove soluble complexes).",
+    "Functional relevance gap: preclinical intranasal activity in rodents (ev-zhuang-2011-intranasal-exosome, ev-kodali-2017-status-epilepticus, ev-hermann-2023-neonatal-hi) supports therapeutic plausibility of EV-associated cargo, but non-human-primate biodistribution (ev-driedonks-2022-macaque-biodistribution) highlights species, formulation and route-dependent limitations in delivery\u2014therefore a reproducible fingerprint alone does not establish in vivo delivery or potency.",
+    "Discrimination of competing explanations: as designed, the experiment will partly discriminate EV-protected cargo vs some secretome co-isolates if spike-in and detergent/protease controls function as intended; however, without orthogonal imaging/density or single-particle assays, it may not rule out tightly associated non-vesicular complexes or assay cross-reactivity."
+  ],
+  "conclusion": "The proposed protected multi-omic fingerprint is a plausible and potentially useful non-numeric lot-consistency gate, but its validity depends on critical analytical and biological demonstrations that are not yet provided. Specifically, orthogonal controls (validated intact-EV spike-in, detergent+protease protection, and immuno-capture specificity), assay sensitivity for low-biomass fractions, and demonstration that the fingerprint discriminates vesicle-protected cargo from consistent co-isolated non-vesicular complexes are required. Even if analytically reproducible, the fingerprint will still require bridging to functional or short-interval recovery/in vivo exposure studies to establish relevance for potency or delivery decisions.",
+  "evidence_gap": "Key experimental gaps: (1) direct demonstration that the candidate panel members reside inside membrane-bound vesicles in capture-positive particle-peak fractions (orthogonal protection assays plus independent imaging or single-particle co-localization), (2) validation that the proposed exogenous spike-in tracer truly mimics endogenous intact EV recovery/protection across the entire workflow, (3) analytical sensitivity/LOD assessments for targeted miRNA, proteomics and lipidomics on the expected low-biomass eluates, and (4) blinded cross-lot reproducibility plus linkage to short-interval in vivo recovery or functional assays to show the fingerprint predicts relevant exposure or activity.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "supported": true
+}

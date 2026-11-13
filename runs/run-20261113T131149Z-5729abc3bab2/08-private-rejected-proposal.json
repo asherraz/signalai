@@ -1,0 +1,168 @@
+{
+  "outcome": "evidence_gap",
+  "rejected_recommendation": {
+    "evidence_assessment": "ev-misev2023-quality-framework supports the need for a defined identity/potency gating package but does not provide any SGL-001 program-specific CMC, analytical validation, or batch comparability data; therefore the current evidence is insufficient to verify program claims about MCB/WCB, assay validation, stability-linked potency, comparability, or formulation compatibility.",
+    "findings": [
+      "MISEV2023 (ev-misev2023-quality-framework) establishes consensus best practices requiring orthogonal characterization, validated intact-EV assays, production reporting, and formulation compatibility prior to confident identity/potency claims and cross-species PK/PD bridging.",
+      "The supplied evidence set contains no program-specific documentation (MCB/WCB records, intact-EV assay validation reports with LLOQ/specificity/precision, stability-indicating potency assay correlated to in vivo PD, comparability across \u22653 GMP-like batches, or formulation/device compatibility recovery data) required to confirm that SGL-001 meets MISEV-recommended CMC/analytics gating criteria.",
+      "Framework-level hypothesis that a Stage-1 gating package is required before cross-species PK/PD is supported; specific program claims that the gating elements have been completed are unsupported by the evidence provided."
+    ],
+    "matter_id": "matter-potency-identity-characterization",
+    "objections": [
+      "MISEV2023 is a best-practice consensus and does not constitute program-specific CMC, analytics, or batch data for SGL-001; it cannot substitute for MCB/WCB records, assay validation reports, batch comparability, or formulation compatibility studies.",
+      "No supplied program documents demonstrate: (a) MCB/WCB production and characterization; (b) intact-EV assay validation reporting LLOQ, specificity, precision, accuracy; (c) a stability-indicating potency assay mechanistically linked and statistically correlated to an in vivo PD endpoint; (d) comparability across \u22653 GMP-like batches including release, stability, and potency data; or (e) formulation/device compatibility demonstrating intact-EV recovery ex vivo and controlled in vivo isolation of intact-EV signal."
+    ],
+    "proposed_changes": {
+      "claim_updates": [
+        {
+          "claim_id": "claim-ev-cmc-requirements",
+          "created_at": "2026-11-13T00:00:00Z",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "program_id": "SGL-001",
+          "rationale": "MISEV2023 provides best-practice recommendations but the supplied evidence set lacks program-specific documentation to support these assertions.",
+          "statement": "Required CMC/analytic elements (MCB/WCB, validated intact-EV assays, stability-linked potency, GMP-like batch comparability, formulation compatibility) have been produced and documented for SGL-001.",
+          "status": "disputed"
+        },
+        {
+          "claim_id": "claim-rodent-cns-delivery",
+          "created_at": "2026-11-13T00:00:00Z",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "program_id": "SGL-001",
+          "rationale": "No program-specific validated assays, comparability reports, or formulation recovery data were provided to support lot-to-lot or formulation comparability claims underlying rodent biodistribution conclusions.",
+          "statement": "Existing intranasal/rodent delivery data for SGL-001 are supported by validated identity/potency measures enabling direct comparability to other lots/formulations.",
+          "status": "disputed"
+        },
+        {
+          "claim_id": "claim-source-cell-scalability",
+          "created_at": "2026-11-13T00:00:00Z",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "program_id": "SGL-001",
+          "rationale": "MISEV2023 recommends process reporting and controls but no program MCB/WCB, scale-up run reports, or batch comparability data were provided to confirm scalability and reproducibility.",
+          "statement": "Source-cell MCB/WCB and scale-up manufacturing records demonstrate reproducible scalable production of SGL-001.",
+          "status": "disputed"
+        }
+      ],
+      "decision_update": {
+        "approval_status": "pending",
+        "approved_at": null,
+        "approved_by": null,
+        "decision_id": "decision-sgl001-run-biodistribution-package",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "outcome": null,
+        "program_id": "SGL-001",
+        "question": "Should SGL-001 proceed to cross-species PK/PD bridging based on current identity/potency evidence?",
+        "rationale": "Framework guidance supports the need for a Stage-1 gating package. The program has not provided the required CMC/analytic/batch documentation to demonstrate that gating criteria are met. Require submission and review of the Stage-1 package before approval to proceed.",
+        "requires_human_approval": true,
+        "risk_ids": [
+          "risk-cross-species-cns-delivery",
+          "risk-cmc-identity-potency",
+          "risk-model-efficacy-generalizability"
+        ],
+        "supporting_claim_ids": [
+          "claim-ev-cmc-requirements",
+          "claim-rodent-cns-delivery",
+          "claim-source-cell-scalability"
+        ]
+      },
+      "editorial_clarification": "Confirm whether all references to 'SGL-001' materials correspond to a single defined source/batch lineage and whether any GMP-like batches have been produced to date.",
+      "evidence_confidence_update": "moderate",
+      "hypothesis_update": {
+        "contradicting_claim_ids": [],
+        "created_at": "2026-11-13T00:00:00Z",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "hypothesis_id": "hypothesis-sgl001-biodistribution-gate",
+        "program_id": "SGL-001",
+        "rationale": "Supported by consensus best-practice guidance (ev-misev2023-quality-framework) which documents challenges in EV characterization and in vivo reproducibility and recommends orthogonal characterization, validated assays, and controls prior to bridging studies.",
+        "statement": "A defined CMC/analytics/formulation compatibility gating package is required before high-confidence cross-species PK/PD bridging for SGL-001.",
+        "status": "active",
+        "supporting_claim_ids": [
+          "claim-ev-cmc-requirements",
+          "claim-rodent-cns-delivery",
+          "claim-source-cell-scalability"
+        ],
+        "test_plan": "Define orthogonal characterization panel, validate intact-EV assays (LLOQ/specificity/precision), develop stability-indicating potency linked to in vivo PD, and run \u22653 GMP-like batches for comparability; submit package for review."
+      },
+      "next_action": "Assemble a Stage-1 gating package and submit for independent review containing: (1) MCB/WCB documentation (origin, banking records, QC characterization); (2) orthogonal QC panel SOPs and raw data; (3) full analytical validation reports for intact-EV assays demonstrating LLOQ, specificity, precision, accuracy and linked SOPs; (4) a validated, stability-indicating potency assay report mechanistically linked and statistically correlated to a defined in vivo PD endpoint; (5) comparability reports across \u22653 GMP-like manufacturing runs (release specifications, stability, potency, lot-to-lot reproducibility); and (6) formulation/device compatibility studies showing intact-EV recovery ex vivo and controlled in vivo experiments isolating intact-EV signal from non-vesicular components.",
+      "program_status_update": null,
+      "risk_updates": [
+        {
+          "description": "Risk that intranasal rodent biodistribution and PD will not translate to other species due to uncontrolled product variability and lack of validated identity/potency measures.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "likelihood": "high",
+          "mitigation": "Require Stage-1 gating package including validated assays and comparability before cross-species studies.",
+          "owner": null,
+          "program_id": "SGL-001",
+          "risk_id": "risk-cross-species-cns-delivery",
+          "severity": "high",
+          "status": "open",
+          "title": "Cross-species intranasal CNS delivery uncertainty"
+        },
+        {
+          "description": "Risk that lack of MCB/WCB, assay validation, and stability-linked potency prevents reliable product identity and potency claims.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "likelihood": "high",
+          "mitigation": "Produce and document MCB/WCB, validate orthogonal QC assays, and correlate a stability-indicating potency assay to in vivo PD prior to advancement.",
+          "owner": null,
+          "program_id": "SGL-001",
+          "risk_id": "risk-cmc-identity-potency",
+          "severity": "critical",
+          "status": "open",
+          "title": "Insufficiently characterized identity and potency"
+        },
+        {
+          "description": "Risk that efficacy signals observed in current models reflect uncontrolled product variability rather than true mechanism-of-action.",
+          "evidence_ids": [
+            "ev-misev2023-quality-framework"
+          ],
+          "likelihood": "moderate",
+          "mitigation": "Establish validated identity/potency measures and comparability across manufacturing runs before interpreting efficacy differences or progressing to translational studies.",
+          "owner": null,
+          "program_id": "SGL-001",
+          "risk_id": "risk-model-efficacy-generalizability",
+          "severity": "high",
+          "status": "open",
+          "title": "Model-to-human efficacy generalizability"
+        }
+      ]
+    },
+    "recommendation": "Do not proceed to cross-species PK/PD bridging or any downstream decisions that depend on validated identity/potency comparability until the program produces a Stage-1 gating package per MISEV recommendations (see next_action). Assemble and deliver the package for independent review and regulatory briefing. Major therapeutic advancement decisions require human approval and should remain pending.",
+    "supporting_evidence_ids": [
+      "ev-misev2023-quality-framework"
+    ]
+  },
+  "unsupported_conclusions": [
+    {
+      "conclusion": "Unsupported as stated. The MISEV2023 consensus (ev-misev2023-quality-framework) provides best\u2011practice recommendations for orthogonal characterization, assay validation, and production reporting but does not itself provide program\u2011specific records demonstrating that an MCB/WCB has been produced, that intact\u2011EV assays have been validated (LLOQ, specificity, precision), or that stability\u2011linked potency assays correlated to in vivo PD have been executed. These program actions must be documented for confirmation.",
+      "evidence_gap": "No program\u2011linked documentation (MCB/WCB records, validated intact\u2011EV assay reports with LLOQ/specificity/precision, stability\u2011linked potency assay correlated to PD) is present in the supplied evidence to confirm these required CMC/analytics actions have been completed.",
+      "reviewer_role": "cmc"
+    },
+    {
+      "conclusion": "Unsupported as stated. MISEV2023 highlights the need for detailed production reporting and controls to support claims of reproducible, scalable manufacture, but the supplied evidence set does not include program manufacturing records (no MCB/WCB, executed scale\u2011up runs, or batch comparability data). The statement that current materials demonstrably lack characterized source\u2011cell MCB/WCB or scalable, reproducible production cannot be confirmed from the available evidence and should be treated as an open CMC/manufacturing evidence gap.",
+      "evidence_gap": "Absence of program manufacturing/scale\u2011up records, MCB/WCB documentation, and batch comparability reports prevents verification of scalable, reproducible production.",
+      "reviewer_role": "manufacturing"
+    }
+  ],
+  "verification_objections": [
+    "An MCB/WCB for SGL-001 has been produced and characterized.",
+    "Intact\u2011EV assays for SGL-001 have been validated with reported LLOQ, specificity, precision, and accuracy.",
+    "A stability\u2011indicating potency assay linked to an in vivo PD endpoint has been developed and correlated for SGL-001.",
+    "Comparability across \u22653 GMP\u2011like SGL-001 batches (release specifications, stability, and potency) has been executed and reported.",
+    "Formulation/device compatibility demonstrating intact\u2011EV recovery ex vivo and with appropriate in vivo controls for SGL-001 has been demonstrated.",
+    "Statement that current materials demonstrably lack characterized source\u2011cell MCB/WCB or scalable, reproducible production (cannot be confirmed or refuted from the provided evidence)."
+  ],
+  "verification_supports_state_change": false
+}
