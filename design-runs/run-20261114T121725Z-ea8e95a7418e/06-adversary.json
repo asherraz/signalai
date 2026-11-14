@@ -1,0 +1,19 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Assay sensitivity floor: orthogonal capture + spike\u2011in detection limits are higher than the actual recovered EV abundance from short\u2011interval lavage/CSF, leading to consistent non\u2011recovery and false conclusion of delivery failure (ev-misev2023-quality-framework; ev-driedonks-2022-macaque-biodistribution).",
+    "Spike\u2011in mismatch: exogenous tracer is recovered differently than endogenous EVs (different surface composition, aggregation, or stability), so spike\u2011in recovery misrepresents true recoverability and yields misleading within\u2011sample controls (ev-misev2023-quality-framework).",
+    "Capture interference or selective loss: immuno\u2011capture reagents or buffers preferentially bind or exclude subpopulations, so 'capture\u2011positive' signal reflects an assay subset rather than the biologically relevant intact EV fraction; particle\u2011count matched but capture\u2011depleted arms may still contain biologically active subpopulations, confounding attribution (ev-misev2023-quality-framework).",
+    "Soluble secretome confounding: rapid release or diffusion of small soluble mediators into sampled compartments could produce the same short\u2011interval ex vivo cytokine modulation ascribed to intact EVs, and detergent/protease treatments may incompletely discriminate encapsulated cargo effects from co\u2011purifying proteins or RNA-protein complexes (ev-zhuang-2011-intranasal-exosome; ev-misev2023-quality-framework).",
+    "Species and delivery barrier: rodent positive in vivo\u2192ex vivo linkage may not translate to larger animals or humans because intranasal anatomy, mucociliary clearance, and retention differ (ev-driedonks-2022-macaque-biodistribution), making the experiment non\u2011informative for translational decision\u2011making if only rodent data are obtained.",
+    "Labeling/formulation artifacts: prior labeling or fractionation can alter EV integrity or biodistribution so that detected capture\u2011positive particles are assay artifacts rather than representative of administered intact EVs (ev-misev2023-quality-framework; ev-driedonks-2022-macaque-biodistribution).",
+    "Insufficient biological replicates or lot variability: high inter\u2011lot or inter\u2011animal variability in conditioned medium yields or in vivo recovery could cause irreproducible results, making it impossible to robustly tie orthogonal exposure to ex vivo PD across cohorts (ev-hermann-2023-neonatal-hi; ev-kodali-2017-status-epilepticus)."
+  ],
+  "strongest_objection": "The single strongest bounded reason this proposal could fail is analytic and translational conflation: even with spike\u2011in controls, insufficient sensitivity and capture\u2011compatibility for low\u2011biomass nasal lavage/CSF samples (or spike\u2011in behavior that does not fully mimic endogenous EVs) could produce systematic false negatives or artifactual signal differences, and those analytic failures cannot be cleanly separated from true absence of intact EV delivery \u2014 a problem compounded by non\u2011human primate biodistribution data showing intranasal retention in the nose and negligible brain/CSF signal (ev-driedonks-2022-macaque-biodistribution). In short, assay insensitivity or misbehaving tracers plus species/delivery barriers can make the in vivo\u2192ex vivo linkage unmeasurable or misleading despite orthogonal controls (ev-misev2023-quality-framework), producing either false falsification of an intact\u2011EV mechanism or false attribution of effects to intact EVs rather than soluble secretome components (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi)."
+}

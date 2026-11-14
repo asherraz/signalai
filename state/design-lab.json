@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "program_id": "SGL-001",
-  "current_design_question": "Which intact-EV-associated multi-omic cargo comparison (protected miRNA + detergent-sensitive protein markers + lipid-class distribution) across matched fractionation states best separates lot-conserved EV cargo from variable secretome co-isolates without presuming a single active molecule?",
+  "current_design_question": "Does orthogonally verified in vivo exposure of a spike-in–validated, membrane‑protected intact‑EV fraction after intranasal dosing causally enable a reproducible short‑interval ex vivo CNS inflammatory modulation that is lost when the same material is membrane‑disrupted or capture‑depleted?",
   "reviewed_hypotheses": [
     {
       "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
@@ -10846,6 +10846,245 @@
       ],
       "theme_id": "design-gap-cargo-composition",
       "sequence_within_theme": 4
+    },
+    {
+      "hypothesis_id": "design-hypothesis-run-20261114T121725Z-ea8e95a7418e",
+      "program_id": "SGL-001",
+      "run_id": "run-20261114T121725Z-ea8e95a7418e",
+      "created_at": "2026-11-14T12:17:25.571819Z",
+      "title": "Orthogonal in vivo→ex vivo bridge: test whether an intact‑EV‑associated, membrane‑protected fraction is necessary for short‑interval CNS inflammatory modulation after intranasal dosing (spike‑in validated)",
+      "design_question": "Does orthogonally verified in vivo exposure of a spike-in–validated, membrane‑protected intact‑EV fraction after intranasal dosing causally enable a reproducible short‑interval ex vivo CNS inflammatory modulation that is lost when the same material is membrane‑disrupted or capture‑depleted?",
+      "primary_domain": "mechanism",
+      "secondary_domains": [
+        "potency",
+        "product_identity",
+        "manufacturing",
+        "delivery"
+      ],
+      "selected_gap_id": "design-gap-mechanism",
+      "proposed_product_change_or_attribute": "Adopt a mechanism‑linked potency gate defined as a spike-in–validated, intact‑EV‑associated, membrane‑protected bioactivity that (A) co‑localizes with capture‑positive particle fractions in source material, (B) is abolished by detergent + protease/RNase treatment of captured material, and (C) predicts a reproducible short‑interval ex vivo CNS inflammatory response modulation after intranasal administration. Use this as a qualitative (pass/fail) potency‑linked product‑identity attribute to decide whether a preparation is advanced as an EV‑enriched drug‑substance versus treated as secretome-like.",
+      "biological_rationale": "Rodent intranasal efficacy reports exist but do not link in vivo intact‑EV exposure to short‑interval CNS pharmacodynamics; MISEV2023 recommends orthogonal intact‑EV verification and spike‑in controls to avoid misattributing soluble secretome activity. A controlled in vivo→ex vivo bridge can test whether a membrane‑protected, capture‑positive EV fraction is necessary for a measurable short‑interval modulation of CNS immune cells, without asserting clinical efficacy.",
+      "manufacturing_rationale": "If intact‑EV exposure and short‑interval ex vivo PD require a membrane‑protected, capture‑positive fraction, that attribute becomes a gating metric for upstream fractionation, downstream/process compatibility, and lot comparability decisions (non‑numeric qualitative gate) and prioritizes preservation of that signature during scale and formulation activities.",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "An orthogonally defined intact‑EV signature (spike‑in recovery + capture‑positive signal co‑localizing with particle peaks that is detergent/protease‑sensitive) identifies a membrane‑protected EV fraction in the administered material."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If orthogonally verified intact‑EV exposure is present in short‑interval nasal lavage/CSF/olfactory‑mucosa after intranasal dosing, then captured material from those compartments will reproducibly reduce ex vivo inflammatory cytokine readouts from tissue‑derived microglia‑like cells."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If the administered preparation is capture‑depleted or membrane‑disrupted prior to dosing, or lacks the intact‑EV signature, the short‑interval ex vivo inflammatory modulation will be absent or qualitatively different, indicating the effect depends on intact EV‑associated cargo rather than bulk particle counts or soluble secretome."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "evidence_state": "inference",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-hermann-2023-neonatal-hi",
+              "ev-kodali-2017-status-epilepticus"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "High: rodent efficacy and guidance support orthogonal linkage but do not prove an in vivo→ex vivo causal bridge.",
+            "competing_explanation": "In vivo short‑interval ex vivo effects could derive from soluble secretome components that reach sampled compartments independently of intact EVs.",
+            "missing_experiment": "Short‑interval in vivo dosing with orthogonal capture, spike‑in verification, and ex vivo cytokine readout compared across membrane‑intact vs membrane‑disrupted and capture‑depleted arms."
+          },
+          {
+            "edge_id": "e2",
+            "source_node_id": "n1",
+            "target_node_id": "n3",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "relation_type": "inference",
+            "model_or_species": "non-human primate (context for delivery uncertainty)",
+            "uncertainty": "Moderate: limited large‑animal biodistribution after intranasal dosing suggests delivery barriers that could confound potency linkage, but formulation/labeling differences are competing explanations.",
+            "competing_explanation": "Failure to detect intact EV exposure in vivo may reflect assay insensitivity, labeling artifacts, or administration/formulation differences rather than absence of intact EVs.",
+            "missing_experiment": "Matched orthogonal intact‑EV verification in short‑interval samples concurrent with ex vivo functional readout."
+          }
+        ]
+      },
+      "expected_measurable_effect": "Only the arm where administered material is orthogonally verified as spike‑in–recovered and capture‑positive with particle‑peak co‑localization will produce a reproducible reduction in short‑interval ex vivo inflammatory cytokines (e.g., IL‑6/TNF‑α) from tissue‑derived microglia‑like cells; this reduction will be abolished when the same material is membrane‑disrupted prior to administration. Particle‑count‑matched but capture‑negative arms will not reproduce the effect.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "contradicting_evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "explicit_inferences": [
+        "Inference: An orthogonal in vivo→ex vivo bridge can discriminate intact‑EV‑associated activity from soluble secretome activity without asserting clinical efficacy.",
+        "Inference: Spike‑in recovery and detergent/protease protection are required controls to interpret negative in vivo recovery as delivery failure versus analytic failure."
+      ],
+      "assumptions": [
+        "Assay sensitivity for capture from low‑biomass lavage/CSF will be adequate after method optimization.",
+        "Short post‑dose sampling window can recover orthogonally verifiable intact EVs from nasal→olfactory compartments if delivery occurs."
+      ],
+      "competing_explanations": [
+        "Soluble secretome components, muco‑clearance, administration technique, or species differences could explain observed ex vivo effects independent of intact EV exposure."
+      ],
+      "manufacturability_assessment": "The proposed hypothesis requires production of bounded fractions with sufficient yield for in vivo arms and validated capture reagents and spike‑in tracer. If supported, it prioritizes investments in orthogonal QC, spike‑in controls, and process gates that preserve membrane integrity; if falsified, the program should adopt secretome‑centric CMC and formulation strategies.",
+      "measurement_strategy": "Orthogonal analytic verification of administered materials and short‑interval recovered lavage/CSF/tissue using spike‑in tracer recovery, particle counts, intact immuno‑capture, and detergent/protease protection; ex vivo standardized cytokine readout (e.g., LPS‑challenged microglia IL‑6/TNF‑α ELISA) as primary PD correlate.",
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20261114T121725Z-ea8e95a7418e-1"
+      ],
+      "proposed_potency_relationship": "If supported, the intact‑EV‑associated protected bioactivity will be used as a qualitative gate to prioritize lots and formulations for bridging studies; it is not proposed here as a validated numeric release assay.",
+      "principal_risks": [
+        "Assay insensitivity for low‑biomass lavage/CSF samples leading to false negatives.",
+        "Spike‑in tracer behavior not faithfully representing endogenous EV stability or capture behavior.",
+        "Cross‑species delivery limitations (macaque evidence) prevent translatability even if the mechanism is shown in rodents."
+      ],
+      "falsification_criteria": [
+        "No reproducible linkage between in vivo orthogonal intact‑EV verification (spike‑in recovery + capture co‑localization with particle peaks and detergent/protease sensitivity) and the ex vivo cytokine readout across independent replicates.",
+        "Particle‑count‑matched capture‑negative or membrane‑disrupted arms produce equivalent ex vivo effects to capture‑positive arms, indicating activity is not intact‑EV‑associated."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20261114T121725Z-ea8e95a7418e",
+        "question": "Can an orthogonal in vivo→ex vivo bridging experiment show that only capture‑positive, spike‑in‑validated, membrane‑protected material produces a reproducible short‑interval ex vivo CNS inflammatory modulation after intranasal dosing, independent of bulk particle counts?",
+        "hypothesis_tested": "An intact‑EV‑associated, membrane‑protected fraction (verified by spike‑in recovery, capture + detergent/protease sensitivity, and particle‑peak co‑localization) is necessary for a reproducible short‑interval ex vivo CNS inflammatory modulation following intranasal administration; particle‑count‑matched capture‑negative or membrane‑disrupted material will not produce the same ex vivo modulation.",
+        "required_material": [
+          "MSC‑conditioned medium (same source‑cell lot) processed to produce: (A) enriched small‑EV preparation (bounded fraction, e.g., SEC/iodixanol) and (B) concentrated conditioned medium (secretome‑retaining) from the same lot",
+          "Exogenous characterized intact‑EV spike‑in tracer (orthogonal species or isotope‑labeled) added prior to fractionation",
+          "Immuno‑capture reagents for canonical EV surface markers (anti‑CD63/CD9/CD81 or TIM4/AnxA5) and validated capture‑compatibility buffers",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Density‑gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+          "Protease (proteinase K), RNase reagents, and detergent (Triton X‑100 or equivalent) for membrane disruption/protection controls",
+          "Short‑interval in vivo dosing capability in rodents with capacity to collect nasal lavage, CSF (if feasible), and olfactory‑mucosa/olfactory‑bulb‑adjacent tissue at predefined short post‑dose intervals",
+          "Short‑term ex vivo CNS inflammatory assay platform (acutely harvested rodent olfactory‑bulb/olfactory‑mucosa‑adjacent tissue processed to isolate microglia‑like cells; LPS challenge; cytokine readouts such as IL‑6/TNF‑α ELISA or multiplex)",
+          "Total protein assay reagents and consumables"
+        ],
+        "comparator": "Four‑arm in vivo comparison from the same conditioned‑medium lot (all arms spiked identically before fractionation): (1) intact‑EV‑enriched, capture‑positive bounded fraction; (2) secretome‑retaining concentrated conditioned medium; (3) intact‑EV‑enriched material treated with detergent + protease prior to administration (membrane‑disrupted); (4) particle‑count‑matched but capture‑depleted preparation (if achievable).",
+        "control": "Positive controls: characterized small EVs (commercial or lab‑validated) and dexamethasone in the ex vivo assay. Negative controls: vehicle only and buffer fractions. Per‑sample spike‑in serves as within‑sample recovery control. Capture‑compatibility panels to exclude assay interference.",
+        "assay": "Integrated protocol: (A) pre‑dose orthogonal characterization (particle counts, capture on intact material, spike‑in readout, detergent/protease protection); (B) intranasal dosing; (C) short‑interval collection of nasal lavage, CSF and olfactory‑mucosa/olfactory‑bulb tissue; (D) orthogonal verification of recovered intact EVs (capture + particle counts + spike‑in); (E) ex vivo microglia‑like LPS challenge cytokine assay using captured eluates; (F) qualitative correlation of in vivo orthogonal exposure with ex vivo cytokine modulation.",
+        "primary_readout": "Presence and reproducible magnitude of reduction in ex vivo inflammatory cytokine readouts (e.g., IL‑6/TNF‑α) from tissue‑derived microglia‑like cells correlated with in vivo orthogonal evidence of intact‑EV exposure (capture‑positive signal co‑localized with particle peaks and spike‑in recovery) and abolished by detergent + protease treatment.",
+        "secondary_readouts": [
+          "Co‑localization metrics between particle‑count peaks and capture‑positive ELISA signal in administered material and in collected lavage/CSF fractions",
+          "Spike‑in recovery percentage and membrane‑protection behavior per fraction",
+          "Protein:particle ratios of administered materials and of captured fractions",
+          "Reproducibility across biological replicates (n ≥ 3 conditioned‑medium preps and animal cohorts)"
+        ],
+        "success_criterion": "Qualitative success: In multiple independent conditioned‑medium lots and animal cohorts (n ≥ 3), only the arm where administered material is orthogonally verified as spike‑in–recovered and capture‑positive with particle‑peak co‑localization produces a reproducible reduction in ex vivo inflammatory cytokine readout; this reduction is abolished when captured material is membrane‑disrupted prior to administration, and particle‑count‑matched capture‑negative or secretome‑retaining arms do not produce equivalent ex vivo modulation.",
+        "failure_criterion": "No reproducible linkage between in vivo orthogonal intact‑EV verification and the ex vivo cytokine readout across replicates, or particle‑count‑matched capture‑negative or membrane‑disrupted arms produce equivalent ex vivo effects.",
+        "falsification_outcome": "If failure criteria are met (with validated spike‑in and capture‑compatibility controls), the hypothesis is falsified and the program should treat the material as functionally indistinguishable from secretome for short‑interval ex vivo inflammatory PD and pivot product‑definition and CMC strategy accordingly.",
+        "dependencies": [
+          "Availability of conditioned‑medium lots from the same source‑cell bank and passage range",
+          "Analytical optimization to achieve sufficient sensitivity for low‑biomass capture from lavage/CSF",
+          "Animal protocol approvals for short‑interval tissue/fluid collection"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "complexity": "high",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "Analytical optimization of capture sensitivity and spike‑in tracer qualification",
+        "Sufficient conditioned‑medium yields and pilot bounded fraction material for in vivo arms",
+        "Coordination with CMC to ensure test materials meet orthogonal identity gates (if available) prior to in vivo use"
+      ],
+      "human_decisions_required": [
+        "Approve use of exogenous intact‑EV spike‑in tracer and its identity (species/isotope) for assay validation and in vivo use",
+        "Approve the short post‑dose sampling window and animal numbers for initial proof‑of‑concept in vivo→ex vivo bridge",
+        "Decide whether to proceed with rodent only initially or include a parallel large‑animal pilot depending on resource/tranlsational priorities"
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "The proposal is plausible and grounded in relevant literature (rodent intranasal EV efficacy reports and MISEV2023 quality guidance) and correctly cites non-human-primate biodistribution as a limiting/contradicting datapoint. However key experimental assumptions needed for the proposed in vivo→ex vivo bridge lack direct supporting evidence in the supplied canonical evidence set (notably: short‑interval recoverability of intact EVs from nasal/CSF/olfactory compartments after intranasal dosing, and that an exogenous spike‑in faithfully models endogenous EV capture/recovery in vivo). Because those are critical to the experimental design, the proposal as written is not fully supported by the canonical evidence.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "No direct canonical evidence demonstrating (A) short‑interval (minutes–hours) recoverable, orthogonally verifiable intact EVs in nasal lavage/CSF/olfactory mucosa after intranasal dosing in rodents, and (B) that an exogenous intact‑EV spike‑in reliably recapitulates endogenous EV stability/capture behavior in vivo (i.e., spike‑in validity for interpreting negative recoveries). These gaps are essential—if unresolved they leave the main causal linkage unverified.",
+          "concerns": [
+            "Critical assumptions (short‑interval recoverability and spike‑in fidelity) are not demonstrated in the provided evidence set and are labelled as inferences in the proposal; these inferences require experimental validation before treating negative recovery as delivery failure rather than analytic failure.",
+            "Non‑human primate biodistribution (ev-driedonks-2022) raises a realistic translational concern: lack of detectable intranasal brain/CSF signal in macaques could reflect species‑specific delivery barriers that limit extrapolation from rodent proof‑of‑concept to larger animals/humans.",
+            "Spike‑in tracers can behave differently from endogenous EVs (binding, clearance, capture antibody recognition); the proposal acknowledges this risk but lacks direct supporting data showing spike‑in fidelity—study success depends on demonstrating that spike‑in recovery correlates with endogenous EV recovery under the same handling and capture conditions.",
+            "Assay sensitivity for low‑biomass lavage/CSF is a major operational risk; while MISEV2023 supports orthogonal analytics and controls, it does not provide evidence that the proposed assays as configured will reach the necessary sensitivity—this must be empirically established prior to the in vivo arms.",
+            "The proposal correctly frames rodent intranasal efficacy reports as preclinical and formulation/route/species specific; ensure the manuscript and downstream decisions avoid representing those publications as proof of the specific SGL‑001 experimental mechanism without the proposed orthogonal in vivo verification."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "The proposal is conceptually supported by rodent intranasal efficacy reports and MISEV2023 guidance on orthogonal EV characterization, but it faces high manufacturability, measurement, and scale‑up risks that must be de‑risked before the attribute can be treated as a program gating quality attribute. Priorities: (1) invest in analytical sensitivity/orthogonal capture and spike‑in tracer qualification before in vivo bridging; (2) confirm achievable yields and membrane‑integrity retention across the proposed fractionation and handling steps (including detergent/protease controls) to enable lot comparability; and (3) plan an early larger‑animal pilot or bridging assessment to address species/delivery uncertainty highlighted by macaque data. Only if analytical recovery, reproducible short‑interval in vivo exposure, and processly robust retention of the intact‑EV signature are demonstrated should the proposed qualitative intact‑EV gate be adopted for CMC decisions.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "Critical experimental and analytical gaps: validated spike‑in tracer characterization showing parity with endogenous EV capture/protection behavior; quantitative limits-of-detection and recovery for capture from low‑biomass nasal lavage/CSF after proposed fractionation; yield and membrane‑integrity retention data across the intended preparative workflow (SEC/iodixanol, concentration steps, buffers) to support lot comparability and scale‑up; and a small large‑animal (or orthogonally justified) delivery assessment to address the macaque negative biodistribution signal.",
+          "concerns": [
+            "Manufacturability & yield: Proposed bounded/enriched fractions must be produced at sufficient yield from conditioned medium to supply multiple in vivo arms and analytical controls; low yields will limit replicates and comparability testing (evidence: ev-hermann-2023-neonatal-hi supports source‑cell scalability concerns).",
+            "Process sensitivity & membrane integrity: Fractionation, concentration, and formulation steps can disrupt membranes or change capture epitope availability, confounding the qualitative gate; detergent/protease controls must be implemented and their impact on downstream assays characterized (evidence: ev-misev2023-quality-framework).",
+            "Measurement feasibility: Recovering orthogonally verifiable intact EVs from low‑biomass matrices (nasal lavage, CSF, olfactory mucosa) is technically challenging; NTA/TRPS particle counts, capture ELISAs, and spike‑in recovery require validated LOD/LOQ for these matrices and potential interference from mucins and secretome (evidence: ev-misev2023-quality-framework; ev-driedonks-2022-macaque-biodistribution highlights low detectability in large animal lavage/CSF).",
+            "Spike‑in tracer risk: The spike‑in must faithfully mimic endogenous EV capture and protection; if tracer behavior diverges, negative recovery could be misinterpreted as delivery failure or, conversely, false assurance (evidence: ev-misev2023-quality-framework).",
+            "Lot comparability: The proposed qualitative gate is non‑numeric; without robust process controls and reproducible analytic recovery metrics, pass/fail decisions across lots may be inconsistent. Comparative studies across multiple conditioned‑medium lots and passage ranges are needed (evidence: ev-hermann-2023-neonatal-hi).",
+            "Stability & storage: Stability of the intact‑EV signature through sample handling, storage, and transport (including spike‑in stability) is not addressed and can affect both measurement and biological readouts; stability-indicating studies are required (evidence: ev-misev2023-quality-framework).",
+            "Scale‑up risk: Manufacturing scale‑up may alter particle:protein ratios, membrane integrity, and capture epitope presentation; these attributes are central to the proposed gate but are sensitive to upstream process changes (evidence: ev-hermann-2023-neonatal-hi; ev-misev2023-quality-framework).",
+            "Translational/delivery uncertainty: Non‑human primate intranasal biodistribution was poor for reporter‑labeled EVs (strong nasal retention, negligible brain/CSF signal), creating a realistic risk that rodent in vivo→ex vivo linkage will not translate and limiting the QA relevance of the proposed attribute without a larger‑animal bridging strategy (evidence: ev-driedonks-2022-macaque-biodistribution)."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "Supported with reservations. The proposed in vivo→ex vivo bridging experiment is a conceptually appropriate and rigorous way to test whether a membrane‑protected, capture‑positive intact‑EV fraction is necessary for short‑interval modulation of CNS inflammatory readouts after intranasal dosing. Rodent intranasal EV efficacy reports and MISEV2023 quality guidance support the causal logic and the need for orthogonal controls (spike‑in, capture, detergent/protease protection). However, negative or ambiguous outcomes could reflect analytic or delivery limitations (assay sensitivity, spike‑in representativeness, species/route barriers) rather than a true absence of intact‑EV–linked activity, so interpretation will require strong assay validation and carefully controlled negative/positive arms.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "Key empirical gaps: validated sensitivity and behavior of the proposed exogenous spike‑in tracer in the same fractionation/capture workflow and in vivo matrix; orthogonal recovery limits for low‑biomass nasal lavage/CSF in the chosen rodent model; and cross‑species/route generalizability (large‑animal intranasal delivery barriers). There is also limited direct evidence that short‑interval ex vivo microglial cytokine assays specifically and exclusively report intact‑EV–delivered cargo effects rather than soluble factors or co‑purifying components.",
+          "concerns": [
+            "Assay sensitivity and spike‑in representativeness: If the spike‑in tracer does not mimic endogenous EV capture/recovery or is lost differently during fractionation or in vivo, spike‑in recovery may misclassify delivery success or analytic failure (MISEV2023 warns on controls).",
+            "Species and route translation: Non‑human primate intranasal biodistribution data show poor nose→brain recovery and strong nasal retention; a negative result in rodents could be either true absence of intact‑EV exposure or reflect species/formulation differences (limits causal inference about human translation).",
+            "Discrimination of soluble secretome vs intact EV effects: The proposed detergent+protease and capture‑depleted arms are appropriate, but detergent/protease treatments can create artifacts (release or degrade cargo differently) and may not perfectly mimic in vivo absence of membrane protection; careful orthogonal readouts are needed to avoid misattributing effects to membrane disruption rather than collateral cargo modification.",
+            "Temporal sampling and compartments: Short post‑dose windows may miss either transient intact‑EV exposure or downstream PD; absence of capture‑positive signal in lavage/CSF does not rule out local tissue‑restricted delivery (olfactory mucosa/nerve) or paracrine effects not sampled by lavage/CSF.",
+            "Readout specificity and mechanistic linkage: Ex vivo microglia LPS‑challenge cytokine suppression is a reasonable functional correlate but could be modulated by many soluble mediators or by non‑EV particulate contaminants; demonstrating that the captured, capture‑positive fraction (and not co‑purifying soluble factors) mediates the effect requires additional orthogonal controls (e.g., size/density separation reproducibility, proteomic/RNA fingerprints of captured eluates).",
+            "Statistical and reproducibility risks: Low biomass and high inter‑animal variability in recovery will increase noise; the design requires predefined sample sizes and replicate conditioned‑medium lots to distinguish true mechanism‑linked effects from stochastic variation."
+          ]
+        }
+      ],
+      "adversary_objection": "The single strongest bounded reason this proposal could fail is analytic and translational conflation: even with spike‑in controls, insufficient sensitivity and capture‑compatibility for low‑biomass nasal lavage/CSF samples (or spike‑in behavior that does not fully mimic endogenous EVs) could produce systematic false negatives or artifactual signal differences, and those analytic failures cannot be cleanly separated from true absence of intact EV delivery — a problem compounded by non‑human primate biodistribution data showing intranasal retention in the nose and negligible brain/CSF signal (ev-driedonks-2022-macaque-biodistribution). In short, assay insensitivity or misbehaving tracers plus species/delivery barriers can make the in vivo→ex vivo linkage unmeasurable or misleading despite orthogonal controls (ev-misev2023-quality-framework), producing either false falsification of an intact‑EV mechanism or false attribution of effects to intact EVs rather than soluble secretome components (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi).",
+      "chair_rationale": "Plausible concept but critical empirical gaps remain that must be resolved before testing: validate spike‑in tracer parity with endogenous EVs; establish capture recovery limits/LOD for low‑biomass nasal lavage/CSF and rule out assay interference; demonstrate sufficient yields and membrane‑integrity retention across the proposed fractionation/workflow; and run a bridging (or pilot large‑animal) delivery assessment to address species/route uncertainty. Without these data the in vivo→ex vivo linkage is likely uninterpretable.",
+      "determination": "needs_evidence",
+      "status": "reviewed",
+      "promotion_human_approved": false,
+      "novelty_statement": "This hypothesis is novel because it combines three elements not previously tested together in SGL‑001: (1) a per‑sample exogenous intact‑EV spike‑in to validate in vivo recoverability and rule out assay failure, (2) orthogonal intact‑EV verification in short‑interval collected nasal/CSF/olfactory tissue (capture + particle co‑localization + detergent/protease protection), and (3) direct correlation of that orthogonal in vivo evidence with a standardized short‑interval ex vivo microglial inflammatory readout. Prior SGL‑001 proposals considered orthogonal analytics, protected bioactivity, or in vivo→ex vivo bridging separately; this experiment uniquely combines spike‑in validation with a discriminating in vivo→ex vivo PD link that will falsify (or support) the intact‑EV‑required mechanism without assuming efficacy.",
+      "distinguished_from_hypothesis_ids": [
+        "design-hypothesis-run-20260928T114803Z-8a1d18edab28",
+        "design-hypothesis-run-20261017T092909Z-2cf117a30e5e",
+        "design-hypothesis-run-20261030T112803Z-508d16b9a029"
+      ],
+      "theme_id": "design-gap-mechanism",
+      "sequence_within_theme": 4
     }
   ],
   "proposed_experiments": [
@@ -12855,6 +13094,49 @@
       "complexity": "high",
       "human_approval_state": "pending",
       "execution_status": "proposed"
+    },
+    {
+      "experiment_id": "design-experiment-run-20261114T121725Z-ea8e95a7418e",
+      "question": "Can an orthogonal in vivo→ex vivo bridging experiment show that only capture‑positive, spike‑in‑validated, membrane‑protected material produces a reproducible short‑interval ex vivo CNS inflammatory modulation after intranasal dosing, independent of bulk particle counts?",
+      "hypothesis_tested": "An intact‑EV‑associated, membrane‑protected fraction (verified by spike‑in recovery, capture + detergent/protease sensitivity, and particle‑peak co‑localization) is necessary for a reproducible short‑interval ex vivo CNS inflammatory modulation following intranasal administration; particle‑count‑matched capture‑negative or membrane‑disrupted material will not produce the same ex vivo modulation.",
+      "required_material": [
+        "MSC‑conditioned medium (same source‑cell lot) processed to produce: (A) enriched small‑EV preparation (bounded fraction, e.g., SEC/iodixanol) and (B) concentrated conditioned medium (secretome‑retaining) from the same lot",
+        "Exogenous characterized intact‑EV spike‑in tracer (orthogonal species or isotope‑labeled) added prior to fractionation",
+        "Immuno‑capture reagents for canonical EV surface markers (anti‑CD63/CD9/CD81 or TIM4/AnxA5) and validated capture‑compatibility buffers",
+        "Particle counter (NTA or TRPS) and reagents",
+        "Density‑gradient materials (iodixanol) or SEC fractionation setup and fraction collectors",
+        "Protease (proteinase K), RNase reagents, and detergent (Triton X‑100 or equivalent) for membrane disruption/protection controls",
+        "Short‑interval in vivo dosing capability in rodents with capacity to collect nasal lavage, CSF (if feasible), and olfactory‑mucosa/olfactory‑bulb‑adjacent tissue at predefined short post‑dose intervals",
+        "Short‑term ex vivo CNS inflammatory assay platform (acutely harvested rodent olfactory‑bulb/olfactory‑mucosa‑adjacent tissue processed to isolate microglia‑like cells; LPS challenge; cytokine readouts such as IL‑6/TNF‑α ELISA or multiplex)",
+        "Total protein assay reagents and consumables"
+      ],
+      "comparator": "Four‑arm in vivo comparison from the same conditioned‑medium lot (all arms spiked identically before fractionation): (1) intact‑EV‑enriched, capture‑positive bounded fraction; (2) secretome‑retaining concentrated conditioned medium; (3) intact‑EV‑enriched material treated with detergent + protease prior to administration (membrane‑disrupted); (4) particle‑count‑matched but capture‑depleted preparation (if achievable).",
+      "control": "Positive controls: characterized small EVs (commercial or lab‑validated) and dexamethasone in the ex vivo assay. Negative controls: vehicle only and buffer fractions. Per‑sample spike‑in serves as within‑sample recovery control. Capture‑compatibility panels to exclude assay interference.",
+      "assay": "Integrated protocol: (A) pre‑dose orthogonal characterization (particle counts, capture on intact material, spike‑in readout, detergent/protease protection); (B) intranasal dosing; (C) short‑interval collection of nasal lavage, CSF and olfactory‑mucosa/olfactory‑bulb tissue; (D) orthogonal verification of recovered intact EVs (capture + particle counts + spike‑in); (E) ex vivo microglia‑like LPS challenge cytokine assay using captured eluates; (F) qualitative correlation of in vivo orthogonal exposure with ex vivo cytokine modulation.",
+      "primary_readout": "Presence and reproducible magnitude of reduction in ex vivo inflammatory cytokine readouts (e.g., IL‑6/TNF‑α) from tissue‑derived microglia‑like cells correlated with in vivo orthogonal evidence of intact‑EV exposure (capture‑positive signal co‑localized with particle peaks and spike‑in recovery) and abolished by detergent + protease treatment.",
+      "secondary_readouts": [
+        "Co‑localization metrics between particle‑count peaks and capture‑positive ELISA signal in administered material and in collected lavage/CSF fractions",
+        "Spike‑in recovery percentage and membrane‑protection behavior per fraction",
+        "Protein:particle ratios of administered materials and of captured fractions",
+        "Reproducibility across biological replicates (n ≥ 3 conditioned‑medium preps and animal cohorts)"
+      ],
+      "success_criterion": "Qualitative success: In multiple independent conditioned‑medium lots and animal cohorts (n ≥ 3), only the arm where administered material is orthogonally verified as spike‑in–recovered and capture‑positive with particle‑peak co‑localization produces a reproducible reduction in ex vivo inflammatory cytokine readout; this reduction is abolished when captured material is membrane‑disrupted prior to administration, and particle‑count‑matched capture‑negative or secretome‑retaining arms do not produce equivalent ex vivo modulation.",
+      "failure_criterion": "No reproducible linkage between in vivo orthogonal intact‑EV verification and the ex vivo cytokine readout across replicates, or particle‑count‑matched capture‑negative or membrane‑disrupted arms produce equivalent ex vivo effects.",
+      "falsification_outcome": "If failure criteria are met (with validated spike‑in and capture‑compatibility controls), the hypothesis is falsified and the program should treat the material as functionally indistinguishable from secretome for short‑interval ex vivo inflammatory PD and pivot product‑definition and CMC strategy accordingly.",
+      "dependencies": [
+        "Availability of conditioned‑medium lots from the same source‑cell bank and passage range",
+        "Analytical optimization to achieve sufficient sensitivity for low‑biomass capture from lavage/CSF",
+        "Animal protocol approvals for short‑interval tissue/fluid collection"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "complexity": "high",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
     }
   ],
   "parked_hypothesis_ids": [],
@@ -13868,6 +14150,25 @@
       ],
       "measurement_concept": "Presence/absence and detergent-sensitivity of a predefined panel of protected miRNAs and luminal proteins plus lipid-class ratios in capture-positive particle-peak fractions.",
       "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20261114T121725Z-ea8e95a7418e-1",
+      "name": "Intact‑EV‑associated, membrane‑protected bioactivity (qualitative)",
+      "group": "functional_potency",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "If present and predictive of ex vivo PD, this attribute would serve as a mechanism‑linked potency gate for defining EV‑enriched drug substance versus secretome.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "uncertainty": "High: requires in vivo→ex vivo linkage; inference labelled.",
+      "source_hypothesis_id": "design-hypothesis-run-20261114T121725Z-ea8e95a7418e",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261114T121725Z-ea8e95a7418e"
+      ],
+      "measurement_concept": "Qualitative presence/absence of protected bioactivity co‑localized with capture‑positive particle peaks and abolished by membrane disruption; not a numeric release test.",
+      "human_approved": false
     }
   ],
   "design_gaps": [
@@ -14094,13 +14395,14 @@
       "rationale": "The active biology and causal mechanism remain hypotheses.",
       "evidence_ids": [],
       "status": "open",
-      "times_explored": 3,
-      "last_explored_at": "2026-10-30T11:28:03.638135Z",
-      "latest_hypothesis_id": "design-hypothesis-run-20261030T112803Z-508d16b9a029",
+      "times_explored": 4,
+      "last_explored_at": "2026-11-14T12:17:25.571819Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20261114T121725Z-ea8e95a7418e",
       "hypothesis_ids": [
         "design-hypothesis-run-20260928T114803Z-8a1d18edab28",
         "design-hypothesis-run-20261017T092909Z-2cf117a30e5e",
-        "design-hypothesis-run-20261030T112803Z-508d16b9a029"
+        "design-hypothesis-run-20261030T112803Z-508d16b9a029",
+        "design-hypothesis-run-20261114T121725Z-ea8e95a7418e"
       ],
       "open_questions": [
         "Which competing explanation can one experiment distinguish?"
@@ -14586,7 +14888,14 @@
       "gap_id": "design-gap-cargo-composition",
       "determination": "needs_manufacturing_assessment",
       "created_at": "2026-11-13T13:13:25.306312Z"
+    },
+    {
+      "run_id": "run-20261114T121725Z-ea8e95a7418e",
+      "hypothesis_id": "design-hypothesis-run-20261114T121725Z-ea8e95a7418e",
+      "gap_id": "design-gap-mechanism",
+      "determination": "needs_evidence",
+      "created_at": "2026-11-14T12:17:25.571819Z"
     }
   ],
-  "updated_at": "2026-11-13T13:13:25.306312Z"
+  "updated_at": "2026-11-14T12:17:25.571819Z"
 }
