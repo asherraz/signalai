@@ -1,0 +1,21 @@
+{
+  "concerns": [
+    "Assay-interference risk: formulation excipients or device rinse components can alter capture antibody binding, blocking epitopes or causing non-specific binding \u2014 capture-compatibility panels are necessary and may still leave residual ambiguity.",
+    "Spike-in representativeness: an exogenous intact-EV spike-in may differ in surface composition, density, aggregation state, or matrix interactions from endogenous EVs; relying on a single spike-in type risks false assurance about endogenous-material behavior.",
+    "Non-vesicular binders: multi-epitope capture signal that survives device/formulation passage could still arise from non-EV particulate complexes (lipoproteins, protein aggregates, chaperone complexes) that present or bind the target epitopes or the capture reagents; detergent/protease sensitivity helps but is not fully specific without complementary orthogonal fraction characterization (EM, density profiling, proteomics).",
+    "Fractionation resolution and co-localization: SEC or iodixanol fractions can contain overlapping populations; co-localization with a particle-count peak is supportive but not definitive. Orthogonal metrics (density, EM, marker proteomics) at fraction level would strengthen discrimination.",
+    "In vivo relevance/translation: successful preservation of an in vitro identity gate does not prove that intranasal administration in larger species will produce CNS exposure \u2014 macaque data show poor nasal-to-brain recoverability for at least some EV sources and formulations. Short-interval in vivo sampling with spike-in verification would be needed to link the gate to likely exposure.",
+    "Operational burden and throughput: the proposed workflow (spike-in, device passage, fractionation, multi-epitope capture, detergent/protease protection) is resource-intensive, which may limit routine lot screening or require careful prioritization of condition matrices.",
+    "False negatives/positives: detergent/protease readouts require validated enzyme access and appropriate controls; partial membrane disruption or protease-resistant surface complexes could produce ambiguous outcomes unless assay sensitivity and dynamic range are characterized.",
+    "Dependence on capture panel selection: marker selection (CD63/CD9/CD81 \u00b1 TIM4/AnxA5) may bias detection toward particular EV subsets; lots lacking those markers could be misclassified despite containing other bona fide EVs."
+  ],
+  "conclusion": "The proposed spike-in\u2013controlled, multi-epitope intact-capture workflow is a plausible and practical approach to establish a qualitative identity gate that distinguishes membrane-protected EV populations from soluble/secretome artifacts after device/formulation passage. Consensus guidance (MISEV2023) supports using orthogonal membrane-protection criteria and multi-epitope capture to increase causal plausibility. However, important alternative explanations remain and some key controls/experiments are missing to confidently exclude reagent- or spike-in\u2013related artifacts and to connect the in vitro identity gate to likely in vivo exposure in larger species. If those controls (capture-compatibility panels, orthogonal spike-in types, fraction-level orthogonal characterization) are implemented and pass, the assay should discriminate the major competing explanations for preserved signal in the tested in vitro device/formulation conditions; it still would not by itself demonstrate in vivo delivery or potency.",
+  "evidence_gap": "No direct evidence that an in vitro device/formulation\u2013compatible intact-capture gate predicts meaningful in vivo biodistribution in large animals or humans; also lacking are orthogonal demonstrations that (A) exogenous spike-ins faithfully model endogenous EVs across the tested matrices and (B) captured, detergent/protease-sensitive signal is free of non\u2011vesicular complexes (e.g., lipoproteins, protein aggregates). The macaque biodistribution negative result highlights this translational gap.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "supported": true
+}
