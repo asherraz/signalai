@@ -1,0 +1,20 @@
+{
+  "concerns": [
+    "Measurement feasibility / assay sensitivity: multi-step orthogonal workflow (spike-in, immuno-capture, detergent/protease splits, fractionation, particle counting, bioassay) is experimentally demanding; incomplete pre-validation of spike-in and capture reagents or buffer incompatibility could produce false negatives (assay-interference).",
+    "Process sensitivity / protease accessibility: protease/RNase + detergent splits assume complete access to non-membrane cargo; incomplete protease access could misclassify non-vesicular protected activity as EV-associated.",
+    "Lot comparability / material supply: requirement for >=3 independent conditioned-medium lots at scale for matrixing risks high material demand early; inter-lot biological variability could confound binary pass/fail calls unless acceptance rules and minimal yield definitions are set.",
+    "Stability / handling: simulated mucin + device passage adds variables (time, shear, adsorption) that may interact with storage/handling and make results highly dependent on pre\u2011test handling conditions; stability of both endogenous EVs and spike-in through storage must be qualified.",
+    "Scale-up risk / manufacturability: if only narrow excipient/device combinations pass, manufacturing options and device suppliers may be limited, increasing complexity and cost for fill/finish and device qualification at scale.",
+    "Interpretability for in vivo bridging: passing the compatibility gate demonstrates preserved in vitro membrane-protected attributes but does not guarantee tissue delivery in larger species (macaque evidence suggests species/device-formulation interactions are critical); additional in vivo bridging will still be required."
+  ],
+  "conclusion": "Supported with significant implementation risks. The proposed composite, spike-in\u2013controlled mucin+device passage compatibility test is appropriate for an early CMC go/no-go gate: it addresses known EV characterization pitfalls (MISEV2023) and directly targets an identified translational failure mode (poor intranasal delivery in macaques). However, the assay matrix is complex and assay-interference, protease-accessibility, lot-yield, and cross-species delivery gaps create nontrivial risk that results will be difficult to interpret or insufficiently predictive of in vivo success without further validation.",
+  "evidence_gap": "No direct evidence that a positive in vitro composite (capture + protection + protected-bioactivity after mucin+device passage) reliably predicts intranasal brain delivery or pharmacodynamic effect in large animals or humans; macaque data show intranasal retention/failure but do not test the proposed compatibility assay.",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "supported": true
+}

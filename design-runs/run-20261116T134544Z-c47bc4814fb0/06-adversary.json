@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Assay-interference false negative: formulation excipients or mucin mimics chemically or sterically prevent antibody/ligand binding on capture reagents (masking epitopes) causing loss of capture-positive signal even though membrane-protected EVs remain intact (related control failure if spike-in behaves differently). (evidence: ev-misev2023-quality-framework)",
+    "Assay-interference false positive: excipients or mucin components form non-vesicular complexes with endogenous cargo or spike-in tracer that co-elute with particle peaks and resist protease/detergent under assay conditions, producing apparent detergent/protease-sensitive signal and preserved bioactivity that is not EV-mediated. (evidence: ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi)",
+    "Spike-in non-equivalence: exogenous spike-in EVs (different source, label, or species) respond differently to mucin/device stresses than endogenous product EVs, so spike-in recovery validates the assay but not endogenous EV survival, producing a false sense of assay validity. (evidence: ev-misev2023-quality-framework; ev-driedonks-2022-macaque-biodistribution)",
+    "Incomplete protease access: protease/RNase treatments used to define 'membrane protection' may fail to access cargo on EVs trapped in mucin or in tight non-vesicular aggregates, producing detergent/protease-insensitive bioactivity and misclassification of activity as non-EV or vice versa. (evidence: ev-misev2023-quality-framework; ev-kodali-2017-status-epilepticus)",
+    "Optical/particle-count artifacts: mucin, excipients, or device-derived debris alter NTA/TRPS particle counts or size profiles, decoupling particle peaks from true EV content and misleading co-localization readouts. (evidence: ev-misev2023-quality-framework)",
+    "Reproducibility / lot-dependence: biological variability across conditioned-medium lots or small differences in device rig shear profiles produce inconsistent outcomes; the high uncertainty admitted in the proposal means the gate may not meet the stated reproducibility criterion across >=3 lots. (evidence: ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi)",
+    "Translational failure: even if an intranasal envelope preserves the defined in vitro signatures, species- and scale-dependent barriers (mucus clearance, nasal anatomy, absorption barriers) can prevent in vivo nasal-to-brain delivery, as observed with negligible macaque brain uptake after intranasal EV dosing\u2014so a \u2018pass\u2019 would not guarantee in vivo recovery or efficacy. (evidence: ev-driedonks-2022-macaque-biodistribution)",
+    "Bioactivity attribution ambiguity: rodent intranasal efficacy reports exist, but do not prove that in vivo effects derive from membrane-protected EV cargo rather than soluble secretome or other co-factors; the in vitro protected-bioactivity assay may not fully resolve this in complex nasal matrices. (evidence: ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi)"
+  ],
+  "strongest_objection": "The proposed composite in vitro compatibility gate can be systematically misleading because (A) excipient- or device-induced assay interference (e.g., masking of capture epitopes, altered particle optics, or buffer-driven spike-in recovery artifacts) can produce reproducible but artifactual \u2018pass\u2019 or \u2018fail\u2019 outcomes despite no true preservation or loss of membrane-protected endogenous EVs, and (B) even a technically sound in vitro protected-bioactivity readout may not predict in vivo nasal/brain delivery (non-human-primate data show negligible intranasal brain uptake), so passing the gate would not reliably establish translationally meaningful intranasal compatibility. Together, these bounded risks mean the gate can both misclassify conditions and be uninformative for subsequent in vivo bridging."
+}

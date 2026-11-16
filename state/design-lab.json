@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "program_id": "SGL-001",
-  "current_design_question": "After passage through the intended intranasal device and exposure to candidate nasal formulation buffers, can a spike-in–controlled multi-epitope intact-EV surface-phenotype workflow (intact immuno-capture for multiple epitopes + particle-peak co-localization + detergent/protease sensitivity) reproducibly classify conditioned-medium-derived bounded fractions as EV-enriched versus secretome-like (qualitative pass/fail) without implying potency?",
+  "current_design_question": "Which intranasal formulation excipient classes and device-shear exposures preserve (vs. abolish) an orthogonal, spike-in–validated intact-EV identity signature (multi-epitope capture co-localized with particle peaks and detergent/protease sensitivity) and a matched membrane-protected anti-inflammatory bioactivity after simulated nasal-mucus incubation and device passage?",
   "reviewed_hypotheses": [
     {
       "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
@@ -11324,6 +11324,251 @@
       ],
       "theme_id": "design-gap-surface-phenotype",
       "sequence_within_theme": 4
+    },
+    {
+      "hypothesis_id": "design-hypothesis-run-20261116T134544Z-c47bc4814fb0",
+      "program_id": "SGL-001",
+      "run_id": "run-20261116T134544Z-c47bc4814fb0",
+      "created_at": "2026-11-16T13:45:44.469421Z",
+      "title": "Hypothesis: A spike-in–controlled mucin + device-pass compatibility test (capture + protection + protected-bioactivity) discriminates intranasal vehicle/device envelopes that preserve intact-EV identity and membrane-protected activity from those that do not",
+      "design_question": "Which intranasal formulation excipient classes and device-shear exposures preserve (vs. abolish) an orthogonal, spike-in–validated intact-EV identity signature (multi-epitope capture co-localized with particle peaks and detergent/protease sensitivity) and a matched membrane-protected anti-inflammatory bioactivity after simulated nasal-mucus incubation and device passage?",
+      "primary_domain": "formulation",
+      "secondary_domains": [
+        "mechanism",
+        "manufacturing",
+        "stability",
+        "delivery"
+      ],
+      "selected_gap_id": "design-gap-intranasal-compatibility",
+      "proposed_product_change_or_attribute": "Adopt a non-numeric intranasal-compatibility gate: a formulation/device envelope is 'compatible' only if (A) an exogenous intact-EV spike-in is recovered in capture-positive, particle-peak fractions after mucin-mimic + device passage (validating assay recovery and membrane protection), (B) endogenous capture-positive signal co-localizes with particle peaks and is detergent/protease-sensitive in those fractions, and (C) eluates from captured fractions retain a membrane-protected in vitro anti-inflammatory effect abolished by detergent/protease. Conditions failing the composite test will be excluded for intranasal deployment of an EV-enriched drug-substance candidate.",
+      "biological_rationale": "MISEV2023 cautions that non-vesicular co-isolates and assay interference confound claims about intact-EV identity and function (ev-misev2023-quality-framework). Rodent intranasal reports show bioactivity but do not establish that material survives nasal mucus or device passage in a membrane-protected form (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi). A spike-in–controlled, mucin+device simulation with orthogonal capture + protection + protected-bioactivity readouts explicitly tests whether candidate formulation/device envelopes preserve the membrane-protected EV attributes required to interpret downstream short-interval in vivo bridging.",
+      "manufacturing_rationale": "Intranasal delivery requires a device and a vehicle compatible with product integrity. Without an empiric compatibility gate, manufacturing can advance batches that lose intact-EV identity during device filling, storage, or administration. A composite compatibility test permits early exclusion of incompatible excipient/device envelopes and reduces downstream wasted bridging studies and CMC effort (ev-misev2023-quality-framework; ev-driedonks-2022-macaque-biodistribution).",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "Contact with nasal mucus components and passage through intranasal device geometries can mask epitopes or disrupt EV membranes, abolishing intact-EV capture/protection signatures while leaving bulk particle counts similar."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If a formulation/device condition preserves spike-in–validated capture-positive, particle-peak co-localization and detergent/protease sensitivity, then the material more plausibly retains membrane-protected EVs capable of delivering protected cargo to the nasal/olfactory compartment."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If preserved, eluates from capture-positive fractions will retain a membrane-protected in vitro anti-inflammatory activity that is abolished by detergent/protease, distinguishing EV-associated activity from soluble secretome contributions."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "High: MISEV recommends orthogonal controls; macaque data show delivery risks but do not identify device/formulation as the sole cause.",
+            "competing_explanation": "Apparent loss of capture-positive signal could reflect capture-reagent incompatibility with formulation components rather than true EV membrane damage.",
+            "missing_experiment": "Spike-in–controlled device/formulation passage followed by fraction-level detergent/protease protection and buffer-compatibility checks."
+          },
+          {
+            "edge_id": "e2",
+            "source_node_id": "n2",
+            "target_node_id": "n3",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-hermann-2023-neonatal-hi",
+              "ev-kodali-2017-status-epilepticus",
+              "ev-zhuang-2011-intranasal-exosome"
+            ],
+            "relation_type": "inference",
+            "model_or_species": "rodent context",
+            "uncertainty": "Moderate: rodent bioactivity exists but is not linked to membrane protection or to survival through nasal-mucus/device stresses.",
+            "competing_explanation": "Preserved in vitro activity could be driven by soluble factors protected by mucin or bound to non-vesicular complexes rather than bona fide EV-protected cargo.",
+            "missing_experiment": "Fraction-level protected-bioactivity testing after simulated mucin + device passage with detergent/protease controls and spike-in validation."
+          }
+        ]
+      },
+      "expected_measurable_effect": "A subset of tested formulation/device conditions will pass the composite compatibility test (spike-in recovery in capture-positive particle fractions; endogenous capture co-localization that is detergent/protease-sensitive; preserved membrane-protected anti-inflammatory effect abolished by detergent/protease), while incompatible conditions will fail one or more elements despite similar bulk particle counts.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "contradicting_evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "explicit_inferences": [
+        "Inference: Spike-in recovery controls separate assay failure from true loss of intact-EV identity after device/formulation exposure.",
+        "Inference: Membrane-protected loss of captured signal plus loss of protected bioactivity indicates EV-associated activity was ablated by the exposure."
+      ],
+      "assumptions": [
+        "Assay sensitivity is sufficient to detect capture-positive signal and spike-in tracer in low-biomass fractions from simulated exposures.",
+        "Detergent + protease/RNase treatment reliably differentiates membrane-protected from non-membrane-associated signals under the chosen assay conditions.",
+        "Simulated mucin and device rigs adequately model clinically relevant nasal exposures."
+      ],
+      "competing_explanations": [
+        "Assay interference (capture-reagent incompatibility with excipients) could mimic loss of capture signal.",
+        "Recovered protected activity could derive from non-vesicular complexes that resist detergent/protease under assay conditions if protease accessibility is incomplete."
+      ],
+      "manufacturability_assessment": "The proposed assay matrix is moderate complexity and compatible with early CMC decision-making. It uses standard fractionation and capture platforms and an in vitro cytokine assay; required device rigs and mucin-mimic reagents are accessible. The outcome yields a qualitative (pass/fail) compatibility gate usable to exclude problematic excipient/device envelopes before scale-up.",
+      "measurement_strategy": "Composite, orthogonal readouts: (A) exogenous intact-EV spike-in added pre-exposure and quantified separately after fractionation to validate recovery and membrane protection, (B) fraction-level particle counts (NTA/TRPS) and immuno-capture for multiple canonical EV markers on intact material with detergent/protease protection splits, (C) total protein and protein:particle ratio per fraction, (D) anti-inflammatory cytokine readout (e.g., reduction in LPS-induced IL-6/TNF-α) from capture-eluates applied to a standardized in vitro microglia assay, with detergent/protease-treated captured eluates as negative controls. Capture-compatibility buffer panels and spike-in controls included to exclude assay interference.",
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20261116T134544Z-c47bc4814fb0-1"
+      ],
+      "proposed_potency_relationship": "If the composite compatibility gate is passed and protected-bioactivity is reproducibly observed in captured eluates, this attribute will be considered a candidate mechanism-linked potency correlate to prioritize for subsequent in vivo bridging. At present this remains exploratory and not asserted as a validated potency assay.",
+      "principal_risks": [
+        "Assay interference from excipients could produce false negatives; buffer-compatibility controls and spike-in are required.",
+        "Protected bioactivity readout might not be specific for EV-associated cargo if protease accessibility is incomplete.",
+        "Passing the in vitro compatibility gate may not guarantee cross-species in vivo recoverability (large-animal delivery risks remain)."
+      ],
+      "falsification_criteria": [
+        "Across >=3 independent conditioned-medium lots and device/formulation envelopes, if (A) the exogenous intact-EV spike-in is recovered (validating assay) but endogenous capture-positive signal does not co-localize with particle peaks and is not detergent/protease-sensitive after simulated mucin+device passage, OR (B) captured eluates that appear capture-positive nonetheless retain anti-inflammatory activity that is not abolished by detergent+protease (indicating activity is not membrane-protected), then the compatibility gate hypothesis is falsified for those conditions and they must be excluded.",
+        "If spike-in recovery is inconsistent across replicates, the test methodology must be redesigned before interpretive conclusions."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20261116T134544Z-c47bc4814fb0",
+        "question": "Which nasal excipient classes and device-shear exposures preserve a spike-in–validated intact-EV identity signature and membrane-protected in vitro anti-inflammatory activity after simulated nasal-mucus incubation and device passage?",
+        "hypothesis_tested": "Specific formulation excipient classes and delivery-device shear exposures will either preserve or abolish (A) spike-in–validated intact-EV identity (capture-positive co-localization with particle peaks and detergent/protease sensitivity) and (B) a matched membrane-protected in vitro anti-inflammatory bioactivity; preservation of both defines compatibility for intranasal use.",
+        "required_material": [
+          "MSC-conditioned medium (same source-cell lot) processed to yield an enriched small-EV fraction (program-defined bounded fraction) in sufficient volume for matrixing",
+          "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) to add pre-exposure",
+          "Mucin-mimic matrix reagents representative of human nasal mucus",
+          "Representative intranasal device(s) or device-shear rigs with characterized low/mid/high shear profiles",
+          "Panel of candidate formulation buffers/excipient classes (matrix across pH, ionic strength, presence/absence of low-level non-ionic surfactant, sugar/polyol stabilizers)",
+          "Immuno-capture reagents for canonical EV surface markers (anti-CD63, anti-CD9, anti-CD81 and/or TIM4/AnxA5) and capture-compatibility buffer panels",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent) for membrane-disruption/protection tests",
+          "Density-fractionation materials (iodixanol) or SEC fractionation setup and fraction collectors",
+          "Standardized in vitro neuroinflammation assay (e.g., LPS-stimulated human iPSC-derived microglia or primary microglia with IL-6/TNF-α ELISA or multiplex readout)",
+          "Total protein assay reagents and consumables"
+        ],
+        "comparator": "Paired matrix: baseline control (no mucin, no device passage) versus multiple formulation/device conditions (matrixed by excipient class and device shear). All arms receive identical spike-in before exposure and are fractionated identically.",
+        "control": "Positive controls: characterized small EV preparation processed in parallel and dexamethasone in the bioassay. Negative controls: buffer-only and detergent-disrupted samples. Capture-compatibility buffer-only panels and spike-in recovery used to detect assay interference.",
+        "assay": "Parallel orthogonal workflows per condition: (1) spike-in addition pre-exposure; (2) simulated mucin incubation + device passage; (3) fractionation with particle counting per fraction; (4) intact immuno-capture for endogenous markers and spike-in tracer per fraction; (5) protease/RNase ± detergent on captured material; (6) elution of captured fractions and application to in vitro neuroinflammation assay; (7) total protein and protein:particle ratios per fraction.",
+        "primary_readout": "Qualitative preservation (yes/no) per condition of: (A) spike-in recovery in capture-positive, particle-peak fractions with loss after detergent+protease (validating membrane protection), (B) endogenous capture-positive co-localization with particle peaks that is detergent/protease-sensitive in the same fractions, and (C) presence of membrane-protected anti-inflammatory effect in captured eluates that is abolished after detergent+protease treatment.",
+        "secondary_readouts": [
+          "Protein:particle ratio per fraction post-exposure",
+          "Capture-compatibility panel outcomes (evidence of assay interference vs true loss)",
+          "Mass and particle recovery (qualitative yield) after formulation/device passage",
+          "Reproducibility across biological replicates (n >= 3 independent conditioned-medium lots)"
+        ],
+        "success_criterion": "For at least one formulation/device condition representative of intended clinical use, across >=3 independent conditioned-medium lots, the condition reproducibly meets all three primary-readout elements (spike-in recovery & protection; endogenous capture co-localization & detergent/protease sensitivity; preserved membrane-protected anti-inflammatory activity abolished by detergent+protease), with capture-compatibility controls excluding assay interference. Conditions failing any element are classified incompatible.",
+        "failure_criterion": "After capture-compatibility controls, no tested condition reproducibly preserves both identity and membrane-protected bioactivity across >=3 lots (i.e., all conditions either abolish the identity signature or show activity that is detergent/protease-insensitive), or spike-in recovery is inconsistent across replicates.",
+        "falsification_outcome": "If falsified (no condition passes reproducibly or assay controls fail), treat intranasal formulation/device compatibility as unresolved for EV-enriched candidates; prioritize alternate strategies (immediate capture/lyophilization, alternative routes, secretome-centric product definitions) before in vivo bridging.",
+        "dependencies": [
+          "Prequalification of capture reagents and spike-in tracer for buffer compatibility",
+          "Availability of device prototypes or rigs with characterized shear profiles",
+          "Sufficient conditioned-medium yield across >=3 lots"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus",
+          "ev-zhuang-2011-intranasal-exosome"
+        ],
+        "complexity": "high",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "Analytical pre-validation of spike-in tracer and capture reagents for buffer compatibility",
+        "Access to device prototypes or device-shear simulation rigs",
+        "Sufficient conditioned-medium yield from matched source-cell lots (same bank/passage)"
+      ],
+      "human_decisions_required": [
+        "Select the panel of candidate formulation excipient classes and target device prototypes to test",
+        "Approve spike-in tracer choice and capture-reagent panel (multi-epitope)",
+        "Decide acceptable qualitative yield thresholds (non-numeric) for manufacturing compatibility"
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "Supported with major uncertainty. The proposal correctly cites MISEV2023 recommendations for orthogonal controls and assay-compatibility checks, and it is consistent with rodent intranasal preclinical efficacy reports while explicitly acknowledging non-human-primate biodistribution limits. The core gap is absence of direct evidence that endogenous EVs (as opposed to spike-ins or soluble factors) survive clinically relevant nasal-mucus + device passage in a membrane-protected form and retain EV-specific, detergent/protease-sensitive bioactivity in contexts predictive of large-animal or human delivery. Several practical assay and translation risks are noted that require experimental resolution before this compatibility gate can be used to de-risk in vivo bridging.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "No direct empirical evidence in the canonical set demonstrates that endogenous (non-spike-in) EVs survive simulated human nasal-mucus plus device-shear passage in a membrane-protected state and that captured eluates from such simulations show detergent/protease-sensitive, EV-specific bioactivity predictive of large-animal or human nasal delivery.",
+          "concerns": [
+            "Assay-interference risk: excipients or mucin-mimics may block immuno-capture epitopes or otherwise alter spike-in recovery, producing false negatives unless buffer-compatibility panels are rigorous (noted in MISEV2023).",
+            "Spike-in representativeness: exogenous, labeled spike-ins may not faithfully model endogenous product EVs (size, surface composition, or binding to mucus/excipients), risking false reassurance about compatibility.",
+            "Protease/detergent accessibility: incomplete protease access to non-membrane targets or to cargo in non-vesicular complexes could produce false attribution of activity to EV protection vs. resistant soluble/complexed factors.",
+            "Translation risk to large animals/humans: macaque data show poor intranasal biodistribution and retention in nasal lavage, indicating that an in vitro mucin+device pass that preserves identity/activity may still fail in NHP/human in vivo contexts.",
+            "Bioactivity specificity: preserved in vitro anti-inflammatory readout could reflect soluble secretome or non-vesicular complexes that resist the protection assay conditions; rigorous detergent/protease controls and orthogonal mechanistic assays are required.",
+            "High assay complexity and reproducibility: the composite, qualitative pass/fail gate relies on many interdependent assays and materials (device rigs, mucin mimics, lot-to-lot conditioned medium); inconsistent spike-in recovery across lots would invalidate interpretation."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "Supported with significant implementation risks. The proposed composite, spike-in–controlled mucin+device passage compatibility test is appropriate for an early CMC go/no-go gate: it addresses known EV characterization pitfalls (MISEV2023) and directly targets an identified translational failure mode (poor intranasal delivery in macaques). However, the assay matrix is complex and assay-interference, protease-accessibility, lot-yield, and cross-species delivery gaps create nontrivial risk that results will be difficult to interpret or insufficiently predictive of in vivo success without further validation.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "No direct evidence that a positive in vitro composite (capture + protection + protected-bioactivity after mucin+device passage) reliably predicts intranasal brain delivery or pharmacodynamic effect in large animals or humans; macaque data show intranasal retention/failure but do not test the proposed compatibility assay.",
+          "concerns": [
+            "Measurement feasibility / assay sensitivity: multi-step orthogonal workflow (spike-in, immuno-capture, detergent/protease splits, fractionation, particle counting, bioassay) is experimentally demanding; incomplete pre-validation of spike-in and capture reagents or buffer incompatibility could produce false negatives (assay-interference).",
+            "Process sensitivity / protease accessibility: protease/RNase + detergent splits assume complete access to non-membrane cargo; incomplete protease access could misclassify non-vesicular protected activity as EV-associated.",
+            "Lot comparability / material supply: requirement for >=3 independent conditioned-medium lots at scale for matrixing risks high material demand early; inter-lot biological variability could confound binary pass/fail calls unless acceptance rules and minimal yield definitions are set.",
+            "Stability / handling: simulated mucin + device passage adds variables (time, shear, adsorption) that may interact with storage/handling and make results highly dependent on pre‑test handling conditions; stability of both endogenous EVs and spike-in through storage must be qualified.",
+            "Scale-up risk / manufacturability: if only narrow excipient/device combinations pass, manufacturing options and device suppliers may be limited, increasing complexity and cost for fill/finish and device qualification at scale.",
+            "Interpretability for in vivo bridging: passing the compatibility gate demonstrates preserved in vitro membrane-protected attributes but does not guarantee tissue delivery in larger species (macaque evidence suggests species/device-formulation interactions are critical); additional in vivo bridging will still be required."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "The proposed spike-in–controlled mucin + device–pass compatibility test is a plausible and well-justified experimental approach to discriminate intranasal formulation/device conditions that preserve vs. ablate orthogonal intact‑EV identity signatures and membrane‑protected bioactivity. Guiding rationale and need for orthogonal controls are supported by MISEV2023 recommendations and by prior reports that (a) intranasal EVs can show preclinical activity in rodents and (b) intranasal delivery in a primate model can fail to show robust CNS uptake. However, the hypothesis carries substantial uncertainty: assay interference from excipients, incomplete protease accessibility to non‑vesicular complexes, representativeness of the spike‑in tracer, and the ability of the in vitro simulation to predict in vivo (especially large‑animal/human) recoverability are unresolved. The experiment as designed can discriminate the key competing explanations listed (assay compatibility vs. true EV loss; EV‑protected vs. soluble/non‑vesicular activity) if the prequalification controls are rigorous and spike‑in behavior is validated, but it will not by itself establish in vivo delivery or therapeutic mechanism across species.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-zhuang-2011-intranasal-exosome",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "Key gaps: (1) empirical linkage between passing this in vitro mucin+device simulation and successful in vivo nasal/olfactory uptake or CNS pharmacology in larger animals/humans (translation gap); (2) demonstration that the chosen spike‑in tracer faithfully models intrinsic product EV stability/behavior under the same exposures; (3) confirmation that protease/detergent treatments used in the assay fully distinguish membrane‑protected cargo from non‑vesicular complexes under all excipient conditions.",
+          "concerns": [
+            "Assay interference: excipients or mucin mimics may block immuno‑capture epitopes or otherwise affect detection, producing false negatives unless buffer‑compatibility panels and spike‑in recovery are rigorously validated (ev-misev2023-quality-framework).",
+            "Protease accessibility and false positives: non‑vesicular complexes or tightly bound soluble factors could resist protease or appear detergent‑sensitive under some conditions, confounding interpretation of membrane protection as uniquely vesicular (inference consistent with rodent preclinical reports that do not prove membrane protection; ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus).",
+            "Spike‑in representativeness: an orthogonal exogenous tracer may not recapitulate the physicochemical interactions of endogenous product EVs with excipients, mucins, or device shear; divergent behavior would limit the control’s utility (related to MISEV2023 recommendations).",
+            "Translation to in vivo/large animal: macaque biodistribution data showing poor intranasal recovery raise concern that an in vitro compatibility pass may not predict meaningful in vivo delivery, especially across species and device geometries (ev-driedonks-2022-macaque-biodistribution).",
+            "Bioassay specificity: the chosen in vitro neuroinflammation assay must be shown to specifically report on EV‑delivered cargo activity (versus residual soluble mediators or contaminants); detergent/protease controls reduce but may not eliminate this ambiguity (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi).",
+            "Reproducibility and lot variability: requirement for >=3 independent conditioned‑medium lots is appropriate, but source‑cell and process variability could still limit generalizability; scalable manufacturability implications must be considered (ev-misev2023-quality-framework).",
+            "Device simulation fidelity: shear profiles and nasal deposition in a rig may not capture mucociliary clearance, retention in nasal lavage, or species differences in anatomy that affected primate outcomes (ev-driedonks-2022-macaque-biodistribution)."
+          ]
+        }
+      ],
+      "adversary_objection": "The proposed composite in vitro compatibility gate can be systematically misleading because (A) excipient- or device-induced assay interference (e.g., masking of capture epitopes, altered particle optics, or buffer-driven spike-in recovery artifacts) can produce reproducible but artifactual ‘pass’ or ‘fail’ outcomes despite no true preservation or loss of membrane-protected endogenous EVs, and (B) even a technically sound in vitro protected-bioactivity readout may not predict in vivo nasal/brain delivery (non-human-primate data show negligible intranasal brain uptake), so passing the gate would not reliably establish translationally meaningful intranasal compatibility. Together, these bounded risks mean the gate can both misclassify conditions and be uninformative for subsequent in vivo bridging.",
+      "chair_rationale": "The composite, spike-in–controlled mucin+device compatibility test is scientifically plausible and appropriate as an early CMC gate but carries high, actionable uncertainty (assay-interference risks, need to validate spike-in representativeness and protease access, lot-to-lot reproducibility, and lack of evidence linking an in vitro pass to large-animal/human intranasal delivery). Proceeding requires human choices and prequalification steps (approve spike-in and capture panels, define buffer/compatibility controls and qualitative acceptance rules, select device/excipient matrix and lot strategy) before committing resources to experimental execution or scale-up.",
+      "determination": "human_decision_required",
+      "status": "reviewed",
+      "promotion_human_approved": false,
+      "novelty_statement": "This hypothesis is novel because it mandates a composite, spike-in–controlled mucin + device passage compatibility test that combines (A) exogenous intact-EV recovery as an assay control, (B) multi-epitope intact-material capture co-localized with particle peaks plus detergent/protease protection, and (C) a matching membrane-protected in vitro bioactivity readout. Prior SGL-001 proposals explored individual elements (surface-phenotype, spike-in identity gate, protected-bioactivity, or device/excipient compatibility) separately (see prior hypothesis IDs below). Here, the novelty is the explicit, discriminating paired simulation (mucin + device) with spike-in validation and a linked protected-bioactivity endpoint that yields a qualitative compatibility gate for intranasal envelopes — an experiment that meaningfully distinguishes formulation/device compatibility hypotheses from previously proposed fractionation or source-cell gates.",
+      "distinguished_from_hypothesis_ids": [
+        "design-hypothesis-run-20260930T111333Z-80a38509373e",
+        "design-hypothesis-run-20261019T105305Z-76364415651d",
+        "design-hypothesis-run-20261103T125216Z-89bdd6ae5e49"
+      ],
+      "theme_id": "design-gap-intranasal-compatibility",
+      "sequence_within_theme": 4
     }
   ],
   "proposed_experiments": [
@@ -13420,6 +13665,52 @@
       "complexity": "moderate",
       "human_approval_state": "pending",
       "execution_status": "proposed"
+    },
+    {
+      "experiment_id": "design-experiment-run-20261116T134544Z-c47bc4814fb0",
+      "question": "Which nasal excipient classes and device-shear exposures preserve a spike-in–validated intact-EV identity signature and membrane-protected in vitro anti-inflammatory activity after simulated nasal-mucus incubation and device passage?",
+      "hypothesis_tested": "Specific formulation excipient classes and delivery-device shear exposures will either preserve or abolish (A) spike-in–validated intact-EV identity (capture-positive co-localization with particle peaks and detergent/protease sensitivity) and (B) a matched membrane-protected in vitro anti-inflammatory bioactivity; preservation of both defines compatibility for intranasal use.",
+      "required_material": [
+        "MSC-conditioned medium (same source-cell lot) processed to yield an enriched small-EV fraction (program-defined bounded fraction) in sufficient volume for matrixing",
+        "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) to add pre-exposure",
+        "Mucin-mimic matrix reagents representative of human nasal mucus",
+        "Representative intranasal device(s) or device-shear rigs with characterized low/mid/high shear profiles",
+        "Panel of candidate formulation buffers/excipient classes (matrix across pH, ionic strength, presence/absence of low-level non-ionic surfactant, sugar/polyol stabilizers)",
+        "Immuno-capture reagents for canonical EV surface markers (anti-CD63, anti-CD9, anti-CD81 and/or TIM4/AnxA5) and capture-compatibility buffer panels",
+        "Particle counter (NTA or TRPS) and reagents",
+        "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent) for membrane-disruption/protection tests",
+        "Density-fractionation materials (iodixanol) or SEC fractionation setup and fraction collectors",
+        "Standardized in vitro neuroinflammation assay (e.g., LPS-stimulated human iPSC-derived microglia or primary microglia with IL-6/TNF-α ELISA or multiplex readout)",
+        "Total protein assay reagents and consumables"
+      ],
+      "comparator": "Paired matrix: baseline control (no mucin, no device passage) versus multiple formulation/device conditions (matrixed by excipient class and device shear). All arms receive identical spike-in before exposure and are fractionated identically.",
+      "control": "Positive controls: characterized small EV preparation processed in parallel and dexamethasone in the bioassay. Negative controls: buffer-only and detergent-disrupted samples. Capture-compatibility buffer-only panels and spike-in recovery used to detect assay interference.",
+      "assay": "Parallel orthogonal workflows per condition: (1) spike-in addition pre-exposure; (2) simulated mucin incubation + device passage; (3) fractionation with particle counting per fraction; (4) intact immuno-capture for endogenous markers and spike-in tracer per fraction; (5) protease/RNase ± detergent on captured material; (6) elution of captured fractions and application to in vitro neuroinflammation assay; (7) total protein and protein:particle ratios per fraction.",
+      "primary_readout": "Qualitative preservation (yes/no) per condition of: (A) spike-in recovery in capture-positive, particle-peak fractions with loss after detergent+protease (validating membrane protection), (B) endogenous capture-positive co-localization with particle peaks that is detergent/protease-sensitive in the same fractions, and (C) presence of membrane-protected anti-inflammatory effect in captured eluates that is abolished after detergent+protease treatment.",
+      "secondary_readouts": [
+        "Protein:particle ratio per fraction post-exposure",
+        "Capture-compatibility panel outcomes (evidence of assay interference vs true loss)",
+        "Mass and particle recovery (qualitative yield) after formulation/device passage",
+        "Reproducibility across biological replicates (n >= 3 independent conditioned-medium lots)"
+      ],
+      "success_criterion": "For at least one formulation/device condition representative of intended clinical use, across >=3 independent conditioned-medium lots, the condition reproducibly meets all three primary-readout elements (spike-in recovery & protection; endogenous capture co-localization & detergent/protease sensitivity; preserved membrane-protected anti-inflammatory activity abolished by detergent+protease), with capture-compatibility controls excluding assay interference. Conditions failing any element are classified incompatible.",
+      "failure_criterion": "After capture-compatibility controls, no tested condition reproducibly preserves both identity and membrane-protected bioactivity across >=3 lots (i.e., all conditions either abolish the identity signature or show activity that is detergent/protease-insensitive), or spike-in recovery is inconsistent across replicates.",
+      "falsification_outcome": "If falsified (no condition passes reproducibly or assay controls fail), treat intranasal formulation/device compatibility as unresolved for EV-enriched candidates; prioritize alternate strategies (immediate capture/lyophilization, alternative routes, secretome-centric product definitions) before in vivo bridging.",
+      "dependencies": [
+        "Prequalification of capture reagents and spike-in tracer for buffer compatibility",
+        "Availability of device prototypes or rigs with characterized shear profiles",
+        "Sufficient conditioned-medium yield across >=3 lots"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "complexity": "high",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
     }
   ],
   "parked_hypothesis_ids": [],
@@ -14470,6 +14761,28 @@
       ],
       "measurement_concept": "Qualitative presence (yes/no) of spike-in–validated multi-epitope capture co-localized with particle-peak fractions and detergent/protease sensitivity after device/formulation passage.",
       "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20261116T134544Z-c47bc4814fb0-1",
+      "name": "Intranasal compatibility composite (spike-in validated capture + protection + protected-bioactivity)",
+      "group": "manufacturing_fingerprint",
+      "role": "proposed_release_test",
+      "rationale": "A composite, non-numeric compatibility gate that requires preservation of intact-EV identity and membrane-protected activity through simulated clinical device/formulation exposure, enabling go/no-go for intranasal envelopes.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "uncertainty": "High: assay complexity and translation from in vitro simulation to in vivo detectability remain uncertain; spike-in controls reduce but do not eliminate assay risk.",
+      "source_hypothesis_id": "design-hypothesis-run-20261116T134544Z-c47bc4814fb0",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261116T134544Z-c47bc4814fb0",
+        "design-hypothesis-run-20260930T111333Z-80a38509373e",
+        "design-hypothesis-run-20261019T105305Z-76364415651d",
+        "design-hypothesis-run-20261103T125216Z-89bdd6ae5e49"
+      ],
+      "measurement_concept": "Qualitative pass/fail composite assessed per lot-condition; not a numeric release criterion.",
+      "human_approved": false
     }
   ],
   "design_gaps": [
@@ -14756,13 +15069,14 @@
       "rationale": "Vehicle, stabilizer, and device compatibility remain unresolved canonical actions.",
       "evidence_ids": [],
       "status": "open",
-      "times_explored": 3,
-      "last_explored_at": "2026-11-03T12:52:16.319779Z",
-      "latest_hypothesis_id": "design-hypothesis-run-20261103T125216Z-89bdd6ae5e49",
+      "times_explored": 4,
+      "last_explored_at": "2026-11-16T13:45:44.469421Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20261116T134544Z-c47bc4814fb0",
       "hypothesis_ids": [
         "design-hypothesis-run-20260930T111333Z-80a38509373e",
         "design-hypothesis-run-20261019T105305Z-76364415651d",
-        "design-hypothesis-run-20261103T125216Z-89bdd6ae5e49"
+        "design-hypothesis-run-20261103T125216Z-89bdd6ae5e49",
+        "design-hypothesis-run-20261116T134544Z-c47bc4814fb0"
       ],
       "open_questions": [
         "Which compatibility test best protects interpretability?"
@@ -15204,7 +15518,14 @@
       "gap_id": "design-gap-surface-phenotype",
       "determination": "proposed_for_testing",
       "created_at": "2026-11-15T12:49:44.142723Z"
+    },
+    {
+      "run_id": "run-20261116T134544Z-c47bc4814fb0",
+      "hypothesis_id": "design-hypothesis-run-20261116T134544Z-c47bc4814fb0",
+      "gap_id": "design-gap-intranasal-compatibility",
+      "determination": "human_decision_required",
+      "created_at": "2026-11-16T13:45:44.469421Z"
     }
   ],
-  "updated_at": "2026-11-15T12:49:44.142723Z"
+  "updated_at": "2026-11-16T13:45:44.469421Z"
 }
