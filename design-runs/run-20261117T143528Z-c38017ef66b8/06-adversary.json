@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Insufficient analytical sensitivity on low-biomass capture-eluted fractions leading to inconsistent or non-reproducible peroxidation/permeability signals even when functional/capture loss is present (false negatives).",
+    "Assay signal driven by co-isolated soluble lipid complexes, lipoproteins, or other non-vesicular lipid particles in the capture-positive fraction rather than EV membranes \u2014 causing signals that do not reflect EV integrity and decoupling chemistry readouts from capture/protection loss (false positives).",
+    "Fluorescent reporters or colorimetric reagents (BODIPY C11, TBARS reagents, permeability dyes) are interfered with by capture-elution buffers, formulation excipients (e.g., surfactants), or device residues, producing artifactual oxidation or dye uptake signals that do not reflect membrane chemistry.",
+    "Spike-in recovery controls fail to detect matrix-dependent assay suppression or enhancement because the tracer is not isomorphic in membrane composition/packing to the test EVs, producing misleading validation of assay performance.",
+    "Observed chemistry changes (even if real and reproducible) do not predict in vivo delivery or biodistribution failures due to species- or route-specific clearance/retention mechanisms (i.e., lipid-oxidation/permeability is necessary but not sufficient to predict translational exposure outcomes).",
+    "The proposed qualitative pass/fail thresholds cannot be defined robustly across lots because baseline variability in lipid oxidation/permeability between donor lots, culture conditions, or capture efficiency is high, preventing discrimination of true failures from normal lot-to-lot noise.",
+    "Material limits prevent LC-MS confirmation of oxidized phospholipids in the fraction, leaving only lower-specificity assays (BODIPY/TBARS) and reducing confidence in the chemical identity of the signal.",
+    "Contradictory preclinical delivery evidence (rodent intranasal efficacy vs. primate intranasal failure-to-detect) undermines the assumption that early chemical flags of membrane damage will meaningfully de-risk intranasal bridging studies \u2014 i.e., even chemically intact EVs may fail to deliver in large animals or humans."
+  ],
+  "strongest_objection": "The single strongest bounded risk is that the proposed chemistry-centered readouts (BODIPY C11, TBARS, permeability dyes, targeted oxPL LC-MS) will either (A) lack sufficient sensitivity and specificity on the very low-biomass, capture-eluted fractions to produce reproducible, discriminating signals, or (B) report signals that arise from co-isolated non-EV lipid-containing material or assay-interfering excipients rather than bona fide EV membrane damage. Either outcome would make the chemistry readouts uninformative: they would not track with loss of capture/protection signatures (false negatives if insensitive; false positives if driven by co-isolates/excipients) and therefore would not be useful as stability-indicating gates prior to resource-intensive potency/bridging studies. This bounded failure unifies assay-performance, fraction-purity, and formulation-interference risks and directly undermines the proposal\u2019s causal claim that measured lipid chemistry changes are mechanistically upstream and predictive of functional loss."
+}

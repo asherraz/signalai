@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "program_id": "SGL-001",
-  "current_design_question": "Which intranasal formulation excipient classes and device-shear exposures preserve (vs. abolish) an orthogonal, spike-in–validated intact-EV identity signature (multi-epitope capture co-localized with particle peaks and detergent/protease sensitivity) and a matched membrane-protected anti-inflammatory bioactivity after simulated nasal-mucus incubation and device passage?",
+  "current_design_question": "Which orthogonal, chemistry-focused attributes (EV membrane lipid peroxidation and membrane-permeability changes) reliably report loss of intact-EV membrane integrity and predict downstream loss of capture-protected signatures after clinically relevant storage and formulation exposures for intranasal MSC-conditioned-medium-derived materials?",
   "reviewed_hypotheses": [
     {
       "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
@@ -11569,6 +11569,242 @@
       ],
       "theme_id": "design-gap-intranasal-compatibility",
       "sequence_within_theme": 4
+    },
+    {
+      "hypothesis_id": "design-hypothesis-run-20261117T143528Z-c38017ef66b8",
+      "program_id": "SGL-001",
+      "run_id": "run-20261117T143528Z-c38017ef66b8",
+      "created_at": "2026-11-17T14:35:28.048965Z",
+      "title": "Stability hypothesis: Lipid-oxidation and membrane-permeability assays as orthogonal stability-indicating attributes for SGL-001",
+      "design_question": "Which orthogonal, chemistry-focused attributes (EV membrane lipid peroxidation and membrane-permeability changes) reliably report loss of intact-EV membrane integrity and predict downstream loss of capture-protected signatures after clinically relevant storage and formulation exposures for intranasal MSC-conditioned-medium-derived materials?",
+      "primary_domain": "stability",
+      "secondary_domains": [
+        "manufacturing",
+        "product_identity",
+        "process"
+      ],
+      "selected_gap_id": "design-gap-stability",
+      "proposed_product_change_or_attribute": "Adopt EV membrane lipid-oxidation and membrane-permeability (dye-exclusion) readouts, measured on particle-peak / capture-positive fractions, as complementary stability-indicating attributes alongside orthogonal capture/protection assays — use a qualitative pass/fail decision rule (evidence of increased lipid oxidation or increased membrane permeability = fail) to flag compromised lots for follow-up potency and identity linkage.",
+      "biological_rationale": "Membrane integrity is central to the 'membrane-protected cargo' thesis used across the SGL-001 hypotheses. Chemical damage to phospholipids (peroxidation) or increased membrane permeability can abolish membrane-protection of cargo and mask surface epitopes without reducing bulk particle counts. Measuring lipid oxidation and membrane permeability directly provides orthogonal, chemistry-centered evidence that is mechanistically linked to the protection hypothesis and distinct from prior capture/protein/omic-focused proposals.",
+      "manufacturing_rationale": "Lipid peroxidation and membrane permeability assays are amenable to fit-for-purpose qualification, can be applied to low-biomass capture-positive fractions, and are potentially more transferable across sites and platforms than some proteomic signatures. They can be incorporated into stability matrix testing (temperatures, freeze-thaw, excipient/device exposures) to flag conditions that chemically damage particle membranes before investing in complex multi-omic or in vivo bridging work.",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "EV membrane lipid peroxidation and increased membrane permeability (measured chemically) reflect loss of membrane-protected cargo and are mechanistically upstream of loss of capture-protection signatures used to define EV identity and potency."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "Storage/formulation/device/process exposures (temperature excursions, freeze-thaw, surfactant-containing excipients, high-shear) cause oxidative or physicochemical membrane damage that increases peroxidation and permeability while leaving bulk particle counts similar."
+          },
+          {
+            "node_id": "n3",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If lipid-oxidation and membrane-permeability changes are observed reproducibly after defined failure-condition exposures, these attributes can serve as early stability indicators that predict later loss of orthogonal capture/protection and protected-cargo signals and thus de-risk downstream bridging experiments."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n2",
+            "target_node_id": "n1",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-hermann-2023-neonatal-hi"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate: MISEV emphasizes membrane protection as discriminating EVs; rodent work indicates process sensitivity but does not measure lipid peroxidation directly.",
+            "competing_explanation": "Observed capture-signal loss could result from epitope masking (conformational) rather than chemical lipid damage; both may coexist.",
+            "missing_experiment": "Direct correlation of lipid-oxidation and membrane-permeability changes with capture-protection loss and protected-cargo loss across controlled exposures."
+          },
+          {
+            "edge_id": "e2",
+            "source_node_id": "n1",
+            "target_node_id": "n3",
+            "evidence_state": "inference",
+            "evidence_ids": [
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "relation_type": "inference",
+            "model_or_species": "non-human-primate context (delivery uncertainty)",
+            "uncertainty": "Moderate-to-high: large-animal biodistribution uncertainty makes early chemical flags particularly valuable to avoid wasted bridging studies.",
+            "competing_explanation": "Even when membranes are chemically intact, delivery or species-specific clearance could limit in vivo detectability; lipid measures are necessary but not always sufficient as predictors.",
+            "missing_experiment": "Short-interval in vivo bridging using materials stratified by lipid-oxidation/permeability status to test predictive value for recoverable exposure and ex vivo readouts."
+          }
+        ]
+      },
+      "expected_measurable_effect": "Specific exposures that cause loss of orthogonal capture/protection signatures will also produce increased lipid peroxidation signal (e.g., increased BODIPY C11 oxidation ratio or TBARS readout) and increased membrane-permeability (dye uptake in a membrane-impermeant fluorescent probe assay) in capture-positive, particle-peak fractions, while particle counts remain similar.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "contradicting_evidence_ids": [
+        "ev-zhuang-2011-intranasal-exosome"
+      ],
+      "explicit_inferences": [
+        "Direct chemistry-based measures of membrane damage provide an orthogonal, mechanistically relevant stability attribute distinct from protein/omic capture signatures.",
+        "A positive lipid-oxidation or membrane-permeability readout in capture-positive fractions should trigger process/formulation mitigation prior to in vivo bridging."
+      ],
+      "assumptions": [
+        "Assays for lipid peroxidation and membrane-permeability can be optimized for low-biomass, particle-enriched fractions (sensitivity and linearity must be established).",
+        "Lipid-oxidation events relevant for membrane protection will be detectable before complete loss of particle counts or large proteomic changes.",
+        "Spike-in controls or parallel positive-control EVs can be used to validate assay recovery and to flag assay interference by formulation excipients."
+      ],
+      "competing_explanations": [
+        "Loss of capture-protection readouts could be dominated by epitope masking or detergent-incompatible excipients rather than chemical lipid damage; buffer-compatibility controls are required.",
+        "Apparent peroxidation signals might originate from co-isolated soluble lipid-containing complexes rather than EV membranes if fractionation is incomplete."
+      ],
+      "manufacturability_assessment": "Lipid-oxidation assays (e.g., BODIPY C11 fluorescence shift, targeted oxidized phospholipid LC-MS) and membrane-permeability dye-exclusion assays can be performed on capture-positive, particle-peak fractions at pilot scale. Assay development and sensitivity qualification are required; reagents and methods are standard in analytical labs and amenable to transfer.",
+      "measurement_strategy": "Apply a two-tier orthogonal chemistry strategy on fraction-level material: (A) colorimetric/fluorescent peroxidation reporter (BODIPY C11 ratiometric assay) and TBARS as orthogonal corroboration; (B) membrane-permeability dye-exclusion (e.g., Sytox-based or calcein-AM leakage surrogate adapted to captured particles) measured on intact-capture eluates; (C) targeted oxidized-phospholipid LC-MS on the same capture-positive fractions to confirm chemical identity for high-confidence failures. Spike-in characterized EV controls and buffer-compatibility checks run in parallel.",
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20261117T143528Z-c38017ef66b8-1",
+        "design-signature-run-20261117T143528Z-c38017ef66b8-2"
+      ],
+      "proposed_potency_relationship": "These attributes are intended as stability indicators rather than direct potency measures. However, loss of membrane integrity (peroxidation/permeability) is expected to precede and predict loss of membrane-protected bioactivity and capture-protection signatures; therefore they will gate whether potency linkage experiments proceed.",
+      "principal_risks": [
+        "Assay sensitivity: peroxidation and permeability assays may lack sensitivity on low-biomass fractions.",
+        "Assay interference: formulation excipients or capture/elution buffers may interfere with fluorescent reporters; buffer-compatibility controls are required.",
+        "Over-reliance: chemical flags may be necessary but not sufficient predictors of in vivo delivery failures driven by administration/species factors."
+      ],
+      "falsification_criteria": [
+        "If materials subjected to clinically relevant failure exposures show no reproducible increase in lipid-oxidation or membrane-permeability in capture-positive fractions (while orthogonal capture/protection assays concurrently show loss), the hypothesis that chemistry-centered lipid measures are stability-indicating is falsified.",
+        "If lipid-oxidation/permeability signals are ubiquitous across both bounded small-EV fractions and secretome-retaining controls (no discrimination), the attributes lack discriminative value and are falsified for gating purposes."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20261117T143528Z-c38017ef66b8",
+        "question": "Do clinically relevant storage and downstream exposures (accelerated temperature, 3 freeze-thaw cycles, representative excipient classes including low-level non-ionic surfactant, and device-simulated shear) produce reproducible increases in EV membrane lipid peroxidation and membrane permeability in capture-positive, particle-peak fractions while particle counts remain similar?",
+        "hypothesis_tested": "Controlled storage/formulation/device exposures produce detectable increases in lipid-oxidation and membrane-permeability in capture-positive particle fractions that correlate with loss of orthogonal capture-protection signatures, enabling these chemistry-centered attributes to be used as stability indicators.",
+        "required_material": [
+          ">=3 independent conditioned-medium lots from same source-cell bank (matched passage) processed to yield capture-positive particle-peak fractions (bounded small-EV fraction) and concentrated conditioned-medium controls",
+          "Exogenous characterized intact-EV spike-in tracer (orthogonal species/isotope-labeled) for per-sample recovery controls",
+          "BODIPY C11 reagent and fluorescence-capable plate reader or flow setup adapted for low-biomass fractions",
+          "TBARS chemistry reagents as orthogonal peroxidation check and LC-MS reagents for targeted oxidized-phospholipid confirmation when material allows",
+          "Membrane-permeability dye reagents adapted for nanoparticle capture eluates (e.g., Sytox variant or calcein-AM leakage surrogate) with validated buffer-compatibility",
+          "Particle counter (NTA or TRPS) and reagents",
+          "Immuno-capture reagents for intact capture of canonical EV surface markers and capture-elution reagents (compatible with lipid assays)",
+          "Detergent (Triton X-100) and protease (proteinase K) for positive-disruption controls",
+          "Representative formulation excipient panels (matrix across pH, ionic strength, low non-ionic surfactant levels), freeze-thaw capability, and device-shear simulation rig",
+          "Total protein assay reagents and consumables"
+        ],
+        "comparator": "Within-lot matched arms: (A) baseline handling (no exposure), (B) accelerated temperature exposure (e.g., 25°C for defined short term), (C) 3 freeze-thaw cycles, (D) incubation in formulation-buffer A (no surfactant) + device passage, (E) formulation-buffer B (low non-ionic surfactant) + high-shear device passage. Include detergent-disrupted positive controls and spike-in recovery controls.",
+        "control": "Positive controls: characterized small EV prep subjected to detergent disruption (positive peroxidation/permeability signal) and spike-in tracer recovery per sample to confirm assay performance. Negative controls: buffer-only and untreated capture-eluted fractions.",
+        "assay": "Tiered orthogonal assays on capture-positive particle-peak fractions: (1) BODIPY C11 ratiometric fluorescence to measure real-time lipid peroxidation; (2) TBARS colorimetric readout as orthogonal peroxidation check; (3) membrane-permeability dye uptake assay on intact-capture eluates; (4) confirmatory targeted oxidized-phospholipid LC-MS on material-limited samples; (5) parallel particle counts (NTA/TRPS) and capture-protection ELISA/readout (detergent + protease) to correlate with chemistry endpoints.",
+        "primary_readout": "Qualitative increase in BODIPY C11 oxidation ratio and positive permeability dye uptake in exposed capture-positive fractions compared with baseline controls, with particle counts remaining within +/- 20% of baseline (qualitative similarity) and capture-protection readout showing concurrent loss in exposed arms.",
+        "secondary_readouts": [
+          "TBARS signal presence/absence in exposed vs baseline fractions",
+          "Targeted oxidized-phospholipid LC-MS confirmation (presence of specific oxidized phosphatidylcholine species) where material allows",
+          "Spike-in recovery percentage to validate assay function",
+          "Protein:particle ratio per fraction to detect co-isolate changes"
+        ],
+        "success_criterion": "Qualitative success: Across >=3 independent lots, at least one defined failure exposure (e.g., 3 freeze-thaw or formulation-buffer B + high-shear device passage) reproducibly produces (A) an increased BODIPY C11 oxidation ratio in capture-positive particle-peak fractions and (B) a positive membrane-permeability dye uptake signal, while particle counts remain similar and spike-in recovery confirms assay performance. Concurrent loss of capture-protection readout in the same arms strengthens the attribute's predictive value.",
+        "failure_criterion": "No reproducible chemistry-centered signal differences (peroxidation or permeability) across tested failure-condition exposures despite validated spike-in recovery and observed loss of capture/protection signatures (i.e., chemistry readouts do not track with functional/identity loss), or chemistry signals are equally present in baseline and control arms (lack discrimination).",
+        "falsification_outcome": "If lipid-oxidation and permeability readouts do not reproducibly differentiate exposed vs baseline capture-positive fractions (despite concurrent loss of capture/protection signatures), the hypothesis that these chemistry-centered measures are stability-indicating is falsified. The program should then deprioritize lipid chemistry attributes for gating and focus on alternative orthogonal identity/stability attributes (protected-cargo fingerprint, capture-compatibility matrices) or refine assay sensitivity.",
+        "dependencies": [
+          "Assay development to establish LLOQ and specificity of BODIPY C11 and permeability dye assays for low-biomass fractions",
+          "Capture-elution buffer optimization to avoid assay interference",
+          "Availability of spike-in positive controls and sufficient fraction material for LC-MS confirmation"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "complexity": "moderate",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "Validated capture/elution buffer compatibility for lipid and permeability assays",
+        "Analytical method development to demonstrate sensitivity on low-biomass fractions",
+        "At least 3 independent conditioned-medium lots for reproducibility"
+      ],
+      "human_decisions_required": [
+        "Select specific BODIPY C11 assay format and confirm instrumentation availability and sensitivity",
+        "Define qualitative pass/fail thresholds for peroxidation and permeability readouts (after assay development) before execution",
+        "Approve candidate failure-condition matrix (temperatures, freeze-thaw cycles, excipient/device envelopes) to test"
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "Partially plausible but not sufficiently supported by the supplied canonical evidence. MISEV2023 supports the need for orthogonal, transparent EV characterization and controls; rodent efficacy studies (Hermann 2023) support translational relevance of intranasal MSC-EV materials; NHP biodistribution (Driedonks 2022) supports caution about delivery/species limitations. However, there is no supplied canonical evidence that (a) lipid-peroxidation and membrane-permeability assays (BODIPY C11, TBARS, permeability dyes, targeted oxPL LC‑MS) are sensitive, specific, and non-interfered with on low-biomass, capture-positive EV fractions, or (b) that chemical lipid-oxidation/permeability readouts correlate with loss of capture-protection signatures or predict in vivo detectability—these are key assumptions and are unproven in the provided evidence set. Because those gaps are central to the hypothesis and experimental success criteria, the proposal cannot be rated as fully supported.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "No canonical evidence provided that BODIPY C11 / TBARS / membrane-permeability dye assays (or targeted oxidized-phospholipid LC‑MS) have established sensitivity, linearity, and specificity on low-biomass, capture-positive EV fractions, nor evidence that chemical lipid-oxidation or permeability readouts reproducibly correlate with loss of capture-protection signatures or predict in vivo delivery outcomes (especially across species/NHP). Also missing are canonical examples showing buffer/capture-elution compatibility for these chemistry assays.",
+          "concerns": [
+            "Key assumption gap: assay performance (LLOQ, specificity) on low-biomass capture-positive fractions is unproven in the canonical evidence — assay development is therefore essential and could fail (primary risk).",
+            "Inference overreach: proposal infers that chemical lipid flags will predict downstream in vivo bridging outcomes; Driedonks 2022 demonstrates species/delivery uncertainty (NHP) and weak brain uptake after intranasal delivery, so chemical flags may be necessary but not sufficient predictors of in vivo performance.",
+            "Potential assay interference: MISEV2023 emphasizes orthogonal characterization and appropriate controls; the proposal acknowledges buffer/excipient interference risk but supplied evidence does not demonstrate mitigation strategies or prior success of BODIPY/TBARS/permeability dyes in captured-eluate matrices.",
+            "Contradiction/nuance: Zhuang 2011 (mouse) reports intranasal exosomes reaching brain microglia and efficacy in mice, which contrasts with Driedonks 2022 (macaque) showing negligible brain uptake after intranasal administration — this underscores species- and formulation-dependence and cautions against assuming in vivo predictive value from chemistry-centered in vitro flags alone.",
+            "Missing direct correlation experiment: the causal-chain missing experiment (directly correlating lipid-oxidation/permeability with capture-protection loss across controlled exposures) is explicitly required but not supported by the canonical evidence and is central to falsifiability.",
+            "Attribution/inference labeling: the proposal appropriately cites MISEV for quality/controls and uses rodent efficacy and NHP biodistribution to motivate translational uncertainty; no literature fact is represented as SGL-001 experimental data in the supplied proposal."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "Supported with reservations. The proposed chemistry-centered attributes (BODIPY C11/TBARS and membrane-permeability dye readouts on capture-positive particle-peak fractions) are manufacturable and transferable at pilot scale and provide an orthogonal, mechanistically plausible stability signal distinct from proteomic/capture fingerprints. However, measurement sensitivity on low-biomass fractions, assay interference from capture/elution buffers and excipients, potential confounding by co-isolated lipoprotein/lipid complexes, and lack of demonstrated correlation with in‑vivo deliverable exposure in large-animal contexts are material risks that require targeted assay development, buffer-compatibility controls, spike-in recovery, and multi‑lot reproducibility prior to use for gating or lot release decisions.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "Key experimental gaps: (1) validated limits of detection/quantitation and specificity of BODIPY C11 and permeability-dye assays on capture-eluted, low-biomass particle fractions; (2) demonstration that chemistry readouts reproducibly track with loss of capture-protection and protected-cargo signals across ≥3 independent conditioned-medium lots and defined failure conditions; (3) demonstration that positive chemistry flags predict loss of recoverable exposure or function in a bridging context (including large-animal delivery uncertainty); (4) confirmation that peroxidation signals arise from EV membranes rather than co-isolated soluble lipid complexes (requires orthogonal LC-MS on sufficient material and robust fractionation).",
+          "concerns": [
+            "Assay sensitivity and lot-comparability: BODIPY C11, TBARS and permeability dyes may lack required sensitivity/linearity on low-biomass, capture-positive eluates — rigorous LLOQ/LOQ qualification and inter-lot reproducibility assessment are required before operational use.",
+            "Buffer/excipient interference and process sensitivity: capture/elution buffers, detergent controls, and representative formulation excipients (notably low-level surfactants) can quench or produce false-positive fluorescent/colorimetric signals; buffer-compatibility and spike-in recovery controls are essential for each matrix and must be qualified.",
+            "Specificity / co-isolate confounding: incomplete separation from lipoproteins or other lipid-containing soluble complexes can produce peroxidation signals unrelated to EV membrane integrity; targeted oxidized-phospholipid LC‑MS or additional orthogonal fractionation is needed to attribute chemistry readouts to vesicle membranes.",
+            "Scale-up and transferability risk: while assays use standard reagents/instrumentation and are amenable to tech transfer, LC‑MS confirmation and capture-elution compatibility impose material and method complexity at scale; availability of sufficient pooled material for method qualification and routine testing may be limiting.",
+            "Predictive validity for in vivo delivery: non-human primate intranasal studies show poor detectability and strong nasal-retention (ev-driedonks-2022-macaque-biodistribution), indicating that chemistry flags, even if robust, may be necessary but not sufficient predictors of in‑vivo exposure or efficacy; a brief bridging experiment stratified by chemistry-status is recommended before relying on these attributes to gate in vivo studies.",
+            "Operational decision thresholds: proposal requires pre-defined qualitative pass/fail thresholds after assay development. Without prespecified, validated thresholds and demonstrated reproducibility across independent lots, the attributes should remain exploratory rather than release criteria."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "The proposed chemistry-centered stability attributes (BODIPY C11/TBARS peroxidation and membrane-permeability dye uptake on capture-positive particle fractions) are a plausible and useful orthogonal approach to detect physicochemical membrane damage that could precede loss of capture-protection signatures. The approach is consistent with MISEV recommendations to use orthogonal characterization and with rodent studies showing intranasal EV sensitivity to processing, but there is moderate uncertainty about assay sensitivity on low-biomass fractions, specificity for bona fide EV membranes (vs co-isolated lipid complexes), and predictive value for in vivo delivery in larger species. The experiment as designed can discriminate some competing explanations (chemical membrane damage versus preserved membranes with epitope masking) provided the necessary controls (detergent positive control, spike-in recovery, buffer-compatibility checks, and LC-MS confirmation) are included and assay performance is established. However, further bridging experiments (including short-interval in vivo recovery or NHP-relevant assays) will be required to demonstrate that these chemistry flags predict loss of in vivo detectability or function.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "Key gaps: (1) direct, within-lot correlation data linking measured lipid peroxidation/permeability changes to concurrent loss of capture-protection and protected-cargo signals across controlled failure exposures; (2) demonstration of assay sensitivity, linearity, and LLOQ on capture-eluted, low-biomass fractions; (3) evidence that measured chemistry changes originate from EV membranes rather than co-isolated soluble lipid-containing complexes (requiring orthogonal LC-MS and/or density/fractionation controls); (4) predictive validation that chemistry-centered flags map to reduced in vivo recoverability or function in a larger-animal or clinically relevant delivery context.",
+          "concerns": [
+            "Assay sensitivity and validation: BODIPY C11, TBARS and permeability-dye assays can be insensitive or interfered-with at the low particle/protein mass typical of capture-positive eluates; the proposal rightly calls out LLOQ and spike-in controls but these must be demonstrated before decision-making. (ev-misev2023-quality-framework)",
+            "Specificity for EV membranes: Peroxidation or dye signals may arise from non-vesicular lipid particles, lipoproteins, or free oxidized lipids co-isolated with EVs; targeted oxidized-phospholipid LC-MS and orthogonal fractionation/density controls are required to attribute signal to EV membranes. (ev-misev2023-quality-framework)",
+            "Interference from buffers/excipients and capture-elution reagents: Fluorescent reporters and TBARS chemistry are prone to interference by formulation components or elution buffers; stringent buffer-compatibility and spike-recovery controls are essential to avoid false positives/negatives. (ev-misev2023-quality-framework)",
+            "Discrimination vs epitope masking: Loss of capture-based signals may reflect conformational epitope masking or surface-protein alteration without chemical membrane damage; the experiment must include controls (e.g., detergent/protease treatments, proteomic checks) that can partition epitope-related loss from lipid-chemistry-driven loss. (ev-misev2023-quality-framework; ev-hermann-2023-neonatal-hi)",
+            "Predictive value for in vivo delivery: Non-human-primate data show intranasal EVs can be retained in the nasal cavity and show negligible brain uptake regardless of in vitro signatures; chemistry flags may be necessary but not sufficient predictors of in vivo exposure/failure—bridging in vivo recovery experiments stratified by chemistry status are needed before gating potency studies. (ev-driedonks-2022-macaque-biodistribution)",
+            "Material requirements and reproducibility: Low-biomass capture-positive fractions limit capacity for confirmatory LC-MS and replication; ensure >=3 independent lots and plan material allocation/prioritization. (ev-hermann-2023-neonatal-hi)",
+            "Potential for false reassurance or over-reliance: A negative chemistry flag (no peroxidation/permeability change) does not ensure in vivo delivery or potency, given species/delivery route challenges and other failure modes (clearance, uptake), so these attributes should gate but not replace downstream in vivo or orthogonal potency linkage studies. (ev-driedonks-2022-macaque-biodistribution)"
+          ]
+        }
+      ],
+      "adversary_objection": "The single strongest bounded risk is that the proposed chemistry-centered readouts (BODIPY C11, TBARS, permeability dyes, targeted oxPL LC-MS) will either (A) lack sufficient sensitivity and specificity on the very low-biomass, capture-eluted fractions to produce reproducible, discriminating signals, or (B) report signals that arise from co-isolated non-EV lipid-containing material or assay-interfering excipients rather than bona fide EV membrane damage. Either outcome would make the chemistry readouts uninformative: they would not track with loss of capture/protection signatures (false negatives if insensitive; false positives if driven by co-isolates/excipients) and therefore would not be useful as stability-indicating gates prior to resource-intensive potency/bridging studies. This bounded failure unifies assay-performance, fraction-purity, and formulation-interference risks and directly undermines the proposal’s causal claim that measured lipid chemistry changes are mechanistically upstream and predictive of functional loss.",
+      "chair_rationale": "Plausible, mechanistically relevant approach but critical experimental evidence is missing: assay sensitivity/LOQ and specificity on low-biomass capture-eluted fractions are unproven; signals may derive from co-isolated lipid complexes or be interfered with by buffers/excipients; LC-MS confirmation and within‑lot correlation with loss of capture-protection and in vivo recoverability (including larger-animal bridging) are required before this can be advanced to operational testing or used as a gating attribute.",
+      "determination": "needs_evidence",
+      "status": "reviewed",
+      "promotion_human_approved": false,
+      "novelty_statement": "This proposal departs materially from prior SGL-001 stability proposals by focusing on direct chemical measures of membrane integrity (lipid peroxidation and membrane permeability) rather than expanding capture/protection, proteomic, or multi-omic fingerprints. The experiment tests chemistry-centered, mechanism-linked stability attributes that can provide earlier, orthogonal flags of membrane damage and thereby reduce wasted downstream bridging studies.",
+      "distinguished_from_hypothesis_ids": [
+        "design-hypothesis-run-20261001T114105Z-e0f3300d4fdd",
+        "design-hypothesis-run-20261020T101049Z-139bd5efa636",
+        "design-hypothesis-run-20261104T130513Z-578d9e478677"
+      ],
+      "theme_id": "design-gap-stability",
+      "sequence_within_theme": 4
     }
   ],
   "proposed_experiments": [
@@ -13711,6 +13947,49 @@
       "complexity": "high",
       "human_approval_state": "pending",
       "execution_status": "proposed"
+    },
+    {
+      "experiment_id": "design-experiment-run-20261117T143528Z-c38017ef66b8",
+      "question": "Do clinically relevant storage and downstream exposures (accelerated temperature, 3 freeze-thaw cycles, representative excipient classes including low-level non-ionic surfactant, and device-simulated shear) produce reproducible increases in EV membrane lipid peroxidation and membrane permeability in capture-positive, particle-peak fractions while particle counts remain similar?",
+      "hypothesis_tested": "Controlled storage/formulation/device exposures produce detectable increases in lipid-oxidation and membrane-permeability in capture-positive particle fractions that correlate with loss of orthogonal capture-protection signatures, enabling these chemistry-centered attributes to be used as stability indicators.",
+      "required_material": [
+        ">=3 independent conditioned-medium lots from same source-cell bank (matched passage) processed to yield capture-positive particle-peak fractions (bounded small-EV fraction) and concentrated conditioned-medium controls",
+        "Exogenous characterized intact-EV spike-in tracer (orthogonal species/isotope-labeled) for per-sample recovery controls",
+        "BODIPY C11 reagent and fluorescence-capable plate reader or flow setup adapted for low-biomass fractions",
+        "TBARS chemistry reagents as orthogonal peroxidation check and LC-MS reagents for targeted oxidized-phospholipid confirmation when material allows",
+        "Membrane-permeability dye reagents adapted for nanoparticle capture eluates (e.g., Sytox variant or calcein-AM leakage surrogate) with validated buffer-compatibility",
+        "Particle counter (NTA or TRPS) and reagents",
+        "Immuno-capture reagents for intact capture of canonical EV surface markers and capture-elution reagents (compatible with lipid assays)",
+        "Detergent (Triton X-100) and protease (proteinase K) for positive-disruption controls",
+        "Representative formulation excipient panels (matrix across pH, ionic strength, low non-ionic surfactant levels), freeze-thaw capability, and device-shear simulation rig",
+        "Total protein assay reagents and consumables"
+      ],
+      "comparator": "Within-lot matched arms: (A) baseline handling (no exposure), (B) accelerated temperature exposure (e.g., 25°C for defined short term), (C) 3 freeze-thaw cycles, (D) incubation in formulation-buffer A (no surfactant) + device passage, (E) formulation-buffer B (low non-ionic surfactant) + high-shear device passage. Include detergent-disrupted positive controls and spike-in recovery controls.",
+      "control": "Positive controls: characterized small EV prep subjected to detergent disruption (positive peroxidation/permeability signal) and spike-in tracer recovery per sample to confirm assay performance. Negative controls: buffer-only and untreated capture-eluted fractions.",
+      "assay": "Tiered orthogonal assays on capture-positive particle-peak fractions: (1) BODIPY C11 ratiometric fluorescence to measure real-time lipid peroxidation; (2) TBARS colorimetric readout as orthogonal peroxidation check; (3) membrane-permeability dye uptake assay on intact-capture eluates; (4) confirmatory targeted oxidized-phospholipid LC-MS on material-limited samples; (5) parallel particle counts (NTA/TRPS) and capture-protection ELISA/readout (detergent + protease) to correlate with chemistry endpoints.",
+      "primary_readout": "Qualitative increase in BODIPY C11 oxidation ratio and positive permeability dye uptake in exposed capture-positive fractions compared with baseline controls, with particle counts remaining within +/- 20% of baseline (qualitative similarity) and capture-protection readout showing concurrent loss in exposed arms.",
+      "secondary_readouts": [
+        "TBARS signal presence/absence in exposed vs baseline fractions",
+        "Targeted oxidized-phospholipid LC-MS confirmation (presence of specific oxidized phosphatidylcholine species) where material allows",
+        "Spike-in recovery percentage to validate assay function",
+        "Protein:particle ratio per fraction to detect co-isolate changes"
+      ],
+      "success_criterion": "Qualitative success: Across >=3 independent lots, at least one defined failure exposure (e.g., 3 freeze-thaw or formulation-buffer B + high-shear device passage) reproducibly produces (A) an increased BODIPY C11 oxidation ratio in capture-positive particle-peak fractions and (B) a positive membrane-permeability dye uptake signal, while particle counts remain similar and spike-in recovery confirms assay performance. Concurrent loss of capture-protection readout in the same arms strengthens the attribute's predictive value.",
+      "failure_criterion": "No reproducible chemistry-centered signal differences (peroxidation or permeability) across tested failure-condition exposures despite validated spike-in recovery and observed loss of capture/protection signatures (i.e., chemistry readouts do not track with functional/identity loss), or chemistry signals are equally present in baseline and control arms (lack discrimination).",
+      "falsification_outcome": "If lipid-oxidation and permeability readouts do not reproducibly differentiate exposed vs baseline capture-positive fractions (despite concurrent loss of capture/protection signatures), the hypothesis that these chemistry-centered measures are stability-indicating is falsified. The program should then deprioritize lipid chemistry attributes for gating and focus on alternative orthogonal identity/stability attributes (protected-cargo fingerprint, capture-compatibility matrices) or refine assay sensitivity.",
+      "dependencies": [
+        "Assay development to establish LLOQ and specificity of BODIPY C11 and permeability dye assays for low-biomass fractions",
+        "Capture-elution buffer optimization to avoid assay interference",
+        "Availability of spike-in positive controls and sufficient fraction material for LC-MS confirmation"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "complexity": "moderate",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
     }
   ],
   "parked_hypothesis_ids": [],
@@ -14783,6 +15062,44 @@
       ],
       "measurement_concept": "Qualitative pass/fail composite assessed per lot-condition; not a numeric release criterion.",
       "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20261117T143528Z-c38017ef66b8-1",
+      "name": "EV membrane lipid peroxidation (qualitative flag)",
+      "group": "stability_attributes",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "Direct chemical readout of oxidized membrane lipids provides an orthogonal indicator that membranes have been chemically compromised, which should correspond with loss of membrane-protected cargo.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "uncertainty": "Moderate: assay sensitivity on low-biomass fractions must be established.",
+      "source_hypothesis_id": "design-hypothesis-run-20261117T143528Z-c38017ef66b8",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261117T143528Z-c38017ef66b8",
+        "design-hypothesis-run-20261001T114105Z-e0f3300d4fdd"
+      ],
+      "measurement_concept": "BODIPY C11 ratiometric oxidation readout on capture-positive fractions; confirmatory oxidized-phospholipid LC-MS when material allows.",
+      "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20261117T143528Z-c38017ef66b8-2",
+      "name": "EV membrane permeability (dye-exclusion; qualitative pass/fail)",
+      "group": "stability_attributes",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "Increased membrane permeability (dye uptake) indicates loss of membrane integrity and would falsify the membrane-protected cargo hypothesis even when particle counts are unchanged.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "uncertainty": "Moderate: method adaptation required for small particle capture eluates; interference controls are essential.",
+      "source_hypothesis_id": "design-hypothesis-run-20261117T143528Z-c38017ef66b8",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261117T143528Z-c38017ef66b8",
+        "design-hypothesis-run-20261020T101049Z-139bd5efa636"
+      ],
+      "measurement_concept": "Membrane-impermeant dye uptake or luciferase-based leakage surrogate applied to captured intact EV eluates; qualitative threshold (presence of dye uptake above buffer/spike-in control) as fail.",
+      "human_approved": false
     }
   ],
   "design_gaps": [
@@ -15040,13 +15357,14 @@
       "rationale": "No canonical SGL-001 stability program or verified shelf life exists.",
       "evidence_ids": [],
       "status": "open",
-      "times_explored": 3,
-      "last_explored_at": "2026-11-04T13:05:13.500177Z",
-      "latest_hypothesis_id": "design-hypothesis-run-20261104T130513Z-578d9e478677",
+      "times_explored": 4,
+      "last_explored_at": "2026-11-17T14:35:28.048965Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20261117T143528Z-c38017ef66b8",
       "hypothesis_ids": [
         "design-hypothesis-run-20261001T114105Z-e0f3300d4fdd",
         "design-hypothesis-run-20261020T101049Z-139bd5efa636",
-        "design-hypothesis-run-20261104T130513Z-578d9e478677"
+        "design-hypothesis-run-20261104T130513Z-578d9e478677",
+        "design-hypothesis-run-20261117T143528Z-c38017ef66b8"
       ],
       "open_questions": [
         "Which attributes are stability-indicating?"
@@ -15525,7 +15843,14 @@
       "gap_id": "design-gap-intranasal-compatibility",
       "determination": "human_decision_required",
       "created_at": "2026-11-16T13:45:44.469421Z"
+    },
+    {
+      "run_id": "run-20261117T143528Z-c38017ef66b8",
+      "hypothesis_id": "design-hypothesis-run-20261117T143528Z-c38017ef66b8",
+      "gap_id": "design-gap-stability",
+      "determination": "needs_evidence",
+      "created_at": "2026-11-17T14:35:28.048965Z"
     }
   ],
-  "updated_at": "2026-11-16T13:45:44.469421Z"
+  "updated_at": "2026-11-17T14:35:28.048965Z"
 }
