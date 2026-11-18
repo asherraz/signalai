@@ -1,0 +1,173 @@
+{
+  "assumptions": [
+    "Pilot GMP-like lots can be produced and split into blinded aliquots with preserved cold chain for multi-site testing.",
+    "Analytical sites have access to validated particle counting and capture assays and will follow harmonized SOPs.",
+    "Spike-in material is available that is analytically distinct from endogenous signals and compatible with capture assays."
+  ],
+  "biological_rationale": "MISEV2023 and program preclinical rodent evidence indicate EV-identity, membrane protection, and protected cargo are necessary orthogonal signals to attribute activity to intact EVs and to reduce lot-to-lot ambiguity. A blinded, spike-in\u2013controlled, multi-site reproducibility test will show whether a minimally defined composite fingerprint is robust enough to serve as a comparability gate without premature numeric specification.",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20261118T141212Z-6995980ec84c-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "group": "manufacturing_fingerprint",
+      "human_approved": false,
+      "measurement_concept": "Binary qualitative fingerprint present/absent call per lot under blinded multi-site assessment with per-sample spike-in recovery validation.",
+      "name": "Composite orthogonal lot-fingerprint (qualitative pass/fail)",
+      "rationale": "A minimal, non-numeric composite of orthogonal identity signals (intact capture co-localized with particle peaks and detergent/protease sensitivity; protected-cargo panel; particle:protein context) intended solely as a reproducibility/comparability gate across pilot lots and sites.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20261118T141212Z-6995980ec84c",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261118T141212Z-6995980ec84c"
+      ],
+      "uncertainty": "High: requires blinded multi-site evidence before operational use."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Consistent assay readouts across sites could reflect harmonized assay artifacts or consistent co-isolation of non-vesicular components rather than true EV-associated fingerprints.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Blinded split-lot multi-site measurement with per-sample spike-in recovery and capture-compatibility controls.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: guidance supports orthogonal fingerprints but program-specific robustness across manufacturing lots and sites is untested."
+      },
+      {
+        "competing_explanation": "Reproducible analytic fingerprint may not predict in vivo recoverability or functional relevance across species.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Subsequent short-interval in vivo recoverability/bridging studies using lots that pass/fail the fingerprint gate.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: even if analytically reproducible, in vivo delivery/translation risks remain and will require downstream bridging studies."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If a bounded small-EV fraction contains intact, membrane-protected EVs, then a composite orthogonal fingerprint (multi-epitope capture co-localized with particle peaks; protected-cargo panel; particle:protein context) will be detectable on capture-positive particle-peak fractions."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the composite fingerprint is measurable reproducibly across blinded pilot lots and independent analytical sites with per-sample spike-in controls, then the fingerprint can serve as a non-numeric lot-comparability gate for advancing lots into bridging and potency linkage studies."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the fingerprint is not reproducible across lots/sites (discordant blinded calls) despite validated spike-in recovery and capture-compatibility checks, the program cannot rely on it for comparability and must pursue alternative strategies (tighter fractionation, source-cell controls, or secretome-centric definitions)."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Apparent reproducibility could be driven by spike-in recovery and not reflect endogenous fingerprint conservation.",
+    "Inter-site discordance could result from shipping/cold-chain variability rather than lack of fingerprint robustness."
+  ],
+  "contradicting_evidence_ids": [
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "dependencies": [
+    "Produce >=3 pilot GMP-like lots with matched source-cell bank/passage and split/blinded aliquots",
+    "Secure characterized exogenous intact-EV spike-in tracer and distribute to analytical sites",
+    "Establish harmonized SOPs and data reporting rubric for binary fingerprint calls"
+  ],
+  "design_question": "Can a minimal, blinded, multi-lab orthogonal fingerprint (capture-positive detergent-sensitive surface phenotype co-localized with particle peaks + protected-cargo presence + particle:protein context) be measured reproducibly (binary pass/fail per lot) across pilot lots and sites using per-sample spike-in controls, enabling a non-numeric lot-comparability gate without creating premature numeric release specifications?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20261002T111032Z-1b44f84c42fb",
+    "design-hypothesis-run-20261021T101801Z-9bf777144e03",
+    "design-hypothesis-run-20261105T131811Z-4cbbb3443d28"
+  ],
+  "expected_measurable_effect": "Concordant qualitative (pass/fail) fingerprint calls for the same lot across analytical sites with validated spike-in recovery and capture-compatibility controls; i.e., the same lot is scored 'fingerprint present' or 'fingerprint absent' at all participating sites.",
+  "experiment": {
+    "assay": "Orthogonal multi-site workflow: (1) fractionate to identify particle peaks and record particle counts per fraction; (2) perform intact immuno-capture on particle-peak fractions and test detergent/protease sensitivity; (3) perform protected-cargo targeted assays (small-RNA panel + targeted proteomics) on capture-positive fractions; (4) measure total protein and compute particle:protein context; (5) sites report a binary fingerprint-present/fingerprint-absent call per blinded aliquot plus raw data and spike-in recovery metrics.",
+    "comparator": "Blinded per-lot inter-site qualitative concordance (fingerprint present vs absent). Positive control: characterized small-EV reference material included blinded at each site. Negative controls: buffer-only and detergent-disrupted aliquots.",
+    "complexity": "high",
+    "control": "Blinded positive and negative controls at each analytical site; per-sample spike-in tracer recovery required to be recovered and detergent/protease-sensitive to validate each site's assays.",
+    "dependencies": [
+      "Production and blinded aliquoting of >=3 pilot GMP-like lots",
+      "Availability and QC of exogenous intact-EV spike-in tracer",
+      "Two or more analytical laboratories with orthogonal assay capability and harmonized SOPs"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261118T141212Z-6995980ec84c",
+    "failure_criterion": "Discordant fingerprint calls across sites for the same blinded lot despite validated spike-in recovery and capture-compatibility controls, or evidence that apparent concordance is driven solely by spike-in signals with absent endogenous fingerprint.",
+    "falsification_outcome": "If falsified, the composite fingerprint is insufficiently robust for a comparability gate; the program should (A) not use this fingerprint for lot advancement, (B) investigate assay harmonization or alternative attributes (tighter fractionation, protected-cargo panels), or (C) consider secretome-centric strategies.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A composite orthogonal fingerprint will be reproducibly observed in capture-positive particle-peak fractions across >=3 pilot lots and >=2 analytical sites under blinded conditions when each aliquot contains an exogenous intact-EV spike-in to validate assay recovery, enabling a qualitative comparability pass/fail decision without numeric release limits.",
+    "primary_readout": "Qualitative reproducibility call: fingerprint reproducible (yes/no) per lot across sites, requiring concordant pass/fail across participating analytical sites and validated per-sample spike-in recovery.",
+    "question": "Can a blinded, multi-lot, multi-site orthogonal fingerprint (intact-capture detergent-sensitive surface phenotype co-localized with particle peaks; protected-cargo panel in capture-positive fractions; and particle:protein context) be measured reproducibly across pilot lots and analytical sites under harmonized SOPs and per-sample spike-in controls to support a non-numeric comparability gate?",
+    "required_material": [
+      "Aliquots from >=3 pilot GMP-like production lots (split and blinded; cold-chain tracked)",
+      "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) to add to each aliquot pre-shipment",
+      "Harmonized SOPs for fractionation (SEC or iodixanol cushion), particle counting (NTA/TRPS), intact immuno-capture (anti-CD63/CD9/CD81 or TIM4/AnxA5), detergent+protease protection, and protected-cargo targeted assays",
+      "Targeted small-RNA panel reagents and targeted proteomics reagents with spike-in standards",
+      "Particle counters and capture reagents at each analytical site"
+    ],
+    "secondary_readouts": [
+      "Per-site spike-in recovery and detergent/protease-sensitivity metrics",
+      "Protected-cargo panel presence/absence concordance across sites",
+      "Inter-site concordance rates"
+    ],
+    "success_criterion": "Across >=3 pilot lots and >=2 analytical sites, each lot yields the same qualitative fingerprint call at all sites (concordant pass or concordant fail) and per-sample spike-in recovery & capture-compatibility controls confirm assay performance, allowing the fingerprint to be used as a non-numeric lot-comparability gate."
+  },
+  "explicit_inferences": [
+    "A reproducible, qualitative orthogonal fingerprint can be a defensible comparability gate without numeric release limits if assay recovery and cross-site concordance are shown.",
+    "Per-sample exogenous intact-EV spike-in controls are required to interpret negative endogenous signals as true absence rather than assay failure."
+  ],
+  "falsification_criteria": [
+    "Discordant fingerprint calls across analytical sites for the same blinded lot despite validated per-sample spike-in recovery and capture-compatibility checks.",
+    "Controls indicate that apparent concordance is driven solely by spike-in recovery with absent endogenous fingerprint signals."
+  ],
+  "human_decisions_required": [
+    "Select participating analytical sites and approve harmonized SOPs",
+    "Authorize pilot-lot production and blinded split/shipment plan",
+    "Approve spike-in tracer candidate and QC criteria"
+  ],
+  "manufacturability_assessment": "Feasible: requires production of >=3 pilot GMP-like lots and allocation of split blinded aliquots; analytical site coordination and spike-in supply are the principal operational needs. No numeric acceptance limits proposed at this stage.",
+  "manufacturing_rationale": "Manufacturing currently lacks representative lots and orthogonal QC. Demonstrating reproducible, qualitative fingerprint presence across pilot lots and sites would enable a defensible non-numeric comparability gate to advance selected lots into bridging studies and focus CMC validation on assay robustness rather than premature numeric limits.",
+  "measurement_strategy": "Blinded split-lot design across >=2 analytical labs using harmonized SOPs. Each aliquot will be spiked with a characterized exogenous intact-EV tracer prior to shipment to validate per-sample recovery and detect assay failures. Sites will run the predefined orthogonal workflow and submit a binary fingerprint-present/fingerprint-absent call plus raw data.",
+  "novelty_statement": "This hypothesis differs from prior analytic-work proposals by proposing a blinded, multi-lot, multi-site qualitative concordance study that explicitly uses per-sample intact-EV spike-in recovery and a minimal composite orthogonal fingerprint as a non-numeric comparability gate; it is not a restatement of single-site assay matrixing, nor merely a repeat of identity or potency experiments\u2014its novelty is the blinded multi-site reproducibility objective to enable a qualitative comparability decision without premature numeric specifications.",
+  "primary_domain": "reproducibility",
+  "principal_risks": [
+    "Insufficient pilot lot material or variability introduced by split/shipping causing discordant site calls.",
+    "Spike-in control design failing to distinguish endogenous signal or interfering with capture assays.",
+    "False confidence if fingerprint reproducibility does not translate to in vivo recoverability or functional relevance."
+  ],
+  "proposed_potency_relationship": "None asserted. This comparability fingerprint is explicitly non-potency numeric; it is intended to gate lot advancement for downstream potency linkage studies only.",
+  "proposed_product_change_or_attribute": "Adopt a non-numeric, qualitative lot-comparability fingerprint (pass/fail) composed of: (A) intact-material immuno-capture positive signal for canonical EV surface markers that co-localizes with particle-count peaks and is detergent/protease-sensitive; (B) a small protected-cargo panel (protected miRNA subset + \u22651 detergent-sensitive luminal protein) detected in capture-positive, particle-peak fractions and lost after membrane disruption; and (C) conserved particle:protein context \u2014 to be used as a qualitative comparability gate for advancing pilot lots into bridging studies (not as a numeric release test).",
+  "secondary_domains": [
+    "manufacturing",
+    "potency",
+    "product_identity",
+    "stability"
+  ],
+  "sequence_within_theme": 4,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-lot-comparability",
+  "title": "Blinded multi-site reproducibility test of a minimal orthogonal fingerprint as a non-numeric lot-comparability gate for SGL-001"
+}
