@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus"
+  ],
+  "failure_modes": [
+    "Spike\u2011in non\u2011representativity: spike\u2011in differs in surface epitopes, density, membrane robustness, or capture-reactivity such that its recovery/protection behavior does not track endogenous EVs\u2014leading to false pass (secretome misclassified as EV\u2011enriched) or false fail (true EV lot missed). (evidence: ev-misev2023-quality-framework)",
+    "Epitope masking / sample\u2011specific suppression: endogenous EV epitopes can be masked by bound proteins, lipids, or formulation components or degraded during pre\u2011analytic handling, producing negative endogenous capture despite validated spike\u2011in recovery (false negatives). (evidence: ev-misev2023-quality-framework)",
+    "Co\u2011elution of non\u2011vesicular particles: protein aggregates, lipoproteins, or other non\u2011vesicular nanoparticles bearing the same capture epitopes or binding capture reagents can co\u2011elute with particle peaks and show apparent detergent/protease protection (partial), generating false positives. (evidence: ev-misev2023-quality-framework)",
+    "Assay interference from buffers/labels: fractionation, capture/elution buffers or tracer labels may alter capture efficiency or protease/detergent action, causing inconsistent spike\u2011in recovery or altered protection readouts that prevent controlled discrimination across lots. (evidence: ev-misev2023-quality-framework)",
+    "Low material yield / sensitivity floor: bounded fractions may have insufficient particle mass to detect endogenous capture signals reliably; spike\u2011in may still be detectable (because of higher input or different detectability), producing misleading discordant readouts. (evidence: ev-hermann-2023-neonatal-hi)",
+    "Inconsistent spike\u2011in recovery across replicates: batch variability in spike\u2011in QC, addition timing, or fractionation efficiency yields inconsistent internal control behavior that invalidates per\u2011lot pass/fail calls. (evidence: ev-misev2023-quality-framework)",
+    "Incomplete discrimination by detergent/protease: some non\u2011vesicular complexes or strongly bound proteins may resist protease or show partial detergent sensitivity, making the protection readout ambiguous. (evidence: ev-misev2023-quality-framework)",
+    "Translatability/operational mismatch: downstream decisions (e.g., in vivo bridging or delivery route expectations) may be confounded because in vitro identity gate does not predict in vivo recoverability or biodistribution (e.g., intranasal retention and negligible brain uptake in NHPs), causing misprioritization of lots that pass the gate but fail biological bridging studies. (evidence: ev-driedonks-2022-macaque-biodistribution)"
+  ],
+  "strongest_objection": "The single strongest bounded objection is that the exogenous intact\u2011EV spike\u2011in will not faithfully model endogenous EVs in the program material, so the assay will validate spike\u2011in recovery while failing to detect (or falsely declaring) endogenous EV enrichment. Concretely, an orthogonal spike\u2011in may differ in marker display, density, detergent/protease sensitivity, or buffer tolerance such that (A) spike\u2011in is recovered, protected, and lost on detergent but endogenous EVs are epitope\u2011masked, low\u2011abundance, or co\u2011eluting non\u2011vesicular particles that either evade capture or mimic protection. This yields systematic false positives (calling secretome preparations \u201cEV\u2011enriched\u201d because the spike\u2011in behaved) or false negatives (calling true EV lots \u201csecretome\u2011like\u201d because endogenous markers were suppressed), undermining the gate\u2019s intended discrimination and any downstream CMC decisions."
+}

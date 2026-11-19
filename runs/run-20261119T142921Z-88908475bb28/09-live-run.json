@@ -1,0 +1,135 @@
+{
+  "adversary_objection": "The supplied evidence is only a consensus guidance (MISEV2023) and does not demonstrate that the program has produced the program-specific CMC/analytical data (MCB/WCB reports, validated orthogonal intact\u2011EV assays with performance metrics, GMP\u2011like batch records/stability, or GLP large\u2011animal biodistribution data) required to justify proceeding to cross\u2011species intact\u2011EV PK/PD and formulation comparability. In short: absence of program data\u2014not guidance\u2014precludes concluding the gating package is complete.",
+  "artifact_ids": [
+    "run-20261119T142921Z-88908475bb28:01-compact-state.json",
+    "run-20261119T142921Z-88908475bb28:02-development-docket.json",
+    "run-20261119T142921Z-88908475bb28:03-selected-matter.json",
+    "run-20261119T142921Z-88908475bb28:04-reviewer-panel.json",
+    "run-20261119T142921Z-88908475bb28:05-analysis.json",
+    "run-20261119T142921Z-88908475bb28:06-verification.json",
+    "run-20261119T142921Z-88908475bb28:07-adversary.json",
+    "run-20261119T142921Z-88908475bb28:08-chair-determination.json"
+  ],
+  "chair_determination": "evidence_gap",
+  "change_scope": "none",
+  "completed_at": "2026-11-19T14:30:34.312354Z",
+  "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+  "operational_state_changed": false,
+  "previous_state_preserved": true,
+  "program_id": "SGL-001",
+  "reviewer_conclusions": [
+    {
+      "claim_ids": [
+        "claim-ev-cmc-requirements"
+      ],
+      "conclusion": "Supported in principle: MISEV2023 explicitly recommends transparent, orthogonal characterization and appropriate controls; therefore an orthogonal QC panel, validated intact-EV assays, and mechanism-linked stability/potency assays are required before confident formulation advancement.",
+      "evidence_gap": null,
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "limitations": [
+        "MISEV is a consensus guidance document\u2014does not provide program-specific assay data, LLOQ numbers, or validated protocols for SGL-001.",
+        "Guidance identifies needs but does not substitute for demonstration that assays meet fit-for-purpose performance for this product."
+      ],
+      "requested_evidence": [],
+      "reviewer_role": "cmc",
+      "search_needed": false,
+      "unsupported": false
+    },
+    {
+      "claim_ids": [
+        "claim-source-cell-scalability"
+      ],
+      "conclusion": "Unsupported by the supplied evidence set: the available MISEV2023 guidance highlights what should be reported for MCB/WCB and scalable production but does not provide program-specific documentation. There is no supplied MCB/WCB characterization, batch manufacturing records, scale-up validation, or reproducibility data for SGL-001 in the provided evidence, so the claim that source-cell characterization, MCB/WCB establishment, and scalable reproducible production are in place cannot be supported.",
+      "evidence_gap": "Absence of program-specific MCB/WCB documentation, batch manufacturing records, scale-up validation, and reproducibility data.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "limitations": [
+        "MISEV2023 calls for production reporting and defined controls but does not document SGL-001's actual cell-bank or scale-up records.",
+        "No program-supplied MCB/WCB, batch records, or scale-up validation data were included in the supplied evidence set."
+      ],
+      "requested_evidence": [
+        "Master Cell Bank (MCB) and Working Cell Bank (WCB) characterization reports and certificates",
+        "Records from at least three GMP-like scale-up runs including release test results and batch deviation logs",
+        "Comparability/scale-up protocols and qualification reports",
+        "Process validation/robustness data demonstrating reproducible yield and critical quality attributes across lots"
+      ],
+      "reviewer_role": "manufacturing",
+      "search_needed": true,
+      "unsupported": true
+    },
+    {
+      "claim_ids": [
+        "claim-rodent-cns-delivery"
+      ],
+      "conclusion": "Unsupported by the supplied evidence set: while MISEV2023 supports the general principle that rodent intranasal biodistribution data alone may not predict intact-EV CNS exposure in larger species without orthogonal intact-EV analytics and controlled bridging studies, the provided evidence does not include program-specific intact-EV assay validations or large-animal biodistribution data for SGL-001. Therefore the specific claim about translatability for this program cannot be confirmed from the supplied materials.",
+      "evidence_gap": "Lack of intact-EV-specific biodistribution data in larger species and absence of orthogonal intact-EV assay validation for the program.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "limitations": [
+        "MISEV describes limitations of EV biodistribution interpretation but does not provide species-specific experimental data for SGL-001.",
+        "No intact-EV orthogonal assay validation, nor large-animal intranasal biodistribution data, are present in the supplied evidence."
+      ],
+      "requested_evidence": [
+        "Validated intact-EV recovery/identity assays (orthogonal panel) with LLOQ, specificity, precision for SGL-001 matrices",
+        "Large-animal (e.g., NHP or pig) GLP intranasal biodistribution study including controls to distinguish intact-EV signal from free cargo or non-vesicular particles",
+        "Bridging study design and results comparing rodent and large-animal biodistribution using the validated intact-EV assays"
+      ],
+      "reviewer_role": "evidence",
+      "search_needed": true,
+      "unsupported": true
+    }
+  ],
+  "reviewers_convened": [
+    "cmc",
+    "manufacturing",
+    "evidence",
+    "verifier",
+    "adversary",
+    "chair"
+  ],
+  "run_id": "run-20261119T142921Z-88908475bb28",
+  "scientific_state_changed": false,
+  "selected_matter": {
+    "advancement_value": "high",
+    "blocking_stage": "manufacturing comparability",
+    "completed_at": "2026-11-19T14:30:34.312354Z",
+    "determination": "evidence_gap",
+    "domain": "cmc_manufacturing",
+    "linked_evidence_ids": [
+      "ev-misev2023-quality-framework"
+    ],
+    "linked_hypothesis_ids": [
+      "hypothesis-sgl001-biodistribution-gate"
+    ],
+    "linked_risk_ids": [
+      "risk-cmc-identity-potency"
+    ],
+    "matter_id": "matter-potency-identity-characterization",
+    "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+    "priority": "quality_blocking",
+    "program_id": "SGL-001",
+    "question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
+    "required_reviewer_roles": [
+      "cmc",
+      "manufacturing",
+      "evidence"
+    ],
+    "selected_at": "2026-11-19T14:29:21.739598Z",
+    "status": "completed",
+    "title": "Potency and identity characterization",
+    "why_it_matters": "Without reproducible identity and potency measures, observed biological differences may reflect uncontrolled product variability."
+  },
+  "started_at": "2026-11-19T14:29:21.739598Z",
+  "state_changed": false,
+  "strongest_contradictory_evidence_ids": [
+    "ev-misev2023-quality-framework"
+  ],
+  "strongest_supporting_evidence_ids": [
+    "ev-misev2023-quality-framework"
+  ],
+  "what_changed": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
+  "why_selected": "Selected quality_blocking matter with high advancement value. Deterministic ranking favors program-invalidating issues, then real-world stage blockers, product definition, deployment, quality, contradictions, experiment design, and refinement."
+}
