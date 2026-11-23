@@ -1,0 +1,169 @@
+{
+  "assumptions": [
+    "Validated capture reagents and mild elution conditions exist or can be developed that do not chemically or physically disrupt EV membranes.",
+    "Spike-in tracer is available that is analytically distinguishable from endogenous material and behaves similarly under capture/elution conditions.",
+    "Qualitative (non-numeric) gates are acceptable for Stage-1 manufacturing/comparability decisions prior to numeric specification-setting."
+  ],
+  "biological_rationale": "MISEV2023 emphasizes orthogonal, membrane-protection\u2013based identification of intact EVs and warns that abundant soluble secretome co-isolates can obscure EV-specific markers. A reversible, low-shear affinity capture that binds intact particles and elutes them under mild, non-denaturing conditions is plausibly able to remove abundant soluble proteins that confound downstream capture/protection readouts while preserving particle membrane integrity and protected cargo \u2014 enabling an analytically distinct EV-enriched fraction for potency-linkage studies.",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20261123T160718Z-89a03a9faf1e-1",
+      "evidence_ids": [],
+      "group": "manufacturing_fingerprint",
+      "human_approved": false,
+      "measurement_concept": null,
+      "name": "Reversible-capture bounded small-EV fraction (orthogonal intact-EV signature + qualitative yield)",
+      "rationale": "Operational drug-substance candidate defined by orthogonal intact-EV signature (capture co-localization + detergent/protease protection + spike-in recovery) and qualitative recovery sufficient for pilot batch considerations; exploratory pending experiment results.",
+      "role": "exploratory_characterization_candidate",
+      "source_hypothesis_id": "design-hypothesis-run-20261123T160718Z-89a03a9faf1e",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261123T160718Z-89a03a9faf1e"
+      ],
+      "uncertainty": "High until pilot reversible-capture->SEC runs with orthogonal analytics are executed."
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Apparent marker enrichment could reflect loss of a minority EV subpopulation during capture/elution or be explained by removal of a soluble complex that non-specifically bound capture media rather than bona fide EV enrichment.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Pilot-scale reversible-capture->SEC versus comparator workflows with spike-in recovery and orthogonal capture/protection analytics.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV endorses orthogonal capture and membrane-protection as discriminants; prior program work suggests processing choice alters measurable signatures but does not show that reversible capture at pilot scale will succeed."
+      },
+      {
+        "competing_explanation": "Even if analytic identity and recovery are preserved, species- and route-specific delivery barriers could still prevent in vivo exposure; analytic success is necessary but not sufficient.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "inference",
+        "missing_experiment": "Short-interval in vivo recoverability pilot using lots that pass the reversible-capture identity gate.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-high: a reproducible analytic identity gate is a necessary precondition for interpretable bridging to larger species but does not guarantee cross-species intranasal recoverability; large-animal biodistribution concerns raise the operational value of establishing a robust drug-substance identity first."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "A gentle, reversible affinity-capture pre-enrichment upstream of SEC can selectively remove abundant soluble secretome proteins while binding intact, membrane-protected EVs under low-shear conditions."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If reversible capture preserves membrane integrity, downstream SEC fractions will show particle-count peaks that co-localize with capture-positive, detergent/protease-sensitive signal and recover an exogenous spike-in as membrane-protected."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "If the bounded fraction both shows the orthogonal intact-EV signature and yields qualitatively acceptable particle/mass recovery across independent lots, it can be adopted as the drug-substance candidate to support orthogonal QC, potency-assay linkage, and comparability workflows, reducing ambiguity introduced by secretome co-isolates or TFF-induced damage."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Marker co-localization may reflect selective loss of certain EV subpopulations or selective survival of non-vesicular complexes that bind capture reagents.",
+    "Observed yield or signature differences could arise from lot-to-lot upstream source-cell variability rather than the fractionation workflow itself."
+  ],
+  "contradicting_evidence_ids": [],
+  "dependencies": [
+    "development of or access to reversible, low-shear affinity capture media with documented mild elution chemistries",
+    "establishing a characterized exogenous intact-EV spike-in tracer",
+    "analytical readiness for low-biomass immuno-capture + protection assays and particle counting"
+  ],
+  "design_question": "Can a scalable, reversible affinity-capture pre-enrichment (gentle, flow-through binding of intact particles and mild, non-denaturing elution) upstream of SEC produce a bounded small-EV fraction that (A) displays an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal), (B) recovers an exogenous intact-EV spike-in as membrane-protected, and (C) yields qualitatively improved particle/mass recovery compared with pre-SEC depletion->SEC and TFF->SEC->single-step iodixanol cushion workflows?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260923T100544Z-cc9987a71dbd",
+    "design-hypothesis-run-20261007T115111Z-a494dac2c2e9",
+    "design-hypothesis-run-20261026T111346Z-015cfd8292eb",
+    "design-hypothesis-run-20261110T133429Z-9ede5a00980c"
+  ],
+  "expected_measurable_effect": "Compared with pre-SEC depletion->SEC and TFF->SEC->single-cushion workflows, the reversible affinity-capture->SEC bounded fraction will (qualitatively) show: (A) a particle-count peak that co-localizes with capture-positive signal, (B) capture signal that is reduced or abolished after detergent + protease/RNase (indicating membrane protection), (C) recovery of an exogenous intact-EV spike-in in the same fractions with membrane-protection behavior, and (D) qualitatively improved particle/mass recovery sufficient for pilot GMP-like processing (no numeric release limits asserted).",
+  "experiment": {
+    "assay": "Orthogonal per-fraction workflow: (1) record particle counts per fraction (NTA/TRPS) to identify particle peaks; (2) intact immuno-capture ELISA/bead-capture for canonical surface markers on fractions with separate tracer detection to distinguish spike-in; (3) protease + RNase protection testing +/- detergent on captured material to test membrane protection; (4) total protein and protein:particle ratio per fraction; (5) qualitative mass/particle recovery calculation per workflow (pilot-scale yield assessment).",
+    "comparator": "Matched, within-lot arms processed identically except for fractionation upstream of SEC: (A) reversible affinity-capture -> SEC (test); (B) pre-SEC affinity-depletion -> SEC (comparator 1); (C) TFF -> SEC -> single-step iodixanol cushion (comparator 2). All arms spiked identically with the exogenous tracer prior to processing.",
+    "complexity": "high",
+    "control": "Positive control: characterized small EV preparation spiked into buffer and processed in parallel to validate capture and protection assays. Negative controls: buffer-only and detergent-disrupted aliquots. Capture-compatibility buffer panels to rule out assay interference.",
+    "dependencies": [
+      "Availability of reversible-capture media and mild elution conditions compatible with intact EV preservation",
+      "Analytical readiness for spike-in tracer detection and capture/protection assays",
+      "Sufficient conditioned-medium volumes for pilot-scale comparisons"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-hermann-2023-neonatal-hi",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261123T160718Z-89a03a9faf1e",
+    "failure_criterion": "No qualitative improvement in orthogonal intact-EV signature versus comparators across replicates, spike-in not recovered as membrane-protected, or yields consistently inadequate for manufacturability.",
+    "falsification_outcome": "If failure criteria are met across independent lots, the reversible-capture->SEC approach is falsified for this program: it does not produce an analytically distinct, manufacturable bounded small-EV fraction and the program should deprioritize this fractionation path and explore alternative fractionation or secretome-centric definitions.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A gentle, reversible affinity-capture pre-enrichment upstream of SEC yields a bounded small-EV fraction showing capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal, recovers an exogenous intact-EV spike-in as membrane-protected, and provides qualitatively improved recoveries compared with pre-SEC depletion->SEC and TFF->SEC->single-step cushion.",
+    "primary_readout": "Qualitative co-localization of particle-count peaks with capture-positive fractions and marked reduction/abolition of captured signal after detergent + protease/RNase in the reversible capture->SEC arm; validated recovery of spike-in tracer in those fractions with membrane-protection behavior; and qualitatively equal-or-improved recovered particle/mass versus comparators (no numeric thresholds).",
+    "question": "Can a scalable, reversible affinity-capture pre-enrichment upstream of SEC produce a bounded small-EV fraction that preserves an orthogonal intact-EV signature and yields qualitatively improved recovery versus pre-SEC depletion->SEC and TFF->SEC->single-step iodixanol cushion workflows?",
+    "required_material": [
+      ">=3 independent conditioned-medium lots from the same source-cell bank/passage range",
+      "Reversible affinity capture media / columns configured for low-shear intact-particle binding and mild elution (test arm)",
+      "Pre-SEC depletion resin/media (comparator) and TFF system + SEC + iodixanol cushion consumables (comparators)",
+      "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled)",
+      "Immuno-capture reagents for canonical EV markers (anti-CD63/CD9/CD81 or TIM4/AnxA5) and capture-compatibility buffer panels",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Density-fractionation materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent) for membrane disruption/protection assays",
+      "Total protein assay reagents and equipment to measure mass recovery"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio differences between bounded fractions and comparators",
+      "Spike-in recovery percentage per fraction (qualitative recovered & membrane-protected vs not)",
+      "Reproducibility across independent lots (>=3)"
+    ],
+    "success_criterion": "Qualitative success: In >=3 independent conditioned-medium lots, the reversible affinity-capture->SEC workflow reproducibly shows (A) particle-count peak(s) that co-localize with capture-positive signal in bounded fractions, (B) captured signal substantially reduced after detergent + protease/RNase (indicative of membrane protection), and (C) qualitatively equal-or-improved recovered particle/mass for pilot-scale consideration versus the pre-SEC depletion->SEC and TFF->SEC->single-cushion comparators; capture-compatibility controls exclude assay interference."
+  },
+  "explicit_inferences": [
+    "Preserving membrane protection through low-shear capture is expected to increase confidence that downstream measured markers reflect intact EVs rather than soluble co-isolates (inference from MISEV2023).",
+    "A manufacturable reversible capture that preserves signature reduces risk of wasting bridging studies on material that lacks an EV-associated identity."
+  ],
+  "falsification_criteria": [
+    "Across >=3 independent conditioned-medium lots, reversible affinity-capture->SEC does not produce a qualitative difference versus comparators: no reproducible co-localization of capture-positive signal with particle-count peaks, spike-in recovery is absent or not membrane-protected, or captured signal is detergent/protease-insensitive; OR recovered particle/mass yields are consistently inadequate for pilot-scale consideration."
+  ],
+  "human_decisions_required": [
+    "Select candidate reversible capture chemistry and vendor-compatible format for pilot runs (e.g., phosphatidylserine-binding TIM4-based capture with mild Ca2+-chelation elution or lectin/affinity chemistry validated for low-mucin interference).",
+    "Authorize pilot-scale conditioned-medium allocations and resource/time for three matched pilot runs."
+  ],
+  "manufacturability_assessment": "Feasibility depends on availability of low-shear, reversible capture media compatible with sterile, closed, cassette-style workflows and mild elution (non-denaturing). Pilot-scale runs are required to assess recovery and integration with SEC. If yields are inadequate or elution disrupts membranes, the approach is not manufacturable for this program.",
+  "manufacturing_rationale": "A flow-through, reversible affinity pre-enrichment can be implemented as a scalable, cassette-compatible low-shear unit operation upstream of SEC. If it preserves orthogonal intact-EV signatures while providing qualitatively acceptable recovery, it offers a practical manufacturing gate that reduces downstream analytic ambiguity and de-risks selection of lots for bridging studies, compared with high-TFF or simple concentration workflows that may introduce shear-related signature loss.",
+  "measurement_strategy": "Orthogonal per-fraction assessment combining particle-count (NTA/TRPS), intact immuno-capture for canonical EV markers on intact material, detergent + protease/RNase protection, exogenous spike-in tracer recovery, and mass/particle recovery estimates (qualitative). No numeric acceptance limits will be asserted at this stage; outcomes are qualitative pass/fail per lot/arm.",
+  "novelty_statement": "This hypothesis tests a genuinely new, operational fractionation intervention for SGL-001: a scalable, reversible affinity-capture pre-enrichment implemented as a low-shear, cassette-compatible flow-through unit upstream of SEC that (unlike prior proposals) specifies mild, non-denaturing elution of intact particles to preserve membrane-protected signatures while depleting abundant soluble secretome confounders. Prior program hypotheses considered TFF envelopes, pre-SEC depletion, or non-reversible depletion strategies; this reversible capture + release approach is a distinct engineering and analytical intervention requiring a dedicated pilot comparison and orthogonal spike-in-controlled analytics.",
+  "primary_domain": "fractionation",
+  "principal_risks": [
+    "Affinity capture may remove or damage EV subpopulations or EV-bound proteins, producing misleading analytic improvement.",
+    "Elution conditions may alter membrane integrity and thus destroy the very protection signature the method aims to preserve.",
+    "Qualitatively acceptable recovery may still be insufficient for GMP-like batch economics or for downstream in vivo bridging studies."
+  ],
+  "proposed_potency_relationship": "If the bounded fraction preserves membrane-protected cargo and the protected fraction co-fractionates with in vitro bioactivity in downstream experiments, the bounded fraction will be prioritized as the material for potency-linkage assays. At present this is a planning statement, not an assertion of validated potency.",
+  "proposed_product_change_or_attribute": "Adopt a reversible affinity-capture pre-enrichment upstream of SEC as a manufacturable fractionation gate: a bounded small-EV drug-substance defined by (1) capture-positive co-localization with particle-count peaks, (2) detergent/protease-sensitive captured signal (membrane protection), (3) reproducible exogenous spike-in membrane-protected recovery, and (4) qualitatively acceptable particle/mass recovery for pilot GMP-like runs (non-numeric qualitative gate).",
+  "secondary_domains": [
+    "manufacturing",
+    "product_identity"
+  ],
+  "sequence_within_theme": 5,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-isolation-fractionation",
+  "title": "Reversible, low-shear affinity pre-enrichment upstream of SEC to produce a manufacturable, bounded small-EV fraction with preserved membrane-protected signature and improved recovery"
+}
