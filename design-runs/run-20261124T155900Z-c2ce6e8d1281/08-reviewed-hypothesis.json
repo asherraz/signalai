@@ -1,0 +1,228 @@
+{
+  "adversary_objection": "The strongest bounded objection is that the proposed chemical-readout gate (BODIPY C11/TBARS/ox-PL LC-MS + permeability dye on capture-positive eluates) may either (A) lack the analytical sensitivity and specificity to detect meaningful membrane-chemical damage in low-biomass, capture-recovered EV fractions after exposure, or (B) detect chemistry changes that are epiphenomenal (correlated but not causal) with respect to loss of the intact-EV capture-protection signature or in vivo functional/identity loss. Either outcome would render the gate unmeasurable or misleading for process control: false negatives (missed damage because assays are below detection limits or interfered) would fail to protect downstream bridging decisions, while false positives (chemical signal that does not predict capture/protection loss or potency in relevant in vivo contexts) would incorrectly discard usable lots.",
+  "assumptions": [
+    "Assay interference by formulation buffers or capture reagents can be identified and controlled with spike-in and buffer-compatibility controls.",
+    "BODIPY C11 and orthogonal chemistries (TBARS, targeted oxidized-phospholipid LC-MS) have sufficient sensitivity on low-biomass capture-positive fractions after method optimization."
+  ],
+  "biological_rationale": "MISEV2023 and program-level observations indicate EV-associated measures are sensitive to handling and downstream processing; lipid peroxidation and increased membrane permeability are mechanistically upstream events that would abolish membrane-protection of luminal cargo and surface-phenotype readouts, explaining loss of capture-protection co-localization despite preserved particle counts. One plausible route to such damage is repeated freeze-thaw applied in the presence of low concentrations of non-ionic surfactant and device-shear, which can together promote oxidative and physicochemical membrane compromise.",
+  "candidate_quality_attributes_affected": [
+    "design-signature-run-20261124T155900Z-c2ce6e8d1281-1"
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Epitope masking or selective loss of minor EV subpopulations (not chemical membrane damage) could reduce capture signal without clear peroxidation signatures.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Direct measurement of lipid-oxidation and permeability on capture-positive fractions after matrixed downstream exposures.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV recommends orthogonal membrane-protection assays and notes processing sensitivity; program rodent data highlight processing-dependence but do not measure lipid peroxidation directly."
+      },
+      {
+        "competing_explanation": "Loss of in vivo detectability may be dominated by administration or species clearance rather than manufacturing-induced identity loss.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Short-interval in vivo recoverability using materials passing vs failing the chemistry/protection gate.",
+        "model_or_species": "non-human primate context",
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Moderate-to-high: large-animal intranasal detectability concerns increase operational risk if identity is lost, but cross-species delivery barriers may confound interpretation."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Downstream exposure combination (freeze-thaw during fill/finish + short contact with low-level non-ionic surfactant + device-shear rinse) increases EV membrane lipid peroxidation and membrane permeability."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Increased lipid peroxidation and membrane permeability cause loss of membrane-protection of luminal cargo and reduction or loss of multi-epitope intact surface-phenotype capture that normally co-localizes with particle-count peaks and is detergent/protease-sensitive."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Loss of the orthogonal intact-EV analytical signature (capture-protection co-localization) despite similar NTA/TRPS particle counts will render lots analytically indistinguishable from secretome for identity and potency gating, blocking downstream bridging decisions."
+      }
+    ]
+  },
+  "chair_rationale": "The hypothesis is biologically plausible and paired with a concrete, matrixed experimental plan, so it should be advanced to experimental testing. Critical pre-test tasks must be completed as part of that program (formal LOD/interference validation for BODIPY/TBARS/ox\u2011PL on low\u2011biomass captured eluates, robust spike\u2011in/capture\u2011compatibility controls, operator selection of surfactant/freeze\u2011thaw/device parameters, and a short\u2011interval in vivo recoverability arm or bridging experiment). Do not adopt as a manufacturing exclusion gate until those validation and translational gaps are addressed and reproducible predictive correlations are demonstrated across >=3 independent lots.",
+  "competing_explanations": [
+    "Epitope masking or selective loss of minor EV subpopulations rather than bulk membrane chemical damage.",
+    "Delivery or species-specific clearance dominates in vivo detectability issues independent of manufacturing-induced membrane damage."
+  ],
+  "contradicting_evidence_ids": [],
+  "created_at": "2026-11-24T15:59:00.069234Z",
+  "dependencies": [
+    "Analytical method development for low-biomass peroxidation and permeability assays",
+    "Validated spike-in tracer and capture-compatibility buffer panels",
+    "Availability of >=3 independent conditioned-medium lots from the same source-cell bank/passage range"
+  ],
+  "design_question": "Daily question: Does the specific downstream exposure combination \u2014 controlled freeze-thaw cycles applied during fill/finish followed by short contact with a low-concentration non-ionic surfactant (representative nasal excipient) and device-shear rinse \u2014 reproducibly induce EV membrane lipid-peroxidation and membrane permeability that precedes and predicts loss of the orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) while leaving bulk particle counts nominally unchanged?",
+  "determination": "needs_evidence",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260925T101645Z-dda43dc1a8b2",
+    "design-hypothesis-run-20261013T145337Z-aa5ccefa391a",
+    "design-hypothesis-run-20261027T104049Z-da57fe2ba669",
+    "design-hypothesis-run-20261111T124732Z-1c9b7f8b7d93"
+  ],
+  "expected_measurable_effect": "Exposed samples will show increased lipid-peroxidation readout (BODIPY C11 oxidation ratio and orthogonal TBARS or oxidized-phospholipid LC-MS), increased membrane-permeability dye uptake in capture-positive eluates, and concurrent loss of capture-positive co-localization with particle-count peaks and loss of detergent/protease-sensitive behavior, while bulk NTA/TRPS particle counts remain similar.",
+  "explicit_inferences": [
+    "Inference: Chemical membrane damage (lipid peroxidation/permeability) is an upstream mechanistic cause of loss of capture-protection co-localization.",
+    "Inference: Preserving lipid chemical integrity during fill/finish and formulation/device exposure will preserve orthogonal intact-EV signatures even if particle counts are similar."
+  ],
+  "falsification_criteria": [
+    "Validated spike-in recovery and capture-compatibility controls confirm assay performance, but the downstream exposure matrix (freeze-thaw applied during fill/finish + low-level non-ionic surfactant contact + device-shear rinse) does not reproducibly increase lipid peroxidation or membrane permeability in capture-positive fractions across >=3 independent lots, nor does it reproducibly abolish the capture-protection co-localization signature \u2014 hypothesis falsified.",
+    "If chemistry readouts change but capture-protection co-localization remains intact (decoupled), the proposed causal chain (peroxidation -> loss of capture/protection) is not supported and hypothesis is falsified."
+  ],
+  "human_decisions_required": [
+    "Select representative non-ionic surfactant(s) and concentrations for the matrix (operator must choose specific excipient examples).",
+    "Define the freeze-thaw profile to be applied during simulated fill/finish (number and temperature range).",
+    "Select device-shear simulation parameters reflective of intended clinical device(s)."
+  ],
+  "hypothesis_id": "design-hypothesis-run-20261124T155900Z-c2ce6e8d1281",
+  "manufacturability_assessment": "The proposed downstream-exposure gate targets common fill/finish and formulation/device conditions; identifying prohibited envelopes is implementable in process control documents. Chemistry- and protection-based assays will require method development and limited material but are compatible with pilot GMP runs as qualitative gates (non-numeric).",
+  "manufacturing_rationale": "Fill/finish and device compatibility steps are operationally likely to include freeze-thaw exposures, transient surfactant contact (stabilizers/diluents), and device-associated shear. Identifying a prohibited envelope will allow upstream process design or formulation choices that preserve an orthogonal intact-EV signature and avoid wasted bridging work from process-damaged lots.",
+  "measurement_strategy": "Matrixed, within-lot paired exposures with per-sample exogenous intact-EV spike-in controls and capture-compatibility panels. Primary analytics: particle counts (NTA/TRPS), intact immuno-capture co-localization assay (multi-epitope), detergent+protease protection, BODIPY C11 ratiometric peroxidation, TBARS orthogonal check, membrane-permeability dye uptake on captured eluates, and targeted oxidized-phospholipid LC-MS when material allows. No numeric acceptance limits; qualitative pass/fail per lot/condition.",
+  "minimum_discriminating_experiment": {
+    "assay": "Orthogonal panel per sample/fraction: (1) particle counts (NTA/TRPS) per density/size fraction; (2) intact immuno-capture for canonical surface markers with spike-in tracer readout and detergent+protease protection test; (3) BODIPY C11 ratiometric fluorescence on captured eluates (peroxidation); (4) membrane-permeability dye uptake on captured eluates; (5) TBARS and targeted oxidized-phospholipid LC-MS (where material allows) as orthogonal chemistry confirmation; (6) total protein and protein:particle ratio per fraction.",
+    "comparator": "Matched within-lot arms: baseline handling (no freeze-thaw, no surfactant, no device shear) versus matrixed exposures combining 0/1/3 freeze-thaw cycles applied during simulated fill/finish crossed with short contact (predefined time) with low-level non-ionic surfactant buffer and low/medium device-shear rinse. All samples receive identical spike-in prior to exposure.",
+    "complexity": "moderate",
+    "control": "Positive controls: detergent-disrupted captured eluates and intentionally oxidized EV preparations (if available) to confirm BODIPY C11 and TBARS response. Spike-in tracer recovery required for per-sample assay validation. Capture-compatibility buffer-only controls to exclude reagent interference.",
+    "dependencies": [
+      "Method development to adapt BODIPY C11 and permeability assays to low-biomass capture eluates",
+      "Capture-compatibility panels established before interpreting loss of capture signal",
+      "Sufficient conditioned-medium yields to run matrixed downstream exposures across >=3 lots"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-driedonks-2022-macaque-biodistribution",
+      "ev-hermann-2023-neonatal-hi"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261124T155900Z-c2ce6e8d1281",
+    "failure_criterion": "Validated spike-in recovery and capture-compatibility controls confirm assay performance but (A) no reproducible peroxidation/permeability signal differences are observed across the downstream exposure matrix, or (B) peroxidation/permeability signals do not correlate with loss of capture-protection co-localization across >=3 lots; in either case the hypothesis is falsified.",
+    "falsification_outcome": "If falsified, do not adopt lipid-oxidation/permeability as a manufacturing exclusion gate for the tested downstream exposures; re-evaluate other process stages (TFF envelope, pre-SEC strategies, source-cell variables) as primary drivers of intact-EV signature loss.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "Controlled downstream exposures (freeze-thaw during fill/finish + short exposure to low-concentration non-ionic surfactant + device-shear rinse) cause measurable increases in membrane lipid peroxidation and permeability in capture-positive particle fractions and this chemical damage precedes and predicts loss of capture-positive co-localization with particle-count peaks and detergent/protease-sensitive behavior.",
+    "primary_readout": "Qualitative increase in BODIPY C11 oxidation ratio (and orthogonal TBARS/oxidized-phospholipid evidence when available) AND positive membrane-permeability dye uptake in capture-positive particle-peak fractions after the defined downstream exposure combination, concurrent with loss of capture-positive co-localization with particle-count peaks and loss of detergent/protease-sensitive behavior; NTA/TRPS particle counts remain nominally similar.",
+    "question": "Does combined freeze-thaw during fill/finish plus short contact with a low-concentration non-ionic surfactant and a device-shear rinse reproducibly induce EV membrane lipid-peroxidation and permeability that predict loss of the orthogonal intact-EV analytical signature while particle counts remain similar?",
+    "required_material": [
+      ">=3 independent conditioned-medium lots from the same MSC source-cell bank (matched passage) processed to produce a bounded small-EV fraction (program-defined) sufficient for matrixing",
+      "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) for per-sample recovery controls",
+      "Candidate nasal excipient: representative low-concentration non-ionic surfactant formulation buffer (operator-selected surfactant class and concentration matrix)",
+      "Device-shear simulation rig or representative nasal delivery device for shear exposure",
+      "Controlled freeze-thaw capability to apply defined cycles during a simulated fill/finish step (0,1,3 cycles)",
+      "Immuno-capture reagents for canonical EV markers (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5) and capture-compatibility buffer panels",
+      "Particle counter (NTA or TRPS) and reagents",
+      "BODIPY C11 reagent and fluorescence reader configured for low-biomass fractions; TBARS reagents as orthogonal peroxidation check; targeted oxidized-phospholipid LC-MS capability if material allows",
+      "Membrane-permeability dye reagents adapted for captured eluates (e.g., dye uptake assay), protease (proteinase K), RNase reagents, and detergent (Triton X-100) for protection assays",
+      "Density-fractionation materials (iodixanol) or SEC fractionation setup and fraction collectors",
+      "Total protein assay reagents and consumables"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio shifts per fraction",
+      "Spike-in recovery percentage per fraction (assay validation)",
+      "Reproducibility across independent lots (>=3)",
+      "Correlation matrix: per-sample lipid-oxidation/permeability change versus capture-protection co-localization signal loss"
+    ],
+    "success_criterion": "Qualitative success: Across >=3 independent conditioned-medium lots, at least one defined downstream-exposure combination (for example: 3 controlled freeze-thaw cycles during simulated fill/finish + short contact with low-level non-ionic surfactant + medium device-shear rinse) reproducibly produces (A) increased BODIPY C11 oxidation ratio and orthogonal peroxidation evidence in capture-positive particle-peak fractions, (B) positive membrane-permeability dye uptake in captured eluates, and (C) concurrent loss of capture-positive co-localization with particle peaks and loss of detergent/protease-sensitive behavior, while bulk particle counts remain similar and spike-in recovery confirms assay performance. If observed, the exposure envelope is designated an identity-loss gate."
+  },
+  "novelty_statement": "This hypothesis is novel because it specifies a discrete, operational downstream-exposure envelope (freeze-thaw applied during fill/finish combined with short contact with a low-level non-ionic surfactant and device-shear rinse) and proposes chemistry-centered, membrane-focused readouts (BODIPY C11 peroxidation + membrane-permeability dye on capture-positive fractions) as early, qualitative stability/process-damage indicators that are causally linked to loss of orthogonal capture-protection identity metrics. Prior program hypotheses have considered freeze-thaw and formulation effects and TFF-envelope sensitivity, but none have (A) combined the specific fill/finish freeze-thaw timing with surfactant + device-shear as a single discriminating exposure, nor (B) proposed direct chemistry-based lipid-peroxidation and permeability assays on capture-positive fractions as the primary early discriminators.",
+  "primary_domain": "process",
+  "principal_risks": [
+    "Assay sensitivity: lipid-chemistry and permeability assays may lack sensitivity on low-biomass capture fractions without optimization.",
+    "Assay interference: formulation/excipient components may interfere with peroxidation/permeability chemistries or capture reagents and require compatibility controls.",
+    "Scope: Even if manufacturing-induced damage is identified, in vivo cross-species delivery barriers may still prevent translational success."
+  ],
+  "program_id": "SGL-001",
+  "promotion_human_approved": false,
+  "proposed_potency_relationship": "If lipid-oxidation/permeability and loss of capture-protection co-localization occur, protected-cargo-dependent in vitro anti-inflammatory activity (if present) is expected to be abolished; thus chemistry/protection attributes act as upstream indicators that predict loss of membrane-protected potency.",
+  "proposed_product_change_or_attribute": "If supported, declare the identified downstream-exposure envelope (defined freeze-thaw exposure combined with low-level non-ionic surfactant contact and device-shear rinse) as a prohibited downstream-process condition (identity-loss gate) and adopt chemistry- and protection-based stability readouts (membrane-peroxidation + permeability + loss of capture-protection co-localization) as qualitative, non-numeric process acceptance attributes for SGL-001.",
+  "reviewer_findings": [
+    {
+      "concerns": [
+        "Key inference labelled as causal (peroxidation -> capture-protection loss) is only indirectly supported by MISEV2023 and rodent efficacy reports; direct measurements on capture-positive fractions are missing.",
+        "Assay sensitivity and interference risk: BODIPY C11, TBARS and permeability dyes may lack sensitivity or be confounded by excipient/capture-buffer components \u2014 the proposal notes this but experimental confirmation is required before using as a process gate.",
+        "Translatability risk: NHP biodistribution data (ev-driedonks-2022-macaque-biodistribution) suggest administration/species clearance can dominate detectability; distinguishing manufacturing identity-loss from delivery barriers requires in vivo recoverability experiments that are not yet provided.",
+        "Operational ambiguity: operator choices (specific surfactant, freeze-thaw profile, device-shear parameters) are user-defined and could change outcomes \u2014 the gate's applicability depends on well-defined, reproducible exposure definitions.",
+        "Reliance on qualitative, non-numeric pass/fail gates increases subjectivity; absence of numeric limits complicates cross-lot and cross-site harmonization unless robust assay SOPs and spike-in controls are established."
+      ],
+      "conclusion": "Not supported as a demonstrated causal claim. The proposal is plausible and consistent with the cited literature as indirect support for sensitivity of EV analytical signatures to processing and for species-specific delivery limits, but the canonical evidence does not provide direct experimental proof that the specific downstream exposure envelope (freeze-thaw + low-level non-ionic surfactant + device shear) reproducibly causes lipid peroxidation and permeability changes in capture-positive fractions that precede and predict loss of capture-protection co-localization. The proposal correctly identifies the missing experiments and dependencies.",
+      "evidence_gap": "No canonical evidence shows direct measurement of lipid peroxidation and membrane-permeability on capture-positive (immuno-captured) EV fractions after the proposed downstream exposures, nor empirical correlation linking those chemistry readouts to loss of capture-protection co-localization across multiple independent lots. Additionally, there is no direct large-animal or translational evidence tying manufacturing-induced membrane-chemical damage to in vivo detectability or potency loss for the specific exposure envelope.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-driedonks-2022-macaque-biodistribution",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "role": "evidence_verifier",
+      "supported": false
+    },
+    {
+      "concerns": [
+        "Assay sensitivity and feasibility: BODIPY C11, TBARS, and oxidized-phospholipid LC\u2011MS require method optimization and material (low-biomass captured eluates may be below reliable detection limits).",
+        "Assay interference: surfactant/excipient or capture-buffer components can artifactually alter peroxidation and permeability readouts; robust spike-in and buffer-compatibility controls are mandatory.",
+        "Lot comparability requirement: proposal requires >=3 independent conditioned-medium lots from matched source-cell bank/passage; generating sufficient material for matrixed exposures + orthogonal chemistry may be resource-intensive and limit throughput.",
+        "Process control and scale-up risk: controlling freeze\u2013thaw exposure during fill/finish at manufacturing scale and defining a reproducible device-shear simulation representative of clinical devices are non-trivial; identified prohibited envelopes must be operationally enforceable.",
+        "Operationalizing qualitative gate: non-numeric pass/fail criteria increase subjectivity and may complicate regulatory alignment unless assay performance and decision rules are documented and reproducible.",
+        "Translational relevance uncertainty: NHP biodistribution suggests species, administration, formulation and labeling can dominate in vivo detectability; even if manufacturing-induced identity loss is shown analytically, its impact on clinical delivery/potency remains uncertain without in vivo recoverability bridging studies."
+      ],
+      "conclusion": "Supported with reservations. The proposal addresses a plausible, manufacturing-relevant failure mode (membrane chemical damage causing loss of intact-EV analytical signature) and outlines implementable experiments and qualitative gate logic. ISEV/MISEV guidance supports orthogonal membrane- and protection-focused characterization; preclinical work using consistent source-cell material shows feasibility of lot-level comparability studies. However, critical measurement and translational gaps remain and method-development risks must be managed before using the proposed readouts as a production exclusion gate.",
+      "evidence_gap": "No direct experimental evidence in the provided corpus links the specific downstream exposure envelope (freeze\u2013thaw during fill/finish + low-concentration non\u2011ionic surfactant contact + device-shear) to reproducible lipid peroxidation and permeability in capture-positive fractions that predict loss of capture-protection co-localization. Existing evidence supports the need for orthogonal characterization and source-cell scaling/consistency, but not the causal chain or sensitivity of the proposed chemistry assays on low-biomass capture eluates.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "cmc_manufacturing",
+      "supported": true
+    },
+    {
+      "concerns": [
+        "Assay sensitivity and interference: BODIPY C11 and TBARS/oxPL LC-MS may lack sensitivity on low-biomass capture eluates and may be confounded by excipient or capture-buffer chemistry; thorough spike-in and buffer-compatibility controls are required (MISEV2023 supports orthogonal characterization).",
+        "Alternative mechanisms: epitope masking or selective loss of minor EV subpopulations could reduce capture signal without causing measurable peroxidation or permeability changes; the proposed experiment should include alternative capture targets and surface-proteome checks to discriminate these possibilities.",
+        "Correlation versus causation: observing peroxidation concurrent with capture/protection loss does not by itself establish causality; the design must show that peroxidation/permeability precedes or predicts signature loss across independent lots and that experimentally induced peroxidation (positive control) recapitulates analytical loss.",
+        "Translation risk: even if manufacturing-induced membrane damage is demonstrated, species- and route-specific delivery/clearance (e.g., intranasal retention and poor CSF/brain uptake seen in macaques) could dominate in vivo detectability and efficacy outcomes; an in vivo recoverability test (or careful interpretation accounting for Driedonks et al.) is needed to link the analytical gate to clinical risk.",
+        "Dependency on spike-in tracer validity: conclusions require robust per-sample spike-in recovery to exclude assay or capture failures; tracer selection and orthogonality to test materials must be validated beforehand."
+      ],
+      "conclusion": "The proposed hypothesis and experiment are biologically plausible and appropriately grounded in current EV-quality guidance (MISEV2023) and preclinical intranasal EV work in rodents, but important uncertainties remain. The design targets an upstream chemical mechanism (lipid peroxidation \u2192 increased membrane permeability \u2192 loss of capture/protection co-localization) that could explain process-related loss of intact-EV analytical signature while particle counts remain similar. The planned orthogonal chemistry (BODIPY C11, TBARS/oxPL LC-MS) and permeability readouts on capture-positive fractions, combined with spike-in and detergent/protease controls, are well chosen to discriminate chemical membrane damage from simple epitope masking or selective subpopulation loss. However, key evidence gaps and assay risks must be addressed before the experiment can definitively link the proposed manufacturing exposures to downstream analytical-identity loss or to in vivo delivery failure. In particular, there is no direct prior demonstration (in relevant conditioned-medium matrices and on low-biomass capture eluates) that the proposed freeze-thaw + low-level non-ionic surfactant + device-shear envelope reproducibly induces lipid peroxidation measurable with these assays, nor that such chemical damage causally predicts loss of capture-protection across independent lots and species-relevant in vivo recoverability. Recommended additions before adopting this as an identity-loss gate: (1) formal assay validation/limit-of-detection and interference testing with the chosen excipient(s) and capture buffers using spike-in tracer and intentionally oxidized positive controls; (2) inclusion of an in vivo recoverability/short-interval biodistribution arm (or at minimum a bridging experiment) to test whether materials that pass vs fail the chemistry/protection gate differ in intranasal brain/CSF recovery given known cross-species delivery variability; and (3) orthogonal tests that could detect epitope masking or selective subpopulation loss (e.g., alternative capture epitopes, proteomic surface profiling) so the experiment can discriminate those competing explanations if chemistry readouts are negative or uncoupled.",
+      "evidence_gap": "No direct prior data showing that the specific downstream-exposure envelope (freeze-thaw during fill/finish + short contact with low-concentration non-ionic surfactant + device-shear rinse) reproducibly causes measurable lipid peroxidation and permeability in capture-positive, low-biomass EV fractions. Also missing are validated sensitivity/interference characteristics for BODIPY C11/TBARS/oxPL LC-MS on captured eluates in the presence of candidate excipients, and short-interval in vivo recoverability data linking the proposed analytical-gate failure to loss of intranasal brain/CSF detectability in a large-animal or translationally relevant model.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus",
+        "ev-zhuang-2011-intranasal-exosome",
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "role": "mechanism",
+      "supported": true
+    }
+  ],
+  "run_id": "run-20261124T155900Z-c2ce6e8d1281",
+  "secondary_domains": [
+    "stability",
+    "manufacturing"
+  ],
+  "selected_gap_id": "design-gap-manufacturing-process",
+  "sequence_within_theme": 5,
+  "status": "reviewed",
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "theme_id": "design-gap-manufacturing-process",
+  "title": "Hypothesis: Combined freeze-thaw during fill/finish plus low-level non-ionic surfactant exposure causes EV membrane lipid-peroxidation and loss of orthogonal intact-EV signature"
+}
