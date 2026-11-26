@@ -1,0 +1,21 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "failure_modes": [
+    "Assay interference: capture reagents (antibodies, TIM4/AnxA5) or detection chemistries are affected by residual TFF-associated contaminants, buffers, or membrane-derived leachables differently between arms, yielding false positives/negatives in co-localization or protection assays.",
+    "Spike-in mismatch: the exogenous intact-EV spike-in tracer (species, surface composition, or formulation) does not mimic the behavior of native therapeutic EVs during TFF and downstream fractionation, so validated spike-in recovery does not ensure native-EV recovery or integrity.",
+    "Buffer/formulation dependence: TFF envelopes differentially concentrate salts, proteins, or excipients that change capture efficiency or protease accessibility independent of membrane integrity, confounding protection assays.",
+    "Source-cell variability: inter-lot biological variability (donor, passage, secretome composition) dominates the measured signature across the >=3 lots, masking any envelope-dependent effect or producing inconsistent results that preclude reproducible conclusions.",
+    "Yield/scale trade-off: the low-shear envelope preserves analytic signatures but produces qualitatively insufficient particle/mass recovery for pilot GMP runs, making it impractical despite analytical success.",
+    "Hardware/process variability: inability to precisely reproduce TMP/flux/cassette-rotation profiles at pilot scale (or between cassettes) leads to high intra-arm variance and failure to meet the reproducibility criterion.",
+    "Downstream irrelevance: even if the analytic signature is preserved, this preservation does not translate into improved in vivo delivery, biodistribution, or potency (i.e., identity gate is necessary but not predictive), so manufacturing change yields no clinical or translational benefit.",
+    "Non-human-primate disconnect: large-animal data showing poor intranasal biodistribution and nasal retention (strong species/formulation effects) imply that preserving analytic signatures during concentration may be insufficient to affect detectability or efficacy in higher-order species.",
+    "Unmeasured confounders in fractionation: SEC/density fractionation resolution or particle-counter limitations may fail to resolve co-localized peaks or misassign signals, leading to misinterpretation of co-localization outcomes."
+  ],
+  "strongest_objection": "The single strongest bounded reason this proposal could fail is that the observed loss or preservation of the \u2018\u2018orthogonal intact-EV signature\u2019\u2019 will be dominated by assay artifacts or spike\u2011in/model mismatch rather than by TFF-induced membrane damage. Specifically, capture reagents, buffer conditions, or spike-in tracer behavior can be differentially perturbed by the two TFF envelopes (e.g., adsorption to membranes, co-concentrated inhibitors, or selective loss of spike versus native EVs), producing apparent preservation in the low-shear arm or apparent loss in the high-flux arm without any meaningful difference in native EV membrane integrity or downstream biological functionality. If assay interference or non-representative spike-in behavior drives readouts, the experimental gate will be uninformative for manufacturing decisions and will mislead process optimization despite meeting the stated analytic success criteria."
+}

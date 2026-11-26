@@ -1,0 +1,23 @@
+{
+  "concerns": [
+    "Assay validation and spike-in controls are essential: without pre-validated spike-in recovery and demonstration of buffer/assay compatibility, loss of capture signal could reflect assay interference (edge e1 competing explanation) rather than TFF-induced membrane perturbation.",
+    "The proposal relies on qualitative co-localization (yes/no) across >=3 lots; lack of prespecified quantitative thresholds and statistical analysis plan risks ambiguous interpretation when effects are partial or variable between lots.",
+    "Source-cell variability and upstream fractionation could confound results: matched lots must control passage, harvest timing, and any pre-concentration handling to avoid attributing inherent lot differences to TFF envelope effects (competing explanation in proposal).",
+    "Spike-in choice matters: using an orthogonal species or labeled EVs that mimic physical behavior of product EVs is required. If the spike-in behaves differently under shear, spike-in recovery may not reflect product EV integrity.",
+    "Detergent/protease protection readout interprets loss of captured signal as membrane-protection, but epitope masking (conformational changes) could also alter capture without membrane disruption; consider adding complementary readouts (e.g., lipid dye accessibility, cryo-EM subsampling, or enzymatic cleavage assays) to strengthen mechanistic inference.",
+    "Manufacturing relevance: the experiment assesses a pilot-scale envelope and 'qualitatively acceptable' yield, but no numeric yield targets or downstream process impacts (e.g., filtration fouling, processing time, viral clearance considerations) are defined. Demonstrating identity preservation may not be sufficient if yields are consistently lower or operations are impractical.",
+    "Translatability to in vivo detection/efficacy is uncertain. Non-human-primate data show intranasal EVs can be retained in nasal lavage and not reach brain (ev-driedonks-2022-macaque-biodistribution), whereas multiple mouse studies report intranasal EV effects (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi). Thus, even if analytic signatures are preserved, delivery, species, and formulation factors may still limit downstream detectability or potency (edge e2 concern).",
+    "Controls: buffer-only and detergent-disrupted negative controls are included, but consider also processing an unrelated particle control (e.g., liposomes or protein aggregates) to verify specificity of capture and protection assays under both TFF envelopes.",
+    "Reproducibility bar: testing across only three lots may be underpowered to capture inter-lot variability for production-scale decisions; plan for additional lots or replication if early results are borderline."
+  ],
+  "conclusion": "The proposed experiment is conceptually plausible and appropriately targeted to test whether a staged low-shear TFF envelope preserves orthogonal intact-EV analytic signatures versus a high-flux comparator. With validated spike-in tracers, orthogonal capture/protection assays, and matched paired lots, the design can discriminate the primary causal hypothesis (TFF-induced membrane perturbation or epitope masking) from key competing explanations (assay interference, spike-in/recovery artifacts, and source-cell variability). However, important evidence gaps remain around assay validation, quantitative acceptance criteria, and whether preservation of analytic signature will meaningfully affect downstream in vivo performance or manufacturability at GMP scale.",
+  "evidence_gap": "Validated, buffer\u2011compatible spike-in tracer and orthogonal capture/protection assay performance (recovery, sensitivity, specificity) under both TFF envelopes; pre-defined quantitative acceptance criteria for 'qualitatively acceptable' recovery and statistical plan for >=3-lot reproducibility; direct linkage demonstrating that preserved analytic signature enables downstream potency or in vivo detectability (bridging experiments).",
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-zhuang-2011-intranasal-exosome",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-hermann-2023-neonatal-hi"
+  ],
+  "supported": true
+}

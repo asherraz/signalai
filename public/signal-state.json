@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T16:03:23.391186Z",
+  "generatedAt": "2026-11-26T15:29:41.929370Z",
   "version": "2.0",
   "status": "awaiting_human_review",
   "program": {
@@ -628,8 +628,8 @@
     "name": "SignalRB",
     "label": "Signal Review Board",
     "latestReview": {
-      "review_id": "signalrb-run-20261124T155711Z-f2609fead3a4",
-      "run_id": "run-20261124T155711Z-f2609fead3a4",
+      "review_id": "signalrb-run-20261126T152450Z-aaf5f7c65174",
+      "run_id": "run-20261126T152450Z-aaf5f7c65174",
       "program_id": "SGL-001",
       "matter_id": "matter-potency-identity-characterization",
       "matter_title": "Potency and identity characterization",
@@ -644,18 +644,16 @@
         "chair"
       ],
       "strongest_case_for": "No proposed scientific-state update was accepted as sufficiently evidence-supported.",
-      "strongest_case_against": "The supplied evidence is only a consensus guideline (MISEV2023) and contains no program-specific CMC, assay validation, batch comparability, formulation compatibility, or GLP-like biodistribution data. Therefore the recommendation to declare the program insufficiently characterized (or to proceed on the proposed 3-month, parallelized Stage-1 execution) is not supported by the supplied evidence set — the guideline cannot substitute for the concrete, program-level deliverables required to de-risk identity/potency and lot-to-lot comparability.",
+      "strongest_case_against": "The reviewer overstates program-specific absences and treats MISEV2023 guidance as direct evidence of program noncompliance; the supplied evidence (ev-misev2023-quality-framework) is consensus guidance and cannot be used to prove that SGL-001 lacks MCB/WCB records, assay validations, GMP-like batch data, or cross‑species biodistribution. The core objection is that claims about missing program artifacts are unverified and therefore premature without inspection of the program's actual CMC/analytics records.",
       "verification_status": "unsupported_assertions",
       "determination": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
       "determination_type": "evidence_gap",
       "conditions": [
-        "Provision of MCB and WCB characterization and documentation (cell bank certificates, genetic/phenotypic identity, mycoplasma/sterility/viral safety testing, storage records) for SGL-001 source cells",
-        "Submission of fit-for-purpose validation reports for the orthogonal intact-EV QC panel demonstrating LLOQ, specificity (distinguishing EVs from non-vesicular particles), accuracy, precision (intra/inter-assay), and robustness for particle count and marker assays",
-        "Provision of a validated stability-indicating potency assay report linked quantitatively to an in vivo PD endpoint (study protocol, raw and analyzed data showing assay readout correlates with biologic effect)",
-        "Release, stability, and potency reports for \u00036 GMP-like bridging batches (batch records, release test results, stability timepoints, comparability statistics) demonstrating reproducible identity/potency across lots",
-        "Formulation and device compatibility study reports demonstrating intact-EV recovery and acceptable potency/identity post-fill/dispense (methods, recovery metrics, acceptance criteria)",
-        "GLP-like large-animal intranasal biodistribution/toxicity study report using the validated intact-EV assays, with appropriate controls and assay performance data showing species-bridging comparability",
-        "Documentation of resource allocation and program management (resourcing plan, critical-path Gantt or equivalent) showing capability to execute the proposed parallelized 3-month Stage-1 deliverables"
+        "Provision of program-specific MCB and WCB creation and characterization reports and certificates showing defined identity and appropriate testing",
+        "Provision of fit‑for‑purpose validation/qualification reports for orthogonal intact‑EV analytics including documented LLOQ, specificity, precision, accuracy, and assay methods",
+        "Provision of validation/qualification data for a stability‑indicating potency assay and data showing correlation between assay readout and an in vivo PD endpoint",
+        "Provision of release, stability, and potency reproducibility datasets across ≥3 GMP‑like batches (batch records, specs, and stability study reports) demonstrating consistent critical quality attributes",
+        "Provision of matched biodistribution data in a large animal species using the same orthogonal intact‑EV assays and bridging controls demonstrating reproducible intact‑EV CNS exposure"
       ],
       "evidence_ids": [
         "ev-misev2023-quality-framework"
@@ -664,9 +662,46 @@
       "previous_state_preserved": true,
       "human_decision_required": false,
       "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
-      "created_at": "2026-11-24T15:58:58.791604Z"
+      "created_at": "2026-11-26T15:26:34.169255Z"
     },
     "recentReviews": [
+      {
+        "review_id": "signalrb-run-20261126T152450Z-aaf5f7c65174",
+        "run_id": "run-20261126T152450Z-aaf5f7c65174",
+        "program_id": "SGL-001",
+        "matter_id": "matter-potency-identity-characterization",
+        "matter_title": "Potency and identity characterization",
+        "matter_question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
+        "domain": "cmc_manufacturing",
+        "reviewers": [
+          "cmc",
+          "manufacturing",
+          "evidence",
+          "verifier",
+          "adversary",
+          "chair"
+        ],
+        "strongest_case_for": "No proposed scientific-state update was accepted as sufficiently evidence-supported.",
+        "strongest_case_against": "The reviewer overstates program-specific absences and treats MISEV2023 guidance as direct evidence of program noncompliance; the supplied evidence (ev-misev2023-quality-framework) is consensus guidance and cannot be used to prove that SGL-001 lacks MCB/WCB records, assay validations, GMP-like batch data, or cross‑species biodistribution. The core objection is that claims about missing program artifacts are unverified and therefore premature without inspection of the program's actual CMC/analytics records.",
+        "verification_status": "unsupported_assertions",
+        "determination": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
+        "determination_type": "evidence_gap",
+        "conditions": [
+          "Provision of program-specific MCB and WCB creation and characterization reports and certificates showing defined identity and appropriate testing",
+          "Provision of fit‑for‑purpose validation/qualification reports for orthogonal intact‑EV analytics including documented LLOQ, specificity, precision, accuracy, and assay methods",
+          "Provision of validation/qualification data for a stability‑indicating potency assay and data showing correlation between assay readout and an in vivo PD endpoint",
+          "Provision of release, stability, and potency reproducibility datasets across ≥3 GMP‑like batches (batch records, specs, and stability study reports) demonstrating consistent critical quality attributes",
+          "Provision of matched biodistribution data in a large animal species using the same orthogonal intact‑EV assays and bridging controls demonstrating reproducible intact‑EV CNS exposure"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "state_change": false,
+        "previous_state_preserved": true,
+        "human_decision_required": false,
+        "next_action": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+        "created_at": "2026-11-26T15:26:34.169255Z"
+      },
       {
         "review_id": "signalrb-run-20261124T155711Z-f2609fead3a4",
         "run_id": "run-20261124T155711Z-f2609fead3a4",
@@ -3091,7 +3126,7 @@
       }
     ],
     "summary": {
-      "reviews": 64,
+      "reviews": 65,
       "pendingHumanDecisions": 1
     }
   },
@@ -3133,7 +3168,7 @@
     "status": "preclinical",
     "currentDetermination": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
     "strongestCaseFor": "No proposed scientific-state update was accepted as sufficiently evidence-supported.",
-    "strongestCaseAgainst": "The supplied evidence is only a consensus guideline (MISEV2023) and contains no program-specific CMC, assay validation, batch comparability, formulation compatibility, or GLP-like biodistribution data.",
+    "strongestCaseAgainst": "The reviewer overstates program-specific absences and treats MISEV2023 guidance as direct evidence of program noncompliance; the supplied evidence (ev-misev2023-quality-framework) is consensus guidance and cannot be used to prove that SGL-001 lacks MCB/WCB records, assay validations, GMP-like batch data, or cross‑species biodistribution. The core objection is that claims about missing program artifacts are unverified and therefore premature without inspection of the program's actual CMC/analytics records.",
     "humanDecisionRequired": false,
     "verificationStatus": "unsupported_assertions",
     "currentBlockers": [
@@ -3265,7 +3300,8 @@
             "signalrb-run-20261121T133134Z-d07c112d8845",
             "signalrb-run-20261122T132523Z-dc75eeef1c38",
             "signalrb-run-20261123T160549Z-d9ddb85579af",
-            "signalrb-run-20261124T155711Z-f2609fead3a4"
+            "signalrb-run-20261124T155711Z-f2609fead3a4",
+            "signalrb-run-20261126T152450Z-aaf5f7c65174"
           ],
           "program_fields": []
         }
@@ -3405,9 +3441,9 @@
         ]
       }
     ],
-    "signalRBReviewId": "signalrb-run-20261124T155711Z-f2609fead3a4",
+    "signalRBReviewId": "signalrb-run-20261126T152450Z-aaf5f7c65174",
     "evidenceConfidence": "moderate",
-    "updatedAt": "2026-11-24T15:58:58.791604Z",
+    "updatedAt": "2026-11-26T15:26:34.169255Z",
     "programHistory": [
       {
         "date": "2026-09-11T10:18:54.400148Z",
@@ -3920,6 +3956,14 @@
         "state_change": "No scientific state change. Recorded determination: The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
         "review_id": "signalrb-run-20261124T155711Z-f2609fead3a4",
         "run_id": "run-20261124T155711Z-f2609fead3a4"
+      },
+      {
+        "date": "2026-11-26T15:26:34.169255Z",
+        "matter_title": "Potency and identity characterization",
+        "determination_type": "evidence_gap",
+        "state_change": "No scientific state change. Recorded determination: The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
+        "review_id": "signalrb-run-20261126T152450Z-aaf5f7c65174",
+        "run_id": "run-20261126T152450Z-aaf5f7c65174"
       }
     ],
     "sources": {
@@ -4009,7 +4053,8 @@
         "signalrb-run-20261121T133134Z-d07c112d8845",
         "signalrb-run-20261122T132523Z-dc75eeef1c38",
         "signalrb-run-20261123T160549Z-d9ddb85579af",
-        "signalrb-run-20261124T155711Z-f2609fead3a4"
+        "signalrb-run-20261124T155711Z-f2609fead3a4",
+        "signalrb-run-20261126T152450Z-aaf5f7c65174"
       ],
       "program_fields": [
         "status",
@@ -9393,6 +9438,41 @@
   },
   "intelligenceFeed": [
     {
+      "itemId": "feed-live-run-20261126T152450Z-aaf5f7c65174",
+      "type": "evidence_gap",
+      "title": "Potency and identity characterization: evidence gap; prior state preserved",
+      "summary": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
+      "domain": "cmc_manufacturing",
+      "programId": "SGL-001",
+      "jurisdictionId": null,
+      "importance": "high",
+      "accessTier": "public",
+      "createdAt": "2026-11-26T15:26:34.169255Z",
+      "linkedArtifactIds": [
+        "run-20261126T152450Z-aaf5f7c65174:01-compact-state.json",
+        "run-20261126T152450Z-aaf5f7c65174:02-development-docket.json",
+        "run-20261126T152450Z-aaf5f7c65174:03-selected-matter.json",
+        "run-20261126T152450Z-aaf5f7c65174:04-reviewer-panel.json",
+        "run-20261126T152450Z-aaf5f7c65174:05-analysis.json",
+        "run-20261126T152450Z-aaf5f7c65174:06-verification.json",
+        "run-20261126T152450Z-aaf5f7c65174:07-adversary.json",
+        "run-20261126T152450Z-aaf5f7c65174:08-chair-determination.json"
+      ],
+      "linkedReviewIds": [
+        "run-20261126T152450Z-aaf5f7c65174"
+      ],
+      "linkedDecisionIds": [],
+      "priorPosition": null,
+      "newPosition": null,
+      "reasonEvidence": [
+        "ev-misev2023-quality-framework"
+      ],
+      "effectOnEvidenceConfidence": null,
+      "determination": "evidence_gap",
+      "nextAction": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+      "runId": "run-20261126T152450Z-aaf5f7c65174"
+    },
+    {
       "itemId": "feed-live-run-20261124T155711Z-f2609fead3a4",
       "type": "evidence_gap",
       "title": "Potency and identity characterization: evidence gap; prior state preserved",
@@ -11724,10 +11804,10 @@
       "nextAction": null
     },
     "latestRun": {
-      "runId": "run-20261124T155711Z-f2609fead3a4",
+      "runId": "run-20261126T152450Z-aaf5f7c65174",
       "programId": "SGL-001",
-      "startedAt": "2026-11-24T15:57:11.006336Z",
-      "completedAt": "2026-11-24T15:58:58.791604Z",
+      "startedAt": "2026-11-26T15:24:50.068245Z",
+      "completedAt": "2026-11-26T15:26:34.169255Z",
       "selectedMatter": {
         "matterId": "matter-potency-identity-characterization",
         "programId": "SGL-001",
@@ -11753,8 +11833,8 @@
           "evidence"
         ],
         "status": "completed",
-        "selectedAt": "2026-11-24T15:57:11.006336Z",
-        "completedAt": "2026-11-24T15:58:58.791604Z",
+        "selectedAt": "2026-11-26T15:24:50.068245Z",
+        "completedAt": "2026-11-26T15:26:34.169255Z",
         "determination": "evidence_gap",
         "nextAction": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change."
       },
@@ -11775,8 +11855,7 @@
             "ev-misev2023-quality-framework"
           ],
           "claimIds": [
-            "claim-ev-cmc-requirements",
-            "claim-source-cell-scalability"
+            "claim-ev-cmc-requirements"
           ],
           "limitations": [
             "Supporting canonical evidence is insufficient."
@@ -11806,8 +11885,7 @@
             "ev-misev2023-quality-framework"
           ],
           "claimIds": [
-            "claim-rodent-cns-delivery",
-            "claim-ev-cmc-requirements"
+            "claim-rodent-cns-delivery"
           ],
           "limitations": [
             "Supporting canonical evidence is insufficient."
@@ -11820,7 +11898,7 @@
         "ev-misev2023-quality-framework"
       ],
       "strongestContradictoryEvidenceIds": [],
-      "adversaryObjection": "The supplied evidence is only a consensus guideline (MISEV2023) and contains no program-specific CMC, assay validation, batch comparability, formulation compatibility, or GLP-like biodistribution data. Therefore the recommendation to declare the program insufficiently characterized (or to proceed on the proposed 3-month, parallelized Stage-1 execution) is not supported by the supplied evidence set — the guideline cannot substitute for the concrete, program-level deliverables required to de-risk identity/potency and lot-to-lot comparability.",
+      "adversaryObjection": "The reviewer overstates program-specific absences and treats MISEV2023 guidance as direct evidence of program noncompliance; the supplied evidence (ev-misev2023-quality-framework) is consensus guidance and cannot be used to prove that SGL-001 lacks MCB/WCB records, assay validations, GMP-like batch data, or cross‑species biodistribution. The core objection is that claims about missing program artifacts are unverified and therefore premature without inspection of the program's actual CMC/analytics records.",
       "chairDetermination": "evidence_gap",
       "stateChanged": false,
       "changeScope": "none",
@@ -11830,17 +11908,132 @@
       "whatChanged": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
       "nextAction": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
       "linkedArtifactIds": [
-        "run-20261124T155711Z-f2609fead3a4:01-compact-state.json",
-        "run-20261124T155711Z-f2609fead3a4:02-development-docket.json",
-        "run-20261124T155711Z-f2609fead3a4:03-selected-matter.json",
-        "run-20261124T155711Z-f2609fead3a4:04-reviewer-panel.json",
-        "run-20261124T155711Z-f2609fead3a4:05-analysis.json",
-        "run-20261124T155711Z-f2609fead3a4:06-verification.json",
-        "run-20261124T155711Z-f2609fead3a4:07-adversary.json",
-        "run-20261124T155711Z-f2609fead3a4:08-chair-determination.json"
+        "run-20261126T152450Z-aaf5f7c65174:01-compact-state.json",
+        "run-20261126T152450Z-aaf5f7c65174:02-development-docket.json",
+        "run-20261126T152450Z-aaf5f7c65174:03-selected-matter.json",
+        "run-20261126T152450Z-aaf5f7c65174:04-reviewer-panel.json",
+        "run-20261126T152450Z-aaf5f7c65174:05-analysis.json",
+        "run-20261126T152450Z-aaf5f7c65174:06-verification.json",
+        "run-20261126T152450Z-aaf5f7c65174:07-adversary.json",
+        "run-20261126T152450Z-aaf5f7c65174:08-chair-determination.json"
       ]
     },
     "recentRuns": [
+      {
+        "runId": "run-20261126T152450Z-aaf5f7c65174",
+        "programId": "SGL-001",
+        "startedAt": "2026-11-26T15:24:50.068245Z",
+        "completedAt": "2026-11-26T15:26:34.169255Z",
+        "selectedMatter": {
+          "matterId": "matter-potency-identity-characterization",
+          "programId": "SGL-001",
+          "title": "Potency and identity characterization",
+          "question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
+          "domain": "cmc_manufacturing",
+          "whyItMatters": "Without reproducible identity and potency measures, observed biological differences may reflect uncontrolled product variability.",
+          "priority": "quality_blocking",
+          "advancementValue": "high",
+          "blockingStage": "manufacturing comparability",
+          "linkedHypothesisIds": [
+            "hypothesis-sgl001-biodistribution-gate"
+          ],
+          "linkedRiskIds": [
+            "risk-cmc-identity-potency"
+          ],
+          "linkedEvidenceIds": [
+            "ev-misev2023-quality-framework"
+          ],
+          "requiredReviewerRoles": [
+            "cmc",
+            "manufacturing",
+            "evidence"
+          ],
+          "status": "completed",
+          "selectedAt": "2026-11-26T15:24:50.068245Z",
+          "completedAt": "2026-11-26T15:26:34.169255Z",
+          "determination": "evidence_gap",
+          "nextAction": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change."
+        },
+        "whySelected": "Selected quality_blocking matter with high advancement value. Deterministic ranking favors program-invalidating issues, then real-world stage blockers, product definition, deployment, quality, contradictions, experiment design, and refinement.",
+        "reviewersConvened": [
+          "cmc",
+          "manufacturing",
+          "evidence",
+          "verifier",
+          "adversary",
+          "chair"
+        ],
+        "reviewerConclusions": [
+          {
+            "reviewerRole": "cmc",
+            "conclusion": "This conclusion was not accepted as sufficiently evidence-supported.",
+            "evidenceIds": [
+              "ev-misev2023-quality-framework"
+            ],
+            "claimIds": [
+              "claim-ev-cmc-requirements"
+            ],
+            "limitations": [
+              "Supporting canonical evidence is insufficient."
+            ],
+            "unsupported": true,
+            "evidenceGap": "Supporting canonical evidence is insufficient."
+          },
+          {
+            "reviewerRole": "manufacturing",
+            "conclusion": "This conclusion was not accepted as sufficiently evidence-supported.",
+            "evidenceIds": [
+              "ev-misev2023-quality-framework"
+            ],
+            "claimIds": [
+              "claim-source-cell-scalability"
+            ],
+            "limitations": [
+              "Supporting canonical evidence is insufficient."
+            ],
+            "unsupported": true,
+            "evidenceGap": "Supporting canonical evidence is insufficient."
+          },
+          {
+            "reviewerRole": "evidence",
+            "conclusion": "This conclusion was not accepted as sufficiently evidence-supported.",
+            "evidenceIds": [
+              "ev-misev2023-quality-framework"
+            ],
+            "claimIds": [
+              "claim-rodent-cns-delivery"
+            ],
+            "limitations": [
+              "Supporting canonical evidence is insufficient."
+            ],
+            "unsupported": true,
+            "evidenceGap": "Supporting canonical evidence is insufficient."
+          }
+        ],
+        "strongestSupportingEvidenceIds": [
+          "ev-misev2023-quality-framework"
+        ],
+        "strongestContradictoryEvidenceIds": [],
+        "adversaryObjection": "The reviewer overstates program-specific absences and treats MISEV2023 guidance as direct evidence of program noncompliance; the supplied evidence (ev-misev2023-quality-framework) is consensus guidance and cannot be used to prove that SGL-001 lacks MCB/WCB records, assay validations, GMP-like batch data, or cross‑species biodistribution. The core objection is that claims about missing program artifacts are unverified and therefore premature without inspection of the program's actual CMC/analytics records.",
+        "chairDetermination": "evidence_gap",
+        "stateChanged": false,
+        "changeScope": "none",
+        "scientificStateChanged": false,
+        "operationalStateChanged": false,
+        "previousStatePreserved": true,
+        "whatChanged": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
+        "nextAction": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
+        "linkedArtifactIds": [
+          "run-20261126T152450Z-aaf5f7c65174:01-compact-state.json",
+          "run-20261126T152450Z-aaf5f7c65174:02-development-docket.json",
+          "run-20261126T152450Z-aaf5f7c65174:03-selected-matter.json",
+          "run-20261126T152450Z-aaf5f7c65174:04-reviewer-panel.json",
+          "run-20261126T152450Z-aaf5f7c65174:05-analysis.json",
+          "run-20261126T152450Z-aaf5f7c65174:06-verification.json",
+          "run-20261126T152450Z-aaf5f7c65174:07-adversary.json",
+          "run-20261126T152450Z-aaf5f7c65174:08-chair-determination.json"
+        ]
+      },
       {
         "runId": "run-20261124T155711Z-f2609fead3a4",
         "programId": "SGL-001",
@@ -12893,121 +13086,6 @@
           "run-20261116T134420Z-e37a6cae716d:07-adversary.json",
           "run-20261116T134420Z-e37a6cae716d:08-chair-determination.json"
         ]
-      },
-      {
-        "runId": "run-20261115T124819Z-8927b1b84005",
-        "programId": "SGL-001",
-        "startedAt": "2026-11-15T12:48:19.862344Z",
-        "completedAt": "2026-11-15T12:49:42.881485Z",
-        "selectedMatter": {
-          "matterId": "matter-potency-identity-characterization",
-          "programId": "SGL-001",
-          "title": "Potency and identity characterization",
-          "question": "What evidence-linked identity and potency framework is needed before comparing SGL-001 lots or formulations?",
-          "domain": "cmc_manufacturing",
-          "whyItMatters": "Without reproducible identity and potency measures, observed biological differences may reflect uncontrolled product variability.",
-          "priority": "quality_blocking",
-          "advancementValue": "high",
-          "blockingStage": "manufacturing comparability",
-          "linkedHypothesisIds": [
-            "hypothesis-sgl001-biodistribution-gate"
-          ],
-          "linkedRiskIds": [
-            "risk-cmc-identity-potency"
-          ],
-          "linkedEvidenceIds": [
-            "ev-misev2023-quality-framework"
-          ],
-          "requiredReviewerRoles": [
-            "cmc",
-            "manufacturing",
-            "evidence"
-          ],
-          "status": "completed",
-          "selectedAt": "2026-11-15T12:48:19.862344Z",
-          "completedAt": "2026-11-15T12:49:42.881485Z",
-          "determination": "evidence_gap",
-          "nextAction": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change."
-        },
-        "whySelected": "Selected quality_blocking matter with high advancement value. Deterministic ranking favors program-invalidating issues, then real-world stage blockers, product definition, deployment, quality, contradictions, experiment design, and refinement.",
-        "reviewersConvened": [
-          "cmc",
-          "manufacturing",
-          "evidence",
-          "verifier",
-          "adversary",
-          "chair"
-        ],
-        "reviewerConclusions": [
-          {
-            "reviewerRole": "cmc",
-            "conclusion": "This conclusion was not accepted as sufficiently evidence-supported.",
-            "evidenceIds": [
-              "ev-misev2023-quality-framework"
-            ],
-            "claimIds": [
-              "claim-ev-cmc-requirements"
-            ],
-            "limitations": [
-              "Supporting canonical evidence is insufficient."
-            ],
-            "unsupported": true,
-            "evidenceGap": "Supporting canonical evidence is insufficient."
-          },
-          {
-            "reviewerRole": "manufacturing",
-            "conclusion": "This conclusion was not accepted as sufficiently evidence-supported.",
-            "evidenceIds": [
-              "ev-misev2023-quality-framework"
-            ],
-            "claimIds": [
-              "claim-source-cell-scalability"
-            ],
-            "limitations": [
-              "Supporting canonical evidence is insufficient."
-            ],
-            "unsupported": true,
-            "evidenceGap": "Supporting canonical evidence is insufficient."
-          },
-          {
-            "reviewerRole": "evidence",
-            "conclusion": "This conclusion was not accepted as sufficiently evidence-supported.",
-            "evidenceIds": [
-              "ev-misev2023-quality-framework"
-            ],
-            "claimIds": [
-              "claim-rodent-cns-delivery"
-            ],
-            "limitations": [
-              "Supporting canonical evidence is insufficient."
-            ],
-            "unsupported": true,
-            "evidenceGap": "Supporting canonical evidence is insufficient."
-          }
-        ],
-        "strongestSupportingEvidenceIds": [
-          "ev-misev2023-quality-framework"
-        ],
-        "strongestContradictoryEvidenceIds": [],
-        "adversaryObjection": "The program is proceeding toward comparative lot/formulation and intranasal bridging studies without any program-specific, submission-grade CMC and analytics evidence that would attribute in vivo signals to intact EV and demonstrate reproducible potency across lots; the cited MISEV2023 guidance supports what must be done but is not evidence that it has been done for SGL-001.",
-        "chairDetermination": "evidence_gap",
-        "stateChanged": false,
-        "changeScope": "none",
-        "scientificStateChanged": false,
-        "operationalStateChanged": false,
-        "previousStatePreserved": true,
-        "whatChanged": "The proposed state change was not sufficiently evidence-supported. No scientific, program, or decision state was changed.",
-        "nextAction": "Identify and cite supporting canonical evidence, or request evidence acquisition; withdraw unsupported conclusions and revisit this matter before proposing a state change.",
-        "linkedArtifactIds": [
-          "run-20261115T124819Z-8927b1b84005:01-compact-state.json",
-          "run-20261115T124819Z-8927b1b84005:02-development-docket.json",
-          "run-20261115T124819Z-8927b1b84005:03-selected-matter.json",
-          "run-20261115T124819Z-8927b1b84005:04-reviewer-panel.json",
-          "run-20261115T124819Z-8927b1b84005:05-analysis.json",
-          "run-20261115T124819Z-8927b1b84005:06-verification.json",
-          "run-20261115T124819Z-8927b1b84005:07-adversary.json",
-          "run-20261115T124819Z-8927b1b84005:08-chair-determination.json"
-        ]
       }
     ]
   },
@@ -13058,94 +13136,182 @@
       }
     ],
     "latestDay": {
-      "run_id": "sim-run-20261124T160323Z-2449c8c2505b",
-      "simulated_date": "2026-11-24",
-      "protocol_day": 59,
+      "run_id": "sim-run-20261126T152941Z-b5f20d61d669",
+      "simulated_date": "2026-11-26",
+      "protocol_day": 60,
       "observations": [
         {
-          "observation_id": "synthetic-observation-day-59-SIM-001",
+          "observation_id": "synthetic-observation-day-60-SIM-001",
           "participant_id": "SIM-001",
-          "protocol_day": 59,
+          "protocol_day": 60,
           "adherence": "recorded",
-          "nasal_tolerability_score": 1,
+          "nasal_tolerability_score": 2,
           "cognitive_task_index": 46,
           "reported_wellbeing_score": 5,
           "synthetic_safety_flag": "none",
           "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
         },
         {
-          "observation_id": "synthetic-observation-day-59-SIM-002",
+          "observation_id": "synthetic-observation-day-60-SIM-002",
           "participant_id": "SIM-002",
-          "protocol_day": 59,
+          "protocol_day": 60,
           "adherence": "recorded",
-          "nasal_tolerability_score": 2,
-          "cognitive_task_index": 58,
+          "nasal_tolerability_score": 3,
+          "cognitive_task_index": 49,
+          "reported_wellbeing_score": 4,
+          "synthetic_safety_flag": "review",
+          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+        },
+        {
+          "observation_id": "synthetic-observation-day-60-SIM-003",
+          "participant_id": "SIM-003",
+          "protocol_day": 60,
+          "adherence": "recorded",
+          "nasal_tolerability_score": 1,
+          "cognitive_task_index": 54,
           "reported_wellbeing_score": 5,
           "synthetic_safety_flag": "none",
           "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
         },
         {
-          "observation_id": "synthetic-observation-day-59-SIM-003",
-          "participant_id": "SIM-003",
-          "protocol_day": 59,
+          "observation_id": "synthetic-observation-day-60-SIM-004",
+          "participant_id": "SIM-004",
+          "protocol_day": 60,
+          "adherence": "recorded",
+          "nasal_tolerability_score": 0,
+          "cognitive_task_index": 53,
+          "reported_wellbeing_score": 5,
+          "synthetic_safety_flag": "none",
+          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+        },
+        {
+          "observation_id": "synthetic-observation-day-60-SIM-005",
+          "participant_id": "SIM-005",
+          "protocol_day": 60,
           "adherence": "recorded",
           "nasal_tolerability_score": 0,
           "cognitive_task_index": 49,
-          "reported_wellbeing_score": 7,
+          "reported_wellbeing_score": 5,
           "synthetic_safety_flag": "none",
           "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
         },
         {
-          "observation_id": "synthetic-observation-day-59-SIM-004",
-          "participant_id": "SIM-004",
-          "protocol_day": 59,
-          "adherence": "recorded",
-          "nasal_tolerability_score": 2,
-          "cognitive_task_index": 58,
-          "reported_wellbeing_score": 4,
-          "synthetic_safety_flag": "none",
-          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
-        },
-        {
-          "observation_id": "synthetic-observation-day-59-SIM-005",
-          "participant_id": "SIM-005",
-          "protocol_day": 59,
-          "adherence": "recorded",
-          "nasal_tolerability_score": 1,
-          "cognitive_task_index": 49,
-          "reported_wellbeing_score": 7,
-          "synthetic_safety_flag": "none",
-          "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
-        },
-        {
-          "observation_id": "synthetic-observation-day-59-SIM-006",
+          "observation_id": "synthetic-observation-day-60-SIM-006",
           "participant_id": "SIM-006",
-          "protocol_day": 59,
+          "protocol_day": 60,
           "adherence": "recorded",
-          "nasal_tolerability_score": 3,
-          "cognitive_task_index": 55,
-          "reported_wellbeing_score": 4,
+          "nasal_tolerability_score": 0,
+          "cognitive_task_index": 44,
+          "reported_wellbeing_score": 7,
           "synthetic_safety_flag": "none",
           "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
         }
       ],
       "review": {
         "operations_finding": "6 of 6 fictional daily records were complete.",
-        "safety_finding": "Synthetic flags: 0 review and 0 pause; these are generated demo events.",
+        "safety_finding": "Synthetic flags: 1 review and 0 pause; these are generated demo events.",
         "data_quality_finding": "0 synthetic records were missing.",
         "adversary_objection": "Generated observations cannot establish safety, efficacy, potency, exposure, or clinical feasibility for SGL-001.",
         "chair_rationale": "The determination is limited to operating the fictional demo and cannot update canonical SGL-001 state."
       },
       "determination": {
-        "determination_type": "no_material_change",
-        "summary": "The synthetic day completed without a protocol-changing signal.",
+        "determination_type": "human_decision_required",
+        "summary": "Synthetic observations require human review; no efficacy or program conclusion is permitted.",
         "protocol_state_changed": false,
-        "human_review_required": false,
-        "next_action": "Continue the fictional protocol schedule and generate the next synthetic day."
+        "human_review_required": true,
+        "next_action": "Review the flagged fictional observations and record a simulation-only disposition."
       },
-      "generated_at": "2026-11-24T16:03:23.332364Z"
+      "generated_at": "2026-11-26T15:29:41.880443Z"
     },
     "recentDays": [
+      {
+        "run_id": "sim-run-20261126T152941Z-b5f20d61d669",
+        "simulated_date": "2026-11-26",
+        "protocol_day": 60,
+        "observations": [
+          {
+            "observation_id": "synthetic-observation-day-60-SIM-001",
+            "participant_id": "SIM-001",
+            "protocol_day": 60,
+            "adherence": "recorded",
+            "nasal_tolerability_score": 2,
+            "cognitive_task_index": 46,
+            "reported_wellbeing_score": 5,
+            "synthetic_safety_flag": "none",
+            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+          },
+          {
+            "observation_id": "synthetic-observation-day-60-SIM-002",
+            "participant_id": "SIM-002",
+            "protocol_day": 60,
+            "adherence": "recorded",
+            "nasal_tolerability_score": 3,
+            "cognitive_task_index": 49,
+            "reported_wellbeing_score": 4,
+            "synthetic_safety_flag": "review",
+            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+          },
+          {
+            "observation_id": "synthetic-observation-day-60-SIM-003",
+            "participant_id": "SIM-003",
+            "protocol_day": 60,
+            "adherence": "recorded",
+            "nasal_tolerability_score": 1,
+            "cognitive_task_index": 54,
+            "reported_wellbeing_score": 5,
+            "synthetic_safety_flag": "none",
+            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+          },
+          {
+            "observation_id": "synthetic-observation-day-60-SIM-004",
+            "participant_id": "SIM-004",
+            "protocol_day": 60,
+            "adherence": "recorded",
+            "nasal_tolerability_score": 0,
+            "cognitive_task_index": 53,
+            "reported_wellbeing_score": 5,
+            "synthetic_safety_flag": "none",
+            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+          },
+          {
+            "observation_id": "synthetic-observation-day-60-SIM-005",
+            "participant_id": "SIM-005",
+            "protocol_day": 60,
+            "adherence": "recorded",
+            "nasal_tolerability_score": 0,
+            "cognitive_task_index": 49,
+            "reported_wellbeing_score": 5,
+            "synthetic_safety_flag": "none",
+            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+          },
+          {
+            "observation_id": "synthetic-observation-day-60-SIM-006",
+            "participant_id": "SIM-006",
+            "protocol_day": 60,
+            "adherence": "recorded",
+            "nasal_tolerability_score": 0,
+            "cognitive_task_index": 44,
+            "reported_wellbeing_score": 7,
+            "synthetic_safety_flag": "none",
+            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
+          }
+        ],
+        "review": {
+          "operations_finding": "6 of 6 fictional daily records were complete.",
+          "safety_finding": "Synthetic flags: 1 review and 0 pause; these are generated demo events.",
+          "data_quality_finding": "0 synthetic records were missing.",
+          "adversary_objection": "Generated observations cannot establish safety, efficacy, potency, exposure, or clinical feasibility for SGL-001.",
+          "chair_rationale": "The determination is limited to operating the fictional demo and cannot update canonical SGL-001 state."
+        },
+        "determination": {
+          "determination_type": "human_decision_required",
+          "summary": "Synthetic observations require human review; no efficacy or program conclusion is permitted.",
+          "protocol_state_changed": false,
+          "human_review_required": true,
+          "next_action": "Review the flagged fictional observations and record a simulation-only disposition."
+        },
+        "generated_at": "2026-11-26T15:29:41.880443Z"
+      },
       {
         "run_id": "sim-run-20261124T160323Z-2449c8c2505b",
         "simulated_date": "2026-11-24",
@@ -14289,116 +14455,27 @@
           "next_action": "Continue the fictional protocol schedule and generate the next synthetic day."
         },
         "generated_at": "2026-11-12T13:53:05.717799Z"
-      },
-      {
-        "run_id": "sim-run-20261111T125047Z-2f62a133bd1c",
-        "simulated_date": "2026-11-11",
-        "protocol_day": 46,
-        "observations": [
-          {
-            "observation_id": "synthetic-observation-day-46-SIM-001",
-            "participant_id": "SIM-001",
-            "protocol_day": 46,
-            "adherence": "recorded",
-            "nasal_tolerability_score": 0,
-            "cognitive_task_index": 44,
-            "reported_wellbeing_score": 4,
-            "synthetic_safety_flag": "none",
-            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
-          },
-          {
-            "observation_id": "synthetic-observation-day-46-SIM-002",
-            "participant_id": "SIM-002",
-            "protocol_day": 46,
-            "adherence": "recorded",
-            "nasal_tolerability_score": 0,
-            "cognitive_task_index": 58,
-            "reported_wellbeing_score": 6,
-            "synthetic_safety_flag": "none",
-            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
-          },
-          {
-            "observation_id": "synthetic-observation-day-46-SIM-003",
-            "participant_id": "SIM-003",
-            "protocol_day": 46,
-            "adherence": "recorded",
-            "nasal_tolerability_score": 3,
-            "cognitive_task_index": 50,
-            "reported_wellbeing_score": 7,
-            "synthetic_safety_flag": "none",
-            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
-          },
-          {
-            "observation_id": "synthetic-observation-day-46-SIM-004",
-            "participant_id": "SIM-004",
-            "protocol_day": 46,
-            "adherence": "recorded",
-            "nasal_tolerability_score": 2,
-            "cognitive_task_index": 46,
-            "reported_wellbeing_score": 5,
-            "synthetic_safety_flag": "none",
-            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
-          },
-          {
-            "observation_id": "synthetic-observation-day-46-SIM-005",
-            "participant_id": "SIM-005",
-            "protocol_day": 46,
-            "adherence": "recorded",
-            "nasal_tolerability_score": 2,
-            "cognitive_task_index": 49,
-            "reported_wellbeing_score": 5,
-            "synthetic_safety_flag": "none",
-            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
-          },
-          {
-            "observation_id": "synthetic-observation-day-46-SIM-006",
-            "participant_id": "SIM-006",
-            "protocol_day": 46,
-            "adherence": "recorded",
-            "nasal_tolerability_score": 1,
-            "cognitive_task_index": 45,
-            "reported_wellbeing_score": 5,
-            "synthetic_safety_flag": "none",
-            "note": "Synthetic demonstration observation; values are generated and are not clinical measurements."
-          }
-        ],
-        "review": {
-          "operations_finding": "6 of 6 fictional daily records were complete.",
-          "safety_finding": "Synthetic flags: 0 review and 0 pause; these are generated demo events.",
-          "data_quality_finding": "0 synthetic records were missing.",
-          "adversary_objection": "Generated observations cannot establish safety, efficacy, potency, exposure, or clinical feasibility for SGL-001.",
-          "chair_rationale": "The determination is limited to operating the fictional demo and cannot update canonical SGL-001 state."
-        },
-        "determination": {
-          "determination_type": "no_material_change",
-          "summary": "The synthetic day completed without a protocol-changing signal.",
-          "protocol_state_changed": false,
-          "human_review_required": false,
-          "next_action": "Continue the fictional protocol schedule and generate the next synthetic day."
-        },
-        "generated_at": "2026-11-11T12:50:47.220287Z"
       }
     ],
-    "totalSimulatedDays": 59,
-    "updatedAt": "2026-11-24T16:03:23.332364Z"
+    "totalSimulatedDays": 60,
+    "updatedAt": "2026-11-26T15:29:41.880443Z"
   },
   "designLab": {
     "disclaimer": "AI-generated, evidence-linked product hypotheses. These are not validated mechanisms, manufacturing specifications, experimental results, or evidence of clinical efficacy.",
-    "currentDesignQuestion": "Daily question: Does the specific downstream exposure combination — controlled freeze-thaw cycles applied during fill/finish followed by short contact with a low-concentration non-ionic surfactant (representative nasal excipient) and device-shear rinse — reproducibly induce EV membrane lipid-peroxidation and membrane permeability that precedes and predicts loss of the orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) while leaving bulk particle counts nominally unchanged?",
+    "currentDesignQuestion": "At scale-relevant concentration steps, does replacing a single high-flux TFF cassette run with a staged low-shear TFF envelope (reduced TMP/flux per cassette + interim gentle depth-filtration + cassette rotation) reproducibly preserve an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) while maintaining qualitatively acceptable recovery compared with the current high-flux TFF envelope?",
     "latestReviewedHypothesis": {
-      "hypothesisId": "design-hypothesis-run-20261124T155900Z-c2ce6e8d1281",
-      "runId": "run-20261124T155900Z-c2ce6e8d1281",
-      "title": "Hypothesis: Combined freeze-thaw during fill/finish plus low-level non-ionic surfactant exposure causes EV membrane lipid-peroxidation and loss of orthogonal intact-EV signature",
-      "designQuestion": "Daily question: Does the specific downstream exposure combination — controlled freeze-thaw cycles applied during fill/finish followed by short contact with a low-concentration non-ionic surfactant (representative nasal excipient) and device-shear rinse — reproducibly induce EV membrane lipid-peroxidation and membrane permeability that precedes and predicts loss of the orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease sensitivity) while leaving bulk particle counts nominally unchanged?",
-      "primaryDomain": "process",
-      "proposedProductChangeOrAttribute": "If supported, declare the identified downstream-exposure envelope (defined freeze-thaw exposure combined with low-level non-ionic surfactant contact and device-shear rinse) as a prohibited downstream-process condition (identity-loss gate) and adopt chemistry- and protection-based stability readouts (membrane-peroxidation + permeability + loss of capture-protection co-localization) as qualitative, non-numeric process acceptance attributes for SGL-001.",
-      "biologicalRationale": "MISEV2023 and program-level observations indicate EV-associated measures are sensitive to handling and downstream processing; lipid peroxidation and increased membrane permeability are mechanistically upstream events that would abolish membrane-protection of luminal cargo and surface-phenotype readouts, explaining loss of capture-protection co-localization despite preserved particle counts. One plausible route to such damage is repeated freeze-thaw applied in the presence of low concentrations of non-ionic surfactant and device-shear, which can together promote oxidative and physicochemical membrane compromise.",
-      "manufacturingRationale": "Fill/finish and device compatibility steps are operationally likely to include freeze-thaw exposures, transient surfactant contact (stabilizers/diluents), and device-associated shear. Identifying a prohibited envelope will allow upstream process design or formulation choices that preserve an orthogonal intact-EV signature and avoid wasted bridging work from process-damaged lots.",
-      "expectedMeasurableEffect": "Exposed samples will show increased lipid-peroxidation readout (BODIPY C11 oxidation ratio and orthogonal TBARS or oxidized-phospholipid LC-MS), increased membrane-permeability dye uptake in capture-positive eluates, and concurrent loss of capture-positive co-localization with particle-count peaks and loss of detergent/protease-sensitive behavior, while bulk NTA/TRPS particle counts remain similar.",
+      "hypothesisId": "design-hypothesis-run-20261126T152635Z-32f4b0ca878d",
+      "runId": "run-20261126T152635Z-32f4b0ca878d",
+      "title": "Hypothesis SGL-001-SC-Scale-TFF-Envelope: A staged low-shear concentration envelope prevents scale-dependent loss of an orthogonal intact-EV analytical signature observed with high-flux TFF",
+      "designQuestion": "At scale-relevant concentration steps, does replacing a single high-flux TFF cassette run with a staged low-shear TFF envelope (reduced TMP/flux per cassette + interim gentle depth-filtration + cassette rotation) reproducibly preserve an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) while maintaining qualitatively acceptable recovery compared with the current high-flux TFF envelope?",
+      "primaryDomain": "manufacturing",
+      "proposedProductChangeOrAttribute": "Adopt a scale-control concentration envelope (staged low-shear TFF: defined lower TMP/flux per cassette, cassette-rotation schedule, and inline gentle depth prefilter) as a manufacturing gate when it demonstrably preserves an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) and provides qualitatively acceptable recovery for pilot GMP-like batches.",
+      "biologicalRationale": "High-transmembrane-pressure, high-flux TFF conditions can mechanically perturb or mask EV membranes or epitopes, producing apparent particle counts but losing membrane-protected capture signals and protected-cargo readouts. A staged low-shear envelope reduces hydrodynamic stress and cumulative membrane exposure, which should preserve membrane integrity and the orthogonal intact-EV signature critical for identity and downstream potency linkage (inference supported by MISEV guidance).",
+      "manufacturingRationale": "If an operational concentration envelope that preserves orthogonal identity exists, it enables reproducible drug-substance definition and reduces downstream CMC risk (assay development, lot comparability, bridging). This avoids adopting high-flux TFF conditions that may create misleading bulk-particle metrics without preserved intact-EV identity.",
+      "expectedMeasurableEffect": "Compared with high-flux TFF, the staged low-shear envelope will reproducibly show preserved co-localization of immuno-capture signal for canonical EV surface epitopes with particle-count peaks in density/size fractions, validated loss of captured signal after detergent + protease (indicating membrane protection), and qualitatively acceptable particle/mass recovery across >=3 independent conditioned-medium lots. Bulk particle counts alone will not distinguish arms.",
       "supportingEvidenceIds": [
         "ev-misev2023-quality-framework",
-        "ev-driedonks-2022-macaque-biodistribution",
-        "ev-hermann-2023-neonatal-hi"
+        "ev-driedonks-2022-macaque-biodistribution"
       ],
       "contradictingEvidenceIds": [],
       "causalChain": {
@@ -14406,17 +14483,17 @@
           {
             "node_id": "n1",
             "stage": "proposed_therapeutic_relevance",
-            "statement": "Downstream exposure combination (freeze-thaw during fill/finish + short contact with low-level non-ionic surfactant + device-shear rinse) increases EV membrane lipid peroxidation and membrane permeability."
+            "statement": "High-flux / high-TMP TFF concentration conditions can induce shear- or pressure-related alteration of EV membranes (loss of membrane integrity or epitope masking) while leaving bulk particle counts similar."
           },
           {
             "node_id": "n2",
             "stage": "proposed_therapeutic_relevance",
-            "statement": "Increased lipid peroxidation and membrane permeability cause loss of membrane-protection of luminal cargo and reduction or loss of multi-epitope intact surface-phenotype capture that normally co-localizes with particle-count peaks and is detergent/protease-sensitive."
+            "statement": "A staged low-shear TFF envelope (lower TMP/flux per cassette + inline gentle depth prefilter + cassette rotation) reduces membrane perturbation risk and preserves orthogonal intact-EV signatures: capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal."
           },
           {
             "node_id": "n3",
             "stage": "proposed_therapeutic_relevance",
-            "statement": "Loss of the orthogonal intact-EV analytical signature (capture-protection co-localization) despite similar NTA/TRPS particle counts will render lots analytically indistinguishable from secretome for identity and potency gating, blocking downstream bridging decisions."
+            "statement": "Preservation of the orthogonal intact-EV signature after concentration enables use of that signature as a qualitative manufacturing gate for drug-substance definition and supports downstream potency and comparability assay development."
           }
         ],
         "edges": [
@@ -14427,98 +14504,242 @@
             "evidence_state": "indirect_support",
             "evidence_ids": [
               "ev-misev2023-quality-framework",
-              "ev-hermann-2023-neonatal-hi"
+              "ev-driedonks-2022-macaque-biodistribution"
             ],
             "relation_type": "inference",
             "model_or_species": null,
-            "uncertainty": "Moderate: MISEV recommends orthogonal membrane-protection assays and notes processing sensitivity; program rodent data highlight processing-dependence but do not measure lipid peroxidation directly.",
-            "competing_explanation": "Epitope masking or selective loss of minor EV subpopulations (not chemical membrane damage) could reduce capture signal without clear peroxidation signatures.",
-            "missing_experiment": "Direct measurement of lipid-oxidation and permeability on capture-positive fractions after matrixed downstream exposures."
+            "uncertainty": "Moderate: MISEV recommends orthogonal analytics and highlights processing sensitivity; large-animal negative biodistribution motivates careful control of concentration-induced damage, but program-specific TFF parameter causality is unproven.",
+            "competing_explanation": "Apparent loss of capture-protection signal could reflect assay interference or upstream source-cell variability rather than shear-induced membrane damage.",
+            "missing_experiment": "Matched pilot runs comparing TFF envelopes with spike-in and orthogonal capture/protection assays (see experiment)."
           },
           {
             "edge_id": "e2",
             "source_node_id": "n2",
             "target_node_id": "n3",
-            "evidence_state": "indirect_support",
+            "evidence_state": "inference",
             "evidence_ids": [
-              "ev-driedonks-2022-macaque-biodistribution"
+              "ev-misev2023-quality-framework"
             ],
             "relation_type": "inference",
-            "model_or_species": "non-human primate context",
-            "uncertainty": "Moderate-to-high: large-animal intranasal detectability concerns increase operational risk if identity is lost, but cross-species delivery barriers may confound interpretation.",
-            "competing_explanation": "Loss of in vivo detectability may be dominated by administration or species clearance rather than manufacturing-induced identity loss.",
-            "missing_experiment": "Short-interval in vivo recoverability using materials passing vs failing the chemistry/protection gate."
+            "model_or_species": null,
+            "uncertainty": "Inference-level: preservation of analytic signatures should enable downstream gating, but numeric acceptance limits and cross-lot robustness remain to be demonstrated.",
+            "competing_explanation": "Even with preserved analytic identity, delivery or species clearance could still limit in vivo detectability; identity preservation is necessary but not sufficient for bridging.",
+            "missing_experiment": "Demonstrate downstream QC and potency assay linkage on concentrated material that passes the envelope."
           }
         ]
       },
       "reviewerFindings": [
         {
           "role": "evidence_verifier",
-          "conclusion": "Not supported as a demonstrated causal claim. The proposal is plausible and consistent with the cited literature as indirect support for sensitivity of EV analytical signatures to processing and for species-specific delivery limits, but the canonical evidence does not provide direct experimental proof that the specific downstream exposure envelope (freeze-thaw + low-level non-ionic surfactant + device shear) reproducibly causes lipid peroxidation and permeability changes in capture-positive fractions that precede and predict loss of capture-protection co-localization. The proposal correctly identifies the missing experiments and dependencies.",
+          "conclusion": "Not supported as written. The proposal is plausible and cites appropriate guidance about analytic orthogonality (MISEV2023) and a cautionary non-human-primate biodistribution study, but there is no direct published evidence that high-TMP/high-flux TFF conditions cause loss of membrane-protected capture signals (while leaving bulk particle counts unchanged) or that the specific staged low-shear envelope described will preserve those signatures across lots. The claim is therefore an inference-level hypothesis that requires the proposed pilot experiments and validated spike-in controls before it can be accepted as supported.",
           "supported": false,
           "evidence_ids": [
             "ev-misev2023-quality-framework",
-            "ev-driedonks-2022-macaque-biodistribution",
-            "ev-hermann-2023-neonatal-hi"
+            "ev-driedonks-2022-macaque-biodistribution"
           ],
-          "evidence_gap": "No canonical evidence shows direct measurement of lipid peroxidation and membrane-permeability on capture-positive (immuno-captured) EV fractions after the proposed downstream exposures, nor empirical correlation linking those chemistry readouts to loss of capture-protection co-localization across multiple independent lots. Additionally, there is no direct large-animal or translational evidence tying manufacturing-induced membrane-chemical damage to in vivo detectability or potency loss for the specific exposure envelope.",
+          "evidence_gap": "No direct experimental literature demonstrating that TFF operating envelope (high-TMP/high-flux versus staged low-shear) causes or prevents loss of an orthogonal intact‑EV capture/protection signature (co-localized capture-positive particle peaks and detergent/protease sensitivity). Also missing are published, validated spike-in tracer methods and buffer/capture-compatibility data that would exclude assay interference as the cause of signature loss. Finally, there is no published evidence that preservation of this analytic signature improves in vivo detectability or potency (species/route-dependent delivery barriers remain unaddressed).",
           "concerns": [
-            "Key inference labelled as causal (peroxidation -> capture-protection loss) is only indirectly supported by MISEV2023 and rodent efficacy reports; direct measurements on capture-positive fractions are missing.",
-            "Assay sensitivity and interference risk: BODIPY C11, TBARS and permeability dyes may lack sensitivity or be confounded by excipient/capture-buffer components — the proposal notes this but experimental confirmation is required before using as a process gate.",
-            "Translatability risk: NHP biodistribution data (ev-driedonks-2022-macaque-biodistribution) suggest administration/species clearance can dominate detectability; distinguishing manufacturing identity-loss from delivery barriers requires in vivo recoverability experiments that are not yet provided.",
-            "Operational ambiguity: operator choices (specific surfactant, freeze-thaw profile, device-shear parameters) are user-defined and could change outcomes — the gate's applicability depends on well-defined, reproducible exposure definitions.",
-            "Reliance on qualitative, non-numeric pass/fail gates increases subjectivity; absence of numeric limits complicates cross-lot and cross-site harmonization unless robust assay SOPs and spike-in controls are established."
+            "Key inference (TFF shear → loss of membrane-protected capture signal independent of particle counts) is not directly supported by cited evidence; MISEV2023 supports orthogonal analytics but does not provide empirical TFF causality.",
+            "Driedonks et al. is appropriately cited as limiting/translational biodistribution evidence, but it does not demonstrate TFF-induced membrane damage and should not be over-interpreted as such.",
+            "Proposal relies on qualitative recovery metrics without predefined numeric acceptance criteria; program-level decisions will require quantitative gates and robustness statistics.",
+            "Assay interference (buffer effects, capture reagent compatibility) and source-cell variability are acknowledged but represent plausible competing explanations that must be excluded by validated spike-in controls and orthogonal assays prior to interpreting results.",
+            "Preserving an orthogonal analytic signature is treated as a necessary precondition for potency linkage, but no evidentiary link to improved in vivo delivery or potency is provided; downstream bridging experiments are required and may be confounded by route/species biodistribution issues."
           ]
         },
         {
           "role": "cmc_manufacturing",
-          "conclusion": "Supported with reservations. The proposal addresses a plausible, manufacturing-relevant failure mode (membrane chemical damage causing loss of intact-EV analytical signature) and outlines implementable experiments and qualitative gate logic. ISEV/MISEV guidance supports orthogonal membrane- and protection-focused characterization; preclinical work using consistent source-cell material shows feasibility of lot-level comparability studies. However, critical measurement and translational gaps remain and method-development risks must be managed before using the proposed readouts as a production exclusion gate.",
+          "conclusion": "The proposal to adopt a staged low‑shear TFF envelope and gate release on an orthogonal intact‑EV signature is operationally plausible and aligns with ISEV/MISEV recommendations for orthogonal characterization. The approach is implementable on existing TFF hardware with moderate effort (controls, SOPs, spike‑in reagents) and addresses a meaningful CMC gap (identity vs. bulk particle metrics). However, key evidentiary and execution gaps remain: a direct causal link between high‑flux TFF parameters and loss of membrane‑protected capture signal at scale is not demonstrated in the provided evidence, validated spike‑in controls and capture/protection assays must be in place before informative runs, and pilot yields may be inadequate even if identity is preserved. If experiments validate preservation of orthogonal signatures with acceptable qualitative recovery across >=3 independent lots, the change reduces downstream comparability risk; if not, alternate concentration or product strategies will be required.",
           "supported": true,
           "evidence_ids": [
             "ev-misev2023-quality-framework",
+            "ev-driedonks-2022-macaque-biodistribution",
             "ev-hermann-2023-neonatal-hi",
-            "ev-driedonks-2022-macaque-biodistribution"
+            "ev-kodali-2017-status-epilepticus",
+            "ev-zhuang-2011-intranasal-exosome"
           ],
-          "evidence_gap": "No direct experimental evidence in the provided corpus links the specific downstream exposure envelope (freeze–thaw during fill/finish + low-concentration non‑ionic surfactant contact + device-shear) to reproducible lipid peroxidation and permeability in capture-positive fractions that predict loss of capture-protection co-localization. Existing evidence supports the need for orthogonal characterization and source-cell scaling/consistency, but not the causal chain or sensitivity of the proposed chemistry assays on low-biomass capture eluates.",
+          "evidence_gap": "No direct, program‑specific experimental data linking defined TFF TMP/flux/cumulative volume settings to reproducible loss of capture‑protected EV signal at pilot/manufacturing scale. Also missing are validated exogenous intact‑EV spike‑in reagents and assay SOPs demonstrating recovery and lack of buffer/interference effects prior to process comparison runs. In‑process stability data (short‑term and during hold steps) under the proposed envelope are not provided.",
           "concerns": [
-            "Assay sensitivity and feasibility: BODIPY C11, TBARS, and oxidized-phospholipid LC‑MS require method optimization and material (low-biomass captured eluates may be below reliable detection limits).",
-            "Assay interference: surfactant/excipient or capture-buffer components can artifactually alter peroxidation and permeability readouts; robust spike-in and buffer-compatibility controls are mandatory.",
-            "Lot comparability requirement: proposal requires >=3 independent conditioned-medium lots from matched source-cell bank/passage; generating sufficient material for matrixed exposures + orthogonal chemistry may be resource-intensive and limit throughput.",
-            "Process control and scale-up risk: controlling freeze–thaw exposure during fill/finish at manufacturing scale and defining a reproducible device-shear simulation representative of clinical devices are non-trivial; identified prohibited envelopes must be operationally enforceable.",
-            "Operationalizing qualitative gate: non-numeric pass/fail criteria increase subjectivity and may complicate regulatory alignment unless assay performance and decision rules are documented and reproducible.",
-            "Translational relevance uncertainty: NHP biodistribution suggests species, administration, formulation and labeling can dominate in vivo detectability; even if manufacturing-induced identity loss is shown analytically, its impact on clinical delivery/potency remains uncertain without in vivo recoverability bridging studies."
+            "Manufacturability: While the envelope uses existing TFF unit operations, cassette rotation, strict TMP/flux limits, and inline depth filters will require validated hardware controls and may complicate run scheduling and cleaning/sterilization workflows.",
+            "Process sensitivity and scale‑up risk: The causal role of shear/TMP in altering membrane‑protected analytic signatures is inferred but unproven for the program; scale‑dependent effects (cumulative processed volume, membrane fouling) could differ at true manufacturing scale and may reduce yield or require more frequent cassette changes.",
+            "Measurement feasibility: The orthogonal intact‑EV workflow is feasible per MISEV guidance but depends critically on validated spike‑in tracer, capture reagents compatible with process buffers, and protease/detergent protection assays; assay interference from process buffers or labels could produce false positives/negatives.",
+            "Lot comparability: Demonstrating reproducibility across >=3 independent conditioned‑medium lots is required; source‑cell variability (donor/passage/immortalization) may confound interpretation unless lots are tightly matched.",
+            "Stability: The proposal focuses on immediate post‑concentration identity; impact of the envelope on short‑term and storage stability (including during hold steps, freeze/thaw, and formulation) is not addressed and could affect downstream comparability and potency studies.",
+            "Quality‑attribute relevance: Preserved orthogonal intact‑EV signature is a high‑value identity/purity attribute and a reasonable prerequisite for potency linkage, but preservation alone does not guarantee in‑vivo deliverability or functional potency (delivery/route/species barriers remain).",
+            "Operational tradeoff: There is a risk that the staged low‑shear approach preserves analytic identity but yields insufficient recovered mass/particle for pilot‑GMP runs, creating a manufacturability vs. quality tradeoff that must be resolved by program leadership."
           ]
         },
         {
           "role": "mechanism",
-          "conclusion": "The proposed hypothesis and experiment are biologically plausible and appropriately grounded in current EV-quality guidance (MISEV2023) and preclinical intranasal EV work in rodents, but important uncertainties remain. The design targets an upstream chemical mechanism (lipid peroxidation → increased membrane permeability → loss of capture/protection co-localization) that could explain process-related loss of intact-EV analytical signature while particle counts remain similar. The planned orthogonal chemistry (BODIPY C11, TBARS/oxPL LC-MS) and permeability readouts on capture-positive fractions, combined with spike-in and detergent/protease controls, are well chosen to discriminate chemical membrane damage from simple epitope masking or selective subpopulation loss. However, key evidence gaps and assay risks must be addressed before the experiment can definitively link the proposed manufacturing exposures to downstream analytical-identity loss or to in vivo delivery failure. In particular, there is no direct prior demonstration (in relevant conditioned-medium matrices and on low-biomass capture eluates) that the proposed freeze-thaw + low-level non-ionic surfactant + device-shear envelope reproducibly induces lipid peroxidation measurable with these assays, nor that such chemical damage causally predicts loss of capture-protection across independent lots and species-relevant in vivo recoverability. Recommended additions before adopting this as an identity-loss gate: (1) formal assay validation/limit-of-detection and interference testing with the chosen excipient(s) and capture buffers using spike-in tracer and intentionally oxidized positive controls; (2) inclusion of an in vivo recoverability/short-interval biodistribution arm (or at minimum a bridging experiment) to test whether materials that pass vs fail the chemistry/protection gate differ in intranasal brain/CSF recovery given known cross-species delivery variability; and (3) orthogonal tests that could detect epitope masking or selective subpopulation loss (e.g., alternative capture epitopes, proteomic surface profiling) so the experiment can discriminate those competing explanations if chemistry readouts are negative or uncoupled.",
+          "conclusion": "The proposed experiment is conceptually plausible and appropriately targeted to test whether a staged low-shear TFF envelope preserves orthogonal intact-EV analytic signatures versus a high-flux comparator. With validated spike-in tracers, orthogonal capture/protection assays, and matched paired lots, the design can discriminate the primary causal hypothesis (TFF-induced membrane perturbation or epitope masking) from key competing explanations (assay interference, spike-in/recovery artifacts, and source-cell variability). However, important evidence gaps remain around assay validation, quantitative acceptance criteria, and whether preservation of analytic signature will meaningfully affect downstream in vivo performance or manufacturability at GMP scale.",
           "supported": true,
           "evidence_ids": [
             "ev-misev2023-quality-framework",
-            "ev-hermann-2023-neonatal-hi",
-            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution",
             "ev-zhuang-2011-intranasal-exosome",
-            "ev-driedonks-2022-macaque-biodistribution"
+            "ev-kodali-2017-status-epilepticus",
+            "ev-hermann-2023-neonatal-hi"
           ],
-          "evidence_gap": "No direct prior data showing that the specific downstream-exposure envelope (freeze-thaw during fill/finish + short contact with low-concentration non-ionic surfactant + device-shear rinse) reproducibly causes measurable lipid peroxidation and permeability in capture-positive, low-biomass EV fractions. Also missing are validated sensitivity/interference characteristics for BODIPY C11/TBARS/oxPL LC-MS on captured eluates in the presence of candidate excipients, and short-interval in vivo recoverability data linking the proposed analytical-gate failure to loss of intranasal brain/CSF detectability in a large-animal or translationally relevant model.",
+          "evidence_gap": "Validated, buffer‑compatible spike-in tracer and orthogonal capture/protection assay performance (recovery, sensitivity, specificity) under both TFF envelopes; pre-defined quantitative acceptance criteria for 'qualitatively acceptable' recovery and statistical plan for >=3-lot reproducibility; direct linkage demonstrating that preserved analytic signature enables downstream potency or in vivo detectability (bridging experiments).",
           "concerns": [
-            "Assay sensitivity and interference: BODIPY C11 and TBARS/oxPL LC-MS may lack sensitivity on low-biomass capture eluates and may be confounded by excipient or capture-buffer chemistry; thorough spike-in and buffer-compatibility controls are required (MISEV2023 supports orthogonal characterization).",
-            "Alternative mechanisms: epitope masking or selective loss of minor EV subpopulations could reduce capture signal without causing measurable peroxidation or permeability changes; the proposed experiment should include alternative capture targets and surface-proteome checks to discriminate these possibilities.",
-            "Correlation versus causation: observing peroxidation concurrent with capture/protection loss does not by itself establish causality; the design must show that peroxidation/permeability precedes or predicts signature loss across independent lots and that experimentally induced peroxidation (positive control) recapitulates analytical loss.",
-            "Translation risk: even if manufacturing-induced membrane damage is demonstrated, species- and route-specific delivery/clearance (e.g., intranasal retention and poor CSF/brain uptake seen in macaques) could dominate in vivo detectability and efficacy outcomes; an in vivo recoverability test (or careful interpretation accounting for Driedonks et al.) is needed to link the analytical gate to clinical risk.",
-            "Dependency on spike-in tracer validity: conclusions require robust per-sample spike-in recovery to exclude assay or capture failures; tracer selection and orthogonality to test materials must be validated beforehand."
+            "Assay validation and spike-in controls are essential: without pre-validated spike-in recovery and demonstration of buffer/assay compatibility, loss of capture signal could reflect assay interference (edge e1 competing explanation) rather than TFF-induced membrane perturbation.",
+            "The proposal relies on qualitative co-localization (yes/no) across >=3 lots; lack of prespecified quantitative thresholds and statistical analysis plan risks ambiguous interpretation when effects are partial or variable between lots.",
+            "Source-cell variability and upstream fractionation could confound results: matched lots must control passage, harvest timing, and any pre-concentration handling to avoid attributing inherent lot differences to TFF envelope effects (competing explanation in proposal).",
+            "Spike-in choice matters: using an orthogonal species or labeled EVs that mimic physical behavior of product EVs is required. If the spike-in behaves differently under shear, spike-in recovery may not reflect product EV integrity.",
+            "Detergent/protease protection readout interprets loss of captured signal as membrane-protection, but epitope masking (conformational changes) could also alter capture without membrane disruption; consider adding complementary readouts (e.g., lipid dye accessibility, cryo-EM subsampling, or enzymatic cleavage assays) to strengthen mechanistic inference.",
+            "Manufacturing relevance: the experiment assesses a pilot-scale envelope and 'qualitatively acceptable' yield, but no numeric yield targets or downstream process impacts (e.g., filtration fouling, processing time, viral clearance considerations) are defined. Demonstrating identity preservation may not be sufficient if yields are consistently lower or operations are impractical.",
+            "Translatability to in vivo detection/efficacy is uncertain. Non-human-primate data show intranasal EVs can be retained in nasal lavage and not reach brain (ev-driedonks-2022-macaque-biodistribution), whereas multiple mouse studies report intranasal EV effects (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi). Thus, even if analytic signatures are preserved, delivery, species, and formulation factors may still limit downstream detectability or potency (edge e2 concern).",
+            "Controls: buffer-only and detergent-disrupted negative controls are included, but consider also processing an unrelated particle control (e.g., liposomes or protein aggregates) to verify specificity of capture and protection assays under both TFF envelopes.",
+            "Reproducibility bar: testing across only three lots may be underpowered to capture inter-lot variability for production-scale decisions; plan for additional lots or replication if early results are borderline."
           ]
         }
       ],
-      "adversaryObjection": "The strongest bounded objection is that the proposed chemical-readout gate (BODIPY C11/TBARS/ox-PL LC-MS + permeability dye on capture-positive eluates) may either (A) lack the analytical sensitivity and specificity to detect meaningful membrane-chemical damage in low-biomass, capture-recovered EV fractions after exposure, or (B) detect chemistry changes that are epiphenomenal (correlated but not causal) with respect to loss of the intact-EV capture-protection signature or in vivo functional/identity loss. Either outcome would render the gate unmeasurable or misleading for process control: false negatives (missed damage because assays are below detection limits or interfered) would fail to protect downstream bridging decisions, while false positives (chemical signal that does not predict capture/protection loss or potency in relevant in vivo contexts) would incorrectly discard usable lots.",
-      "chairRationale": "The hypothesis is biologically plausible and paired with a concrete, matrixed experimental plan, so it should be advanced to experimental testing. Critical pre-test tasks must be completed as part of that program (formal LOD/interference validation for BODIPY/TBARS/ox‑PL on low‑biomass captured eluates, robust spike‑in/capture‑compatibility controls, operator selection of surfactant/freeze‑thaw/device parameters, and a short‑interval in vivo recoverability arm or bridging experiment). Do not adopt as a manufacturing exclusion gate until those validation and translational gaps are addressed and reproducible predictive correlations are demonstrated across >=3 independent lots.",
+      "adversaryObjection": "The single strongest bounded reason this proposal could fail is that the observed loss or preservation of the ‘‘orthogonal intact-EV signature’’ will be dominated by assay artifacts or spike‑in/model mismatch rather than by TFF-induced membrane damage. Specifically, capture reagents, buffer conditions, or spike-in tracer behavior can be differentially perturbed by the two TFF envelopes (e.g., adsorption to membranes, co-concentrated inhibitors, or selective loss of spike versus native EVs), producing apparent preservation in the low-shear arm or apparent loss in the high-flux arm without any meaningful difference in native EV membrane integrity or downstream biological functionality. If assay interference or non-representative spike-in behavior drives readouts, the experimental gate will be uninformative for manufacturing decisions and will mislead process optimization despite meeting the stated analytic success criteria.",
+      "chairRationale": "The hypothesis is testable and operationally plausible with the proposed paired pilot experiments. Proceed to experimental testing contingent on prereqs: validated exogenous spike-in and capture/protection assays (buffer compatibility), prespecified quantitative acceptance criteria (yield and co-localization), and matched ≥3-lot pilot runs to assess reproducibility and qualitative manufacturability.",
       "determination": "needs_evidence",
-      "createdAt": "2026-11-24T15:59:00.069234Z",
-      "noveltyStatement": "This hypothesis is novel because it specifies a discrete, operational downstream-exposure envelope (freeze-thaw applied during fill/finish combined with short contact with a low-level non-ionic surfactant and device-shear rinse) and proposes chemistry-centered, membrane-focused readouts (BODIPY C11 peroxidation + membrane-permeability dye on capture-positive fractions) as early, qualitative stability/process-damage indicators that are causally linked to loss of orthogonal capture-protection identity metrics. Prior program hypotheses have considered freeze-thaw and formulation effects and TFF-envelope sensitivity, but none have (A) combined the specific fill/finish freeze-thaw timing with surfactant + device-shear as a single discriminating exposure, nor (B) proposed direct chemistry-based lipid-peroxidation and permeability assays on capture-positive fractions as the primary early discriminators.",
-      "themeId": "design-gap-manufacturing-process",
+      "createdAt": "2026-11-26T15:26:35.181203Z",
+      "noveltyStatement": "This hypothesis is novel for SGL-001 because it operationalizes a specific, implementable TFF operating envelope (explicit combination: reduced per-cassette TMP/flux limits + cassette rotation + inline gentle depth prefilter) as a testable manufacturing gate tied to an orthogonal intact-EV analytical signature and spike-in validation. Prior program hypotheses proposed that concentration steps might affect intact-EV recovery; this proposal specifies a concrete, staged low-shear engineering envelope and a discriminating orthogonal experiment (pilot-scale matched runs with spike-in-controlled capture/protection fractionation) not previously executed for SGL-001.",
+      "themeId": "design-gap-scale-control",
       "sequenceWithinTheme": 5
     },
     "recentHypotheses": [
+      {
+        "hypothesisId": "design-hypothesis-run-20261126T152635Z-32f4b0ca878d",
+        "runId": "run-20261126T152635Z-32f4b0ca878d",
+        "title": "Hypothesis SGL-001-SC-Scale-TFF-Envelope: A staged low-shear concentration envelope prevents scale-dependent loss of an orthogonal intact-EV analytical signature observed with high-flux TFF",
+        "designQuestion": "At scale-relevant concentration steps, does replacing a single high-flux TFF cassette run with a staged low-shear TFF envelope (reduced TMP/flux per cassette + interim gentle depth-filtration + cassette rotation) reproducibly preserve an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) while maintaining qualitatively acceptable recovery compared with the current high-flux TFF envelope?",
+        "primaryDomain": "manufacturing",
+        "proposedProductChangeOrAttribute": "Adopt a scale-control concentration envelope (staged low-shear TFF: defined lower TMP/flux per cassette, cassette-rotation schedule, and inline gentle depth prefilter) as a manufacturing gate when it demonstrably preserves an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) and provides qualitatively acceptable recovery for pilot GMP-like batches.",
+        "biologicalRationale": "High-transmembrane-pressure, high-flux TFF conditions can mechanically perturb or mask EV membranes or epitopes, producing apparent particle counts but losing membrane-protected capture signals and protected-cargo readouts. A staged low-shear envelope reduces hydrodynamic stress and cumulative membrane exposure, which should preserve membrane integrity and the orthogonal intact-EV signature critical for identity and downstream potency linkage (inference supported by MISEV guidance).",
+        "manufacturingRationale": "If an operational concentration envelope that preserves orthogonal identity exists, it enables reproducible drug-substance definition and reduces downstream CMC risk (assay development, lot comparability, bridging). This avoids adopting high-flux TFF conditions that may create misleading bulk-particle metrics without preserved intact-EV identity.",
+        "expectedMeasurableEffect": "Compared with high-flux TFF, the staged low-shear envelope will reproducibly show preserved co-localization of immuno-capture signal for canonical EV surface epitopes with particle-count peaks in density/size fractions, validated loss of captured signal after detergent + protease (indicating membrane protection), and qualitatively acceptable particle/mass recovery across >=3 independent conditioned-medium lots. Bulk particle counts alone will not distinguish arms.",
+        "supportingEvidenceIds": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "contradictingEvidenceIds": [],
+        "causalChain": {
+          "nodes": [
+            {
+              "node_id": "n1",
+              "stage": "proposed_therapeutic_relevance",
+              "statement": "High-flux / high-TMP TFF concentration conditions can induce shear- or pressure-related alteration of EV membranes (loss of membrane integrity or epitope masking) while leaving bulk particle counts similar."
+            },
+            {
+              "node_id": "n2",
+              "stage": "proposed_therapeutic_relevance",
+              "statement": "A staged low-shear TFF envelope (lower TMP/flux per cassette + inline gentle depth prefilter + cassette rotation) reduces membrane perturbation risk and preserves orthogonal intact-EV signatures: capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal."
+            },
+            {
+              "node_id": "n3",
+              "stage": "proposed_therapeutic_relevance",
+              "statement": "Preservation of the orthogonal intact-EV signature after concentration enables use of that signature as a qualitative manufacturing gate for drug-substance definition and supports downstream potency and comparability assay development."
+            }
+          ],
+          "edges": [
+            {
+              "edge_id": "e1",
+              "source_node_id": "n1",
+              "target_node_id": "n2",
+              "evidence_state": "indirect_support",
+              "evidence_ids": [
+                "ev-misev2023-quality-framework",
+                "ev-driedonks-2022-macaque-biodistribution"
+              ],
+              "relation_type": "inference",
+              "model_or_species": null,
+              "uncertainty": "Moderate: MISEV recommends orthogonal analytics and highlights processing sensitivity; large-animal negative biodistribution motivates careful control of concentration-induced damage, but program-specific TFF parameter causality is unproven.",
+              "competing_explanation": "Apparent loss of capture-protection signal could reflect assay interference or upstream source-cell variability rather than shear-induced membrane damage.",
+              "missing_experiment": "Matched pilot runs comparing TFF envelopes with spike-in and orthogonal capture/protection assays (see experiment)."
+            },
+            {
+              "edge_id": "e2",
+              "source_node_id": "n2",
+              "target_node_id": "n3",
+              "evidence_state": "inference",
+              "evidence_ids": [
+                "ev-misev2023-quality-framework"
+              ],
+              "relation_type": "inference",
+              "model_or_species": null,
+              "uncertainty": "Inference-level: preservation of analytic signatures should enable downstream gating, but numeric acceptance limits and cross-lot robustness remain to be demonstrated.",
+              "competing_explanation": "Even with preserved analytic identity, delivery or species clearance could still limit in vivo detectability; identity preservation is necessary but not sufficient for bridging.",
+              "missing_experiment": "Demonstrate downstream QC and potency assay linkage on concentrated material that passes the envelope."
+            }
+          ]
+        },
+        "reviewerFindings": [
+          {
+            "role": "evidence_verifier",
+            "conclusion": "Not supported as written. The proposal is plausible and cites appropriate guidance about analytic orthogonality (MISEV2023) and a cautionary non-human-primate biodistribution study, but there is no direct published evidence that high-TMP/high-flux TFF conditions cause loss of membrane-protected capture signals (while leaving bulk particle counts unchanged) or that the specific staged low-shear envelope described will preserve those signatures across lots. The claim is therefore an inference-level hypothesis that requires the proposed pilot experiments and validated spike-in controls before it can be accepted as supported.",
+            "supported": false,
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-driedonks-2022-macaque-biodistribution"
+            ],
+            "evidence_gap": "No direct experimental literature demonstrating that TFF operating envelope (high-TMP/high-flux versus staged low-shear) causes or prevents loss of an orthogonal intact‑EV capture/protection signature (co-localized capture-positive particle peaks and detergent/protease sensitivity). Also missing are published, validated spike-in tracer methods and buffer/capture-compatibility data that would exclude assay interference as the cause of signature loss. Finally, there is no published evidence that preservation of this analytic signature improves in vivo detectability or potency (species/route-dependent delivery barriers remain unaddressed).",
+            "concerns": [
+              "Key inference (TFF shear → loss of membrane-protected capture signal independent of particle counts) is not directly supported by cited evidence; MISEV2023 supports orthogonal analytics but does not provide empirical TFF causality.",
+              "Driedonks et al. is appropriately cited as limiting/translational biodistribution evidence, but it does not demonstrate TFF-induced membrane damage and should not be over-interpreted as such.",
+              "Proposal relies on qualitative recovery metrics without predefined numeric acceptance criteria; program-level decisions will require quantitative gates and robustness statistics.",
+              "Assay interference (buffer effects, capture reagent compatibility) and source-cell variability are acknowledged but represent plausible competing explanations that must be excluded by validated spike-in controls and orthogonal assays prior to interpreting results.",
+              "Preserving an orthogonal analytic signature is treated as a necessary precondition for potency linkage, but no evidentiary link to improved in vivo delivery or potency is provided; downstream bridging experiments are required and may be confounded by route/species biodistribution issues."
+            ]
+          },
+          {
+            "role": "cmc_manufacturing",
+            "conclusion": "The proposal to adopt a staged low‑shear TFF envelope and gate release on an orthogonal intact‑EV signature is operationally plausible and aligns with ISEV/MISEV recommendations for orthogonal characterization. The approach is implementable on existing TFF hardware with moderate effort (controls, SOPs, spike‑in reagents) and addresses a meaningful CMC gap (identity vs. bulk particle metrics). However, key evidentiary and execution gaps remain: a direct causal link between high‑flux TFF parameters and loss of membrane‑protected capture signal at scale is not demonstrated in the provided evidence, validated spike‑in controls and capture/protection assays must be in place before informative runs, and pilot yields may be inadequate even if identity is preserved. If experiments validate preservation of orthogonal signatures with acceptable qualitative recovery across >=3 independent lots, the change reduces downstream comparability risk; if not, alternate concentration or product strategies will be required.",
+            "supported": true,
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-driedonks-2022-macaque-biodistribution",
+              "ev-hermann-2023-neonatal-hi",
+              "ev-kodali-2017-status-epilepticus",
+              "ev-zhuang-2011-intranasal-exosome"
+            ],
+            "evidence_gap": "No direct, program‑specific experimental data linking defined TFF TMP/flux/cumulative volume settings to reproducible loss of capture‑protected EV signal at pilot/manufacturing scale. Also missing are validated exogenous intact‑EV spike‑in reagents and assay SOPs demonstrating recovery and lack of buffer/interference effects prior to process comparison runs. In‑process stability data (short‑term and during hold steps) under the proposed envelope are not provided.",
+            "concerns": [
+              "Manufacturability: While the envelope uses existing TFF unit operations, cassette rotation, strict TMP/flux limits, and inline depth filters will require validated hardware controls and may complicate run scheduling and cleaning/sterilization workflows.",
+              "Process sensitivity and scale‑up risk: The causal role of shear/TMP in altering membrane‑protected analytic signatures is inferred but unproven for the program; scale‑dependent effects (cumulative processed volume, membrane fouling) could differ at true manufacturing scale and may reduce yield or require more frequent cassette changes.",
+              "Measurement feasibility: The orthogonal intact‑EV workflow is feasible per MISEV guidance but depends critically on validated spike‑in tracer, capture reagents compatible with process buffers, and protease/detergent protection assays; assay interference from process buffers or labels could produce false positives/negatives.",
+              "Lot comparability: Demonstrating reproducibility across >=3 independent conditioned‑medium lots is required; source‑cell variability (donor/passage/immortalization) may confound interpretation unless lots are tightly matched.",
+              "Stability: The proposal focuses on immediate post‑concentration identity; impact of the envelope on short‑term and storage stability (including during hold steps, freeze/thaw, and formulation) is not addressed and could affect downstream comparability and potency studies.",
+              "Quality‑attribute relevance: Preserved orthogonal intact‑EV signature is a high‑value identity/purity attribute and a reasonable prerequisite for potency linkage, but preservation alone does not guarantee in‑vivo deliverability or functional potency (delivery/route/species barriers remain).",
+              "Operational tradeoff: There is a risk that the staged low‑shear approach preserves analytic identity but yields insufficient recovered mass/particle for pilot‑GMP runs, creating a manufacturability vs. quality tradeoff that must be resolved by program leadership."
+            ]
+          },
+          {
+            "role": "mechanism",
+            "conclusion": "The proposed experiment is conceptually plausible and appropriately targeted to test whether a staged low-shear TFF envelope preserves orthogonal intact-EV analytic signatures versus a high-flux comparator. With validated spike-in tracers, orthogonal capture/protection assays, and matched paired lots, the design can discriminate the primary causal hypothesis (TFF-induced membrane perturbation or epitope masking) from key competing explanations (assay interference, spike-in/recovery artifacts, and source-cell variability). However, important evidence gaps remain around assay validation, quantitative acceptance criteria, and whether preservation of analytic signature will meaningfully affect downstream in vivo performance or manufacturability at GMP scale.",
+            "supported": true,
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-driedonks-2022-macaque-biodistribution",
+              "ev-zhuang-2011-intranasal-exosome",
+              "ev-kodali-2017-status-epilepticus",
+              "ev-hermann-2023-neonatal-hi"
+            ],
+            "evidence_gap": "Validated, buffer‑compatible spike-in tracer and orthogonal capture/protection assay performance (recovery, sensitivity, specificity) under both TFF envelopes; pre-defined quantitative acceptance criteria for 'qualitatively acceptable' recovery and statistical plan for >=3-lot reproducibility; direct linkage demonstrating that preserved analytic signature enables downstream potency or in vivo detectability (bridging experiments).",
+            "concerns": [
+              "Assay validation and spike-in controls are essential: without pre-validated spike-in recovery and demonstration of buffer/assay compatibility, loss of capture signal could reflect assay interference (edge e1 competing explanation) rather than TFF-induced membrane perturbation.",
+              "The proposal relies on qualitative co-localization (yes/no) across >=3 lots; lack of prespecified quantitative thresholds and statistical analysis plan risks ambiguous interpretation when effects are partial or variable between lots.",
+              "Source-cell variability and upstream fractionation could confound results: matched lots must control passage, harvest timing, and any pre-concentration handling to avoid attributing inherent lot differences to TFF envelope effects (competing explanation in proposal).",
+              "Spike-in choice matters: using an orthogonal species or labeled EVs that mimic physical behavior of product EVs is required. If the spike-in behaves differently under shear, spike-in recovery may not reflect product EV integrity.",
+              "Detergent/protease protection readout interprets loss of captured signal as membrane-protection, but epitope masking (conformational changes) could also alter capture without membrane disruption; consider adding complementary readouts (e.g., lipid dye accessibility, cryo-EM subsampling, or enzymatic cleavage assays) to strengthen mechanistic inference.",
+              "Manufacturing relevance: the experiment assesses a pilot-scale envelope and 'qualitatively acceptable' yield, but no numeric yield targets or downstream process impacts (e.g., filtration fouling, processing time, viral clearance considerations) are defined. Demonstrating identity preservation may not be sufficient if yields are consistently lower or operations are impractical.",
+              "Translatability to in vivo detection/efficacy is uncertain. Non-human-primate data show intranasal EVs can be retained in nasal lavage and not reach brain (ev-driedonks-2022-macaque-biodistribution), whereas multiple mouse studies report intranasal EV effects (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi). Thus, even if analytic signatures are preserved, delivery, species, and formulation factors may still limit downstream detectability or potency (edge e2 concern).",
+              "Controls: buffer-only and detergent-disrupted negative controls are included, but consider also processing an unrelated particle control (e.g., liposomes or protein aggregates) to verify specificity of capture and protection assays under both TFF envelopes.",
+              "Reproducibility bar: testing across only three lots may be underpowered to capture inter-lot variability for production-scale decisions; plan for additional lots or replication if early results are borderline."
+            ]
+          }
+        ],
+        "adversaryObjection": "The single strongest bounded reason this proposal could fail is that the observed loss or preservation of the ‘‘orthogonal intact-EV signature’’ will be dominated by assay artifacts or spike‑in/model mismatch rather than by TFF-induced membrane damage. Specifically, capture reagents, buffer conditions, or spike-in tracer behavior can be differentially perturbed by the two TFF envelopes (e.g., adsorption to membranes, co-concentrated inhibitors, or selective loss of spike versus native EVs), producing apparent preservation in the low-shear arm or apparent loss in the high-flux arm without any meaningful difference in native EV membrane integrity or downstream biological functionality. If assay interference or non-representative spike-in behavior drives readouts, the experimental gate will be uninformative for manufacturing decisions and will mislead process optimization despite meeting the stated analytic success criteria.",
+        "chairRationale": "The hypothesis is testable and operationally plausible with the proposed paired pilot experiments. Proceed to experimental testing contingent on prereqs: validated exogenous spike-in and capture/protection assays (buffer compatibility), prespecified quantitative acceptance criteria (yield and co-localization), and matched ≥3-lot pilot runs to assess reproducibility and qualitative manufacturability.",
+        "determination": "needs_evidence",
+        "createdAt": "2026-11-26T15:26:35.181203Z",
+        "noveltyStatement": "This hypothesis is novel for SGL-001 because it operationalizes a specific, implementable TFF operating envelope (explicit combination: reduced per-cassette TMP/flux limits + cassette rotation + inline gentle depth prefilter) as a testable manufacturing gate tied to an orthogonal intact-EV analytical signature and spike-in validation. Prior program hypotheses proposed that concentration steps might affect intact-EV recovery; this proposal specifies a concrete, staged low-shear engineering envelope and a discriminating orthogonal experiment (pilot-scale matched runs with spike-in-controlled capture/protection fractionation) not previously executed for SGL-001.",
+        "themeId": "design-gap-scale-control",
+        "sequenceWithinTheme": 5
+      },
       {
         "hypothesisId": "design-hypothesis-run-20261124T155900Z-c2ce6e8d1281",
         "runId": "run-20261124T155900Z-c2ce6e8d1281",
@@ -18530,152 +18751,16 @@
         "noveltyStatement": "This proposal distinguishes senescence mechanism (replicative versus SASP-induced) as the substantive source-cell attribute to test for causal effects on intact-EV identity and short-interval intranasal recoverability. This is a substantive change from merely labeling 'senescence state' by passage number: it requires experimentally induced SASP-type senescence and within-donor matched comparisons to separate mechanistic drivers (SASP biology) from chronological passage effects, and mandates spike-in-controlled orthogonal in vivo bridging experiments to discriminate assay failures from true biological absence of intact EVs.",
         "themeId": "design-gap-source-cell",
         "sequenceWithinTheme": 3
-      },
-      {
-        "hypothesisId": "design-hypothesis-run-20261024T093736Z-300733401458",
-        "runId": "run-20261024T093736Z-300733401458",
-        "title": "Required orthogonal in vivo→ex vivo bridge to test mechanism-linked potency for SGL-001",
-        "designQuestion": "Can an orthogonally verified, intact-EV-associated, membrane-protected fraction (capture-positive and detergent/protease-sensitive co-localizing with particle peaks) predict a reproducible short-interval ex vivo CNS inflammatory modulation after intranasal dosing, independent of bulk particle counts?",
-        "primaryDomain": "potency",
-        "proposedProductChangeOrAttribute": "Adopt a mechanism-linked potency gate defined as an intact-EV-associated, membrane-protected bioactivity that (A) co-localizes with capture-positive particle fractions in source material, (B) is abolished by detergent + protease/RNase treatment of captured material, and (C) is predictive of a short-interval ex vivo CNS inflammatory-response modulation after intranasal administration.",
-        "biologicalRationale": "Rodent intranasal efficacy signals exist but do not establish intact-EV exposure or mechanism. An orthogonal in vivo→ex vivo bridge that verifies intact-EV presence in short-interval nasal/CSF/olfactory-mucosa samples and links that verified exposure to an ex vivo cytokine modulation (abolished by membrane disruption) would provide mechanistic evidence that activity is EV-associated rather than driven by soluble secretome co-isolates.",
-        "manufacturingRationale": "If preserved, the mechanism-linked intact-EV attribute enables a potency-linked product-identity gate to guide fractionation, downstream process gates, and comparability testing; conversely, failure to link orthogonal intact-EV exposure to ex vivo effect argues for secretome-centric product definition and different CMC priorities.",
-        "expectedMeasurableEffect": "Only material that is orthogonally verified as capture-positive, particle-co-localized, and detergent/protease-sensitive in source material and recoverable as capture-positive in short-interval lavage/CSF/tissue will produce a reproducible reduction in ex vivo inflammatory cytokine readouts; membrane-disrupted or capture-negative but particle-count-matched materials will not.",
-        "supportingEvidenceIds": [
-          "ev-misev2023-quality-framework",
-          "ev-hermann-2023-neonatal-hi",
-          "ev-kodali-2017-status-epilepticus",
-          "ev-driedonks-2022-macaque-biodistribution",
-          "ev-zhuang-2011-intranasal-exosome"
-        ],
-        "contradictingEvidenceIds": [
-          "ev-driedonks-2022-macaque-biodistribution"
-        ],
-        "causalChain": {
-          "nodes": [
-            {
-              "node_id": "n1",
-              "stage": "proposed_therapeutic_relevance",
-              "statement": "An orthogonal intact-EV signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) identifies a membrane-protected EV fraction in source material."
-            },
-            {
-              "node_id": "n2",
-              "stage": "proposed_therapeutic_relevance",
-              "statement": "If orthogonally verified intact-EV exposure is demonstrable in nasal lavage/CSF/olfactory-mucosa after intranasal dosing, then an ex vivo short-interval CNS inflammatory readout will be reproducibly modulated by captured material eluted from those compartments."
-            },
-            {
-              "node_id": "n3",
-              "stage": "proposed_therapeutic_relevance",
-              "statement": "If the captured material is membrane-disrupted prior to administration or the administered material lacks the intact-EV signature, the ex vivo modulation will be abolished or qualitatively different, indicating activity is not intact-EV-associated."
-            }
-          ],
-          "edges": [
-            {
-              "edge_id": "e1",
-              "source_node_id": "n1",
-              "target_node_id": "n2",
-              "evidence_state": "indirect_support",
-              "evidence_ids": [
-                "ev-misev2023-quality-framework",
-                "ev-hermann-2023-neonatal-hi",
-                "ev-kodali-2017-status-epilepticus"
-              ],
-              "relation_type": "inference",
-              "model_or_species": "rodent->translational inference",
-              "uncertainty": "High: rodent efficacy supports potential functional effect but does not prove intact-EV exposure or cross-species translation.",
-              "competing_explanation": "Observed ex vivo modulation could result from soluble secretome components that reach sampled compartments independently of intact EVs.",
-              "missing_experiment": "An orthogonal in vivo→ex vivo bridging experiment comparing capture-positive material versus membrane-disrupted and capture-depleted controls with short-interval tissue/fluid sampling."
-            },
-            {
-              "edge_id": "e2",
-              "source_node_id": "n1",
-              "target_node_id": "n3",
-              "evidence_state": "direct_observation",
-              "evidence_ids": [
-                "ev-driedonks-2022-macaque-biodistribution"
-              ],
-              "relation_type": "inference",
-              "model_or_species": "non-human primate context",
-              "uncertainty": "Moderate: large-animal negative biodistribution raises concern that intact-EV exposure after intranasal dosing may be unreliable across species.",
-              "competing_explanation": "Failure to detect in vivo exposure could arise from assay insensitivity, labeling artifacts, or administration/formulation differences rather than true absence of intact EVs.",
-              "missing_experiment": "A matched intact-EV verification assay in short-interval in vivo samples concurrent with ex vivo functional readout."
-            }
-          ]
-        },
-        "reviewerFindings": [
-          {
-            "role": "evidence_verifier",
-            "conclusion": "Supported with important evidence gaps. The proposal correctly cites rodent intranasal preclinical bioactivity (ev-zhuang-2011, ev-kodali-2017, ev-hermann-2023) and appropriately invokes MISEV2023 quality/characterization recommendations (ev-misev2023-quality-framework). It also properly acknowledges a large-animal negative biodistribution result that limits cross-species generalizability (ev-driedonks-2022-macaque-biodistribution). The orthogonal in vivo→ex vivo bridging experiment proposed is a reasonable and necessary next step; however, the specific causal claim that a capture-positive, membrane-protected fraction will predict short-interval ex vivo CNS cytokine modulation is not directly supported by the supplied canonical evidence and therefore remains unproven.",
-            "supported": true,
-            "evidence_ids": [
-              "ev-zhuang-2011-intranasal-exosome",
-              "ev-kodali-2017-status-epilepticus",
-              "ev-hermann-2023-neonatal-hi",
-              "ev-misev2023-quality-framework",
-              "ev-driedonks-2022-macaque-biodistribution"
-            ],
-            "evidence_gap": "No canonical evidence demonstrates that orthogonally verified, capture-positive, detergent/protease-sensitive EVs recovered from short-interval nasal/CSF/olfactory-mucosa samples causally predict an ex vivo cytokine-modulatory effect after intranasal dosing. In particular, there is no published matched in vivo→ex vivo experiment comparing capture-positive versus membrane-disrupted and capture-depleted, particle-count-matched arms as proposed.",
-            "concerns": [
-              "Assay sensitivity and capture-compatibility for low-biomass lavage/CSF samples is a critical dependency; existing large-animal negative biodistribution (ev-driedonks-2022-macaque-biodistribution) highlights risk of false negatives and species barriers.",
-              "Feasibility of producing a true particle-count-matched but capture-depleted comparator is uncertain and not addressed by the cited evidence; practical inability to generate this comparator would weaken the falsification criterion.",
-              "Reliance on short-interval ex vivo cytokine readouts as a proxy for in vivo neuroimmune modulation is an inference not directly validated by the canonical studies (rodent efficacy reports show outcome improvements but do not link those outcomes to capture-verified intact EV exposure).",
-              "Proposal appropriately frames rodent efficacy as insufficient to claim intact-EV exposure in larger species and does not misattribute literature as SGL-001 experimental data; ensure all future internal experimental results are not conflated with published preclinical findings when claiming product-specific evidence."
-            ]
-          },
-          {
-            "role": "cmc_manufacturing",
-            "conclusion": "The proposed in vivo→ex vivo bridge is a manufacturability- and CMC-relevant experiment and is justified by the available preclinical and consensus guidance, but it carries substantial measurement and scale-up risks that must be mitigated before execution. Specifically: (1) measurement feasibility for low-biomass nasal lavage/CSF is a critical gating risk (requires pre-validated capture reagents, buffer compatibility and spike-in recovery); (2) process sensitivity and comparability concerns arise from detergent/protease treatments and capture-depletion manipulations that can alter material composition beyond membrane disruption; (3) lot-to-lot consistency and stability of the proposed intact-EV attribute are unproven and will complicate release/specification strategy if the attribute is marginal or poorly reproducible; (4) cross-species delivery barriers (rodent signals vs. NHP negative biodistribution) create scale-up and translation risk such that a positive rodent bridge may not predict human-relevant manufacturable attributes. Recommend de-risking analytical sensitivity, defining tolerable process perturbations for comparators, and confirming reproducibility across ≥3 manufacturing lots before treating the intact-EV-associated, membrane-protected bioactivity as a release-linked quality attribute.",
-            "supported": true,
-            "evidence_ids": [
-              "ev-misev2023-quality-framework",
-              "ev-hermann-2023-neonatal-hi",
-              "ev-kodali-2017-status-epilepticus",
-              "ev-driedonks-2022-macaque-biodistribution",
-              "ev-zhuang-2011-intranasal-exosome"
-            ],
-            "evidence_gap": "No validated demonstration that the proposed immuno-capture + particle-count workflow has adequate sensitivity, specificity, and buffer compatibility for short-interval low-biomass nasal lavage/CSF/olfactory-mucosa samples across production lots or larger species (NHP).",
-            "concerns": [
-              "Measurement feasibility: particle-count and immuno-capture sensitivity in low-biomass lavage/CSF is unvalidated and a single-point failure mode; spike-in recovery controls and buffer panels are required prior to in vivo work.",
-              "Process sensitivity: detergent/protease pre-treatment and capture-depletion workflows can non-specifically remove or denature non-EV components and alter downstream comparators, complicating interpretation and comparability.",
-              "Lot comparability: the candidate attribute (capture-positive, particle-co-localized, membrane-protected bioactivity) is high uncertainty and may vary by cell-bank, culture batch, and downstream fractionation; require reproducibility across ≥3 conditioned-medium lots before defining as a release test.",
-              "Stability: storage and handling (freeze–thaw, buffers, transport of low-biomass samples) may ablate membrane-protected signals; stability studies for the attribute in source and sampled matrices are needed.",
-              "Scale-up risk: even if rodent bridge is positive, NHP biodistribution suggests delivery efficiency may not scale — reliance on an intact-EV potency gate could force manufacturing/process changes that are difficult to scale or justify if translation to larger species fails.",
-              "Quality-attribute relevance: converting this mechanistic readout into a numeric release specification will require demonstration of quantitative correlation, assay robustness, and defined acceptance ranges; current proposal is qualitative and requires further analytical validation."
-            ]
-          },
-          {
-            "role": "mechanism",
-            "conclusion": "The proposed orthogonal in vivo→ex vivo bridge is a well-targeted and conceptually appropriate test of whether an intact, membrane-protected EV fraction is the mediator of short-interval anti-inflammatory signals after intranasal dosing. Preclinical rodent efficacy reports support the plausibility that intranasal MSC/EV-containing materials can modulate CNS inflammation (ev-zhuang-2011-intranasal-exosome; ev-kodali-2017-status-epilepticus; ev-hermann-2023-neonatal-hi). MISEV2023 highlights the exact analytical and control needs the proposal calls for (orthogonal characterization, detergent/protease protection, spike-in, capture controls) and therefore strengthens the experimental design (ev-misev2023-quality-framework). However, a non-human-primate study showing poor intranasal biodistribution and retention in nasal lavage raises a substantive translational risk that intranasal intact-EV exposure may be unreliable across species and that negative in vivo detectability could reflect delivery or assay limitations rather than true absence (ev-driedonks-2022-macaque-biodistribution). Overall, the experiment is justified and likely to discriminate EV-associated versus secretome-mediated short-term ex vivo cytokine effects if analytical sensitivity and orthogonal controls are rigorously validated first; success would meaningfully inform potency/product-definition decisions, and failure would likewise clarify whether the program should pivot toward secretome-centric attributes.",
-            "supported": true,
-            "evidence_ids": [
-              "ev-zhuang-2011-intranasal-exosome",
-              "ev-kodali-2017-status-epilepticus",
-              "ev-hermann-2023-neonatal-hi",
-              "ev-misev2023-quality-framework",
-              "ev-driedonks-2022-macaque-biodistribution"
-            ],
-            "evidence_gap": "Direct in vivo evidence linking orthogonally verified intact-EV presence in short-interval nasal/CSF/olfactory-mucosa samples to the proposed ex vivo cytokine modulation is missing. Additionally, cross-species delivery fidelity (rodent → large animal/human) is unproven: NHP data indicating negligible brain uptake after intranasal dosing suggest either a delivery limitation or assay insensitivity that must be resolved prior to interpreting negative outcomes.",
-            "concerns": [
-              "High risk of false negatives from insufficient capture sensitivity or incompatibility between capture reagents/buffers and low-biomass lavage/CSF samples — analytical validation (including spike-in recovery) is mandatory (ev-misev2023-quality-framework).",
-              "Soluble secretome or non-vesicular co-isolates are a plausible competing explanation for prior rodent efficacy; particle counts alone will not discriminate these possibilities without the membrane-protection and capture-depletion controls proposed (ev-misev2023-quality-framework; ev-kodali-2017-status-epilepticus).",
-              "Non-human-primate evidence shows strong nasal retention and negligible CSF/brain signal after intranasal dosing of reporter-labeled EVs; this raises a real translational concern that intact-EV exposure after intranasal delivery may not generalize beyond rodents (ev-driedonks-2022-macaque-biodistribution).",
-              "Detergent + protease pre-treatment is an appropriate control for membrane protection but may remove or inactivate both putative EV cargo and labile soluble cofactors; interpretation requires careful design so that loss-of-function is attributable to membrane disruption rather than nonspecific denaturation. Orthogonal assays (e.g., RNase vs protease, protected vs unprotected markers) should be included (ev-misev2023-quality-framework).",
-              "Ex vivo microglia-like assays are a proxy for short-term CNS inflammatory modulation but may not capture in vivo pharmacodynamics or cell-type interactions; negative or modest results should not be over-interpreted without confirming exposure metrics. Use of multiple readouts (IL-6/TNF-α and secondary markers) and positive assay controls is needed (ev-kodali-2017-status-epilepticus).",
-              "Operational complexity: reproducible short-interval lavage/CSF/olfactory-tissue collection and sensitive particle/capture assays at low biomass require substantial method development and qualified instrumentation; failure to validate these upstream will make interpretation ambiguous (ev-misev2023-quality-framework).",
-              "If the bridge fails, there is a clear programmatic implication (pivot to secretome-centric definition) but also a risk that a false-negative (assay or delivery failure) could lead to premature deprioritization; pre-specified assay acceptance criteria and spike-in controls are therefore essential (ev-driedonks-2022-macaque-biodistribution; ev-misev2023-quality-framework)."
-            ]
-          }
-        ],
-        "adversaryObjection": "The single strongest, bounded reason this proposal could fail is that intranasal intact-EV exposure after dosing is biologically and/or practically undetectable in the sampled proximal compartments (nasal lavage/CSF/olfactory-mucosa) despite correct assay design, so the orthogonal in vivo→ex vivo bridge cannot be established. A negative bridge could reflect true delivery failure in the chosen species/route (not assay artifact) and therefore preclude demonstrating any intact-EV–linked potency even if rodent efficacy signals exist.",
-        "chairRationale": "Conceptually justified but key analytic and translational gaps must be closed before testing: validate immuno-capture sensitivity/specificity and buffer compatibility with low-biomass lavage/CSF (including spike-in recovery), demonstrate reproducible intact‑EV signal across ≥3 conditioned‑medium lots, define tolerable process perturbations for detergent/protease controls, and address cross‑species intranasal delivery risk (NHP biodistribution concern). Until these de‑risking experiments are done the in vivo→ex vivo bridge is not ready for execution.",
-        "determination": "needs_evidence",
-        "createdAt": "2026-10-24T09:37:36.181869Z",
-        "noveltyStatement": "This proposal retains the program focus on an MSC-derived EV/secretome intranasal product but shifts the required discriminating experiment from purely analytic fractionation to an orthogonal in vivo→ex vivo bridge that uses membrane-protection controls and spike-in recovery to directly test whether an intact-EV-associated fraction is necessary for short-interval CNS immune modulation. This is a substantive change in the discriminating experiment (adds in vivo short-interval sampling and ex vivo functional readout) rather than a mere wording change.",
-        "themeId": "design-gap-mechanism-potency",
-        "sequenceWithinTheme": 3
       }
     ],
     "olderHypotheses": [
+      {
+        "hypothesisId": "design-hypothesis-run-20261024T093736Z-300733401458",
+        "title": "Required orthogonal in vivo→ex vivo bridge to test mechanism-linked potency for SGL-001",
+        "themeId": "design-gap-mechanism-potency",
+        "determination": "needs_evidence",
+        "createdAt": "2026-10-24T09:37:36.181869Z"
+      },
       {
         "hypothesisId": "design-hypothesis-run-20261023T101121Z-f8800aadf00f",
         "title": "Hypothesis: A mucin-resistant, capture-enriched intact-EV fraction preserves membrane-protected bioactivity after simulated intranasal exposure and discriminates EV-associated activity from secretome artifacts",
@@ -19048,9 +19133,9 @@
         "question": "Which scale-sensitive attribute and proposed control should be evaluated before representative production studies?",
         "domain": "manufacturing",
         "priority": 5,
-        "timesExplored": 4,
-        "lastExploredAt": "2026-11-12T13:51:16.695047Z",
-        "latestHypothesisId": "design-hypothesis-run-20261112T135116Z-6dd307985a2b",
+        "timesExplored": 5,
+        "lastExploredAt": "2026-11-26T15:26:35.181203Z",
+        "latestHypothesisId": "design-hypothesis-run-20261126T152635Z-32f4b0ca878d",
         "openQuestions": [
           "Which control can distinguish scale effect from analytical noise?"
         ],
@@ -20306,6 +20391,23 @@
         ],
         "measurement_concept": "Qualitative per-lot pass/fail based on observed increase in peroxidation/permeability in capture-positive fractions after defined downstream exposures (no numeric limits).",
         "human_approved": false
+      },
+      {
+        "attribute_id": "design-signature-run-20261126T152635Z-32f4b0ca878d-1",
+        "name": "EV identity and purity (orthogonal capture + particle-peak co-localization + detergent/protease sensitivity)",
+        "group": "identity_markers",
+        "role": "proposed_release_test",
+        "rationale": "Preserving a membrane-protected, capture-positive particle peak after concentration is required to attribute downstream activity and to gate drug-substance identity.",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "uncertainty": "Moderate",
+        "source_hypothesis_id": "design-hypothesis-run-20261126T152635Z-32f4b0ca878d",
+        "source_hypothesis_ids": [
+          "design-hypothesis-run-20261126T152635Z-32f4b0ca878d"
+        ],
+        "measurement_concept": "Qualitative co-localization and protection (pass/fail) with spike-in validation",
+        "human_approved": false
       }
     ],
     "proposedMechanismChain": {
@@ -20313,17 +20415,17 @@
         {
           "node_id": "n1",
           "stage": "proposed_therapeutic_relevance",
-          "statement": "Downstream exposure combination (freeze-thaw during fill/finish + short contact with low-level non-ionic surfactant + device-shear rinse) increases EV membrane lipid peroxidation and membrane permeability."
+          "statement": "High-flux / high-TMP TFF concentration conditions can induce shear- or pressure-related alteration of EV membranes (loss of membrane integrity or epitope masking) while leaving bulk particle counts similar."
         },
         {
           "node_id": "n2",
           "stage": "proposed_therapeutic_relevance",
-          "statement": "Increased lipid peroxidation and membrane permeability cause loss of membrane-protection of luminal cargo and reduction or loss of multi-epitope intact surface-phenotype capture that normally co-localizes with particle-count peaks and is detergent/protease-sensitive."
+          "statement": "A staged low-shear TFF envelope (lower TMP/flux per cassette + inline gentle depth prefilter + cassette rotation) reduces membrane perturbation risk and preserves orthogonal intact-EV signatures: capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal."
         },
         {
           "node_id": "n3",
           "stage": "proposed_therapeutic_relevance",
-          "statement": "Loss of the orthogonal intact-EV analytical signature (capture-protection co-localization) despite similar NTA/TRPS particle counts will render lots analytically indistinguishable from secretome for identity and potency gating, blocking downstream bridging decisions."
+          "statement": "Preservation of the orthogonal intact-EV signature after concentration enables use of that signature as a qualitative manufacturing gate for drug-substance definition and supports downstream potency and comparability assay development."
         }
       ],
       "edges": [
@@ -20334,69 +20436,67 @@
           "evidence_state": "indirect_support",
           "evidence_ids": [
             "ev-misev2023-quality-framework",
-            "ev-hermann-2023-neonatal-hi"
+            "ev-driedonks-2022-macaque-biodistribution"
           ],
           "relation_type": "inference",
           "model_or_species": null,
-          "uncertainty": "Moderate: MISEV recommends orthogonal membrane-protection assays and notes processing sensitivity; program rodent data highlight processing-dependence but do not measure lipid peroxidation directly.",
-          "competing_explanation": "Epitope masking or selective loss of minor EV subpopulations (not chemical membrane damage) could reduce capture signal without clear peroxidation signatures.",
-          "missing_experiment": "Direct measurement of lipid-oxidation and permeability on capture-positive fractions after matrixed downstream exposures."
+          "uncertainty": "Moderate: MISEV recommends orthogonal analytics and highlights processing sensitivity; large-animal negative biodistribution motivates careful control of concentration-induced damage, but program-specific TFF parameter causality is unproven.",
+          "competing_explanation": "Apparent loss of capture-protection signal could reflect assay interference or upstream source-cell variability rather than shear-induced membrane damage.",
+          "missing_experiment": "Matched pilot runs comparing TFF envelopes with spike-in and orthogonal capture/protection assays (see experiment)."
         },
         {
           "edge_id": "e2",
           "source_node_id": "n2",
           "target_node_id": "n3",
-          "evidence_state": "indirect_support",
+          "evidence_state": "inference",
           "evidence_ids": [
-            "ev-driedonks-2022-macaque-biodistribution"
+            "ev-misev2023-quality-framework"
           ],
           "relation_type": "inference",
-          "model_or_species": "non-human primate context",
-          "uncertainty": "Moderate-to-high: large-animal intranasal detectability concerns increase operational risk if identity is lost, but cross-species delivery barriers may confound interpretation.",
-          "competing_explanation": "Loss of in vivo detectability may be dominated by administration or species clearance rather than manufacturing-induced identity loss.",
-          "missing_experiment": "Short-interval in vivo recoverability using materials passing vs failing the chemistry/protection gate."
+          "model_or_species": null,
+          "uncertainty": "Inference-level: preservation of analytic signatures should enable downstream gating, but numeric acceptance limits and cross-lot robustness remain to be demonstrated.",
+          "competing_explanation": "Even with preserved analytic identity, delivery or species clearance could still limit in vivo detectability; identity preservation is necessary but not sufficient for bridging.",
+          "missing_experiment": "Demonstrate downstream QC and potency assay linkage on concentrated material that passes the envelope."
         }
       ]
     },
     "proposedExperiment": {
-      "experiment_id": "design-experiment-run-20261124T155900Z-c2ce6e8d1281",
-      "question": "Does combined freeze-thaw during fill/finish plus short contact with a low-concentration non-ionic surfactant and a device-shear rinse reproducibly induce EV membrane lipid-peroxidation and permeability that predict loss of the orthogonal intact-EV analytical signature while particle counts remain similar?",
-      "hypothesis_tested": "Controlled downstream exposures (freeze-thaw during fill/finish + short exposure to low-concentration non-ionic surfactant + device-shear rinse) cause measurable increases in membrane lipid peroxidation and permeability in capture-positive particle fractions and this chemical damage precedes and predicts loss of capture-positive co-localization with particle-count peaks and detergent/protease-sensitive behavior.",
+      "experiment_id": "design-experiment-run-20261126T152635Z-32f4b0ca878d",
+      "question": "Does a staged low-shear TFF concentration envelope preserve orthogonal intact-EV signatures and provide qualitatively acceptable recovery compared with high-flux TFF at scale-proxy processed volumes?",
+      "hypothesis_tested": "A staged low-shear TFF envelope (reduced TMP/flux per cassette + cassette rotation + inline gentle depth prefilter) preserves capture-positive co-localization with particle-count peaks and detergent/protease-sensitive captured signal across independent lots while providing qualitatively acceptable recovery, whereas high-flux TFF reproducibly abolishes these signatures.",
       "required_material": [
-        ">=3 independent conditioned-medium lots from the same MSC source-cell bank (matched passage) processed to produce a bounded small-EV fraction (program-defined) sufficient for matrixing",
-        "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) for per-sample recovery controls",
-        "Candidate nasal excipient: representative low-concentration non-ionic surfactant formulation buffer (operator-selected surfactant class and concentration matrix)",
-        "Device-shear simulation rig or representative nasal delivery device for shear exposure",
-        "Controlled freeze-thaw capability to apply defined cycles during a simulated fill/finish step (0,1,3 cycles)",
-        "Immuno-capture reagents for canonical EV markers (anti-CD63, anti-CD9, anti-CD81 or TIM4/AnxA5) and capture-compatibility buffer panels",
+        "MSC-conditioned medium from >=3 independent production lots (same source-cell bank/passage) sufficient for matched scale-proxy runs",
+        "TFF hardware supporting controlled TMP/flux and cassette rotation; membranes representative of manufacturing cassettes",
+        "Inline gentle depth prefilter cartridges (test arm)",
+        "High-flux TFF configuration (current comparator)",
+        "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) for per-sample recovery control",
+        "Downstream fractionation materials (SEC or single-step iodixanol cushion) and fraction collectors",
         "Particle counter (NTA or TRPS) and reagents",
-        "BODIPY C11 reagent and fluorescence reader configured for low-biomass fractions; TBARS reagents as orthogonal peroxidation check; targeted oxidized-phospholipid LC-MS capability if material allows",
-        "Membrane-permeability dye reagents adapted for captured eluates (e.g., dye uptake assay), protease (proteinase K), RNase reagents, and detergent (Triton X-100) for protection assays",
-        "Density-fractionation materials (iodixanol) or SEC fractionation setup and fraction collectors",
+        "Immuno-capture reagents for canonical EV surface markers (anti-CD63/CD9/CD81 and/or TIM4/AnxA5) and capture-compatibility buffer panels",
+        "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent) for membrane-disruption/protection checks",
         "Total protein assay reagents and consumables"
       ],
-      "comparator": "Matched within-lot arms: baseline handling (no freeze-thaw, no surfactant, no device shear) versus matrixed exposures combining 0/1/3 freeze-thaw cycles applied during simulated fill/finish crossed with short contact (predefined time) with low-level non-ionic surfactant buffer and low/medium device-shear rinse. All samples receive identical spike-in prior to exposure.",
-      "control": "Positive controls: detergent-disrupted captured eluates and intentionally oxidized EV preparations (if available) to confirm BODIPY C11 and TBARS response. Spike-in tracer recovery required for per-sample assay validation. Capture-compatibility buffer-only controls to exclude reagent interference.",
-      "assay": "Orthogonal panel per sample/fraction: (1) particle counts (NTA/TRPS) per density/size fraction; (2) intact immuno-capture for canonical surface markers with spike-in tracer readout and detergent+protease protection test; (3) BODIPY C11 ratiometric fluorescence on captured eluates (peroxidation); (4) membrane-permeability dye uptake on captured eluates; (5) TBARS and targeted oxidized-phospholipid LC-MS (where material allows) as orthogonal chemistry confirmation; (6) total protein and protein:particle ratio per fraction.",
-      "primary_readout": "Qualitative increase in BODIPY C11 oxidation ratio (and orthogonal TBARS/oxidized-phospholipid evidence when available) AND positive membrane-permeability dye uptake in capture-positive particle-peak fractions after the defined downstream exposure combination, concurrent with loss of capture-positive co-localization with particle-count peaks and loss of detergent/protease-sensitive behavior; NTA/TRPS particle counts remain nominally similar.",
+      "comparator": "Matched paired runs per lot: (A) staged low-shear TFF envelope -> downstream fractionation vs (B) high-flux TFF envelope -> downstream fractionation (program comparator). Both arms receive identical spike-in prior to concentration.",
+      "control": "Positive control: characterized small-EV prep spiked and processed identically to validate capture/protection assays. Negative controls: buffer-only processed through each envelope; detergent-disrupted samples to validate protection assay.",
+      "assay": "Orthogonal intact-EV workflow applied to post-concentration outputs and fraction-level measurements: (1) density/SEC fractionation with particle counting per fraction; (2) intact immuno-capture ELISA or bead-capture for canonical EV surface markers on intact fractions; (3) protease/RNase protection +/- detergent on captured material; (4) total protein and protein:particle ratio per fraction; (5) spike-in recovery per sample; (6) qualitative mass/particle recovery estimates.",
+      "primary_readout": "Qualitative preservation (yes/no) across >=3 lots of co-localization between particle-count peaks and capture-positive fractions in the staged low-shear arm, combined with validated loss of captured signal after detergent + protease (membrane-protection), plus qualitative assessment of recovered particle/mass for pilot-scale manufacturability. Spike-in recovery must confirm assay validity.",
       "secondary_readouts": [
-        "Protein:particle ratio shifts per fraction",
-        "Spike-in recovery percentage per fraction (assay validation)",
-        "Reproducibility across independent lots (>=3)",
-        "Correlation matrix: per-sample lipid-oxidation/permeability change versus capture-protection co-localization signal loss"
+        "Protein:particle ratio per fraction",
+        "Recovered particle and mass yield (qualitative) per arm",
+        "Spike-in recovery percentage per fraction",
+        "Reproducibility across independent lots (>=3)"
       ],
-      "success_criterion": "Qualitative success: Across >=3 independent conditioned-medium lots, at least one defined downstream-exposure combination (for example: 3 controlled freeze-thaw cycles during simulated fill/finish + short contact with low-level non-ionic surfactant + medium device-shear rinse) reproducibly produces (A) increased BODIPY C11 oxidation ratio and orthogonal peroxidation evidence in capture-positive particle-peak fractions, (B) positive membrane-permeability dye uptake in captured eluates, and (C) concurrent loss of capture-positive co-localization with particle peaks and loss of detergent/protease-sensitive behavior, while bulk particle counts remain similar and spike-in recovery confirms assay performance. If observed, the exposure envelope is designated an identity-loss gate.",
-      "failure_criterion": "Validated spike-in recovery and capture-compatibility controls confirm assay performance but (A) no reproducible peroxidation/permeability signal differences are observed across the downstream exposure matrix, or (B) peroxidation/permeability signals do not correlate with loss of capture-protection co-localization across >=3 lots; in either case the hypothesis is falsified.",
-      "falsification_outcome": "If falsified, do not adopt lipid-oxidation/permeability as a manufacturing exclusion gate for the tested downstream exposures; re-evaluate other process stages (TFF envelope, pre-SEC strategies, source-cell variables) as primary drivers of intact-EV signature loss.",
+      "success_criterion": "Across >=3 independent conditioned-medium lots processed to scale-proxy cumulative volume, the staged low-shear arm reproducibly shows (A) particle-count peak(s) that co-localize with capture-positive signal in downstream fractions and (B) captured signal that is substantially reduced after detergent + protease/RNase (indicative of membrane protection), with validated spike-in recovery and qualitatively acceptable recovered particle/mass for pilot GMP-like runs; the high-flux comparator shows reproducible loss of orthogonal signature under matched conditions.",
+      "failure_criterion": "No reproducible preservation of orthogonal intact-EV signatures in the staged low-shear arm across >=3 lots (with validated spike-in recovery), or yields are consistently inadequate for pilot manufacturing considerations.",
+      "falsification_outcome": "If falsified, staged low-shear concentration does not mitigate scale-dependent loss of intact-EV analytic signature; deprioritize TFF-envelope modification and investigate alternate mitigations (different concentration technology, pre-/post-capture fractionation, source-cell controls) or adopt secretome-centric strategies.",
       "dependencies": [
-        "Method development to adapt BODIPY C11 and permeability assays to low-biomass capture eluates",
-        "Capture-compatibility panels established before interpreting loss of capture signal",
-        "Sufficient conditioned-medium yields to run matrixed downstream exposures across >=3 lots"
+        "Access to TFF hardware that allows reproducible control of TMP/flux and cassette rotation",
+        "Sufficient conditioned-medium volumes and scheduling for matched pilot runs",
+        "Validated capture reagents and spike-in tracer with buffer compatibility established"
       ],
       "evidence_ids": [
         "ev-misev2023-quality-framework",
-        "ev-driedonks-2022-macaque-biodistribution",
-        "ev-hermann-2023-neonatal-hi"
+        "ev-driedonks-2022-macaque-biodistribution"
       ],
       "complexity": "moderate",
       "human_approval_state": "pending",
@@ -20498,15 +20598,15 @@
     "parkedIdeas": [],
     "rejectedIdeas": [],
     "summaryCounts": {
-      "reviewed": 58,
+      "reviewed": 59,
       "proposedForTesting": 17,
-      "needsEvidence": 34,
+      "needsEvidence": 35,
       "parked": 0,
       "rejected": 0,
-      "totalHypotheses": 58,
-      "latestHypothesisDate": "2026-11-24T15:59:00.069234Z"
+      "totalHypotheses": 59,
+      "latestHypothesisDate": "2026-11-26T15:26:35.181203Z"
     },
-    "updatedAt": "2026-11-24T15:59:00.069234Z"
+    "updatedAt": "2026-11-26T15:26:35.181203Z"
   },
   "productStrategy": {
     "programId": "SGL-001",
@@ -22247,7 +22347,7 @@
         "coverage": "moderate",
         "main_gap": "Establish orthogonal quantification and lot reproducibility.",
         "reviewed_source_count": 0,
-        "candidate_source_count": 10
+        "candidate_source_count": 11
       },
       {
         "layer": "lipid_and_metabolite_cargo",
@@ -22290,16 +22390,63 @@
     ],
     "discovery_counts": {
       "discovered": 0,
-      "triage_required": 34,
+      "triage_required": 36,
       "eligible_for_review": 21,
       "reviewed": 0,
-      "rejected": 74,
-      "papers": 126,
+      "rejected": 75,
+      "papers": 129,
       "public_omics_datasets": 3
     },
     "source_status": "One or more sources were unavailable; prior records were preserved.",
     "processing_status": "One or more candidates could not be processed; they remain queued for a later run.",
     "recent_discoveries": [
+      {
+        "source_id": "atlas-source-e0946960045e1f12",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "43082755",
+        "title": "Extracellular Vesicles in Ocular Immunoregulation: Context-Dependent Mechanisms and Translational Evidence.",
+        "source_url": "https://europepmc.org/article/MED/43082755",
+        "publication_date": "2026-11-17",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "triage_required",
+        "relevance_summary": null,
+        "access_level": null,
+        "processed_at": null
+      },
+      {
+        "source_id": "atlas-source-903b7f01edf283d1",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "43082735",
+        "title": "Phase-Specific Repair of the Neurovascular Unit After Ischemic Stroke: From Vascular Stabilization to Cognitive Recovery.",
+        "source_url": "https://europepmc.org/article/MED/43082735",
+        "publication_date": "2026-11-13",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "rejected",
+        "relevance_summary": "No configured Molecular Atlas layer was identified during bounded screening.",
+        "access_level": "metadata_only",
+        "processed_at": "2026-11-26T15:29:10.401509Z"
+      },
+      {
+        "source_id": "atlas-source-741f8dc3169a9aa5",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "43082719",
+        "title": "Dissecting the Extracellular Vesicle Protein Corona: Proteomic Challenges and Opportunities for Understanding EV Biology and Function.",
+        "source_url": "https://europepmc.org/article/MED/43082719",
+        "publication_date": "2026-11-12",
+        "dataset_accession": null,
+        "layers": [
+          "protein_cargo"
+        ],
+        "review_status": "triage_required",
+        "relevance_summary": null,
+        "access_level": null,
+        "processed_at": null
+      },
       {
         "source_id": "atlas-source-b88b6872f5f5a744",
         "source_name": "Europe PMC",
@@ -22434,55 +22581,6 @@
         "layers": [
           "cell_source"
         ],
-        "review_status": "triage_required",
-        "relevance_summary": null,
-        "access_level": null,
-        "processed_at": null
-      },
-      {
-        "source_id": "atlas-source-5dcb43ff8a70bf82",
-        "source_name": "Europe PMC",
-        "source_kind": "paper",
-        "record_id": "43026935",
-        "title": "Beyond the MSC Paradigm: Toward Unified Concepts, Methods and Applications in Secretome Research.",
-        "source_url": "https://europepmc.org/article/MED/43026935",
-        "publication_date": "2026-10-23",
-        "dataset_accession": null,
-        "layers": [
-          "soluble_secretome"
-        ],
-        "review_status": "triage_required",
-        "relevance_summary": null,
-        "access_level": null,
-        "processed_at": null
-      },
-      {
-        "source_id": "atlas-source-7dd406795e9fb497",
-        "source_name": "Europe PMC",
-        "source_kind": "paper",
-        "record_id": "43054763",
-        "title": "Extracellular vesicles reprogram cytokine signaling and the immune microenvironment in intervertebral disc degeneration.",
-        "source_url": "https://europepmc.org/article/MED/43054763",
-        "publication_date": "2026-11-04",
-        "dataset_accession": null,
-        "layers": [
-          "protein_cargo"
-        ],
-        "review_status": "triage_required",
-        "relevance_summary": null,
-        "access_level": null,
-        "processed_at": null
-      },
-      {
-        "source_id": "atlas-source-3381b7b13559ccd4",
-        "source_name": "Europe PMC",
-        "source_kind": "paper",
-        "record_id": "43035389",
-        "title": "Regulatory Considerations for the Clinical Translation of Stem Cell-Derived Extracellular Vesicle Products.",
-        "source_url": "https://europepmc.org/article/MED/43035389",
-        "publication_date": "2026-11-01",
-        "dataset_accession": null,
-        "layers": [],
         "review_status": "triage_required",
         "relevance_summary": null,
         "access_level": null,
@@ -22867,6 +22965,40 @@
         "access_level": "metadata_only",
         "discovered_at": "2026-09-25T12:14:30.939017Z",
         "processed_at": "2026-09-28T11:11:07.133209Z"
+      },
+      {
+        "source_id": "atlas-source-741f8dc3169a9aa5",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "43082719",
+        "title": "Dissecting the Extracellular Vesicle Protein Corona: Proteomic Challenges and Opportunities for Understanding EV Biology and Function.",
+        "source_url": "https://europepmc.org/article/MED/43082719",
+        "publication_date": "2026-11-12",
+        "dataset_accession": null,
+        "layers": [
+          "protein_cargo"
+        ],
+        "review_status": "triage_required",
+        "relevance_summary": null,
+        "access_level": null,
+        "discovered_at": "2026-11-26T15:28:49.749327Z",
+        "processed_at": null
+      },
+      {
+        "source_id": "atlas-source-e0946960045e1f12",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "43082755",
+        "title": "Extracellular Vesicles in Ocular Immunoregulation: Context-Dependent Mechanisms and Translational Evidence.",
+        "source_url": "https://europepmc.org/article/MED/43082755",
+        "publication_date": "2026-11-17",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "triage_required",
+        "relevance_summary": null,
+        "access_level": null,
+        "discovered_at": "2026-11-26T15:28:49.749327Z",
+        "processed_at": null
       },
       {
         "source_id": "atlas-source-b88b6872f5f5a744",
@@ -23456,6 +23588,22 @@
         "access_level": null,
         "discovered_at": "2026-09-25T12:14:30.939017Z",
         "processed_at": null
+      },
+      {
+        "source_id": "atlas-source-903b7f01edf283d1",
+        "source_name": "Europe PMC",
+        "source_kind": "paper",
+        "record_id": "43082735",
+        "title": "Phase-Specific Repair of the Neurovascular Unit After Ischemic Stroke: From Vascular Stabilization to Cognitive Recovery.",
+        "source_url": "https://europepmc.org/article/MED/43082735",
+        "publication_date": "2026-11-13",
+        "dataset_accession": null,
+        "layers": [],
+        "review_status": "rejected",
+        "relevance_summary": "No configured Molecular Atlas layer was identified during bounded screening.",
+        "access_level": "metadata_only",
+        "discovered_at": "2026-11-26T15:28:49.749327Z",
+        "processed_at": "2026-11-26T15:29:10.401509Z"
       },
       {
         "source_id": "atlas-source-01dcb2d035fffa6f",
@@ -24702,7 +24850,7 @@
     "prohibited_submission": "Do not submit patient identifiers, protected health information, credentials, confidential files, or human-level omics through the public website.",
     "cta_primary": "Register a dataset",
     "cta_secondary": "Discuss a collaboration",
-    "last_discovery_at": "2026-11-24T16:01:25.284307Z",
-    "last_processing_at": "2026-11-24T16:02:38.554426Z"
+    "last_discovery_at": "2026-11-26T15:28:49.749327Z",
+    "last_processing_at": "2026-11-26T15:29:10.401509Z"
   }
 }

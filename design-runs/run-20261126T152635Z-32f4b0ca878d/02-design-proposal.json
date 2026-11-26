@@ -1,0 +1,174 @@
+{
+  "assumptions": [
+    "Assay performance (immuno-capture, particle counting, protease/detergent protection) can be validated using an exogenous intact-EV spike-in to control for recovery and assay interference.",
+    "Sufficient conditioned-medium yield is available to run paired pilot-scale comparisons across at least three independent lots.",
+    "Qualitative recovery (mass/particle) is an acceptable initial manufacturing metric (numeric acceptance criteria to be defined after robustness is demonstrated)."
+  ],
+  "biological_rationale": "High-transmembrane-pressure, high-flux TFF conditions can mechanically perturb or mask EV membranes or epitopes, producing apparent particle counts but losing membrane-protected capture signals and protected-cargo readouts. A staged low-shear envelope reduces hydrodynamic stress and cumulative membrane exposure, which should preserve membrane integrity and the orthogonal intact-EV signature critical for identity and downstream potency linkage (inference supported by MISEV guidance).",
+  "candidate_quality_attributes": [
+    {
+      "attribute_id": "design-signature-run-20261126T152635Z-32f4b0ca878d-1",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework"
+      ],
+      "group": "identity_markers",
+      "human_approved": false,
+      "measurement_concept": "Qualitative co-localization and protection (pass/fail) with spike-in validation",
+      "name": "EV identity and purity (orthogonal capture + particle-peak co-localization + detergent/protease sensitivity)",
+      "rationale": "Preserving a membrane-protected, capture-positive particle peak after concentration is required to attribute downstream activity and to gate drug-substance identity.",
+      "role": "proposed_release_test",
+      "source_hypothesis_id": "design-hypothesis-run-20261126T152635Z-32f4b0ca878d",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261126T152635Z-32f4b0ca878d"
+      ],
+      "uncertainty": "Moderate"
+    }
+  ],
+  "causal_chain": {
+    "edges": [
+      {
+        "competing_explanation": "Apparent loss of capture-protection signal could reflect assay interference or upstream source-cell variability rather than shear-induced membrane damage.",
+        "edge_id": "e1",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-driedonks-2022-macaque-biodistribution"
+        ],
+        "evidence_state": "indirect_support",
+        "missing_experiment": "Matched pilot runs comparing TFF envelopes with spike-in and orthogonal capture/protection assays (see experiment).",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n1",
+        "target_node_id": "n2",
+        "uncertainty": "Moderate: MISEV recommends orthogonal analytics and highlights processing sensitivity; large-animal negative biodistribution motivates careful control of concentration-induced damage, but program-specific TFF parameter causality is unproven."
+      },
+      {
+        "competing_explanation": "Even with preserved analytic identity, delivery or species clearance could still limit in vivo detectability; identity preservation is necessary but not sufficient for bridging.",
+        "edge_id": "e2",
+        "evidence_ids": [
+          "ev-misev2023-quality-framework"
+        ],
+        "evidence_state": "inference",
+        "missing_experiment": "Demonstrate downstream QC and potency assay linkage on concentrated material that passes the envelope.",
+        "model_or_species": null,
+        "relation_type": "inference",
+        "source_node_id": "n2",
+        "target_node_id": "n3",
+        "uncertainty": "Inference-level: preservation of analytic signatures should enable downstream gating, but numeric acceptance limits and cross-lot robustness remain to be demonstrated."
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "n1",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "High-flux / high-TMP TFF concentration conditions can induce shear- or pressure-related alteration of EV membranes (loss of membrane integrity or epitope masking) while leaving bulk particle counts similar."
+      },
+      {
+        "node_id": "n2",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "A staged low-shear TFF envelope (lower TMP/flux per cassette + inline gentle depth prefilter + cassette rotation) reduces membrane perturbation risk and preserves orthogonal intact-EV signatures: capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal."
+      },
+      {
+        "node_id": "n3",
+        "stage": "proposed_therapeutic_relevance",
+        "statement": "Preservation of the orthogonal intact-EV signature after concentration enables use of that signature as a qualitative manufacturing gate for drug-substance definition and supports downstream potency and comparability assay development."
+      }
+    ]
+  },
+  "competing_explanations": [
+    "Apparent signature loss may be driven primarily by source-cell senescence, fractionation details, or formulation/device compatibility rather than TFF envelope parameters.",
+    "Assay incompatibility (buffer effects on capture reagents) could produce apparent signal loss unrelated to membrane integrity."
+  ],
+  "contradicting_evidence_ids": [],
+  "dependencies": [
+    "Analytical SOPs for orthogonal intact-EV workflow and spike-in controls must be validated prior to experiment execution",
+    "Access to pilot-scale TFF hardware and membranes representative of manufacturing cassettes",
+    "Sufficient conditioned-medium yields across >=3 independent lots"
+  ],
+  "design_question": "At scale-relevant concentration steps, does replacing a single high-flux TFF cassette run with a staged low-shear TFF envelope (reduced TMP/flux per cassette + interim gentle depth-filtration + cassette rotation) reproducibly preserve an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) while maintaining qualitatively acceptable recovery compared with the current high-flux TFF envelope?",
+  "distinguished_from_hypothesis_ids": [
+    "design-hypothesis-run-20260926T095725Z-139664c13c1d",
+    "design-hypothesis-run-20261014T101905Z-1f332775a5ca",
+    "design-hypothesis-run-20261028T112537Z-da2cb3f8271e",
+    "design-hypothesis-run-20261112T135116Z-6dd307985a2b"
+  ],
+  "expected_measurable_effect": "Compared with high-flux TFF, the staged low-shear envelope will reproducibly show preserved co-localization of immuno-capture signal for canonical EV surface epitopes with particle-count peaks in density/size fractions, validated loss of captured signal after detergent + protease (indicating membrane protection), and qualitatively acceptable particle/mass recovery across >=3 independent conditioned-medium lots. Bulk particle counts alone will not distinguish arms.",
+  "experiment": {
+    "assay": "Orthogonal intact-EV workflow applied to post-concentration outputs and fraction-level measurements: (1) density/SEC fractionation with particle counting per fraction; (2) intact immuno-capture ELISA or bead-capture for canonical EV surface markers on intact fractions; (3) protease/RNase protection +/- detergent on captured material; (4) total protein and protein:particle ratio per fraction; (5) spike-in recovery per sample; (6) qualitative mass/particle recovery estimates.",
+    "comparator": "Matched paired runs per lot: (A) staged low-shear TFF envelope -> downstream fractionation vs (B) high-flux TFF envelope -> downstream fractionation (program comparator). Both arms receive identical spike-in prior to concentration.",
+    "complexity": "moderate",
+    "control": "Positive control: characterized small-EV prep spiked and processed identically to validate capture/protection assays. Negative controls: buffer-only processed through each envelope; detergent-disrupted samples to validate protection assay.",
+    "dependencies": [
+      "Access to TFF hardware that allows reproducible control of TMP/flux and cassette rotation",
+      "Sufficient conditioned-medium volumes and scheduling for matched pilot runs",
+      "Validated capture reagents and spike-in tracer with buffer compatibility established"
+    ],
+    "evidence_ids": [
+      "ev-misev2023-quality-framework",
+      "ev-driedonks-2022-macaque-biodistribution"
+    ],
+    "execution_status": "proposed",
+    "experiment_id": "design-experiment-run-20261126T152635Z-32f4b0ca878d",
+    "failure_criterion": "No reproducible preservation of orthogonal intact-EV signatures in the staged low-shear arm across >=3 lots (with validated spike-in recovery), or yields are consistently inadequate for pilot manufacturing considerations.",
+    "falsification_outcome": "If falsified, staged low-shear concentration does not mitigate scale-dependent loss of intact-EV analytic signature; deprioritize TFF-envelope modification and investigate alternate mitigations (different concentration technology, pre-/post-capture fractionation, source-cell controls) or adopt secretome-centric strategies.",
+    "human_approval_state": "pending",
+    "hypothesis_tested": "A staged low-shear TFF envelope (reduced TMP/flux per cassette + cassette rotation + inline gentle depth prefilter) preserves capture-positive co-localization with particle-count peaks and detergent/protease-sensitive captured signal across independent lots while providing qualitatively acceptable recovery, whereas high-flux TFF reproducibly abolishes these signatures.",
+    "primary_readout": "Qualitative preservation (yes/no) across >=3 lots of co-localization between particle-count peaks and capture-positive fractions in the staged low-shear arm, combined with validated loss of captured signal after detergent + protease (membrane-protection), plus qualitative assessment of recovered particle/mass for pilot-scale manufacturability. Spike-in recovery must confirm assay validity.",
+    "question": "Does a staged low-shear TFF concentration envelope preserve orthogonal intact-EV signatures and provide qualitatively acceptable recovery compared with high-flux TFF at scale-proxy processed volumes?",
+    "required_material": [
+      "MSC-conditioned medium from >=3 independent production lots (same source-cell bank/passage) sufficient for matched scale-proxy runs",
+      "TFF hardware supporting controlled TMP/flux and cassette rotation; membranes representative of manufacturing cassettes",
+      "Inline gentle depth prefilter cartridges (test arm)",
+      "High-flux TFF configuration (current comparator)",
+      "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) for per-sample recovery control",
+      "Downstream fractionation materials (SEC or single-step iodixanol cushion) and fraction collectors",
+      "Particle counter (NTA or TRPS) and reagents",
+      "Immuno-capture reagents for canonical EV surface markers (anti-CD63/CD9/CD81 and/or TIM4/AnxA5) and capture-compatibility buffer panels",
+      "Protease (proteinase K), RNase reagents and detergent (Triton X-100 or equivalent) for membrane-disruption/protection checks",
+      "Total protein assay reagents and consumables"
+    ],
+    "secondary_readouts": [
+      "Protein:particle ratio per fraction",
+      "Recovered particle and mass yield (qualitative) per arm",
+      "Spike-in recovery percentage per fraction",
+      "Reproducibility across independent lots (>=3)"
+    ],
+    "success_criterion": "Across >=3 independent conditioned-medium lots processed to scale-proxy cumulative volume, the staged low-shear arm reproducibly shows (A) particle-count peak(s) that co-localize with capture-positive signal in downstream fractions and (B) captured signal that is substantially reduced after detergent + protease/RNase (indicative of membrane protection), with validated spike-in recovery and qualitatively acceptable recovered particle/mass for pilot GMP-like runs; the high-flux comparator shows reproducible loss of orthogonal signature under matched conditions."
+  },
+  "explicit_inferences": [
+    "Inference: TFF envelope parameters (TMP, flux, cumulative processed volume) can alter measurable intact-EV identity independently of particle counts; reducing shear exposure should reduce this effect.",
+    "Inference: Preservation of orthogonal intact-EV signatures after concentration is a necessary precondition for reproducible potency and comparability studies."
+  ],
+  "falsification_criteria": [
+    "Across >=3 independent conditioned-medium lots, the staged low-shear TFF envelope does not reproducibly preserve co-localization of capture-positive signal with particle-count peaks and/or capture-protection sensitivity (detergent + protease) relative to the high-flux comparator, despite validated spike-in recovery; OR",
+    "Staged low-shear runs show consistently inadequate qualitative recovered particle/mass for pilot-scale manufacturing considerations compared with high-flux TFF."
+  ],
+  "human_decisions_required": [
+    "Approve allocation of conditioned-medium lots and pilot TFF instrument time",
+    "Approve spike-in reagent selection and harmonized orthogonal assay SOPs prior to execution",
+    "Decide acceptability criteria for qualitative pilot-scale recovered yield (program lead + CMC)"
+  ],
+  "manufacturability_assessment": "Staged low-shear TFF leverages existing TFF hardware with modified operating envelope (TMP/flux limits, cassette rotation, inline prefilter). If qualitatively acceptable recovery is demonstrated at pilot scale, this envelope is implementable without introducing novel unit operations that would complicate early GMP-like runs.",
+  "manufacturing_rationale": "If an operational concentration envelope that preserves orthogonal identity exists, it enables reproducible drug-substance definition and reduces downstream CMC risk (assay development, lot comparability, bridging). This avoids adopting high-flux TFF conditions that may create misleading bulk-particle metrics without preserved intact-EV identity.",
+  "measurement_strategy": "Orthogonal intact-EV workflow on post-concentration outputs and fraction-level measurements: density/size fractionation with particle counting per fraction; intact immuno-capture ELISA or bead-capture for canonical EV surface markers on intact fractions; protease/RNase protection +/- detergent on captured material; total protein and protein:particle ratio per fraction; include exogenous intact-EV spike-in recovery per sample and capture-compatibility buffer controls. Compare staged low-shear TFF versus high-flux TFF (and optionally acoustic or other mitigations) across >=3 lots.",
+  "novelty_statement": "This hypothesis is novel for SGL-001 because it operationalizes a specific, implementable TFF operating envelope (explicit combination: reduced per-cassette TMP/flux limits + cassette rotation + inline gentle depth prefilter) as a testable manufacturing gate tied to an orthogonal intact-EV analytical signature and spike-in validation. Prior program hypotheses proposed that concentration steps might affect intact-EV recovery; this proposal specifies a concrete, staged low-shear engineering envelope and a discriminating orthogonal experiment (pilot-scale matched runs with spike-in-controlled capture/protection fractionation) not previously executed for SGL-001.",
+  "primary_domain": "manufacturing",
+  "principal_risks": [
+    "Risk that staged low-shear envelope does not preserve signature reproducibly across lots (assay or process variability).",
+    "Risk that qualitative recovery is insufficient for pilot GMP-like runs even if identity is preserved.",
+    "Risk that preserved analytic identity does not improve in vivo recoverability owing to delivery/route/species-specific barriers (non-manufacturing risk)."
+  ],
+  "proposed_potency_relationship": "None asserted here; preserving orthogonal identity is proposed as a prerequisite before attempting potency linkage experiments.",
+  "proposed_product_change_or_attribute": "Adopt a scale-control concentration envelope (staged low-shear TFF: defined lower TMP/flux per cassette, cassette-rotation schedule, and inline gentle depth prefilter) as a manufacturing gate when it demonstrably preserves an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) and provides qualitatively acceptable recovery for pilot GMP-like batches.",
+  "secondary_domains": [
+    "product_identity",
+    "manufacturing",
+    "stability"
+  ],
+  "sequence_within_theme": 5,
+  "supporting_evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution"
+  ],
+  "theme_id": "design-gap-scale-control",
+  "title": "Hypothesis SGL-001-SC-Scale-TFF-Envelope: A staged low-shear concentration envelope prevents scale-dependent loss of an orthogonal intact-EV analytical signature observed with high-flux TFF"
+}
