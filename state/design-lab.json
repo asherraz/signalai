@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "program_id": "SGL-001",
-  "current_design_question": "At scale-relevant concentration steps, does replacing a single high-flux TFF cassette run with a staged low-shear TFF envelope (reduced TMP/flux per cassette + interim gentle depth-filtration + cassette rotation) reproducibly preserve an orthogonal intact-EV analytical signature (capture-positive co-localization with particle peaks and detergent/protease-sensitive captured signal) while maintaining qualitatively acceptable recovery compared with the current high-flux TFF envelope?",
+  "current_design_question": "Daily question: Can a single-vesicle, spike-in-controlled protected-cargo multi-omic assay (intact immuno-capture → RNase/protease ± detergent → droplet single-vesicle small-RNA profiling paired with parallel single-vesicle proteomic/lipid readouts) reproducibly identify a conserved protected-cargo fingerprint across independent lots that is absent or unprotected in secretome-retaining concentrates?",
   "reviewed_hypotheses": [
     {
       "hypothesis_id": "design-hypothesis-run-20260917T100510Z-4fa4f7f74ec7",
@@ -13664,6 +13664,225 @@
       ],
       "theme_id": "design-gap-scale-control",
       "sequence_within_theme": 5
+    },
+    {
+      "hypothesis_id": "design-hypothesis-run-20261127T151316Z-09307090fed5",
+      "program_id": "SGL-001",
+      "run_id": "run-20261127T151316Z-09307090fed5",
+      "created_at": "2026-11-27T15:13:16.752442Z",
+      "title": "Hypothesis SGL-001-CARGO-001: A conserved, membrane-protected single-vesicle multi-omic fingerprint (protected small-RNAs + detergent-sensitive luminal proteins + lipid-class context) will be detectable across independent production lots at the single-EV level and discriminate EV-associated cargo from variable secretome co-isolates",
+      "design_question": "Daily question: Can a single-vesicle, spike-in-controlled protected-cargo multi-omic assay (intact immuno-capture → RNase/protease ± detergent → droplet single-vesicle small-RNA profiling paired with parallel single-vesicle proteomic/lipid readouts) reproducibly identify a conserved protected-cargo fingerprint across independent lots that is absent or unprotected in secretome-retaining concentrates?",
+      "primary_domain": "cargo",
+      "secondary_domains": [
+        "product_identity",
+        "manufacturing"
+      ],
+      "selected_gap_id": "design-gap-cargo-composition",
+      "proposed_product_change_or_attribute": "If supported, adopt a non-numeric lot-consistency attribute defined as a reproducible, membrane-protected single-vesicle multi-omic fingerprint: (A) a set of protected small-RNA species repeatedly observed within intact, capture-positive single vesicles; (B) at least one detergent/protease-sensitive luminal protein co-detected within the same single vesicles; and (C) a consistent lipid-class distribution in particle-peak fractions — to be used as a qualitative gate for lot advancement and prioritization of potency-linkage experiments.",
+      "biological_rationale": "MISEV2023 and program rodent evidence motivate linking protected, membrane-associated cargo to EV identity and function. Prior lot-level bulk protected-cargo profiling is suggestive but cannot exclude co-isolated soluble complexes. Single-vesicle protected-cargo readout controlling for assay recovery (spike-in) and membrane protection will directly test whether a conserved, EV-contained multi-omic fingerprint exists across lots, resolving whether cargo consistency is an EV-associated manufacturing-controllable attribute.",
+      "manufacturing_rationale": "A robust, reproducible single-vesicle protected-cargo fingerprint would enable non-numeric lot-comparability gating and focus CMC efforts (source-cell qualification, fractionation gate, stability envelopes) on preserving an EV-associated cargo signature rather than relying on bulk particle metrics that can be insensitive to membrane integrity or secretome co-isolates.",
+      "causal_chain": {
+        "nodes": [
+          {
+            "node_id": "n1",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If intact, membrane-protected EVs carry conserved, protected small-RNAs and detergent-sensitive luminal proteins, then single-vesicle-level detection of these protected cargo elements will be reproducible across independent production lots and absent (or detergent-insensitive) in secretome-retaining concentrates."
+          },
+          {
+            "node_id": "n2",
+            "stage": "proposed_therapeutic_relevance",
+            "statement": "If a single-vesicle protected-cargo fingerprint is reproducible across lots, it can serve as a qualitative lot-consistency metric to gate lots for downstream potency linkage and bridging studies."
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "e1",
+            "source_node_id": "n1",
+            "target_node_id": "n2",
+            "evidence_state": "indirect_support",
+            "evidence_ids": [
+              "ev-misev2023-quality-framework",
+              "ev-hermann-2023-neonatal-hi"
+            ],
+            "relation_type": "inference",
+            "model_or_species": null,
+            "uncertainty": "Moderate: MISEV2023 recommends protected-cargo linkage and program rodent results show activity but do not prove single-vesicle conserved cargo across manufacturing lots. Missing experiment: single-vesicle protected-cargo reproducibility across >=3 lots with spike-in controls.",
+            "competing_explanation": "Consistent bulk signals could reflect co-isolated soluble complexes or assay cross-reactivity rather than bona fide EV-contained cargo; single-vesicle-level membrane-protected detection is required to discriminate these possibilities.",
+            "missing_experiment": "Single-vesicle protected-cargo profiling with spike-in and detergent/protease controls across matched bounded EV fractions and secretome controls."
+          }
+        ]
+      },
+      "expected_measurable_effect": "A reproducible, qualitative single-vesicle fingerprint (presence of the predefined protected small-RNA subset + co-detected detergent-sensitive luminal protein(s) in capture-positive single vesicles and consistent lipid-class context in particle-peak fractions) observed across >=3 independent lots and absent or detergent-insensitive in secretome-retaining controls.",
+      "supporting_evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "contradicting_evidence_ids": [
+        "ev-driedonks-2022-macaque-biodistribution"
+      ],
+      "explicit_inferences": [
+        "Single-vesicle level membrane protection of cargo (RNase/protease sensitivity ± detergent) more directly implicates EVs as the host of conserved cargo than bulk protected-cargo enrichment.",
+        "If the fingerprint is absent at single-vesicle level despite bulk signals, then bulk signatures likely reflect soluble co-isolates or assay artefacts."
+      ],
+      "assumptions": [
+        "Sufficient material yield per lot will allow single-vesicle assays on capture-positive particle-peak fractions.",
+        "Spike-in tracer chosen will behave comparably to endogenous intact EVs during capture and downstream single-vesicle workflows.",
+        "Assay platforms (droplet single-vesicle small-RNA profiling and low-input single-vesicle proteomics/lipidomics) can reach required sensitivity for capture-positive fractions."
+      ],
+      "competing_explanations": [
+        "Bulk-protected cargo seen previously may be consistent across lots because of reproducible co-isolation of non-vesicular complexes (e.g., lipoproteins or protein aggregates) that survive protection assays.",
+        "Observed lot-to-lot conservation might reflect analytical harmonization rather than true biological conservation of EV-contained cargo."
+      ],
+      "manufacturability_assessment": "Medium risk/effort: single-vesicle droplet workflows and low-input proteomics/lipidomics are resource-intensive and require method development and spike-in controls, but a validated qualitative fingerprint would materially de-risk lot-to-lot comparability and focus upstream cell-bank and fractionation decisions.",
+      "measurement_strategy": "Develop and validate a single-vesicle protected-cargo workflow: intact immuno-capture of particle-peak fractions → split aliquots for (A) RNase/protease ± detergent treatment then microfluidic droplet single-vesicle small-RNA sequencing (or targeted single-vesicle RT) with unique molecular identifiers; (B) parallel single-vesicle-compatible proteomic readout (limited-target PRM on captured eluates or proximity-based luminal protein detection) ± protease; (C) particle-peak lipid-class profiling by targeted LC-MS for contextual support. Include exogenous intact-EV spike-in tracer for per-sample recovery control and secretome-retaining matched controls.",
+      "candidate_quality_attributes_affected": [
+        "design-signature-run-20261127T151316Z-09307090fed5-1"
+      ],
+      "proposed_potency_relationship": "No potency claims asserted. If a reproducible protected-cargo fingerprint is found, it will be prioritized for subsequent potency linkage experiments (e.g., protected-fraction functional assays) but is not assumed to predict efficacy without follow-up.",
+      "principal_risks": [
+        "Insufficient sensitivity of single-vesicle assays on capture-positive fractions causing false negatives.",
+        "Spike-in tracer may not faithfully model endogenous EV behavior during capture and droplet workflows.",
+        "Detected conserved cargo could still reflect tightly bound non-vesicular complexes rather than bona fide intra-vesicular cargo if protection assays are incomplete."
+      ],
+      "falsification_criteria": [
+        "Across ≥3 independent production lots, spike-in recovery validates assay performance but no reproducible co-occurrence of protected small-RNAs and detergent/protease-sensitive luminal proteins is observed at the single-vesicle level in capture-positive particle-peak fractions, or the same protected pattern is observed equivalently in secretome-retaining concentrates (i.e., the protected signal is not EV-associated).",
+        "If assay controls (spike-in recovery, detergent sensitivity of spike-in) fail reproducibly, the experiment is inconclusive and must be redesigned."
+      ],
+      "minimum_discriminating_experiment": {
+        "experiment_id": "design-experiment-run-20261127T151316Z-09307090fed5",
+        "question": "Can a single-vesicle protected-cargo multi-omic assay (intact immuno-capture → RNase/protease ± detergent → droplet single-vesicle small-RNA profiling paired with parallel single-vesicle proteomic readout and lipid-class context) reproducibly identify a conserved protected-cargo fingerprint across independent lots that is absent or detergent-insensitive in secretome-retaining concentrates?",
+        "hypothesis_tested": "A conserved, membrane-protected multi-omic cargo fingerprint (protected small-RNAs + detergent-sensitive luminal protein(s) within the same intact capture-positive single vesicles and consistent lipid-class context) can be detected reproducibly across independent production lots and discriminates EV-enriched bounded fractions from secretome-retaining concentrates.",
+        "required_material": [
+          ">=3 independent conditioned-medium production lots from the same source-cell bank/passage range processed identically into: (A) bounded small-EV fraction (program-defined) and (B) concentrated conditioned-medium secretome control",
+          "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) added to each sample prior to capture to control recovery",
+          "Immuno-capture reagents for intact EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5) configured for microfluidic/droplet capture compatibility",
+          "Microfluidic droplet single-vesicle small-RNA library prep reagents (UMI-enabled) and sequencing infrastructure or validated targeted single-vesicle RT panel",
+          "Parallel single-vesicle-compatible luminal protein readout (e.g., proximity-based luminal protein detection on captured vesicles or microfluidic single-vesicle PRM on eluates) with protease protection splits",
+          "Particle counter (NTA or TRPS) and reagents for fraction-level particle counts",
+          "Protease (proteinase K) and RNase reagents and detergent (Triton X-100 or equivalent) for protection/disruption controls",
+          "Reagents and platform for targeted lipid-class LC-MS on particle-peak fractions (sphingomyelin/PC/PE ratios) for contextual support",
+          "Buffers and capture-compatibility panels; negative controls (buffer-only) and positive controls (characterized small-EV prep processed in parallel)"
+        ],
+        "comparator": "Per lot: (A) bounded small-EV fraction vs (B) secretome-retaining concentrate processed identically. Within each, run RNase/protease ± detergent splits and include spike-in tracer. Positive control: characterized small EV prep; Negative controls: buffer-only and detergent-disrupted samples.",
+        "control": "Spike-in tracer recovery per sample (must be recovered in capture-positive single-vesicles and show detergent/protease sensitivity); characterized small EV positive control processed in parallel; buffer-only negative controls; capture-compatibility checks for reagents/buffers.",
+        "assay": "Integrated single-vesicle protected-cargo workflow: (1) intact immuno-capture of particle-peak fractions; (2) split captured material into RNase/protease ± detergent conditions; (3) run droplet single-vesicle small-RNA sequencing (UMI-enabled) to detect protected small-RNAs at single-vesicle resolution and to quantify co-occurrence across vesicles; (4) in parallel, perform single-vesicle luminal-protein detection (proximity-based readout or microfluidic PRM from captured eluates) to test protease sensitivity; (5) perform targeted lipid-class LC-MS on matched particle-peak fractions for contextual signature; (6) analyze per-lot reproducibility of the composite fingerprint and compare to secretome controls.",
+        "primary_readout": "Qualitative reproducible detection (yes/no) across >=3 lots of: (A) a set of protected small-RNA species detected within intact, capture-positive single vesicles (not present after detergent+protease), and (B) co-detection of at least one protease-sensitive luminal protein within the same single vesicles; plus supportive consistent lipid-class context in particle-peak fractions. Spike-in recovery must validate assays.",
+        "secondary_readouts": [
+          "Per-sample spike-in recovery percentage and detergent/protease sensitivity",
+          "Fraction-level particle:protein ratio",
+          "Inter-lot similarity/clustering of single-vesicle small-RNA profiles (qualitative)",
+          "Presence/absence of the same protected signals in secretome-retaining concentrates (expected absent)"
+        ],
+        "success_criterion": "Qualitative success: Across >=3 independent production lots, capture-positive single-vesicle analyses reproducibly show the same protected small-RNA subset co-occurring with a detergent/protease-sensitive luminal protein within intact single vesicles (protected in -RNase/protease but lost with detergent + protease), and particle-peak lipid-class context is qualitatively consistent across lots; secretome-retaining controls lack this protected co-occurrence. Spike-in recovery confirms assay performance. Meeting this criterion supports adopting the protected single-vesicle fingerprint as a lot-consistency gate.",
+        "failure_criterion": "Either (A) spike-in recovery validates assay performance but protected single-vesicle co-occurrence is not reproducibly observed across >=3 lots, or (B) protected signals are equally present in secretome controls (i.e., not EV-associated), or (C) spike-in fails to recover reproducibly, rendering the experiment inconclusive.",
+        "falsification_outcome": "If falsified, conclude that no reproducible EV-associated protected multi-omic fingerprint exists across lots under current source/fractionation conditions; treat cargo composition as insufficiently consistent for lot-gating and prioritize alternative strategies (tighten fractionation, source-cell qualification, or secretome-centric product definitions).",
+        "dependencies": [
+          "Establish per-sample spike-in tracer performance in capture and single-vesicle workflows before interpreting biological signals",
+          "Sufficient material yield from pilot lots to support single-vesicle droplet sequencing and low-input proteomics/lipidomics",
+          "Method development to adapt droplet single-vesicle small-RNA assays and single-vesicle-compatible proteomic readouts to low-biomass capture eluates"
+        ],
+        "evidence_ids": [
+          "ev-misev2023-quality-framework",
+          "ev-hermann-2023-neonatal-hi",
+          "ev-kodali-2017-status-epilepticus"
+        ],
+        "complexity": "high",
+        "human_approval_state": "pending",
+        "execution_status": "proposed"
+      },
+      "dependencies": [
+        "Availability of >=3 independent production lots from the same source-cell bank and matched processing",
+        "Spike-in tracer characterization and pre-validation in capture/single-vesicle formats",
+        "Analytical development resources for single-vesicle droplet assays and low-input proteomics/lipidomics"
+      ],
+      "human_decisions_required": [
+        "Select exogenous intact-EV spike-in tracer (species/isotope label) and approve procurement",
+        "Approve allocation of >=3 pilot lots and required material for method development",
+        "Authorize specialized single-vesicle assay development resourcing and vendor/partner engagement"
+      ],
+      "reviewer_findings": [
+        {
+          "role": "evidence_verifier",
+          "conclusion": "Not supported as written. The canonical evidence justifies the rationale for rigorous EV-protected-cargo characterization (MISEV2023) and shows program-level rodent efficacy after intranasal EV delivery (ev-hermann-2023, ev-kodali-2017), but none of the provided references demonstrate that a reproducible, membrane-protected single-vesicle multi-omic fingerprint across independent manufacturing lots is achievable with the proposed assays or spike-in controls. A key translational caution from non-human-primate biodistribution (ev-driedonks-2022) highlights species- and formulation-dependent limitations that raise concerns about generalizability to larger-scale/clinical contexts.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution"
+          ],
+          "evidence_gap": "No canonical evidence demonstrates successful single-vesicle, spike-in‑controlled protected-cargo multi-omic assays (RNase/protease ± detergent with droplet single-vesicle small‑RNA + single‑vesicle luminal protein + lipid LC‑MS) applied to >=3 independent production lots with validated spike-in recovery and reproducible inter‑lot fingerprinting. Also lacking are published validations showing that chosen spike-in tracers behave comparably to endogenous EVs in capture and droplet single‑vesicle workflows, and data on assay sensitivity/yield for low‑biomass capture-positive fractions. Finally, there is limited evidence supporting translation of lot-level protected-cargo fingerprints from rodent models to larger species or clinical settings.",
+          "concerns": [
+            "Support/evidence alignment: MISEV2023 (ev-misev2023-quality-framework) supports the need for orthogonal characterization and protection assays, but it does not provide data showing feasibility of the specific single‑vesicle droplet multi‑omic workflow proposed; the proposal correctly cites MISEV2023 as methodological guidance (inference labeled) but extrapolates to an unproven assay capability.",
+            "Inference labeling: The proposal frames several key steps as inferences (e.g., that single‑vesicle protected cargo implicates EVs vs. co‑isolates). That inference is reasonable given MISEV guidance, but it is not directly demonstrated by the provided experimental literature—this is an explicit evidence gap.",
+            "Spike-in assumption risk: No canonical evidence shows that an exogenous spike-in tracer will faithfully model endogenous EV capture and single‑vesicle behavior; reliance on this unvalidated assumption is a critical experimental dependency and risk.",
+            "Analytical sensitivity/yield risk: Program rodent efficacy studies (ev-hermann-2023, ev-kodali-2017) demonstrate in vivo effects of intranasal/MSC-EV preparations but do not establish that particle-peak fractions from manufacturing lots have sufficient material yield or analyte abundance for the high-sensitivity single‑vesicle assays proposed.",
+            "Generalizability/translation concern: Non-human-primate biodistribution (ev-driedonks-2022) indicates intranasal EV formulations may have negligible brain uptake and strong nasal retention in a larger species; while not directly contradicting the assay-focused proposal, this evidence raises concern that an EV-associated protected-cargo fingerprint relevant in rodent preclinical models may not translate to clinical-relevant formulations or species.",
+            "Contradictions: The proposal claims program rodent evidence motivates linking protected cargo to EV identity/function; that is supported indirectly by ev-hermann-2023 and ev-kodali-2017 but those studies are bulk/functional and do not exclude co-isolated soluble complexes—this limitation is acknowledged in the proposal but remains an evidence gap.",
+            "No misattribution detected: The proposal does not present any canonical literature result as if it were the SGL-001 experimental result."
+          ]
+        },
+        {
+          "role": "cmc_manufacturing",
+          "conclusion": "The proposed single‑vesicle protected‑cargo multi‑omic fingerprint is a potentially useful qualitative lot‑consistency gate but is high risk and will require substantial method development. Key near‑term barriers are analytical sensitivity and per‑sample yield, capture/recovery variability that must be controlled with a validated spike‑in, and absence of demonstrated linkage to functional potency or stability. If these measurement and material risks are resolved, the attribute could meaningfully de‑risk upstream CMC decisions; otherwise the assay is unlikely to reliably discriminate bona fide EV‑contained cargo from co‑isolated secretome components across lots.",
+          "supported": false,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "No evidence provided that a single‑vesicle protected multi‑omic fingerprint is achievable with routine per‑lot yields or that such a fingerprint predicts potency, stability, or in‑vivo function in relevant large‑animal models; also limited demonstration of spike‑in behavior matching endogenous EVs in capture/single‑vesicle workflows.",
+          "concerns": [
+            "Measurement feasibility: droplet single‑vesicle small‑RNA and single‑vesicle proteomics/lipidomics on capture‑positive eluates are analytically demanding; proposal acknowledges high uncertainty in sensitivity and need for method development (risk of false negatives).",
+            "Per‑sample yield and lot material sufficiency: requirement for >=3 production lots with enough material for sequencing and low‑input proteomics/lipidomics is a major practical constraint and a scale‑up risk for routine CMC implementation.",
+            "Spike‑in tracer risk: assay validity depends on a tracer that mimics endogenous EV capture and protection behavior; if spike‑in does not model true EVs, recovery controls may be misleading.",
+            "Process sensitivity and comparability: immuno‑capture efficiency, fractionation boundaries (particle‑peak vs secretome), and reagent/buffer compatibility can create lot‑to‑lot analytical variability independent of true biological differences; tight SOPs and orthogonal controls will be essential.",
+            "Specificity for EVs vs co‑isolates: MISEV2023 warns that protection assays and orthogonal characterization are required to separate vesicular cargo from non‑vesicular complexes; single‑vesicle readouts reduce but do not eliminate this concern without rigorous detergent/protease controls and orthogonal negative controls.",
+            "Stability and storage: proposal lacks data on stability of protected cargo signals over relevant storage/handling conditions; signal loss during storage could confound lot comparability assessments.",
+            "Scale‑up and throughput: the workflow complexity (microfluidic/droplet, proteomics, LC‑MS) implies high cost and low throughput, challenging routine adoption as a lot‑release gate without simplification/automation.",
+            "Translational relevance: positive rodent intranasal efficacy (ev‑hermann, ev‑kodali, ev‑zhuang) supports biological interest in EV cargo, but nonhuman‑primate biodistribution negative findings (ev‑driedonks) highlight uncertainty that cargo fingerprints linked to rodent efficacy will predict clinically meaningful behavior in larger species or humans."
+          ]
+        },
+        {
+          "role": "mechanism",
+          "conclusion": "The proposed single-vesicle protected-cargo multi-omic assay is a conceptually appropriate and potentially informative approach to discriminate whether conserved protected small-RNAs and protease-sensitive luminal proteins co-occur inside intact, capture-positive vesicles across production lots. The plan aligns with MISEV2023 recommendations to link membrane protection to EV identity and addresses a key ambiguity left by bulk protected-cargo studies. However, substantial analytical and biological uncertainties remain. The experiment could discriminate the primary competing explanations (EV-contained cargo versus co-isolated soluble complexes) only if spike-in controls, capture specificity, and detergent/protease protection controls behave as intended; otherwise results will be ambiguous. Independent downstream potency linkage will still be required because a protected cargo fingerprint would not by itself establish functional relevance or clinical potency.",
+          "supported": true,
+          "evidence_ids": [
+            "ev-misev2023-quality-framework",
+            "ev-hermann-2023-neonatal-hi",
+            "ev-kodali-2017-status-epilepticus",
+            "ev-driedonks-2022-macaque-biodistribution",
+            "ev-zhuang-2011-intranasal-exosome"
+          ],
+          "evidence_gap": "Key gaps: (1) demonstration that the proposed single-vesicle droplet and low-input proteomic workflows reach required sensitivity on real capture-positive fractions (analytic feasibility), (2) validation that the chosen exogenous spike-in faithfully models endogenous EV capture/recovery and detergent/protease sensitivity (spike-in validity), and (3) demonstration that immuno-capture reagents do not bias toward a non-representative EV subset or co-capture non-vesicular particles (capture specificity). Additionally, even if a reproducible protected fingerprint is found, linkage to potency/function remains unaddressed and requires separate experiments.",
+          "concerns": [
+            "Analytical sensitivity and yield: single-vesicle droplet small-RNA sequencing and single-vesicle proteomic readouts are resource-intensive and may fail to detect low-abundance protected cargo in capture-positive eluates, producing false negatives; the proposal acknowledges this high uncertainty (assay development required).",
+            "Spike-in tracer validity: the experiment depends on an exogenous intact-EV tracer that must behave like endogenous EVs in capture and protection assays. If the spike-in differs (size, surface markers, membrane robustness), assay recovery metrics will mislead interpretation. Pre-validation of spike-in behavior is essential. (Dependency noted in proposal.)",
+            "Capture bias and specificity: immuno-capture against selected surface markers can enrich a subset of vesicles and may also bind non-vesicular particles coated with similar epitopes or adsorbed proteins. This could create an apparent co-occurrence of protected cargo that is not representative of the broader product. Orthogonal capture markers and capture-negative controls are needed.",
+            "Incomplete discrimination of tightly bound non-vesicular complexes: detergent + protease protection assays are informative but not definitive. Some protein–RNA complexes or lipoproteins can exhibit partial protection or associate tightly with vesicle membranes and resist simple protease treatments, potentially producing false assignment to intravesicular localization. Additional orthogonal approaches (e.g., density fractionation, protease with membrane-impermeant labeling, or cryo-EM validation on captured particles) would strengthen discrimination.",
+            "Co-isolate contribution and secretome controls: the design includes secretome-retaining concentrates as controls, which is appropriate, but rigorous matching of particle:protein ratios and processing is required; otherwise differences could reflect concentration or processing artifacts rather than true localization.",
+            "Mechanism/potency linkage missing: detecting a conserved protected cargo fingerprint would support EV association and manufacturing consistency but does not establish that the cargo mediates biological activity or potency. The proposal correctly frames the fingerprint as a gating attribute to prioritize potency linkage studies rather than as a potency surrogate itself.",
+            "Translational relevance uncertainty: preclinical intranasal EV efficacy in rodents (ev-zhuang-2011, ev-kodali-2017, ev-hermann-2023) supports therapeutic interest, but NHP biodistribution (ev-driedonks-2022) shows weak intranasal brain delivery and strong nasal retention for some EV preps. Thus, even if a conserved fingerprint is identified in production lots, its relevance to in vivo delivery or clinical effect is uncertain and must be resolved in species-appropriate biodistribution and functional assays."
+          ]
+        }
+      ],
+      "adversary_objection": "The experiment can be invalidated by analytic insensitivity and mismatched spike-in behavior: if capture-positive fractions contain too few intact vesicles or too-low copy numbers of targeted protected small RNAs/proteins per vesicle, the droplet single-vesicle and low-input proteomic/lipidomic workflows may produce reproducible false negatives (or highly stochastic detection), and an exogenous spike-in tracer that does not mimic endogenous EV capture/recovery/protection will fail to validate assay performance—leaving positive bulk protected signals uninterpretable and preventing discrimination between bona fide intra-vesicular cargo and co-isolated, protection-resistant soluble complexes.",
+      "chair_rationale": "Promising conceptually but not yet justified for implementation: critical evidence gaps remain around analytical sensitivity and per-sample yield for single‑vesicle droplet and low‑input proteomic/lipidomic readouts, validated spike‑in behavior that mimics endogenous EV capture/protection, capture specificity versus co‑isolates, and demonstration of reproducible inter‑lot fingerprinting (≥3 lots) and linkage to potency/stability. Substantial method development and pilot data addressing these points are required before proceeding.",
+      "determination": "needs_evidence",
+      "status": "reviewed",
+      "promotion_human_approved": false,
+      "novelty_statement": "This hypothesis and experiment are novel because they test protected cargo at single-vesicle resolution using a spike-in-controlled, RNase/protease ± detergent split combined with droplet single-vesicle small-RNA profiling paired with single-vesicle-compatible luminal-protein detection and lipid-class context. Prior program experiments proposed bulk or fraction-level multi-omic protected profiling; none used single-vesicle droplet profiling to directly demonstrate that defined protected cargo co-occurs within individual intact EVs across manufacturing lots — a discriminating approach that can distinguish bona fide EV-contained cargo from co-isolated soluble complexes.",
+      "distinguished_from_hypothesis_ids": [
+        "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58",
+        "design-hypothesis-run-20261016T095537Z-3c47696fc5c2",
+        "design-hypothesis-run-20261029T113548Z-1d3cdaa95147",
+        "design-hypothesis-run-20261113T131325Z-03ee8f833fd0"
+      ],
+      "theme_id": "design-gap-cargo-composition",
+      "sequence_within_theme": 5
     }
   ],
   "proposed_experiments": [
@@ -16184,6 +16403,48 @@
       "complexity": "moderate",
       "human_approval_state": "pending",
       "execution_status": "proposed"
+    },
+    {
+      "experiment_id": "design-experiment-run-20261127T151316Z-09307090fed5",
+      "question": "Can a single-vesicle protected-cargo multi-omic assay (intact immuno-capture → RNase/protease ± detergent → droplet single-vesicle small-RNA profiling paired with parallel single-vesicle proteomic readout and lipid-class context) reproducibly identify a conserved protected-cargo fingerprint across independent lots that is absent or detergent-insensitive in secretome-retaining concentrates?",
+      "hypothesis_tested": "A conserved, membrane-protected multi-omic cargo fingerprint (protected small-RNAs + detergent-sensitive luminal protein(s) within the same intact capture-positive single vesicles and consistent lipid-class context) can be detected reproducibly across independent production lots and discriminates EV-enriched bounded fractions from secretome-retaining concentrates.",
+      "required_material": [
+        ">=3 independent conditioned-medium production lots from the same source-cell bank/passage range processed identically into: (A) bounded small-EV fraction (program-defined) and (B) concentrated conditioned-medium secretome control",
+        "Exogenous characterized intact-EV spike-in tracer (orthogonal species or isotope-labeled) added to each sample prior to capture to control recovery",
+        "Immuno-capture reagents for intact EV surface markers (anti-CD63/CD9/CD81 or TIM4/AnxA5) configured for microfluidic/droplet capture compatibility",
+        "Microfluidic droplet single-vesicle small-RNA library prep reagents (UMI-enabled) and sequencing infrastructure or validated targeted single-vesicle RT panel",
+        "Parallel single-vesicle-compatible luminal protein readout (e.g., proximity-based luminal protein detection on captured vesicles or microfluidic single-vesicle PRM on eluates) with protease protection splits",
+        "Particle counter (NTA or TRPS) and reagents for fraction-level particle counts",
+        "Protease (proteinase K) and RNase reagents and detergent (Triton X-100 or equivalent) for protection/disruption controls",
+        "Reagents and platform for targeted lipid-class LC-MS on particle-peak fractions (sphingomyelin/PC/PE ratios) for contextual support",
+        "Buffers and capture-compatibility panels; negative controls (buffer-only) and positive controls (characterized small-EV prep processed in parallel)"
+      ],
+      "comparator": "Per lot: (A) bounded small-EV fraction vs (B) secretome-retaining concentrate processed identically. Within each, run RNase/protease ± detergent splits and include spike-in tracer. Positive control: characterized small EV prep; Negative controls: buffer-only and detergent-disrupted samples.",
+      "control": "Spike-in tracer recovery per sample (must be recovered in capture-positive single-vesicles and show detergent/protease sensitivity); characterized small EV positive control processed in parallel; buffer-only negative controls; capture-compatibility checks for reagents/buffers.",
+      "assay": "Integrated single-vesicle protected-cargo workflow: (1) intact immuno-capture of particle-peak fractions; (2) split captured material into RNase/protease ± detergent conditions; (3) run droplet single-vesicle small-RNA sequencing (UMI-enabled) to detect protected small-RNAs at single-vesicle resolution and to quantify co-occurrence across vesicles; (4) in parallel, perform single-vesicle luminal-protein detection (proximity-based readout or microfluidic PRM from captured eluates) to test protease sensitivity; (5) perform targeted lipid-class LC-MS on matched particle-peak fractions for contextual signature; (6) analyze per-lot reproducibility of the composite fingerprint and compare to secretome controls.",
+      "primary_readout": "Qualitative reproducible detection (yes/no) across >=3 lots of: (A) a set of protected small-RNA species detected within intact, capture-positive single vesicles (not present after detergent+protease), and (B) co-detection of at least one protease-sensitive luminal protein within the same single vesicles; plus supportive consistent lipid-class context in particle-peak fractions. Spike-in recovery must validate assays.",
+      "secondary_readouts": [
+        "Per-sample spike-in recovery percentage and detergent/protease sensitivity",
+        "Fraction-level particle:protein ratio",
+        "Inter-lot similarity/clustering of single-vesicle small-RNA profiles (qualitative)",
+        "Presence/absence of the same protected signals in secretome-retaining concentrates (expected absent)"
+      ],
+      "success_criterion": "Qualitative success: Across >=3 independent production lots, capture-positive single-vesicle analyses reproducibly show the same protected small-RNA subset co-occurring with a detergent/protease-sensitive luminal protein within intact single vesicles (protected in -RNase/protease but lost with detergent + protease), and particle-peak lipid-class context is qualitatively consistent across lots; secretome-retaining controls lack this protected co-occurrence. Spike-in recovery confirms assay performance. Meeting this criterion supports adopting the protected single-vesicle fingerprint as a lot-consistency gate.",
+      "failure_criterion": "Either (A) spike-in recovery validates assay performance but protected single-vesicle co-occurrence is not reproducibly observed across >=3 lots, or (B) protected signals are equally present in secretome controls (i.e., not EV-associated), or (C) spike-in fails to recover reproducibly, rendering the experiment inconclusive.",
+      "falsification_outcome": "If falsified, conclude that no reproducible EV-associated protected multi-omic fingerprint exists across lots under current source/fractionation conditions; treat cargo composition as insufficiently consistent for lot-gating and prioritize alternative strategies (tighten fractionation, source-cell qualification, or secretome-centric product definitions).",
+      "dependencies": [
+        "Establish per-sample spike-in tracer performance in capture and single-vesicle workflows before interpreting biological signals",
+        "Sufficient material yield from pilot lots to support single-vesicle droplet sequencing and low-input proteomics/lipidomics",
+        "Method development to adapt droplet single-vesicle small-RNA assays and single-vesicle-compatible proteomic readouts to low-biomass capture eluates"
+      ],
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi",
+        "ev-kodali-2017-status-epilepticus"
+      ],
+      "complexity": "high",
+      "human_approval_state": "pending",
+      "execution_status": "proposed"
     }
   ],
   "parked_hypothesis_ids": [],
@@ -17454,6 +17715,24 @@
       ],
       "measurement_concept": "Qualitative co-localization and protection (pass/fail) with spike-in validation",
       "human_approved": false
+    },
+    {
+      "attribute_id": "design-signature-run-20261127T151316Z-09307090fed5-1",
+      "name": "Protected single-vesicle small-RNA + luminal-protein composite fingerprint",
+      "group": "cargo_profile",
+      "role": "exploratory_characterization_candidate",
+      "rationale": "Direct single-vesicle evidence that defined small-RNAs and detergent/protease-sensitive luminal proteins co-occur within intact capture-positive vesicles across lots would support an EV-associated cargo consistency attribute without asserting a single active molecule.",
+      "evidence_ids": [
+        "ev-misev2023-quality-framework",
+        "ev-hermann-2023-neonatal-hi"
+      ],
+      "uncertainty": "High: analytical sensitivity and per-sample yield are key uncertainties; method development required.",
+      "source_hypothesis_id": "design-hypothesis-run-20261127T151316Z-09307090fed5",
+      "source_hypothesis_ids": [
+        "design-hypothesis-run-20261127T151316Z-09307090fed5"
+      ],
+      "measurement_concept": "Single-vesicle droplet small-RNA detection (UMI-tagged) combined with parallel single-vesicle-compatible luminal-protein detection and lipid-class context from particle-peak fractions; qualitative presence/absence across lots and sensitivity to detergent+protease.",
+      "human_approved": false
     }
   ],
   "design_gaps": [
@@ -17563,14 +17842,15 @@
       "rationale": "Cargo strategy and active biological contributors remain unresolved.",
       "evidence_ids": [],
       "status": "open",
-      "times_explored": 4,
-      "last_explored_at": "2026-11-13T13:13:25.306312Z",
-      "latest_hypothesis_id": "design-hypothesis-run-20261113T131325Z-03ee8f833fd0",
+      "times_explored": 5,
+      "last_explored_at": "2026-11-27T15:13:16.752442Z",
+      "latest_hypothesis_id": "design-hypothesis-run-20261127T151316Z-09307090fed5",
       "hypothesis_ids": [
         "design-hypothesis-run-20260927T103652Z-0b39f6c9ae58",
         "design-hypothesis-run-20261016T095537Z-3c47696fc5c2",
         "design-hypothesis-run-20261029T113548Z-1d3cdaa95147",
-        "design-hypothesis-run-20261113T131325Z-03ee8f833fd0"
+        "design-hypothesis-run-20261113T131325Z-03ee8f833fd0",
+        "design-hypothesis-run-20261127T151316Z-09307090fed5"
       ],
       "open_questions": [
         "Does any cargo profile track a functional readout across future preparations?"
@@ -18268,7 +18548,14 @@
       "gap_id": "design-gap-scale-control",
       "determination": "needs_evidence",
       "created_at": "2026-11-26T15:26:35.181203Z"
+    },
+    {
+      "run_id": "run-20261127T151316Z-09307090fed5",
+      "hypothesis_id": "design-hypothesis-run-20261127T151316Z-09307090fed5",
+      "gap_id": "design-gap-cargo-composition",
+      "determination": "needs_evidence",
+      "created_at": "2026-11-27T15:13:16.752442Z"
     }
   ],
-  "updated_at": "2026-11-26T15:26:35.181203Z"
+  "updated_at": "2026-11-27T15:13:16.752442Z"
 }

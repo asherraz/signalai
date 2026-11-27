@@ -1,0 +1,20 @@
+{
+  "evidence_ids": [
+    "ev-misev2023-quality-framework",
+    "ev-driedonks-2022-macaque-biodistribution",
+    "ev-hermann-2023-neonatal-hi",
+    "ev-kodali-2017-status-epilepticus",
+    "ev-zhuang-2011-intranasal-exosome"
+  ],
+  "failure_modes": [
+    "Insufficient per-sample EV yield or per-vesicle cargo abundance \u2192 assay sensitivity falls below limit of detection producing false negatives and irreproducible lot comparisons.",
+    "Spike-in tracer physicochemistry or surface markers differ from endogenous EVs \u2192 spike-in recovery does not reflect endogenous EV recovery, producing false assay-validation signals or false confidence in negative results.",
+    "Capture antibody bias or inefficient capture of relevant EV subpopulations \u2192 selective sampling of non-representative subpopulations yields misleading fingerprints not generalizable across lots.",
+    "Incomplete protection assays (RNase/protease conditions not fully degrading external complexes) \u2192 retention of signal in 'protected' condition that actually arises from tightly bound non-vesicular complexes, causing false-positive attribution to intra-vesicular cargo.",
+    "Cross-reactivity or background in droplet assays (index-hopping, barcode collision, or ambient RNA/protein) \u2192 artifactual co-occurrence calls at the single-vesicle level confounding interpretation.",
+    "Low-input proteomics/lipidomics stochasticity \u2192 inability to reproducibly detect detergent-sensitive luminal proteins or consistent lipid-class context across lots, making composite fingerprint unmeasurable.",
+    "Secretome co-isolates that survive detergent/protease (e.g., lipoproteins, protein aggregates) \u2192 protected bulk signals persist and single-vesicle splits cannot disambiguate their contribution if separation and protease accessibility differ from assumptions.",
+    "Resource and method-development constraints \u2192 inability to fully optimize and orthogonally validate multiple novel single-vesicle readouts before material is exhausted, producing inconclusive experiments."
+  ],
+  "strongest_objection": "The experiment can be invalidated by analytic insensitivity and mismatched spike-in behavior: if capture-positive fractions contain too few intact vesicles or too-low copy numbers of targeted protected small RNAs/proteins per vesicle, the droplet single-vesicle and low-input proteomic/lipidomic workflows may produce reproducible false negatives (or highly stochastic detection), and an exogenous spike-in tracer that does not mimic endogenous EV capture/recovery/protection will fail to validate assay performance\u2014leaving positive bulk protected signals uninterpretable and preventing discrimination between bona fide intra-vesicular cargo and co-isolated, protection-resistant soluble complexes."
+}
